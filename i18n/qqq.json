@@ -1,7 +1,7 @@
 {
-    "@metadata": {
-        "authors": []
-    },
-    "ipinfo-extensionname": "The name of the extension",
-    "ipinfo-desc": "{{desc|name=IPInfo|url=https://www.mediawiki.org/wiki/Extension:IPInfo}}"
+	"@metadata": {
+		"authors": []
+	},
+	"ipinfo-extensionname": "The name of the extension",
+	"ipinfo-desc": "{{desc|name=IPInfo|url=https://www.mediawiki.org/wiki/Extension:IPInfo}}"
 }

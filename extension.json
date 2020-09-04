@@ -1,16 +1,16 @@
 {
-    "name": "IPInfo",
-    "url": "https://www.mediawiki.org/wiki/Extension:IPInfo",
-    "license-name": "MIT",
-    "version": "0.0.0",
-    "namemsg": "ipinfo-extensionname",
-    "descriptionmsg": "ipinfo-desc",
-    "manifest_version": 2,
-    "requires": {
-        "MediaWiki": ">= 1.36.0"
-    },
-    "MessagesDirs": {
-        "IPInfo": [ "i18n" ]
-    },
-    "type": "other"
+	"name": "IPInfo",
+	"url": "https://www.mediawiki.org/wiki/Extension:IPInfo",
+	"license-name": "MIT",
+	"version": "0.0.0",
+	"namemsg": "ipinfo-extensionname",
+	"descriptionmsg": "ipinfo-desc",
+	"manifest_version": 2,
+	"requires": {
+		"MediaWiki": ">= 1.36.0"
+	},
+	"MessagesDirs": {
+		"IPInfo": [ "i18n" ]
+	},
+	"type": "other"
 }
