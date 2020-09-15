@@ -8,5 +8,8 @@
 	"ipinfo-rest-access-denied": "You do not have permission to perform the action",
 	"ipinfo-rest-revision-no-author": "Your account does not have access to view the author of the revision",
 	"ipinfo-rest-revision-registered": "Cannot retrieve ipinfo for revisions of registered users",
+	"ipinfo-rest-log-nonexistent": "Log entry does not exist",
+	"ipinfo-rest-log-registered": "Cannot retrieve ipinfo for logs of registered users",
+	"ipinfo-rest-log-denied": "Your account does not have access to view the performer of the log entry or the log entry itself",
 	"right-ipinfo": "Retrieve information from an IP addresses attached to revisions or log entries"
 }

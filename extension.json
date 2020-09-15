@@ -17,6 +17,7 @@
 		"MediaWiki\\IPInfo\\": "src/"
 	},
 	"TestAutoloadNamespaces": {
+		"MediaWiki\\IPInfo\\Test\\Integration\\": "tests/phpunit/integration",
 		"MediaWiki\\IPInfo\\Test\\Unit\\": "tests/phpunit/unit"
 	},
 	"ServiceWiringFiles": [
@@ -36,6 +37,17 @@
 				"UserFactory"
 			],
 			"factory": "MediaWiki\\IPInfo\\RestHandler\\RevisionHandler::factory"
+		},
+		{
+			"path": "/ipinfo/v0/log/{id}",
+			"method": "GET",
+			"services": [
+				"IPInfoInfoManager",
+				"DBLoadBalancer",
+				"PermissionManager",
+				"UserFactory"
+			],
+			"factory": "MediaWiki\\IPInfo\\RestHandler\\LogHandler::factory"
 		}
 	]
 }
