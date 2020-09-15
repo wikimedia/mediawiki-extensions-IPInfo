@@ -12,5 +12,14 @@
 	"MessagesDirs": {
 		"IPInfo": [ "i18n" ]
 	},
-	"type": "other"
+	"type": "other",
+	"AutoloadNamespaces": {
+		"MediaWiki\\IPInfo\\": "src/"
+	},
+	"TestAutoloadNamespaces": {
+		"MediaWiki\\IPInfo\\Test\\Unit\\": "tests/phpunit/unit"
+	},
+	"ServiceWiringFiles": [
+		"./ServiceWiring.php"
+	]
 }
