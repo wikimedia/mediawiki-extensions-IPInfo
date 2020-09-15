@@ -21,5 +21,21 @@
 	},
 	"ServiceWiringFiles": [
 		"./ServiceWiring.php"
+	],
+	"AvailableRights": [
+		"ipinfo"
+	],
+	"RestRoutes": [
+		{
+			"path": "/ipinfo/v0/revision/{id}",
+			"method": "GET",
+			"services": [
+				"IPInfoInfoManager",
+				"RevisionLookup",
+				"PermissionManager",
+				"UserFactory"
+			],
+			"factory": "MediaWiki\\IPInfo\\RestHandler\\RevisionHandler::factory"
+		}
 	]
 }
