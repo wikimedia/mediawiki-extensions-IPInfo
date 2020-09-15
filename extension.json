@@ -24,7 +24,8 @@
 		"./ServiceWiring.php"
 	],
 	"AvailableRights": [
-		"ipinfo"
+		"ipinfo",
+		"ipinfo-any"
 	],
 	"RestRoutes": [
 		{
@@ -48,6 +49,15 @@
 				"UserFactory"
 			],
 			"factory": "MediaWiki\\IPInfo\\RestHandler\\LogHandler::factory"
+		},
+		{
+			"path": "/ipinfo/v0/ip",
+			"method": "POST",
+			"services": [
+				"IPInfoInfoManager",
+				"PermissionManager"
+			],
+			"factory": "MediaWiki\\IPInfo\\RestHandler\\IPHandler::factory"
 		}
 	]
 }
