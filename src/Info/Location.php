@@ -5,19 +5,19 @@ namespace MediaWiki\IPInfo\Info;
 use JsonSerializable;
 
 class Location implements JsonSerializable {
-	/** @var int|null */
+	/** @var int */
 	private $id;
 
-	/** @var string|null */
+	/** @var string */
 	private $label;
 
 	/**
-	 * @param int|null $id
-	 * @param string|null $label
+	 * @param int $id
+	 * @param string $label
 	 */
 	public function __construct(
-		?int $id = null,
-		?string $label = null
+		int $id,
+		string $label
 	) {
 		$this->id = $id;
 		$this->label = $label;
@@ -27,13 +27,9 @@ class Location implements JsonSerializable {
 	 * @inheritDoc
 	 */
 	public function jsonSerialize() {
-		$data = [
+		return [
 			'id' => $this->id,
 			'label' => $this->label,
 		];
-
-		return (object)array_filter( $data, function ( $value ) {
-			return $value !== null;
-		} );
 	}
 }

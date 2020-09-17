@@ -33,14 +33,10 @@ class Info implements JsonSerializable {
 	 * @inheritDoc
 	 */
 	public function jsonSerialize() {
-		$data = [
+		return [
 			'coordinates' => $this->coordinates,
 			'asn' => $this->asn,
 			'location' => $this->location,
 		];
-
-		return (object)array_filter( $data, function ( $value ) {
-			return $value !== null && $value !== [];
-		} );
 	}
 }
