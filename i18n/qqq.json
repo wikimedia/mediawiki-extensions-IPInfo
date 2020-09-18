@@ -2,6 +2,11 @@
 	"@metadata": {
 		"authors": []
 	},
+	"action-ipinfo": "{{doc-action|ipinfo}}",
 	"ipinfo-extensionname": "The name of the extension",
-	"ipinfo-desc": "{{desc|name=IPInfo|url=https://www.mediawiki.org/wiki/Extension:IPInfo}}"
+	"ipinfo-desc": "{{desc|name=IPInfo|url=https://www.mediawiki.org/wiki/Extension:IPInfo}}",
+	"ipinfo-rest-access-denied": "Error message for REST API debugging, shown when access is denied.",
+	"ipinfo-rest-revision-no-author": "Error message for REST API debugging, shown when a user does not have permission to read the author of a revision.",
+	"ipinfo-rest-revision-registered": "Error message for REST API debugging, shown when a revision belongs to a registered user.",
+	"right-ipinfo": "{{doc-right|ipinfo}}"
 }
