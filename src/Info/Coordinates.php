@@ -28,7 +28,7 @@ class Coordinates implements JsonSerializable {
 	 */
 	public function jsonSerialize() {
 		return [
-			'latitude' => $this->longitude,
+			'latitude' => $this->latitude,
 			'longitude' => $this->longitude,
 		];
 	}
