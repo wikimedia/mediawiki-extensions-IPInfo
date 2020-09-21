@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Rail"
+		]
+	},
+	"ipinfo-extensionname": "Informacje o IP",
+	"ipinfo-desc": "Dostarcza informacje na temat adresów IP",
+	"ipinfo-rest-access-denied": "Nie masz uprawnień do wykonywania tej operacji",
+	"ipinfo-rest-log-nonexistent": "Wpis w rejestrze nie istnieje"
+}

@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Florian COLLIN",
+			"Gomoko",
+			"Wladek92"
+		]
+	},
+	"action-ipinfo": "Récupérer les informations à partir des adresses IP attachées aux révisions ou aux entrées de journal",
+	"ipinfo-desc": "Fournit des informations sur une adresse IP.",
+	"ipinfo-rest-access-denied": "Vous n’avez pas l'autorisation de réaliser cette action",
+	"ipinfo-rest-revision-no-author": "Votre compte n'a pas l'accès pour voir l'auteur de la révision",
+	"ipinfo-rest-revision-registered": "Impossible de récupérer ipinfo pour les révisions des utilisateurs enregistrés",
+	"ipinfo-rest-log-nonexistent": "L'entrée de journal n'existe pas",
+	"ipinfo-rest-log-registered": "Impossible de récupérer ipinfo pour les journaux des utilisateurs enregistrés",
+	"ipinfo-rest-log-denied": "Votre compte n'a pas accès pour afficher l'intervenant de l'entrée de journal ou l'entrée de journal elle-même",
+	"right-ipinfo": "Récupérer des informations à partir d'adresses IP attachées aux révisions ou aux entrées de journal"
+}

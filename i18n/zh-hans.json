@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"SkEy"
+		]
+	},
+	"ipinfo-rest-access-denied": "您没有权限来执行此操作",
+	"ipinfo-rest-revision-registered": "无法获取已登录用户修订的IP地址",
+	"ipinfo-rest-log-nonexistent": "日志项不存在",
+	"ipinfo-rest-log-registered": "无法获取已登录用户日志的IP地址",
+	"ipinfo-rest-log-denied": "您无法访问该日志项或日志项的操作者"
+}

@@ -2,5 +2,13 @@
 	"@metadata": {
 		"authors": []
 	},
-	"ipinfo-desc": "Stellt Informationen über eine IP-Adresse zur Verfügung."
+	"action-ipinfo": "Abrufen von Informationen von IP-Adressen, die mit Versionen oder Logbüchern verbunden sind",
+	"ipinfo-desc": "Stellt Informationen über eine IP-Adresse zur Verfügung.",
+	"ipinfo-rest-access-denied": "Du hast keine Berechtigung, diese Aktion durchzuführen",
+	"ipinfo-rest-revision-no-author": "Dein Benutzerkonto hat keinen Zugriff zum Anzeigen des Autors der Version",
+	"ipinfo-rest-revision-registered": "Kann ipinfo für Versionen registrierter Benutzer nicht abrufen",
+	"ipinfo-rest-log-nonexistent": "Logbucheintrag existiert nicht",
+	"ipinfo-rest-log-registered": "Kann ipinfo für Logbücher registrierter Benutzer nicht abrufen",
+	"ipinfo-rest-log-denied": "Dein Benutzerkonto hat keinen Zugriff auf den ausführenden Benutzer des Logbucheintrags oder den Protokolleintrag selbst.",
+	"right-ipinfo": "Abrufen von Informationen von IP-Adressen, die mit Versionen oder Logbüchern verbunden sind"
 }
