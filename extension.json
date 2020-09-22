@@ -59,5 +59,33 @@
 			],
 			"factory": "MediaWiki\\IPInfo\\RestHandler\\IPHandler::factory"
 		}
-	]
+	],
+	"Hooks": {
+		"BeforePageDisplay": "popup"
+	},
+	"HookHandlers": {
+		"popup": {
+			"class": "MediaWiki\\IPInfo\\HookHandler\\PopupHandler",
+			"services": [ "PermissionManager" ]
+		}
+	},
+	"ResourceModules": {
+		"ext.ipInfo": {
+			"localBasePath": "modules/ext.ipInfo",
+			"remoteExtPath": "IPInfo/modules/ext.ipInfo",
+			"scripts": [
+				"init.js"
+			],
+			"styles": [
+				"ipinfo.less"
+			],
+			"dependencies": [
+				"oojs-ui-core",
+				"oojs-ui.styles.icons-content"
+			],
+			"messages": [
+				"ipinfo-popup-source-mock"
+			]
+		}
+	}
 }

@@ -6,6 +6,7 @@
 	"action-ipinfo-any": "Retrieve information from any IP Address.",
 	"ipinfo-extensionname": "IP Info",
 	"ipinfo-desc": "Provides information about an IP address.",
+	"ipinfo-popup-source-mock": "Source: mock data",
 	"ipinfo-rest-access-denied": "You do not have permission to perform the action",
 	"ipinfo-rest-revision-no-author": "Your account does not have access to view the author of the revision",
 	"ipinfo-rest-revision-registered": "Cannot retrieve ipinfo for revisions of registered users",
