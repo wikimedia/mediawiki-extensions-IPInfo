@@ -4,5 +4,6 @@
 			"Fitoschido"
 		]
 	},
+	"ipinfo-rest-access-denied": "No tienes permiso para efectuar la acción",
 	"ipinfo-rest-log-nonexistent": "No existe la entrada del registro"
 }
