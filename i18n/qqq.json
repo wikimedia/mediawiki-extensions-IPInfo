@@ -1,10 +1,12 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"Umherirrender"
+		]
 	},
 	"action-ipinfo": "{{doc-action|ipinfo}}",
 	"action-ipinfo-any": "{{doc-action|ipinfo-any}}",
-	"ipinfo-extensionname": "The name of the extension",
+	"ipinfo-extensionname": "{{name}}\nThe name of the extension",
 	"ipinfo-desc": "{{desc|name=IPInfo|url=https://www.mediawiki.org/wiki/Extension:IPInfo}}",
 	"ipinfo-popup-source-mock": "A data source that is shown in the popup.",
 	"ipinfo-rest-access-denied": "Error message for REST API debugging, shown when access is denied.",
