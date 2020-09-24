@@ -5,12 +5,16 @@
 		]
 	},
 	"action-ipinfo": "Recupere informações de um endereço IP anexado a revisões ou entradas de registro",
+	"action-ipinfo-any": "Recupere informações de qualquer endereço IP.",
 	"ipinfo-desc": "Fornece informações sobre um endereço IP.",
+	"ipinfo-popup-source-mock": "Fonte: dados fictícios",
 	"ipinfo-rest-access-denied": "Você não tem permissão para realizar a ação",
 	"ipinfo-rest-revision-no-author": "Sua conta não tem acesso para ver o autor da revisão",
 	"ipinfo-rest-revision-registered": "Não é possível recuperar ipinfo para revisões de usuários registrados",
 	"ipinfo-rest-log-nonexistent": "A entrada de registro não existe",
 	"ipinfo-rest-log-registered": "Não é possível recuperar ipinfo para registros de usuários registrados",
 	"ipinfo-rest-log-denied": "Sua conta não tem acesso para visualizar o executor da entrada de registro ou a própria entrada de registro",
-	"right-ipinfo": "Recupere informações de um endereço IP anexado a revisões ou entradas de registro"
+	"ipinfo-rest-ip-invalid": "O endereço IP fornecido é inválido",
+	"right-ipinfo": "Recupere informações de um endereço IP anexado a revisões ou entradas de registro",
+	"right-ipinfo-any": "Recupere informações de qualquer endereço IP"
 }
