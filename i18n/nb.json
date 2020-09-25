@@ -4,5 +4,17 @@
 			"Jon Harald Søby"
 		]
 	},
-	"ipinfo-desc": "Gir informasjon om en IP-adresse."
+	"action-ipinfo": "hente informasjon fra IP-adresser tilknyttet revisjoner eller loggoppføringer",
+	"action-ipinfo-any": "Hente informasjon fra IP-adresser",
+	"ipinfo-desc": "Gir informasjon om en IP-adresse.",
+	"ipinfo-popup-source-mock": "Kilde: mock-data",
+	"ipinfo-rest-access-denied": "Du har ikke tillatelse til å utføre handlingen",
+	"ipinfo-rest-revision-no-author": "Kontoen din har ikke tilgang til å vise forfatteren av revisjonen",
+	"ipinfo-rest-revision-registered": "Kan ikke hente ipinfo for revisjoner av registrerte brukere",
+	"ipinfo-rest-log-nonexistent": "Loggoppføring finnes ikke",
+	"ipinfo-rest-log-registered": "Kan ikke hente ipinfo for logger av registrerte brukere",
+	"ipinfo-rest-log-denied": "Kontoen din har ikke tilgang til å vise utøveren av loggoppføringen eller selve loggoppføringen",
+	"ipinfo-rest-ip-invalid": "Den gitte IP-adressen er ugyldig",
+	"right-ipinfo": "hente informasjon fra en IP-adresse tilknyttet revisjoner eller loggoppføringer",
+	"right-ipinfo-any": "Hente informasjon fra IP-adresser"
 }
