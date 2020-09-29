@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hanna Tardos"
+			"Hanna Tardos",
+			"Tacsipacsi"
 		]
 	},
-	"action-ipinfo-any": "Információ lekérése bármely IP-címről",
+	"action-ipinfo-any": "információ lekérése bármely IP-címről",
 	"ipinfo-rest-ip-invalid": "A megadott IP-cím érvénytelen",
-	"right-ipinfo-any": "Információ lekérése bármely IP-címről"
+	"right-ipinfo-any": "információ lekérése bármely IP-címről"
 }
