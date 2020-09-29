@@ -13,6 +13,7 @@ use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use RequestContext;
+use Wikimedia\IPUtils;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -106,9 +107,20 @@ class LogHandler extends SimpleHandler {
 				new MessageValue( 'ipinfo-rest-log-denied' ), 403 );
 		}
 
-		$performer = $entry->getPerformer();
+		$performer = $entry->getPerformer()->getName();
 
-		if ( $performer->isRegistered() ) {
+		// The target of a log entry may be an IP address. Targets are stored as titles.
+		$target = $entry->getTarget()->getText();
+
+		$info = [];
+		if ( IPUtils::isValid( $performer ) ) {
+			$info[] = $this->infoManager->retrieveFromIP( $performer );
+		}
+		if ( IPUtils::isValid( $target ) ) {
+			$info[] = $this->infoManager->retrieveFromIP( $target );
+		}
+
+		if ( count( $info ) === 0 ) {
 			// Since the IP address only exists in CheckUser, there is no way to access it.
 			// @TODO Allow extensions (like CheckUser) to either pass without a value
 			//      (which would result in a 404) or throw a fatal (which could result in a 403).
@@ -116,10 +128,8 @@ class LogHandler extends SimpleHandler {
 				new MessageValue( 'ipinfo-rest-log-registered' ), 404 );
 		}
 
-		$info = $this->infoManager->retrieveFromIP( $performer->getName() );
-
 		// @TODO Figure out a good caching strategy!
-		return $this->getResponseFactory()->createJson( $info );
+		return $this->getResponseFactory()->createJson( [ 'info' => $info ] );
 	}
 
 	/**

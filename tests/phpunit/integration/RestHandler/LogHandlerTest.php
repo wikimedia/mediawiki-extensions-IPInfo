@@ -33,6 +33,8 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 			->willReturn( [
 				'logid' => 123,
 				'log_deleted' => 0,
+				'log_namespace' => 0,
+				'log_title' => 'Test',
 				'log_user' => 0,
 				'log_user_text' => '127.0.0.1',
 			] );
@@ -189,6 +191,8 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 			->willReturn( [
 				'logid' => 123,
 				'log_deleted' => 0,
+				'log_namespace' => 0,
+				'log_title' => 'Test',
 				'log_user' => $performer->getId(),
 				'log_user_text' => $performer->getName(),
 			] );

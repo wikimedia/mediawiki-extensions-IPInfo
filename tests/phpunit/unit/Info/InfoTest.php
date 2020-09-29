@@ -13,12 +13,13 @@ class InfoTest extends MediaWikiUnitTestCase {
 
 	public function testJsonSerialize() {
 		$expected = json_encode( [
+			'actor' => '127.0.0.1',
 			'coordinates' => null,
 			'asn' => null,
 			'location' => [],
 		] );
 
-		$info = new Info();
+		$info = new Info( '127.0.0.1' );
 
 		$this->assertSame( $expected, json_encode( $info ) );
 	}

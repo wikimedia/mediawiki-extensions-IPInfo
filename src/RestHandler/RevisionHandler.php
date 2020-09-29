@@ -116,10 +116,10 @@ class RevisionHandler extends SimpleHandler {
 				new MessageValue( 'ipinfo-rest-revision-registered' ), 404 );
 		}
 
-		$info = $this->infoManager->retrieveFromIP( $author->getName() );
+		$info = [ $this->infoManager->retrieveFromIP( $author->getName() ) ];
 
 		// @TODO Figure out a good caching strategy!
-		return $this->getResponseFactory()->createJson( $info );
+		return $this->getResponseFactory()->createJson( [ 'info' => $info ] );
 	}
 
 	/**

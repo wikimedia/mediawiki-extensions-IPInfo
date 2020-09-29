@@ -6,6 +6,7 @@ use MediaWiki\IPInfo\Info\ASN;
 use MediaWiki\IPInfo\Info\Coordinates;
 use MediaWiki\IPInfo\Info\Info;
 use MediaWiki\IPInfo\Info\Location;
+use Wikimedia\IPUtils;
 
 class InfoManager {
 
@@ -18,6 +19,7 @@ class InfoManager {
 	public function retrieveFromIP( string $ip ) : Info {
 		// @TODO Remove mock data.
 		return new Info(
+			IPUtils::prettifyIP( $ip ),
 			new Coordinates( 38.897957, -77.036560 ),
 			new ASN( 33363 ),
 			[
