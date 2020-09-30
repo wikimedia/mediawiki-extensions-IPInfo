@@ -13,7 +13,7 @@ class InfoTest extends MediaWikiUnitTestCase {
 
 	public function testJsonSerialize() {
 		$expected = json_encode( [
-			'actor' => '127.0.0.1',
+			'subject' => '127.0.0.1',
 			'coordinates' => null,
 			'asn' => null,
 			'location' => [],
