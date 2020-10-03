@@ -6,10 +6,7 @@
 			button = new OO.ui.PopupButtonWidget( {
 				icon: 'info',
 				framed: false,
-				classes: [ 'ext-ipinfo-button' ],
-				popup: {
-					padded: true
-				}
+				classes: [ 'ext-ipinfo-button' ]
 			} );
 
 		ip = $( this ).text();
@@ -29,35 +26,25 @@
 		}
 
 		button.once( 'click', function () {
-			$.get(
-				mw.config.get( 'wgScriptPath' ) +
-				'/rest.php/ipinfo/v0/' +
-				type + '/' + id
-			).then( function ( response ) {
-				// TODO: Widget should handle this after T263407
-				var i, data, location, source;
+			button.popup.$body.append( new mw.IpInfo.IpInfoWidget(
+				$.get(
+					mw.config.get( 'wgScriptPath' ) +
+						'/rest.php/ipinfo/v0/' +
+						type + '/' + id
+				).then( function ( response ) {
+					var i, data;
 
-				// Array.find is only available from ES6
-				for ( i = 0; i < response.info.length; i++ ) {
-					if ( response.info[ i ].subject === ip ) {
-						data = response.info[ i ];
-						break;
+					// Array.find is only available from ES6
+					for ( i = 0; i < response.info.length; i++ ) {
+						if ( response.info[ i ].subject === ip ) {
+							data = response.info[ i ];
+							break;
+						}
 					}
-				}
 
-				// TODO: display error if data is still undefined - T263409
-				if ( data ) {
-					location = data.location.map( function ( item ) {
-						return item.label;
-					} ).join( mw.msg( 'comma-separator' ) );
-					source = mw.msg( 'ipinfo-popup-source-mock' );
-
-					button.popup.$body.append(
-						$( '<p>' ).addClass( 'ext-ipinfo-popup-location' ).text( location ),
-						$( '<p>' ).addClass( 'ext-ipinfo-popup-source' ).text( source )
-					);
-				}
-			} );
+					return data;
+				} )
+			).$element );
 		} );
 
 		return button.$element;

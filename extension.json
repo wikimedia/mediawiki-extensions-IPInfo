@@ -74,7 +74,8 @@
 			"localBasePath": "modules/ext.ipInfo",
 			"remoteExtPath": "IPInfo/modules/ext.ipInfo",
 			"scripts": [
-				"init.js"
+				"init.js",
+				"widget.js"
 			],
 			"styles": [
 				"ipinfo.less"
@@ -84,7 +85,7 @@
 				"oojs-ui.styles.icons-content"
 			],
 			"messages": [
-				"ipinfo-popup-source-mock"
+				"ipinfo-widget-source-mock"
 			]
 		}
 	}
