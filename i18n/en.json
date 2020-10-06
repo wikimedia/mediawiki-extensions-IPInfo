@@ -7,6 +7,8 @@
 	"ipinfo-extensionname": "IP Info",
 	"ipinfo-desc": "Provides information about an IP address.",
 	"ipinfo-widget-source-mock": "Source: mock data",
+	"ipinfo-widget-error-default": "The IP information could not be retrieved.",
+	"ipinfo-widget-error-wrong-ip": "The IP address provided did not match the log or revision.",
 	"ipinfo-rest-access-denied": "You do not have permission to perform the action",
 	"ipinfo-rest-revision-no-author": "Your account does not have access to view the author of the revision",
 	"ipinfo-rest-revision-registered": "Cannot retrieve ipinfo for revisions of registered users",

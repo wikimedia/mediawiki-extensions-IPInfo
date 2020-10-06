@@ -85,7 +85,9 @@
 				"oojs-ui.styles.icons-content"
 			],
 			"messages": [
-				"ipinfo-widget-source-mock"
+				"ipinfo-widget-source-mock",
+				"ipinfo-widget-error-default",
+				"ipinfo-widget-error-wrong-ip"
 			]
 		}
 	}
