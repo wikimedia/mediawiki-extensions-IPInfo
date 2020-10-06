@@ -3,7 +3,7 @@
 		"authors": []
 	},
 	"action-ipinfo": "Retrieve information from an IP addresses attached to revisions or log entries",
-	"action-ipinfo-any": "Retrieve information from any IP Address.",
+	"action-ipinfo-any": "Retrieve information from any IP address.",
 	"ipinfo-extensionname": "IP Info",
 	"ipinfo-desc": "Provides information about an IP address.",
 	"ipinfo-widget-source-mock": "Source: mock data",
@@ -13,7 +13,7 @@
 	"ipinfo-rest-log-nonexistent": "Log entry does not exist",
 	"ipinfo-rest-log-registered": "Cannot retrieve ipinfo for logs of registered users",
 	"ipinfo-rest-log-denied": "Your account does not have access to view the performer of the log entry or the log entry itself",
-	"ipinfo-rest-ip-invalid": "IP Address provided is invalid",
+	"ipinfo-rest-ip-invalid": "IP address provided is invalid",
 	"right-ipinfo": "Retrieve information from an IP addresses attached to revisions or log entries",
 	"right-ipinfo-any": "Retrieve information from any IP address"
 }
