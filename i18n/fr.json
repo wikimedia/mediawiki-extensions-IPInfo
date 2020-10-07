@@ -10,7 +10,7 @@
 	"action-ipinfo": "Récupérer les informations à partir des adresses IP attachées aux révisions ou aux entrées de journal",
 	"action-ipinfo-any": "Récupérer des informations d’une adresse IP quelconque.",
 	"ipinfo-desc": "Fournit des informations sur une adresse IP.",
-	"ipinfo-popup-source-mock": "Source : données simulées",
+	"ipinfo-widget-source-mock": "Source : données simulées",
 	"ipinfo-rest-access-denied": "Vous n’avez pas l’autorisation de réaliser cette action",
 	"ipinfo-rest-revision-no-author": "Votre compte n'a pas l'accès pour voir l'auteur de la révision",
 	"ipinfo-rest-revision-registered": "Impossible de récupérer ipinfo pour les révisions des utilisateurs enregistrés",

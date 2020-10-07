@@ -7,7 +7,7 @@
 	"action-ipinfo": "hente informasjon fra IP-adresser tilknyttet revisjoner eller loggoppføringer",
 	"action-ipinfo-any": "Hente informasjon fra IP-adresser",
 	"ipinfo-desc": "Gir informasjon om en IP-adresse.",
-	"ipinfo-popup-source-mock": "Kilde: mock-data",
+	"ipinfo-widget-source-mock": "Kilde: mock-data",
 	"ipinfo-rest-access-denied": "Du har ikke tillatelse til å utføre handlingen",
 	"ipinfo-rest-revision-no-author": "Kontoen din har ikke tilgang til å vise forfatteren av revisjonen",
 	"ipinfo-rest-revision-registered": "Kan ikke hente ipinfo for revisjoner av registrerte brukere",

@@ -7,7 +7,7 @@
 	"action-ipinfo": "Revizyonlara veya günlük girişlerine eklenmiş bir IP adresinden bilgi alın",
 	"action-ipinfo-any": "Herhangi bir IP Adresinden bilgi alın.",
 	"ipinfo-desc": "Bir IP adresi hakkında bilgi sağlar.",
-	"ipinfo-popup-source-mock": "Kaynak: sahte veriler",
+	"ipinfo-widget-source-mock": "Kaynak: sahte veriler",
 	"ipinfo-rest-access-denied": "Bu eylemi gerçekleştirmeye yetkiniz yok",
 	"ipinfo-rest-revision-no-author": "Hesabınızın revizyonun yazarını görüntüleme erişimi yok",
 	"ipinfo-rest-revision-registered": "Kayıtlı kullanıcıların revizyonları için ipinfo alınamıyor",
