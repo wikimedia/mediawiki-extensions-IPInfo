@@ -4,6 +4,7 @@
 			"Beta16"
 		]
 	},
+	"action-ipinfo-any": "Recupera informazioni da qualsiasi indirizzo IP.",
 	"ipinfo-rest-ip-invalid": "L'indirizzo IP fornito non è valido",
 	"right-ipinfo-any": "Recupera informazioni da qualsiasi indirizzo IP"
 }
