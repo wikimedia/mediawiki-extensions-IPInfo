@@ -8,6 +8,8 @@
 	"action-ipinfo-any": "Recupere informações de qualquer endereço IP.",
 	"ipinfo-desc": "Fornece informações sobre um endereço IP.",
 	"ipinfo-widget-source-mock": "Fonte: dados fictícios",
+	"ipinfo-widget-error-default": "As informações de IP não puderam ser recuperadas.",
+	"ipinfo-widget-error-wrong-ip": "O endereço IP fornecido não corresponde ao registro ou revisão.",
 	"ipinfo-rest-access-denied": "Você não tem permissão para realizar a ação",
 	"ipinfo-rest-revision-no-author": "Sua conta não tem acesso para ver o autor da revisão",
 	"ipinfo-rest-revision-registered": "Não é possível recuperar ipinfo para revisões de usuários registrados",

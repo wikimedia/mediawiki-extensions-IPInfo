@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Beta16"
+			"Beta16",
+			"Mpayansilva"
 		]
 	},
 	"action-ipinfo-any": "Recupera informazioni da qualsiasi indirizzo IP.",
+	"ipinfo-widget-error-default": "Non è stato possibile recuperare le informazioni IP.",
 	"ipinfo-rest-ip-invalid": "L'indirizzo IP fornito non è valido",
 	"right-ipinfo-any": "Recupera informazioni da qualsiasi indirizzo IP"
 }

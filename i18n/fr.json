@@ -11,6 +11,8 @@
 	"action-ipinfo-any": "Récupérer des informations d’une adresse IP quelconque.",
 	"ipinfo-desc": "Fournit des informations sur une adresse IP.",
 	"ipinfo-widget-source-mock": "Source : données simulées",
+	"ipinfo-widget-error-default": "L’information IP n’a pas pu être récupérée.",
+	"ipinfo-widget-error-wrong-ip": "L’adresse IP fournie ne correspond pas au journal ou à la révision.",
 	"ipinfo-rest-access-denied": "Vous n’avez pas l’autorisation de réaliser cette action",
 	"ipinfo-rest-revision-no-author": "Votre compte n'a pas l'accès pour voir l'auteur de la révision",
 	"ipinfo-rest-revision-registered": "Impossible de récupérer ipinfo pour les révisions des utilisateurs enregistrés",
