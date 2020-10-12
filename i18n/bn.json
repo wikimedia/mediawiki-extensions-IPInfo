@@ -6,6 +6,6 @@
 		]
 	},
 	"ipinfo-widget-error-default": "আইপি তথ্যসমূহ উদ্ধার করা যাচ্ছে না।",
-	"ipinfo-widget-error-wrong-ip": "প্রদানকৃত আইপি ঠিকানাটি লগ ও সংস্করণের সাথে মিলছে না",
+	"ipinfo-widget-error-wrong-ip": "প্রদানকৃত আইপি ঠিকানাটি লগ ও সংস্করণের সাথে মিলছে না।",
 	"ipinfo-rest-access-denied": "আপনার এই কর্মটি সঞ্চালন করার অনুমতি নেই"
 }

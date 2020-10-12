@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Shuiwater",
 			"SkEy"
 		]
 	},
+	"ipinfo-widget-error-default": "这个IP的信息没法找回。",
 	"ipinfo-rest-access-denied": "您没有权限来执行此操作",
 	"ipinfo-rest-revision-registered": "无法获取已登录用户修订的IP地址",
 	"ipinfo-rest-log-nonexistent": "日志项不存在",
