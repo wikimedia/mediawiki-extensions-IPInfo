@@ -8,11 +8,16 @@ class ASN implements JsonSerializable {
 	/** @var int */
 	private $id;
 
+	/** @var string */
+	private $label;
+
 	/**
 	 * @param int $id
+	 * @param string $label
 	 */
-	public function __construct( int $id ) {
+	public function __construct( int $id, string $label ) {
 		$this->id = $id;
+		$this->label = $label;
 	}
 
 	/**
@@ -21,6 +26,7 @@ class ASN implements JsonSerializable {
 	public function jsonSerialize() {
 		return [
 			'id' => $this->id,
+			'label' => $this->label,
 		];
 	}
 }

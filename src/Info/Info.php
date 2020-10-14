@@ -6,7 +6,7 @@ use JsonSerializable;
 
 class Info implements JsonSerializable {
 	/** @var string */
-	private $subject;
+	private $source;
 
 	/** @var Coordinates|null */
 	private $coordinates;
@@ -18,18 +18,18 @@ class Info implements JsonSerializable {
 	private $location;
 
 	/**
-	 * @param string $subject
+	 * @param string $source Message key for the name of the data source
 	 * @param Coordinates|null $coordinates
 	 * @param ASN|null $asn
 	 * @param Location[] $location
 	 */
 	public function __construct(
-		string $subject,
+		string $source,
 		?Coordinates $coordinates = null,
 		?ASN $asn = null,
 		array $location = []
 	) {
-		$this->subject = $subject;
+		$this->source = $source;
 		$this->coordinates = $coordinates;
 		$this->asn = $asn;
 		$this->location = $location;
@@ -40,7 +40,7 @@ class Info implements JsonSerializable {
 	 */
 	public function jsonSerialize() {
 		return [
-			'subject' => $this->subject,
+			'source' => $this->source,
 			'coordinates' => $this->coordinates,
 			'asn' => $this->asn,
 			'location' => $this->location,

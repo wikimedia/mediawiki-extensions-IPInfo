@@ -45,18 +45,37 @@
 	 * @param {Object} info
 	 */
 	mw.IpInfo.IpInfoWidget.prototype.success = function ( info ) {
-		var location, source;
+		var widget = this;
 
 		if ( info ) {
-			location = info.location.map( function ( item ) {
-				return item.label;
-			} ).join( mw.msg( 'comma-separator' ) );
-			source = mw.msg( 'ipinfo-widget-source-mock' );
+			info.data.forEach( function ( datum ) {
+				var location, asn, source;
 
-			this.$element.append(
-				$( '<p>' ).addClass( 'ext-ipinfo-widget-location' ).text( location ),
-				$( '<p>' ).addClass( 'ext-ipinfo-widget-source' ).text( source )
-			);
+				if (
+					datum.location.length === 0 &&
+					datum.asn === null
+				) {
+					// The following messages can be passed here:
+					// * ipinfo-source-geoip2
+					// * ipinfo-source-<sourcename>
+					widget.displayError( mw.msg( 'ipinfo-widget-error-no-data', mw.msg( datum.source ) ) );
+					return;
+				}
+				location = datum.location.map( function ( item ) {
+					return item.label;
+				} ).join( mw.msg( 'comma-separator' ) );
+				asn = datum.asn.label;
+				// The following messages can be passed here:
+				// * ipinfo-source-geoip2
+				// * ipinfo-source-<sourcename>
+				source = mw.msg( 'ipinfo-widget-source', mw.msg( datum.source ) );
+
+				widget.$element.append(
+					$( '<p>' ).addClass( 'ext-ipinfo-widget-location' ).text( location ),
+					$( '<p>' ).addClass( 'ext-ipinfo-widget-asn' ).text( asn ),
+					$( '<p>' ).addClass( 'ext-ipinfo-widget-source' ).text( source )
+				);
+			} );
 		} else {
 			// The IP address did not match the log or revision ID
 			this.displayError( mw.msg( 'ipinfo-widget-error-wrong-ip' ) );

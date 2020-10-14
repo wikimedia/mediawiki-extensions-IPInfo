@@ -9,8 +9,9 @@
 	"action-ipinfo-any": "{{doc-action|ipinfo-any}}",
 	"ipinfo-extensionname": "{{name}}\nThe name of the extension",
 	"ipinfo-desc": "{{desc|name=IPInfo|url=https://www.mediawiki.org/wiki/Extension:IPInfo}}",
-	"ipinfo-widget-source-mock": "A data source that is shown in the widget.",
+	"ipinfo-widget-source": "A data source that is shown in the widget.\n\nParameters:\n* $1 - Name of a data source",
 	"ipinfo-widget-error-default": "Error message shown in the widget.",
+	"ipinfo-widget-error-no-data": "Error message shown in the widget.\n\nParameters:\n* $1 - Name of a data source",
 	"ipinfo-widget-error-wrong-ip": "Error message shown in the widget.",
 	"ipinfo-rest-access-denied": "Error message for REST API debugging, shown when access is denied.",
 	"ipinfo-rest-revision-no-author": "Error message for REST API debugging, shown when a user does not have permission to read the author of a revision.",
@@ -19,6 +20,7 @@
 	"ipinfo-rest-log-registered": "Error message for REST API debugging, shown when a log entry belongs to a registered user.",
 	"ipinfo-rest-log-denied": "Error message for REST API debugging, shown when a user does not have permission to read the performer of a log entry.",
 	"ipinfo-rest-ip-invalid": "Error message for REST API debugging, shown when an IP address is invalid",
+	"ipinfo-source-geoip2": "Name of the GeoIp2 data source.",
 	"right-ipinfo": "{{doc-right|ipinfo}}",
 	"right-ipinfo-any": "{{doc-right|ipinfo-any}}"
 }

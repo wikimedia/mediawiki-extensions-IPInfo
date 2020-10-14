@@ -2,32 +2,35 @@
 
 namespace MediaWiki\IPInfo;
 
-use MediaWiki\IPInfo\Info\ASN;
-use MediaWiki\IPInfo\Info\Coordinates;
-use MediaWiki\IPInfo\Info\Info;
-use MediaWiki\IPInfo\Info\Location;
-use Wikimedia\IPUtils;
-
 class InfoManager {
+	/** @var InfoRetriever[] */
+	private $retrievers;
+
+	/**
+	 * @param InfoRetriever[] $retrievers
+	 */
+	public function __construct(
+		array $retrievers
+	) {
+		$this->retrievers = $retrievers;
+	}
 
 	/**
 	 * Retrieve info about an IP address.
 	 *
 	 * @param string $ip
-	 * @return Info
+	 * @return mixed[]
 	 */
-	public function retrieveFromIP( string $ip ) : Info {
-		// @TODO Remove mock data.
-		return new Info(
-			IPUtils::prettifyIP( $ip ),
-			new Coordinates( 38.897957, -77.036560 ),
-			new ASN( 33363 ),
-			[
-				// @TODO Use Wikidata instead of GeoNames ID?
-				new Location( 4140963, 'Washington' ),
-				new Location( 4138106, 'District of Columbia' ),
-				new Location( 6252001, 'United States' ),
-			]
-		);
+	public function retrieveFromIP( string $ip ) : array {
+		$data = [];
+
+		foreach ( $this->retrievers as $retriever ) {
+			$data[] = $retriever->retrieveFromIP( $ip );
+		}
+
+		return [
+			'subject' => $ip,
+			'data' => $data,
+		];
 	}
 }

@@ -4,6 +4,7 @@ namespace MediaWiki\IPInfo\Test\Unit;
 
 use MediaWiki\IPInfo\Info\Info;
 use MediaWiki\IPInfo\InfoManager;
+use MediaWiki\IPInfo\InfoRetriever;
 use MediaWikiUnitTestCase;
 
 /**
@@ -13,10 +14,16 @@ use MediaWikiUnitTestCase;
 class InfoManagerTest extends MediaWikiUnitTestCase {
 
 	public function testRetrieveFromIP() {
-		$infoManager = new InfoManager();
+		$infoRetriever = $this->createMock( InfoRetriever::class );
+		$infoRetriever->method( 'retrieveFromIP' )
+			->willReturn( $this->createMock( Info::class ) );
+
+		$infoManager = new InfoManager( [ $infoRetriever ] );
 		$info = $infoManager->retrieveFromIP( '127.0.0.1' );
 
-		$this->assertInstanceOf( Info::class, $info );
+		$this->assertArrayHasKey( 'subject', $info );
+		$this->assertArrayHasKey( 'data', $info );
+		$this->assertInstanceOf( Info::class, $info['data'][0] );
 	}
 
 }
