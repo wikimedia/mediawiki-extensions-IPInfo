@@ -100,9 +100,18 @@ class LogHandler extends SimpleHandler {
 		}
 
 		$user = $this->userFactory->newFromUserIdentity( $this->user );
-		if (
-			!LogEventsList::userCanBitfield( $entry->getDeleted(), LogPage::SUPPRESSED_USER, $user )
-		) {
+
+		if ( !LogEventsList::userCanViewLogType( $entry->getType(), $user ) ) {
+			throw new LocalizedHttpException(
+				new MessageValue( 'ipinfo-rest-log-denied' ), 403 );
+		}
+
+		$canAccessPerformer = LogEventsList::userCanBitfield( $entry->getDeleted(), LogPage::DELETED_USER, $user );
+		$canAccessTarget = LogEventsList::userCanBitfield( $entry->getDeleted(), LogPage::DELETED_ACTION, $user );
+
+		// If the user cannot access the performer, nor the target, throw an error since there wont
+		// be anything to respond with.
+		if ( !$canAccessPerformer && !$canAccessTarget ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'ipinfo-rest-log-denied' ), 403 );
 		}
@@ -113,10 +122,10 @@ class LogHandler extends SimpleHandler {
 		$target = $entry->getTarget()->getText();
 
 		$info = [];
-		if ( IPUtils::isValid( $performer ) ) {
+		if ( IPUtils::isValid( $performer ) && $canAccessPerformer ) {
 			$info[] = $this->infoManager->retrieveFromIP( $performer );
 		}
-		if ( IPUtils::isValid( $target ) ) {
+		if ( IPUtils::isValid( $target ) && $canAccessTarget ) {
 			$info[] = $this->infoManager->retrieveFromIP( $target );
 		}
 
