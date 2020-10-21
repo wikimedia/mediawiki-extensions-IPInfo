@@ -240,19 +240,25 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideTestLogSuppressedUser
-	 * @param array $groups
+	 * @dataProvider provideTestDeletedUser
+	 * @param string[] $rights
+	 * @param int $deleted
 	 * @param int $results
 	 */
-	public function testLogSuppressedUser( array $groups, int $results ) {
+	public function testDeletedUser( array $rights, int $deleted, int $results ) {
 		$id = 123;
+
+		$this->setGroupPermissions( 'sysop', 'ipinfo', true );
+		foreach ( $rights as $right => $value ) {
+			$this->setGroupPermissions( 'sysop', $right, $value );
+		}
 
 		$db = $this->createMock( IDatabase::class );
 		$db->method( 'selectRow' )
 			->willReturn( [
 				'logid' => $id,
 				'log_type' => 'block',
-				'log_deleted' => LogPage::DELETED_USER,
+				'log_deleted' => $deleted,
 				'log_namespace' => NS_USER,
 				'log_title' => '127.0.0.2',
 				'log_user' => 0,
@@ -274,7 +280,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$userFactory = $this->createMock( UserFactory::class );
 		$userFactory->method( 'newFromUserIdentity' )
-			->willReturn( $this->getTestUser( $groups )->getUser() );
+			->willReturn( $this->getTestUser( [ 'sysop' ] )->getUser() );
 
 		$handler = $this->getLogHandler( [
 			'loadBalancer' => $loadBalancer,
@@ -295,14 +301,38 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertCount( $results, $body['info'] );
 	}
 
-	public function provideTestLogSuppressedUser() {
+	public function provideTestDeletedUser() {
 		return [
 			'not allowed, only returns target' => [
-				[],
+				[
+					'deletedhistory' => false,
+					'suppressrevision' => false,
+				],
+				LogPage::DELETED_USER,
 				1,
 			],
 			'allowed, returns both' => [
-				[ 'sysop', 'bureaucrat' ],
+				[
+					'deletedhistory' => true,
+					'suppressrevision' => false,
+				],
+				LogPage::DELETED_USER,
+				2,
+			],
+			'not allowed, only returns target (suppressed)' => [
+				[
+					'deletedhistory' => true,
+					'suppressrevision' => false,
+				],
+				LogPage::DELETED_USER | LogPage::DELETED_RESTRICTED,
+				1,
+			],
+			'allowed, returns both (suppressed)' => [
+				[
+					'deletedhistory' => true,
+					'suppressrevision' => true,
+				],
+				LogPage::DELETED_USER | LogPage::DELETED_RESTRICTED,
 				2,
 			],
 		];
@@ -352,8 +382,9 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->executeHandler( $handler, $request );
 	}
 
-	public function testSupressedTarget() {
+	public function testDeletedTarget() {
 		$id = 123;
+
 		$performer = $this->getTestUser()->getUser();
 
 		$db = $this->createMock( IDatabase::class );
@@ -401,8 +432,9 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->executeHandler( $handler, $request );
 	}
 
-	public function testSupressedTargetAllowed() {
+	public function testDeletedTargetAllowed() {
 		$id = 123;
+
 		$performer = $this->getTestUser()->getUser();
 
 		$db = $this->createMock( IDatabase::class );
