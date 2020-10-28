@@ -7,8 +7,9 @@
 	"action-ipinfo": "Revizyonlara veya günlük girişlerine eklenmiş bir IP adresinden bilgi alın",
 	"action-ipinfo-any": "Herhangi bir IP Adresinden bilgi alın.",
 	"ipinfo-desc": "Bir IP adresi hakkında bilgi sağlar.",
-	"ipinfo-widget-source-mock": "Kaynak: sahte veriler",
+	"ipinfo-widget-source": "Kaynak: $1",
 	"ipinfo-widget-error-default": "IP bilgileri alınamadı.",
+	"ipinfo-widget-error-no-data": "$1 üzerinden bu IP adresi için veri yok.",
 	"ipinfo-widget-error-wrong-ip": "Sağlanan IP adresi, günlük veya revizyon ile eşleşmedi.",
 	"ipinfo-rest-access-denied": "Bu eylemi gerçekleştirmeye yetkiniz yok",
 	"ipinfo-rest-revision-no-author": "Hesabınızın revizyonun yazarını görüntüleme erişimi yok",
@@ -17,6 +18,7 @@
 	"ipinfo-rest-log-registered": "Kayıtlı kullanıcıların günlükleri için ipinfo alınamıyor",
 	"ipinfo-rest-log-denied": "Hesabınız, günlük girişinin gerçekleştiricisini veya günlük girişinin kendisini görüntüleme erişimine sahip değil",
 	"ipinfo-rest-ip-invalid": "Sağlanan IP Adresi geçersiz",
+	"ipinfo-source-geoip2": "GeoIp2",
 	"right-ipinfo": "Revizyonlara veya günlük girişlerine eklenmiş bir IP adresinden bilgi alın",
 	"right-ipinfo-any": "Herhangi bir IP adresinden bilgi alın"
 }

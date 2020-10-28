@@ -6,7 +6,6 @@
 	},
 	"ipinfo-extensionname": "Informacje o IP",
 	"ipinfo-desc": "Dostarcza informacje na temat adresów IP",
-	"ipinfo-widget-source-mock": "Źródło: przykładowe dane",
 	"ipinfo-rest-access-denied": "Nie masz uprawnień do wykonywania tej operacji",
 	"ipinfo-rest-log-nonexistent": "Wpis w rejestrze nie istnieje",
 	"ipinfo-rest-ip-invalid": "Podany adres IP jest nieprawidłowy",
