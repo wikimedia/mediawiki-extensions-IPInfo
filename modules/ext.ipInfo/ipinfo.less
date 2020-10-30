@@ -1,15 +1,17 @@
 @import 'mediawiki.ui/variables.less';
 @import 'mediawiki.mixins.less';
 
-.ext-ipinfo-button.oo-ui-buttonElement-frameless.oo-ui-iconElement > .oo-ui-buttonElement-button {
-	padding: 0;
-	margin-bottom: 3px;
-	margin-left: 2px;
-}
+.ext-ipinfo-button {
+	&.oo-ui-buttonElement-frameless.oo-ui-iconElement > .oo-ui-buttonElement-button {
+		padding: 0;
+		margin-bottom: 3px;
+		margin-left: 2px;
 
-.ext-ipinfo-button.oo-ui-buttonElement-frameless.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
-	left: -1px;
-	margin: 0;
+		& > .oo-ui-iconElement-icon {
+			left: -1px;
+			margin: 0;
+		}
+	}
 }
 
 .ext-ipinfo-widget {
