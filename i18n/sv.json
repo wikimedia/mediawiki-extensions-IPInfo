@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"WikiPhoenix"
+		]
+	},
+	"ipinfo-widget-source": "Källa: $1",
+	"ipinfo-source-geoip2": "GeoIp2"
+}
