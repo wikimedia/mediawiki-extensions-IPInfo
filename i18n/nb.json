@@ -7,7 +7,9 @@
 	"action-ipinfo": "hente informasjon fra IP-adresser tilknyttet revisjoner eller loggoppføringer",
 	"action-ipinfo-any": "Hente informasjon fra IP-adresser",
 	"ipinfo-desc": "Gir informasjon om en IP-adresse.",
+	"ipinfo-widget-source": "Kilde: $1",
 	"ipinfo-widget-error-default": "IP-informasjonen kunne ikke hentes.",
+	"ipinfo-widget-error-no-data": "Det er ingen data for denne IP-adressa fra $1.",
 	"ipinfo-widget-error-wrong-ip": "Den angitte IP-adressen matchet ikke loggen eller revisjonen.",
 	"ipinfo-rest-access-denied": "Du har ikke tillatelse til å utføre handlingen",
 	"ipinfo-rest-revision-no-author": "Kontoen din har ikke tilgang til å vise forfatteren av revisjonen",
@@ -16,6 +18,7 @@
 	"ipinfo-rest-log-registered": "Kan ikke hente ipinfo for logger av registrerte brukere",
 	"ipinfo-rest-log-denied": "Kontoen din har ikke tilgang til å vise utøveren av loggoppføringen eller selve loggoppføringen",
 	"ipinfo-rest-ip-invalid": "Den gitte IP-adressen er ugyldig",
+	"ipinfo-source-geoip2": "GeoIp2",
 	"right-ipinfo": "hente informasjon fra en IP-adresse tilknyttet revisjoner eller loggoppføringer",
 	"right-ipinfo-any": "Hente informasjon fra IP-adresser"
 }
