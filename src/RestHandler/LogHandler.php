@@ -12,6 +12,7 @@ use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserOptionsLookup;
 use RequestContext;
 use Wikimedia\IPUtils;
 use Wikimedia\Message\MessageValue;
@@ -29,6 +30,9 @@ class LogHandler extends SimpleHandler {
 	/** @var PermissionManager */
 	private $permissionManager;
 
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
 	/** @var UserFactory */
 	private $userFactory;
 
@@ -39,6 +43,7 @@ class LogHandler extends SimpleHandler {
 	 * @param InfoManager $infoManager
 	 * @param ILoadBalancer $loadBalancer
 	 * @param PermissionManager $permissionManager
+	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
 	 * @param UserIdentity $user
 	 */
@@ -46,12 +51,14 @@ class LogHandler extends SimpleHandler {
 		InfoManager $infoManager,
 		ILoadBalancer $loadBalancer,
 		PermissionManager $permissionManager,
+		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
 		UserIdentity $user
 	) {
 		$this->infoManager = $infoManager;
 		$this->loadBalancer = $loadBalancer;
 		$this->permissionManager = $permissionManager;
+		$this->userOptionsLookup = $userOptionsLookup;
 		$this->userFactory = $userFactory;
 		$this->user = $user;
 	}
@@ -60,6 +67,7 @@ class LogHandler extends SimpleHandler {
 	 * @param InfoManager $infoManager
 	 * @param ILoadBalancer $loadBalancer
 	 * @param PermissionManager $permissionManager
+	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
 	 * @return self
 	 */
@@ -67,12 +75,14 @@ class LogHandler extends SimpleHandler {
 		InfoManager $infoManager,
 		ILoadBalancer $loadBalancer,
 		PermissionManager $permissionManager,
+		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory
 	) {
 		return new self(
 			$infoManager,
 			$loadBalancer,
 			$permissionManager,
+			$userOptionsLookup,
 			$userFactory,
 			// @TODO Replace with something better.
 			RequestContext::getMain()->getUser()
@@ -86,7 +96,10 @@ class LogHandler extends SimpleHandler {
 	 * @return Response
 	 */
 	public function run( int $id ) : Response {
-		if ( !$this->permissionManager->userHasRight( $this->user, 'ipinfo' ) ) {
+		if (
+			!$this->permissionManager->userHasRight( $this->user, 'ipinfo' ) ||
+			!$this->userOptionsLookup->getOption( $this->user, 'ipinfo-enable' )
+		) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'ipinfo-rest-access-denied' ), $this->user->isRegistered() ? 403 : 401 );
 		}

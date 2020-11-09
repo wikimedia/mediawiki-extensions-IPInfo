@@ -10,6 +10,7 @@ use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Rest\Validator\JsonBodyValidator;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserOptionsLookup;
 use RequestContext;
 use Wikimedia\IPUtils;
 use Wikimedia\Message\MessageValue;
@@ -25,36 +26,45 @@ class IPHandler extends SimpleHandler {
 	/** @var PermissionManager */
 	private $permissionManager;
 
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
 	/** @var UserIdentity */
 	private $user;
 
 	/**
 	 * @param InfoManager $infoManager
 	 * @param PermissionManager $permissionManager
+	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserIdentity $user
 	 */
 	public function __construct(
 		InfoManager $infoManager,
 		PermissionManager $permissionManager,
+		UserOptionsLookup $userOptionsLookup,
 		UserIdentity $user
 	) {
 		$this->infoManager = $infoManager;
 		$this->permissionManager = $permissionManager;
+		$this->userOptionsLookup = $userOptionsLookup;
 		$this->user = $user;
 	}
 
 	/**
 	 * @param InfoManager $infoManager
 	 * @param PermissionManager $permissionManager
+	 * @param UserOptionsLookup $userOptionsLookup
 	 * @return self
 	 */
 	public static function factory(
 		InfoManager $infoManager,
-		PermissionManager $permissionManager
+		PermissionManager $permissionManager,
+		UserOptionsLookup $userOptionsLookup
 	) {
 		return new self(
 			$infoManager,
 			$permissionManager,
+			$userOptionsLookup,
 			// @TODO Replace with something better.
 			RequestContext::getMain()->getUser()
 		);
@@ -75,7 +85,10 @@ class IPHandler extends SimpleHandler {
 				new MessageValue( 'ipinfo-rest-ip-invalid' ), 400 );
 		}
 
-		if ( !$this->permissionManager->userHasRight( $this->user, 'ipinfo-any' ) ) {
+		if (
+			!$this->permissionManager->userHasRight( $this->user, 'ipinfo-any' ) ||
+			!$this->userOptionsLookup->getOption( $this->user, 'ipinfo-enable' )
+		) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'ipinfo-rest-access-denied' ), $this->user->isRegistered() ? 403 : 401 );
 		}

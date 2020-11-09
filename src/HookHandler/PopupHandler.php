@@ -4,18 +4,25 @@ namespace MediaWiki\IPInfo\HookHandler;
 
 use MediaWiki\Hook\BeforePageDisplayHook;
 use Mediawiki\Permissions\PermissionManager;
+use MediaWiki\User\UserOptionsLookup;
 
 class PopupHandler implements BeforePageDisplayHook {
 	/** @var PermissionManager */
 	private $permissionManager;
 
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
 	/**
 	 * @param PermissionManager $permissionManager
+	 * @param UserOptionsLookup $userOptionsLookup
 	 */
 	public function __construct(
-		PermissionManager $permissionManager
+		PermissionManager $permissionManager,
+		UserOptionsLookup $userOptionsLookup
 	) {
 		$this->permissionManager = $permissionManager;
+		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	/**
@@ -29,7 +36,11 @@ class PopupHandler implements BeforePageDisplayHook {
 			return;
 		}
 
-		if ( !$this->permissionManager->userHasRight( $out->getUser(), 'ipinfo' ) ) {
+		$user = $out->getUser();
+		if (
+			!$this->permissionManager->userHasRight( $user, 'ipinfo' ) ||
+			!$this->userOptionsLookup->getOption( $user, 'ipinfo-enable' )
+		) {
 			return;
 		}
 
