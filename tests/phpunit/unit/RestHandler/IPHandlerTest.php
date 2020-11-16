@@ -7,7 +7,6 @@ use MediaWiki\IPInfo\RestHandler\IPHandler;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
-use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Tests\Rest\Handler\HandlerTestTrait;
 use MediaWiki\User\UserIdentity;
 use MediaWikiUnitTestCase;
@@ -22,10 +21,25 @@ class IPHandlerTest extends MediaWikiUnitTestCase {
 	use HandlerTestTrait;
 
 	/**
-	 * @param string $ip
-	 * @return RequestInterface
+	 * @param array $options
+	 * @return IPHandler
 	 */
-	private function createRequest( string $ip ) : RequestInterface {
+	private function getIPHandler( array $options = [] ) : IPHandler {
+		return new IPHandler( ...array_values( array_merge(
+			[
+				'infoManager' => $this->createMock( InfoManager::class ),
+				'permissionManager' => $this->createMock( PermissionManager::class ),
+				'userIdentity' => $this->createMock( UserIdentity::class ),
+			],
+			$options
+		) ) );
+	}
+
+	/**
+	 * @param string $ip
+	 * @return RequestData
+	 */
+	private function getRequestData( string $ip ) : RequestData {
 		return new RequestData( [
 			'method' => 'POST',
 			'headers' => [
@@ -40,73 +54,78 @@ class IPHandlerTest extends MediaWikiUnitTestCase {
 		$permissionManager->method( 'userHasRight' )
 			->willReturn( true );
 
-		$handler = new IPHandler(
-			$this->createMock( InfoManager::class ),
-			$permissionManager,
-			$this->createMock( UserIdentity::class )
-		);
+		$handler = $this->getIPHandler( [
+			'permissionManager' => $permissionManager,
+		] );
 
-		$request = $this->createRequest( '127.0.0.1' );
+		$request = $this->getRequestData( '127.0.0.1' );
 
 		$response = $this->executeHandler( $handler, $request );
 
 		$this->assertSame( 200, $response->getStatusCode() );
 	}
 
-	public function testInvalidIP() {
-		$handler = new IPHandler(
-			$this->createMock( InfoManager::class ),
-			$this->createMock( PermissionManager::class ),
-			$this->createMock( UserIdentity::class )
-		);
-
-		$request = $this->createRequest( 'invalid' );
-
-		$this->expectExceptionObject(
-			new LocalizedHttpException( new MessageValue( 'ipinfo-rest-ip-invalid' ), 400 )
-		);
-
-		$this->executeHandler( $handler, $request );
-	}
-
 	/**
-	 * @dataProvider provideAccessDenied
-	 * @param bool $isRegistered
-	 * @param int $httpStatus
+	 * @dataProvider provideExecuteErrors
+	 * @param array $options
+	 * @param array $expected
 	 */
-	public function testAccessDenied( bool $isRegistered, int $httpStatus ) {
+	public function testExecuteErrors( array $options, array $expected ) {
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
-			->willReturn( false );
+			->willReturn( $options['userHasRight'] ?? null );
 
 		$user = $this->createMock( UserIdentity::class );
 		$user->method( 'isRegistered' )
-			->willReturn( $isRegistered );
+			->willReturn( $options['isRegistered'] ?? null );
 
-		$handler = new IPHandler(
-			$this->createMock( InfoManager::class ),
-			$permissionManager,
-			$user
-		);
+		$handler = $this->getIPHandler( [
+			'permissionManager' => $permissionManager,
+			'userIdentity' => $user,
+		] );
 
-		$request = $this->createRequest( '127.0.0.1' );
+		$request = $this->getRequestData( $options['ip'] );
 
 		$this->expectExceptionObject(
-			new LocalizedHttpException( new MessageValue( 'ipinfo-rest-access-denied' ), $httpStatus )
+			new LocalizedHttpException(
+				new MessageValue( $expected['message'] ),
+				$expected['status']
+			)
 		);
 
 		$this->executeHandler( $handler, $request );
 	}
 
-	public function provideAccessDenied() {
+	public function provideExecuteErrors() {
 		return [
-			'registered user throws a 403' => [
-				true,
-				403,
+			'IP invalid' => [
+				[
+					'ip' => 'invalid',
+				],
+				[
+					'message' => 'ipinfo-rest-ip-invalid',
+					'status' => 400,
+				]
 			],
-			'anon user throws a 401' => [
-				false,
-				401
+			'access denied, registered user throws a 403' => [
+				[
+					'ip' => '127.0.0.1',
+					'isRegistered' => true,
+				],
+				[
+					'message' => 'ipinfo-rest-access-denied',
+					'status' => 403,
+				]
+			],
+			'access denied, anon user throws a 401' => [
+				[
+					'ip' => '127.0.0.1',
+					'isRegistered' => false,
+				],
+				[
+					'message' => 'ipinfo-rest-access-denied',
+					'status' => 401,
+				]
 			]
 		];
 	}

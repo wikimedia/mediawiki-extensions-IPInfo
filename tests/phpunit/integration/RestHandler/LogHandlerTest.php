@@ -27,11 +27,40 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 
 	use HandlerTestTrait;
 
+	/**
+	 * @param array $options
+	 * @return LogHandler
+	 */
+	private function getLogHandler( array $options = [] ) : LogHandler {
+		return new LogHandler( ...array_values( array_merge(
+			[
+				'infoManager' => $this->createMock( InfoManager::class ),
+				'loadBalancer' => $this->createMock( ILoadBalancer::class ),
+				'permissionManager' => $this->createMock( PermissionManager::class ),
+				'userFactory' => $this->createMock( UserFactory::class ),
+				'userIdentity' => $this->createMock( UserIdentity::class ),
+			],
+			$options
+		) ) );
+	}
+
+	/**
+	 * @param int $id
+	 * @return RequestData
+	 */
+	private function getRequestData( int $id = 123 ) : RequestData {
+		return new RequestData( [
+			'pathParams' => [ 'id' => $id ],
+		] );
+	}
+
 	public function testExecute() {
+		$id = 123;
+
 		$db = $this->createMock( IDatabase::class );
 		$db->method( 'selectRow' )
 			->willReturn( [
-				'logid' => 123,
+				'logid' => $id,
 				'log_type' => 'block',
 				'log_deleted' => 0,
 				'log_namespace' => 0,
@@ -48,17 +77,12 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$permissionManager->method( 'userHasRight' )
 			->willReturn( true );
 
-		$handler = new LogHandler(
-			$this->createMock( InfoManager::class ),
-			$loadBalancer,
-			$permissionManager,
-			$this->createMock( UserFactory::class ),
-			$this->createMock( UserIdentity::class )
-		);
-
-		$request = new RequestData( [
-			'pathParams' => [ 'id' => 123 ],
+		$handler = $this->getLogHandler( [
+			'loadBalancer' => $loadBalancer,
+			'permissionManager' => $permissionManager,
 		] );
+
+		$request = $this->getRequestData( $id );
 
 		$response = $this->executeHandler( $handler, $request );
 
@@ -71,88 +95,82 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideAccessDenied
-	 * @param bool $isRegistered
-	 * @param int $httpStatus
+	 * @dataProvider provideExecuteErrors
+	 * @param array $options
+	 * @param array $expected
 	 */
-	public function testAccessDenied( bool $isRegistered, int $httpStatus ) {
+	public function testExecuteErrors( array $options, array $expected ) {
+		$loadBalancer = $this->createMock( ILoadBalancer::class );
+		$loadBalancer->method( 'getConnection' )
+			->willReturn( $this->createMock( IDatabase::class ) );
+
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
-			->willReturn( false );
+			->willReturn( $options['userHasRight'] ?? null );
 
 		$user = $this->createMock( UserIdentity::class );
 		$user->method( 'isRegistered' )
-			->willReturn( $isRegistered );
+			->willReturn( $options['isRegistered'] ?? null );
 
-		$handler = new LogHandler(
-			$this->createMock( InfoManager::class ),
-			$this->createMock( ILoadBalancer::class ),
-			$permissionManager,
-			$this->createMock( UserFactory::class ),
-			$user
-		);
-
-		$request = new RequestData( [
-			'pathParams' => [ 'id' => 123 ],
+		$handler = $this->getLogHandler( [
+			'loadBalancer' => $loadBalancer,
+			'permissionManager' => $permissionManager,
+			'userIdentity' => $user,
 		] );
 
+		$request = $this->getRequestData();
+
 		$this->expectExceptionObject(
-			new LocalizedHttpException( new MessageValue( 'ipinfo-rest-access-denied' ), $httpStatus )
+			new LocalizedHttpException(
+				new MessageValue( $expected['message'] ),
+				$expected['status']
+			)
 		);
 
 		$this->executeHandler( $handler, $request );
 	}
 
-	public function provideAccessDenied() {
+	public function provideExecuteErrors() {
 		return [
-			'registered user throws a 403' => [
-				true,
-				403,
+			'access denied, registered' => [
+				[
+					'userHasRight' => false,
+					'isRegistered' => true,
+				],
+				[
+					'message' => 'ipinfo-rest-access-denied',
+					'status' => 403,
+				],
 			],
-			'anon user throws a 401' => [
-				false,
-				401
-			]
+			'access denied, anon' => [
+				[
+					'userHasRight' => false,
+					'isRegistered' => false,
+				],
+				[
+					'message' => 'ipinfo-rest-access-denied',
+					'status' => 401,
+				],
+			],
+			'missing log' => [
+				[
+					'userHasRight' => true,
+				],
+				[
+					'message' => 'ipinfo-rest-log-nonexistent',
+					'status' => 404,
+				],
+			],
 		];
 	}
 
-	public function testMissingLog() {
-		$db = $this->createMock( IDatabase::class );
-		$db->method( 'selectRow' )
-			->willReturn( null );
-
-		$loadBalancer = $this->createMock( ILoadBalancer::class );
-		$loadBalancer->method( 'getConnection' )
-			->willReturn( $db );
-
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'userHasRight' )
-			->willReturn( true );
-
-		$handler = new LogHandler(
-			$this->createMock( InfoManager::class ),
-			$loadBalancer,
-			$permissionManager,
-			$this->createMock( UserFactory::class ),
-			$this->createMock( UserIdentity::class )
-		);
-
-		$request = new RequestData( [
-			'pathParams' => [ 'id' => 123 ],
-		] );
-
-		$this->expectExceptionObject(
-			new LocalizedHttpException( new MessageValue( 'ipinfo-rest-log-nonexistent' ), 404 )
-		);
-
-		$this->executeHandler( $handler, $request );
-	}
-
 	public function testAccessDeniedLogType() {
+		$id = 123;
+
 		$db = $this->createMock( IDatabase::class );
 		$db->method( 'selectRow' )
 			->willReturn( [
-				'logid' => 123,
+				'logid' => $id,
 				'log_type' => 'suppress',
 				'log_deleted' => LogPage::DELETED_USER,
 				'log_namespace' => NS_USER,
@@ -173,17 +191,13 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$userFactory->method( 'newFromUserIdentity' )
 			->willReturn( $this->getTestUser()->getUser() );
 
-		$handler = new LogHandler(
-			$this->createMock( InfoManager::class ),
-			$loadBalancer,
-			$permissionManager,
-			$userFactory,
-			$this->createMock( UserIdentity::class )
-		);
-
-		$request = new RequestData( [
-			'pathParams' => [ 'id' => 123 ],
+		$handler = $this->getLogHandler( [
+			'loadBalancer' => $loadBalancer,
+			'permissionManager' => $permissionManager,
+			'userFactory' => $userFactory,
 		] );
+
+		$request = $this->getRequestData( $id );
 
 		$this->expectExceptionObject(
 			new LocalizedHttpException( new MessageValue( 'ipinfo-rest-log-denied' ), 403 )
@@ -198,10 +212,12 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @param int $results
 	 */
 	public function testLogSuppressedUser( array $groups, int $results ) {
+		$id = 123;
+
 		$db = $this->createMock( IDatabase::class );
 		$db->method( 'selectRow' )
 			->willReturn( [
-				'logid' => 123,
+				'logid' => $id,
 				'log_type' => 'block',
 				'log_deleted' => LogPage::DELETED_USER,
 				'log_namespace' => NS_USER,
@@ -222,17 +238,13 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$userFactory->method( 'newFromUserIdentity' )
 			->willReturn( $this->getTestUser( $groups )->getUser() );
 
-		$handler = new LogHandler(
-			$this->createMock( InfoManager::class ),
-			$loadBalancer,
-			$permissionManager,
-			$userFactory,
-			$this->createMock( UserIdentity::class )
-		);
-
-		$request = new RequestData( [
-			'pathParams' => [ 'id' => 123 ],
+		$handler = $this->getLogHandler( [
+			'loadBalancer' => $loadBalancer,
+			'permissionManager' => $permissionManager,
+			'userFactory' => $userFactory,
 		] );
+
+		$request = $this->getRequestData( $id );
 
 		$response = $this->executeHandler( $handler, $request );
 
@@ -258,12 +270,13 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testPerformerRegistered() {
+		$id = 123;
 		$performer = $this->getTestUser()->getUser();
 
 		$db = $this->createMock( IDatabase::class );
 		$db->method( 'selectRow' )
 			->willReturn( [
-				'logid' => 123,
+				'logid' => $id,
 				'log_type' => 'block',
 				'log_deleted' => 0,
 				'log_namespace' => NS_USER,
@@ -280,17 +293,12 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$permissionManager->method( 'userHasRight' )
 			->willReturn( true );
 
-		$handler = new LogHandler(
-			$this->createMock( InfoManager::class ),
-			$loadBalancer,
-			$permissionManager,
-			$this->createMock( UserFactory::class ),
-			$this->createMock( UserIdentity::class )
-		);
-
-		$request = new RequestData( [
-			'pathParams' => [ 'id' => 123 ],
+		$handler = $this->getLogHandler( [
+			'loadBalancer' => $loadBalancer,
+			'permissionManager' => $permissionManager,
 		] );
+
+		$request = $this->getRequestData();
 
 		$this->expectExceptionObject(
 			new LocalizedHttpException( new MessageValue( 'ipinfo-rest-log-registered' ), 404 )
@@ -300,12 +308,13 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testSupressedTarget() {
+		$id = 123;
 		$performer = $this->getTestUser()->getUser();
 
 		$db = $this->createMock( IDatabase::class );
 		$db->method( 'selectRow' )
 			->willReturn( [
-				'logid' => 123,
+				'logid' => $id,
 				'log_type' => 'block',
 				'log_deleted' => LogPage::DELETED_ACTION,
 				'log_namespace' => NS_USER,
@@ -326,17 +335,13 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$userFactory->method( 'newFromUserIdentity' )
 			->willReturn( $this->getTestUser()->getUser() );
 
-		$handler = new LogHandler(
-			$this->createMock( InfoManager::class ),
-			$loadBalancer,
-			$permissionManager,
-			$userFactory,
-			$this->createMock( UserIdentity::class )
-		);
-
-		$request = new RequestData( [
-			'pathParams' => [ 'id' => 123 ],
+		$handler = $this->getLogHandler( [
+			'loadBalancer' => $loadBalancer,
+			'permissionManager' => $permissionManager,
+			'userFactory' => $userFactory,
 		] );
+
+		$request = $this->getRequestData( $id );
 
 		$this->expectExceptionObject(
 			new LocalizedHttpException( new MessageValue( 'ipinfo-rest-log-registered' ), 404 )
@@ -346,12 +351,13 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testSupressedTargetAllowed() {
+		$id = 123;
 		$performer = $this->getTestUser()->getUser();
 
 		$db = $this->createMock( IDatabase::class );
 		$db->method( 'selectRow' )
 			->willReturn( [
-				'logid' => 123,
+				'logid' => $id,
 				'log_type' => 'block',
 				'log_deleted' => LogPage::DELETED_ACTION,
 				'log_namespace' => NS_USER,
@@ -372,17 +378,13 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$userFactory->method( 'newFromUserIdentity' )
 			->willReturn( $this->getTestSysop()->getUser() );
 
-		$handler = new LogHandler(
-			$this->createMock( InfoManager::class ),
-			$loadBalancer,
-			$permissionManager,
-			$userFactory,
-			$this->createMock( UserIdentity::class )
-		);
-
-		$request = new RequestData( [
-			'pathParams' => [ 'id' => 123 ],
+		$handler = $this->getLogHandler( [
+			'loadBalancer' => $loadBalancer,
+			'permissionManager' => $permissionManager,
+			'userFactory' => $userFactory,
 		] );
+
+		$request = $this->getRequestData( $id );
 
 		$response = $this->executeHandler( $handler, $request );
 

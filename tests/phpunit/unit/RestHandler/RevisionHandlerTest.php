@@ -24,6 +24,33 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 
 	use HandlerTestTrait;
 
+	/**
+	 * @param array $options
+	 * @return RevisionHandler
+	 */
+	private function getRevisionHandler( array $options = [] ) : RevisionHandler {
+		return new RevisionHandler( ...array_values( array_merge(
+			[
+				'infoManager' => $this->createMock( InfoManager::class ),
+				'revisionLookup' => $this->createMock( RevisionLookup::class ),
+				'permissionManager' => $this->createMock( PermissionManager::class ),
+				'userFactory' => $this->createMock( UserFactory::class ),
+				'userIdentity' => $this->createMock( UserIdentity::class ),
+			],
+			$options
+		) ) );
+	}
+
+	/**
+	 * @param int $id
+	 * @return RequestData
+	 */
+	private function getRequestData( int $id = 123 ) : RequestData {
+		return new RequestData( [
+			'pathParams' => [ 'id' => $id ],
+		] );
+	}
+
 	public function testExecute() {
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
@@ -49,17 +76,12 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 		$revisionLookup->method( 'getRevisionById' )
 			->willReturn( $revision );
 
-		$handler = new RevisionHandler(
-			$this->createMock( InfoManager::class ),
-			$revisionLookup,
-			$permissionManager,
-			$this->createMock( UserFactory::class ),
-			$this->createMock( UserIdentity::class )
-		);
-
-		$request = new RequestData( [
-			'pathParams' => [ 'id' => 123 ],
+		$handler = $this->getRevisionHandler( [
+			'revisionLookup' => $revisionLookup,
+			'permissionManager' => $permissionManager,
 		] );
+
+		$request = $this->getRequestData();
 
 		$response = $this->executeHandler( $handler, $request );
 
@@ -67,197 +89,126 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider provideAccessDenied
-	 * @param bool $isRegistered
-	 * @param int $httpStatus
+	 * @dataProvider provideExecuteErrors
+	 * @param array $options
+	 * @param array $expected
 	 */
-	public function testAccessDenied( bool $isRegistered, int $httpStatus ) {
+	public function testExecuteErrors( array $options, array $expected ) {
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
-			->willReturn( false );
+			->willReturn( $options['userHasRight'] ?? null );
 
 		$user = $this->createMock( UserIdentity::class );
 		$user->method( 'isRegistered' )
-			->willReturn( $isRegistered );
+			->willReturn( $options['userIsRegistered'] ?? null );
+		$permissionManager->method( 'userCan' )
+			->willReturn( $options['userCan'] ?? null );
 
-		$handler = new RevisionHandler(
-			$this->createMock( InfoManager::class ),
-			$this->createMock( RevisionLookup::class ),
-			$permissionManager,
-			$this->createMock( UserFactory::class ),
-			$user
-		);
+		$author = $this->createMock( UserIdentity::class );
+		$author->method( 'isRegistered' )
+			->willReturn( $options['authorIsRegistered'] ?? null );
 
-		$request = new RequestData( [
-			'pathParams' => [ 'id' => 123 ],
+		$linkTarget = $this->createMock( LinkTarget::class );
+
+		$revision = $this->createMock( RevisionRecord::class );
+		$revision->method( 'getPageAsLinkTarget' )
+			->willReturn( $options['getPageAsLinkTarget'] ?? $linkTarget );
+		$revision->method( 'getUser' )
+			->willReturn( !empty( $options['author'] ) ? $author : null );
+
+		$revisionLookup = $this->createMock( RevisionLookup::class );
+		$revisionLookup->method( 'getRevisionById' )
+			->willReturn( $options['getRevisionById'] ?? $revision );
+
+		$handler = $this->getRevisionHandler( [
+			'revisionLookup' => $revisionLookup,
+			'permissionManager' => $permissionManager,
+			'userIdentity' => $user,
 		] );
 
+		$request = $this->getRequestData( $options['id'] ?? 123 );
+
 		$this->expectExceptionObject(
-			new LocalizedHttpException( new MessageValue( 'ipinfo-rest-access-denied' ), $httpStatus )
+			new LocalizedHttpException(
+				new MessageValue(
+					$expected['message'],
+					$expected['messageParams'] ?? []
+				),
+				$expected['status']
+			)
 		);
 
 		$this->executeHandler( $handler, $request );
 	}
 
-	public function provideAccessDenied() {
+	public function provideExecuteErrors() {
+		$id = 123;
 		return [
-			'registered user throws a 403' => [
-				true,
-				403,
+			'Access denied, registered' => [
+				[
+					'userIsRegistered' => true,
+				],
+				[
+					'message' => 'ipinfo-rest-access-denied',
+					'status' => 403,
+				],
 			],
-			'anon user throws a 401' => [
-				false,
-				401
-			]
+			'Access denied, anon' => [
+				[
+					'userIsRegistered' => false,
+				],
+				[
+					'message' => 'ipinfo-rest-access-denied',
+					'status' => 401,
+				],
+			],
+			'No revision' => [
+				[
+					'id' => $id,
+					'userHasRight' => true,
+					'userCan' => true,
+					'getRevisionById' => false,
+				],
+				[
+					'message' => 'rest-nonexistent-revision',
+					'messageParams' => [ $id ],
+					'status' => 404,
+				],
+			],
+			'Access denied page' => [
+				[
+					'userHasRight' => true,
+					'userCan' => false,
+				],
+				[
+					'id' => $id,
+					'message' => 'rest-revision-permission-denied-revision',
+					'messageParams' => [ $id ],
+					'status' => 403,
+				],
+			],
+			'No author' => [
+				[
+					'userHasRight' => true,
+					'userCan' => true,
+				],
+				[
+					'message' => 'ipinfo-rest-revision-no-author',
+					'status' => 403,
+				],
+			],
+			'Registered author' => [
+				[
+					'userHasRight' => true,
+					'userCan' => true,
+					'authorIsRegistered' => true,
+					'author' => true,
+				],
+				[
+					'message' => 'ipinfo-rest-revision-registered',
+					'status' => 404,
+				],
+			],
 		];
 	}
-
-	public function testNoRevision() {
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'userHasRight' )
-			->willReturn( true );
-		$permissionManager->method( 'userCan' )
-			->willReturn( true );
-
-		$revisionLookup = $this->createMock( RevisionLookup::class );
-		$revisionLookup->method( 'getRevisionById' )
-			->willReturn( null );
-
-		$handler = new RevisionHandler(
-			$this->createMock( InfoManager::class ),
-			$revisionLookup,
-			$permissionManager,
-			$this->createMock( UserFactory::class ),
-			$this->createMock( UserIdentity::class )
-		);
-
-		$id = 123;
-		$request = new RequestData( [
-			'pathParams' => [ 'id' => $id ],
-		] );
-
-		$this->expectExceptionObject(
-			new LocalizedHttpException( new MessageValue( 'rest-nonexistent-revision', [ $id ] ), 404 )
-		);
-
-		$this->executeHandler( $handler, $request );
-	}
-
-	public function testAccessDeniedPage() {
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'userHasRight' )
-			->willReturn( true );
-		$permissionManager->method( 'userCan' )
-			->willReturn( false );
-
-		$linkTarget = $this->createMock( LinkTarget::class );
-
-		$revision = $this->createMock( RevisionRecord::class );
-		$revision->method( 'getPageAsLinkTarget' )
-			->willReturn( $linkTarget );
-
-		$revisionLookup = $this->createMock( RevisionLookup::class );
-		$revisionLookup->method( 'getRevisionById' )
-			->willReturn( $revision );
-
-		$handler = new RevisionHandler(
-			$this->createMock( InfoManager::class ),
-			$revisionLookup,
-			$permissionManager,
-			$this->createMock( UserFactory::class ),
-			$this->createMock( UserIdentity::class )
-		);
-
-		$id = 123;
-		$request = new RequestData( [
-			'pathParams' => [ 'id' => $id ],
-		] );
-
-		$this->expectExceptionObject(
-			new LocalizedHttpException( new MessageValue( 'rest-revision-permission-denied-revision', [ $id ] ), 403 )
-		);
-
-		$this->executeHandler( $handler, $request );
-	}
-
-	public function testNoAuthor() {
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'userHasRight' )
-			->willReturn( true );
-		$permissionManager->method( 'userCan' )
-			->willReturn( true );
-
-		$linkTarget = $this->createMock( LinkTarget::class );
-
-		$revision = $this->createMock( RevisionRecord::class );
-		$revision->method( 'getPageAsLinkTarget' )
-			->willReturn( $linkTarget );
-		$revision->method( 'getUser' )
-			->willReturn( null );
-
-		$revisionLookup = $this->createMock( RevisionLookup::class );
-		$revisionLookup->method( 'getRevisionById' )
-			->willReturn( $revision );
-
-		$handler = new RevisionHandler(
-			$this->createMock( InfoManager::class ),
-			$revisionLookup,
-			$permissionManager,
-			$this->createMock( UserFactory::class ),
-			$this->createMock( UserIdentity::class )
-		);
-
-		$request = new RequestData( [
-			'pathParams' => [ 'id' => 123 ],
-		] );
-
-		$this->expectExceptionObject(
-			new LocalizedHttpException( new MessageValue( 'ipinfo-rest-revision-no-author' ), 403 )
-		);
-
-		$this->executeHandler( $handler, $request );
-	}
-
-	public function testRegisteredAuthor() {
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'userHasRight' )
-			->willReturn( true );
-		$permissionManager->method( 'userCan' )
-			->willReturn( true );
-
-		$author = $this->createMock( UserIdentity::class, [ 'isRegistered' ] );
-		$author->method( 'isRegistered' )
-			->willReturn( true );
-
-		$linkTarget = $this->createMock( LinkTarget::class );
-
-		$revision = $this->createMock( RevisionRecord::class );
-		$revision->method( 'getPageAsLinkTarget' )
-			->willReturn( $linkTarget );
-		$revision->method( 'getUser' )
-			->willReturn( $author );
-
-		$revisionLookup = $this->createMock( RevisionLookup::class );
-		$revisionLookup->method( 'getRevisionById' )
-			->willReturn( $revision );
-
-		$handler = new RevisionHandler(
-			$this->createMock( InfoManager::class ),
-			$revisionLookup,
-			$permissionManager,
-			$this->createMock( UserFactory::class ),
-			$this->createMock( UserIdentity::class )
-		);
-
-		$request = new RequestData( [
-			'pathParams' => [ 'id' => 123 ],
-		] );
-
-		$this->expectExceptionObject(
-			new LocalizedHttpException( new MessageValue( 'ipinfo-rest-revision-registered' ), 404 )
-		);
-
-		$this->executeHandler( $handler, $request );
-	}
-
 }
