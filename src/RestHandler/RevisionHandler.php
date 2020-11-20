@@ -118,8 +118,9 @@ class RevisionHandler extends SimpleHandler {
 
 		$info = [ $this->infoManager->retrieveFromIP( $author->getName() ) ];
 
-		// @TODO Figure out a good caching strategy!
-		return $this->getResponseFactory()->createJson( [ 'info' => $info ] );
+		$response = $this->getResponseFactory()->createJson( [ 'info' => $info ] );
+		$response->setHeader( 'Cache-Control', 'private, max-age=86400' );
+		return $response;
 	}
 
 	/**
