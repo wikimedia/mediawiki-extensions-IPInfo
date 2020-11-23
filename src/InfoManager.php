@@ -2,6 +2,8 @@
 
 namespace MediaWiki\IPInfo;
 
+use Wikimedia\IPUtils;
+
 class InfoManager {
 	/** @var InfoRetriever[] */
 	private $retrievers;
@@ -27,6 +29,8 @@ class InfoManager {
 		foreach ( $this->retrievers as $retriever ) {
 			$data[] = $retriever->retrieveFromIP( $ip );
 		}
+
+		$ip = IPUtils::prettifyIP( $ip );
 
 		return [
 			'subject' => $ip,
