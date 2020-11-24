@@ -64,7 +64,7 @@
 				location = datum.location.map( function ( item ) {
 					return item.label;
 				} ).join( mw.msg( 'comma-separator' ) );
-				asn = datum.asn.label;
+				asn = datum.asn ? datum.asn.label : null;
 				// The following messages can be passed here:
 				// * ipinfo-source-geoip2
 				// * ipinfo-source-<sourcename>
@@ -72,7 +72,7 @@
 
 				widget.$element.append(
 					$( '<p>' ).addClass( 'ext-ipinfo-widget-location' ).text( location ),
-					$( '<p>' ).addClass( 'ext-ipinfo-widget-asn' ).text( asn ),
+					asn ? $( '<p>' ).addClass( 'ext-ipinfo-widget-asn' ).text( asn ) : null,
 					$( '<p>' ).addClass( 'ext-ipinfo-widget-source' ).text( source )
 				);
 			} );
