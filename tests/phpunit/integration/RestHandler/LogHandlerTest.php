@@ -11,6 +11,7 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Tests\Rest\Handler\HandlerTestTrait;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserOptionsLookup;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IDatabase;
@@ -37,6 +38,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 				'infoManager' => $this->createMock( InfoManager::class ),
 				'loadBalancer' => $this->createMock( ILoadBalancer::class ),
 				'permissionManager' => $this->createMock( PermissionManager::class ),
+				'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
 				'userFactory' => $this->createMock( UserFactory::class ),
 				'userIdentity' => $this->createMock( UserIdentity::class ),
 			],
@@ -77,9 +79,14 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$permissionManager->method( 'userHasRight' )
 			->willReturn( true );
 
+		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
+		$userOptionsLookup->method( 'getOption' )
+			->willReturn( true );
+
 		$handler = $this->getLogHandler( [
 			'loadBalancer' => $loadBalancer,
 			'permissionManager' => $permissionManager,
+			'userOptionsLookup' => $userOptionsLookup,
 		] );
 
 		$request = $this->getRequestData( $id );
@@ -108,6 +115,10 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$permissionManager->method( 'userHasRight' )
 			->willReturn( $options['userHasRight'] ?? null );
 
+		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
+		$userOptionsLookup->method( 'getOption' )
+			->willReturn( $options['getOption'] ?? null );
+
 		$user = $this->createMock( UserIdentity::class );
 		$user->method( 'isRegistered' )
 			->willReturn( $options['isRegistered'] ?? null );
@@ -115,6 +126,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$handler = $this->getLogHandler( [
 			'loadBalancer' => $loadBalancer,
 			'permissionManager' => $permissionManager,
+			'userOptionsLookup' => $userOptionsLookup,
 			'userIdentity' => $user,
 		] );
 
@@ -152,9 +164,21 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 					'status' => 401,
 				],
 			],
+			'access denied, preference not set' => [
+				[
+					'userHasRight' => true,
+					'getOption' => false,
+					'isRegistered' => false,
+				],
+				[
+					'message' => 'ipinfo-rest-access-denied',
+					'status' => 401,
+				],
+			],
 			'missing log' => [
 				[
 					'userHasRight' => true,
+					'getOption' => true,
 				],
 				[
 					'message' => 'ipinfo-rest-log-nonexistent',
@@ -187,6 +211,10 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$permissionManager->method( 'userHasRight' )
 			->willReturn( true );
 
+		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
+		$userOptionsLookup->method( 'getOption' )
+			->willReturn( true );
+
 		$userFactory = $this->createMock( UserFactory::class );
 		$userFactory->method( 'newFromUserIdentity' )
 			->willReturn( $this->getTestUser()->getUser() );
@@ -194,6 +222,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$handler = $this->getLogHandler( [
 			'loadBalancer' => $loadBalancer,
 			'permissionManager' => $permissionManager,
+			'userOptionsLookup' => $userOptionsLookup,
 			'userFactory' => $userFactory,
 		] );
 
@@ -234,6 +263,10 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$permissionManager->method( 'userHasRight' )
 			->willReturn( true );
 
+		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
+		$userOptionsLookup->method( 'getOption' )
+			->willReturn( true );
+
 		$userFactory = $this->createMock( UserFactory::class );
 		$userFactory->method( 'newFromUserIdentity' )
 			->willReturn( $this->getTestUser( $groups )->getUser() );
@@ -241,6 +274,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$handler = $this->getLogHandler( [
 			'loadBalancer' => $loadBalancer,
 			'permissionManager' => $permissionManager,
+			'userOptionsLookup' => $userOptionsLookup,
 			'userFactory' => $userFactory,
 		] );
 
@@ -293,9 +327,14 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$permissionManager->method( 'userHasRight' )
 			->willReturn( true );
 
+		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
+		$userOptionsLookup->method( 'getOption' )
+			->willReturn( true );
+
 		$handler = $this->getLogHandler( [
 			'loadBalancer' => $loadBalancer,
 			'permissionManager' => $permissionManager,
+			'userOptionsLookup' => $userOptionsLookup,
 		] );
 
 		$request = $this->getRequestData();
@@ -331,6 +370,10 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$permissionManager->method( 'userHasRight' )
 			->willReturn( true );
 
+		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
+		$userOptionsLookup->method( 'getOption' )
+			->willReturn( true );
+
 		$userFactory = $this->createMock( UserFactory::class );
 		$userFactory->method( 'newFromUserIdentity' )
 			->willReturn( $this->getTestUser()->getUser() );
@@ -338,6 +381,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$handler = $this->getLogHandler( [
 			'loadBalancer' => $loadBalancer,
 			'permissionManager' => $permissionManager,
+			'userOptionsLookup' => $userOptionsLookup,
 			'userFactory' => $userFactory,
 		] );
 
@@ -374,6 +418,10 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$permissionManager->method( 'userHasRight' )
 			->willReturn( true );
 
+		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
+		$userOptionsLookup->method( 'getOption' )
+			->willReturn( true );
+
 		$userFactory = $this->createMock( UserFactory::class );
 		$userFactory->method( 'newFromUserIdentity' )
 			->willReturn( $this->getTestSysop()->getUser() );
@@ -381,6 +429,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$handler = $this->getLogHandler( [
 			'loadBalancer' => $loadBalancer,
 			'permissionManager' => $permissionManager,
+			'userOptionsLookup' => $userOptionsLookup,
 			'userFactory' => $userFactory,
 		] );
 

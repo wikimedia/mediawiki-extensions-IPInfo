@@ -11,6 +11,7 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserOptionsLookup;
 use RequestContext;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -25,6 +26,9 @@ class RevisionHandler extends SimpleHandler {
 	/** @var PermissionManager */
 	private $permissionManager;
 
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
 	/** @var UserFactory */
 	private $userFactory;
 
@@ -35,6 +39,7 @@ class RevisionHandler extends SimpleHandler {
 	 * @param InfoManager $infoManager
 	 * @param RevisionLookup $revisionLookup
 	 * @param PermissionManager $permissionManager
+	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
 	 * @param UserIdentity $user
 	 */
@@ -42,12 +47,14 @@ class RevisionHandler extends SimpleHandler {
 		InfoManager $infoManager,
 		RevisionLookup $revisionLookup,
 		PermissionManager $permissionManager,
+		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
 		UserIdentity $user
 	) {
 		$this->infoManager = $infoManager;
 		$this->revisionLookup = $revisionLookup;
 		$this->permissionManager = $permissionManager;
+		$this->userOptionsLookup = $userOptionsLookup;
 		$this->userFactory = $userFactory;
 		$this->user = $user;
 	}
@@ -56,6 +63,7 @@ class RevisionHandler extends SimpleHandler {
 	 * @param InfoManager $infoManager
 	 * @param RevisionLookup $revisionLookup
 	 * @param PermissionManager $permissionManager
+	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
 	 * @return self
 	 */
@@ -63,12 +71,14 @@ class RevisionHandler extends SimpleHandler {
 		InfoManager $infoManager,
 		RevisionLookup $revisionLookup,
 		PermissionManager $permissionManager,
+		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory
 	) {
 		return new self(
 			$infoManager,
 			$revisionLookup,
 			$permissionManager,
+			$userOptionsLookup,
 			$userFactory,
 			// @TODO Replace with something better.
 			RequestContext::getMain()->getUser()
@@ -82,7 +92,10 @@ class RevisionHandler extends SimpleHandler {
 	 * @return Response
 	 */
 	public function run( int $id ) : Response {
-		if ( !$this->permissionManager->userHasRight( $this->user, 'ipinfo' ) ) {
+		if (
+			!$this->permissionManager->userHasRight( $this->user, 'ipinfo' ) ||
+			!$this->userOptionsLookup->getOption( $this->user, 'ipinfo-enable' )
+		) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'ipinfo-rest-access-denied' ), $this->user->isRegistered() ? 403 : 401 );
 		}

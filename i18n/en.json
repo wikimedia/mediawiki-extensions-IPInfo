@@ -10,6 +10,7 @@
 	"ipinfo-widget-error-default": "The IP information could not be retrieved.",
 	"ipinfo-widget-error-no-data": "There is no data for this IP address from $1.",
 	"ipinfo-widget-error-wrong-ip": "The IP address provided did not match the log or revision.",
+	"ipinfo-preference-enable": "See information about an IP address. A record will be made when you enable/disable this option.",
 	"ipinfo-rest-access-denied": "You do not have permission to perform the action",
 	"ipinfo-rest-revision-no-author": "Your account does not have access to view the author of the revision",
 	"ipinfo-rest-revision-registered": "Cannot retrieve ipinfo for revisions of registered users",
@@ -18,6 +19,7 @@
 	"ipinfo-rest-log-denied": "Your account does not have access to view the performer of the log entry or the log entry itself",
 	"ipinfo-rest-ip-invalid": "IP address provided is invalid",
 	"ipinfo-source-geoip2": "GeoIp2",
+	"prefs-ipinfo": "IP information",
 	"right-ipinfo": "Retrieve information from an IP addresses attached to revisions or log entries",
 	"right-ipinfo-any": "Retrieve information from any IP address"
 }

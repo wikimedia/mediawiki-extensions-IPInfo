@@ -13,6 +13,8 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Tests\Rest\Handler\HandlerTestTrait;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserOptionsLookup;
+
 use MediaWikiUnitTestCase;
 use Wikimedia\Message\MessageValue;
 
@@ -34,6 +36,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 				'infoManager' => $this->createMock( InfoManager::class ),
 				'revisionLookup' => $this->createMock( RevisionLookup::class ),
 				'permissionManager' => $this->createMock( PermissionManager::class ),
+				'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
 				'userFactory' => $this->createMock( UserFactory::class ),
 				'userIdentity' => $this->createMock( UserIdentity::class ),
 			],
@@ -58,6 +61,10 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 		$permissionManager->method( 'userCan' )
 			->willReturn( true );
 
+		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
+		$userOptionsLookup->method( 'getOption' )
+			->willReturn( true );
+
 		$author = $this->createMock( UserIdentity::class );
 		$author->method( 'isRegistered' )
 			->willReturn( false );
@@ -79,6 +86,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 		$handler = $this->getRevisionHandler( [
 			'revisionLookup' => $revisionLookup,
 			'permissionManager' => $permissionManager,
+			'userOptionsLookup' => $userOptionsLookup,
 		] );
 
 		$request = $this->getRequestData();
@@ -104,6 +112,10 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 		$permissionManager->method( 'userCan' )
 			->willReturn( $options['userCan'] ?? null );
 
+		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
+		$userOptionsLookup->method( 'getOption' )
+			->willReturn( $options['getOption'] ?? null );
+
 		$author = $this->createMock( UserIdentity::class );
 		$author->method( 'isRegistered' )
 			->willReturn( $options['authorIsRegistered'] ?? null );
@@ -123,6 +135,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 		$handler = $this->getRevisionHandler( [
 			'revisionLookup' => $revisionLookup,
 			'permissionManager' => $permissionManager,
+			'userOptionsLookup' => $userOptionsLookup,
 			'userIdentity' => $user,
 		] );
 
@@ -162,11 +175,24 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 					'status' => 401,
 				],
 			],
+			'Access denied, preference not set' => [
+				[
+					'userHasRight' => true,
+					'userCan' => true,
+					'getOption' => false,
+					'userIsRegistered' => false,
+				],
+				[
+					'message' => 'ipinfo-rest-access-denied',
+					'status' => 401,
+				],
+			],
 			'No revision' => [
 				[
 					'id' => $id,
 					'userHasRight' => true,
 					'userCan' => true,
+					'getOption' => true,
 					'getRevisionById' => false,
 				],
 				[
@@ -179,6 +205,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 				[
 					'userHasRight' => true,
 					'userCan' => false,
+					'getOption' => true,
 				],
 				[
 					'id' => $id,
@@ -191,6 +218,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 				[
 					'userHasRight' => true,
 					'userCan' => true,
+					'getOption' => true,
 				],
 				[
 					'message' => 'ipinfo-rest-revision-no-author',
@@ -201,6 +229,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 				[
 					'userHasRight' => true,
 					'userCan' => true,
+					'getOption' => true,
 					'authorIsRegistered' => true,
 					'author' => true,
 				],

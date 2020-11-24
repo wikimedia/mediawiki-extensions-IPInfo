@@ -27,6 +27,9 @@
 		"ipinfo",
 		"ipinfo-any"
 	],
+	"DefaultUserOptions": {
+		"ipinfo-enable": 0
+	},
 	"RestRoutes": [
 		{
 			"path": "/ipinfo/v0/revision/{id}",
@@ -35,6 +38,7 @@
 				"IPInfoInfoManager",
 				"RevisionLookup",
 				"PermissionManager",
+				"UserOptionsLookup",
 				"UserFactory"
 			],
 			"factory": "MediaWiki\\IPInfo\\RestHandler\\RevisionHandler::factory"
@@ -46,6 +50,7 @@
 				"IPInfoInfoManager",
 				"DBLoadBalancer",
 				"PermissionManager",
+				"UserOptionsLookup",
 				"UserFactory"
 			],
 			"factory": "MediaWiki\\IPInfo\\RestHandler\\LogHandler::factory"
@@ -55,17 +60,26 @@
 			"method": "POST",
 			"services": [
 				"IPInfoInfoManager",
-				"PermissionManager"
+				"PermissionManager",
+				"UserOptionsLookup"
 			],
 			"factory": "MediaWiki\\IPInfo\\RestHandler\\IPHandler::factory"
 		}
 	],
 	"Hooks": {
-		"BeforePageDisplay": "popup"
+		"BeforePageDisplay": "popup",
+		"GetPreferences": "preferences"
 	},
 	"HookHandlers": {
 		"popup": {
 			"class": "MediaWiki\\IPInfo\\HookHandler\\PopupHandler",
+			"services": [
+				"PermissionManager",
+				"UserOptionsLookup"
+			]
+		},
+		"preferences": {
+			"class": "MediaWiki\\IPInfo\\HookHandler\\Preferences",
 			"services": [ "PermissionManager" ]
 		}
 	},

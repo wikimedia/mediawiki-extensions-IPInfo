@@ -9,6 +9,7 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Tests\Rest\Handler\HandlerTestTrait;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserOptionsLookup;
 use MediaWikiUnitTestCase;
 use Wikimedia\Message\MessageValue;
 
@@ -29,6 +30,7 @@ class IPHandlerTest extends MediaWikiUnitTestCase {
 			[
 				'infoManager' => $this->createMock( InfoManager::class ),
 				'permissionManager' => $this->createMock( PermissionManager::class ),
+				'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
 				'userIdentity' => $this->createMock( UserIdentity::class ),
 			],
 			$options
@@ -54,8 +56,13 @@ class IPHandlerTest extends MediaWikiUnitTestCase {
 		$permissionManager->method( 'userHasRight' )
 			->willReturn( true );
 
+		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
+		$userOptionsLookup->method( 'getOption' )
+			->willReturn( true );
+
 		$handler = $this->getIPHandler( [
 			'permissionManager' => $permissionManager,
+			'userOptionsLookup' => $userOptionsLookup,
 		] );
 
 		$request = $this->getRequestData( '127.0.0.1' );
@@ -75,12 +82,17 @@ class IPHandlerTest extends MediaWikiUnitTestCase {
 		$permissionManager->method( 'userHasRight' )
 			->willReturn( $options['userHasRight'] ?? null );
 
+		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
+		$userOptionsLookup->method( 'getOption' )
+			->willReturn( $options['getOption'] ?? null );
+
 		$user = $this->createMock( UserIdentity::class );
 		$user->method( 'isRegistered' )
 			->willReturn( $options['isRegistered'] ?? null );
 
 		$handler = $this->getIPHandler( [
 			'permissionManager' => $permissionManager,
+			'userOptionsLookup' => $userOptionsLookup,
 			'userIdentity' => $user,
 		] );
 
@@ -121,6 +133,17 @@ class IPHandlerTest extends MediaWikiUnitTestCase {
 				[
 					'ip' => '127.0.0.1',
 					'isRegistered' => false,
+				],
+				[
+					'message' => 'ipinfo-rest-access-denied',
+					'status' => 401,
+				]
+			],
+			'access denied, user preference not set' => [
+				[
+					'ip' => '127.0.0.1',
+					'isRegistered' => false,
+					'userHasRight' => true,
 				],
 				[
 					'message' => 'ipinfo-rest-access-denied',

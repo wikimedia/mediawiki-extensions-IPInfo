@@ -13,6 +13,7 @@
 	"ipinfo-widget-error-default": "Error message shown in the widget.",
 	"ipinfo-widget-error-no-data": "Error message shown in the widget.\n\nParameters:\n* $1 - Name of a data source",
 	"ipinfo-widget-error-wrong-ip": "Error message shown in the widget.",
+	"ipinfo-preference-enable": "Used in [[Special:Preferences]].\n\nLabel for a checkbox to enable/disable the IP info feature.",
 	"ipinfo-rest-access-denied": "Error message for REST API debugging, shown when access is denied.",
 	"ipinfo-rest-revision-no-author": "Error message for REST API debugging, shown when a user does not have permission to read the author of a revision.",
 	"ipinfo-rest-revision-registered": "Error message for REST API debugging, shown when a revision belongs to a registered user.",
@@ -21,6 +22,7 @@
 	"ipinfo-rest-log-denied": "Error message for REST API debugging, shown when a user does not have permission to read the performer of a log entry.",
 	"ipinfo-rest-ip-invalid": "Error message for REST API debugging, shown when an IP address is invalid",
 	"ipinfo-source-geoip2": "Name of the GeoIp2 data source.",
+	"prefs-ipinfo": "Text of a section header in [[Special:Preferences]].",
 	"right-ipinfo": "{{doc-right|ipinfo}}",
 	"right-ipinfo-any": "{{doc-right|ipinfo-any}}"
 }
