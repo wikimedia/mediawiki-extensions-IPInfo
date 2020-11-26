@@ -11,6 +11,7 @@
 	"ipinfo-widget-error-default": "As informações de IP não puderam ser recuperadas.",
 	"ipinfo-widget-error-no-data": "Não há dados para este endereço IP de $1.",
 	"ipinfo-widget-error-wrong-ip": "O endereço IP fornecido não corresponde ao registro ou revisão.",
+	"ipinfo-preference-enable": "Veja as informações sobre um endereço IP. Um registro será feito quando você habilitar/desabilitar esta opção.",
 	"ipinfo-rest-access-denied": "Você não tem permissão para realizar a ação",
 	"ipinfo-rest-revision-no-author": "Sua conta não tem acesso para ver o autor da revisão",
 	"ipinfo-rest-revision-registered": "Não é possível recuperar ipinfo para revisões de usuários registrados",
@@ -19,6 +20,7 @@
 	"ipinfo-rest-log-denied": "Sua conta não tem acesso para visualizar o executor da entrada de registro ou a própria entrada de registro",
 	"ipinfo-rest-ip-invalid": "O endereço IP fornecido é inválido",
 	"ipinfo-source-geoip2": "GeoIp2",
+	"prefs-ipinfo": "Informação de IP",
 	"right-ipinfo": "Recupere informações de um endereço IP anexado a revisões ou entradas de registro",
 	"right-ipinfo-any": "Recupere informações de qualquer endereço IP"
 }

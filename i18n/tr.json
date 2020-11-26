@@ -11,6 +11,7 @@
 	"ipinfo-widget-error-default": "IP bilgileri alınamadı.",
 	"ipinfo-widget-error-no-data": "$1 üzerinden bu IP adresi için veri yok.",
 	"ipinfo-widget-error-wrong-ip": "Sağlanan IP adresi, günlük veya revizyon ile eşleşmedi.",
+	"ipinfo-preference-enable": "Bir IP adresi hakkındaki bilgilere bakın. Bu seçeneği etkinleştirdiğinizde/devre dışı bıraktığınızda bir kayıt yapılacaktır.",
 	"ipinfo-rest-access-denied": "Bu eylemi gerçekleştirmeye yetkiniz yok",
 	"ipinfo-rest-revision-no-author": "Hesabınızın revizyonun yazarını görüntüleme erişimi yok",
 	"ipinfo-rest-revision-registered": "Kayıtlı kullanıcıların revizyonları için ipinfo alınamıyor",
@@ -19,6 +20,7 @@
 	"ipinfo-rest-log-denied": "Hesabınız, günlük girişinin gerçekleştiricisini veya günlük girişinin kendisini görüntüleme erişimine sahip değil",
 	"ipinfo-rest-ip-invalid": "Sağlanan IP Adresi geçersiz",
 	"ipinfo-source-geoip2": "GeoIp2",
+	"prefs-ipinfo": "IP bilgisi",
 	"right-ipinfo": "Revizyonlara veya günlük girişlerine eklenmiş bir IP adresinden bilgi alın",
 	"right-ipinfo-any": "Herhangi bir IP adresinden bilgi alın"
 }

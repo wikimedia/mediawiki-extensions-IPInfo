@@ -14,6 +14,7 @@
 	"ipinfo-widget-error-default": "L’information IP n’a pas pu être récupérée.",
 	"ipinfo-widget-error-no-data": "Il n’y a pas de donnée pour cette adresse IP depuis $1.",
 	"ipinfo-widget-error-wrong-ip": "L’adresse IP fournie ne correspond pas au journal ou à la révision.",
+	"ipinfo-preference-enable": "Voir les informations sur une adresse IP. Un enregistrement sera fait quand vous activerez/désactiverez cette option.",
 	"ipinfo-rest-access-denied": "Vous n’avez pas l’autorisation de réaliser cette action",
 	"ipinfo-rest-revision-no-author": "Votre compte n'a pas l'accès pour voir l'auteur de la révision",
 	"ipinfo-rest-revision-registered": "Impossible de récupérer ipinfo pour les révisions des utilisateurs enregistrés",
@@ -22,6 +23,7 @@
 	"ipinfo-rest-log-denied": "Votre compte n'a pas accès pour afficher l'intervenant de l'entrée de journal ou l'entrée de journal elle-même",
 	"ipinfo-rest-ip-invalid": "L’adresse IP fournie n’est pas valide",
 	"ipinfo-source-geoip2": "GeoIp2",
+	"prefs-ipinfo": "Information sur l’adresse IP",
 	"right-ipinfo": "Récupérer des informations à partir d'adresses IP attachées aux révisions ou aux entrées de journal",
 	"right-ipinfo-any": "Récupérer l’information d’une adresse IP quelconque"
 }

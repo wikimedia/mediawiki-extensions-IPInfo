@@ -8,5 +8,6 @@
 	"action-ipinfo-any": "Recupera informazioni da qualsiasi indirizzo IP.",
 	"ipinfo-widget-error-default": "Non è stato possibile recuperare le informazioni sull'IP.",
 	"ipinfo-rest-ip-invalid": "L'indirizzo IP fornito non è valido",
+	"prefs-ipinfo": "Informazioni su IP",
 	"right-ipinfo-any": "Recupera informazioni da qualsiasi indirizzo IP"
 }
