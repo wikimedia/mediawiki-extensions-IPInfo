@@ -71,7 +71,7 @@
 				source = mw.msg( 'ipinfo-widget-source', mw.msg( datum.source ) );
 
 				widget.$element.append(
-					$( '<p>' ).addClass( 'ext-ipinfo-widget-location' ).text( location ),
+					location ? $( '<p>' ).addClass( 'ext-ipinfo-widget-location' ).text( location ) : null,
 					asn ? $( '<p>' ).addClass( 'ext-ipinfo-widget-asn' ).text( asn ) : null,
 					$( '<p>' ).addClass( 'ext-ipinfo-widget-source' ).text( source )
 				);
