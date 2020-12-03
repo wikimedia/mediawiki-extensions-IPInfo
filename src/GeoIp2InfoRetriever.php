@@ -98,7 +98,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 
 	/**
 	 * @param string $ip
-	 * @return Coordinates|null null if this IP address is not in the database
+	 * @return Coordinates|null null if IP address does not return a latitude/longitude
 	 */
 	private function getCoordinates( string $ip ) : ?Coordinates {
 		$reader = $this->getCityReader();
@@ -112,9 +112,14 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 			return null;
 		}
 
+		$location = $city->location;
+		if ( !$location->latitude || !$location->longitude ) {
+			return null;
+		}
+
 		return new Coordinates(
-			$city->location->latitude,
-			$city->location->longitude
+			$location->latitude,
+			$location->longitude
 		);
 	}
 
@@ -142,7 +147,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 
 	/**
 	 * @param string $ip
-	 * @return Location[] Empty array if this IP address is not in the database
+	 * @return Location[] Empty array if IP address does not return a city name
 	 */
 	private function getLocations( string $ip ) : array {
 		$reader = $this->getCityReader();
@@ -153,6 +158,10 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 		try {
 			$city = $reader->city( $ip );
 		} catch ( AddressNotFoundException $e ) {
+			return [];
+		}
+
+		if ( !$city->city->geonameId || !$city->city->name ) {
 			return [];
 		}
 
