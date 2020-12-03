@@ -68,11 +68,19 @@
 	],
 	"Hooks": {
 		"BeforePageDisplay": "popup",
+		"SpecialPageBeforeExecute": "infobox",
 		"GetPreferences": "preferences"
 	},
 	"HookHandlers": {
 		"popup": {
 			"class": "MediaWiki\\IPInfo\\HookHandler\\PopupHandler",
+			"services": [
+				"PermissionManager",
+				"UserOptionsLookup"
+			]
+		},
+		"infobox": {
+			"class": "MediaWiki\\IPInfo\\HookHandler\\InfoBoxHandler",
 			"services": [
 				"PermissionManager",
 				"UserOptionsLookup"
@@ -87,8 +95,10 @@
 		"ext.ipInfo": {
 			"localBasePath": "modules/ext.ipInfo",
 			"remoteExtPath": "IPInfo/modules/ext.ipInfo",
-			"scripts": [
-				"init.js",
+			"packageFiles": [
+				"dispatcher.js",
+				"infoBox/init.js",
+				"popup/init.js",
 				"widget.js"
 			],
 			"styles": [
@@ -96,6 +106,7 @@
 			],
 			"dependencies": [
 				"oojs-ui-core",
+				"oojs-ui-widgets",
 				"oojs-ui.styles.icons-content"
 			],
 			"messages": [
