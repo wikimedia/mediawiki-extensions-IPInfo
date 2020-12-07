@@ -4,5 +4,6 @@
 			"ישראל קלר"
 		]
 	},
-	"ipinfo-widget-source": "מקור: $1"
+	"ipinfo-widget-source": "מקור: $1",
+	"prefs-ipinfo": "מידע על כתובת IP"
 }
