@@ -24,11 +24,8 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 	/** @var ServiceOptions */
 	private $options;
 
-	/** @var Reader|bool|null false if the file path or file is invalid */
-	private $asnReader;
-
-	/** @var Reader|bool|null false if the file path or file is invalid */
-	private $cityReader;
+	/** @var Reader[] Map of filename to Reader object */
+	private $readers = [];
 
 	/**
 	 * @param ServiceOptions $options
@@ -41,34 +38,14 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 	}
 
 	/**
-	 * @return Reader|null null if the file path or file is invalid
-	 */
-	private function getAsnReader() : ?Reader {
-		if ( $this->asnReader === null ) {
-			$reader = $this->getReader( 'ASN.mmdb' );
-			$this->asnReader = $reader ?: false;
-		}
-
-		return $this->asnReader ?: null;
-	}
-
-	/**
-	 * @return Reader|null null if the file path or file is invalid
-	 */
-	private function getCityReader() : ?Reader {
-		if ( $this->cityReader === null ) {
-			$reader = $this->getReader( 'City.mmdb' );
-			$this->cityReader = $reader ?: false;
-		}
-
-		return $this->cityReader ?: null;
-	}
-
-	/**
 	 * @param string $filename
 	 * @return Reader|null null if the file path or file is invalid
 	 */
 	private function getReader( string $filename ) : ?Reader {
+		if ( isset( $this->readers[$filename] ) ) {
+			return $this->readers[$filename];
+		}
+
 		$path = $this->options->get( 'IPInfoGeoIP2Path' );
 
 		if ( $path === false ) {
@@ -81,7 +58,9 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 			return null;
 		}
 
-		return $reader;
+		$this->readers[$filename] = $reader;
+
+		return $this->readers[$filename];
 	}
 
 	/**
@@ -101,7 +80,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 	 * @return Coordinates|null null if IP address does not return a latitude/longitude
 	 */
 	private function getCoordinates( string $ip ) : ?Coordinates {
-		$reader = $this->getCityReader();
+		$reader = $this->getReader( 'City.mmdb' );
 		if ( !$reader ) {
 			return null;
 		}
@@ -128,7 +107,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 	 * @return Asn|null null if this IP address is not in the database
 	 */
 	private function getAsn( string $ip ) : ?Asn {
-		$reader = $this->getAsnReader();
+		$reader = $this->getReader( 'ASN.mmdb' );
 		if ( !$reader ) {
 			return null;
 		}
@@ -150,7 +129,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 	 * @return Location[] Empty array if IP address does not return a city name
 	 */
 	private function getLocations( string $ip ) : array {
-		$reader = $this->getCityReader();
+		$reader = $this->getReader( 'City.mmdb' );
 		if ( !$reader ) {
 			return [];
 		}
