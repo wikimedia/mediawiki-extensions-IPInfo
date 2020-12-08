@@ -6,6 +6,7 @@
 	"action-ipinfo-any": "Retrieve information from any IP address.",
 	"ipinfo-extensionname": "IP Info",
 	"ipinfo-desc": "Provides information about an IP address.",
+	"ipinfo-infobox-title": "IP Information",
 	"ipinfo-widget-source": "Source: $1",
 	"ipinfo-widget-error-default": "The IP information could not be retrieved.",
 	"ipinfo-widget-error-no-data": "There is no data for this IP address from $1.",
