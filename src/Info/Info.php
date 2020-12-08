@@ -11,7 +11,7 @@ class Info implements JsonSerializable {
 	/** @var Coordinates|null */
 	private $coordinates;
 
-	/** @var ASN|null */
+	/** @var Asn|null */
 	private $asn;
 
 	/** @var Location[] */
@@ -20,13 +20,13 @@ class Info implements JsonSerializable {
 	/**
 	 * @param string $source Message key for the name of the data source
 	 * @param Coordinates|null $coordinates
-	 * @param ASN|null $asn
+	 * @param Asn|null $asn
 	 * @param Location[] $location
 	 */
 	public function __construct(
 		string $source,
 		?Coordinates $coordinates = null,
-		?ASN $asn = null,
+		?Asn $asn = null,
 		array $location = []
 	) {
 		$this->source = $source;

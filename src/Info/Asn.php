@@ -4,7 +4,7 @@ namespace MediaWiki\IPInfo\Info;
 
 use JsonSerializable;
 
-class ASN implements JsonSerializable {
+class Asn implements JsonSerializable {
 	/** @var int */
 	private $id;
 

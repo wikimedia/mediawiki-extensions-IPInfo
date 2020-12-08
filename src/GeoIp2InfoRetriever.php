@@ -5,7 +5,7 @@ namespace MediaWiki\IPInfo;
 use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\IPInfo\Info\ASN;
+use MediaWiki\IPInfo\Info\Asn;
 use MediaWiki\IPInfo\Info\Coordinates;
 use MediaWiki\IPInfo\Info\Info;
 use MediaWiki\IPInfo\Info\Location;
@@ -127,7 +127,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 	 * @param string $ip
 	 * @return Asn|null null if this IP address is not in the database
 	 */
-	private function getAsn( string $ip ) : ?ASN {
+	private function getAsn( string $ip ) : ?Asn {
 		$reader = $this->getAsnReader();
 		if ( !$reader ) {
 			return null;
@@ -139,7 +139,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 			return null;
 		}
 
-		return new ASN(
+		return new Asn(
 			$asn->autonomousSystemNumber,
 			$asn->autonomousSystemOrganization
 		);
