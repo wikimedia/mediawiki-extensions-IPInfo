@@ -45,9 +45,9 @@ class InfoBoxHandler implements SpecialPageBeforeExecuteHook {
 
 		// Check if either the target parameter or the subpage is an IP address
 		$target = $out->getRequest()->getVal( 'target' );
-		if ( IPUtils::isIPAddress( $target ) ) {
+		if ( IPUtils::isValid( $target ) ) {
 			$target = IPUtils::prettifyIP( $target );
-		} elseif ( IPUtils::isIPAddress( $subPage ) ) {
+		} elseif ( IPUtils::isValid( $subPage ) ) {
 			$target = IPUtils::prettifyIP( $subPage );
 		} else {
 			$target = null;
