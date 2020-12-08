@@ -8,6 +8,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\IPInfo\Info\Asn;
 use MediaWiki\IPInfo\Info\Coordinates;
 use MediaWiki\IPInfo\Info\Info;
+use MediaWiki\IPInfo\Info\Isp;
 use MediaWiki\IPInfo\Info\Location;
 
 /**
@@ -71,7 +72,8 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 			'ipinfo-source-geoip2',
 			$this->getCoordinates( $ip ),
 			$this->getAsn( $ip ),
-			$this->getLocations( $ip )
+			$this->getLocations( $ip ),
+			$this->getIsp( $ip )
 		);
 	}
 
@@ -158,5 +160,30 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 			},
 			$city->subdivisions
 		) );
+	}
+
+	/**
+	 * @param string $ip
+	 * @return Isp|null null if IP address does not return an ISP
+	 */
+	private function getIsp( string $ip ) : ?Isp {
+		$reader = $this->getReader( 'ISP.mmdb' );
+		if ( !$reader ) {
+			return null;
+		}
+
+		try {
+			$isp = $reader->isp( $ip );
+		} catch ( AddressNotFoundException $e ) {
+			return null;
+		}
+
+		if ( $isp->isp === null ) {
+			return null;
+		}
+
+		return new Isp(
+			$isp->isp
+		);
 	}
 }
