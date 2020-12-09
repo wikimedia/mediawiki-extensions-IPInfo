@@ -8,5 +8,6 @@
 	"action-ipinfo-any": "Recupere información de cualquier dirección IP.",
 	"ipinfo-widget-source": "Fuente: $1",
 	"ipinfo-rest-access-denied": "No tienes permiso para efectuar la acción",
-	"ipinfo-rest-log-nonexistent": "No existe la entrada del registro"
+	"ipinfo-rest-log-nonexistent": "No existe la entrada del registro",
+	"prefs-ipinfo": "Información sobre la IP"
 }
