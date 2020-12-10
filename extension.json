@@ -112,7 +112,11 @@
 			"messages": [
 				"ipinfo-source-geoip2",
 				"ipinfo-infobox-title",
-				"ipinfo-widget-source",
+				"ipinfo-property-label-location",
+				"ipinfo-property-label-isp",
+				"ipinfo-property-label-asn",
+				"ipinfo-property-label-source",
+				"ipinfo-property-no-data",
 				"ipinfo-widget-error-default",
 				"ipinfo-widget-error-no-data",
 				"ipinfo-widget-error-wrong-ip"

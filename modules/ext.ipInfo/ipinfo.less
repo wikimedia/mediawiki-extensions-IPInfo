@@ -3,6 +3,8 @@
 
 .ext-ipinfo-button-collapse,
 .ext-ipinfo-button-collapse .oo-ui-buttonElement-button {
+	margin: 0;
+	padding: 23px;
 	display: block;
 }
 
@@ -25,18 +27,60 @@
 
 .ext-ipinfo-widget {
 	min-height: 2em;
-	padding: 0 1em;
-}
-
-.ext-ipinfo-widget-location {
-	font-weight: bold;
-}
-
-.ext-ipinfo-widget-source {
-	font-style: italic;
-	color: @colorGray7;
+	font-size: 1.14285em;
+	line-height: 1.2;
 }
 
 .ext-ipinfo-widget-error {
 	margin: 1em 0;
+}
+
+.ext-ipinfo-infobox {
+	.oo-ui-panelLayout {
+		padding: 0;
+	}
+
+	.ext-ipinfo-widget {
+		margin-top: -23px;
+		padding: 0 38px;
+	}
+}
+
+.ext-ipinfo-widget-property-properties {
+	margin: 0;
+}
+
+.ext-ipinfo-widget-property {
+	padding: 16px 14px;
+}
+
+.ext-ipinfo-widget-property-label {
+	margin-bottom: 4px;
+	font-size: 0.8125em;
+	color: @color-base--subtle;
+}
+
+.ext-ipinfo-widget-property-value {
+	margin-left: 0;
+}
+
+.ext-ipinfo-widget-property-no-data > .ext-ipinfo-widget-property-value {
+	color: @color-base--subtle;
+	font-style: italic;
+}
+
+// Styling for specific properties
+[ data-property='asn' ]:not( .ext-ipinfo-widget-property-no-data ) > .ext-ipinfo-widget-property-value {
+	font-family: monospace;
+}
+
+.ext-ipinfo-widget-property[ data-property='source' ] {
+	& > .ext-ipinfo-widget-property-value,
+	& > .ext-ipinfo-widget-property-label {
+		display: inline-block;
+		font-size: 100%;
+		color: @color-base--subtle;
+		font-style: italic;
+		font-weight: normal;
+	}
 }

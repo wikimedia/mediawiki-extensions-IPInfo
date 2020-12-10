@@ -42,9 +42,14 @@
 							break;
 						}
 					}
-
 					return data;
-				} )
+				} ),
+				[
+					'location',
+					'isp',
+					'asn',
+					'source'
+				]
 			).$element );
 		} );
 

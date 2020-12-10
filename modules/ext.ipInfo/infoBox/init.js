@@ -42,7 +42,13 @@
 				}
 			}
 			return data;
-		} )
+		} ),
+		[
+			'location',
+			'isp',
+			'asn',
+			'source'
+		]
 	);
 	ipPanelWidget.toggle( false );
 
@@ -57,7 +63,8 @@
 	ipInfoBox = new OO.ui.StackLayout( {
 		items: [ ipPanel ],
 		continuous: true,
-		expanded: false
+		expanded: false,
+		classes: [ 'ext-ipinfo-infobox' ]
 	} );
 	$( '#mw-content-text' ).prepend( ipInfoBox.$element );
 }() );
