@@ -20,6 +20,9 @@ class Info implements JsonSerializable {
 	/** @var Isp|null */
 	private $isp;
 
+	/** @var ConnectionType|null */
+	private $connectionType;
+
 	/** @var ProxyType|null */
 	private $proxyType;
 
@@ -29,6 +32,7 @@ class Info implements JsonSerializable {
 	 * @param Asn|null $asn
 	 * @param Location[] $location
 	 * @param Isp|null $isp
+	 * @param ConnectionType|null $connectionType
 	 * @param ProxyType|null $proxyType
 	 */
 	public function __construct(
@@ -37,6 +41,7 @@ class Info implements JsonSerializable {
 		?Asn $asn = null,
 		array $location = [],
 		?Isp $isp = null,
+		?ConnectionType $connectionType = null,
 		?ProxyType $proxyType = null
 	) {
 		$this->source = $source;
@@ -44,6 +49,7 @@ class Info implements JsonSerializable {
 		$this->asn = $asn;
 		$this->location = $location;
 		$this->isp = $isp;
+		$this->connectionType = $connectionType;
 		$this->proxyType = $proxyType;
 	}
 
@@ -57,6 +63,7 @@ class Info implements JsonSerializable {
 			'asn' => $this->asn,
 			'location' => $this->location,
 			'isp' => $this->isp,
+			'connectionType' => $this->connectionType,
 			'proxyType' => $this->proxyType,
 		];
 	}

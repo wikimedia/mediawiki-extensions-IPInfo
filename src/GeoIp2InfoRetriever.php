@@ -6,6 +6,7 @@ use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\IPInfo\Info\Asn;
+use MediaWiki\IPInfo\Info\ConnectionType;
 use MediaWiki\IPInfo\Info\Coordinates;
 use MediaWiki\IPInfo\Info\Info;
 use MediaWiki\IPInfo\Info\Isp;
@@ -75,6 +76,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 			$this->getAsn( $ip ),
 			$this->getLocations( $ip ),
 			$this->getIsp( $ip ),
+			$this->getConnectionType( $ip ),
 			$this->getProxyType( $ip )
 		);
 	}
@@ -186,6 +188,32 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 
 		return new Isp(
 			$isp->isp
+		);
+	}
+
+	/**
+	 * @param string $ip
+	 * @return ConnectionType|null null if IP address does not return a
+	 *  ConnectionType
+	 */
+	private function getConnectionType( string $ip ) : ?ConnectionType {
+		$reader = $this->getReader( 'Connection-Type.mmdb' );
+		if ( !$reader ) {
+			return null;
+		}
+
+		try {
+			$connectionType = $reader->connectionType( $ip );
+		} catch ( AddressNotFoundException $e ) {
+			return null;
+		}
+
+		if ( $connectionType->connectionType === null ) {
+			return null;
+		}
+
+		return new ConnectionType(
+			$connectionType->connectionType
 		);
 	}
 
