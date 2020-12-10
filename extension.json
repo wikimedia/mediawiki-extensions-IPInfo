@@ -111,6 +111,7 @@
 			],
 			"messages": [
 				"ipinfo-source-geoip2",
+				"ipinfo-infobox-title",
 				"ipinfo-widget-source",
 				"ipinfo-widget-error-default",
 				"ipinfo-widget-error-no-data",

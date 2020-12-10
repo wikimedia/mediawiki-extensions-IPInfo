@@ -1,6 +1,6 @@
 ( function () {
 	var ip = mw.config.get( 'wgIPInfoTarget' ),
-		revId, ipPanel, ipInfoBox;
+		revId, ipPanel, $ipPanelContent, ipPanelToggle, ipPanelWidget, ipInfoBox;
 	if ( !ip ) {
 		return;
 	}
@@ -10,23 +10,46 @@
 		return;
 	}
 
-	ipPanel = new OO.ui.PanelLayout( {
-		$content: new mw.IpInfo.IpInfoWidget(
-			$.get(
-				mw.config.get( 'wgScriptPath' ) +
-					'/rest.php/ipinfo/v0/revision/' + revId
-			).then( function ( response ) {
-				var i, data;
-				// Array.find is only available from ES6
-				for ( i = 0; i < response.info.length; i++ ) {
-					if ( response.info[ i ].subject === ip ) {
-						data = response.info[ i ];
-						break;
-					}
+	$ipPanelContent = $( '<div>' );
+
+	ipPanelToggle = new OO.ui.ButtonWidget( {
+		framed: false,
+		icon: 'expand',
+		label: mw.msg( 'ipinfo-infobox-title' )
+	} );
+	ipPanelToggle.on( 'click', function () {
+		if ( ipPanelWidget.visible ) {
+			ipPanelWidget.toggle( false );
+			ipPanelToggle.setIcon( 'expand' );
+		} else {
+			ipPanelWidget.toggle( true );
+			ipPanelToggle.setIcon( 'collapse' );
+		}
+	} );
+
+	ipPanelWidget = new mw.IpInfo.IpInfoWidget(
+		$.get(
+			mw.config.get( 'wgScriptPath' ) +
+				'/rest.php/ipinfo/v0/revision/' + revId
+		).then( function ( response ) {
+			var i, data;
+			// Array.find is only available from ES6
+			for ( i = 0; i < response.info.length; i++ ) {
+				if ( response.info[ i ].subject === ip ) {
+					data = response.info[ i ];
+					break;
 				}
-				return data;
-			} )
-		).$element,
+			}
+			return data;
+		} )
+	);
+	ipPanelWidget.toggle( false );
+
+	$ipPanelContent.append( ipPanelToggle.$element );
+	$ipPanelContent.append( ipPanelWidget.$element );
+
+	ipPanel = new OO.ui.PanelLayout( {
+		$content: $ipPanelContent,
 		padded: true,
 		framed: true
 	} );
