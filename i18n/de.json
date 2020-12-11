@@ -5,6 +5,7 @@
 	"action-ipinfo": "Abrufen von Informationen von IP-Adressen, die mit Versionen oder Logbüchern verbunden sind",
 	"action-ipinfo-any": "Abrufen von Informationen von einer beliebigen IP-Adresse.",
 	"ipinfo-desc": "Stellt Informationen über eine IP-Adresse zur Verfügung.",
+	"ipinfo-infobox-title": "IP-Information",
 	"ipinfo-widget-source": "Quelle: $1",
 	"ipinfo-widget-error-default": "Die Informationen zur IP-Adresse konnten nicht abgerufen werden.",
 	"ipinfo-widget-error-no-data": "Es gibt keine Daten für diese IP-Adresse von $1.",
