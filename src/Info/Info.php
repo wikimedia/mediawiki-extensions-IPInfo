@@ -20,25 +20,31 @@ class Info implements JsonSerializable {
 	/** @var Isp|null */
 	private $isp;
 
+	/** @var ProxyType|null */
+	private $proxyType;
+
 	/**
 	 * @param string $source Message key for the name of the data source
 	 * @param Coordinates|null $coordinates
 	 * @param Asn|null $asn
 	 * @param Location[] $location
 	 * @param Isp|null $isp
+	 * @param ProxyType|null $proxyType
 	 */
 	public function __construct(
 		string $source,
 		?Coordinates $coordinates = null,
 		?Asn $asn = null,
 		array $location = [],
-		?Isp $isp = null
+		?Isp $isp = null,
+		?ProxyType $proxyType = null
 	) {
 		$this->source = $source;
 		$this->coordinates = $coordinates;
 		$this->asn = $asn;
 		$this->location = $location;
 		$this->isp = $isp;
+		$this->proxyType = $proxyType;
 	}
 
 	/**
@@ -51,6 +57,7 @@ class Info implements JsonSerializable {
 			'asn' => $this->asn,
 			'location' => $this->location,
 			'isp' => $this->isp,
+			'proxyType' => $this->proxyType,
 		];
 	}
 }

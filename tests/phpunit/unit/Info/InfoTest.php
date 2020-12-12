@@ -18,6 +18,7 @@ class InfoTest extends MediaWikiUnitTestCase {
 			'asn' => null,
 			'location' => [],
 			'isp' => null,
+			'proxyType' => null,
 		] );
 
 		$info = new Info( 'ipinfo-source-testsource' );
