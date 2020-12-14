@@ -7,6 +7,7 @@
 	"action-ipinfo": "Revizyonlara veya günlük girişlerine eklenmiş bir IP adresinden bilgi alın",
 	"action-ipinfo-any": "Herhangi bir IP Adresinden bilgi alın.",
 	"ipinfo-desc": "Bir IP adresi hakkında bilgi sağlar.",
+	"ipinfo-infobox-title": "IP Bilgisi",
 	"ipinfo-widget-source": "Kaynak: $1",
 	"ipinfo-widget-error-default": "IP bilgileri alınamadı.",
 	"ipinfo-widget-error-no-data": "$1 üzerinden bu IP adresi için veri yok.",

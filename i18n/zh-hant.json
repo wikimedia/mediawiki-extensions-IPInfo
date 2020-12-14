@@ -7,6 +7,7 @@
 	"action-ipinfo": "從附加在修訂或日誌項目的 IP 位址來檢索資訊",
 	"action-ipinfo-any": "從任何 IP 位址檢索資訊。",
 	"ipinfo-desc": "提供關於 IP 位址的資訊。",
+	"ipinfo-infobox-title": "IP 資訊",
 	"ipinfo-widget-source": "來源：$1",
 	"ipinfo-widget-error-default": "IP 資訊無法檢索。",
 	"ipinfo-widget-error-no-data": "$1沒有用於此 IP 位址的資料。",

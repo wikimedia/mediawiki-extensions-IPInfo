@@ -7,6 +7,7 @@
 	"action-ipinfo": "Добивање на информации за IP-адреси од преработки или дневнички ставки",
 	"action-ipinfo-any": "Добивање на информации од било која IP-адреса.",
 	"ipinfo-desc": "Дава информации за IP-адреса",
+	"ipinfo-infobox-title": "Информации за IP",
 	"ipinfo-widget-source": "Извор: $1",
 	"ipinfo-widget-error-default": "Не можев да ги добијам информациите за IP-адресата.",
 	"ipinfo-widget-error-no-data": "Нема податоци за оваа IP-адреса од $1.",
