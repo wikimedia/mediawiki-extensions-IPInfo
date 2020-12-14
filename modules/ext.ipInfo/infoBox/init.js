@@ -15,6 +15,7 @@
 	ipPanelToggle = new OO.ui.ButtonWidget( {
 		framed: false,
 		icon: 'expand',
+		classes: [ 'ext-ipinfo-button-collapse' ],
 		label: mw.msg( 'ipinfo-infobox-title' )
 	} );
 	ipPanelToggle.on( 'click', function () {
