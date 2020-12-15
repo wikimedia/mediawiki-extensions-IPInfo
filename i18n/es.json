@@ -2,10 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Fitoschido",
+			"MarcoAurelio",
 			"Rodney Araujo"
 		]
 	},
 	"action-ipinfo-any": "Recupere información de cualquier dirección IP.",
+	"ipinfo-infobox-title": "Información de la IP",
 	"ipinfo-widget-source": "Fuente: $1",
 	"ipinfo-rest-access-denied": "No tienes permiso para efectuar la acción",
 	"ipinfo-rest-log-nonexistent": "No existe la entrada del registro",
