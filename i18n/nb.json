@@ -7,7 +7,7 @@
 	"action-ipinfo": "hente informasjon fra IP-adresser tilknyttet revisjoner eller loggoppføringer",
 	"action-ipinfo-any": "Hente informasjon fra IP-adresser",
 	"ipinfo-desc": "Gir informasjon om en IP-adresse.",
-	"ipinfo-widget-source": "Kilde: $1",
+	"ipinfo-property-label-source": "Kilde",
 	"ipinfo-widget-error-default": "IP-informasjonen kunne ikke hentes.",
 	"ipinfo-widget-error-no-data": "Det er ingen data for denne IP-adressa fra $1.",
 	"ipinfo-widget-error-wrong-ip": "Den angitte IP-adressen matchet ikke loggen eller revisjonen.",

@@ -8,7 +8,7 @@
 	"action-ipinfo-any": "從任何 IP 位址檢索資訊。",
 	"ipinfo-desc": "提供關於 IP 位址的資訊。",
 	"ipinfo-infobox-title": "IP 資訊",
-	"ipinfo-widget-source": "來源：$1",
+	"ipinfo-property-label-source": "來源",
 	"ipinfo-widget-error-default": "IP 資訊無法檢索。",
 	"ipinfo-widget-error-no-data": "$1沒有用於此 IP 位址的資料。",
 	"ipinfo-widget-error-wrong-ip": "所提供 IP 位址不符合日誌或修訂。",

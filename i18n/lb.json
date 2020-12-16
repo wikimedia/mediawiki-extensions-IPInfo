@@ -5,6 +5,6 @@
 		]
 	},
 	"ipinfo-infobox-title": "IP-Informatioun",
-	"ipinfo-widget-source": "Quell: $1",
+	"ipinfo-property-label-source": "Quell",
 	"prefs-ipinfo": "IP-Informatioun"
 }

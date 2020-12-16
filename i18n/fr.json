@@ -12,7 +12,7 @@
 	"action-ipinfo-any": "Récupérer des informations d’une adresse IP quelconque.",
 	"ipinfo-desc": "Fournit des informations sur une adresse IP.",
 	"ipinfo-infobox-title": "Information sur l’adresse IP",
-	"ipinfo-widget-source": "Source : $1",
+	"ipinfo-property-label-source": "Source",
 	"ipinfo-widget-error-default": "L’information IP n’a pas pu être récupérée.",
 	"ipinfo-widget-error-no-data": "Il n’y a pas de donnée pour cette adresse IP depuis $1.",
 	"ipinfo-widget-error-wrong-ip": "L’adresse IP fournie ne correspond pas au journal ou à la révision.",

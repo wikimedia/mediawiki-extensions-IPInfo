@@ -2,10 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Jesusmc",
+			"Kareyac",
 			"Vitalisman"
 		]
 	},
 	"ipinfo-infobox-title": "Информация об IP",
+	"ipinfo-property-label-source": "Источник",
 	"ipinfo-rest-access-denied": "У вас нет прав для выполнения этого действия.",
 	"ipinfo-rest-revision-registered": "Не было возможным получить информацию IP адреса для досмотра зарегистрированных пользователей."
 }

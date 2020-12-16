@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Filipinayzd"
+		]
+	},
+	"ipinfo-property-label-location": "Lokasyon",
+	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-source": "Ginalinan",
+	"ipinfo-property-no-data": "Uda"
+}

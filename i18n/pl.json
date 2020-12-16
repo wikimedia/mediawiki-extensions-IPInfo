@@ -1,11 +1,16 @@
 {
 	"@metadata": {
 		"authors": [
+			"Kareyac",
 			"Rail"
 		]
 	},
 	"ipinfo-extensionname": "Informacje o IP",
 	"ipinfo-desc": "Dostarcza informacje na temat adresów IP",
+	"ipinfo-property-label-location": "Lokalizacja",
+	"ipinfo-property-label-isp": "Dostawca internetu",
+	"ipinfo-property-label-source": "Źródło",
+	"ipinfo-property-no-data": "Niedostępne",
 	"ipinfo-rest-access-denied": "Nie masz uprawnień do wykonywania tej operacji",
 	"ipinfo-rest-log-nonexistent": "Wpis w rejestrze nie istnieje",
 	"ipinfo-rest-ip-invalid": "Podany adres IP jest nieprawidłowy",
