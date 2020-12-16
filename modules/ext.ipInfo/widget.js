@@ -126,6 +126,8 @@
 				return sourceData.location.map( function ( item ) {
 					return item.label;
 				} ).join( mw.msg( 'comma-separator' ) );
+			case 'isp':
+				return sourceData.isp;
 			case 'source':
 				// The following messages can be passed here:
 				// * ipinfo-source-geoip2
