@@ -19,8 +19,6 @@ class Isp implements JsonSerializable {
 	 * @inheritDoc
 	 */
 	public function jsonSerialize() {
-		return [
-			'isp' => $this->isp,
-		];
+		return $this->isp;
 	}
 }
