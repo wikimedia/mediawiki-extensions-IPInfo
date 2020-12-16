@@ -10,6 +10,7 @@ use MediaWiki\IPInfo\Info\Coordinates;
 use MediaWiki\IPInfo\Info\Info;
 use MediaWiki\IPInfo\Info\Isp;
 use MediaWiki\IPInfo\Info\Location;
+use MediaWiki\IPInfo\Info\ProxyType;
 
 /**
  * Manager for getting information from the MaxMind GeoIp2 databases.
@@ -73,7 +74,8 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 			$this->getCoordinates( $ip ),
 			$this->getAsn( $ip ),
 			$this->getLocations( $ip ),
-			$this->getIsp( $ip )
+			$this->getIsp( $ip ),
+			$this->getProxyType( $ip )
 		);
 	}
 
@@ -184,6 +186,38 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 
 		return new Isp(
 			$isp->isp
+		);
+	}
+
+	/**
+	 * @param string $ip
+	 * @return ProxyType|null null if reader does not exist or if traits cannot be accessed
+	 */
+	private function getProxyType( string $ip ): ?ProxyType {
+		$reader = $this->getReader( 'City.mmdb' );
+		if ( !$reader ) {
+			return null;
+		}
+
+		try {
+			$city = $reader->city( $ip );
+		} catch ( AddressNotFoundException $e ) {
+			return null;
+		}
+
+		$traits = $city->traits;
+		if ( !$traits ) {
+			return null;
+		}
+
+		// GeoIP only returns these traits if they exist and always returns true if they do
+		return new ProxyType(
+			$traits->isAnonymous ?? false,
+			$traits->isAnonymousVpn ?? false,
+			$traits->isPublicProxy ?? false,
+			$traits->isResidentialProxy ?? false,
+			$traits->isLegitimateProxy ?? false,
+			$traits->isTorExitNode ?? false
 		);
 	}
 }
