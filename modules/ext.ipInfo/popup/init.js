@@ -47,8 +47,7 @@
 				[
 					'location',
 					'isp',
-					'asn',
-					'source'
+					'asn'
 				]
 			).$element );
 		} );
