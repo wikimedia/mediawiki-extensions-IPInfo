@@ -21,7 +21,7 @@
 		"MediaWiki\\IPInfo\\Test\\Unit\\": "tests/phpunit/unit"
 	},
 	"ServiceWiringFiles": [
-		"./ServiceWiring.php"
+		"src/ServiceWiring.php"
 	],
 	"AvailableRights": [
 		"ipinfo",
