@@ -1,6 +1,10 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"David Barratt",
+			"STran",
+			"Thalia"
+		]
 	},
 	"action-ipinfo": "Retrieve information from an IP addresses attached to revisions or log entries",
 	"action-ipinfo-any": "Retrieve information from any IP address.",
