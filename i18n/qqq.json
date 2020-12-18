@@ -5,8 +5,6 @@
 			"Umherirrender"
 		]
 	},
-	"action-ipinfo": "{{doc-action|ipinfo}}",
-	"action-ipinfo-any": "{{doc-action|ipinfo-any}}",
 	"ipinfo-extensionname": "{{name}}\nThe name of the extension",
 	"ipinfo-desc": "{{desc|name=IPInfo|url=https://www.mediawiki.org/wiki/Extension:IPInfo}}",
 	"ipinfo-infobox-title": "Text of the header for a box that shows information from the widget",
@@ -28,6 +26,8 @@
 	"ipinfo-rest-ip-invalid": "Error message for REST API debugging, shown when an IP address is invalid",
 	"ipinfo-source-geoip2": "Disclaimer about the accuracy of the data, MaxMind is the provider name, GeoIP2 is the collection of their databases.",
 	"prefs-ipinfo": "Text of a section header in [[Special:Preferences]].",
+	"action-ipinfo": "{{doc-action|ipinfo}}",
+	"action-ipinfo-any": "{{doc-action|ipinfo-any}}",
 	"right-ipinfo": "{{doc-right|ipinfo}}",
 	"right-ipinfo-any": "{{doc-right|ipinfo-any}}"
 }
