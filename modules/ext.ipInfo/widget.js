@@ -62,6 +62,14 @@
 					// All properties are shown regardless if a value exists or not
 					$content.append( widget.generateMarkup( formattedData, property ) );
 				} );
+
+				// Add source disclaimer
+				if ( datum.source ) {
+					// The following messages can be passed here:
+					// * ipinfo-source-geoip2
+					// * ipinfo-source-<sourcename>
+					$content.append( $( '<div>' ).addClass( 'ext-ipinfo-widget-property-source' ).text( mw.msg( datum.source ) ) );
+				}
 				widget.$element.append( $content );
 			} );
 		} else {
@@ -128,11 +136,6 @@
 				} ).join( mw.msg( 'comma-separator' ) );
 			case 'isp':
 				return sourceData.isp;
-			case 'source':
-				// The following messages can be passed here:
-				// * ipinfo-source-geoip2
-				// * ipinfo-source-<sourcename>
-				return mw.msg( 'colon-separator' ) + mw.msg( sourceData.source );
 			default:
 				return null;
 		}

@@ -27,7 +27,7 @@
 	"ipinfo-rest-log-registered": "Cannot retrieve ipinfo for logs of registered users",
 	"ipinfo-rest-log-denied": "Your account does not have access to view the performer of the log entry or the log entry itself",
 	"ipinfo-rest-ip-invalid": "IP address provided is invalid",
-	"ipinfo-source-geoip2": "GeoIp2",
+	"ipinfo-source-geoip2": "The information shown here comes from the GeoIP2 databases from MaxMind. It might not be fully accurate.",
 	"prefs-ipinfo": "IP information",
 	"right-ipinfo": "Retrieve information from an IP addresses attached to revisions or log entries",
 	"right-ipinfo-any": "Retrieve information from any IP address"

@@ -46,8 +46,7 @@
 		[
 			'location',
 			'isp',
-			'asn',
-			'source'
+			'asn'
 		]
 	);
 	ipPanelWidget.toggle( false );
