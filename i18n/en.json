@@ -27,8 +27,8 @@
 	"ipinfo-rest-ip-invalid": "IP address provided is invalid",
 	"ipinfo-source-geoip2": "The information shown here comes from the GeoIP2 databases from MaxMind. It might not be fully accurate.",
 	"prefs-ipinfo": "IP information",
-	"action-ipinfo": "retrieve information from an IP addresses attached to revisions or log entries",
-	"action-ipinfo-any": "retrieve information from any IP address.",
-	"right-ipinfo": "Retrieve information from an IP addresses attached to revisions or log entries",
-	"right-ipinfo-any": "Retrieve information from any IP address"
+	"action-ipinfo": "retrieve information about IP addresses attached to revisions or log entries",
+	"action-ipinfo-any": "retrieve information about any IP address.",
+	"right-ipinfo": "Retrieve information about IP addresses attached to revisions or log entries",
+	"right-ipinfo-any": "Retrieve information about any IP address"
 }
