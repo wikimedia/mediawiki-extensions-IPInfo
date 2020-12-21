@@ -4,11 +4,13 @@
 			"Bjankuloski06"
 		]
 	},
-	"action-ipinfo": "Добивање на информации за IP-адреси од преработки или дневнички ставки",
-	"action-ipinfo-any": "Добивање на информации од било која IP-адреса.",
 	"ipinfo-desc": "Дава информации за IP-адреса",
 	"ipinfo-infobox-title": "Информации за IP",
+	"ipinfo-property-label-location": "Местоположба",
+	"ipinfo-property-label-isp": "Услужник",
+	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-source": "Извор",
+	"ipinfo-property-no-data": "Недостапно",
 	"ipinfo-widget-error-default": "Не можев да ги добијам информациите за IP-адресата.",
 	"ipinfo-widget-error-no-data": "Нема податоци за оваа IP-адреса од $1.",
 	"ipinfo-widget-error-wrong-ip": "Укажаната IP-адреса не одговара на дневникот или преработката.",
@@ -22,6 +24,8 @@
 	"ipinfo-rest-ip-invalid": "Укажаната IP-адреса е неважечка",
 	"ipinfo-source-geoip2": "GeoIp2",
 	"prefs-ipinfo": "Информации за IP",
+	"action-ipinfo": "Добивање на информации за IP-адреси од преработки или дневнички ставки",
+	"action-ipinfo-any": "Добивање на информации од било која IP-адреса.",
 	"right-ipinfo": "Добивање на информации за IP-адреси од преработки или дневнички ставки",
 	"right-ipinfo-any": "Добивање на информации од било која IP-адреса"
 }

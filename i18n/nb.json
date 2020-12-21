@@ -4,8 +4,6 @@
 			"Jon Harald Søby"
 		]
 	},
-	"action-ipinfo": "hente informasjon fra IP-adresser tilknyttet revisjoner eller loggoppføringer",
-	"action-ipinfo-any": "Hente informasjon fra IP-adresser",
 	"ipinfo-desc": "Gir informasjon om en IP-adresse.",
 	"ipinfo-property-label-source": "Kilde",
 	"ipinfo-widget-error-default": "IP-informasjonen kunne ikke hentes.",
@@ -19,6 +17,8 @@
 	"ipinfo-rest-log-denied": "Kontoen din har ikke tilgang til å vise utøveren av loggoppføringen eller selve loggoppføringen",
 	"ipinfo-rest-ip-invalid": "Den gitte IP-adressen er ugyldig",
 	"ipinfo-source-geoip2": "GeoIp2",
+	"action-ipinfo": "hente informasjon fra IP-adresser tilknyttet revisjoner eller loggoppføringer",
+	"action-ipinfo-any": "Hente informasjon fra IP-adresser",
 	"right-ipinfo": "hente informasjon fra en IP-adresse tilknyttet revisjoner eller loggoppføringer",
 	"right-ipinfo-any": "Hente informasjon fra IP-adresser"
 }

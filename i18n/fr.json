@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Cantons-de-l'Est",
 			"Fitoschido",
 			"Florian COLLIN",
 			"Gomoko",
@@ -8,8 +9,6 @@
 			"Wladek92"
 		]
 	},
-	"action-ipinfo": "Récupérer les informations à partir des adresses IP attachées aux révisions ou aux entrées de journal",
-	"action-ipinfo-any": "Récupérer des informations d’une adresse IP quelconque.",
 	"ipinfo-desc": "Fournit des informations sur une adresse IP.",
 	"ipinfo-infobox-title": "Information sur l’adresse IP",
 	"ipinfo-property-label-location": "Lieu",
@@ -28,8 +27,10 @@
 	"ipinfo-rest-log-registered": "Impossible de récupérer ipinfo pour les journaux des utilisateurs enregistrés",
 	"ipinfo-rest-log-denied": "Votre compte n'a pas accès pour afficher l'intervenant de l'entrée de journal ou l'entrée de journal elle-même",
 	"ipinfo-rest-ip-invalid": "L’adresse IP fournie n’est pas valide",
-	"ipinfo-source-geoip2": "GeoIp2",
+	"ipinfo-source-geoip2": "L'information affichée ici provient des bases de données GeoIp2 de MaxMind. Elle peut ne pas être exacte.",
 	"prefs-ipinfo": "Information sur l’IP",
-	"right-ipinfo": "Récupérer des informations à partir d'adresses IP attachées aux révisions ou aux entrées de journal",
-	"right-ipinfo-any": "Récupérer l’information d’une adresse IP quelconque"
+	"action-ipinfo": "Récupérer les informations sur les adresses IP attachées aux révisions ou aux entrées de journal",
+	"action-ipinfo-any": "Récupérer des informations sur n'importe quelle adresse IP.",
+	"right-ipinfo": "Récupérer les informations sur les adresses IP attachées aux révisions ou aux entrées de journal",
+	"right-ipinfo-any": "Récupérer des informations sur n'importe quelle adresse IP."
 }

@@ -6,10 +6,11 @@
 			"Rodney Araujo"
 		]
 	},
-	"action-ipinfo-any": "Recupere información de cualquier dirección IP.",
 	"ipinfo-infobox-title": "Información de la IP",
+	"ipinfo-property-label-location": "Ubicación",
 	"ipinfo-property-label-source": "Fuente",
 	"ipinfo-rest-access-denied": "No tienes permiso para efectuar la acción",
 	"ipinfo-rest-log-nonexistent": "No existe la entrada del registro",
-	"prefs-ipinfo": "Información sobre la IP"
+	"prefs-ipinfo": "Información sobre la IP",
+	"action-ipinfo-any": "Recupere información de cualquier dirección IP."
 }

@@ -1,9 +1,32 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"ישראל קלר"
 		]
 	},
+	"ipinfo-desc": "מספקת מידע על כתובות IP.",
+	"ipinfo-infobox-title": "מידע על IP",
+	"ipinfo-property-label-location": "מיקום",
+	"ipinfo-property-label-isp": "ספק אינטרנט",
+	"ipinfo-property-label-asn": "מספר מערכות אוטונומית (ASN)",
 	"ipinfo-property-label-source": "מקור",
-	"prefs-ipinfo": "מידע על כתובת IP"
+	"ipinfo-property-no-data": "לא זמין",
+	"ipinfo-widget-error-default": "לא היה אפשר לאחזר מידע על IP.",
+	"ipinfo-widget-error-no-data": "אין נתונים לכתובת ה־IP הזאת מ{{GRAMMAR:תחילית|$1}}.",
+	"ipinfo-widget-error-wrong-ip": "כתובת ה־IP שסופקה אינה תואמת ליומן או לגרסה.",
+	"ipinfo-preference-enable": "לצפות במידע על כתובת IP. ייעשה רישום אם {{GENDER:|תדליק או תכבה|תדליקי או תכבי}} את האפשרות הזאת.",
+	"ipinfo-rest-access-denied": "אין לך הרשאה לבצע את הפעולה הזאת",
+	"ipinfo-rest-revision-no-author": "לחשבון שלך אין גישה להציג את מחבר הגרסה",
+	"ipinfo-rest-revision-registered": "לא ניתן לאחזר ipinfo לגרסאות של משתמשים רשומים",
+	"ipinfo-rest-log-nonexistent": "רשומת היומן אינה קיימת",
+	"ipinfo-rest-log-registered": "לא ניתן לאחר ipinfo על יומנים של משתמשים רשומים",
+	"ipinfo-rest-log-denied": "לחשבון שלך אין גישה להצגה של המבצע של רשומת היומן או של רשומת היומן עצמה",
+	"ipinfo-rest-ip-invalid": "כתובת ה־IP שסופקה אינה תקינה",
+	"ipinfo-source-geoip2": "המידע שמוצג כאן מגיע ממסדי הנתוני GeoIP2 של MaxMind. ייתכן שהוא לא מדויק לגמרי.",
+	"prefs-ipinfo": "מידע על כתובת IP",
+	"action-ipinfo": "לאחזר מידע על כתובות IP שמשויכות לגרסאות או לרשומות יומן",
+	"action-ipinfo-any": "לאחזר מידע על כל כתובת IP.",
+	"right-ipinfo": "אחזור מידע על כתובות IP שמשויכות לגרסאות או לרשומות יומן",
+	"right-ipinfo-any": "אחזור מידע על כל כתובת IP"
 }

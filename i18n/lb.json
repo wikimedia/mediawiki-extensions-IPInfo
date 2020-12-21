@@ -5,6 +5,8 @@
 		]
 	},
 	"ipinfo-infobox-title": "IP-Informatioun",
+	"ipinfo-property-label-location": "Plaz",
 	"ipinfo-property-label-source": "Quell",
+	"ipinfo-property-no-data": "Net disponibel",
 	"prefs-ipinfo": "IP-Informatioun"
 }
