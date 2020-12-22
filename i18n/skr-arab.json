@@ -4,5 +4,9 @@
 			"Saraiki"
 		]
 	},
+	"ipinfo-property-label-location": "محل وقوع",
+	"ipinfo-property-label-asn": "اے ایس این",
+	"ipinfo-property-label-source": "ماخذ",
+	"ipinfo-property-no-data": "دستیاب کائنی",
 	"prefs-ipinfo": "آئی پی معلومات"
 }

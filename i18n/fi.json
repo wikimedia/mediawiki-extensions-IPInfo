@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Maantietäjä"
+		]
+	},
+	"ipinfo-property-label-location": "Sijainti",
+	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-source": "Lähde",
+	"ipinfo-property-no-data": "Ei saatavilla"
+}
