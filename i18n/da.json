@@ -4,5 +4,6 @@
 			"Saederup92"
 		]
 	},
-	"ipinfo-property-label-source": "Kilde"
+	"ipinfo-property-label-source": "Kilde",
+	"ipinfo-property-no-data": "Ikke tilgængelig"
 }
