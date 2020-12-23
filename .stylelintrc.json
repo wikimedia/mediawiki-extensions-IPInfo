@@ -1,6 +1,6 @@
 {
 	"extends": "stylelint-config-wikimedia",
 	"rules": {
-		"selector-class-pattern": "^(mw|oo-ui|ext-ipinfo)-"
+		"selector-class-pattern": "^(mw|oo-ui|client|ext-ipinfo)-"
 	}
 }

@@ -45,5 +45,6 @@ class PopupHandler implements BeforePageDisplayHook {
 		}
 
 		$out->addModules( 'ext.ipInfo' );
+		$out->addModuleStyles( 'ext.ipInfo.styles' );
 	}
 }

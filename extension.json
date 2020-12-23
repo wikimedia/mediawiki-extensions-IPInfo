@@ -121,6 +121,11 @@
 				"ipinfo-widget-error-no-data",
 				"ipinfo-widget-error-wrong-ip"
 			]
+		},
+		"ext.ipInfo.styles": {
+			"localBasePath": "modules/ext.ipInfo.styles",
+			"remoteExtPath": "IPInfo/modules/ext.ipInfo.styles",
+			"styles": "init.less"
 		}
 	},
 	"config": {
