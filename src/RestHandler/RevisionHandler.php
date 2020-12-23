@@ -100,6 +100,14 @@ class RevisionHandler extends SimpleHandler {
 				new MessageValue( 'ipinfo-rest-access-denied' ), $this->user->isRegistered() ? 403 : 401 );
 		}
 
+		$user = $this->userFactory->newFromUserIdentity( $this->user );
+
+		// Users with blocks on their accounts shouldn't be allowed to view ip info
+		if ( $user->getBlock() ) {
+			throw new LocalizedHttpException(
+				new MessageValue( 'ipinfo-rest-access-denied-blocked-user' ), 403 );
+		}
+
 		$revision = $this->revisionLookup->getRevisionById( $id );
 
 		if ( !$revision ) {
@@ -107,7 +115,6 @@ class RevisionHandler extends SimpleHandler {
 				new MessageValue( 'rest-nonexistent-revision', [ $id ] ), 404 );
 		}
 
-		$user = $this->userFactory->newFromUserIdentity( $this->user );
 		if ( !$this->permissionManager->userCan( 'read', $user, $revision->getPageAsLinkTarget() ) ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'rest-revision-permission-denied-revision', [ $id ] ), 403 );

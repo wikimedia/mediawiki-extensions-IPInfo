@@ -104,6 +104,14 @@ class LogHandler extends SimpleHandler {
 				new MessageValue( 'ipinfo-rest-access-denied' ), $this->user->isRegistered() ? 403 : 401 );
 		}
 
+		$user = $this->userFactory->newFromUserIdentity( $this->user );
+
+		// Users with blocks on their accounts shouldn't be allowed to view ip info
+		if ( $user->getBlock() ) {
+			throw new LocalizedHttpException(
+				new MessageValue( 'ipinfo-rest-access-denied-blocked-user' ), 403 );
+		}
+
 		$db = $this->loadBalancer->getConnection( DB_REPLICA );
 		$entry = DatabaseLogEntry::newFromId( $id, $db );
 
@@ -111,8 +119,6 @@ class LogHandler extends SimpleHandler {
 			throw new LocalizedHttpException(
 				new MessageValue( 'ipinfo-rest-log-nonexistent' ), 404 );
 		}
-
-		$user = $this->userFactory->newFromUserIdentity( $this->user );
 
 		if ( !LogEventsList::userCanViewLogType( $entry->getType(), $user ) ) {
 			throw new LocalizedHttpException(
