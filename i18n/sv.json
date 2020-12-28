@@ -6,6 +6,9 @@
 		]
 	},
 	"ipinfo-infobox-title": "IP-information",
+	"ipinfo-property-label-location": "Plats",
+	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-source": "Källa",
 	"ipinfo-preference-enable": "Se information om en IP-adress",
 	"ipinfo-rest-ip-invalid": "Angivna IP-adressen är ogiltig",

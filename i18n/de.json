@@ -14,6 +14,7 @@
 	"ipinfo-widget-error-wrong-ip": "Die angegebene IP-Adresse stimmte nicht mit dem Logbuch oder der Version überein.",
 	"ipinfo-preference-enable": "Informationen über eine IP-Adresse anzeigen. Eine Aufzeichnung wird erstellt, wenn du diese Option de-/aktivierst.",
 	"ipinfo-rest-access-denied": "Du hast keine Berechtigung, diese Aktion durchzuführen",
+	"ipinfo-rest-access-denied-blocked-user": "Du hast keine Berechtigung, die Aktion auszuführen, da dein Konto gesperrt ist",
 	"ipinfo-rest-revision-no-author": "Dein Benutzerkonto hat keinen Zugriff zum Anzeigen des Autors der Version",
 	"ipinfo-rest-revision-registered": "Kann ipinfo für Versionen registrierter Benutzer nicht abrufen",
 	"ipinfo-rest-log-nonexistent": "Logbucheintrag existiert nicht",

@@ -6,11 +6,21 @@
 			"Rodney Araujo"
 		]
 	},
+	"ipinfo-extensionname": "Información de la IP",
+	"ipinfo-desc": "Proporciona información sobre una dirección IP.",
 	"ipinfo-infobox-title": "Información de la IP",
 	"ipinfo-property-label-location": "Ubicación",
+	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-source": "Fuente",
+	"ipinfo-property-no-data": "No disponible",
+	"ipinfo-widget-error-default": "No se pudo recuperar la información de la IP.",
+	"ipinfo-widget-error-no-data": "No hay datos para esta dirección IP desde $1.",
 	"ipinfo-rest-access-denied": "No tienes permiso para efectuar la acción",
+	"ipinfo-rest-access-denied-blocked-user": "No tienes permiso para efectuar la acción porque tu cuenta está bloqueada",
+	"ipinfo-rest-revision-no-author": "Tu cuenta no tiene acceso para ver el autor de la revisión",
 	"ipinfo-rest-log-nonexistent": "No existe la entrada del registro",
+	"ipinfo-rest-ip-invalid": "La dirección IP proporcionada es inválida",
 	"prefs-ipinfo": "Información sobre la IP",
-	"action-ipinfo-any": "Recupere información de cualquier dirección IP."
+	"action-ipinfo-any": "recupere información sobre cualquier dirección IP."
 }

@@ -8,5 +8,6 @@
 	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-source": "Lähde",
-	"ipinfo-property-no-data": "Ei saatavilla"
+	"ipinfo-property-no-data": "Ei saatavilla",
+	"ipinfo-rest-access-denied-blocked-user": "Sinulla ei ole lupaa suorittaa toimintoa, koska tilisi on estetty."
 }

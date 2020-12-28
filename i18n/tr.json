@@ -16,6 +16,7 @@
 	"ipinfo-widget-error-wrong-ip": "Sağlanan IP adresi, günlük veya revizyon ile eşleşmedi.",
 	"ipinfo-preference-enable": "Bir IP adresi hakkındaki bilgilere bakın. Bu seçeneği etkinleştirdiğinizde/devre dışı bıraktığınızda bir kayıt yapılacaktır.",
 	"ipinfo-rest-access-denied": "Bu eylemi gerçekleştirmeye yetkiniz yok",
+	"ipinfo-rest-access-denied-blocked-user": "Hesabınız engellendiği için işlemi gerçekleştirme izniniz yok",
 	"ipinfo-rest-revision-no-author": "Hesabınızın revizyonun yazarını görüntüleme erişimi yok",
 	"ipinfo-rest-revision-registered": "Kayıtlı kullanıcıların revizyonları için ipinfo alınamıyor",
 	"ipinfo-rest-log-nonexistent": "Günlük girişi mevcut değil",

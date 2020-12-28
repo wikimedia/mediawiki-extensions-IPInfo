@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Kambai Akau"
 		]
 	},
-	"ipinfo-property-label-location": "A̠vwuo",
+	"ipinfo-property-label-location": "A̱vwuo",
 	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
-	"ipinfo-property-label-source": "A̠vwuoneet",
-	"ipinfo-property-no-data": "Nwai shyia̠"
+	"ipinfo-property-label-source": "A̱vwuoneet",
+	"ipinfo-property-no-data": "Nwai shyia̱"
 }

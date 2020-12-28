@@ -16,6 +16,7 @@
 	"ipinfo-widget-error-wrong-ip": "O endereço IP fornecido não corresponde ao registro ou revisão.",
 	"ipinfo-preference-enable": "Veja as informações sobre um endereço IP. Um registro será feito quando você habilitar/desabilitar esta opção.",
 	"ipinfo-rest-access-denied": "Você não tem permissão para realizar a ação",
+	"ipinfo-rest-access-denied-blocked-user": "Você não tem permissão para realizar a ação porque sua conta está bloqueada",
 	"ipinfo-rest-revision-no-author": "Sua conta não tem acesso para ver o autor da revisão",
 	"ipinfo-rest-revision-registered": "Não é possível recuperar ipinfo para revisões de usuários registrados",
 	"ipinfo-rest-log-nonexistent": "A entrada de registro não existe",
