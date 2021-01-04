@@ -129,7 +129,7 @@
 	mw.IpInfo.IpInfoWidget.prototype.transformData = function ( sourceData, property ) {
 		switch ( property ) {
 			case 'asn':
-				return sourceData.asn ? sourceData.asn.label : null;
+				return sourceData.asn ? sourceData.asn.id : null;
 			case 'location':
 				return sourceData.location.map( function ( item ) {
 					return item.label;
