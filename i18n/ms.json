@@ -5,5 +5,8 @@
 		]
 	},
 	"ipinfo-property-label-location": "Lokasi",
-	"ipinfo-property-label-source": "Sumber"
+	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-source": "Sumber",
+	"ipinfo-rest-access-denied-blocked-user": "Anda tiada kebenaran untuk menjalankan tindakan kerana akaun anda disekat"
 }
