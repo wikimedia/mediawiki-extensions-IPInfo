@@ -3,12 +3,14 @@
 		"authors": [
 			")8",
 			"Shuiwater",
-			"SkEy"
+			"SkEy",
+			"Wuqianye"
 		]
 	},
 	"ipinfo-property-label-source": "来源",
 	"ipinfo-widget-error-default": "这个IP的信息没法找回。",
 	"ipinfo-rest-access-denied": "您没有权限来执行此操作",
+	"ipinfo-rest-access-denied-blocked-user": "您没有执行此行为的许可因为您的的账户被拦截",
 	"ipinfo-rest-revision-registered": "无法获取已登录用户修订的IP地址",
 	"ipinfo-rest-log-nonexistent": "日志项不存在",
 	"ipinfo-rest-log-registered": "无法获取已登录用户日志的IP地址",
