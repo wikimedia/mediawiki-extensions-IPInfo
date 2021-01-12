@@ -1,6 +1,9 @@
 ( function () {
 	$( '.mw-anonuserlink' ).after( function () {
 		var id, type, ip, $revIdAncestor, $logIdAncestor, button;
+
+		$( this ).addClass( 'ext-ipinfo-anonuserlink-loaded' );
+
 		ip = $( this ).text();
 		if ( !mw.util.isIPAddress( ip ) ) {
 			return '';
