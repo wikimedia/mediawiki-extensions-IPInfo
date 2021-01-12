@@ -5,10 +5,16 @@
 		]
 	},
 	"ipinfo-desc": "Gir informasjon om en IP-adresse.",
+	"ipinfo-infobox-title": "IP-informasjon",
+	"ipinfo-property-label-location": "Beliggenhet",
+	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-source": "Kilde",
+	"ipinfo-property-no-data": "Ikke tilgjengelig",
 	"ipinfo-widget-error-default": "IP-informasjonen kunne ikke hentes.",
 	"ipinfo-widget-error-no-data": "Det er ingen data for denne IP-adressa fra $1.",
 	"ipinfo-widget-error-wrong-ip": "Den angitte IP-adressen matchet ikke loggen eller revisjonen.",
+	"ipinfo-preference-enable": "Se informasjon om en IP-adresse. En oppføring blir opprettet når du slår av/på dette valget.",
 	"ipinfo-rest-access-denied": "Du har ikke tillatelse til å utføre handlingen",
 	"ipinfo-rest-revision-no-author": "Kontoen din har ikke tilgang til å vise forfatteren av revisjonen",
 	"ipinfo-rest-revision-registered": "Kan ikke hente ipinfo for revisjoner av registrerte brukere",
@@ -16,9 +22,10 @@
 	"ipinfo-rest-log-registered": "Kan ikke hente ipinfo for logger av registrerte brukere",
 	"ipinfo-rest-log-denied": "Kontoen din har ikke tilgang til å vise utøveren av loggoppføringen eller selve loggoppføringen",
 	"ipinfo-rest-ip-invalid": "Den gitte IP-adressen er ugyldig",
-	"ipinfo-source-geoip2": "GeoIp2",
-	"action-ipinfo": "hente informasjon fra IP-adresser tilknyttet revisjoner eller loggoppføringer",
-	"action-ipinfo-any": "Hente informasjon fra IP-adresser",
-	"right-ipinfo": "hente informasjon fra en IP-adresse tilknyttet revisjoner eller loggoppføringer",
-	"right-ipinfo-any": "Hente informasjon fra IP-adresser"
+	"ipinfo-source-geoip2": "Informasjonen som vises her kommer fra GeoIP2-databasene fra MaxMind. Det kan være unøyaktigheter.",
+	"prefs-ipinfo": "IP-informasjon",
+	"action-ipinfo": "hente informasjon om IP-adresser tilknyttet revisjoner eller loggoppføringer",
+	"action-ipinfo-any": "Hente informasjon om IP-adresser",
+	"right-ipinfo": "hente informasjon om en IP-adresse tilknyttet revisjoner eller loggoppføringer",
+	"right-ipinfo-any": "Hente informasjon om IP-adresser"
 }
