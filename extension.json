@@ -24,8 +24,7 @@
 		"./ServiceWiring.php"
 	],
 	"AvailableRights": [
-		"ipinfo",
-		"ipinfo-any"
+		"ipinfo"
 	],
 	"DefaultUserOptions": {
 		"ipinfo-enable": 0
@@ -54,16 +53,6 @@
 				"UserFactory"
 			],
 			"factory": "MediaWiki\\IPInfo\\RestHandler\\LogHandler::factory"
-		},
-		{
-			"path": "/ipinfo/v0/ip",
-			"method": "POST",
-			"services": [
-				"IPInfoInfoManager",
-				"PermissionManager",
-				"UserOptionsLookup"
-			],
-			"factory": "MediaWiki\\IPInfo\\RestHandler\\IPHandler::factory"
 		}
 	],
 	"Hooks": {
