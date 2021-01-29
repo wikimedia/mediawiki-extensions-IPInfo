@@ -1,9 +1,0 @@
-{
-	"@metadata": {
-		"authors": [
-			"Alefar"
-		]
-	},
-	"action-ipinfo-any": "retrieve information about any IP address.",
-	"right-ipinfo-any": "Retrieve information about any IP address"
-}
