@@ -22,11 +22,8 @@
 	"ipinfo-rest-log-nonexistent": "日誌項目不存在",
 	"ipinfo-rest-log-registered": "無法檢索已註冊使用者日誌的 IP 資訊",
 	"ipinfo-rest-log-denied": "您的帳號沒有來查看日誌項目操作者或是日誌項目本身的權限",
-	"ipinfo-rest-ip-invalid": "提供的 IP 位址無效",
 	"ipinfo-source-geoip2": "顯示於此的資訊來自於 MaxMind 的 GeoIP2 資料庫。內容可能不完全準確。",
 	"prefs-ipinfo": "IP 資訊",
 	"action-ipinfo": "檢索有關附加在修訂或日誌項目的 IP 位址資訊",
-	"action-ipinfo-any": "檢索有關任何 IP 位址的資訊。",
-	"right-ipinfo": "檢索有關附加在修訂或日誌項目的 IP 位址資訊",
-	"right-ipinfo-any": "檢索有關任何 IP 位址的資訊"
+	"right-ipinfo": "檢索有關附加在修訂或日誌項目的 IP 位址資訊"
 }

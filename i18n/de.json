@@ -20,11 +20,8 @@
 	"ipinfo-rest-log-nonexistent": "Logbucheintrag existiert nicht",
 	"ipinfo-rest-log-registered": "Kann ipinfo für Logbücher registrierter Benutzer nicht abrufen",
 	"ipinfo-rest-log-denied": "Dein Benutzerkonto hat keinen Zugriff auf den ausführenden Benutzer des Logbucheintrags oder den Protokolleintrag selbst.",
-	"ipinfo-rest-ip-invalid": "Die angegebene IP-Adresse ist ungültig",
 	"ipinfo-source-geoip2": "Die hier gezeigten Informationen stammen aus den GeoIP2-Datenbanken von MaxMind. Sie sind möglicherweise nicht ganz genau.",
 	"prefs-ipinfo": "IP-Information",
 	"action-ipinfo": "Abrufen von Informationen über IP-Adressen, die mit Versionen oder Logbüchern verbunden sind",
-	"action-ipinfo-any": "Abrufen von Informationen über einer beliebigen IP-Adresse.",
-	"right-ipinfo": "Abrufen von Informationen über IP-Adressen, die mit Versionen oder Logbüchern verbunden sind",
-	"right-ipinfo-any": "Abrufen von Informationen über einer beliebigen IP-Adresse"
+	"right-ipinfo": "Abrufen von Informationen über IP-Adressen, die mit Versionen oder Logbüchern verbunden sind"
 }

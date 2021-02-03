@@ -22,11 +22,8 @@
 	"ipinfo-rest-log-nonexistent": "Günlük girişi mevcut değil",
 	"ipinfo-rest-log-registered": "Kayıtlı kullanıcıların günlükleri için ipinfo alınamıyor",
 	"ipinfo-rest-log-denied": "Hesabınız, günlük girişinin gerçekleştiricisini veya günlük girişinin kendisini görüntüleme erişimine sahip değil",
-	"ipinfo-rest-ip-invalid": "Sağlanan IP Adresi geçersiz",
 	"ipinfo-source-geoip2": "Burada gösterilen bilgiler MaxMind'in GeoIP2 veritabanlarından gelmektedir. Tam olarak doğru olmayabilir.",
 	"prefs-ipinfo": "IP bilgisi",
 	"action-ipinfo": "revizyonlara veya günlük girişlerine eklenen IP adresleri hakkında bilgi alma",
-	"action-ipinfo-any": "herhangi bir IP adresi hakkında bilgi alma",
-	"right-ipinfo": "Revizyonlara veya günlük girişlerine eklenen IP adresleri hakkında bilgi alın",
-	"right-ipinfo-any": "Herhangi bir IP adresi hakkında bilgi alın"
+	"right-ipinfo": "Revizyonlara veya günlük girişlerine eklenen IP adresleri hakkında bilgi alın"
 }

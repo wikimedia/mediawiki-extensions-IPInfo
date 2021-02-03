@@ -23,11 +23,8 @@
 	"ipinfo-rest-log-nonexistent": "רשומת היומן אינה קיימת",
 	"ipinfo-rest-log-registered": "לא ניתן לאחר ipinfo על יומנים של משתמשים רשומים",
 	"ipinfo-rest-log-denied": "לחשבון שלך אין גישה להצגה של המבצע של רשומת היומן או של רשומת היומן עצמה",
-	"ipinfo-rest-ip-invalid": "כתובת ה־IP שסופקה אינה תקינה",
 	"ipinfo-source-geoip2": "המידע שמוצג כאן מגיע ממסדי הנתוני GeoIP2 של MaxMind. ייתכן שהוא לא מדויק לגמרי.",
 	"prefs-ipinfo": "מידע על כתובת IP",
 	"action-ipinfo": "לאחזר מידע על כתובות IP שמשויכות לגרסאות או לרשומות יומן",
-	"action-ipinfo-any": "לאחזר מידע על כל כתובת IP.",
-	"right-ipinfo": "אחזור מידע על כתובות IP שמשויכות לגרסאות או לרשומות יומן",
-	"right-ipinfo-any": "אחזור מידע על כל כתובת IP"
+	"right-ipinfo": "אחזור מידע על כתובות IP שמשויכות לגרסאות או לרשומות יומן"
 }

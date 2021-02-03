@@ -28,11 +28,8 @@
 	"ipinfo-rest-log-nonexistent": "L'entrée de journal n'existe pas",
 	"ipinfo-rest-log-registered": "Impossible de récupérer ipinfo pour les journaux des utilisateurs enregistrés",
 	"ipinfo-rest-log-denied": "Votre compte n'a pas accès pour afficher l'intervenant de l'entrée de journal ou l'entrée de journal elle-même",
-	"ipinfo-rest-ip-invalid": "L’adresse IP fournie n’est pas valide",
 	"ipinfo-source-geoip2": "L’information affichée ici provient des bases de données GeoIp2 de MaxMind. Elle peut ne pas être complètement  exacte.",
 	"prefs-ipinfo": "Information sur l’IP",
 	"action-ipinfo": "récupère des informations relatives aux adresses IP attachées aux révisions ou aux entrées de journal",
-	"action-ipinfo-any": "Récupérer des informations relatives à importe quelle adresse IP.",
-	"right-ipinfo": "Récupérer des informations relatives aux adresses IP attachées aux révisions ou aux entrées de journal",
-	"right-ipinfo-any": "Récupérer des informations relatives à n’importe quelle adresse IP."
+	"right-ipinfo": "Récupérer des informations relatives aux adresses IP attachées aux révisions ou aux entrées de journal"
 }

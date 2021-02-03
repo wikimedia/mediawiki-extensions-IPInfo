@@ -20,7 +20,5 @@
 	"ipinfo-rest-access-denied-blocked-user": "No tienes permiso para efectuar la acción porque tu cuenta está bloqueada",
 	"ipinfo-rest-revision-no-author": "Tu cuenta no tiene acceso para ver el autor de la revisión",
 	"ipinfo-rest-log-nonexistent": "No existe la entrada del registro",
-	"ipinfo-rest-ip-invalid": "La dirección IP proporcionada es inválida",
-	"prefs-ipinfo": "Información sobre la IP",
-	"action-ipinfo-any": "recupere información sobre cualquier dirección IP."
+	"prefs-ipinfo": "Información sobre la IP"
 }

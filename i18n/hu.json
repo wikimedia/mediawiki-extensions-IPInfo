@@ -9,8 +9,5 @@
 	"ipinfo-property-label-source": "Forrás",
 	"ipinfo-widget-error-default": "Nem sikerült lehívni az IP információt.",
 	"ipinfo-rest-log-nonexistent": "A naplóbejegyzés nem létezik",
-	"ipinfo-rest-log-registered": "A regisztrált felhasználók ipinfojának lekérése sikertelen",
-	"ipinfo-rest-ip-invalid": "A megadott IP-cím érvénytelen",
-	"action-ipinfo-any": "információ lekérése bármely IP-címről",
-	"right-ipinfo-any": "információ lekérése bármely IP-címről"
+	"ipinfo-rest-log-registered": "A regisztrált felhasználók ipinfojának lekérése sikertelen"
 }

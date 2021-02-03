@@ -12,7 +12,5 @@
 	"ipinfo-property-label-source": "Źródło",
 	"ipinfo-property-no-data": "Niedostępne",
 	"ipinfo-rest-access-denied": "Nie masz uprawnień do wykonywania tej operacji",
-	"ipinfo-rest-log-nonexistent": "Wpis w rejestrze nie istnieje",
-	"ipinfo-rest-ip-invalid": "Podany adres IP jest nieprawidłowy",
-	"right-ipinfo-any": "Pozyskiwanie informacji z dowolnych adresów IP"
+	"ipinfo-rest-log-nonexistent": "Wpis w rejestrze nie istnieje"
 }
