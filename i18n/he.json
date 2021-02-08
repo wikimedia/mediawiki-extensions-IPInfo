@@ -9,7 +9,7 @@
 	"ipinfo-infobox-title": "מידע על IP",
 	"ipinfo-property-label-location": "מיקום",
 	"ipinfo-property-label-isp": "ספק אינטרנט",
-	"ipinfo-property-label-asn": "מספר מערכות אוטונומית (ASN)",
+	"ipinfo-property-label-asn": "מספר מערכת אוטונומית (ASN)",
 	"ipinfo-property-label-source": "מקור",
 	"ipinfo-property-no-data": "לא זמין",
 	"ipinfo-widget-error-default": "לא היה אפשר לאחזר מידע על IP.",
