@@ -16,6 +16,7 @@ class InfoTest extends MediaWikiUnitTestCase {
 			'source' => 'ipinfo-source-testsource',
 			'coordinates' => null,
 			'asn' => null,
+			'organization' => null,
 			'location' => [],
 			'isp' => null,
 			'connectionType' => null,

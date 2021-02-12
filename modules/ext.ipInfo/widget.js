@@ -129,7 +129,9 @@
 	mw.IpInfo.IpInfoWidget.prototype.transformData = function ( sourceData, property ) {
 		switch ( property ) {
 			case 'asn':
-				return sourceData.asn ? sourceData.asn.id : null;
+				return sourceData.asn;
+			case 'organization':
+				return sourceData.organization;
 			case 'location':
 				return sourceData.location.map( function ( item ) {
 					return item.label;
@@ -155,6 +157,7 @@
 		// * ipinfo-property-label-isp
 		// * ipinfo-property-label-asn
 		// * ipinfo-property-label-source
+		// * ipinfo-property-label-organization
 		$propertyContent.append(
 			$( '<dt>' ).addClass( 'ext-ipinfo-widget-property-label' ).text( mw.msg( 'ipinfo-property-label-' + property ) )
 		);

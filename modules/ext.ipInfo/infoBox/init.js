@@ -46,7 +46,8 @@
 		[
 			'location',
 			'isp',
-			'asn'
+			'asn',
+			'organization'
 		]
 	);
 	ipPanelWidget.toggle( false );

@@ -11,6 +11,7 @@ use MediaWiki\IPInfo\Info\Coordinates;
 use MediaWiki\IPInfo\Info\Info;
 use MediaWiki\IPInfo\Info\Isp;
 use MediaWiki\IPInfo\Info\Location;
+use MediaWiki\IPInfo\Info\Organization;
 use MediaWiki\IPInfo\Info\ProxyType;
 
 /**
@@ -74,6 +75,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 			'ipinfo-source-geoip2',
 			$this->getCoordinates( $ip ),
 			$this->getAsn( $ip ),
+			$this->getOrganization( $ip ),
 			$this->getLocations( $ip ),
 			$this->getIsp( $ip ),
 			$this->getConnectionType( $ip ),
@@ -125,7 +127,27 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 		}
 
 		return new Asn(
-			$asn->autonomousSystemNumber,
+			$asn->autonomousSystemNumber
+		);
+	}
+
+	/**
+	 * @param string $ip
+	 * @return Organization|null null if this IP address is not in the database
+	 */
+	private function getOrganization( string $ip ) : ?Organization {
+		$reader = $this->getReader( 'ASN.mmdb' );
+		if ( !$reader ) {
+			return null;
+		}
+
+		try {
+			$asn = $reader->asn( $ip );
+		} catch ( AddressNotFoundException $e ) {
+			return null;
+		}
+
+		return new Organization(
 			$asn->autonomousSystemOrganization
 		);
 	}

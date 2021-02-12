@@ -14,6 +14,9 @@ class Info implements JsonSerializable {
 	/** @var Asn|null */
 	private $asn;
 
+	/** @var Organization|null */
+	private $organization;
+
 	/** @var Location[] */
 	private $location;
 
@@ -30,6 +33,7 @@ class Info implements JsonSerializable {
 	 * @param string $source Message key for the name of the data source
 	 * @param Coordinates|null $coordinates
 	 * @param Asn|null $asn
+	 * @param Organization|null $organization
 	 * @param Location[] $location
 	 * @param Isp|null $isp
 	 * @param ConnectionType|null $connectionType
@@ -39,6 +43,7 @@ class Info implements JsonSerializable {
 		string $source,
 		?Coordinates $coordinates = null,
 		?Asn $asn = null,
+		?Organization $organization = null,
 		array $location = [],
 		?Isp $isp = null,
 		?ConnectionType $connectionType = null,
@@ -47,6 +52,7 @@ class Info implements JsonSerializable {
 		$this->source = $source;
 		$this->coordinates = $coordinates;
 		$this->asn = $asn;
+		$this->organization = $organization;
 		$this->location = $location;
 		$this->isp = $isp;
 		$this->connectionType = $connectionType;
@@ -61,6 +67,7 @@ class Info implements JsonSerializable {
 			'source' => $this->source,
 			'coordinates' => $this->coordinates,
 			'asn' => $this->asn,
+			'organization' => $this->organization,
 			'location' => $this->location,
 			'isp' => $this->isp,
 			'connectionType' => $this->connectionType,

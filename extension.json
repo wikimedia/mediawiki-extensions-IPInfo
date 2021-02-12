@@ -104,6 +104,7 @@
 				"ipinfo-property-label-location",
 				"ipinfo-property-label-isp",
 				"ipinfo-property-label-asn",
+				"ipinfo-property-label-organization",
 				"ipinfo-property-label-source",
 				"ipinfo-property-no-data",
 				"ipinfo-widget-error-default",

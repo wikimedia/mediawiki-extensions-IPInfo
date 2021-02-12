@@ -11,6 +11,7 @@
 	"ipinfo-property-label-location": "Label for location data returned",
 	"ipinfo-property-label-isp": "Label for Internet Service Provider (ISP) data returned",
 	"ipinfo-property-label-asn": "Label for Autonomous System Number (ASN) data returned (an ASN refers to a block of IP addresses)",
+	"ipinfo-property-label-organization": "Label for Autonomous System Organization data returned",
 	"ipinfo-property-label-source": "Label for where data displayed comes from",
 	"ipinfo-property-no-data": "Returned when no data is available for a property",
 	"ipinfo-widget-error-default": "Error message shown in the widget.",

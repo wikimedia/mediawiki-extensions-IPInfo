@@ -6,27 +6,19 @@ use JsonSerializable;
 
 class Asn implements JsonSerializable {
 	/** @var int */
-	private $id;
-
-	/** @var string */
-	private $label;
+	private $asn;
 
 	/**
-	 * @param int $id
-	 * @param string $label
+	 * @param int $asn
 	 */
-	public function __construct( int $id, string $label ) {
-		$this->id = $id;
-		$this->label = $label;
+	public function __construct( int $asn ) {
+		$this->asn = $asn;
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function jsonSerialize() {
-		return [
-			'id' => $this->id,
-			'label' => $this->label,
-		];
+		return $this->asn;
 	}
 }

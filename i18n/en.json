@@ -12,6 +12,7 @@
 	"ipinfo-property-label-location": "Location",
 	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "Organization",
 	"ipinfo-property-label-source": "Source",
 	"ipinfo-property-no-data": "Not Available",
 	"ipinfo-widget-error-default": "The IP information could not be retrieved.",
