@@ -108,7 +108,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 
 		$user = $this->createMock( UserIdentity::class );
 		$user->method( 'isRegistered' )
-			->willReturn( $options['userIsRegistered'] ?? null );
+			->willReturn( $options['userIsRegistered'] ?? false );
 		$permissionManager->method( 'userCan' )
 			->willReturn( $options['userCan'] ?? null );
 
@@ -118,7 +118,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 
 		$author = $this->createMock( UserIdentity::class );
 		$author->method( 'isRegistered' )
-			->willReturn( $options['authorIsRegistered'] ?? null );
+			->willReturn( $options['authorIsRegistered'] ?? false );
 
 		$linkTarget = $this->createMock( LinkTarget::class );
 

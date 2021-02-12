@@ -121,7 +121,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$user = $this->createMock( UserIdentity::class );
 		$user->method( 'isRegistered' )
-			->willReturn( $options['isRegistered'] ?? null );
+			->willReturn( $options['isRegistered'] ?? false );
 
 		$handler = $this->getLogHandler( [
 			'loadBalancer' => $loadBalancer,
