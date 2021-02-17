@@ -7,6 +7,7 @@
 	"ipinfo-property-label-location": "Standort",
 	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "Organisation",
 	"ipinfo-property-label-source": "Quelle",
 	"ipinfo-property-no-data": "Nicht verfügbar",
 	"ipinfo-widget-error-default": "Die Informationen zur IP-Adresse konnten nicht abgerufen werden.",
