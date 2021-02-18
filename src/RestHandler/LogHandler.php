@@ -135,7 +135,7 @@ class LogHandler extends SimpleHandler {
 				new MessageValue( 'ipinfo-rest-log-denied' ), 403 );
 		}
 
-		$performer = $entry->getPerformer()->getName();
+		$performer = $entry->getPerformerIdentity()->getName();
 
 		// The target of a log entry may be an IP address. Targets are stored as titles.
 		$target = $entry->getTarget()->getText();
