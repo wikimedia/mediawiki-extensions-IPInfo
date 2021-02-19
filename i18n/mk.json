@@ -9,6 +9,7 @@
 	"ipinfo-property-label-location": "Местоположба",
 	"ipinfo-property-label-isp": "Услужник",
 	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "Организација",
 	"ipinfo-property-label-source": "Извор",
 	"ipinfo-property-no-data": "Недостапно",
 	"ipinfo-widget-error-default": "Не можев да ги добијам информациите за IP-адресата.",
