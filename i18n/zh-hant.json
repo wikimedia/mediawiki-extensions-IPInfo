@@ -9,6 +9,7 @@
 	"ipinfo-property-label-location": "位置",
 	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "組織",
 	"ipinfo-property-label-source": "來源",
 	"ipinfo-property-no-data": "不可用",
 	"ipinfo-widget-error-default": "IP 資訊無法檢索。",
