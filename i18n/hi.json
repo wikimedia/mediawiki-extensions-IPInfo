@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"Abijeet Patro",
 			"Roovinn"
 		]
 	},
+	"ipinfo-property-label-organization": "संगठन",
 	"prefs-ipinfo": "जानकारी"
 }
