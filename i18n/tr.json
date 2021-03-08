@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Joseph",
 			"MuratTheTurkish"
 		]
 	},
@@ -9,6 +10,7 @@
 	"ipinfo-property-label-location": "Konum",
 	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "Organizasyon",
 	"ipinfo-property-label-source": "Kaynak",
 	"ipinfo-property-no-data": "Mevcut Değil",
 	"ipinfo-widget-error-default": "IP bilgileri alınamadı.",
