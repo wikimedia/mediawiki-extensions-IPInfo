@@ -10,6 +10,7 @@
 			"Wladek92"
 		]
 	},
+	"ipinfo-extensionname": "IP Info",
 	"ipinfo-desc": "Fournit des informations sur une adresse IP.",
 	"ipinfo-infobox-title": "Informations sur l’adresse IP",
 	"ipinfo-property-label-location": "Lieu",
