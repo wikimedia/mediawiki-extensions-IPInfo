@@ -1,11 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
+			"Chaduvari",
 			"Veeven"
 		]
 	},
 	"ipinfo-infobox-title": "ఐపీ సమాచారం",
 	"ipinfo-property-label-location": "ప్రాంతం",
 	"ipinfo-property-label-source": "మూలం",
-	"ipinfo-property-no-data": "అందుబాటులో లేదు"
+	"ipinfo-property-no-data": "అందుబాటులో లేదు",
+	"action-ipinfo": "కూర్పులకు, చిట్టా పద్దులకూ చెందిన ఐపి అడ్రసుల సమాచారాన్ని వెలికితీసే",
+	"right-ipinfo": "కూర్పులకు, చిట్టా పద్దులకూ చెందిన ఐపి అడ్రసుల సమాచారాన్ని వెలికితీయడం"
 }
