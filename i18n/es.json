@@ -12,6 +12,7 @@
 	"ipinfo-property-label-location": "Ubicación",
 	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "Organización",
 	"ipinfo-property-label-source": "Fuente",
 	"ipinfo-property-no-data": "No disponible",
 	"ipinfo-widget-error-default": "No se pudo recuperar la información de la IP.",
@@ -20,5 +21,8 @@
 	"ipinfo-rest-access-denied-blocked-user": "No tienes permiso para efectuar la acción porque tu cuenta está bloqueada",
 	"ipinfo-rest-revision-no-author": "Tu cuenta no tiene acceso para ver el autor de la revisión",
 	"ipinfo-rest-log-nonexistent": "No existe la entrada del registro",
-	"prefs-ipinfo": "Información sobre la IP"
+	"ipinfo-source-geoip2": "La información aquí mostrada procede de la base de datos GeoIP2 de MaxMind. Puede no ser del todo precisa.",
+	"prefs-ipinfo": "Información sobre la IP",
+	"action-ipinfo": "obtener información acerca de las direcciones IP de las revisiones y de las entradas del registro",
+	"right-ipinfo": "Obtener información acerca de las direcciones IP de las revisiones y de las entradas del registro"
 }
