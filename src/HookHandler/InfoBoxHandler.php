@@ -2,9 +2,12 @@
 
 namespace MediaWiki\IPInfo\HookHandler;
 
+use CollapsibleFieldsetLayout;
 use Mediawiki\Permissions\PermissionManager;
 use MediaWiki\SpecialPage\Hook\SpecialPageBeforeExecuteHook;
 use MediaWiki\User\UserOptionsLookup;
+use OOUI\PanelLayout;
+use OutputPage;
 use Wikimedia\IPUtils;
 
 class InfoBoxHandler implements SpecialPageBeforeExecuteHook {
@@ -31,6 +34,7 @@ class InfoBoxHandler implements SpecialPageBeforeExecuteHook {
 	 */
 	public function onSpecialPageBeforeExecute( $special, $subPage ) : void {
 		$out = $special->getOutput();
+
 		if ( !( $out->getTitle() && $out->getTitle()->isSpecial( 'Contributions' ) ) ) {
 			return;
 		}
@@ -60,5 +64,25 @@ class InfoBoxHandler implements SpecialPageBeforeExecuteHook {
 		] );
 
 		$out->addModules( 'ext.ipInfo' );
+		$out->addModuleStyles( 'ext.ipInfo.styles' );
+
+		// Include a wrapper for style, if requested.
+		//TODO: remove mw-htmlform-ooui-wrapper when T278937 is resolved
+		$panelLayout = new PanelLayout( [
+			'classes' => [ 'mw-htmlform-ooui-wrapper', 'ext-ipinfo-panel-layout' ],
+			'framed' => true,
+			'expanded' => false,
+			'padded' => true,
+			'content' => ( new CollapsibleFieldsetLayout(
+				[
+					'label' => $out->getContext()->msg( 'ipinfo-infobox-title' ),
+					'collapsed' => true,
+					'classes' => [ 'ext-ipinfo-collapsible-layout' ],
+					'infusable' => true,
+				]
+			) ),
+		] );
+		OutputPage::setupOOUI();
+		$out->addHTML( $panelLayout );
 	}
 }

@@ -1,6 +1,6 @@
 ( function () {
 	var ip = mw.config.get( 'wgIPInfoTarget' ),
-		revId, ipPanel, $ipPanelContent, ipPanelToggle, ipPanelWidget, ipInfoBox;
+		revId, ipPanelWidget;
 	if ( !ip ) {
 		return;
 	}
@@ -9,24 +9,6 @@
 	if ( !revId ) {
 		return;
 	}
-
-	$ipPanelContent = $( '<div>' );
-
-	ipPanelToggle = new OO.ui.ButtonWidget( {
-		framed: false,
-		icon: 'expand',
-		classes: [ 'ext-ipinfo-button-collapse' ],
-		label: mw.msg( 'ipinfo-infobox-title' )
-	} );
-	ipPanelToggle.on( 'click', function () {
-		if ( ipPanelWidget.visible ) {
-			ipPanelWidget.toggle( false );
-			ipPanelToggle.setIcon( 'expand' );
-		} else {
-			ipPanelWidget.toggle( true );
-			ipPanelToggle.setIcon( 'collapse' );
-		}
-	} );
 
 	ipPanelWidget = new mw.IpInfo.IpInfoWidget(
 		$.get(
@@ -50,21 +32,6 @@
 			'organization'
 		]
 	);
-	ipPanelWidget.toggle( false );
 
-	$ipPanelContent.append( ipPanelToggle.$element );
-	$ipPanelContent.append( ipPanelWidget.$element );
-
-	ipPanel = new OO.ui.PanelLayout( {
-		$content: $ipPanelContent,
-		padded: true,
-		framed: true
-	} );
-	ipInfoBox = new OO.ui.StackLayout( {
-		items: [ ipPanel ],
-		continuous: true,
-		expanded: false,
-		classes: [ 'ext-ipinfo-infobox' ]
-	} );
-	$( '#mw-content-text' ).prepend( ipInfoBox.$element );
+	$( '.ext-ipinfo-collapsible-layout  .mw-collapsible-content' ).append( ipPanelWidget.$element );
 }() );
