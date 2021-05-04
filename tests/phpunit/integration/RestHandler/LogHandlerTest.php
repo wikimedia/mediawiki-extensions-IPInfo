@@ -69,6 +69,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 				'log_title' => '127.0.0.2',
 				'log_user' => 0,
 				'log_user_text' => '127.0.0.1',
+				'log_actor' => 1,
 			] );
 
 		$loadBalancer = $this->createMock( ILoadBalancer::class );
@@ -201,6 +202,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 				'log_title' => '127.0.0.2',
 				'log_user' => 0,
 				'log_user_text' => '127.0.0.1',
+				'log_actor' => 1,
 			] );
 
 		$loadBalancer = $this->createMock( ILoadBalancer::class );
@@ -253,6 +255,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 				'log_title' => '127.0.0.2',
 				'log_user' => 0,
 				'log_user_text' => '127.0.0.1',
+				'log_actor' => 1,
 			] );
 
 		$loadBalancer = $this->createMock( ILoadBalancer::class );
@@ -317,6 +320,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 				'log_title' => 'Test',
 				'log_user' => $performer->getId(),
 				'log_user_text' => $performer->getName(),
+				'log_actor' => $performer->getActorId(),
 			] );
 
 		$loadBalancer = $this->createMock( ILoadBalancer::class );
@@ -360,6 +364,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 				'log_title' => '127.0.0.2',
 				'log_user' => $performer->getId(),
 				'log_user_text' => $performer->getName(),
+				'log_actor' => $performer->getActorId(),
 			] );
 
 		$loadBalancer = $this->createMock( ILoadBalancer::class );
@@ -408,6 +413,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 				'log_title' => '127.0.0.2',
 				'log_user' => $performer->getId(),
 				'log_user_text' => $performer->getName(),
+				'log_actor' => $performer->getActorId(),
 			] );
 
 		$loadBalancer = $this->createMock( ILoadBalancer::class );
