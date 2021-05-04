@@ -178,7 +178,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 		) ];
 
 		return array_merge( $locations, array_map(
-			function ( $subdivision ) {
+			static function ( $subdivision ) {
 				return new Location(
 					$subdivision->geonameId,
 					$subdivision->name
