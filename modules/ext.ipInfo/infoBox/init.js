@@ -33,5 +33,5 @@
 		]
 	);
 
-	$( '.ext-ipinfo-collapsible-layout  .mw-collapsible-content' ).append( ipPanelWidget.$element );
+	$( '.ext-ipinfo-collapsible-layout .mw-collapsible-content' ).append( ipPanelWidget.$element );
 }() );

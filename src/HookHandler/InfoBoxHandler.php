@@ -66,8 +66,7 @@ class InfoBoxHandler implements SpecialPageBeforeExecuteHook {
 		$out->addModules( 'ext.ipInfo' );
 		$out->addModuleStyles( 'ext.ipInfo.styles' );
 
-		// Include a wrapper for style, if requested.
-		//TODO: remove mw-htmlform-ooui-wrapper when T278937 is resolved
+		// TODO: remove mw-htmlform-ooui-wrapper when T278937 is resolved
 		$panelLayout = new PanelLayout( [
 			'classes' => [ 'mw-htmlform-ooui-wrapper', 'ext-ipinfo-panel-layout' ],
 			'framed' => true,
