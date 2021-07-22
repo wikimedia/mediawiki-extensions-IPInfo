@@ -32,7 +32,7 @@ class InfoBoxHandler implements SpecialPageBeforeExecuteHook {
 	/**
 	 * @inheritDoc
 	 */
-	public function onSpecialPageBeforeExecute( $special, $subPage ) : void {
+	public function onSpecialPageBeforeExecute( $special, $subPage ): void {
 		$out = $special->getOutput();
 
 		if ( !( $out->getTitle() && $out->getTitle()->isSpecial( 'Contributions' ) ) ) {

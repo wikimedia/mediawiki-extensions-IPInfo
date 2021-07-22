@@ -30,7 +30,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 	 * @param array $options
 	 * @return RevisionHandler
 	 */
-	private function getRevisionHandler( array $options = [] ) : RevisionHandler {
+	private function getRevisionHandler( array $options = [] ): RevisionHandler {
 		return new RevisionHandler( ...array_values( array_merge(
 			[
 				'infoManager' => $this->createMock( InfoManager::class ),
@@ -48,7 +48,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 	 * @param int $id
 	 * @return RequestData
 	 */
-	private function getRequestData( int $id = 123 ) : RequestData {
+	private function getRequestData( int $id = 123 ): RequestData {
 		return new RequestData( [
 			'pathParams' => [ 'id' => $id ],
 		] );

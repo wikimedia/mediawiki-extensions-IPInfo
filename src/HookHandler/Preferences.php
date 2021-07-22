@@ -21,7 +21,7 @@ class Preferences implements GetPreferencesHook {
 	/**
 	 * @inheritDoc
 	 */
-	public function onGetPreferences( $user, &$preferences ) : void {
+	public function onGetPreferences( $user, &$preferences ): void {
 		if ( !$this->permissionManager->userHasRight( $user, 'ipinfo' ) ) {
 			return;
 		}

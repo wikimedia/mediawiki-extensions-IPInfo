@@ -11,5 +11,5 @@ interface InfoRetriever {
 	 * @param string $ip
 	 * @return Info
 	 */
-	public function retrieveFromIP( string $ip ) : Info;
+	public function retrieveFromIP( string $ip ): Info;
 }

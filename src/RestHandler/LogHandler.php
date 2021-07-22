@@ -95,7 +95,7 @@ class LogHandler extends SimpleHandler {
 	 * @param int $id
 	 * @return Response
 	 */
-	public function run( int $id ) : Response {
+	public function run( int $id ): Response {
 		if (
 			!$this->permissionManager->userHasRight( $this->user, 'ipinfo' ) ||
 			!$this->userOptionsLookup->getOption( $this->user, 'ipinfo-enable' )

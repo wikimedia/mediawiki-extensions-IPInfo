@@ -23,7 +23,7 @@ class InfoManager {
 	 * @param string $ip
 	 * @return mixed[]
 	 */
-	public function retrieveFromIP( string $ip ) : array {
+	public function retrieveFromIP( string $ip ): array {
 		$data = [];
 
 		foreach ( $this->retrievers as $retriever ) {

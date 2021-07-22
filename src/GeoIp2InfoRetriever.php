@@ -45,7 +45,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 	 * @param string $filename
 	 * @return Reader|null null if the file path or file is invalid
 	 */
-	private function getReader( string $filename ) : ?Reader {
+	private function getReader( string $filename ): ?Reader {
 		if ( isset( $this->readers[$filename] ) ) {
 			return $this->readers[$filename];
 		}
@@ -70,7 +70,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 	/**
 	 * @inheritDoc
 	 */
-	public function retrieveFromIP( string $ip ) : Info {
+	public function retrieveFromIP( string $ip ): Info {
 		return new Info(
 			'ipinfo-source-geoip2',
 			$this->getCoordinates( $ip ),
@@ -87,7 +87,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 	 * @param string $ip
 	 * @return Coordinates|null null if IP address does not return a latitude/longitude
 	 */
-	private function getCoordinates( string $ip ) : ?Coordinates {
+	private function getCoordinates( string $ip ): ?Coordinates {
 		$reader = $this->getReader( 'City.mmdb' );
 		if ( !$reader ) {
 			return null;
@@ -114,7 +114,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 	 * @param string $ip
 	 * @return Asn|null null if this IP address is not in the database
 	 */
-	private function getAsn( string $ip ) : ?Asn {
+	private function getAsn( string $ip ): ?Asn {
 		$reader = $this->getReader( 'ASN.mmdb' );
 		if ( !$reader ) {
 			return null;
@@ -135,7 +135,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 	 * @param string $ip
 	 * @return Organization|null null if this IP address is not in the database
 	 */
-	private function getOrganization( string $ip ) : ?Organization {
+	private function getOrganization( string $ip ): ?Organization {
 		$reader = $this->getReader( 'ASN.mmdb' );
 		if ( !$reader ) {
 			return null;
@@ -156,7 +156,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 	 * @param string $ip
 	 * @return Location[] Empty array if IP address does not return a city name
 	 */
-	private function getLocations( string $ip ) : array {
+	private function getLocations( string $ip ): array {
 		$reader = $this->getReader( 'City.mmdb' );
 		if ( !$reader ) {
 			return [];
@@ -192,7 +192,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 	 * @param string $ip
 	 * @return Isp|null null if IP address does not return an ISP
 	 */
-	private function getIsp( string $ip ) : ?Isp {
+	private function getIsp( string $ip ): ?Isp {
 		$reader = $this->getReader( 'ISP.mmdb' );
 		if ( !$reader ) {
 			return null;
@@ -218,7 +218,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 	 * @return ConnectionType|null null if IP address does not return a
 	 *  ConnectionType
 	 */
-	private function getConnectionType( string $ip ) : ?ConnectionType {
+	private function getConnectionType( string $ip ): ?ConnectionType {
 		$reader = $this->getReader( 'Connection-Type.mmdb' );
 		if ( !$reader ) {
 			return null;

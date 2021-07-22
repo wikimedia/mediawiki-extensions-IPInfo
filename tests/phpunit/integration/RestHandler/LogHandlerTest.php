@@ -32,7 +32,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @param array $options
 	 * @return LogHandler
 	 */
-	private function getLogHandler( array $options = [] ) : LogHandler {
+	private function getLogHandler( array $options = [] ): LogHandler {
 		return new LogHandler( ...array_values( array_merge(
 			[
 				'infoManager' => $this->createMock( InfoManager::class ),
@@ -50,7 +50,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @param int $id
 	 * @return RequestData
 	 */
-	private function getRequestData( int $id = 123 ) : RequestData {
+	private function getRequestData( int $id = 123 ): RequestData {
 		return new RequestData( [
 			'pathParams' => [ 'id' => $id ],
 		] );
