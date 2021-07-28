@@ -13,7 +13,6 @@ class InfoTest extends MediaWikiUnitTestCase {
 
 	public function testJsonSerialize() {
 		$expected = json_encode( [
-			'source' => 'ipinfo-source-testsource',
 			'coordinates' => null,
 			'asn' => null,
 			'organization' => null,
@@ -23,7 +22,7 @@ class InfoTest extends MediaWikiUnitTestCase {
 			'proxyType' => null,
 		] );
 
-		$info = new Info( 'ipinfo-source-testsource' );
+		$info = new Info();
 
 		$this->assertSame( $expected, json_encode( $info ) );
 	}
