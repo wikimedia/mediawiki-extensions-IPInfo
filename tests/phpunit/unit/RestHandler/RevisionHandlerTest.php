@@ -3,7 +3,7 @@
 namespace MediaWiki\IPInfo\Test\Unit\RestHandler;
 
 use MediaWiki\IPInfo\InfoManager;
-use MediaWiki\IPInfo\RestHandler\RevisionHandler;
+use MediaWiki\IPInfo\Rest\Handler\RevisionHandler;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -20,7 +20,7 @@ use Wikimedia\Message\MessageValue;
 
 /**
  * @group IPInfo
- * @covers \MediaWiki\IPInfo\RestHandler\RevisionHandler
+ * @covers \MediaWiki\IPInfo\Rest\Handler\RevisionHandler
  */
 class RevisionHandlerTest extends MediaWikiUnitTestCase {
 

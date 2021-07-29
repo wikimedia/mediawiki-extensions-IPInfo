@@ -4,7 +4,7 @@ namespace MediaWiki\IPInfo\Test\Integration\RestHandler;
 
 use LogPage;
 use MediaWiki\IPInfo\InfoManager;
-use MediaWiki\IPInfo\RestHandler\LogHandler;
+use MediaWiki\IPInfo\Rest\Handler\LogHandler;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -19,7 +19,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * @group IPInfo
- * @covers \MediaWiki\IPInfo\RestHandler\LogHandler
+ * @covers \MediaWiki\IPInfo\Rest\Handler\LogHandler
  *
  * The static methods in LogHandler require this test to be an integration test,
  * rather than a unit test.

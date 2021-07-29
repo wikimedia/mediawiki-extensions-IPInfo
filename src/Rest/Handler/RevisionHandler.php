@@ -1,31 +1,27 @@
 <?php
 
-namespace MediaWiki\IPInfo\RestHandler;
+namespace MediaWiki\IPInfo\Rest\Handler;
 
-use DatabaseLogEntry;
-use LogEventsList;
-use LogPage;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
+use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 use RequestContext;
-use Wikimedia\IPUtils;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
-use Wikimedia\Rdbms\ILoadBalancer;
 
-class LogHandler extends SimpleHandler {
-
+class RevisionHandler extends SimpleHandler {
 	/** @var InfoManager */
 	private $infoManager;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var RevisionLookup */
+	private $revisionLookup;
 
 	/** @var PermissionManager */
 	private $permissionManager;
@@ -41,7 +37,7 @@ class LogHandler extends SimpleHandler {
 
 	/**
 	 * @param InfoManager $infoManager
-	 * @param ILoadBalancer $loadBalancer
+	 * @param RevisionLookup $revisionLookup
 	 * @param PermissionManager $permissionManager
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
@@ -49,14 +45,14 @@ class LogHandler extends SimpleHandler {
 	 */
 	public function __construct(
 		InfoManager $infoManager,
-		ILoadBalancer $loadBalancer,
+		RevisionLookup $revisionLookup,
 		PermissionManager $permissionManager,
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
 		UserIdentity $user
 	) {
 		$this->infoManager = $infoManager;
-		$this->loadBalancer = $loadBalancer;
+		$this->revisionLookup = $revisionLookup;
 		$this->permissionManager = $permissionManager;
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->userFactory = $userFactory;
@@ -65,7 +61,7 @@ class LogHandler extends SimpleHandler {
 
 	/**
 	 * @param InfoManager $infoManager
-	 * @param ILoadBalancer $loadBalancer
+	 * @param RevisionLookup $revisionLookup
 	 * @param PermissionManager $permissionManager
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
@@ -73,14 +69,14 @@ class LogHandler extends SimpleHandler {
 	 */
 	public static function factory(
 		InfoManager $infoManager,
-		ILoadBalancer $loadBalancer,
+		RevisionLookup $revisionLookup,
 		PermissionManager $permissionManager,
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory
 	) {
 		return new self(
 			$infoManager,
-			$loadBalancer,
+			$revisionLookup,
 			$permissionManager,
 			$userOptionsLookup,
 			$userFactory,
@@ -90,7 +86,7 @@ class LogHandler extends SimpleHandler {
 	}
 
 	/**
-	 * Get IP Info for a Log entry.
+	 * Get IP Info for a Revision.
 	 *
 	 * @param int $id
 	 * @return Response
@@ -112,49 +108,35 @@ class LogHandler extends SimpleHandler {
 				new MessageValue( 'ipinfo-rest-access-denied-blocked-user' ), 403 );
 		}
 
-		$db = $this->loadBalancer->getConnection( DB_REPLICA );
-		$entry = DatabaseLogEntry::newFromId( $id, $db );
+		$revision = $this->revisionLookup->getRevisionById( $id );
 
-		if ( !$entry ) {
+		if ( !$revision ) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'ipinfo-rest-log-nonexistent' ), 404 );
+				new MessageValue( 'rest-nonexistent-revision', [ $id ] ), 404 );
 		}
 
-		if ( !LogEventsList::userCanViewLogType( $entry->getType(), $user ) ) {
+		if ( !$this->permissionManager->userCan( 'read', $user, $revision->getPageAsLinkTarget() ) ) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'ipinfo-rest-log-denied' ), 403 );
+				new MessageValue( 'rest-revision-permission-denied-revision', [ $id ] ), 403 );
 		}
 
-		$canAccessPerformer = LogEventsList::userCanBitfield( $entry->getDeleted(), LogPage::DELETED_USER, $user );
-		$canAccessTarget = LogEventsList::userCanBitfield( $entry->getDeleted(), LogPage::DELETED_ACTION, $user );
+		$author = $revision->getUser( RevisionRecord::FOR_THIS_USER, $user );
 
-		// If the user cannot access the performer, nor the target, throw an error since there wont
-		// be anything to respond with.
-		if ( !$canAccessPerformer && !$canAccessTarget ) {
+		if ( !$author ) {
+			// User does not have access to author.
 			throw new LocalizedHttpException(
-				new MessageValue( 'ipinfo-rest-log-denied' ), 403 );
+				new MessageValue( 'ipinfo-rest-revision-no-author' ), 403 );
 		}
 
-		$performer = $entry->getPerformerIdentity()->getName();
-
-		// The target of a log entry may be an IP address. Targets are stored as titles.
-		$target = $entry->getTarget()->getText();
-
-		$info = [];
-		if ( IPUtils::isValid( $performer ) && $canAccessPerformer ) {
-			$info[] = $this->infoManager->retrieveFromIP( $performer );
-		}
-		if ( IPUtils::isValid( $target ) && $canAccessTarget ) {
-			$info[] = $this->infoManager->retrieveFromIP( $target );
-		}
-
-		if ( count( $info ) === 0 ) {
+		if ( $author->isRegistered() ) {
 			// Since the IP address only exists in CheckUser, there is no way to access it.
 			// @TODO Allow extensions (like CheckUser) to either pass without a value
 			//      (which would result in a 404) or throw a fatal (which could result in a 403).
 			throw new LocalizedHttpException(
-				new MessageValue( 'ipinfo-rest-log-registered' ), 404 );
+				new MessageValue( 'ipinfo-rest-revision-registered' ), 404 );
 		}
+
+		$info = [ $this->infoManager->retrieveFromIP( $author->getName() ) ];
 
 		$response = $this->getResponseFactory()->createJson( [ 'info' => $info ] );
 		$response->setHeader( 'Cache-Control', 'private, max-age=86400' );
