@@ -2,9 +2,7 @@
 
 namespace MediaWiki\IPInfo\Info;
 
-use JsonSerializable;
-
-class Coordinates implements JsonSerializable {
+class Coordinates {
 	/** @var float */
 	private $latitude;
 
@@ -24,12 +22,16 @@ class Coordinates implements JsonSerializable {
 	}
 
 	/**
-	 * @inheritDoc
+	 * @return float
 	 */
-	public function jsonSerialize() {
-		return [
-			'latitude' => $this->latitude,
-			'longitude' => $this->longitude,
-		];
+	public function getLatitude(): float {
+		return $this->latitude;
+	}
+
+	/**
+	 * @return float
+	 */
+	public function getLongitude(): float {
+		return $this->longitude;
 	}
 }

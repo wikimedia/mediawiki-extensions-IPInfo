@@ -1,9 +1,10 @@
 <?php
 
-namespace MediaWiki\IPInfo\Test\Unit\RestHandler;
+namespace MediaWiki\IPInfo\Test\Unit\Rest\Handler;
 
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Handler\RevisionHandler;
+use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -14,7 +15,6 @@ use MediaWiki\Tests\Rest\Handler\HandlerTestTrait;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
-
 use MediaWikiUnitTestCase;
 use Wikimedia\Message\MessageValue;
 
@@ -39,6 +39,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 				'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
 				'userFactory' => $this->createMock( UserFactory::class ),
 				'userIdentity' => $this->createMock( UserIdentity::class ),
+				'presenter' => $this->createMock( DefaultPresenter::class ),
 			],
 			$options
 		) ) );

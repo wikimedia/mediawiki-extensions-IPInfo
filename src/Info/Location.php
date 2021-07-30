@@ -2,9 +2,7 @@
 
 namespace MediaWiki\IPInfo\Info;
 
-use JsonSerializable;
-
-class Location implements JsonSerializable {
+class Location {
 	/** @var int */
 	private $id;
 
@@ -24,12 +22,16 @@ class Location implements JsonSerializable {
 	}
 
 	/**
-	 * @inheritDoc
+	 * @return int
 	 */
-	public function jsonSerialize() {
-		return [
-			'id' => $this->id,
-			'label' => $this->label,
-		];
+	public function getId(): int {
+		return $this->id;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getLabel(): string {
+		return $this->label;
 	}
 }

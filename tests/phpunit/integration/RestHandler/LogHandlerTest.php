@@ -5,6 +5,7 @@ namespace MediaWiki\IPInfo\Test\Integration\RestHandler;
 use LogPage;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Handler\LogHandler;
+use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -41,6 +42,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 				'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
 				'userFactory' => $this->createMock( UserFactory::class ),
 				'userIdentity' => $this->createMock( UserIdentity::class ),
+				'presenter' => $this->createMock( DefaultPresenter::class ),
 			],
 			$options
 		) ) );

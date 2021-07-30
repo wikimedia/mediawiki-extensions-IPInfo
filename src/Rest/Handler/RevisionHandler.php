@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo\Rest\Handler;
 
 use MediaWiki\IPInfo\InfoManager;
+use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
@@ -35,6 +36,9 @@ class RevisionHandler extends SimpleHandler {
 	/** @var UserIdentity */
 	private $user;
 
+	/** @var DefaultPresenter */
+	private $presenter;
+
 	/**
 	 * @param InfoManager $infoManager
 	 * @param RevisionLookup $revisionLookup
@@ -42,6 +46,7 @@ class RevisionHandler extends SimpleHandler {
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
 	 * @param UserIdentity $user
+	 * @param DefaultPresenter $presenter
 	 */
 	public function __construct(
 		InfoManager $infoManager,
@@ -49,7 +54,8 @@ class RevisionHandler extends SimpleHandler {
 		PermissionManager $permissionManager,
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
-		UserIdentity $user
+		UserIdentity $user,
+		DefaultPresenter $presenter
 	) {
 		$this->infoManager = $infoManager;
 		$this->revisionLookup = $revisionLookup;
@@ -57,6 +63,7 @@ class RevisionHandler extends SimpleHandler {
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->userFactory = $userFactory;
 		$this->user = $user;
+		$this->presenter = $presenter;
 	}
 
 	/**
@@ -81,7 +88,8 @@ class RevisionHandler extends SimpleHandler {
 			$userOptionsLookup,
 			$userFactory,
 			// @TODO Replace with something better.
-			RequestContext::getMain()->getUser()
+			RequestContext::getMain()->getUser(),
+			new DefaultPresenter()
 		);
 	}
 
@@ -136,7 +144,9 @@ class RevisionHandler extends SimpleHandler {
 				new MessageValue( 'ipinfo-rest-revision-registered' ), 404 );
 		}
 
-		$info = [ $this->infoManager->retrieveFromIP( $author->getName() ) ];
+		$info = [
+			$this->presenter->present( $this->infoManager->retrieveFromIP( $author->getName() ) )
+		];
 
 		$response = $this->getResponseFactory()->createJson( [ 'info' => $info ] );
 		$response->setHeader( 'Cache-Control', 'private, max-age=86400' );

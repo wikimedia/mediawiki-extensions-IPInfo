@@ -10,21 +10,15 @@ use MediaWikiUnitTestCase;
  * @covers \MediaWiki\IPInfo\Info\Info
  */
 class InfoTest extends MediaWikiUnitTestCase {
-
-	public function testJsonSerialize() {
-		$expected = json_encode( [
-			'coordinates' => null,
-			'asn' => null,
-			'organization' => null,
-			'location' => [],
-			'isp' => null,
-			'connectionType' => null,
-			'proxyType' => null,
-		] );
-
+	public function testDefaultValues() {
 		$info = new Info();
 
-		$this->assertSame( $expected, json_encode( $info ) );
+		$this->assertNull( $info->getCoordinates() );
+		$this->assertNull( $info->getAsn() );
+		$this->assertNull( $info->getOrganization() );
+		$this->assertEquals( [], $info->getLocation() );
+		$this->assertNull( $info->getIsp() );
+		$this->assertNull( $info->getConnectionType() );
+		$this->assertNull( $info->getProxyType() );
 	}
-
 }
