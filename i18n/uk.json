@@ -4,6 +4,7 @@
 			"DDPAT"
 		]
 	},
+	"ipinfo-extensionname": "Інформація про IP",
 	"ipinfo-desc": "Надає інформацію про IP-адресу.",
 	"ipinfo-infobox-title": "Інформація про IP",
 	"ipinfo-property-label-location": "Розташування",
