@@ -1,8 +1,8 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\IPInfo\GeoIp2InfoRetriever;
 use MediaWiki\IPInfo\InfoManager;
+use MediaWiki\IPInfo\InfoRetriever\GeoIp2InfoRetriever;
 use MediaWiki\MediaWikiServices;
 
 return [

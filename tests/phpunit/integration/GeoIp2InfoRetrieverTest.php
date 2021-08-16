@@ -3,15 +3,15 @@
 namespace MediaWiki\IPInfo\Test\Integration;
 
 use LoggedServiceOptions;
-use MediaWiki\IPInfo\GeoIp2InfoRetriever;
 use MediaWiki\IPInfo\Info\Info;
+use MediaWiki\IPInfo\InfoRetriever\GeoIp2InfoRetriever;
 use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
 use TestAllServiceOptionsUsed;
 
 /**
  * @group IPInfo
- * @covers \MediaWiki\IPInfo\GeoIp2InfoRetriever
+ * @covers \MediaWiki\IPInfo\InfoRetriever\GeoIp2InfoRetriever
  */
 class GeoIp2InfoRetrieverTest extends MediaWikiIntegrationTestCase {
 	use TestAllServiceOptionsUsed;

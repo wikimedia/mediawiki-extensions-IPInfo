@@ -5,9 +5,6 @@ namespace MediaWiki\IPInfo\Info;
 use JsonSerializable;
 
 class Info implements JsonSerializable {
-	/** @var string */
-	private $source;
-
 	/** @var Coordinates|null */
 	private $coordinates;
 
@@ -30,7 +27,6 @@ class Info implements JsonSerializable {
 	private $proxyType;
 
 	/**
-	 * @param string $source Message key for the name of the data source
 	 * @param Coordinates|null $coordinates
 	 * @param Asn|null $asn
 	 * @param Organization|null $organization
@@ -40,7 +36,6 @@ class Info implements JsonSerializable {
 	 * @param ProxyType|null $proxyType
 	 */
 	public function __construct(
-		string $source,
 		?Coordinates $coordinates = null,
 		?Asn $asn = null,
 		?Organization $organization = null,
@@ -49,7 +44,6 @@ class Info implements JsonSerializable {
 		?ConnectionType $connectionType = null,
 		?ProxyType $proxyType = null
 	) {
-		$this->source = $source;
 		$this->coordinates = $coordinates;
 		$this->asn = $asn;
 		$this->organization = $organization;
@@ -64,7 +58,6 @@ class Info implements JsonSerializable {
 	 */
 	public function jsonSerialize() {
 		return [
-			'source' => $this->source,
 			'coordinates' => $this->coordinates,
 			'asn' => $this->asn,
 			'organization' => $this->organization,

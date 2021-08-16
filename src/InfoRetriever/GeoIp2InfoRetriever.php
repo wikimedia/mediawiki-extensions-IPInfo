@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\IPInfo;
+namespace MediaWiki\IPInfo\InfoRetriever;
 
 use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
@@ -42,6 +42,13 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 	}
 
 	/**
+	 * @inheritDoc
+	 */
+	public function getName(): string {
+		return 'ipinfo-source-geoip2';
+	}
+
+	/**
 	 * @param string $filename
 	 * @return Reader|null null if the file path or file is invalid
 	 */
@@ -69,10 +76,10 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 
 	/**
 	 * @inheritDoc
+	 * @return Info
 	 */
-	public function retrieveFromIP( string $ip ): Info {
+	public function retrieveFromIP( string $ip ) {
 		return new Info(
-			'ipinfo-source-geoip2',
 			$this->getCoordinates( $ip ),
 			$this->getAsn( $ip ),
 			$this->getOrganization( $ip ),
