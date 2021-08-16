@@ -184,6 +184,10 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 			$city->city->name
 		) ];
 
+		/** MaxMind returns the locations sorted largest area to smallest.
+		 * array_reverse is used to convert them to the preferred order of
+		 * smallest to largest
+		 */
 		return array_merge( $locations, array_map(
 			static function ( $subdivision ) {
 				return new Location(
@@ -191,7 +195,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 					$subdivision->name
 				);
 			},
-			$city->subdivisions
+			array_reverse( $city->subdivisions )
 		) );
 	}
 
