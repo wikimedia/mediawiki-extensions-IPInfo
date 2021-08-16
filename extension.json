@@ -40,7 +40,7 @@
 				"UserOptionsLookup",
 				"UserFactory"
 			],
-			"factory": "MediaWiki\\IPInfo\\RestHandler\\RevisionHandler::factory"
+			"factory": "MediaWiki\\IPInfo\\Rest\\Handler\\RevisionHandler::factory"
 		},
 		{
 			"path": "/ipinfo/v0/log/{id}",
@@ -52,7 +52,7 @@
 				"UserOptionsLookup",
 				"UserFactory"
 			],
-			"factory": "MediaWiki\\IPInfo\\RestHandler\\LogHandler::factory"
+			"factory": "MediaWiki\\IPInfo\\Rest\\Handler\\LogHandler::factory"
 		}
 	],
 	"Hooks": {
