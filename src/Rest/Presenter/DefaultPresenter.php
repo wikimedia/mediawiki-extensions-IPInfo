@@ -2,8 +2,10 @@
 
 namespace MediaWiki\IPInfo\Rest\Presenter;
 
+use MediaWiki\IPInfo\Info\BlockInfo;
 use MediaWiki\IPInfo\Info\Info;
 use MediaWiki\IPInfo\Info\Location;
+use Wikimedia\Assert\Assert;
 
 class DefaultPresenter {
 
@@ -12,13 +14,27 @@ class DefaultPresenter {
 	 * @return array
 	 */
 	public function present( array $info ): array {
+		Assert::parameterElementType(
+			[ Info::class, BlockInfo::class ],
+			$info['data'],
+			"info['data']"
+		);
+
 		$result = [
 			'subject' => $info['subject'],
 			'data' => [],
 		];
 
 		foreach ( $info['data'] as $source => $info ) {
-			$result['data'][] = [ 'source' => $source ] + $this->presentInfo( $info );
+			$data = [ 'source' => $source ];
+
+			if ( $info instanceof Info ) {
+				$data += $this->presentInfo( $info );
+			} elseif ( $info instanceof BlockInfo ) {
+				$data += $this->presentBlockInfo( $info );
+			}
+
+			$result['data'][] = $data;
 		}
 
 		return $result;
@@ -58,6 +74,17 @@ class DefaultPresenter {
 				'isTorExitNode' => $proxyType->isTorExitNode(),
 
 			] : null,
+		];
+	}
+
+	/**
+	 * @param BlockInfo $info
+	 * @return array<string,int>
+	 */
+	private function presentBlockInfo( BlockInfo $info ): array {
+		return [
+			'numActiveBlocks' => $info->getNumActiveBlocks(),
+			'numPastBlocks' => $info->getNumPastBlocks(),
 		];
 	}
 }

@@ -9,6 +9,8 @@ use MediaWiki\IPInfo\Info\Location;
 use MediaWiki\IPInfo\Info\ProxyType;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWikiUnitTestCase;
+use stdClass;
+use Wikimedia\Assert\ParameterElementTypeException;
 
 /**
  * @group IPInfo
@@ -102,5 +104,23 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 			$expected,
 			( new DefaultPresenter() )->present( $info )
 		);
+	}
+
+	public function providePresentUnknownDataType(): Generator {
+		yield [ null ];
+		yield [ [] ];
+		yield [ new stdClass() ];
+	}
+
+	/**
+	 * @dataProvider providePresentUnknownDataType
+	 */
+	public function testPresentUnknownDataType( $data ) {
+		$this->expectException( ParameterElementTypeException::class );
+
+		( new DefaultPresenter() )->present( [
+			'subject' => '172.18.0.1',
+			'data' => [ 'foo' => $data ],
+		] );
 	}
 }

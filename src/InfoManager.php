@@ -21,8 +21,10 @@ class InfoManager {
 	/**
 	 * Retrieve info about an IP address.
 	 *
+	 * TODO: Make this return a domain object, e.g. InfoManagerResponse.
+	 *
 	 * @param string $ip
-	 * @return mixed[]
+	 * @return array
 	 */
 	public function retrieveFromIP( string $ip ): array {
 		$data = [];
