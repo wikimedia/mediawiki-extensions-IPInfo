@@ -5,13 +5,9 @@ namespace MediaWiki\IPInfo\InfoRetriever;
 use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\IPInfo\Info\Asn;
-use MediaWiki\IPInfo\Info\ConnectionType;
 use MediaWiki\IPInfo\Info\Coordinates;
 use MediaWiki\IPInfo\Info\Info;
-use MediaWiki\IPInfo\Info\Isp;
 use MediaWiki\IPInfo\Info\Location;
-use MediaWiki\IPInfo\Info\Organization;
 use MediaWiki\IPInfo\Info\ProxyType;
 
 /**
@@ -78,7 +74,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 	 * @inheritDoc
 	 * @return Info
 	 */
-	public function retrieveFromIP( string $ip ) {
+	public function retrieveFromIP( string $ip ): Info {
 		return new Info(
 			$this->getCoordinates( $ip ),
 			$this->getAsn( $ip ),
@@ -119,49 +115,41 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 
 	/**
 	 * @param string $ip
-	 * @return Asn|null null if this IP address is not in the database
+	 * @return int|null null if this IP address is not in the database
 	 */
-	private function getAsn( string $ip ): ?Asn {
+	private function getAsn( string $ip ): ?int {
 		$reader = $this->getReader( 'ASN.mmdb' );
 		if ( !$reader ) {
 			return null;
 		}
 
 		try {
-			$asn = $reader->asn( $ip );
+			return $reader->asn( $ip )->autonomousSystemNumber;
 		} catch ( AddressNotFoundException $e ) {
 			return null;
 		}
-
-		return new Asn(
-			$asn->autonomousSystemNumber
-		);
 	}
 
 	/**
 	 * @param string $ip
-	 * @return Organization|null null if this IP address is not in the database
+	 * @return string|null null if this IP address is not in the database
 	 */
-	private function getOrganization( string $ip ): ?Organization {
+	private function getOrganization( string $ip ): ?string {
 		$reader = $this->getReader( 'ASN.mmdb' );
 		if ( !$reader ) {
 			return null;
 		}
 
 		try {
-			$asn = $reader->asn( $ip );
+			return $reader->asn( $ip )->autonomousSystemOrganization;
 		} catch ( AddressNotFoundException $e ) {
 			return null;
 		}
-
-		return new Organization(
-			$asn->autonomousSystemOrganization
-		);
 	}
 
 	/**
 	 * @param string $ip
-	 * @return Location[] Empty array if IP address does not return a city name
+	 * @return Location[] Empty if this IP address is not in the database
 	 */
 	private function getLocations( string $ip ): array {
 		$reader = $this->getReader( 'City.mmdb' );
@@ -201,53 +189,36 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 
 	/**
 	 * @param string $ip
-	 * @return Isp|null null if IP address does not return an ISP
+	 * @return string|null null if GeoIP2 does not return an ISP
 	 */
-	private function getIsp( string $ip ): ?Isp {
+	private function getIsp( string $ip ): ?string {
 		$reader = $this->getReader( 'ISP.mmdb' );
 		if ( !$reader ) {
 			return null;
 		}
 
 		try {
-			$isp = $reader->isp( $ip );
+			return $reader->isp( $ip )->isp;
 		} catch ( AddressNotFoundException $e ) {
 			return null;
 		}
-
-		if ( $isp->isp === null ) {
-			return null;
-		}
-
-		return new Isp(
-			$isp->isp
-		);
 	}
 
 	/**
 	 * @param string $ip
-	 * @return ConnectionType|null null if IP address does not return a
-	 *  ConnectionType
+	 * @return string|null null if GeoIP2 does not return a connection type
 	 */
-	private function getConnectionType( string $ip ): ?ConnectionType {
+	private function getConnectionType( string $ip ): ?string {
 		$reader = $this->getReader( 'Connection-Type.mmdb' );
 		if ( !$reader ) {
 			return null;
 		}
 
 		try {
-			$connectionType = $reader->connectionType( $ip );
+			return $reader->connectionType( $ip )->connectionType;
 		} catch ( AddressNotFoundException $e ) {
 			return null;
 		}
-
-		if ( $connectionType->connectionType === null ) {
-			return null;
-		}
-
-		return new ConnectionType(
-			$connectionType->connectionType
-		);
 	}
 
 	/**

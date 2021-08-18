@@ -6,6 +6,7 @@ use DatabaseLogEntry;
 use LogEventsList;
 use LogPage;
 use MediaWiki\IPInfo\InfoManager;
+use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
@@ -39,6 +40,9 @@ class LogHandler extends SimpleHandler {
 	/** @var UserIdentity */
 	private $user;
 
+	/** @var DefaultPresenter */
+	private $presenter;
+
 	/**
 	 * @param InfoManager $infoManager
 	 * @param ILoadBalancer $loadBalancer
@@ -46,6 +50,7 @@ class LogHandler extends SimpleHandler {
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
 	 * @param UserIdentity $user
+	 * @param DefaultPresenter $presenter
 	 */
 	public function __construct(
 		InfoManager $infoManager,
@@ -53,7 +58,8 @@ class LogHandler extends SimpleHandler {
 		PermissionManager $permissionManager,
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
-		UserIdentity $user
+		UserIdentity $user,
+		DefaultPresenter $presenter
 	) {
 		$this->infoManager = $infoManager;
 		$this->loadBalancer = $loadBalancer;
@@ -61,6 +67,7 @@ class LogHandler extends SimpleHandler {
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->userFactory = $userFactory;
 		$this->user = $user;
+		$this->presenter = $presenter;
 	}
 
 	/**
@@ -85,7 +92,8 @@ class LogHandler extends SimpleHandler {
 			$userOptionsLookup,
 			$userFactory,
 			// @TODO Replace with something better.
-			RequestContext::getMain()->getUser()
+			RequestContext::getMain()->getUser(),
+			new DefaultPresenter()
 		);
 	}
 
@@ -142,10 +150,10 @@ class LogHandler extends SimpleHandler {
 
 		$info = [];
 		if ( IPUtils::isValid( $performer ) && $canAccessPerformer ) {
-			$info[] = $this->infoManager->retrieveFromIP( $performer );
+			$info[] = $this->presenter->present( $this->infoManager->retrieveFromIP( $performer ) );
 		}
 		if ( IPUtils::isValid( $target ) && $canAccessTarget ) {
-			$info[] = $this->infoManager->retrieveFromIP( $target );
+			$info[] = $this->presenter->present( $this->infoManager->retrieveFromIP( $target ) );
 		}
 
 		if ( count( $info ) === 0 ) {

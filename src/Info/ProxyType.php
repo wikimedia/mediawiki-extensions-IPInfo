@@ -2,9 +2,7 @@
 
 namespace MediaWiki\IPInfo\Info;
 
-use JsonSerializable;
-
-class ProxyType implements JsonSerializable {
+class ProxyType {
 	/** @var bool */
 	private $isAnonymous;
 
@@ -47,17 +45,27 @@ class ProxyType implements JsonSerializable {
 		$this->isTorExitNode = $isTorExitNode;
 	}
 
-	/**
-	 * @inheritDoc
-	 */
-	public function jsonSerialize() {
-		return [
-			'isAnonymous' => $this->isAnonymous,
-			'isAnonymousVpn' => $this->isAnonymousVpn,
-			'isPublicProxy' => $this->isPublicProxy,
-			'isResidentialProxy' => $this->isResidentialProxy,
-			'isLegitimateProxy' => $this->isLegitimateProxy,
-			'isTorExitNode' => $this->isTorExitNode,
-		];
+	public function isAnonymous(): bool {
+		return $this->isAnonymous;
+	}
+
+	public function isAnonymousVpn(): bool {
+		return $this->isAnonymousVpn;
+	}
+
+	public function isPublicProxy(): bool {
+		return $this->isPublicProxy;
+	}
+
+	public function isResidentialProxy(): bool {
+		return $this->isResidentialProxy;
+	}
+
+	public function isLegitimateProxy(): bool {
+		return $this->isLegitimateProxy;
+	}
+
+	public function isTorExitNode(): bool {
+		return $this->isTorExitNode;
 	}
 }

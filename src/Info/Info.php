@@ -2,25 +2,23 @@
 
 namespace MediaWiki\IPInfo\Info;
 
-use JsonSerializable;
-
-class Info implements JsonSerializable {
+class Info {
 	/** @var Coordinates|null */
 	private $coordinates;
 
-	/** @var Asn|null */
+	/** @var int|null */
 	private $asn;
 
-	/** @var Organization|null */
+	/** @var string|null */
 	private $organization;
 
 	/** @var Location[] */
 	private $location;
 
-	/** @var Isp|null */
+	/** @var string|null */
 	private $isp;
 
-	/** @var ConnectionType|null */
+	/** @var string|null */
 	private $connectionType;
 
 	/** @var ProxyType|null */
@@ -28,20 +26,20 @@ class Info implements JsonSerializable {
 
 	/**
 	 * @param Coordinates|null $coordinates
-	 * @param Asn|null $asn
-	 * @param Organization|null $organization
+	 * @param int|null $asn
+	 * @param string|null $organization
 	 * @param Location[] $location
-	 * @param Isp|null $isp
-	 * @param ConnectionType|null $connectionType
+	 * @param string|null $isp
+	 * @param string|null $connectionType
 	 * @param ProxyType|null $proxyType
 	 */
 	public function __construct(
 		?Coordinates $coordinates = null,
-		?Asn $asn = null,
-		?Organization $organization = null,
+		?int $asn = null,
+		?string $organization = null,
 		array $location = [],
-		?Isp $isp = null,
-		?ConnectionType $connectionType = null,
+		?string $isp = null,
+		?string $connectionType = null,
 		?ProxyType $proxyType = null
 	) {
 		$this->coordinates = $coordinates;
@@ -54,17 +52,51 @@ class Info implements JsonSerializable {
 	}
 
 	/**
-	 * @inheritDoc
+	 * @return Coordinates|null
 	 */
-	public function jsonSerialize() {
-		return [
-			'coordinates' => $this->coordinates,
-			'asn' => $this->asn,
-			'organization' => $this->organization,
-			'location' => $this->location,
-			'isp' => $this->isp,
-			'connectionType' => $this->connectionType,
-			'proxyType' => $this->proxyType,
-		];
+	public function getCoordinates(): ?Coordinates {
+		return $this->coordinates;
+	}
+
+	/**
+	 * @return int|null
+	 */
+	public function getAsn(): ?int {
+		return $this->asn;
+	}
+
+	/**
+	 * @return string|null
+	 */
+	public function getOrganization(): ?string {
+		return $this->organization;
+	}
+
+	/**
+	 * @return Location[]
+	 */
+	public function getLocation(): array {
+		return $this->location;
+	}
+
+	/**
+	 * @return string|null
+	 */
+	public function getIsp(): ?string {
+		return $this->isp;
+	}
+
+	/**
+	 * @return string|null
+	 */
+	public function getConnectionType(): ?string {
+		return $this->connectionType;
+	}
+
+	/**
+	 * @return ProxyType|null
+	 */
+	public function getProxyType(): ?ProxyType {
+		return $this->proxyType;
 	}
 }
