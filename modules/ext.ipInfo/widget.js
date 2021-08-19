@@ -8,7 +8,8 @@
 	 *
 	 * @constructor
 	 * @param {jQuery.Deferred} info Promise that resolves to an info object.
-	 * @param {Object} [display] List of properties that should be shown in widget
+	 * @param {Object} [display] A map of the name of a source to the list of properties that
+	 *  should be displayed from that source.
 	 * @param {Object} [config] Configuration options
 	 */
 	mw.IpInfo.IpInfoWidget = function ( info, display, config ) {
@@ -49,33 +50,37 @@
 	 * @param {Object} info
 	 */
 	mw.IpInfo.IpInfoWidget.prototype.success = function ( info ) {
-		var widget = this,
-			display = this.display,
-			$content;
-
-		if ( info ) {
-			$content = $( '<dl>' ).addClass( 'ext-ipinfo-widget-property-properties' );
-			info.data.forEach( function ( datum ) {
-				display.forEach( function ( property ) {
-					var formattedData = widget.transformData( datum, property );
-
-					// All properties are shown regardless if a value exists or not
-					$content.append( widget.generateMarkup( formattedData, property ) );
-				} );
-
-				// Add source disclaimer
-				if ( datum.source ) {
-					// The following messages can be passed here:
-					// * ipinfo-source-geoip2
-					// * ipinfo-source-<sourcename>
-					$content.append( $( '<div>' ).addClass( 'ext-ipinfo-widget-property-source' ).text( mw.msg( datum.source ) ) );
-				}
-				widget.$element.append( $content );
-			} );
-		} else {
+		if ( !info ) {
 			// The IP address did not match the log or revision ID
 			this.displayError( mw.msg( 'ipinfo-widget-error-wrong-ip' ) );
+
+			return;
 		}
+
+		var widget = this,
+			$content = $( '<dl>' ).addClass( 'ext-ipinfo-widget-property-properties' );
+
+		info.data.forEach( function ( datum ) {
+			var display = widget.display[ datum.source ] || [];
+
+			display.forEach( function ( property ) {
+				var formattedData = widget.transformData( datum, property );
+
+				// All properties are shown regardless if a value exists or not
+				$content.append( widget.generateMarkup( formattedData, property ) );
+			} );
+
+			// If 1) data from the source was displayed and 2) there is a disclaimer about the
+			// source, then show the disclaimer.
+			if ( display.length && mw.messages.exists( datum.source ) ) {
+				// The following messages can be passed here:
+				// * ipinfo-source-geoip2
+				// * ipinfo-source-<sourcename>
+				$content.append( $( '<div>' ).addClass( 'ext-ipinfo-widget-property-source' ).text( mw.msg( datum.source ) ) );
+			}
+		} );
+
+		widget.$element.append( $content );
 	};
 
 	/**

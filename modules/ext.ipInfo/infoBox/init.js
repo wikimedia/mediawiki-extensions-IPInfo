@@ -25,12 +25,14 @@
 			}
 			return data;
 		} ),
-		[
-			'location',
-			'isp',
-			'asn',
-			'organization'
-		]
+		{
+			'ipinfo-source-geoip2': [
+				'location',
+				'isp',
+				'asn',
+				'organization'
+			]
+		}
 	);
 
 	$( '.ext-ipinfo-collapsible-layout .mw-collapsible-content' ).append( ipPanelWidget.$element );

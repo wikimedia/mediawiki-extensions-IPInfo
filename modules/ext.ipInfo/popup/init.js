@@ -47,11 +47,13 @@
 					}
 					return data;
 				} ),
-				[
-					'location',
-					'isp',
-					'asn'
-				]
+				{
+					'ipinfo-source-geoip2': [
+						'location',
+						'isp',
+						'asn'
+					]
+				}
 			).$element );
 		} );
 
