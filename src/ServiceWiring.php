@@ -3,15 +3,24 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\InfoRetriever\BlockInfoRetriever;
+use MediaWiki\IPInfo\InfoRetriever\GeoIp2EnterpriseInfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\GeoIp2InfoRetriever;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 return [
-	'IPInfoGeoIp2InfoRetriever' => static function ( MediaWikiServices $services ): GeoIp2InfoRetriever {
+	'IPInfoGeoIp2InfoRetriever' => static function ( MediaWikiServices $services ) {
+		$config = $services->getMainConfig();
+		if ( $config->has( 'IPInfoGeoIP2EnterprisePath' ) ) {
+			return new GeoIp2EnterpriseInfoRetriever(
+				new ServiceOptions(
+					GeoIp2EnterpriseInfoRetriever::CONSTRUCTOR_OPTIONS, $config
+				)
+			);
+		}
 		return new GeoIp2InfoRetriever(
 			new ServiceOptions(
-				GeoIp2InfoRetriever::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
+				GeoIp2InfoRetriever::CONSTRUCTOR_OPTIONS, $config
 			)
 		);
 	},

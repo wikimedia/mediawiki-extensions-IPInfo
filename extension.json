@@ -122,6 +122,10 @@
 		"IPInfoGeoIP2Path": {
 			"value": false,
 			"description": "Path to the directory containing GeoIP2 database files"
+		},
+		"IPInfoGeoIP2EnterprisePath": {
+			"value": false,
+			"description": "Path to the directory containing the GeoIP2 Enterprise and Anonymous IP database file; should contain the trailing slash"
 		}
 	},
 	"load_composer_autoloader": true
