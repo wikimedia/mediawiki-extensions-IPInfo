@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo\Rest\Presenter;
 
 use MediaWiki\IPInfo\Info\BlockInfo;
+use MediaWiki\IPInfo\Info\ContributionInfo;
 use MediaWiki\IPInfo\Info\Info;
 use MediaWiki\IPInfo\Info\Location;
 use Wikimedia\Assert\Assert;
@@ -15,7 +16,7 @@ class DefaultPresenter {
 	 */
 	public function present( array $info ): array {
 		Assert::parameterElementType(
-			[ Info::class, BlockInfo::class ],
+			[ Info::class, BlockInfo::class, ContributionInfo::class ],
 			$info['data'],
 			"info['data']"
 		);
@@ -32,6 +33,8 @@ class DefaultPresenter {
 				$data += $this->presentInfo( $info );
 			} elseif ( $info instanceof BlockInfo ) {
 				$data += $this->presentBlockInfo( $info );
+			} elseif ( $info instanceof ContributionInfo ) {
+				$data += $this->presentContributionInfo( $info );
 			}
 
 			$result['data'][] = $data;
@@ -85,6 +88,17 @@ class DefaultPresenter {
 		return [
 			'numActiveBlocks' => $info->getNumActiveBlocks(),
 			'numPastBlocks' => $info->getNumPastBlocks(),
+		];
+	}
+
+	/**
+	 * @param ContributionInfo $info
+	 * @return array<string,int>
+	 */
+	private function presentContributionInfo( ContributionInfo $info ): array {
+		return [
+			'numLocalEdits' => $info->getNumLocalEdits(),
+			'numRecentEdits' => $info->getNumRecentEdits(),
 		];
 	}
 }

@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo\Test\Unit\Rest\Presenter;
 
 use Generator;
+use MediaWiki\IPInfo\Info\ContributionInfo;
 use MediaWiki\IPInfo\Info\Coordinates;
 use MediaWiki\IPInfo\Info\Info;
 use MediaWiki\IPInfo\Info\Location;
@@ -83,6 +84,18 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 						false
 					)
 				),
+			]
+		];
+		yield [
+			[
+				[
+					'source' => 'quuz',
+					'numLocalEdits' => 42,
+					'numRecentEdits' => 24,
+				]
+			],
+			[
+				'quuz' => new ContributionInfo( 42, 24 )
 			]
 		];
 	}
