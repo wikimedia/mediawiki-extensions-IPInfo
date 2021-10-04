@@ -56,7 +56,10 @@
 		}
 	],
 	"Hooks": {
-		"BeforePageDisplay": "popup",
+		"BeforePageDisplay": [
+			"popup",
+			"preferences"
+		],
 		"SpecialPageBeforeExecute": "infobox",
 		"GetPreferences": "preferences"
 	},
@@ -76,8 +79,11 @@
 			]
 		},
 		"preferences": {
-			"class": "MediaWiki\\IPInfo\\HookHandler\\Preferences",
-			"services": [ "PermissionManager" ]
+			"class": "MediaWiki\\IPInfo\\HookHandler\\PreferencesHandler",
+			"services": [
+				"PermissionManager",
+				"UserOptionsLookup"
+			]
 		}
 	},
 	"ResourceModules": {
@@ -110,6 +116,16 @@
 				"ipinfo-widget-error-default",
 				"ipinfo-widget-error-no-data",
 				"ipinfo-widget-error-wrong-ip"
+			]
+		},
+		"ext.ipInfo.preferences": {
+			"localBasePath": "modules/ext.ipInfo.preferences",
+			"remoteExtPath": "IPInfo/modules/ext.ipInfo.preferences",
+			"packageFiles": [
+				"preferences.js"
+			],
+			"dependencies": [
+				"oojs-ui-core"
 			]
 		},
 		"ext.ipInfo.styles": {
