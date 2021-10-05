@@ -6,14 +6,13 @@ use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\IPInfo\Info\BlockInfo;
 use MediaWiki\User\UserIdentityValue;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 
 class BlockInfoRetriever implements InfoRetriever {
 	/** @var BlockManager */
 	private $blockManager;
 
-	/** @var Database */
+	/** @var IDatabase */
 	private $database;
 
 	/**
