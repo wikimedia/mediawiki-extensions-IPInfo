@@ -16,7 +16,7 @@
 	"ipinfo-widget-error-default": "Не вдалося отримати інформацію про IP.",
 	"ipinfo-widget-error-no-data": "Для цієї IP-адреси немає даних від $1.",
 	"ipinfo-widget-error-wrong-ip": "Надана IP-адреса не відповідає журналу чи версії.",
-	"ipinfo-preference-enable": "Перегляньте інформацію про IP-адресу. Запис буде зроблено, коли ви увімкнете/вимкнете цю опцію.",
+	"ipinfo-preference-enable": "Покажіть інструмент «Інформація про IP» на сторінці «Special:Contributions» щодо IP-адрес.",
 	"ipinfo-preference-use-agreement": "Я погоджуюся використовувати цю інформацію для моєї роботи з патрулювання та боротьби з вандалізмом.",
 	"ipinfo-preference-agreement-error": "Перш ніж погодитися з умовами його використання, потрібно ввімкнути інформаційний інструмент IP.",
 	"ipinfo-rest-access-denied": "У вас немає дозволу на виконання цієї дії",

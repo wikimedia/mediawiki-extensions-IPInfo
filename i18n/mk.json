@@ -4,6 +4,7 @@
 			"Bjankuloski06"
 		]
 	},
+	"ipinfo-extensionname": "IP-инфо",
 	"ipinfo-desc": "Дава информации за IP-адреса",
 	"ipinfo-infobox-title": "Информации за IP",
 	"ipinfo-property-label-location": "Местоположба",
@@ -15,7 +16,9 @@
 	"ipinfo-widget-error-default": "Не можев да ги добијам информациите за IP-адресата.",
 	"ipinfo-widget-error-no-data": "Нема податоци за оваа IP-адреса од $1.",
 	"ipinfo-widget-error-wrong-ip": "Укажаната IP-адреса не одговара на дневникот или преработката.",
-	"ipinfo-preference-enable": "Погледајте информации за дадена IP-адреса. Ќе се прави запис кога овозможувате или оневозможувате оваа можност.",
+	"ipinfo-preference-enable": "Прикажи ја алаткаа со информации за IP на страницата Специјална:Придонеси за IP-адреси.",
+	"ipinfo-preference-use-agreement": "Се согласувам да ги користам овие информации за патролирање и противвандалска работа.",
+	"ipinfo-preference-agreement-error": "Ќе мора да ја овозможите алатката за информации за IP пре да се согласите со нејзините услови на употреба.",
 	"ipinfo-rest-access-denied": "Немате дозвола да го изведете ова дејство",
 	"ipinfo-rest-access-denied-blocked-user": "Немате дозвола да го извршите дејството бидејќи вашата сметка е блокирана",
 	"ipinfo-rest-revision-no-author": "Вашата сметка нема пристап за да го гледа авторот на преработката",

@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"Antonla",
 			"Saederup92"
 		]
 	},
 	"ipinfo-property-label-source": "Kilde",
-	"ipinfo-property-no-data": "Ikke tilgængelig"
+	"ipinfo-property-no-data": "Ikke tilgængelig",
+	"ipinfo-preference-enable": "Vis IP-informationsværktøjet på Special:Contributions-siden for IP-addresser",
+	"ipinfo-preference-agreement-error": "Du skal aktivere IP-informationsværktøjet før du accepterer dets brugsbetingelser."
 }
