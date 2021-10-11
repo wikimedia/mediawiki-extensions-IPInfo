@@ -12,7 +12,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
 return [
 	'IPInfoGeoIp2InfoRetriever' => static function ( MediaWikiServices $services ) {
 		$config = $services->getMainConfig();
-		if ( $config->has( 'IPInfoGeoIP2EnterprisePath' ) ) {
+		if ( $config->get( 'IPInfoGeoIP2EnterprisePath' ) ) {
 			return new GeoIp2EnterpriseInfoRetriever(
 				new ServiceOptions(
 					GeoIp2EnterpriseInfoRetriever::CONSTRUCTOR_OPTIONS, $config
