@@ -1,6 +1,23 @@
 ( function () {
 	var ip = mw.config.get( 'wgIPInfoTarget' ),
-		revId, ipPanelWidget;
+		api = new mw.Api(),
+		saveCollapsibleUserOption, revId, ipPanelWidget;
+
+	saveCollapsibleUserOption = function ( e ) {
+		// Only trigger on enter and space keypresses
+		if ( e.type === 'keypress' && e.which !== 13 && e.which !== 32 ) {
+			return;
+		}
+		if ( $( this ).attr( 'aria-expanded' ) === 'true' ) {
+			api.saveOption( 'ipinfo-infobox-expanded', 1 );
+		} else {
+			api.saveOption( 'ipinfo-infobox-expanded', 0 );
+		}
+	};
+
+	// Watch for collapse/expand events and save that state to a user option
+	$( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).on( 'click keypress', saveCollapsibleUserOption );
+
 	if ( !ip ) {
 		return;
 	}

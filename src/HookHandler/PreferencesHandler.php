@@ -64,6 +64,10 @@ class PreferencesHandler implements
 				'checkAllIPInfoAgreements'
 			]
 		];
+		$preferences[ 'ipinfo-infobox-expanded' ] = [
+			'type' => 'api',
+			'default' => 0,
+		];
 	}
 
 	/**
