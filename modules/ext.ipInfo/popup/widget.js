@@ -30,10 +30,26 @@
 				return item.label;
 			} ).join( mw.msg( 'comma-separator' ) );
 
-		return $( '<dl>' ).addClass( 'ext-ipinfo-widget-properties' ).append(
+		var activeBlocks = mw.msg( 'ipinfo-value-active-blocks', info.data[ 'ipinfo-source-block' ].numActiveBlocks );
+
+		var localEdits = mw.msg( 'ipinfo-value-local-edits', info.data[ 'ipinfo-source-contributions' ].numLocalEdits );
+
+		var $recentEdits = $( '<span>' ).addClass( 'ext-ipinfo-widget-value-recent-edits' )
+			.append( mw.msg( 'ipinfo-value-recent-edits', info.data[ 'ipinfo-source-contributions' ].numRecentEdits ) );
+
+		var $edits = $( '<span>' ).append(
+			localEdits,
+			$( '<br>' ),
+			$recentEdits
+		);
+
+		return $( '<dl>' ).addClass( 'ext-ipinfo-widget-property-properties' ).append(
 			this.generatePropertyMarkup( location, 'location' ),
 			this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].isp, 'isp' ),
-			this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].asn, 'asn' )
+			this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].asn, 'asn' ),
+			this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].organization, 'organization' ),
+			this.generatePropertyMarkup( activeBlocks, 'active-blocks' ),
+			this.generatePropertyMarkup( $edits, 'edits' )
 		);
 	};
 }() );

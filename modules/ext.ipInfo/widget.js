@@ -122,10 +122,12 @@
 		// * ipinfo-property-label-asn
 		// * ipinfo-property-label-source
 		// * ipinfo-property-label-organization
+		// * ipinfo-property-label-active-blocks
+		// * ipinfo-property-label-edits
 		$propertyContent.append(
 			$( '<dt>' ).addClass( 'ext-ipinfo-widget-property-label' ).text( mw.msg( 'ipinfo-property-label-' + propertyName ) )
 		);
-		if ( propertyValue ) {
+		if ( propertyValue || propertyValue === 0 ) {
 			$propertyContent.append(
 				$( '<dd>' ).addClass( 'ext-ipinfo-widget-property-value' ).append( propertyValue )
 			);
