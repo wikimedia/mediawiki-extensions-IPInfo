@@ -18,7 +18,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'IPInfoGeoIP2Path',
+		'IPInfoGeoIP2Prefix',
 	];
 
 	/** @var ServiceOptions */
@@ -53,7 +53,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 			return $this->readers[$filename];
 		}
 
-		$path = $this->options->get( 'IPInfoGeoIP2Path' );
+		$path = $this->options->get( 'IPInfoGeoIP2Prefix' );
 
 		if ( $path === false ) {
 			return null;
