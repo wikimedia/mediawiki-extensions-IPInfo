@@ -5,7 +5,8 @@
 			"Shizhao",
 			"Shuiwater",
 			"SkEy",
-			"Wuqianye"
+			"Wuqianye",
+			"列维劳德"
 		]
 	},
 	"ipinfo-desc": "提供有关IP地址的信息。",
@@ -19,7 +20,8 @@
 	"ipinfo-widget-error-default": "这个IP的信息没法找回。",
 	"ipinfo-widget-error-no-data": "$1中没有此IP地址的数据。",
 	"ipinfo-widget-error-wrong-ip": "提供的IP地址与日志或修订版本不匹配。",
-	"ipinfo-preference-enable": "查看有关IP地址的信息。当您启用/禁用此选项时，将进行记录。",
+	"ipinfo-preference-enable": "在特殊:用户贡献页面显示用于 IP 地址的 IP 信息工具。",
+	"ipinfo-preference-agreement-error": "在同意其使用条件前，您必须启用 IP 信息工具。",
 	"ipinfo-rest-access-denied": "您没有权限来执行此操作",
 	"ipinfo-rest-access-denied-blocked-user": "您没有执行此行为的许可因为您的的账户被拦截",
 	"ipinfo-rest-revision-no-author": "您的帐户无权查看修订版本的作者",

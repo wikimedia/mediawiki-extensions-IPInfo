@@ -8,5 +8,6 @@
 	"ipinfo-property-label-source": "Kilde",
 	"ipinfo-property-no-data": "Ikke tilgængelig",
 	"ipinfo-preference-enable": "Vis IP-informationsværktøjet på Special:Contributions-siden for IP-addresser",
+	"ipinfo-preference-use-agreement": "Jeg accepterer at bruge denne information til mit patruljerings- og anti-hærværksarbejde.",
 	"ipinfo-preference-agreement-error": "Du skal aktivere IP-informationsværktøjet før du accepterer dets brugsbetingelser."
 }
