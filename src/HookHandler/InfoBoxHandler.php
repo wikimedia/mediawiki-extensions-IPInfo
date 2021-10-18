@@ -66,6 +66,8 @@ class InfoBoxHandler implements SpecialPageBeforeExecuteHook {
 		$out->addModules( 'ext.ipInfo' );
 		$out->addModuleStyles( 'ext.ipInfo.styles' );
 
+		$isExpanded = (bool)$this->userOptionsLookup->getOption( $user, 'ipinfo-infobox-expanded' );
+
 		$panelLayout = new PanelLayout( [
 			'classes' => [ 'ext-ipinfo-panel-layout' ],
 			'framed' => true,
@@ -74,7 +76,7 @@ class InfoBoxHandler implements SpecialPageBeforeExecuteHook {
 			'content' => ( new CollapsibleFieldsetLayout(
 				[
 					'label' => $out->getContext()->msg( 'ipinfo-infobox-title' ),
-					'collapsed' => true,
+					'collapsed' => !$isExpanded,
 					'classes' => [ 'ext-ipinfo-collapsible-layout' ],
 					'infusable' => true,
 				]
