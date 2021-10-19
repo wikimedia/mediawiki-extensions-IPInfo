@@ -6,6 +6,7 @@ use MediaWiki\IPInfo\InfoRetriever\BlockInfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\ContributionInfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\GeoIp2EnterpriseInfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\GeoIp2InfoRetriever;
+use MediaWiki\IPInfo\InfoRetriever\ReaderFactory;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -16,13 +17,15 @@ return [
 			return new GeoIp2EnterpriseInfoRetriever(
 				new ServiceOptions(
 					GeoIp2EnterpriseInfoRetriever::CONSTRUCTOR_OPTIONS, $config
-				)
+				),
+				$services->get( 'ReaderFactory' )
 			);
 		}
 		return new GeoIp2InfoRetriever(
 			new ServiceOptions(
 				GeoIp2InfoRetriever::CONSTRUCTOR_OPTIONS, $config
-			)
+			),
+			$services->get( 'ReaderFactory' )
 		);
 	},
 	'IPInfoBlockInfoRetriever' => static function ( MediaWikiServices $services ): BlockInfoRetriever {
@@ -43,5 +46,8 @@ return [
 			$services->get( 'IPInfoBlockInfoRetriever' ),
 			$services->get( 'IPInfoContributionInfoRetriever' ),
 		] );
+	},
+	'ReaderFactory' => static function () {
+		return new ReaderFactory();
 	}
 ];

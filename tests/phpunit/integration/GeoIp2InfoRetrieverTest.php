@@ -22,7 +22,8 @@ class GeoIp2InfoRetrieverTest extends MediaWikiIntegrationTestCase {
 				self::$serviceOptionsAccessLog,
 				GeoIp2InfoRetriever::CONSTRUCTOR_OPTIONS,
 				MediaWikiServices::getInstance()->getMainConfig()
-			)
+			),
+			MediaWikiServices::getInstance()->get( 'ReaderFactory' )
 		);
 		$info = $infoRetriever->retrieveFromIP( '127.0.0.1' );
 
