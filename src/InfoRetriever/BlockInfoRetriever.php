@@ -5,7 +5,6 @@ namespace MediaWiki\IPInfo\InfoRetriever;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\IPInfo\Info\BlockInfo;
-use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\IDatabase;
 
 class BlockInfoRetriever implements InfoRetriever {
@@ -39,11 +38,7 @@ class BlockInfoRetriever implements InfoRetriever {
 	 */
 	public function retrieveFromIP( string $ip ): BlockInfo {
 		// Active block(s)
-		$activeBlock = $this->blockManager->getUserBlock(
-			UserIdentityValue::newAnonymous( $ip ),
-			null,
-			true
-		);
+		$activeBlock = $this->blockManager->getIPBlock( $ip, true );
 
 		if ( $activeBlock ) {
 			$numActiveBlocks = $activeBlock instanceof CompositeBlock ? count( $activeBlock->getOriginalBlocks() ) : 1;
@@ -53,38 +48,17 @@ class BlockInfoRetriever implements InfoRetriever {
 
 		// Past block(s)
 		//
+		// TODO
+		//
 		// Notes:
 		//
 		// * The ipblocks table only stores details of active or recently expired blocks. Expired
-		//   blocks can be purged from the database at any time by running the purgeExpiredBlocks
-		//   maintenance script in MediaWiki Core
+		//   blocks can be purged from the database at any time by running the
+		//   maintenance/purgeExpiredBlocks.php script in MediaWiki Core
 		//
-		// * All blocks, reblocks, and unblocks have rows in the logging table
-		$numBlocks = $this->database->selectRowCount(
-			'logging',
-			'*',
-			[
-				'log_type' => 'block',
-				'log_action' => 'block',
-				'log_namespace' => NS_USER,
-				'log_title' => $ip,
-			],
-			__METHOD__
-		);
-		$numUnblocks = $this->database->selectRowCount(
-			'logging',
-			'*',
-			[
-				'log_type' => 'block',
-				'log_action' => 'unblock',
-				'log_namespace' => NS_USER,
-				'log_title' => $ip,
-			],
-			__METHOD__
-		);
+		// * All blocks, reblocks, and unblocks have rows in the logging table. However, the
+		//   table does not support querying by IP address range like the ipblocks table does.
 
-		$numPastBlocks = $numBlocks - $numUnblocks - $numActiveBlocks;
-
-		return new BlockInfo( $numActiveBlocks, $numPastBlocks );
+		return new BlockInfo( $numActiveBlocks );
 	}
 }

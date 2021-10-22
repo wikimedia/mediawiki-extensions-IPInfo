@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo\Test\Unit\Rest\Presenter;
 
 use Generator;
+use MediaWiki\IPInfo\Info\BlockInfo;
 use MediaWiki\IPInfo\Info\ContributionInfo;
 use MediaWiki\IPInfo\Info\Coordinates;
 use MediaWiki\IPInfo\Info\Info;
@@ -84,6 +85,15 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 						false
 					)
 				),
+			],
+			[
+				[
+					'source' => 'quuz',
+					'numActiveBlocks' => 1,
+				],
+				[
+					'quuz' => new BlockInfo( 1 ),
+				]
 			]
 		];
 		yield [

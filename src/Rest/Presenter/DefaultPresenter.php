@@ -87,7 +87,6 @@ class DefaultPresenter {
 	private function presentBlockInfo( BlockInfo $info ): array {
 		return [
 			'numActiveBlocks' => $info->getNumActiveBlocks(),
-			'numPastBlocks' => $info->getNumPastBlocks(),
 		];
 	}
 
