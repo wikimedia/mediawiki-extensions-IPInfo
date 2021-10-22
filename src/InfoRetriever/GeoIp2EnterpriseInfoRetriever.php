@@ -26,14 +26,20 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 	/** @var ServiceOptions */
 	private $options;
 
+	/** @var ReaderFactory */
+	private $readerFactory;
+
 	/**
 	 * @param ServiceOptions $options
+	 * @param ReaderFactory $readerFactory
 	 */
 	public function __construct(
-		ServiceOptions $options
+		ServiceOptions $options,
+		ReaderFactory $readerFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
+		$this->readerFactory = $readerFactory;
 	}
 
 	/**
@@ -54,13 +60,7 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 			return null;
 		}
 
-		try {
-			$reader = new Reader( $path . $filename );
-		} catch ( \Exception $e ) {
-			return null;
-		}
-
-		return $reader;
+		return $this->readerFactory->get( $path, $filename );
 	}
 
 	/**

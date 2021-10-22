@@ -24,17 +24,20 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 	/** @var ServiceOptions */
 	private $options;
 
-	/** @var Reader[] Map of filename to Reader object */
-	private $readers = [];
+	/** @var ReaderFactory */
+	private $readerFactory;
 
 	/**
 	 * @param ServiceOptions $options
+	 * @param ReaderFactory $readerFactory
 	 */
 	public function __construct(
-		ServiceOptions $options
+		ServiceOptions $options,
+		ReaderFactory $readerFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
+		$this->readerFactory = $readerFactory;
 	}
 
 	/**
@@ -48,26 +51,12 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 	 * @param string $filename
 	 * @return Reader|null null if the file path or file is invalid
 	 */
-	private function getReader( string $filename ): ?Reader {
-		if ( isset( $this->readers[$filename] ) ) {
-			return $this->readers[$filename];
-		}
-
+	protected function getReader( string $filename ): ?Reader {
 		$path = $this->options->get( 'IPInfoGeoIP2Prefix' );
-
 		if ( $path === false ) {
 			return null;
 		}
-
-		try {
-			$reader = new Reader( $path . $filename );
-		} catch ( \Exception $e ) {
-			return null;
-		}
-
-		$this->readers[$filename] = $reader;
-
-		return $this->readers[$filename];
+		return $this->readerFactory->get( $path, $filename );
 	}
 
 	/**
