@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Avengium",
 			"Fitoschido",
 			"MarcoAurelio",
 			"Rodney Araujo"
@@ -17,6 +18,9 @@
 	"ipinfo-property-no-data": "No disponible",
 	"ipinfo-widget-error-default": "No se pudo recuperar la información de la IP.",
 	"ipinfo-widget-error-no-data": "No hay datos para esta dirección IP desde $1.",
+	"ipinfo-preference-enable": "Muestra la herramienta de información de IP en la página Especial:Contribuciones para direcciones IP.",
+	"ipinfo-preference-use-agreement": "Acepto usar esta información para mi trabajo de patrullaje y anti-vandalismo.",
+	"ipinfo-preference-agreement-error": "Debes habilitar la herramienta de información de IP antes de aceptar sus condiciones de uso.",
 	"ipinfo-rest-access-denied": "No tienes permiso para efectuar la acción",
 	"ipinfo-rest-access-denied-blocked-user": "No tienes permiso para efectuar la acción porque tu cuenta está bloqueada",
 	"ipinfo-rest-revision-no-author": "Tu cuenta no tiene acceso para ver el autor de la revisión",
