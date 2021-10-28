@@ -102,7 +102,8 @@ class RevisionHandler extends SimpleHandler {
 	public function run( int $id ): Response {
 		if (
 			!$this->permissionManager->userHasRight( $this->user, 'ipinfo' ) ||
-			!$this->userOptionsLookup->getOption( $this->user, 'ipinfo-enable' )
+			!$this->userOptionsLookup->getOption( $this->user, 'ipinfo-enable' ) ||
+			!$this->userOptionsLookup->getOption( $this->user, 'ipinfo-use-agreement' )
 		) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'ipinfo-rest-access-denied' ), $this->user->isRegistered() ? 403 : 401 );

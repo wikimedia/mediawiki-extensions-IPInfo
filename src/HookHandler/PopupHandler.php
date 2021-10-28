@@ -41,7 +41,8 @@ class PopupHandler implements BeforePageDisplayHook {
 		$user = $out->getUser();
 		if (
 			!$this->permissionManager->userHasRight( $user, 'ipinfo' ) ||
-			!$this->userOptionsLookup->getOption( $user, 'ipinfo-enable' )
+			!$this->userOptionsLookup->getOption( $user, 'ipinfo-enable' ) ||
+			!$this->userOptionsLookup->getOption( $user, 'ipinfo-use-agreement' )
 		) {
 			return;
 		}
