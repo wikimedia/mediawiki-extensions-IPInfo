@@ -60,7 +60,7 @@
 			"popup",
 			"preferences"
 		],
-		"SpecialPageBeforeExecute": "infobox",
+		"SpecialContributionsBeforeMainOutput": "infobox",
 		"GetPreferences": "preferences"
 	},
 	"HookHandlers": {

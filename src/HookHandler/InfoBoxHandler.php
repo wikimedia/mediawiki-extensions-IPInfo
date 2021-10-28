@@ -3,14 +3,14 @@
 namespace MediaWiki\IPInfo\HookHandler;
 
 use CollapsibleFieldsetLayout;
+use MediaWiki\Hook\SpecialContributionsBeforeMainOutputHook;
 use Mediawiki\Permissions\PermissionManager;
-use MediaWiki\SpecialPage\Hook\SpecialPageBeforeExecuteHook;
 use MediaWiki\User\UserOptionsLookup;
 use OOUI\PanelLayout;
 use OutputPage;
 use Wikimedia\IPUtils;
 
-class InfoBoxHandler implements SpecialPageBeforeExecuteHook {
+class InfoBoxHandler implements SpecialContributionsBeforeMainOutputHook {
 	/** @var PermissionManager */
 	private $permissionManager;
 
@@ -32,27 +32,24 @@ class InfoBoxHandler implements SpecialPageBeforeExecuteHook {
 	/**
 	 * @inheritDoc
 	 */
-	public function onSpecialPageBeforeExecute( $special, $subPage ): void {
-		$out = $special->getOutput();
-
+	public function onSpecialContributionsBeforeMainOutput( $id, $user, $sp ): void {
+		$out = $sp->getOutput();
 		if ( !( $out->getTitle() && $out->getTitle()->isSpecial( 'Contributions' ) ) ) {
 			return;
 		}
 
-		$user = $out->getUser();
+		$accessingUser = $out->getUser();
 		if (
-			!$this->permissionManager->userHasRight( $user, 'ipinfo' ) ||
-			!$this->userOptionsLookup->getOption( $user, 'ipinfo-enable' )
+			!$this->permissionManager->userHasRight( $accessingUser, 'ipinfo' ) ||
+			!$this->userOptionsLookup->getOption( $accessingUser, 'ipinfo-enable' )
 		) {
 			return;
 		}
 
-		// Check if either the target parameter or the subpage is an IP address
-		$target = $out->getRequest()->getVal( 'target' );
+		// Check if the target is an IP address
+		$target = $user->getName();
 		if ( IPUtils::isValid( $target ) ) {
 			$target = IPUtils::prettifyIP( $target );
-		} elseif ( IPUtils::isValid( $subPage ) ) {
-			$target = IPUtils::prettifyIP( $subPage );
 		} else {
 			$target = null;
 		}
