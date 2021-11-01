@@ -79,6 +79,7 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 			],
 			null
 		);
+		$info['country'] = [];
 		$info['locations'] = [];
 
 		$enterpriseReader = $this->getReader( 'GeoIP2-Enterprise.mmdb' );
@@ -89,6 +90,7 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 				$info['coordinates'] = $this->getCoordinates( $enterpriseInfo );
 				$info['asn'] = $this->getAsn( $enterpriseInfo );
 				$info['organization'] = $this->getOrganization( $enterpriseInfo );
+				$info['country'] = $this->getCountry( $enterpriseInfo );
 				$info['locations'] = $this->getLocations( $enterpriseInfo );
 				$info['isp'] = $this->getIsp( $enterpriseInfo );
 				$info['connectionType'] = $this->getConnectionType( $enterpriseInfo );
@@ -114,6 +116,7 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 			$info['coordinates'],
 			$info['asn'],
 			$info['organization'],
+			$info['country'],
 			$info['locations'],
 			$info['isp'],
 			$info['connectionType'],
@@ -151,6 +154,21 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 	 */
 	private function getOrganization( Enterprise $info ): ?string {
 		return $info->traits->autonomousSystemOrganization;
+	}
+
+	/**
+	 * @param Enterprise $info
+	 * @return Location[] Empty if this IP address is not in the database
+	 */
+	private function getCountry( Enterprise $info ): array {
+		if ( !$info->country->geonameId || !$info->country->name ) {
+			return [];
+		}
+
+		return [ new Location(
+			$info->country->geonameId,
+			$info->country->name
+		) ];
 	}
 
 	/**

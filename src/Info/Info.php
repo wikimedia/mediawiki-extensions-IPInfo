@@ -13,6 +13,9 @@ class Info {
 	private $organization;
 
 	/** @var Location[] */
+	private $country;
+
+	/** @var Location[] */
 	private $location;
 
 	/** @var string|null */
@@ -28,6 +31,7 @@ class Info {
 	 * @param Coordinates|null $coordinates
 	 * @param int|null $asn
 	 * @param string|null $organization
+	 * @param Location[] $country
 	 * @param Location[] $location
 	 * @param string|null $isp
 	 * @param string|null $connectionType
@@ -37,6 +41,7 @@ class Info {
 		?Coordinates $coordinates = null,
 		?int $asn = null,
 		?string $organization = null,
+		array $country = [],
 		array $location = [],
 		?string $isp = null,
 		?string $connectionType = null,
@@ -45,6 +50,7 @@ class Info {
 		$this->coordinates = $coordinates;
 		$this->asn = $asn;
 		$this->organization = $organization;
+		$this->country = $country;
 		$this->location = $location;
 		$this->isp = $isp;
 		$this->connectionType = $connectionType;
@@ -70,6 +76,13 @@ class Info {
 	 */
 	public function getOrganization(): ?string {
 		return $this->organization;
+	}
+
+	/**
+	 * @return Location[]
+	 */
+	public function getCountry(): array {
+		return $this->country;
 	}
 
 	/**

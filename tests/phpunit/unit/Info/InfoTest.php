@@ -16,6 +16,7 @@ class InfoTest extends MediaWikiUnitTestCase {
 		$this->assertNull( $info->getCoordinates() );
 		$this->assertNull( $info->getAsn() );
 		$this->assertNull( $info->getOrganization() );
+		$this->assertEquals( [], $info->getCountry() );
 		$this->assertEquals( [], $info->getLocation() );
 		$this->assertNull( $info->getIsp() );
 		$this->assertNull( $info->getConnectionType() );

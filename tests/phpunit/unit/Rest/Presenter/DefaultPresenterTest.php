@@ -28,6 +28,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 					'coordinates' => null,
 					'asn' => null,
 					'organization' => null,
+					'country' => [],
 					'location' => [],
 					'isp' => null,
 					'connectionType' => null,
@@ -48,6 +49,12 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 					],
 					'asn' => 0,
 					'organization' => 'baz',
+					'country' => [
+						[
+							'id' => 1605651,
+							'label' => 'Thailand'
+						],
+					],
 					'location' => [
 						[
 							'id' => 123456789,
@@ -71,6 +78,9 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 					new Coordinates( 51.509865, -0.118092 ),
 					0,
 					'baz',
+					[
+						new Location( 1605651, 'Thailand' )
+					],
 					[
 						new Location( 123456789, 'London' )
 					],

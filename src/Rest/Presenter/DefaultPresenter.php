@@ -60,6 +60,12 @@ class DefaultPresenter {
 			] : null,
 			'asn' => $info->getAsn(),
 			'organization' => $info->getOrganization(),
+			'country' => array_map( static function ( Location $location ) {
+				return [
+					'id' => $location->getId(),
+					'label' => $location->getLabel(),
+				];
+			}, $info->getCountry() ),
 			'location' => array_map( static function ( Location $location ) {
 				return [
 					'id' => $location->getId(),

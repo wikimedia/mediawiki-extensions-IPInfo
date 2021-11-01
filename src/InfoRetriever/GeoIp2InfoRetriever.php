@@ -68,6 +68,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 			$this->getCoordinates( $ip ),
 			$this->getAsn( $ip ),
 			$this->getOrganization( $ip ),
+			$this->getCountry( $ip ),
 			$this->getLocations( $ip ),
 			$this->getIsp( $ip ),
 			$this->getConnectionType( $ip ),
@@ -134,6 +135,32 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 		} catch ( AddressNotFoundException $e ) {
 			return null;
 		}
+	}
+
+	/**
+	 * @param string $ip
+	 * @return Location[] Empty if this IP address is not in the database
+	 */
+	private function getCountry( string $ip ): array {
+		$reader = $this->getReader( 'City.mmdb' );
+		if ( !$reader ) {
+			return [];
+		}
+
+		try {
+			$city = $reader->city( $ip );
+		} catch ( AddressNotFoundException $e ) {
+			return [];
+		}
+
+		if ( !$city->country->geonameId || !$city->country->name ) {
+			return [];
+		}
+
+		return [ new Location(
+			$city->country->geonameId,
+			$city->country->name
+		) ];
 	}
 
 	/**
