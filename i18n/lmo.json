@@ -4,5 +4,9 @@
 			"Salvemm el lombard"
 		]
 	},
+	"ipinfo-infobox-use-terms": "L'istrument de informazzion sora l'IP el dopera el databeis MaxMind per mostrà di detali compagn de IP, proxy, e quanti dispositiv a inn 'dree a compartì quell'adress IP là.",
+	"ipinfo-infobox-submit-agreement": "Pizza l'istrument de informazzion sora l'IP",
+	"ipinfo-infobox-disable-instructions": "Se te voeulet smorzà questa fonzion chì te podet fàll in [[Special:Preferences|Special:preferenze]].",
+	"ipinfo-use-agreement-submit-error": "On quaicoss l'è andad minga ben. Proeuvegh an'mò. l'error de messag ricevud l'è: $1",
 	"ipinfo-rest-access-denied-blocked-user": "Te gh'hee minga el permess de fà quel'azzion chì desgià che 'l to cunt l'è blocad."
 }

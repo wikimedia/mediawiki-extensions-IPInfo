@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"MITO",
 			"Maantietäjä"
 		]
 	},
@@ -9,5 +10,6 @@
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-source": "Lähde",
 	"ipinfo-property-no-data": "Ei saatavilla",
+	"ipinfo-infobox-submit-agreement": "Ota IP-tietotyökalu käyttöön",
 	"ipinfo-rest-access-denied-blocked-user": "Sinulla ei ole lupaa suorittaa toimintoa, koska tilisi on estetty."
 }

@@ -8,6 +8,7 @@
 	"ipinfo-property-label-source": "উৎস",
 	"ipinfo-widget-error-default": "আইপি তথ্যসমূহ উদ্ধার করা যাচ্ছে না।",
 	"ipinfo-widget-error-wrong-ip": "প্রদানকৃত আইপি ঠিকানাটি লগ ও সংস্করণের সাথে মিলছে না।",
+	"ipinfo-infobox-submit-agreement": "আইপির তথ্য সরঞ্জাম সক্রিয় করুন",
 	"ipinfo-rest-access-denied": "আপনার এই কর্মটি সঞ্চালন করার অনুমতি নেই",
 	"prefs-ipinfo": "আইপির তথ্য"
 }
