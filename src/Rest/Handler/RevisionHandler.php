@@ -89,7 +89,7 @@ class RevisionHandler extends SimpleHandler {
 			$userFactory,
 			// @TODO Replace with something better.
 			RequestContext::getMain()->getUser(),
-			new DefaultPresenter()
+			new DefaultPresenter( $permissionManager )
 		);
 	}
 
@@ -146,7 +146,7 @@ class RevisionHandler extends SimpleHandler {
 		}
 
 		$info = [
-			$this->presenter->present( $this->infoManager->retrieveFromIP( $author->getName() ) )
+			$this->presenter->present( $this->infoManager->retrieveFromIP( $author->getName() ), $user )
 		];
 
 		$response = $this->getResponseFactory()->createJson( [ 'info' => $info ] );

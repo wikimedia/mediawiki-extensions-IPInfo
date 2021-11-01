@@ -93,7 +93,7 @@ class LogHandler extends SimpleHandler {
 			$userFactory,
 			// @TODO Replace with something better.
 			RequestContext::getMain()->getUser(),
-			new DefaultPresenter()
+			new DefaultPresenter( $permissionManager )
 		);
 	}
 
@@ -151,10 +151,10 @@ class LogHandler extends SimpleHandler {
 
 		$info = [];
 		if ( IPUtils::isValid( $performer ) && $canAccessPerformer ) {
-			$info[] = $this->presenter->present( $this->infoManager->retrieveFromIP( $performer ) );
+			$info[] = $this->presenter->present( $this->infoManager->retrieveFromIP( $performer ), $user );
 		}
 		if ( IPUtils::isValid( $target ) && $canAccessTarget ) {
-			$info[] = $this->presenter->present( $this->infoManager->retrieveFromIP( $target ) );
+			$info[] = $this->presenter->present( $this->infoManager->retrieveFromIP( $target ), $user );
 		}
 
 		if ( count( $info ) === 0 ) {

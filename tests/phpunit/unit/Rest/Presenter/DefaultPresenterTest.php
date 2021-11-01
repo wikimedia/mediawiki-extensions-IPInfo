@@ -10,6 +10,8 @@ use MediaWiki\IPInfo\Info\Info;
 use MediaWiki\IPInfo\Info\Location;
 use MediaWiki\IPInfo\Info\ProxyType;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
+use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use stdClass;
 use Wikimedia\Assert\ParameterElementTypeException;
@@ -19,18 +21,13 @@ use Wikimedia\Assert\ParameterElementTypeException;
  * @covers \MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter
  */
 class DefaultPresenterTest extends MediaWikiUnitTestCase {
-	public function providePresent(): Generator {
+	public function providePresentBasic(): Generator {
 		yield [ [], [] ];
 		yield [
 			[
 				[
 					'source' => 'foo',
-					'coordinates' => null,
-					'asn' => null,
-					'organization' => null,
 					'country' => [],
-					'location' => [],
-					'isp' => null,
 					'connectionType' => null,
 					'proxyType' => null,
 				],
@@ -43,25 +40,12 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 			[
 				[
 					'source' => 'bar',
-					'coordinates' => [
-						'latitude' => 51.509865,
-						'longitude' => -0.118092,
-					],
-					'asn' => 0,
-					'organization' => 'baz',
 					'country' => [
 						[
 							'id' => 1605651,
 							'label' => 'Thailand'
 						],
 					],
-					'location' => [
-						[
-							'id' => 123456789,
-							'label' => 'London'
-						],
-					],
-					'isp' => 'qux',
 					'connectionType' => 'quux',
 					'proxyType' => array_fill_keys( [
 						'isAnonymous',
@@ -121,9 +105,9 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider providePresent
+	 * @dataProvider providePresentBasic
 	 */
-	public function testPresent( $expectedData, $data ) {
+	public function testPresentBasic( $expectedData, $data ) {
 		$info = [
 			'subject' => '172.18.0.1',
 			'data' => $data,
@@ -133,9 +117,114 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 			'data' => $expectedData,
 		];
 
+		$user = new UserIdentityValue( 1, 'username' );
+		$permissionManager = $this->createMock( PermissionManager::class );
+		$permissionManager->method( 'getUserPermissions' )
+		  ->with( $this->equalTo( $user ) )
+		  ->willReturn( [ 'ipinfo-view-basic' ] );
+
 		$this->assertArrayEquals(
 			$expected,
-			( new DefaultPresenter() )->present( $info )
+			( new DefaultPresenter( $permissionManager ) )
+				->present( $info, $user )
+		);
+	}
+
+	public function providePresentFull(): Generator {
+		yield [
+			[
+				[
+					'source' => 'foo',
+					'organization' => null,
+					'country' => [],
+					'location' => [],
+					'isp' => null,
+					'connectionType' => null,
+					'proxyType' => null,
+				],
+			],
+			[
+				'foo' => new Info(),
+			]
+		];
+		yield [
+			[
+				[
+					'source' => 'bar',
+					'organization' => 'baz',
+					'country' => [
+						[
+							'id' => 1605651,
+							'label' => 'Thailand'
+						],
+					],
+					'location' => [
+						[
+							'id' => 123456789,
+							'label' => 'London'
+						],
+					],
+					'isp' => 'qux',
+					'connectionType' => 'quux',
+					'proxyType' => array_fill_keys( [
+						'isAnonymous',
+						'isAnonymousVpn',
+						'isPublicProxy',
+						'isResidentialProxy',
+						'isLegitimateProxy',
+						'isTorExitNode'
+					], false ),
+				],
+			],
+			[
+				'bar' => new Info(
+					new Coordinates( 51.509865, -0.118092 ),
+					0,
+					'baz',
+					[
+						new Location( 1605651, 'Thailand' )
+					],
+					[
+						new Location( 123456789, 'London' )
+					],
+					'qux',
+					'quux',
+					new ProxyType(
+						false,
+						false,
+						false,
+						false,
+						false,
+						false
+					)
+				),
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider providePresentFull
+	 */
+	public function testPresentFull( $expectedData, $data ) {
+		$info = [
+			'subject' => '172.18.0.1',
+			'data' => $data,
+		];
+		$expected = [
+			'subject' => '172.18.0.1',
+			'data' => $expectedData,
+		];
+
+		$user = new UserIdentityValue( 1, 'username' );
+		$permissionManager = $this->createMock( PermissionManager::class );
+		$permissionManager->method( 'getUserPermissions' )
+		  ->with( $this->equalTo( $user ) )
+		  ->willReturn( [ 'ipinfo-view-full' ] );
+
+		$this->assertArrayEquals(
+			$expected,
+			( new DefaultPresenter( $permissionManager ) )
+				->present( $info, $user )
 		);
 	}
 
@@ -151,9 +240,12 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 	public function testPresentUnknownDataType( $data ) {
 		$this->expectException( ParameterElementTypeException::class );
 
-		( new DefaultPresenter() )->present( [
+		$user = new UserIdentityValue( 1, 'username' );
+		$permissionManager = $this->createMock( PermissionManager::class );
+
+		( new DefaultPresenter( $permissionManager ) )->present( [
 			'subject' => '172.18.0.1',
 			'data' => [ 'foo' => $data ],
-		] );
+		], $user );
 	}
 }

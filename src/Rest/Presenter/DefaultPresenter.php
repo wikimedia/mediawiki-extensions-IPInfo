@@ -6,15 +6,58 @@ use MediaWiki\IPInfo\Info\BlockInfo;
 use MediaWiki\IPInfo\Info\ContributionInfo;
 use MediaWiki\IPInfo\Info\Info;
 use MediaWiki\IPInfo\Info\Location;
+use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 
 class DefaultPresenter {
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/**
+	 * An ordered list of the viewing privileges of each level
+	 * They are ordered from lowest to highest access and each
+	 * describe themselves independently of one another
+	 *
+	 * @var array
+	 */
+	private const VIEWING_RIGHTS = [
+		'ipinfo-view-basic' => [
+			'country',
+			'connectionType',
+			'proxyType',
+			'numActiveBlocks',
+			'numLocalEdits',
+			'numRecentEdits',
+		],
+		'ipinfo-view-full' => [
+			'country',
+			'location',
+			'connectionType',
+			'isp',
+			'organization',
+			'proxyType',
+			'numActiveBlocks',
+			'numLocalEdits',
+			'numRecentEdits',
+		]
+	];
+
+	/**
+	 * @param PermissionManager $permissionManager
+	 */
+	public function __construct(
+		PermissionManager $permissionManager
+	) {
+		$this->permissionManager = $permissionManager;
+	}
 
 	/**
 	 * @param array $info The output of MediaWiki\IPInfo\InfoManager::retrieveFromIP()
+	 * @param UserIdentity $user User performing the request
 	 * @return array
 	 */
-	public function present( array $info ): array {
+	public function present( array $info, UserIdentity $user ): array {
 		Assert::parameterElementType(
 			[ Info::class, BlockInfo::class, ContributionInfo::class ],
 			$info['data'],
@@ -26,6 +69,15 @@ class DefaultPresenter {
 			'data' => [],
 		];
 
+		// Get the highest access list of properties user has permissions for
+		$viewableProperties = [];
+		$userPermissions = $this->permissionManager->getUserPermissions( $user );
+		foreach ( self::VIEWING_RIGHTS as $level => $properties ) {
+			if ( in_array( $level, $userPermissions ) ) {
+				$viewableProperties = $properties;
+			}
+		}
+
 		foreach ( $info['data'] as $source => $info ) {
 			$data = [ 'source' => $source ];
 
@@ -35,6 +87,13 @@ class DefaultPresenter {
 				$data += $this->presentBlockInfo( $info );
 			} elseif ( $info instanceof ContributionInfo ) {
 				$data += $this->presentContributionInfo( $info );
+			}
+
+			// Unset all properties the user doesn't have access to before writing to $result
+			foreach ( $data as $datum => $value ) {
+				if ( $datum !== 'source' && !in_array( $datum, $viewableProperties ) ) {
+					unset( $data[$datum] );
+				}
 			}
 
 			$result['data'][] = $data;
