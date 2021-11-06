@@ -66,7 +66,6 @@ class PreferencesHandler implements
 		];
 		$preferences[ 'ipinfo-infobox-expanded' ] = [
 			'type' => 'api',
-			'default' => 0,
 		];
 	}
 
