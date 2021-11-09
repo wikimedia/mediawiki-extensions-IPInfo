@@ -27,7 +27,9 @@
 		"ipinfo"
 	],
 	"DefaultUserOptions": {
-		"ipinfo-enable": 0
+		"ipinfo-enable": 0,
+		"ipinfo-use-agreement": 0,
+		"ipinfo-infobox-expanded": 0
 	},
 	"RestRoutes": [
 		{
