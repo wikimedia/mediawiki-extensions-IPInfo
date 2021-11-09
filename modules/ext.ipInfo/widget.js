@@ -132,13 +132,19 @@
 	 * @return {string|null}
 	 */
 	mw.IpInfo.IpInfoWidget.prototype.transformData = function ( sourceData, property ) {
+		var location;
+		if ( sourceData.country ) {
+			location = sourceData.location.concat( sourceData.country );
+		} else {
+			location = sourceData.location;
+		}
 		switch ( property ) {
 			case 'asn':
 				return sourceData.asn;
 			case 'organization':
 				return sourceData.organization;
 			case 'location':
-				return sourceData.location.map( function ( item ) {
+				return location.map( function ( item ) {
 					return item.label;
 				} ).join( mw.msg( 'comma-separator' ) );
 			case 'isp':
