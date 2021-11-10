@@ -1,5 +1,5 @@
-( function () {
-	$( '.mw-anonuserlink' ).after( function () {
+mw.hook( 'wikipage.content' ).add( function ( $content ) {
+	$content.find( '.mw-anonuserlink' ).after( function () {
 		var id, type, ip, $revIdAncestor, $logIdAncestor, button;
 
 		$( this ).addClass( 'ext-ipinfo-anonuserlink-loaded' );
@@ -59,4 +59,4 @@
 
 		return button.$element;
 	} );
-}() );
+} );
