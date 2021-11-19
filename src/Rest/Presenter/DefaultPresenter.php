@@ -79,7 +79,7 @@ class DefaultPresenter {
 		}
 
 		foreach ( $info['data'] as $source => $info ) {
-			$data = [ 'source' => $source ];
+			$data = [];
 
 			if ( $info instanceof Info ) {
 				$data += $this->presentInfo( $info );
@@ -91,12 +91,12 @@ class DefaultPresenter {
 
 			// Unset all properties the user doesn't have access to before writing to $result
 			foreach ( $data as $datum => $value ) {
-				if ( $datum !== 'source' && !in_array( $datum, $viewableProperties ) ) {
+				if ( !in_array( $datum, $viewableProperties ) ) {
 					unset( $data[$datum] );
 				}
 			}
 
-			$result['data'][] = $data;
+			$result['data'][$source] = $data;
 		}
 
 		return $result;

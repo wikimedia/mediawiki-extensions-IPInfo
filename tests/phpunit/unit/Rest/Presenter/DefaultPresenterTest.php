@@ -25,8 +25,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 		yield [ [], [] ];
 		yield [
 			[
-				[
-					'source' => 'foo',
+				'foo' => [
 					'country' => [],
 					'connectionType' => null,
 					'proxyType' => null,
@@ -38,8 +37,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 		];
 		yield [
 			[
-				[
-					'source' => 'bar',
+				'bar' => [
 					'country' => [
 						[
 							'id' => 1605651,
@@ -81,8 +79,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 				),
 			],
 			[
-				[
-					'source' => 'quuz',
+				'quuz' => [
 					'numActiveBlocks' => 1,
 				],
 				[
@@ -92,8 +89,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 		];
 		yield [
 			[
-				[
-					'source' => 'quuz',
+				'quuz' => [
 					'numLocalEdits' => 42,
 					'numRecentEdits' => 24,
 				]
@@ -133,8 +129,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 	public function providePresentFull(): Generator {
 		yield [
 			[
-				[
-					'source' => 'foo',
+				'foo' => [
 					'organization' => null,
 					'country' => [],
 					'location' => [],
@@ -149,8 +144,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 		];
 		yield [
 			[
-				[
-					'source' => 'bar',
+				'bar' => [
 					'organization' => 'baz',
 					'country' => [
 						[

@@ -31,7 +31,7 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 		} );
 		button.once( 'click', function () {
 			var popupIpInfoDelayStart = mw.now();
-			button.popup.$body.append( new mw.IpInfo.IpInfoWidget(
+			button.popup.$body.append( new mw.IpInfo.PopupWidget(
 
 				$.get(
 					mw.config.get( 'wgScriptPath' ) +
@@ -49,14 +49,7 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 					}
 					mw.track( 'timing.MediaWiki.ipinfo_popup_delay', mw.now() - popupIpInfoDelayStart );
 					return data;
-				} ),
-				{
-					'ipinfo-source-geoip2': [
-						'location',
-						'isp',
-						'asn'
-					]
-				}
+				} )
 			).$element );
 		} );
 

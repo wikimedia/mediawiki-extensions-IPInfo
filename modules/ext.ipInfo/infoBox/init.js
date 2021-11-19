@@ -30,7 +30,7 @@
 			return;
 		}
 
-		ipPanelWidget = new mw.IpInfo.IpInfoWidget(
+		ipPanelWidget = new mw.IpInfo.InfoBoxWidget(
 			$.get(
 				mw.config.get( 'wgScriptPath' ) +
 					'/rest.php/ipinfo/v0/revision/' + revId
@@ -47,15 +47,7 @@
 					mw.track( 'timing.MediaWiki.ipinfo_accordion_delay', mw.now() - timerStart );
 				}
 				return data;
-			} ),
-			{
-				'ipinfo-source-geoip2': [
-					'location',
-					'isp',
-					'asn',
-					'organization'
-				]
-			}
+			} )
 		);
 
 		$( '.ext-ipinfo-collapsible-layout .mw-collapsible-content' ).append( ipPanelWidget.$element );

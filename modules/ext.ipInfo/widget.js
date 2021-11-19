@@ -8,11 +8,9 @@
 	 *
 	 * @constructor
 	 * @param {jQuery.Deferred} info Promise that resolves to an info object.
-	 * @param {Object} [display] A map of the name of a source to the list of properties that
-	 *  should be displayed from that source.
 	 * @param {Object} [config] Configuration options
 	 */
-	mw.IpInfo.IpInfoWidget = function ( info, display, config ) {
+	mw.IpInfo.IpInfoWidget = function ( info, config ) {
 		// Config initialization
 		config = $.extend( {
 			classes: [
@@ -29,9 +27,6 @@
 		// Set pending element.
 		this.pushPending();
 
-		// Pass along display
-		this.display = display;
-
 		// Promise handler
 		info.then(
 			this.success.bind( this ),
@@ -45,6 +40,16 @@
 	OO.mixinClass( mw.IpInfo.IpInfoWidget, OO.ui.mixin.PendingElement );
 
 	/**
+	 * Build HTML to display the IP information.
+	 *
+	 * @method
+	 * @abstract
+	 * @param {Object} info Data returned by the API
+	 * @return {Object}
+	 */
+	mw.IpInfo.IpInfoWidget.prototype.buildMarkup = null;
+
+	/**
 	 * Success callback for the info promise.
 	 *
 	 * @param {Object} info
@@ -53,34 +58,10 @@
 		if ( !info ) {
 			// The IP address did not match the log or revision ID
 			this.displayError( mw.msg( 'ipinfo-widget-error-wrong-ip' ) );
-
 			return;
 		}
 
-		var widget = this,
-			$content = $( '<dl>' ).addClass( 'ext-ipinfo-widget-property-properties' );
-
-		info.data.forEach( function ( datum ) {
-			var display = widget.display[ datum.source ] || [];
-
-			display.forEach( function ( property ) {
-				var formattedData = widget.transformData( datum, property );
-
-				// All properties are shown regardless if a value exists or not
-				$content.append( widget.generateMarkup( formattedData, property ) );
-			} );
-
-			// If 1) data from the source was displayed and 2) there is a disclaimer about the
-			// source, then show the disclaimer.
-			if ( display.length && mw.messages.exists( datum.source ) ) {
-				// The following messages can be passed here:
-				// * ipinfo-source-geoip2
-				// * ipinfo-source-<sourcename>
-				$content.append( $( '<div>' ).addClass( 'ext-ipinfo-widget-property-source' ).text( mw.msg( datum.source ) ) );
-			}
-		} );
-
-		widget.$element.append( $content );
+		this.$element.append( this.buildMarkup( info ) );
 	};
 
 	/**
@@ -124,41 +105,17 @@
 	};
 
 	/**
-	 * Take data returned from the API and
-	 * transform it into its client-side representation
+	 * Generate HTML for a property. All properties are shown regardless if a value exists or not.
 	 *
-	 * @param {Object} sourceData
-	 * @param {string} property
-	 * @return {string|null}
-	 */
-	mw.IpInfo.IpInfoWidget.prototype.transformData = function ( sourceData, property ) {
-		var location = ( sourceData.location || [] ).concat( sourceData.country || [] );
-
-		switch ( property ) {
-			case 'asn':
-				return sourceData.asn;
-			case 'organization':
-				return sourceData.organization;
-			case 'location':
-				return location.map( function ( item ) {
-					return item.label;
-				} ).join( mw.msg( 'comma-separator' ) );
-			case 'isp':
-				return sourceData.isp;
-			default:
-				return null;
-		}
-	};
-
-	/**
-	 * Take transformed data and wrap it in markup
-	 *
-	 * @param {Object} formattedData
-	 * @param {string} property
+	 * @param {Object} propertyValue
+	 * @param {string} propertyName
 	 * @return {Object}
 	 */
-	mw.IpInfo.IpInfoWidget.prototype.generateMarkup = function ( formattedData, property ) {
-		var $propertyContent = $( '<div>' ).addClass( 'ext-ipinfo-widget-property' ).attr( 'data-property', property );
+	mw.IpInfo.IpInfoWidget.prototype.generatePropertyMarkup = function (
+		propertyValue,
+		propertyName
+	) {
+		var $propertyContent = $( '<div>' ).addClass( 'ext-ipinfo-widget-property' ).attr( 'data-property', propertyName );
 		// Messages that can be used here:
 		// * ipinfo-property-label-location
 		// * ipinfo-property-label-isp
@@ -166,11 +123,11 @@
 		// * ipinfo-property-label-source
 		// * ipinfo-property-label-organization
 		$propertyContent.append(
-			$( '<dt>' ).addClass( 'ext-ipinfo-widget-property-label' ).text( mw.msg( 'ipinfo-property-label-' + property ) )
+			$( '<dt>' ).addClass( 'ext-ipinfo-widget-property-label' ).text( mw.msg( 'ipinfo-property-label-' + propertyName ) )
 		);
-		if ( formattedData ) {
+		if ( propertyValue ) {
 			$propertyContent.append(
-				$( '<dd>' ).addClass( 'ext-ipinfo-widget-property-value' ).append( formattedData )
+				$( '<dd>' ).addClass( 'ext-ipinfo-widget-property-value' ).append( propertyValue )
 			);
 		} else {
 			$propertyContent.addClass( 'ext-ipinfo-widget-property-no-data' );
