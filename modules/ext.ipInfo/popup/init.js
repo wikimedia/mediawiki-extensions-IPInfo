@@ -30,7 +30,9 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 			classes: [ 'ext-ipinfo-button' ]
 		} );
 		button.once( 'click', function () {
+			var popupIpInfoDelayStart = mw.now();
 			button.popup.$body.append( new mw.IpInfo.IpInfoWidget(
+
 				$.get(
 					mw.config.get( 'wgScriptPath' ) +
 						'/rest.php/ipinfo/v0/' +
@@ -45,6 +47,7 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 							break;
 						}
 					}
+					mw.track( 'timing.MediaWiki.ipinfo_popup_delay', mw.now() - popupIpInfoDelayStart );
 					return data;
 				} ),
 				{
