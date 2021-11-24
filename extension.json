@@ -63,7 +63,8 @@
 			"preferences"
 		],
 		"SpecialContributionsBeforeMainOutput": "infobox",
-		"GetPreferences": "preferences"
+		"GetPreferences": "preferences",
+		"GetBetaFeaturePreferences": "betaFeature"
 	},
 	"HookHandlers": {
 		"popup": {
@@ -85,6 +86,13 @@
 			"services": [
 				"PermissionManager",
 				"UserOptionsLookup"
+			]
+		},
+		"betaFeature": {
+			"class": "MediaWiki\\IPInfo\\HookHandler\\BetaFeaturePreferencesHandler",
+			"services": [
+				"MainConfig",
+				"PermissionManager"
 			]
 		}
 	},

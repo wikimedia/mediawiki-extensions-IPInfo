@@ -2,6 +2,7 @@
 
 namespace MediaWiki\IPInfo\HookHandler;
 
+use ExtensionRegistry;
 use MediaWiki\Hook\BeforePageDisplayHook;
 use Mediawiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
@@ -47,6 +48,13 @@ class PreferencesHandler implements
 	 */
 	public function onGetPreferences( $user, &$preferences ): void {
 		if ( !$this->permissionManager->userHasRight( $user, 'ipinfo' ) ) {
+			return;
+		}
+
+		$isBetaFeaturesLoaded = ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' );
+		// If the betafeature isn't enabled, do not show preferences checkboxes
+		if ( $isBetaFeaturesLoaded &&
+			!$this->userOptionsLookup->getOption( $user, 'ipinfo-beta-feature-enable' ) ) {
 			return;
 		}
 

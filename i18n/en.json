@@ -43,6 +43,8 @@
 	"ipinfo-rest-log-registered": "Cannot retrieve ipinfo for logs of registered users",
 	"ipinfo-rest-log-denied": "Your account does not have access to view the performer of the log entry or the log entry itself",
 	"ipinfo-source-geoip2": "The information shown here comes from the GeoIP2 databases from MaxMind. It might not be fully accurate.",
+	"ipinfo-beta-feature-title": "IP Info",
+	"ipinfo-beta-feature-description": "IP Info tool aims to equip patrollers with vital information about IP addresses to assist them in their roles. This information will be accessible on the Special:Contributions page for the IP editor. An abridged version of this information will be available in a popup next to IP addresses on Log, Contributions and RecentChanges pages.",
 	"prefs-ipinfo": "IP information",
 	"action-ipinfo": "retrieve information about IP addresses attached to revisions or log entries",
 	"right-ipinfo": "Retrieve information about IP addresses attached to revisions or log entries"
