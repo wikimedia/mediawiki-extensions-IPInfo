@@ -33,8 +33,7 @@
 		return $( '<dl>' ).addClass( 'ext-ipinfo-widget-property-properties' ).append(
 			this.generatePropertyMarkup( location, 'location' ),
 			this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].isp, 'isp' ),
-			this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].asn, 'asn' ),
-			$( '<div>' ).addClass( 'ext-ipinfo-widget-property-source' ).text( mw.msg( 'ipinfo-source-geoip2' ) )
+			this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].asn, 'asn' )
 		);
 	};
 }() );
