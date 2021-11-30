@@ -132,7 +132,7 @@
 	 * @return {string|null}
 	 */
 	mw.IpInfo.IpInfoWidget.prototype.transformData = function ( sourceData, property ) {
-		var location = ( sourceData.location || [] ).concat( sourceData.country );
+		var location = ( sourceData.location || [] ).concat( sourceData.country || [] );
 
 		switch ( property ) {
 			case 'asn':
