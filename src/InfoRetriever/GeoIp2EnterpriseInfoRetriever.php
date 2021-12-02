@@ -75,6 +75,7 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 				'organization',
 				'isp',
 				'connectionType',
+				'userType',
 				'proxyType',
 			],
 			null
@@ -94,6 +95,7 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 				$info['locations'] = $this->getLocations( $enterpriseInfo );
 				$info['isp'] = $this->getIsp( $enterpriseInfo );
 				$info['connectionType'] = $this->getConnectionType( $enterpriseInfo );
+				$info['userType'] = $this->getUserType( $enterpriseInfo );
 			} catch ( AddressNotFoundException $e ) {
 				// No need to do anything if it fails
 				// $info defaults to null values
@@ -120,6 +122,7 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 			$info['locations'],
 			$info['isp'],
 			$info['connectionType'],
+			$info['userType'],
 			$info['proxyType']
 		);
 	}
@@ -214,6 +217,14 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 	 */
 	private function getConnectionType( Enterprise $info ): ?string {
 		return $info->traits->connectionType;
+	}
+
+	/**
+	 * @param Enterprise $info
+	 * @return string|null null if GeoIP2 does not return a connection type
+	 */
+	private function getUserType( Enterprise $info ): ?string {
+		return $info->traits->userType;
 	}
 
 	/**

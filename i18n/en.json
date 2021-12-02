@@ -13,6 +13,8 @@
 	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Organization",
+	"ipinfo-property-label-connectiontype": "Connection Method",
+	"ipinfo-property-label-usertype": "Connection Owner",
 	"ipinfo-property-label-source": "Source",
 	"ipinfo-property-label-active-blocks": "Active Blocks",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 active block|$1 active blocks|0=No active blocks}}. ",

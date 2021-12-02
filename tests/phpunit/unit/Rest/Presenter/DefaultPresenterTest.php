@@ -28,6 +28,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 				'foo' => [
 					'country' => [],
 					'connectionType' => null,
+					'userType' => null,
 					'proxyType' => null,
 				],
 			],
@@ -45,6 +46,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 						],
 					],
 					'connectionType' => 'quux',
+					'userType' => 'residential',
 					'proxyType' => array_fill_keys( [
 						'isAnonymous',
 						'isAnonymousVpn',
@@ -68,6 +70,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 					],
 					'qux',
 					'quux',
+					'residential',
 					new ProxyType(
 						false,
 						false,
@@ -135,6 +138,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 					'location' => [],
 					'isp' => null,
 					'connectionType' => null,
+					'userType' => null,
 					'proxyType' => null,
 				],
 			],
@@ -160,6 +164,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 					],
 					'isp' => 'qux',
 					'connectionType' => 'quux',
+					'userType' => 'residential',
 					'proxyType' => array_fill_keys( [
 						'isAnonymous',
 						'isAnonymousVpn',
@@ -183,6 +188,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 					],
 					'qux',
 					'quux',
+					'residential',
 					new ProxyType(
 						false,
 						false,

@@ -13,6 +13,8 @@
 	"ipinfo-property-label-isp": "Label for Internet Service Provider (ISP) data returned",
 	"ipinfo-property-label-asn": "Label for Autonomous System Number (ASN) data returned (an ASN refers to a block of IP addresses)",
 	"ipinfo-property-label-organization": "Label for Autonomous System Organization data returned",
+	"ipinfo-property-label-connectiontype": "Label for the connection method data returned",
+	"ipinfo-property-label-usertype": "Label for the connection owner data returned",
 	"ipinfo-property-label-source": "Label for where data displayed comes from",
 	"ipinfo-property-label-active-blocks": "Label for active blocks",
 	"ipinfo-value-active-blocks": "Message for displaying the active blocks data. \n\nParameters:\n* $1 - Number of blocks.",

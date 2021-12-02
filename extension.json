@@ -116,6 +116,8 @@
 				"ipinfo-property-label-isp",
 				"ipinfo-property-label-asn",
 				"ipinfo-property-label-organization",
+				"ipinfo-property-label-connectiontype",
+				"ipinfo-property-label-usertype",
 				"ipinfo-property-label-source",
 				"ipinfo-property-label-active-blocks",
 				"ipinfo-value-active-blocks",

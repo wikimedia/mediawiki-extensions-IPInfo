@@ -24,6 +24,9 @@ class Info {
 	/** @var string|null */
 	private $connectionType;
 
+	/** @var string|null */
+	private $userType;
+
 	/** @var ProxyType|null */
 	private $proxyType;
 
@@ -35,6 +38,7 @@ class Info {
 	 * @param Location[] $location
 	 * @param string|null $isp
 	 * @param string|null $connectionType
+	 * @param string|null $userType
 	 * @param ProxyType|null $proxyType
 	 */
 	public function __construct(
@@ -45,6 +49,7 @@ class Info {
 		array $location = [],
 		?string $isp = null,
 		?string $connectionType = null,
+		?string $userType = null,
 		?ProxyType $proxyType = null
 	) {
 		$this->coordinates = $coordinates;
@@ -54,6 +59,7 @@ class Info {
 		$this->location = $location;
 		$this->isp = $isp;
 		$this->connectionType = $connectionType;
+		$this->userType = $userType;
 		$this->proxyType = $proxyType;
 	}
 
@@ -104,6 +110,13 @@ class Info {
 	 */
 	public function getConnectionType(): ?string {
 		return $this->connectionType;
+	}
+
+	/**
+	 * @return string|null
+	 */
+	public function getUserType(): ?string {
+		return $this->userType;
 	}
 
 	/**

@@ -72,6 +72,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 			$this->getLocations( $ip ),
 			$this->getIsp( $ip ),
 			$this->getConnectionType( $ip ),
+			$this->getUserType( $ip ),
 			$this->getProxyType( $ip )
 		);
 	}
@@ -235,6 +236,16 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 		} catch ( AddressNotFoundException $e ) {
 			return null;
 		}
+	}
+
+	/**
+	 * User type not available with GeoLite2
+	 * See https://www.maxmind.com/en/solutions/geoip2-enterprise-product-suite/enterprise-database
+	 * @param string $ip
+	 * @return null
+	 */
+	private function getUserType( string $ip ) {
+		return null;
 	}
 
 	/**

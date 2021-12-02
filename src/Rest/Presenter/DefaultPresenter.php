@@ -25,6 +25,7 @@ class DefaultPresenter {
 		'ipinfo-view-basic' => [
 			'country',
 			'connectionType',
+			'userType',
 			'proxyType',
 			'numActiveBlocks',
 			'numLocalEdits',
@@ -34,6 +35,7 @@ class DefaultPresenter {
 			'country',
 			'location',
 			'connectionType',
+			'userType',
 			'isp',
 			'organization',
 			'proxyType',
@@ -133,6 +135,7 @@ class DefaultPresenter {
 			}, $info->getLocation() ),
 			'isp' => $info->getIsp(),
 			'connectionType' => $info->getConnectionType(),
+			'userType' => $info->getUserType(),
 			'proxyType' => $proxyType ? [
 				'isAnonymous' => $proxyType->isAnonymous(),
 				'isAnonymousVpn' => $proxyType->isAnonymousVpn(),

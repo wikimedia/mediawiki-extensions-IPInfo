@@ -49,7 +49,19 @@
 					this.generatePropertyMarkup( location, 'location' ),
 					this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].isp, 'isp' ),
 					this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].asn, 'asn' ),
-					this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].organization, 'organization' ),
+					this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].organization, 'organization' )
+				)
+			).append(
+				$( '<div>' ).addClass( 'ext-ipinfo-widget-properties-col' ).append(
+					this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].connectionType, 'connectiontype' ),
+					// Only show userType if it's not the same as connectionType
+					this.generatePropertyMarkup(
+						info.data[ 'ipinfo-source-geoip2' ].userType !== info.data[ 'ipinfo-source-geoip2' ].connectionType ?
+							info.data[ 'ipinfo-source-geoip2' ].userType : null,
+						'usertype' )
+				)
+			).append(
+				$( '<div>' ).addClass( 'ext-ipinfo-widget-properties-col' ).append(
 					this.generatePropertyMarkup( activeBlocks, 'active-blocks' ),
 					this.generatePropertyMarkup( $edits, 'edits' ),
 					$( '<div>' ).addClass( 'ext-ipinfo-widget-property-source' ).text( mw.msg( 'ipinfo-source-geoip2' ) )
