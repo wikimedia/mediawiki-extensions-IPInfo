@@ -54,7 +54,7 @@
 	}
 }
 
-.ext-ipinfo-widget-property-properties {
+.ext-ipinfo-widget-properties {
 	margin: 0;
 }
 
@@ -88,4 +88,27 @@
 	font-style: italic;
 	font-weight: normal;
 	text-align: right;
+}
+
+.ext-ipinfo-collapsible-layout {
+	.ext-ipinfo-widget-properties {
+		display: flex;
+		flex-wrap: wrap;
+		// Offset padding of children elements at edges of container
+		margin: 0 -12px -16px -12px;
+	}
+
+	.ext-ipinfo-widget-properties-col {
+		display: flex;
+		flex-direction: column;
+		// A somewhat arbitrary min-width set to ~30cpm
+		flex: 1 12em;
+		padding: 0 12px;
+	}
+
+	// The disclaimer is always at the bottom of the column
+	.ext-ipinfo-widget-property-source {
+		margin-top: auto;
+		padding-bottom: 16px;
+	}
 }

@@ -30,7 +30,7 @@
 				return item.label;
 			} ).join( mw.msg( 'comma-separator' ) );
 
-		return $( '<dl>' ).addClass( 'ext-ipinfo-widget-property-properties' ).append(
+		return $( '<dl>' ).addClass( 'ext-ipinfo-widget-properties' ).append(
 			this.generatePropertyMarkup( location, 'location' ),
 			this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].isp, 'isp' ),
 			this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].asn, 'asn' )
