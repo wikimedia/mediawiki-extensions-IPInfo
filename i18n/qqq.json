@@ -18,6 +18,7 @@
 	"ipinfo-widget-error-default": "Error message shown in the widget.",
 	"ipinfo-widget-error-no-data": "Error message shown in the widget.\n\nParameters:\n* $1 - Name of a data source",
 	"ipinfo-widget-error-wrong-ip": "Error message shown in the widget.",
+	"ipinfo-widget-error-ip-no-edits": "Error message shown in the infobox widget",
 	"ipinfo-preference-enable": "Used in [[Special:Preferences]].\n\nLabel for a checkbox to enable/disable the IP info feature.",
 	"ipinfo-preference-use-agreement": "Used in [[Special:Preferences]] and on [[Special:Contributions]].\n\nLabel for a checkbox to enable/disable the IP info feature",
 	"ipinfo-preference-agreement-error": "Error message shown on [[Special:Preferences]].",

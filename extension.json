@@ -121,6 +121,7 @@
 				"ipinfo-widget-error-default",
 				"ipinfo-widget-error-no-data",
 				"ipinfo-widget-error-wrong-ip",
+				"ipinfo-widget-error-ip-no-edits",
 				"ipinfo-infobox-use-terms",
 				"ipinfo-preference-use-agreement",
 				"ipinfo-infobox-submit-agreement",
