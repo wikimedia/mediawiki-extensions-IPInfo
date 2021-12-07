@@ -4,6 +4,11 @@
 		saveCollapsibleUserOption, ipPanelWidget,
 		loadIpInfo, hasUseAgreement, agreementFormWidget,
 		isExpanded, timerStart;
+
+	if ( !ip ) {
+		return;
+	}
+
 	isExpanded = $( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).attr( 'aria-expanded' ) === 'true';
 	saveCollapsibleUserOption = function ( e ) {
 		// Only trigger on enter and space keypresses
@@ -20,13 +25,15 @@
 	// Watch for collapse/expand events and save that state to a user option
 	$( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).on( 'click keypress', saveCollapsibleUserOption );
 
-	if ( !ip ) {
-		return;
-	}
-
 	loadIpInfo = function ( targetIp ) {
 		var revId = $( '.mw-contributions-list [data-mw-revid]' ).first().attr( 'data-mw-revid' );
 		if ( !revId ) {
+			$( '.ext-ipinfo-collapsible-layout .mw-collapsible-content' ).append(
+				new OO.ui.MessageWidget( {
+					type: 'error',
+					label: mw.msg( 'ipinfo-widget-error-ip-no-edits' )
+				} ).$element
+			);
 			return;
 		}
 
