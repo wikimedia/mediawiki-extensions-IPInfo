@@ -4,15 +4,31 @@
 			")8",
 			"Shuiwater",
 			"SkEy",
-			"Wuqianye"
+			"Wuqianye",
+			"Shizhao",
+			"列维劳德"
 		]
 	},
+	"ipinfo-desc": "提供有关IP地址的信息。",
+	"ipinfo-infobox-title": "IP信息",
+	"ipinfo-property-label-location": "位置",
+	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "组织",
 	"ipinfo-property-label-source": "来源",
+	"ipinfo-property-no-data": "不可用",
 	"ipinfo-widget-error-default": "这个IP的信息没法找回。",
+	"ipinfo-widget-error-no-data": "$1中没有此IP地址的数据。",
+	"ipinfo-widget-error-wrong-ip": "提供的IP地址与日志或修订版本不匹配。",
 	"ipinfo-rest-access-denied": "您没有权限来执行此操作",
 	"ipinfo-rest-access-denied-blocked-user": "您没有执行此行为的许可因为您的的账户被拦截",
+	"ipinfo-rest-revision-no-author": "您的帐户无权查看修订版本的作者",
 	"ipinfo-rest-revision-registered": "无法获取已登录用户修订的IP地址",
 	"ipinfo-rest-log-nonexistent": "日志项不存在",
 	"ipinfo-rest-log-registered": "无法获取已登录用户日志的IP地址",
-	"ipinfo-rest-log-denied": "您无法访问该日志项或日志项的操作者"
+	"ipinfo-rest-log-denied": "您无法访问该日志项或日志项的操作者",
+	"ipinfo-source-geoip2": "此处显示的信息来自MaxMind的GeoIP2数据库。它可能不完全准确。",
+	"prefs-ipinfo": "IP信息",
+	"action-ipinfo": "检索有关附加到版本或日志记录的IP地址信息",
+	"right-ipinfo": "检索有关附加到版本或日志记录的IP地址信息"
 }

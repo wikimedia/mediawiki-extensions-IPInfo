@@ -1,8 +1,31 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ajam"
+			"Ajam",
+			"Jeeputer"
 		]
 	},
-	"ipinfo-property-label-source": "منبع"
+	"ipinfo-extensionname": "اطلاعات آی‌پی",
+	"ipinfo-desc": "اطلاعاتی را پیرامون یک نشانی آی‌پی ارائه می‌دهد.",
+	"ipinfo-infobox-title": "اطلاعات آی‌پی",
+	"ipinfo-property-label-location": "موقعیت",
+	"ipinfo-property-label-isp": "سرویس‌دهنده",
+	"ipinfo-property-label-asn": "شماره سامانه خودگردان",
+	"ipinfo-property-label-organization": "سازمان",
+	"ipinfo-property-label-source": "منبع",
+	"ipinfo-property-no-data": "در دسترس نیست",
+	"ipinfo-widget-error-default": "ناتوان در واکشی اطلاعات آی‌پی.",
+	"ipinfo-widget-error-no-data": "داده‌ای برای این نشانی آی‌پی از $1 موجود نیست.",
+	"ipinfo-widget-error-wrong-ip": "نشانی آی‌پی ارائه‌شده با سیاهه یا نسخه منطبق نیست.",
+	"ipinfo-rest-access-denied": "شما دسترسی لازم برای انجام این کار را ندارید.",
+	"ipinfo-rest-access-denied-blocked-user": "شما دسترسی لازم برای انجام این کار را ندارید. زیرا حساب شما بسته شده‌است",
+	"ipinfo-rest-revision-no-author": "حساب کاربری شما دسترسی لازم برای مشاهدهٔ نگارندهٔ نسخه را ندارد",
+	"ipinfo-rest-revision-registered": "ناتوان در واکشی اطلاعات آی‌پی برای نسخه‌های مرتبط با کاربران ثبت‌نام کرده",
+	"ipinfo-rest-log-nonexistent": "مدخل سیاهه موجود نیست",
+	"ipinfo-rest-log-registered": "ناتوان در واکشی اطلاعات آی‌پی برای سیاهه‌های کاربران ثبت‌نام کرده",
+	"ipinfo-rest-log-denied": "حساب کاربری شما دسترسی لازم برای مشاهدهٔ کاربر مرتبط با این مدخل سیاهه، یا خود مدخل را ندارد",
+	"ipinfo-source-geoip2": "اطلاعاتی که در اینجا نمایش می‌یابند، از پایگاه دادهٔ GeoIP2 از MaxMind می‌آیند. ممکن است این اطلاعات دقیق نباشند.",
+	"prefs-ipinfo": "اطلاعات آی‌پی",
+	"action-ipinfo": "واکشی اطلاعات دربارهٔ نشانی‌های آی‌پی مرتبط با نسخه‌ها یا مدخل‌های سیاهه",
+	"right-ipinfo": "واکشی اطلاعات دربارهٔ نشانی‌های آی‌پی مرتبط با نسخه‌ها یا مدخل‌های سیاهه"
 }
