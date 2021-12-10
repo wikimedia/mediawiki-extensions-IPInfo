@@ -18,6 +18,8 @@
 	"ipinfo-property-label-isp": "FAI",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Organisation",
+	"ipinfo-property-label-connectiontype": "Méthode de connexion",
+	"ipinfo-property-label-usertype": "Propriétaire de la connexion",
 	"ipinfo-property-label-source": "Source",
 	"ipinfo-property-label-active-blocks": "Blocages actifs",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 blocage actif|$1 blocages actifs|0=Aucun blocage actif}}.",
