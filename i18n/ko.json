@@ -15,6 +15,7 @@
 	"ipinfo-property-no-data": "사용할 수 없음",
 	"ipinfo-widget-error-default": "IP 정보를 검색하지 못했습니다.",
 	"ipinfo-widget-error-no-data": "$1에서 이 IP에 대한 데이터가 없습니다.",
+	"ipinfo-widget-error-ip-no-edits": "이 주소의 IP 정보는 이 위키에서 편집을 하지 않았기 때문에 가져올 수 없습니다.",
 	"ipinfo-preference-enable": "IP 주소에 대해 특수:기여에 IP 정보 도구를 표시합니다.",
 	"ipinfo-preference-agreement-error": "이용 약관에 동의하기 전에 IP 정보 도구를 활성화해야 합니다.",
 	"ipinfo-infobox-submit-agreement": "IP 정보 도구 활성화",
