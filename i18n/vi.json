@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Keo010122"
+		]
+	},
+	"ipinfo-property-label-edits": "Đóng góp",
+	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 trong 24 giờ qua}})"
+}

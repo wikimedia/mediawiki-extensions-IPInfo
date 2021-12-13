@@ -11,6 +11,7 @@
 	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Organisaatio",
+	"ipinfo-property-label-usertype": "Yhteyden omistaja",
 	"ipinfo-property-label-source": "Lähde",
 	"ipinfo-property-label-active-blocks": "Aktiiviset estot",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 aktiivinen esto|$1 aktiivista estoa|0=Ei aktiivisia estoja}}.",

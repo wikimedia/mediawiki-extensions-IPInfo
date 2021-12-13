@@ -11,6 +11,8 @@
 	"ipinfo-property-label-isp": "ספק אינטרנט",
 	"ipinfo-property-label-asn": "מספר מערכת אוטונומית (ASN)",
 	"ipinfo-property-label-organization": "ארגון",
+	"ipinfo-property-label-connectiontype": "שיטת התחברות",
+	"ipinfo-property-label-usertype": "בעל ההתחברות",
 	"ipinfo-property-label-source": "מקור",
 	"ipinfo-property-label-active-blocks": "חסימות פעילות",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|חסימה פעילה אחת|$1 חסימות פעילות|0=אין חסימות פעילות}}",
