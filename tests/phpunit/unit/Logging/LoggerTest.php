@@ -5,16 +5,15 @@ namespace MediaWiki\IPInfo\Test\Unit\Logging;
 use Generator;
 use IDatabase;
 use ManualLogEntry;
-use MediaWiki\IPInfo\Logging\DebouncingLogger;
 use MediaWiki\IPInfo\Logging\Logger;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use Title;
 
 /**
- * @coversDefaultClass \MediaWiki\IPInfo\Logging\DebouncingLogger
+ * @coversDefaultClass \MediaWiki\IPInfo\Logging\Logger
  */
-class DebouncingLoggerTest extends MediaWikiUnitTestCase {
+class LoggerTest extends MediaWikiUnitTestCase {
 	public function provideLogViewAccordion(): Generator {
 		yield [ 'isDebounced' => true ];
 		yield [ 'isDebounced' => false ];
@@ -44,7 +43,7 @@ class DebouncingLoggerTest extends MediaWikiUnitTestCase {
 				'logging',
 				'*',
 				[
-					'log_type' => 'ipinfo',
+					'log_type' => Logger::LOG_TYPE,
 					'log_action' => Logger::ACTION_VIEW_ACCORDION,
 					'log_actor' => $performer->getId(),
 					'log_namespace' => NS_USER,
@@ -54,8 +53,8 @@ class DebouncingLoggerTest extends MediaWikiUnitTestCase {
 			)
 			->willReturn( (int)$isDebounced );
 
-		$logger = $this->getMockBuilder( DebouncingLogger::class )
-			->setConstructorArgs( [ 1, $database ] )
+		$logger = $this->getMockBuilder( Logger::class )
+			->setConstructorArgs( [ $database ] )
 			->onlyMethods( [ 'createManualLogEntry' ] )
 			->getMock();
 
