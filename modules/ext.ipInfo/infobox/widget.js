@@ -53,12 +53,13 @@
 				)
 			).append(
 				$( '<div>' ).addClass( 'ext-ipinfo-widget-properties-col' ).append(
-					this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].connectionType, 'connectiontype' ),
+					this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].connectionType, 'connectiontype', mw.msg( 'ipinfo-property-tooltip-connectiontype' ) ),
 					// Only show userType if it's not the same as connectionType
 					this.generatePropertyMarkup(
 						info.data[ 'ipinfo-source-geoip2' ].userType !== info.data[ 'ipinfo-source-geoip2' ].connectionType ?
 							info.data[ 'ipinfo-source-geoip2' ].userType : null,
-						'usertype' )
+						'usertype',
+						mw.msg( 'ipinfo-property-tooltip-usertype' ) )
 				)
 			).append(
 				$( '<div>' ).addClass( 'ext-ipinfo-widget-properties-col' ).append(

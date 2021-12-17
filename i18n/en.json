@@ -17,6 +17,8 @@
 	"ipinfo-property-label-usertype": "Connection Owner",
 	"ipinfo-property-label-source": "Source",
 	"ipinfo-property-label-active-blocks": "Active Blocks",
+	"ipinfo-property-tooltip-connectiontype": "The technology through which they’re connecting to the internet.",
+	"ipinfo-property-tooltip-usertype": "The kind of entity that owns the internet connection.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 active block|$1 active blocks|0=No active blocks}}. ",
 	"ipinfo-property-label-edits": "Contributions",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 local edit|$1 local edits|0=No local edits}}",

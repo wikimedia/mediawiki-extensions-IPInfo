@@ -116,3 +116,25 @@
 .ext-ipinfo-widget-value-recent-edits {
 	color: @color-base--subtle;
 }
+
+// Style the tooltip available for some properties in the infobox
+// The tooltip should be on the right edge and vertically centered.
+// Because it's an interactive object, it needs to have a minimum size
+// which happens to be larger than the heading height.
+// Use absolute positioning to take it out of document flow, respect
+// the height of the label, and position the tooltip accordingly.
+.ext-ipinfo-panel-layout {
+	.ext-ipinfo-widget-property-label {
+		// Create block context to position the tooltip against
+		position: relative;
+	}
+
+	.ext-ipinfo-widget-property-tooltip {
+		position: absolute;
+		right: 0;
+		// Using transform here to vertically center the tooltip
+		// results in a loss of the stacking context; instead hardcode
+		// the offset based on half the height (32px / 2)
+		top: ~'calc( 50% - 16px )';
+	}
+}

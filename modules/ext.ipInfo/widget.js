@@ -109,13 +109,16 @@
 	 *
 	 * @param {Object} propertyValue
 	 * @param {string} propertyName
+	 * @param {string} propertyTooltip
 	 * @return {Object}
 	 */
 	mw.IpInfo.IpInfoWidget.prototype.generatePropertyMarkup = function (
 		propertyValue,
-		propertyName
+		propertyName,
+		propertyTooltip
 	) {
 		var $propertyContent = $( '<div>' ).addClass( 'ext-ipinfo-widget-property' ).attr( 'data-property', propertyName );
+
 		// Messages that can be used here:
 		// * ipinfo-property-label-location
 		// * ipinfo-property-label-isp
@@ -124,8 +127,22 @@
 		// * ipinfo-property-label-organization
 		// * ipinfo-property-label-active-blocks
 		// * ipinfo-property-label-edits
+		var $propertyLabel = $( '<dt>' ).addClass( 'ext-ipinfo-widget-property-label' ).text( mw.msg( 'ipinfo-property-label-' + propertyName ) );
+		if ( propertyTooltip ) {
+			var $propertyTooltip = new OO.ui.PopupButtonWidget( {
+				icon: 'info',
+				framed: false,
+				popup: {
+					$content: $( '<span>' ).text( propertyTooltip ),
+					padded: true,
+					align: 'backwards'
+				},
+				classes: [ 'ext-ipinfo-widget-property-tooltip' ]
+			} );
+			$propertyLabel.append( $propertyTooltip.$element );
+		}
 		$propertyContent.append(
-			$( '<dt>' ).addClass( 'ext-ipinfo-widget-property-label' ).text( mw.msg( 'ipinfo-property-label-' + propertyName ) )
+			$propertyLabel
 		);
 		if ( propertyValue || propertyValue === 0 ) {
 			$propertyContent.append(
