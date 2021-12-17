@@ -42,7 +42,8 @@
 				"RevisionLookup",
 				"PermissionManager",
 				"UserOptionsLookup",
-				"UserFactory"
+				"UserFactory",
+				"JobQueueGroup"
 			],
 			"factory": "MediaWiki\\IPInfo\\Rest\\Handler\\RevisionHandler::factory"
 		},

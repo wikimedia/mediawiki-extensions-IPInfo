@@ -1,6 +1,7 @@
 var IpInfoInfoboxWidget = require( './widget.js' );
 var ip = mw.config.get( 'wgIPInfoTarget' ),
 	api = new mw.Api(),
+	isLoaded = false,
 	timerStart;
 
 if ( ip ) {
@@ -44,21 +45,16 @@ if ( ip ) {
 						break;
 					}
 				}
-				if ( $( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).attr( 'aria-expanded' ) === 'true' ) {
-					mw.track( 'timing.MediaWiki.ipinfo_infobox_delay', mw.now() - timerStart );
-				}
+				mw.track( 'timing.MediaWiki.ipinfo_infobox_delay', mw.now() - timerStart );
 				return data;
 			} )
 		);
 
 		$( '.ext-ipinfo-collapsible-layout .mw-collapsible-content' ).append( ipPanelWidget.$element );
+		isLoaded = true;
 	};
 
-	if ( mw.user.options.get( 'ipinfo-use-agreement' ) ) {
-		timerStart = mw.now();
-		// If already agreed to ipinfo-use-agreement, can load ip info on page load
-		loadIpInfo( ip );
-	} else {
+	if ( !mw.user.options.get( 'ipinfo-use-agreement' ) ) {
 		// Show the form to agree to the terms of use instead of ip info
 		var agreementFormWidget = new OO.ui.FormLayout( {
 			classes: [ 'ipinfo-use-agreement-form' ],
@@ -111,6 +107,28 @@ if ( ip ) {
 						} ).$element
 					);
 				} );
+		} );
+	} else if ( $( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).attr( 'aria-expanded' ) === 'true' ) {
+		// Only auto-load ip info if infobox is expanded on-load
+		timerStart = mw.now();
+		loadIpInfo( ip );
+	} else {
+		// Watch for the first expand command and load on it
+		$( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).on( 'click keypress', function ( e ) {
+			if ( isLoaded ) {
+				return;
+			}
+
+			// Only trigger on enter and space keypresses
+			if ( e.type === 'keypress' && e.which !== 13 && e.which !== 32 ) {
+				return;
+			}
+
+			// Only load if expanding the infobox
+			if ( $( this ).attr( 'aria-expanded' ) === 'true' ) {
+				timerStart = mw.now();
+				loadIpInfo( ip );
+			}
 		} );
 	}
 }

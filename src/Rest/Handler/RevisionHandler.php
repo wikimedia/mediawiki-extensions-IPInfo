@@ -3,6 +3,8 @@
 namespace MediaWiki\IPInfo\Rest\Handler;
 
 use ExtensionRegistry;
+use JobQueueGroup;
+use JobSpecification;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\Permissions\PermissionManager;
@@ -70,6 +72,9 @@ class RevisionHandler extends SimpleHandler {
 	/** @var DefaultPresenter */
 	private $presenter;
 
+	/** @var JobQueueGroup */
+	private $jobQueueGroup;
+
 	/**
 	 * @param InfoManager $infoManager
 	 * @param RevisionLookup $revisionLookup
@@ -78,6 +83,7 @@ class RevisionHandler extends SimpleHandler {
 	 * @param UserFactory $userFactory
 	 * @param UserIdentity $user
 	 * @param DefaultPresenter $presenter
+	 * @param JobQueueGroup $jobQueueGroup
 	 */
 	public function __construct(
 		InfoManager $infoManager,
@@ -86,7 +92,8 @@ class RevisionHandler extends SimpleHandler {
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
 		UserIdentity $user,
-		DefaultPresenter $presenter
+		DefaultPresenter $presenter,
+		JobQueueGroup $jobQueueGroup
 	) {
 		$this->infoManager = $infoManager;
 		$this->revisionLookup = $revisionLookup;
@@ -95,6 +102,7 @@ class RevisionHandler extends SimpleHandler {
 		$this->userFactory = $userFactory;
 		$this->user = $user;
 		$this->presenter = $presenter;
+		$this->jobQueueGroup = $jobQueueGroup;
 	}
 
 	/**
@@ -103,6 +111,7 @@ class RevisionHandler extends SimpleHandler {
 	 * @param PermissionManager $permissionManager
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
+	 * @param JobQueueGroup $jobQueueGroup
 	 * @return self
 	 */
 	public static function factory(
@@ -110,7 +119,8 @@ class RevisionHandler extends SimpleHandler {
 		RevisionLookup $revisionLookup,
 		PermissionManager $permissionManager,
 		UserOptionsLookup $userOptionsLookup,
-		UserFactory $userFactory
+		UserFactory $userFactory,
+		JobQueueGroup $jobQueueGroup
 	) {
 		return new self(
 			$infoManager,
@@ -120,7 +130,8 @@ class RevisionHandler extends SimpleHandler {
 			$userFactory,
 			// @TODO Replace with something better.
 			RequestContext::getMain()->getUser(),
-			new DefaultPresenter( $permissionManager )
+			new DefaultPresenter( $permissionManager ),
+			$jobQueueGroup
 		);
 	}
 
@@ -201,6 +212,19 @@ class RevisionHandler extends SimpleHandler {
 				}
 			}
 		}
+
+		$this->jobQueueGroup->push(
+			new JobSpecification(
+				'ipinfoLogIPInfoAccess',
+				[
+					'performer' => $user->getName(),
+					'ip' => $author->getName(),
+					'dataContext' => $dataContext
+				],
+				[],
+				null
+			)
+		);
 
 		$response = $this->getResponseFactory()->createJson( [ 'info' => $info ] );
 		$response->setHeader( 'Cache-Control', 'private, max-age=86400' );

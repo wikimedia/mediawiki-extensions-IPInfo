@@ -2,6 +2,7 @@
 
 namespace MediaWiki\IPInfo\Test\Unit\Rest\Handler;
 
+use JobQueueGroup;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Handler\RevisionHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
@@ -40,6 +41,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 				'userFactory' => $this->createMock( UserFactory::class ),
 				'userIdentity' => $this->createMock( UserIdentity::class ),
 				'presenter' => $this->createMock( DefaultPresenter::class ),
+				'jobQueueGroup' => $this->createMock( JobQueueGroup::class )
 			],
 			$options
 		) ) );
