@@ -12,6 +12,7 @@
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "조직",
 	"ipinfo-property-label-source": "출처",
+	"ipinfo-property-label-edits": "기여",
 	"ipinfo-property-no-data": "사용할 수 없음",
 	"ipinfo-widget-error-default": "IP 정보를 검색하지 못했습니다.",
 	"ipinfo-widget-error-no-data": "$1에서 이 IP에 대한 데이터가 없습니다.",
