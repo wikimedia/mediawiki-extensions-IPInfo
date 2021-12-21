@@ -1,13 +1,26 @@
 {
 	"@metadata": {
 		"authors": [
-			"Maantietäjä"
+			"Maantietäjä",
+			"MITO"
 		]
 	},
+	"ipinfo-desc": "Tarjoaa tietoja IP-osoitteesta.",
+	"ipinfo-infobox-title": "IP-tiedot",
 	"ipinfo-property-label-location": "Sijainti",
 	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "Organisaatio",
 	"ipinfo-property-label-source": "Lähde",
 	"ipinfo-property-no-data": "Ei saatavilla",
-	"ipinfo-rest-access-denied-blocked-user": "Sinulla ei ole lupaa suorittaa toimintoa, koska tilisi on estetty."
+	"ipinfo-widget-error-default": "IP-tietoja ei voitu hakea.",
+	"ipinfo-widget-error-no-data": "Tälle IP-osoitteelle ei ole tietoja lähteestä $1.",
+	"ipinfo-widget-error-wrong-ip": "Annettu IP-osoite ei vastannut lokia tai versiota.",
+	"ipinfo-rest-access-denied": "Sinulla ei ole oikeutta suorittaa toimintoa",
+	"ipinfo-rest-access-denied-blocked-user": "Sinulla ei ole lupaa suorittaa toimintoa, koska tilisi on estetty.",
+	"ipinfo-rest-revision-no-author": "Käyttäjälläsi ei ole oikeutta tarkastella version kirjoittajaa",
+	"ipinfo-rest-log-nonexistent": "Lokimerkintää ei ole olemassa",
+	"ipinfo-rest-log-denied": "Käyttäjälläsi ei ole oikeutta tarkastella lokimerkinnän suorittajaa tai itse lokimerkintää",
+	"prefs-ipinfo": "IP-tiedot",
+	"action-ipinfo": "hakea tietoja IP-osoitteista, jotka on liitetty versioihin tai lokimerkintöihin"
 }
