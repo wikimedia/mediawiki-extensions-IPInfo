@@ -11,6 +11,7 @@
 	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "조직",
+	"ipinfo-property-label-connectiontype": "연결 방식",
 	"ipinfo-property-label-source": "출처",
 	"ipinfo-property-label-edits": "기여",
 	"ipinfo-property-no-data": "사용할 수 없음",
