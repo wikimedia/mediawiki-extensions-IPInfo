@@ -74,7 +74,7 @@
 			]
 		},
 		"infobox": {
-			"class": "MediaWiki\\IPInfo\\HookHandler\\InfoBoxHandler",
+			"class": "MediaWiki\\IPInfo\\HookHandler\\InfoboxHandler",
 			"services": [
 				"PermissionManager",
 				"UserOptionsLookup"
@@ -94,8 +94,8 @@
 			"remoteExtPath": "IPInfo/modules/ext.ipInfo",
 			"packageFiles": [
 				"dispatcher.js",
-				"infoBox/init.js",
-				"infoBox/widget.js",
+				"infobox/init.js",
+				"infobox/widget.js",
 				"popup/init.js",
 				"popup/widget.js",
 				"widget.js"

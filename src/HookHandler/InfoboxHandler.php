@@ -10,7 +10,7 @@ use OOUI\PanelLayout;
 use OutputPage;
 use Wikimedia\IPUtils;
 
-class InfoBoxHandler implements SpecialContributionsBeforeMainOutputHook {
+class InfoboxHandler implements SpecialContributionsBeforeMainOutputHook {
 	/** @var PermissionManager */
 	private $permissionManager;
 

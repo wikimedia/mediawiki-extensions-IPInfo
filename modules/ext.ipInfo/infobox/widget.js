@@ -1,6 +1,6 @@
 ( function () {
 	/**
-	 * Info Box Widget
+	 * Infobox Widget
 	 *
 	 * @class
 	 *
@@ -8,14 +8,14 @@
 	 * @param {jQuery.Deferred} info Promise that resolves to an info object.
 	 * @param {Object} [config] Configuration options
 	 */
-	mw.IpInfo.InfoBoxWidget = function ( info, config ) {
+	mw.IpInfo.InfoboxWidget = function ( info, config ) {
 		// Parent constructor
-		mw.IpInfo.InfoBoxWidget.super.call( this, info, config );
+		mw.IpInfo.InfoboxWidget.super.call( this, info, config );
 	};
 
 	/* Setup */
 
-	OO.inheritClass( mw.IpInfo.InfoBoxWidget, mw.IpInfo.IpInfoWidget );
+	OO.inheritClass( mw.IpInfo.InfoboxWidget, mw.IpInfo.IpInfoWidget );
 
 	/**
 	 * Build HTML to display the IP information.
@@ -23,7 +23,7 @@
 	 * @param {Object} info Data returned by the API
 	 * @return {Object}
 	 */
-	mw.IpInfo.InfoBoxWidget.prototype.buildMarkup = function ( info ) {
+	mw.IpInfo.InfoboxWidget.prototype.buildMarkup = function ( info ) {
 		var location = ( info.data[ 'ipinfo-source-geoip2' ].location || [] )
 			.concat( info.data[ 'ipinfo-source-geoip2' ].country || [] )
 			.map( function ( item ) {

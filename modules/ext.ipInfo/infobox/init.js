@@ -37,7 +37,7 @@
 			return;
 		}
 
-		ipPanelWidget = new mw.IpInfo.InfoBoxWidget(
+		ipPanelWidget = new mw.IpInfo.InfoboxWidget(
 			$.get(
 				mw.config.get( 'wgScriptPath' ) +
 					'/rest.php/ipinfo/v0/revision/' + revId
