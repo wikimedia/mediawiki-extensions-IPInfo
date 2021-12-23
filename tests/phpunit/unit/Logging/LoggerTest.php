@@ -14,17 +14,17 @@ use Title;
  * @coversDefaultClass \MediaWiki\IPInfo\Logging\Logger
  */
 class LoggerTest extends MediaWikiUnitTestCase {
-	public function provideLogViewAccordion(): Generator {
+	public function provideLogViewInfobox(): Generator {
 		yield [ 'isDebounced' => true ];
 		yield [ 'isDebounced' => false ];
 	}
 
 	/**
-	 * @dataProvider provideLogViewAccordion
-	 * @covers ::logViewAccordion
+	 * @dataProvider provideLogViewInfobox
+	 * @covers ::logViewInfobox
 	 * @covers ::log
 	 */
-	public function testLogViewAccordion( bool $isDebounced ): void {
+	public function testLogViewInfobox( bool $isDebounced ): void {
 		$performer = new UserIdentityValue( 1, 'Foo' );
 		$target = '127.0.0.1';
 
@@ -44,7 +44,7 @@ class LoggerTest extends MediaWikiUnitTestCase {
 				'*',
 				[
 					'log_type' => Logger::LOG_TYPE,
-					'log_action' => Logger::ACTION_VIEW_ACCORDION,
+					'log_action' => Logger::ACTION_VIEW_INFOBOX,
 					'log_actor' => $performer->getId(),
 					'log_namespace' => NS_USER,
 					'log_title' => $target,
@@ -77,10 +77,10 @@ class LoggerTest extends MediaWikiUnitTestCase {
 
 			$logger->expects( $this->once() )
 				->method( 'createManualLogEntry' )
-				->with( Logger::ACTION_VIEW_ACCORDION )
+				->with( Logger::ACTION_VIEW_INFOBOX )
 				->willReturn( $logEntry );
 		}
 
-		$logger->logViewAccordion( $performer, $target );
+		$logger->logViewInfobox( $performer, $target );
 	}
 }

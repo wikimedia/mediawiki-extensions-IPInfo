@@ -45,7 +45,7 @@ if ( ip ) {
 					}
 				}
 				if ( $( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).attr( 'aria-expanded' ) === 'true' ) {
-					mw.track( 'timing.MediaWiki.ipinfo_accordion_delay', mw.now() - timerStart );
+					mw.track( 'timing.MediaWiki.ipinfo_infobox_delay', mw.now() - timerStart );
 				}
 				return data;
 			} )

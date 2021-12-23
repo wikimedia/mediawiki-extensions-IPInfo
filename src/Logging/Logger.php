@@ -41,7 +41,7 @@ class Logger {
 	 *
 	 * @var string
 	 */
-	public const ACTION_VIEW_ACCORDION = 'view_accordion';
+	public const ACTION_VIEW_INFOBOX = 'view_infobox';
 
 	/**
 	 * Represents a user (the performer) viewing information about an IP via the popup.
@@ -68,7 +68,7 @@ class Logger {
 	/**
 	 * @param IDatabase $dbw
 	 * @param int $delay The number of seconds after which a duplicate log entry can be
-	 *  created by `Logger::logViewAccordion` or `Logger::logViewPopup`
+	 *  created by `Logger::logViewInfobox` or `Logger::logViewPopup`
 	 * @throws ParameterAssertionException if `$delay` is less than 1
 	 */
 	public function __construct( IDatabase $dbw, int $delay = self::DEFAULT_DEBOUNCE_DELAY ) {
@@ -84,8 +84,8 @@ class Logger {
 	 * @param UserIdentity $performer
 	 * @param string $ip
 	 */
-	public function logViewAccordion( UserIdentity $performer, string $ip ): void {
-		$this->debouncedLog( $performer, $ip, self::ACTION_VIEW_ACCORDION );
+	public function logViewInfobox( UserIdentity $performer, string $ip ): void {
+		$this->debouncedLog( $performer, $ip, self::ACTION_VIEW_INFOBOX );
 	}
 
 	/**
@@ -101,7 +101,7 @@ class Logger {
 	/**
 	 * @param UserIdentity $performer
 	 * @param string $ip
-	 * @param string $action Either `Logger::ACTION_VIEW_ACCORDION` or
+	 * @param string $action Either `Logger::ACTION_VIEW_INFOBOX` or
 	 *  `Logger::ACTION_VIEW_POPUP`
 	 */
 	private function debouncedLog( UserIdentity $performer, string $ip, string $action ): void {
