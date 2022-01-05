@@ -13,6 +13,8 @@
 	"ipinfo-property-label-asn": "شماره سامانه خودگردان",
 	"ipinfo-property-label-organization": "سازمان",
 	"ipinfo-property-label-source": "منبع",
+	"ipinfo-property-label-active-blocks": "قطع دسترسی‌های فعال",
+	"ipinfo-property-label-edits": "مشارکت‌ها",
 	"ipinfo-property-no-data": "در دسترس نیست",
 	"ipinfo-widget-error-default": "ناتوان در واکشی اطلاعات آی‌پی.",
 	"ipinfo-widget-error-no-data": "داده‌ای برای این نشانی آی‌پی از $1 موجود نیست.",
