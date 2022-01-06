@@ -46,25 +46,25 @@
 		return $( '<dl>' ).addClass( 'ext-ipinfo-widget-properties' )
 			.append(
 				$( '<div>' ).addClass( 'ext-ipinfo-widget-properties-col' ).append(
-					this.generatePropertyMarkup( location, 'location' ),
-					this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].isp, 'isp' ),
-					this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].asn, 'asn' ),
-					this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].organization, 'organization' )
+					this.generatePropertyMarkup( location, mw.msg( 'ipinfo-property-label-location' ) ),
+					this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].isp, mw.msg( 'ipinfo-property-label-isp' ) ),
+					this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].asn, mw.msg( 'ipinfo-property-label-asn' ) ),
+					this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].organization, mw.msg( 'ipinfo-property-label-organization' ) )
 				)
 			).append(
 				$( '<div>' ).addClass( 'ext-ipinfo-widget-properties-col' ).append(
-					this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].connectionType, 'connectiontype', mw.msg( 'ipinfo-property-tooltip-connectiontype' ) ),
+					this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].connectionType, mw.msg( 'ipinfo-property-label-connectiontype' ), mw.msg( 'ipinfo-property-tooltip-connectiontype' ) ),
 					// Only show userType if it's not the same as connectionType
 					this.generatePropertyMarkup(
 						info.data[ 'ipinfo-source-geoip2' ].userType !== info.data[ 'ipinfo-source-geoip2' ].connectionType ?
 							info.data[ 'ipinfo-source-geoip2' ].userType : null,
-						'usertype',
+						mw.msg( 'ipinfo-property-label-usertype' ),
 						mw.msg( 'ipinfo-property-tooltip-usertype' ) )
 				)
 			).append(
 				$( '<div>' ).addClass( 'ext-ipinfo-widget-properties-col' ).append(
-					this.generatePropertyMarkup( activeBlocks, 'active-blocks' ),
-					this.generatePropertyMarkup( $edits, 'edits' ),
+					this.generatePropertyMarkup( activeBlocks, mw.msg( 'ipinfo-property-label-active-blocks' ) ),
+					this.generatePropertyMarkup( $edits, mw.msg( 'ipinfo-property-label-edits' ) ),
 					$( '<div>' ).addClass( 'ext-ipinfo-widget-property-source' ).text( mw.msg( 'ipinfo-source-geoip2' ) )
 				)
 			);

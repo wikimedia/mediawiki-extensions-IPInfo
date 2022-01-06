@@ -108,26 +108,17 @@
 	 * Generate HTML for a property. All properties are shown regardless if a value exists or not.
 	 *
 	 * @param {Object} propertyValue
-	 * @param {string} propertyName
+	 * @param {string} propertyLabel
 	 * @param {string} propertyTooltip
 	 * @return {Object}
 	 */
 	mw.IpInfo.IpInfoWidget.prototype.generatePropertyMarkup = function (
 		propertyValue,
-		propertyName,
+		propertyLabel,
 		propertyTooltip
 	) {
-		var $propertyContent = $( '<div>' ).addClass( 'ext-ipinfo-widget-property' ).attr( 'data-property', propertyName );
-
-		// Messages that can be used here:
-		// * ipinfo-property-label-location
-		// * ipinfo-property-label-isp
-		// * ipinfo-property-label-asn
-		// * ipinfo-property-label-source
-		// * ipinfo-property-label-organization
-		// * ipinfo-property-label-active-blocks
-		// * ipinfo-property-label-edits
-		var $propertyLabel = $( '<dt>' ).addClass( 'ext-ipinfo-widget-property-label' ).text( mw.msg( 'ipinfo-property-label-' + propertyName ) );
+		var $propertyContent = $( '<div>' ).addClass( 'ext-ipinfo-widget-property' ).attr( 'data-property', propertyLabel );
+		var $propertyLabel = $( '<dt>' ).addClass( 'ext-ipinfo-widget-property-label' ).text( propertyLabel );
 		if ( propertyTooltip ) {
 			var $propertyTooltip = new OO.ui.PopupButtonWidget( {
 				icon: 'info',
