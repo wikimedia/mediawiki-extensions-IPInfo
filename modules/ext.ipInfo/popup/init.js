@@ -38,7 +38,10 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 		button = new OO.ui.PopupButtonWidget( {
 			icon: 'info',
 			framed: false,
-			classes: [ 'ext-ipinfo-button' ]
+			classes: [ 'ext-ipinfo-button' ],
+			popup: {
+				padded: true
+			}
 		} );
 		button.once( 'click', function () {
 			var popupIpInfoDelayStart = mw.now();
