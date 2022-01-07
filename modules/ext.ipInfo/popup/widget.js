@@ -45,8 +45,6 @@
 
 		return $( '<dl>' ).addClass( 'ext-ipinfo-widget-property-properties' ).append(
 			this.generatePropertyMarkup( location, mw.msg( 'ipinfo-property-label-location' ) ),
-			this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].isp, mw.msg( 'ipinfo-property-label-isp' ) ),
-			this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].asn, mw.msg( 'ipinfo-property-label-asn' ) ),
 			this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].organization, mw.msg( 'ipinfo-property-label-organization' ) ),
 			this.generatePropertyMarkup( activeBlocks, mw.msg( 'ipinfo-property-label-active-blocks' ) ),
 			this.generatePropertyMarkup( $edits, mw.msg( 'ipinfo-property-label-edits' ) )
