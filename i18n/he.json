@@ -15,6 +15,8 @@
 	"ipinfo-property-label-usertype": "בעל ההתחברות",
 	"ipinfo-property-label-source": "מקור",
 	"ipinfo-property-label-active-blocks": "חסימות פעילות",
+	"ipinfo-property-tooltip-connectiontype": "הטכנולוגיה שהם מתחברים לאינטרנט באמצעותה.",
+	"ipinfo-property-tooltip-usertype": "סוג הישות שמחזיקה בבעלות על חיבור האינטרנט.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|חסימה פעילה אחת|$1 חסימות פעילות|0=אין חסימות פעילות}}",
 	"ipinfo-property-label-edits": "תרומות",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|עריכה מקומית אחת|$1 עריכות מקומיות|0=אין עריכות מקומיות}}",

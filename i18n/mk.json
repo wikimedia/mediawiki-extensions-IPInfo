@@ -15,6 +15,8 @@
 	"ipinfo-property-label-usertype": "Сопственик на врската",
 	"ipinfo-property-label-source": "Извор",
 	"ipinfo-property-label-active-blocks": "Активни блокови",
+	"ipinfo-property-tooltip-connectiontype": "Технологијата преку која се поврзуваат на семрежјето.",
+	"ipinfo-property-tooltip-usertype": "Видот на единица што ја поседува семрежната врска.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 активен блок|$1 активни блокови|0=Нема активни блокови}}.",
 	"ipinfo-property-label-edits": "Придонеси",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 месно уредување|$1 месни уредувања|0=Нема месни уредувања}}",
