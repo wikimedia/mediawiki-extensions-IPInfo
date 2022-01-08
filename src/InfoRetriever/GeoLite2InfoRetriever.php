@@ -8,17 +8,16 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\IPInfo\Info\Coordinates;
 use MediaWiki\IPInfo\Info\Info;
 use MediaWiki\IPInfo\Info\Location;
-use MediaWiki\IPInfo\Info\ProxyType;
 
 /**
- * Manager for getting information from the MaxMind GeoIp2 databases.
+ * Manager for getting information from the MaxMind GeoLite2 databases.
  */
-class GeoIp2InfoRetriever implements InfoRetriever {
+class GeoLite2InfoRetriever implements InfoRetriever {
 	/**
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'IPInfoGeoIP2Prefix',
+		'IPInfoGeoLite2Prefix',
 	];
 
 	/** @var ServiceOptions */
@@ -52,7 +51,7 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 	 * @return Reader|null null if the file path or file is invalid
 	 */
 	protected function getReader( string $filename ): ?Reader {
-		$path = $this->options->get( 'IPInfoGeoIP2Prefix' );
+		$path = $this->options->get( 'IPInfoGeoLite2Prefix' );
 		if ( $path === false ) {
 			return null;
 		}
@@ -205,37 +204,23 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 	}
 
 	/**
+	 * ISP not available with GeoLite2
+	 * See https://www.maxmind.com/en/solutions/geoip2-enterprise-product-suite/enterprise-database
 	 * @param string $ip
-	 * @return string|null null if GeoIP2 does not return an ISP
+	 * @return null
 	 */
-	private function getIsp( string $ip ): ?string {
-		$reader = $this->getReader( 'ISP.mmdb' );
-		if ( !$reader ) {
-			return null;
-		}
-
-		try {
-			return $reader->isp( $ip )->isp;
-		} catch ( AddressNotFoundException $e ) {
-			return null;
-		}
+	private function getIsp( string $ip ) {
+		return null;
 	}
 
 	/**
+	 * Connection type not available with GeoLite2
+	 * See https://www.maxmind.com/en/solutions/geoip2-enterprise-product-suite/enterprise-database
 	 * @param string $ip
-	 * @return string|null null if GeoIP2 does not return a connection type
+	 * @return null
 	 */
-	private function getConnectionType( string $ip ): ?string {
-		$reader = $this->getReader( 'Connection-Type.mmdb' );
-		if ( !$reader ) {
-			return null;
-		}
-
-		try {
-			return $reader->connectionType( $ip )->connectionType;
-		} catch ( AddressNotFoundException $e ) {
-			return null;
-		}
+	private function getConnectionType( string $ip ) {
+		return null;
 	}
 
 	/**
@@ -249,34 +234,12 @@ class GeoIp2InfoRetriever implements InfoRetriever {
 	}
 
 	/**
+	 * Proxy type not available with GeoLite2
+	 * See https://www.maxmind.com/en/solutions/geoip2-enterprise-product-suite/enterprise-database
 	 * @param string $ip
-	 * @return ProxyType|null null if reader does not exist or if traits cannot be accessed
+	 * @return null
 	 */
-	private function getProxyType( string $ip ): ?ProxyType {
-		$reader = $this->getReader( 'City.mmdb' );
-		if ( !$reader ) {
-			return null;
-		}
-
-		try {
-			$city = $reader->city( $ip );
-		} catch ( AddressNotFoundException $e ) {
-			return null;
-		}
-
-		$traits = $city->traits;
-		if ( !$traits ) {
-			return null;
-		}
-
-		// GeoIP only returns these traits if they exist and always returns true if they do
-		return new ProxyType(
-			$traits->isAnonymous ?? false,
-			$traits->isAnonymousVpn ?? false,
-			$traits->isPublicProxy ?? false,
-			$traits->isResidentialProxy ?? false,
-			$traits->isLegitimateProxy ?? false,
-			$traits->isTorExitNode ?? false
-		);
+	private function getProxyType( string $ip ) {
+		return null;
 	}
 }

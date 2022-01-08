@@ -155,7 +155,7 @@
 		}
 	},
 	"config": {
-		"IPInfoGeoIP2Prefix": {
+		"IPInfoGeoLite2Prefix": {
 			"value": false,
 			"description": "Path to the directory containing either GeoLite2- or GeoIP2- depending on database files downloaded; should contain prefix (GeoLite2-/GeoIP2-)"
 		},
