@@ -1,14 +1,11 @@
-( function () {
-	var ip = mw.config.get( 'wgIPInfoTarget' ),
-		api = new mw.Api(),
-		saveCollapsibleUserOption, ipPanelWidget,
-		loadIpInfo, hasUseAgreement, agreementFormWidget,
-		isExpanded, timerStart;
+var IpInfoInfoboxWidget = require( './widget.js' );
+var ip = mw.config.get( 'wgIPInfoTarget' ),
+	api = new mw.Api(),
+	saveCollapsibleUserOption, ipPanelWidget,
+	loadIpInfo, hasUseAgreement, agreementFormWidget,
+	isExpanded, timerStart;
 
-	if ( !ip ) {
-		return;
-	}
-
+if ( ip ) {
 	isExpanded = $( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).attr( 'aria-expanded' ) === 'true';
 	saveCollapsibleUserOption = function ( e ) {
 		// Only trigger on enter and space keypresses
@@ -37,7 +34,7 @@
 			return;
 		}
 
-		ipPanelWidget = new mw.IpInfo.InfoboxWidget(
+		ipPanelWidget = new IpInfoInfoboxWidget(
 			$.get(
 				mw.config.get( 'wgScriptPath' ) +
 					'/rest.php/ipinfo/v0/revision/' + revId
@@ -122,4 +119,4 @@
 				} );
 		} );
 	}
-}() );
+}

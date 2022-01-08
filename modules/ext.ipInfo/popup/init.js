@@ -1,3 +1,4 @@
+var IpInfoPopupWidget = require( './widget.js' );
 mw.hook( 'wikipage.content' ).add( function ( $content ) {
 	$content.find( '.mw-anonuserlink' ).after( function () {
 		var id, type, ip, $revIdAncestor, $logIdAncestor, button,
@@ -45,7 +46,7 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 		} );
 		button.once( 'click', function () {
 			var popupIpInfoDelayStart = mw.now();
-			button.popup.$body.append( new mw.IpInfo.PopupWidget(
+			button.popup.$body.append( new IpInfoPopupWidget(
 
 				$.get(
 					mw.config.get( 'wgScriptPath' ) +
