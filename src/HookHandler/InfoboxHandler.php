@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo\HookHandler;
 
 use CollapsibleFieldsetLayout;
+use ExtensionRegistry;
 use MediaWiki\Hook\SpecialContributionsBeforeMainOutputHook;
 use Mediawiki\Permissions\PermissionManager;
 use MediaWiki\User\UserOptionsLookup;
@@ -39,10 +40,14 @@ class InfoboxHandler implements SpecialContributionsBeforeMainOutputHook {
 		}
 
 		$accessingUser = $out->getUser();
+		$isBetaFeaturesLoaded = ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' );
+
 		if (
 			!$this->permissionManager->userHasRight( $accessingUser, 'ipinfo' ) ||
-			!$this->userOptionsLookup->getOption( $accessingUser, 'ipinfo-enable' )
-		) {
+			!$this->userOptionsLookup->getOption( $accessingUser, 'ipinfo-enable' ) ||
+			$isBetaFeaturesLoaded &&
+			!$this->userOptionsLookup->getOption( $accessingUser, 'ipinfo-beta-feature-enable' )
+			) {
 			return;
 		}
 

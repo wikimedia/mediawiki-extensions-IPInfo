@@ -2,6 +2,7 @@
 
 namespace MediaWiki\IPInfo\HookHandler;
 
+use ExtensionRegistry;
 use MediaWiki\Hook\BeforePageDisplayHook;
 use Mediawiki\Permissions\PermissionManager;
 use MediaWiki\User\UserOptionsLookup;
@@ -39,10 +40,14 @@ class PopupHandler implements BeforePageDisplayHook {
 		}
 
 		$user = $out->getUser();
+		$isBetaFeaturesLoaded = ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' );
+
 		if (
 			!$this->permissionManager->userHasRight( $user, 'ipinfo' ) ||
 			!$this->userOptionsLookup->getOption( $user, 'ipinfo-enable' ) ||
-			!$this->userOptionsLookup->getOption( $user, 'ipinfo-use-agreement' )
+			!$this->userOptionsLookup->getOption( $user, 'ipinfo-use-agreement' ) ||
+			$isBetaFeaturesLoaded &&
+			!$this->userOptionsLookup->getOption( $user, 'ipinfo-beta-feature-enable' )
 		) {
 			return;
 		}
