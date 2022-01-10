@@ -4,23 +4,23 @@ namespace MediaWiki\IPInfo\Test\Integration;
 
 use LoggedServiceOptions;
 use MediaWiki\IPInfo\Info\Info;
-use MediaWiki\IPInfo\InfoRetriever\GeoIp2InfoRetriever;
+use MediaWiki\IPInfo\InfoRetriever\GeoLite2InfoRetriever;
 use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
 use TestAllServiceOptionsUsed;
 
 /**
  * @group IPInfo
- * @covers \MediaWiki\IPInfo\InfoRetriever\GeoIp2InfoRetriever
+ * @covers \MediaWiki\IPInfo\InfoRetriever\GeoLite2InfoRetriever
  */
-class GeoIp2InfoRetrieverTest extends MediaWikiIntegrationTestCase {
+class GeoLite2InfoRetrieverTest extends MediaWikiIntegrationTestCase {
 	use TestAllServiceOptionsUsed;
 
 	public function testRetrieveFromIP() {
-		$infoRetriever = new GeoIp2InfoRetriever(
+		$infoRetriever = new GeoLite2InfoRetriever(
 			new LoggedServiceOptions(
 				self::$serviceOptionsAccessLog,
-				GeoIp2InfoRetriever::CONSTRUCTOR_OPTIONS,
+				GeoLite2InfoRetriever::CONSTRUCTOR_OPTIONS,
 				MediaWikiServices::getInstance()->getMainConfig()
 			),
 			MediaWikiServices::getInstance()->get( 'ReaderFactory' )

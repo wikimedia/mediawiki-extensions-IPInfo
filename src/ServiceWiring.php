@@ -5,13 +5,13 @@ use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\InfoRetriever\BlockInfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\ContributionInfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\GeoIp2EnterpriseInfoRetriever;
-use MediaWiki\IPInfo\InfoRetriever\GeoIp2InfoRetriever;
+use MediaWiki\IPInfo\InfoRetriever\GeoLite2InfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\ReaderFactory;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 return [
-	'IPInfoGeoIp2InfoRetriever' => static function ( MediaWikiServices $services ) {
+	'IPInfoGeoLite2InfoRetriever' => static function ( MediaWikiServices $services ) {
 		$config = $services->getMainConfig();
 		if ( $config->get( 'IPInfoGeoIP2EnterprisePath' ) ) {
 			return new GeoIp2EnterpriseInfoRetriever(
@@ -21,9 +21,9 @@ return [
 				$services->get( 'ReaderFactory' )
 			);
 		}
-		return new GeoIp2InfoRetriever(
+		return new GeoLite2InfoRetriever(
 			new ServiceOptions(
-				GeoIp2InfoRetriever::CONSTRUCTOR_OPTIONS, $config
+				GeoLite2InfoRetriever::CONSTRUCTOR_OPTIONS, $config
 			),
 			$services->get( 'ReaderFactory' )
 		);
@@ -42,7 +42,7 @@ return [
 	},
 	'IPInfoInfoManager' => static function ( MediaWikiServices $services ): InfoManager {
 		return new InfoManager( [
-			$services->get( 'IPInfoGeoIp2InfoRetriever' ),
+			$services->get( 'IPInfoGeoLite2InfoRetriever' ),
 			$services->get( 'IPInfoBlockInfoRetriever' ),
 			$services->get( 'IPInfoContributionInfoRetriever' ),
 		] );
