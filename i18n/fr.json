@@ -22,6 +22,8 @@
 	"ipinfo-property-label-usertype": "Propriétaire de la connexion",
 	"ipinfo-property-label-source": "Source",
 	"ipinfo-property-label-active-blocks": "Blocages actifs",
+	"ipinfo-property-tooltip-connectiontype": "La technologie via laquelle ils se sont connectés à l’internet.",
+	"ipinfo-property-tooltip-usertype": "Le type d’entité qui détient la connexion internet.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 blocage actif|$1 blocages actifs|0=Aucun blocage actif}}.",
 	"ipinfo-property-label-edits": "Contributions",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 modification locale|$1 modifications locales|0=Aucune modification locale}}",

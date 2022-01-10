@@ -1,16 +1,21 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kly"
+			"Kly",
+			"Xiplus"
 		]
 	},
-	"ipinfo-desc": "提供關於 IP 位址的資訊。",
-	"ipinfo-infobox-title": "IP 資訊",
+	"ipinfo-extensionname": "IP資訊",
+	"ipinfo-desc": "提供關於IP位址的資訊。",
+	"ipinfo-infobox-title": "IP資訊",
 	"ipinfo-property-label-location": "位置",
 	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "組織",
+	"ipinfo-property-label-connectiontype": "連線方式",
+	"ipinfo-property-label-usertype": "連線擁有者",
 	"ipinfo-property-label-source": "來源",
+	"ipinfo-property-label-edits": "貢獻",
 	"ipinfo-property-no-data": "不可用",
 	"ipinfo-widget-error-default": "IP 資訊無法檢索。",
 	"ipinfo-widget-error-no-data": "$1沒有用於此 IP 位址的資料。",
