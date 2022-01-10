@@ -7,7 +7,7 @@
 	"descriptionmsg": "ipinfo-desc",
 	"manifest_version": 2,
 	"requires": {
-		"MediaWiki": ">= 1.36.0"
+		"MediaWiki": ">= 1.38.0"
 	},
 	"MessagesDirs": {
 		"IPInfo": [ "i18n" ]
@@ -58,10 +58,7 @@
 		}
 	],
 	"Hooks": {
-		"BeforePageDisplay": [
-			"popup",
-			"preferences"
-		],
+		"BeforePageDisplay": "popup",
 		"SpecialContributionsBeforeMainOutput": "infobox",
 		"GetPreferences": "preferences",
 		"GetBetaFeaturePreferences": "betaFeature"
@@ -144,16 +141,6 @@
 				"ipinfo-infobox-submit-agreement",
 				"ipinfo-infobox-disable-instructions",
 				"ipinfo-preference-agreement-error"
-			]
-		},
-		"ext.ipInfo.preferences": {
-			"localBasePath": "modules/ext.ipInfo.preferences",
-			"remoteExtPath": "IPInfo/modules/ext.ipInfo.preferences",
-			"packageFiles": [
-				"preferences.js"
-			],
-			"dependencies": [
-				"oojs-ui-core"
 			]
 		},
 		"ext.ipInfo.styles": {
