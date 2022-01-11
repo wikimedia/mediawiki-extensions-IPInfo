@@ -38,6 +38,8 @@
 	"ipinfo-rest-log-registered": "Kann ipinfo für Logbücher registrierter Benutzer nicht abrufen",
 	"ipinfo-rest-log-denied": "Dein Benutzerkonto hat keinen Zugriff auf den ausführenden Benutzer des Logbucheintrags oder den Protokolleintrag selbst.",
 	"ipinfo-source-geoip2": "Die hier gezeigten Informationen stammen aus den GeoIP2-Datenbanken von MaxMind. Sie sind möglicherweise nicht ganz genau.",
+	"ipinfo-beta-feature-title": "IP-Information",
+	"ipinfo-beta-feature-description": "Das IP-Info-Tool zielt darauf ab, berechtigte Benutzer mit wichtigen Informationen über IP-Adressen auszustatten, um sie bei ihren Aufgaben zu unterstützen. Diese Informationen werden auf der Seite Spezial:Beiträge für berechtigte Benutzer zugänglich sein. Eine verkürzte Version dieser Informationen wird in einem Popup neben den IP-Adressen auf den Seiten Logbuch, Beiträge und letzte Änderungen verfügbar sein.",
 	"prefs-ipinfo": "IP-Information",
 	"action-ipinfo": "Abrufen von Informationen über IP-Adressen, die mit Versionen oder Logbüchern verbunden sind",
 	"right-ipinfo": "Abrufen von Informationen über IP-Adressen, die mit Versionen oder Logbüchern verbunden sind"

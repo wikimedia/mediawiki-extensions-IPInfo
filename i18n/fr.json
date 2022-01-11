@@ -48,6 +48,8 @@
 	"ipinfo-rest-log-registered": "Impossible de récupérer les infos IP pour les journaux des utilisateurs enregistrés",
 	"ipinfo-rest-log-denied": "Votre compte n’a pas accès à l’affichage de l’auteur de l’entrée de journal ou de l’entrée de journal elle-même",
 	"ipinfo-source-geoip2": "L’information affichée ici provient des bases de données GeoIp2 de MaxMind. Elle peut ne pas être complètement  exacte.",
+	"ipinfo-beta-feature-title": "Info adresse IP",
+	"ipinfo-beta-feature-description": "L’outil Info adresse IP vise à fournir aux patrouilleurs des informations vitales sur les adresses IP pour les aider dans leur tâche. Ces informations seront accessibles sur la page Special:Contributions pour un éditeur IP. Une version abrégée de ces informations sera disponible dans une fenêtre surgissante à côté des adresses IP sur les pages Journal, Contributions et Modifications récentes.",
 	"prefs-ipinfo": "Informations sur l’IP",
 	"action-ipinfo": "récupère des informations relatives aux adresses IP attachées aux révisions ou aux entrées de journal",
 	"right-ipinfo": "Récupérer des informations relatives aux adresses IP attachées aux révisions ou aux entrées de journal"
