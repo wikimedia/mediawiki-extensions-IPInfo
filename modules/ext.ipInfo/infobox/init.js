@@ -1,13 +1,11 @@
 var IpInfoInfoboxWidget = require( './widget.js' );
 var ip = mw.config.get( 'wgIPInfoTarget' ),
 	api = new mw.Api(),
-	saveCollapsibleUserOption, ipPanelWidget,
-	loadIpInfo, hasUseAgreement, agreementFormWidget,
-	isExpanded, timerStart;
+	timerStart;
 
 if ( ip ) {
-	isExpanded = $( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).attr( 'aria-expanded' ) === 'true';
-	saveCollapsibleUserOption = function ( e ) {
+	var isExpanded = $( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).attr( 'aria-expanded' ) === 'true';
+	var saveCollapsibleUserOption = function ( e ) {
 		// Only trigger on enter and space keypresses
 		if ( e.type === 'keypress' && e.which !== 13 && e.which !== 32 ) {
 			return;
@@ -22,7 +20,7 @@ if ( ip ) {
 	// Watch for collapse/expand events and save that state to a user option
 	$( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).on( 'click keypress', saveCollapsibleUserOption );
 
-	loadIpInfo = function ( targetIp ) {
+	var loadIpInfo = function ( targetIp ) {
 		var revId = $( '.mw-contributions-list [data-mw-revid]' ).first().attr( 'data-mw-revid' );
 		if ( !revId ) {
 			$( '.ext-ipinfo-collapsible-layout .mw-collapsible-content' ).append(
@@ -34,7 +32,7 @@ if ( ip ) {
 			return;
 		}
 
-		ipPanelWidget = new IpInfoInfoboxWidget(
+		var ipPanelWidget = new IpInfoInfoboxWidget(
 			$.get(
 				mw.config.get( 'wgScriptPath' ) +
 					'/rest.php/ipinfo/v0/revision/' + revId
@@ -58,7 +56,7 @@ if ( ip ) {
 	};
 
 	// Check for user's ipinfo-use-agreement option
-	hasUseAgreement = !!mw.user.options.get( 'ipinfo-use-agreement' );
+	var hasUseAgreement = !!mw.user.options.get( 'ipinfo-use-agreement' );
 
 	// Show the form to agree to the terms of use instead of ip info
 	if ( hasUseAgreement ) {
@@ -66,7 +64,7 @@ if ( ip ) {
 		// If already agreed to ipinfo-use-agreement, can load ip info on page load
 		loadIpInfo( ip );
 	} else {
-		agreementFormWidget = new OO.ui.FormLayout( {
+		var agreementFormWidget = new OO.ui.FormLayout( {
 			classes: [ 'ipinfo-use-agreement-form' ],
 			content: [
 				new OO.ui.Element( {
