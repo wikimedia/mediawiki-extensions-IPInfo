@@ -4,7 +4,6 @@ var ip = mw.config.get( 'wgIPInfoTarget' ),
 	timerStart;
 
 if ( ip ) {
-	var isExpanded = $( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).attr( 'aria-expanded' ) === 'true';
 	var saveCollapsibleUserOption = function ( e ) {
 		// Only trigger on enter and space keypresses
 		if ( e.type === 'keypress' && e.which !== 13 && e.which !== 32 ) {
@@ -45,7 +44,7 @@ if ( ip ) {
 						break;
 					}
 				}
-				if ( isExpanded ) {
+				if ( $( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).attr( 'aria-expanded' ) === 'true' ) {
 					mw.track( 'timing.MediaWiki.ipinfo_accordion_delay', mw.now() - timerStart );
 				}
 				return data;
@@ -55,15 +54,12 @@ if ( ip ) {
 		$( '.ext-ipinfo-collapsible-layout .mw-collapsible-content' ).append( ipPanelWidget.$element );
 	};
 
-	// Check for user's ipinfo-use-agreement option
-	var hasUseAgreement = !!mw.user.options.get( 'ipinfo-use-agreement' );
-
-	// Show the form to agree to the terms of use instead of ip info
-	if ( hasUseAgreement ) {
+	if ( mw.user.options.get( 'ipinfo-use-agreement' ) ) {
 		timerStart = mw.now();
 		// If already agreed to ipinfo-use-agreement, can load ip info on page load
 		loadIpInfo( ip );
 	} else {
+		// Show the form to agree to the terms of use instead of ip info
 		var agreementFormWidget = new OO.ui.FormLayout( {
 			classes: [ 'ipinfo-use-agreement-form' ],
 			content: [
