@@ -1,11 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kly"
+			"Kly",
+			"Xiplus"
 		]
 	},
-	"ipinfo-desc": "提供關於 IP 位址的資訊。",
-	"ipinfo-infobox-title": "IP 資訊",
+	"ipinfo-extensionname": "IP資訊",
+	"ipinfo-desc": "提供關於IP位址的資訊。",
+	"ipinfo-infobox-title": "IP資訊",
 	"ipinfo-property-label-location": "位置",
 	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
