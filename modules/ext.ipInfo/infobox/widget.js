@@ -25,24 +25,32 @@ OO.inheritClass( ipInfoInfoboxWidget, ipInfoWidget );
  * @return {Object}
  */
 ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
+	var $edits;
+	var activeBlocks;
+
 	var location = ( info.data[ 'ipinfo-source-geoip2' ].location || [] )
 		.concat( info.data[ 'ipinfo-source-geoip2' ].country || [] )
 		.map( function ( item ) {
 			return item.label;
 		} ).join( mw.msg( 'comma-separator' ) );
 
-	var activeBlocks = mw.msg( 'ipinfo-value-active-blocks', info.data[ 'ipinfo-source-block' ].numActiveBlocks );
+	// Check to see if we have the appropriate data before trying to translate values
+	if ( info.data[ 'ipinfo-source-block' ].numActiveBlocks !== undefined ) {
+		activeBlocks = mw.msg( 'ipinfo-value-active-blocks', info.data[ 'ipinfo-source-block' ].numActiveBlocks );
+	}
 
-	var localEdits = mw.msg( 'ipinfo-value-local-edits', info.data[ 'ipinfo-source-contributions' ].numLocalEdits );
+	if ( info.data[ 'ipinfo-source-contributions' ].numLocalEdits !== undefined || info.data[ 'ipinfo-source-contributions' ].numRecentEdits !== undefined ) {
+		var localEdits = mw.msg( 'ipinfo-value-local-edits', info.data[ 'ipinfo-source-contributions' ].numLocalEdits );
 
-	var $recentEdits = $( '<span>' ).addClass( 'ext-ipinfo-widget-value-recent-edits' )
-		.append( mw.msg( 'ipinfo-value-recent-edits', info.data[ 'ipinfo-source-contributions' ].numRecentEdits ) );
+		var $recentEdits = $( '<span>' ).addClass( 'ext-ipinfo-widget-value-recent-edits' )
+			.append( mw.msg( 'ipinfo-value-recent-edits', info.data[ 'ipinfo-source-contributions' ].numRecentEdits ) );
 
-	var $edits = $( '<span>' ).append(
-		localEdits,
-		$( '<br>' ),
-		$recentEdits
-	);
+		$edits = $( '<span>' ).append(
+			localEdits,
+			$( '<br>' ),
+			$recentEdits
+		);
+	}
 
 	return $( '<dl>' ).addClass( 'ext-ipinfo-widget-properties' )
 		.append(
