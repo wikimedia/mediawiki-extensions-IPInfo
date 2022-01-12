@@ -112,7 +112,9 @@
 				"widget.js"
 			],
 			"styles": [
-				"ipinfo.less"
+				"ipinfo.less",
+				"infobox/infobox.less",
+				"popup/popup.less"
 			],
 			"dependencies": [
 				"mediawiki.api",
