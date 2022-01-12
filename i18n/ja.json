@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"A2y4"
+			"A2y4",
+			"MathXplore"
 		]
 	},
-	"ipinfo-property-label-organization": "組織"
+	"ipinfo-property-label-organization": "組織",
+	"ipinfo-beta-feature-title": "IP情報"
 }
