@@ -136,6 +136,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 					'organization' => null,
 					'country' => [],
 					'location' => [],
+					'asn' => null,
 					'isp' => null,
 					'connectionType' => null,
 					'userType' => null,
@@ -162,6 +163,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 							'label' => 'London'
 						],
 					],
+					'asn' => 0,
 					'isp' => 'qux',
 					'connectionType' => 'quux',
 					'userType' => 'residential',
