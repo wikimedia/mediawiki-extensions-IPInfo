@@ -26,7 +26,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 		yield [
 			[
 				'foo' => [
-					'country' => [],
+					'country' => null,
 					'connectionType' => null,
 					'userType' => null,
 					'proxyType' => null,
@@ -134,8 +134,8 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 			[
 				'foo' => [
 					'organization' => null,
-					'country' => [],
-					'location' => [],
+					'country' => null,
+					'location' => null,
 					'asn' => null,
 					'isp' => null,
 					'connectionType' => null,

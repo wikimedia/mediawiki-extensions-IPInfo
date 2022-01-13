@@ -139,22 +139,22 @@ class GeoLite2InfoRetriever implements InfoRetriever {
 
 	/**
 	 * @param string $ip
-	 * @return Location[] Empty if this IP address is not in the database
+	 * @return Location[]|null null if this IP address is not in the database
 	 */
-	private function getCountry( string $ip ): array {
+	private function getCountry( string $ip ): ?array {
 		$reader = $this->getReader( 'City.mmdb' );
 		if ( !$reader ) {
-			return [];
+			return null;
 		}
 
 		try {
 			$city = $reader->city( $ip );
 		} catch ( AddressNotFoundException $e ) {
-			return [];
+			return null;
 		}
 
 		if ( !$city->country->geonameId || !$city->country->name ) {
-			return [];
+			return null;
 		}
 
 		return [ new Location(
@@ -165,22 +165,22 @@ class GeoLite2InfoRetriever implements InfoRetriever {
 
 	/**
 	 * @param string $ip
-	 * @return Location[] Empty if this IP address is not in the database
+	 * @return Location[]|null null if this IP address is not in the database
 	 */
-	private function getLocations( string $ip ): array {
+	private function getLocations( string $ip ): ?array {
 		$reader = $this->getReader( 'City.mmdb' );
 		if ( !$reader ) {
-			return [];
+			return null;
 		}
 
 		try {
 			$city = $reader->city( $ip );
 		} catch ( AddressNotFoundException $e ) {
-			return [];
+			return null;
 		}
 
 		if ( !$city->city->geonameId || !$city->city->name ) {
-			return [];
+			return null;
 		}
 
 		$locations = [ new Location(

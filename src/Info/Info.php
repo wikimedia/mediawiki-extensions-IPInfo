@@ -12,10 +12,10 @@ class Info {
 	/** @var string|null */
 	private $organization;
 
-	/** @var Location[] */
+	/** @var array|null */
 	private $country;
 
-	/** @var Location[] */
+	/** @var array|null */
 	private $location;
 
 	/** @var string|null */
@@ -34,8 +34,8 @@ class Info {
 	 * @param Coordinates|null $coordinates
 	 * @param int|null $asn
 	 * @param string|null $organization
-	 * @param Location[] $country
-	 * @param Location[] $location
+	 * @param Location[]|null $country
+	 * @param Location[]|null $location
 	 * @param string|null $isp
 	 * @param string|null $connectionType
 	 * @param string|null $userType
@@ -45,8 +45,8 @@ class Info {
 		?Coordinates $coordinates = null,
 		?int $asn = null,
 		?string $organization = null,
-		array $country = [],
-		array $location = [],
+		?array $country = null,
+		?array $location = null,
 		?string $isp = null,
 		?string $connectionType = null,
 		?string $userType = null,
@@ -85,16 +85,16 @@ class Info {
 	}
 
 	/**
-	 * @return Location[]
+	 * @return Location[]|null
 	 */
-	public function getCountry(): array {
+	public function getCountry(): ?array {
 		return $this->country;
 	}
 
 	/**
-	 * @return Location[]
+	 * @return Location[]|null
 	 */
-	public function getLocation(): array {
+	public function getLocation(): ?array {
 		return $this->location;
 	}
 

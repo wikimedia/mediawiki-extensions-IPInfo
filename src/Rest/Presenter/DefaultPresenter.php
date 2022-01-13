@@ -114,6 +114,8 @@ class DefaultPresenter {
 	private function presentInfo( Info $info ): array {
 		$coordinates = $info->getCoordinates();
 		$proxyType = $info->getProxyType();
+		$country = $info->getCountry();
+		$location = $info->getLocation();
 
 		return [
 			'coordinates' => $coordinates ? [
@@ -122,18 +124,18 @@ class DefaultPresenter {
 			] : null,
 			'asn' => $info->getAsn(),
 			'organization' => $info->getOrganization(),
-			'country' => array_map( static function ( Location $location ) {
+			'country' => $country ? array_map( static function ( Location $location ) {
 				return [
 					'id' => $location->getId(),
 					'label' => $location->getLabel(),
 				];
-			}, $info->getCountry() ),
-			'location' => array_map( static function ( Location $location ) {
+			}, $country ) : null,
+			'location' => $location ? array_map( static function ( Location $location ) {
 				return [
 					'id' => $location->getId(),
 					'label' => $location->getLabel(),
 				];
-			}, $info->getLocation() ),
+			}, $location ) : null,
 			'isp' => $info->getIsp(),
 			'connectionType' => $info->getConnectionType(),
 			'userType' => $info->getUserType(),

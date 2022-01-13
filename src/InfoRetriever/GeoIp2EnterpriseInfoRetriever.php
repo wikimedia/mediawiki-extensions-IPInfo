@@ -73,6 +73,8 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 				'coordinates',
 				'asn',
 				'organization',
+				'country',
+				'locations',
 				'isp',
 				'connectionType',
 				'userType',
@@ -80,8 +82,6 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 			],
 			null
 		);
-		$info['country'] = [];
-		$info['locations'] = [];
 
 		$enterpriseReader = $this->getReader( 'GeoIP2-Enterprise.mmdb' );
 		if ( $enterpriseReader ) {
@@ -145,7 +145,7 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 
 	/**
 	 * @param Enterprise $info
-	 * @return int|null null if this IP address is not in the database
+	 * @return int|null null if this IP address does not return an ASN
 	 */
 	private function getAsn( Enterprise $info ): ?int {
 		return $info->traits->autonomousSystemNumber;
@@ -153,7 +153,7 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 
 	/**
 	 * @param Enterprise $info
-	 * @return string|null null if this IP address is not in the database
+	 * @return string|null null if this IP address does not return an organization
 	 */
 	private function getOrganization( Enterprise $info ): ?string {
 		return $info->traits->autonomousSystemOrganization;
@@ -161,11 +161,11 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 
 	/**
 	 * @param Enterprise $info
-	 * @return Location[] Empty if this IP address is not in the database
+	 * @return Location[]|null null if this IP address does not return a country
 	 */
-	private function getCountry( Enterprise $info ): array {
+	private function getCountry( Enterprise $info ): ?array {
 		if ( !$info->country->geonameId || !$info->country->name ) {
-			return [];
+			return null;
 		}
 
 		return [ new Location(
@@ -176,11 +176,11 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 
 	/**
 	 * @param Enterprise $info
-	 * @return Location[] Empty if this IP address is not in the database
+	 * @return Location[]|null null if this IP address does not return a location
 	 */
-	private function getLocations( Enterprise $info ): array {
+	private function getLocations( Enterprise $info ): ?array {
 		if ( !$info->city->geonameId || !$info->city->name ) {
-			return [];
+			return null;
 		}
 
 		$locations = [ new Location(
@@ -229,16 +229,16 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 
 	/**
 	 * @param AnonymousIp $info
-	 * @return ProxyType|null null if reader does not exist or if traits cannot be accessed
+	 * @return ProxyType
 	 */
-	private function getProxyType( AnonymousIp $info ): ?ProxyType {
+	private function getProxyType( AnonymousIp $info ): ProxyType {
 		return new ProxyType(
-			$info->isAnonymous ?? false,
-			$info->isAnonymousVpn ?? false,
-			$info->isPublicProxy ?? false,
-			$info->isResidentialProxy ?? false,
-			$info->isLegitimateProxy ?? false,
-			$info->isTorExitNode ?? false
+			$info->isAnonymous ?? null,
+			$info->isAnonymousVpn ?? null,
+			$info->isPublicProxy ?? null,
+			$info->isResidentialProxy ?? null,
+			$info->isLegitimateProxy ?? null,
+			$info->isTorExitNode ?? null
 		);
 	}
 }

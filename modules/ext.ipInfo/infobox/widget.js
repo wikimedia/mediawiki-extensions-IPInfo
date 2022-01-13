@@ -30,6 +30,7 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 		.map( function ( item ) {
 			return item.label;
 		} ).join( mw.msg( 'comma-separator' ) );
+	location = location.length ? location : null;
 
 	var activeBlocks = mw.msg( 'ipinfo-value-active-blocks', info.data[ 'ipinfo-source-block' ].numActiveBlocks );
 
