@@ -55,6 +55,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 	private function getRequestData( int $id = 123 ): RequestData {
 		return new RequestData( [
 			'pathParams' => [ 'id' => $id ],
+			'queryParams' => [ 'dataContext' => 'infobox' ]
 		] );
 	}
 

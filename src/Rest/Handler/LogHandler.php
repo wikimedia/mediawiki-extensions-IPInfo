@@ -21,6 +21,34 @@ use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 class LogHandler extends SimpleHandler {
+	/**
+	 * An array of contexts and the data
+	 * that should be available in those contexts
+	 *
+	 * @var array
+	 */
+	private const VIEWING_CONTEXTS = [
+		'popup' => [
+			'country',
+			'location',
+			'organization',
+			'numActiveBlocks',
+			'numLocalEdits',
+			'numRecentEdits',
+		],
+		'infobox' => [
+			'country',
+			'location',
+			'connectionType',
+			'userType',
+			'isp',
+			'organization',
+			'proxyType',
+			'numActiveBlocks',
+			'numLocalEdits',
+			'numRecentEdits',
+		]
+	];
 
 	/** @var InfoManager */
 	private $infoManager;
@@ -165,6 +193,20 @@ class LogHandler extends SimpleHandler {
 				new MessageValue( 'ipinfo-rest-log-registered' ), 404 );
 		}
 
+		// Only show data required for the context
+		$dataContext = $this->getValidatedParams()['dataContext'];
+		foreach ( $info as $index => $set ) {
+			if ( isset( $set['data'] ) ) {
+				foreach ( $set['data'] as $provider => $dataset ) {
+					foreach ( $dataset as $datum => $value ) {
+						if ( !in_array( $datum, self::VIEWING_CONTEXTS[$dataContext] ?? [] ) ) {
+							unset( $info[$index]['data'][$provider][$datum] );
+						}
+					}
+				}
+			}
+		}
+
 		$response = $this->getResponseFactory()->createJson( [ 'info' => $info ] );
 		$response->setHeader( 'Cache-Control', 'private, max-age=86400' );
 		return $response;
@@ -178,6 +220,11 @@ class LogHandler extends SimpleHandler {
 			'id' => [
 				self::PARAM_SOURCE => 'path',
 				ParamValidator::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_REQUIRED => true,
+			],
+			'dataContext' => [
+				self::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
 			],
 		];

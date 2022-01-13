@@ -52,6 +52,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 	private function getRequestData( int $id = 123 ): RequestData {
 		return new RequestData( [
 			'pathParams' => [ 'id' => $id ],
+			'queryParams' => [ 'dataContext' => 'infobox' ]
 		] );
 	}
 

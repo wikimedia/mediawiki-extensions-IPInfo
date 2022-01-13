@@ -50,7 +50,7 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 				$.get(
 					mw.config.get( 'wgScriptPath' ) +
 						'/rest.php/ipinfo/v0/' +
-						type + '/' + id
+						type + '/' + id + '?dataContext=popup'
 				).then( function ( response ) {
 					var i, data;
 

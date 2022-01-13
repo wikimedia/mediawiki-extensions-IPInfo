@@ -34,7 +34,7 @@ if ( ip ) {
 		var ipPanelWidget = new IpInfoInfoboxWidget(
 			$.get(
 				mw.config.get( 'wgScriptPath' ) +
-					'/rest.php/ipinfo/v0/revision/' + revId
+					'/rest.php/ipinfo/v0/revision/' + revId + '?dataContext=infobox'
 			).then( function ( response ) {
 				var i, data;
 				// Array.find is only available from ES6
