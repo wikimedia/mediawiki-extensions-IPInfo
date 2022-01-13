@@ -34,6 +34,7 @@
 	"ipinfo-rest-revision-no-author": "Käyttäjälläsi ei ole oikeutta tarkastella version kirjoittajaa",
 	"ipinfo-rest-log-nonexistent": "Lokimerkintää ei ole olemassa",
 	"ipinfo-rest-log-denied": "Käyttäjälläsi ei ole oikeutta tarkastella lokimerkinnän suorittajaa tai itse lokimerkintää",
+	"ipinfo-beta-feature-title": "IP-tieto",
 	"prefs-ipinfo": "IP-tiedot",
 	"action-ipinfo": "hakea tietoja IP-osoitteista, jotka on liitetty versioihin tai lokimerkintöihin"
 }
