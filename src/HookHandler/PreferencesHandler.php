@@ -3,15 +3,11 @@
 namespace MediaWiki\IPInfo\HookHandler;
 
 use ExtensionRegistry;
-use MediaWiki\Hook\BeforePageDisplayHook;
 use Mediawiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\User\UserOptionsLookup;
 
-class PreferencesHandler implements
-	BeforePageDisplayHook,
-	GetPreferencesHook
-{
+class PreferencesHandler implements GetPreferencesHook {
 	/** @var PermissionManager */
 	private $permissionManager;
 
@@ -28,19 +24,6 @@ class PreferencesHandler implements
 	) {
 		$this->permissionManager = $permissionManager;
 		$this->userOptionsLookup = $userOptionsLookup;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function onBeforePageDisplay( $out, $skin ): void {
-		$user = $out->getUser();
-		if (
-			$out->getTitle() &&
-			$out->getTitle()->isSpecial( 'Preferences' ) &&
-			$this->permissionManager->userHasRight( $user, 'ipinfo' ) ) {
-			$out->addModules( 'ext.ipInfo.preferences' );
-		}
 	}
 
 	/**
@@ -70,7 +53,8 @@ class PreferencesHandler implements
 			'validation-callback' => [
 				__CLASS__,
 				'checkAllIPInfoAgreements'
-			]
+			],
+			'disable-if' => [ '!==', 'ipinfo-enable', '1' ],
 		];
 		$preferences[ 'ipinfo-infobox-expanded' ] = [
 			'type' => 'api',
