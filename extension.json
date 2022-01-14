@@ -61,7 +61,8 @@
 		"BeforePageDisplay": "popup",
 		"SpecialContributionsBeforeMainOutput": "infobox",
 		"GetPreferences": "preferences",
-		"GetBetaFeaturePreferences": "betaFeature"
+		"GetBetaFeaturePreferences": "betaFeature",
+		"LoadExtensionSchemaUpdates": "schema"
 	},
 	"HookHandlers": {
 		"popup": {
@@ -91,6 +92,9 @@
 				"MainConfig",
 				"PermissionManager"
 			]
+		},
+		"schema": {
+			"class": "MediaWiki\\IPInfo\\HookHandler\\SchemaHandler"
 		}
 	},
 	"ResourceModules": {
