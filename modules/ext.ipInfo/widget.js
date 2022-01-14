@@ -21,8 +21,9 @@ var ipInfoWidget = function ( info, config ) {
 	// Mixin constructors
 	OO.ui.mixin.PendingElement.call( this, config );
 
-	// Set pending element.
-	this.pushPending();
+	// Set pending element
+	// Delay its loading by 100ms see T267237#7620309
+	setTimeout( this.setPending.bind( this ), 100 );
 
 	// Promise handler
 	info.then(
@@ -62,6 +63,20 @@ ipInfoWidget.prototype.success = function ( info ) {
 };
 
 /**
+ * Flag for if the widget has attempted to load the info yet
+ */
+ipInfoWidget.prototype.done = false;
+
+/**
+ * Show progress bar on a delay if data hasn't already loaded
+ */
+ipInfoWidget.prototype.setPending = function () {
+	if ( !this.done ) {
+		this.pushPending();
+	}
+};
+
+/**
  * Failure callback for the info promise.
  *
  * @param {Object} error
@@ -98,7 +113,10 @@ ipInfoWidget.prototype.displayError = function ( label ) {
  * @param {Object} info
  */
 ipInfoWidget.prototype.always = function () {
-	this.popPending();
+	this.done = true;
+	if ( this.isPending() ) {
+		this.popPending();
+	}
 };
 
 /**
