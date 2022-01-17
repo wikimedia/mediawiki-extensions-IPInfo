@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Can",
 			"Joseph",
 			"MuratTheTurkish"
 		]
@@ -25,6 +26,7 @@
 	"ipinfo-rest-log-registered": "Kayıtlı kullanıcıların günlükleri için ipinfo alınamıyor",
 	"ipinfo-rest-log-denied": "Hesabınız, günlük girişinin gerçekleştiricisini veya günlük girişinin kendisini görüntüleme erişimine sahip değil",
 	"ipinfo-source-geoip2": "Burada gösterilen bilgiler MaxMind'in GeoIP2 veritabanlarından gelmektedir. Tam olarak doğru olmayabilir.",
+	"ipinfo-beta-feature-title": "IP Bilgisi",
 	"prefs-ipinfo": "IP bilgisi",
 	"action-ipinfo": "revizyonlara veya günlük girişlerine eklenen IP adresleri hakkında bilgi alma",
 	"right-ipinfo": "Revizyonlara veya günlük girişlerine eklenen IP adresleri hakkında bilgi alın"
