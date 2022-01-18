@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo\Rest\Handler;
 
 use DatabaseLogEntry;
+use ExtensionRegistry;
 use LogEventsList;
 use LogPage;
 use MediaWiki\IPInfo\InfoManager;
@@ -132,6 +133,14 @@ class LogHandler extends SimpleHandler {
 	 * @return Response
 	 */
 	public function run( int $id ): Response {
+		$isBetaFeaturesLoaded = ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' );
+		// Disallow access to API if BetaFeatures is enabled but the feature is not
+		if ( $isBetaFeaturesLoaded &&
+			!$this->userOptionsLookup->getOption( $this->user, 'ipinfo-beta-feature-enable' ) ) {
+			throw new LocalizedHttpException(
+				new MessageValue( 'ipinfo-rest-access-denied' ), $this->user->isRegistered() ? 403 : 401 );
+		}
+
 		if (
 			!$this->permissionManager->userHasRight( $this->user, 'ipinfo' ) ||
 			!$this->userOptionsLookup->getOption( $this->user, 'ipinfo-enable' ) ||
