@@ -24,7 +24,9 @@
 		"src/ServiceWiring.php"
 	],
 	"AvailableRights": [
-		"ipinfo"
+		"ipinfo",
+		"ipinfo-view-basic",
+		"ipinfo-view-full"
 	],
 	"DefaultUserOptions": {
 		"ipinfo-enable": 0,

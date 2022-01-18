@@ -47,5 +47,9 @@
 	"ipinfo-beta-feature-description": "IP Info tool aims to equip patrollers with vital information about IP addresses to assist them in their roles. This information will be accessible on the Special:Contributions page for the IP editor. An abridged version of this information will be available in a popup next to IP addresses on Log, Contributions and RecentChanges pages.",
 	"prefs-ipinfo": "IP information",
 	"action-ipinfo": "retrieve information about IP addresses attached to revisions or log entries",
-	"right-ipinfo": "Retrieve information about IP addresses attached to revisions or log entries"
+	"right-ipinfo": "Retrieve information about IP addresses attached to revisions or log entries",
+	"action-ipinfo-view-basic": "allow a basic view of the IP information attached to revisions or log entries",
+	"right-ipinfo-view-basic": "Allow a basic view of the IP information attached to revisions or log entries",
+	"action-ipinfo-view-full": "allow a full view of the IP information attached to revisions or log entries",
+	"right-ipinfo-view-full": "Allow a full view of the IP information attached to revisions or log entries"
 }
