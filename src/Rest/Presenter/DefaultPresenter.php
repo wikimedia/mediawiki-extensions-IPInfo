@@ -36,6 +36,7 @@ class DefaultPresenter {
 			'location',
 			'connectionType',
 			'userType',
+			'asn',
 			'isp',
 			'organization',
 			'proxyType',
