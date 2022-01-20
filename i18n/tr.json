@@ -3,7 +3,8 @@
 		"authors": [
 			"Can",
 			"Joseph",
-			"MuratTheTurkish"
+			"MuratTheTurkish",
+			"SaldırganSincap"
 		]
 	},
 	"ipinfo-desc": "Bir IP adresi hakkında bilgi sağlar.",
@@ -12,12 +13,16 @@
 	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Organizasyon",
+	"ipinfo-property-label-connectiontype": "Bağlantı Yöntemi",
+	"ipinfo-property-label-usertype": "Bağlantı Sahibi",
 	"ipinfo-property-label-source": "Kaynak",
+	"ipinfo-property-label-edits": "Katkılar",
 	"ipinfo-property-no-data": "Mevcut Değil",
 	"ipinfo-widget-error-default": "IP bilgileri alınamadı.",
 	"ipinfo-widget-error-no-data": "$1 üzerinden bu IP adresi için veri yok.",
 	"ipinfo-widget-error-wrong-ip": "Sağlanan IP adresi, günlük veya revizyon ile eşleşmedi.",
-	"ipinfo-preference-enable": "Bir IP adresi hakkındaki bilgilere bakın. Bu seçeneği etkinleştirdiğinizde/devre dışı bıraktığınızda bir kayıt yapılacaktır.",
+	"ipinfo-preference-enable": "IP adresleri için Special:Contributions sayfasında IP Bilgileri aracını gösterin.",
+	"ipinfo-infobox-submit-agreement": "IP Bilgi aracını etkinleştir",
 	"ipinfo-rest-access-denied": "Bu eylemi gerçekleştirmeye yetkiniz yok",
 	"ipinfo-rest-access-denied-blocked-user": "Hesabınız engellendiği için işlemi gerçekleştirme izniniz yok",
 	"ipinfo-rest-revision-no-author": "Hesabınızın revizyonun yazarını görüntüleme erişimi yok",

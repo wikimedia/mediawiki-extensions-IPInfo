@@ -52,5 +52,9 @@
 	"ipinfo-beta-feature-description": "L’outil Info adresse IP vise à fournir aux patrouilleurs des informations vitales sur les adresses IP pour les aider dans leur tâche. Ces informations seront accessibles sur la page Special:Contributions pour un éditeur IP. Une version abrégée de ces informations sera disponible dans une fenêtre surgissante à côté des adresses IP sur les pages Journal, Contributions et Modifications récentes.",
 	"prefs-ipinfo": "Informations sur l’IP",
 	"action-ipinfo": "récupère des informations relatives aux adresses IP attachées aux révisions ou aux entrées de journal",
-	"right-ipinfo": "Récupérer des informations relatives aux adresses IP attachées aux révisions ou aux entrées de journal"
+	"right-ipinfo": "Récupérer des informations relatives aux adresses IP attachées aux révisions ou aux entrées de journal",
+	"action-ipinfo-view-basic": "permet d'avoir une vue basique des informtions IP attachées aux révisions ou aux entrées des journaux",
+	"right-ipinfo-view-basic": "Permet d'avoir une vue basique des informtions IP attachées aux révisions ou aux entrées des journaux",
+	"action-ipinfo-view-full": "permet d'avoir une vue complète des informtions IP attachées aux révisions ou aux entrées des journaux",
+	"right-ipinfo-view-full": "Permet d'avoir une vue complète des informtions IP attachées aux révisions ou aux entrées des journaux"
 }

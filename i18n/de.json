@@ -42,5 +42,9 @@
 	"ipinfo-beta-feature-description": "Das IP-Info-Tool zielt darauf ab, berechtigte Benutzer mit wichtigen Informationen über IP-Adressen auszustatten, um sie bei ihren Aufgaben zu unterstützen. Diese Informationen werden auf der Seite Spezial:Beiträge für berechtigte Benutzer zugänglich sein. Eine verkürzte Version dieser Informationen wird in einem Popup neben den IP-Adressen auf den Seiten Logbuch, Beiträge und letzte Änderungen verfügbar sein.",
 	"prefs-ipinfo": "IP-Information",
 	"action-ipinfo": "Abrufen von Informationen über IP-Adressen, die mit Versionen oder Logbüchern verbunden sind",
-	"right-ipinfo": "Abrufen von Informationen über IP-Adressen, die mit Versionen oder Logbüchern verbunden sind"
+	"right-ipinfo": "Abrufen von Informationen über IP-Adressen, die mit Versionen oder Logbüchern verbunden sind",
+	"action-ipinfo-view-basic": "einen grundlegenden Überblick über die IP-Informationen zu Versionen oder Logbucheinträgen ermöglichen",
+	"right-ipinfo-view-basic": "Einen grundlegenden Überblick über die IP-Informationen zu Versionen oder Logbucheinträgen ermöglichen",
+	"action-ipinfo-view-full": "einen vollständigen Überblick über die IP-Informationen zu Versionen oder Logbucheinträgen ermöglichen",
+	"right-ipinfo-view-full": "Einen vollständigen Überblick über die IP-Informationen zu Versionen oder Logbucheinträgen ermöglichen"
 }
