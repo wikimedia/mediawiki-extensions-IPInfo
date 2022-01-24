@@ -45,6 +45,7 @@ class PreferencesHandler implements GetPreferencesHook {
 			'type' => 'toggle',
 			'label-message' => 'ipinfo-preference-enable',
 			'section' => 'personal/ipinfo',
+			'noglobal' => true,
 		];
 		$preferences['ipinfo-use-agreement'] = [
 			'type' => 'toggle',
@@ -55,6 +56,7 @@ class PreferencesHandler implements GetPreferencesHook {
 				'checkAllIPInfoAgreements'
 			],
 			'disable-if' => [ '!==', 'ipinfo-enable', '1' ],
+			'noglobal' => true,
 		];
 		$preferences[ 'ipinfo-infobox-expanded' ] = [
 			'type' => 'api',
