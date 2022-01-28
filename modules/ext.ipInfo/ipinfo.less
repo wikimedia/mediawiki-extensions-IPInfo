@@ -1,39 +1,11 @@
 @import 'mediawiki.ui/variables.less';
 @import 'mediawiki.mixins.less';
+@import 'variables.less';
 
 // Use slightly increased specificity to override the rule defined in MediaWiki Core (see
 // https://gerrit.wikimedia.org/g/mediawiki/core/+/aebc1fdc8a2692584ab09691e2cbace5597ba386/resources/src/mediawiki.special/contributions.less#16).
 .ext-ipinfo-panel-layout .ext-ipinfo-collapsible-layout .oo-ui-fieldsetLayout-group {
 	max-width: none;
-}
-
-.ext-ipinfo-button-collapse,
-.ext-ipinfo-button-collapse .oo-ui-buttonElement-button {
-	margin: 0;
-	padding: 23px;
-	display: block;
-}
-
-.ext-ipinfo-button {
-	vertical-align: top;
-
-	&.oo-ui-buttonElement-frameless.oo-ui-iconElement > .oo-ui-buttonElement-button {
-		padding: 0;
-		margin-left: 2px;
-		min-width: 20px;
-		// min-height adjusted to fix clipping when language is ar, see T298942
-		min-height: 22px;
-		overflow: hidden;
-
-		& > .oo-ui-iconElement-icon {
-			left: -1px;
-			margin: 0;
-		}
-	}
-
-	&.oo-ui-buttonWidget {
-		margin-right: 0;
-	}
 }
 
 .ext-ipinfo-widget {
@@ -45,28 +17,17 @@
 	margin: 1em;
 }
 
-.ext-ipinfo-infobox {
-	.oo-ui-panelLayout {
-		padding: 0;
-	}
-
-	.ext-ipinfo-widget {
-		margin-top: -23px;
-		padding: 0 38px;
-	}
-}
-
 .ext-ipinfo-widget-properties {
 	margin: 0;
 }
 
 .ext-ipinfo-widget-property {
-	padding-bottom: 16px;
+	padding-bottom: @ipinfo-padding-bottom;
 }
 
 .ext-ipinfo-widget-property-label {
 	margin-bottom: 4px;
-	font-size: 0.8125em;
+	font-size: @ipinfo-property-font-size;
 	color: @color-base--subtle;
 }
 
@@ -82,37 +43,6 @@
 // Styling for specific properties
 [ data-property='asn' ]:not( .ext-ipinfo-widget-property-no-data ) > .ext-ipinfo-widget-property-value {
 	font-family: monospace;
-}
-
-.ext-ipinfo-widget-property-source {
-	font-size: 0.8125em;
-	color: @color-base--subtle;
-	font-style: italic;
-	font-weight: normal;
-	text-align: right;
-}
-
-.ext-ipinfo-collapsible-layout {
-	.ext-ipinfo-widget-properties {
-		display: flex;
-		flex-wrap: wrap;
-		// Offset padding of children elements at edges of container
-		margin: 0 -12px -16px -12px;
-	}
-
-	.ext-ipinfo-widget-properties-col {
-		display: flex;
-		flex-direction: column;
-		// A somewhat arbitrary min-width set to ~30cpm
-		flex: 1 12em;
-		padding: 0 12px;
-	}
-
-	// The disclaimer is always at the bottom of the column
-	.ext-ipinfo-widget-property-source {
-		margin-top: auto;
-		padding-bottom: 16px;
-	}
 }
 
 .ext-ipinfo-widget-value-recent-edits {

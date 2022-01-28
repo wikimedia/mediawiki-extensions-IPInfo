@@ -1,0 +1,52 @@
+@import 'mediawiki.ui/variables.less';
+@import 'mediawiki.mixins.less';
+@import '../variables.less';
+
+.ext-ipinfo-button-collapse,
+.ext-ipinfo-button-collapse .oo-ui-buttonElement-button {
+	margin: 0;
+	padding: @ipinfo-button-padding;
+	display: block;
+}
+
+.ext-ipinfo-widget-property-source {
+	font-size: @ipinfo-property-font-size;
+	color: @color-base--subtle;
+	font-style: italic;
+	font-weight: normal;
+	text-align: right;
+}
+
+.ext-ipinfo-infobox {
+	.oo-ui-panelLayout {
+		padding: 0;
+	}
+
+	.ext-ipinfo-widget {
+		margin-top: -@ipinfo-button-padding;
+		padding: 0 38px;
+	}
+}
+
+.ext-ipinfo-collapsible-layout {
+	.ext-ipinfo-widget-properties {
+		display: flex;
+		flex-wrap: wrap;
+		// Offset padding of children elements at edges of container
+		margin: 0 -@ipinfo-widget-properties-left-right-margin -@ipinfo-padding-bottom -@ipinfo-widget-properties-left-right-margin;
+	}
+
+	.ext-ipinfo-widget-properties-col {
+		display: flex;
+		flex-direction: column;
+		// A somewhat arbitrary min-width set to ~30cpm
+		flex: 1 12em;
+		padding: 0 @ipinfo-widget-properties-left-right-margin;
+	}
+
+	// The disclaimer is always at the bottom of the column
+	.ext-ipinfo-widget-property-source {
+		margin-top: auto;
+		padding-bottom: @ipinfo-padding-bottom;
+	}
+}
