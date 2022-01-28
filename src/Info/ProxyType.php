@@ -22,20 +22,20 @@ class ProxyType {
 	private $isTorExitNode;
 
 	/**
-	 * @param bool $isAnonymous
-	 * @param bool $isAnonymousVpn
-	 * @param bool $isPublicProxy
-	 * @param bool $isResidentialProxy
-	 * @param bool $isLegitimateProxy
-	 * @param bool $isTorExitNode
+	 * @param bool|null $isAnonymous
+	 * @param bool|null $isAnonymousVpn
+	 * @param bool|null $isPublicProxy
+	 * @param bool|null $isResidentialProxy
+	 * @param bool|null $isLegitimateProxy
+	 * @param bool|null $isTorExitNode
 	 */
 	public function __construct(
-		bool $isAnonymous,
-		bool $isAnonymousVpn,
-		bool $isPublicProxy,
-		bool $isResidentialProxy,
-		bool $isLegitimateProxy,
-		bool $isTorExitNode
+		?bool $isAnonymous,
+		?bool $isAnonymousVpn,
+		?bool $isPublicProxy,
+		?bool $isResidentialProxy,
+		?bool $isLegitimateProxy,
+		?bool $isTorExitNode
 	) {
 		$this->isAnonymous = $isAnonymous;
 		$this->isAnonymousVpn = $isAnonymousVpn;
@@ -45,23 +45,23 @@ class ProxyType {
 		$this->isTorExitNode = $isTorExitNode;
 	}
 
-	public function isAnonymous(): bool {
+	public function isAnonymous(): ?bool {
 		return $this->isAnonymous;
 	}
 
-	public function isAnonymousVpn(): bool {
+	public function isAnonymousVpn(): ?bool {
 		return $this->isAnonymousVpn;
 	}
 
-	public function isPublicProxy(): bool {
+	public function isPublicProxy(): ?bool {
 		return $this->isPublicProxy;
 	}
 
-	public function isResidentialProxy(): bool {
+	public function isResidentialProxy(): ?bool {
 		return $this->isResidentialProxy;
 	}
 
-	public function isLegitimateProxy(): bool {
+	public function isLegitimateProxy(): ?bool {
 		return $this->isLegitimateProxy;
 	}
 

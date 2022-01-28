@@ -150,7 +150,7 @@ ipInfoWidget.prototype.generatePropertyMarkup = function (
 	$propertyContent.append(
 		$propertyLabel
 	);
-	if ( propertyValue || propertyValue === 0 ) {
+	if ( propertyValue !== null && propertyValue !== undefined ) {
 		$propertyContent.append(
 			$( '<dd>' ).addClass( 'ext-ipinfo-widget-property-value' ).append( propertyValue )
 		);

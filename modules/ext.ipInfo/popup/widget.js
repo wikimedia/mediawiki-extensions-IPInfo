@@ -33,6 +33,7 @@ ipInfoPopupWidget.prototype.buildMarkup = function ( info ) {
 		.map( function ( item ) {
 			return item.label;
 		} ).join( mw.msg( 'comma-separator' ) );
+	location = location.length ? location : null;
 
 	// Check to see if we have the appropriate data before trying to translate values
 	if ( info.data[ 'ipinfo-source-block' ].numActiveBlocks !== undefined ) {
