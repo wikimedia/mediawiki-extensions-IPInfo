@@ -140,12 +140,12 @@ class DefaultPresenter {
 			'connectionType' => $info->getConnectionType(),
 			'userType' => $info->getUserType(),
 			'proxyType' => $proxyType ? [
-				'isAnonymous' => $proxyType->isAnonymous(),
 				'isAnonymousVpn' => $proxyType->isAnonymousVpn(),
 				'isPublicProxy' => $proxyType->isPublicProxy(),
 				'isResidentialProxy' => $proxyType->isResidentialProxy(),
 				'isLegitimateProxy' => $proxyType->isLegitimateProxy(),
 				'isTorExitNode' => $proxyType->isTorExitNode(),
+				'isHostingProvider' => $proxyType->isHostingProvider(),
 
 			] : null,
 		];

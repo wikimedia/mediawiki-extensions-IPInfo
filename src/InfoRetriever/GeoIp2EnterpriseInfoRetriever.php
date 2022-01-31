@@ -106,8 +106,12 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 		if ( $anonymousIpReader ) {
 			try {
 				$anonymousIpInfo = $anonymousIpReader->anonymousIp( $ip );
-
-				$info['proxyType'] = $this->getProxyType( $anonymousIpInfo );
+				if ( isset( $enterpriseInfo ) ) {
+					$isLegitimateProxy = $enterpriseInfo->traits->isLegitimateProxy ?? null;
+				} else {
+					$isLegitimateProxy = null;
+				}
+				$info['proxyType'] = $this->getProxyType( $anonymousIpInfo, $isLegitimateProxy );
 			} catch ( AddressNotFoundException $e ) {
 				// No need to do anything if it fails
 				// $info defaults to null values
@@ -228,17 +232,18 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 	}
 
 	/**
-	 * @param AnonymousIp $info
+	 * @param AnonymousIp $anonymousIpinfo
+	 * @param bool|null $isLegitimateProxy
 	 * @return ProxyType
 	 */
-	private function getProxyType( AnonymousIp $info ): ProxyType {
+	private function getProxyType( AnonymousIp $anonymousIpinfo, ?bool $isLegitimateProxy ): ProxyType {
 		return new ProxyType(
-			$info->isAnonymous ?? null,
-			$info->isAnonymousVpn ?? null,
-			$info->isPublicProxy ?? null,
-			$info->isResidentialProxy ?? null,
-			$info->isLegitimateProxy ?? null,
-			$info->isTorExitNode ?? null
+			$anonymousIpinfo->isAnonymousVpn ?? null,
+			$anonymousIpinfo->isPublicProxy ?? null,
+			$anonymousIpinfo->isResidentialProxy ?? null,
+			$isLegitimateProxy,
+			$anonymousIpinfo->isTorExitNode ?? null,
+			$anonymousIpinfo->isHostingProvider ?? null
 		);
 	}
 }

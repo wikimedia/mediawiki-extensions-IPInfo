@@ -48,12 +48,12 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 					'connectionType' => 'quux',
 					'userType' => 'residential',
 					'proxyType' => array_fill_keys( [
-						'isAnonymous',
 						'isAnonymousVpn',
 						'isPublicProxy',
 						'isResidentialProxy',
 						'isLegitimateProxy',
-						'isTorExitNode'
+						'isTorExitNode',
+						'isHostingProvider'
 					], false ),
 				],
 			],
@@ -168,12 +168,12 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 					'connectionType' => 'quux',
 					'userType' => 'residential',
 					'proxyType' => array_fill_keys( [
-						'isAnonymous',
 						'isAnonymousVpn',
 						'isPublicProxy',
 						'isResidentialProxy',
 						'isLegitimateProxy',
-						'isTorExitNode'
+						'isTorExitNode',
+						'isHostingProvider'
 					], false ),
 				],
 			],
