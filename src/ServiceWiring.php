@@ -51,7 +51,10 @@ return [
 	'IPInfoLoggerFactory' => static function ( MediaWikiServices $services ): LoggerFactory {
 		$dbw = $services->getDBLoadBalancer()
 			->getConnectionRef( ILoadBalancer::DB_PRIMARY );
-		return new LoggerFactory( $dbw );
+		return new LoggerFactory(
+			$services->getActorStore(),
+			$dbw
+		);
 	},
 	'ReaderFactory' => static function () {
 		return new ReaderFactory();

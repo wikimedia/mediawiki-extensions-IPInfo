@@ -6,6 +6,7 @@ use Generator;
 use IDatabase;
 use ManualLogEntry;
 use MediaWiki\IPInfo\Logging\Logger;
+use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use Title;
@@ -26,6 +27,7 @@ class LoggerTest extends MediaWikiUnitTestCase {
 	 */
 	public function testLogViewInfobox( bool $isDebounced ): void {
 		$performer = new UserIdentityValue( 1, 'Foo' );
+		$actorId = 2;
 		$target = '127.0.0.1';
 
 		$expectedTarget = Title::makeTitle( NS_USER, $target );
@@ -45,7 +47,7 @@ class LoggerTest extends MediaWikiUnitTestCase {
 				[
 					'log_type' => Logger::LOG_TYPE,
 					'log_action' => Logger::ACTION_VIEW_INFOBOX,
-					'log_actor' => $performer->getId(),
+					'log_actor' => $actorId,
 					'log_namespace' => NS_USER,
 					'log_title' => $target,
 					'log_timestamp > 42',
@@ -53,8 +55,17 @@ class LoggerTest extends MediaWikiUnitTestCase {
 			)
 			->willReturn( (int)$isDebounced );
 
+		$actorStore = $this->createMock( ActorStore::class );
+		$actorStore->method( 'acquireActorId' )
+			->will(
+				$this->returnValueMap( [
+					[ $performer, $database, $actorId ],
+				] )
+			);
+
 		$logger = $this->getMockBuilder( Logger::class )
 			->setConstructorArgs( [
+				$actorStore,
 				$database,
 				24 * 60 * 60,
 			] )

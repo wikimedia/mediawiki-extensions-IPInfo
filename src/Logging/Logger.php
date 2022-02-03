@@ -4,6 +4,7 @@ namespace MediaWiki\IPInfo\Logging;
 
 use IDatabase;
 use ManualLogEntry;
+use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentity;
 use Title;
 use Wikimedia\Assert\Assert;
@@ -48,6 +49,11 @@ class Logger {
 	public const LOG_TYPE = 'ipinfo';
 
 	/**
+	 * @var ActorStore
+	 */
+	private $actorStore;
+
+	/**
 	 * @var IDatabase
 	 */
 	private $dbw;
@@ -58,14 +64,20 @@ class Logger {
 	private $delay;
 
 	/**
+	 * @param ActorStore $actorStore
 	 * @param IDatabase $dbw
 	 * @param int $delay The number of seconds after which a duplicate log entry can be
 	 *  created by `Logger::logViewInfobox` or `Logger::logViewPopup`
 	 * @throws ParameterAssertionException if `$delay` is less than 1
 	 */
-	public function __construct( IDatabase $dbw, int $delay ) {
+	public function __construct(
+		ActorStore $actorStore,
+		IDatabase $dbw,
+		int $delay
+	) {
 		Assert::parameter( $delay > 0, 'delay', 'delay must be positive' );
 
+		$this->actorStore = $actorStore;
 		$this->dbw = $dbw;
 		$this->delay = $delay;
 	}
@@ -98,13 +110,15 @@ class Logger {
 	 */
 	private function debouncedLog( UserIdentity $performer, string $ip, string $action ): void {
 		$timestamp = (int)wfTimestampNow() - $this->delay;
+
+		$actorId = $this->actorStore->acquireActorId( $performer, $this->dbw );
 		$shouldLog = $this->dbw->selectRowCount(
 			'logging',
 			'*',
 			[
 				'log_type' => self::LOG_TYPE,
 				'log_action' => $action,
-				'log_actor' => $performer->getId(),
+				'log_actor' => $actorId,
 				'log_namespace' => NS_USER,
 				'log_title' => $ip,
 				'log_timestamp > ' . $this->dbw->addQuotes( $this->dbw->timestamp( $timestamp ) ),
