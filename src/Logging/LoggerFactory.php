@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo\Logging;
 
 use IDatabase;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\ActorStore;
 
 class LoggerFactory {
@@ -15,21 +16,27 @@ class LoggerFactory {
 	 */
 	private const DEFAULT_DEBOUNCE_DELAY = 24 * 60 * 60;
 
-	/** @var IDatabase */
-	private $dbw;
-
 	/** @var ActorStore */
 	private $actorStore;
 
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var IDatabase */
+	private $dbw;
+
 	/**
 	 * @param ActorStore $actorStore
+	 * @param PermissionManager $permissionManager
 	 * @param IDatabase $dbw
 	 */
 	public function __construct(
 		ActorStore $actorStore,
+		PermissionManager $permissionManager,
 		IDatabase $dbw
 	) {
 		$this->actorStore = $actorStore;
+		$this->permissionManager = $permissionManager;
 		$this->dbw = $dbw;
 	}
 
@@ -42,6 +49,7 @@ class LoggerFactory {
 	) {
 		return new Logger(
 			$this->actorStore,
+			$this->permissionManager,
 			$this->dbw,
 			$delay
 		);

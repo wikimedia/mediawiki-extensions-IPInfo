@@ -6,6 +6,7 @@ use Generator;
 use IDatabase;
 use ManualLogEntry;
 use MediaWiki\IPInfo\Logging\Logger;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
@@ -31,6 +32,7 @@ class LoggerTest extends MediaWikiUnitTestCase {
 		$target = '127.0.0.1';
 
 		$expectedTarget = Title::makeTitle( NS_USER, $target );
+		$expectedParams = [ '4::level' => 'ipinfo-view-full' ];
 
 		$database = $this->createMock( IDatabase::class );
 
@@ -38,6 +40,9 @@ class LoggerTest extends MediaWikiUnitTestCase {
 		// a call to IDatabase::addQuotes().
 		$database->method( 'addQuotes' )
 			->willReturn( 42 );
+
+		$database->method( 'buildLike' )
+			->willReturn( ' LIKE \'%ipinfo-view-full%\'' );
 
 		$database->expects( $this->once() )
 			->method( 'selectRowCount' )
@@ -51,6 +56,7 @@ class LoggerTest extends MediaWikiUnitTestCase {
 					'log_namespace' => NS_USER,
 					'log_title' => $target,
 					'log_timestamp > 42',
+					'log_params LIKE \'%ipinfo-view-full%\'',
 				]
 			)
 			->willReturn( (int)$isDebounced );
@@ -63,9 +69,18 @@ class LoggerTest extends MediaWikiUnitTestCase {
 				] )
 			);
 
+		$permissionManager = $this->createMock( PermissionManager::class );
+		$permissionManager->method( 'getUserPermissions' )
+			->will(
+				$this->returnValueMap( [
+					[ $performer, [ 'ipinfo-view-basic', 'ipinfo-view-full' ] ],
+				] )
+			);
+
 		$logger = $this->getMockBuilder( Logger::class )
 			->setConstructorArgs( [
 				$actorStore,
+				$permissionManager,
 				$database,
 				24 * 60 * 60,
 			] )
@@ -84,6 +99,10 @@ class LoggerTest extends MediaWikiUnitTestCase {
 			$logEntry->expects( $this->once() )
 				->method( 'setTarget' )
 				->with( $expectedTarget );
+
+			$logEntry->expects( $this->once() )
+				->method( 'setParameters' )
+				->with( $expectedParams );
 
 			$logEntry->expects( $this->once() )
 				->method( 'insert' )

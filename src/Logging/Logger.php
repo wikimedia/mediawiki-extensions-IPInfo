@@ -4,6 +4,7 @@ namespace MediaWiki\IPInfo\Logging;
 
 use IDatabase;
 use ManualLogEntry;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentity;
 use Title;
@@ -30,6 +31,19 @@ use Wikimedia\Assert\ParameterAssertionException;
 class Logger {
 
 	/**
+	 * An ordered list of the access levels for viewing IP infomation, ordered from lowest to
+	 * highest level.
+	 *
+	 * Should be kept up-to-date with DefaultPresenter::VIEWING_RIGHTS
+	 *
+	 * @var string[]
+	 */
+	private const ACCESS_LEVELS = [
+		'ipinfo-view-basic',
+		'ipinfo-view-full',
+	];
+
+	/**
 	 * Represents a user (the performer) viewing information about an IP via the infobox.
 	 *
 	 * @var string
@@ -54,6 +68,11 @@ class Logger {
 	private $actorStore;
 
 	/**
+	 * @var PermissionManager
+	 */
+	private $permissionManager;
+
+	/**
 	 * @var IDatabase
 	 */
 	private $dbw;
@@ -65,6 +84,7 @@ class Logger {
 
 	/**
 	 * @param ActorStore $actorStore
+	 * @param PermissionManager $permissionManager
 	 * @param IDatabase $dbw
 	 * @param int $delay The number of seconds after which a duplicate log entry can be
 	 *  created by `Logger::logViewInfobox` or `Logger::logViewPopup`
@@ -72,12 +92,14 @@ class Logger {
 	 */
 	public function __construct(
 		ActorStore $actorStore,
+		PermissionManager $permissionManager,
 		IDatabase $dbw,
 		int $delay
 	) {
 		Assert::parameter( $delay > 0, 'delay', 'delay must be positive' );
 
 		$this->actorStore = $actorStore;
+		$this->permissionManager = $permissionManager;
 		$this->dbw = $dbw;
 		$this->delay = $delay;
 	}
@@ -89,7 +111,12 @@ class Logger {
 	 * @param string $ip
 	 */
 	public function logViewInfobox( UserIdentity $performer, string $ip ): void {
-		$this->debouncedLog( $performer, $ip, self::ACTION_VIEW_INFOBOX );
+		$level = $this->highestAccessLevel( $performer );
+		if ( !$level ) {
+			return;
+		}
+		$params = [ '4::level' => $level ];
+		$this->debouncedLog( $performer, $ip, self::ACTION_VIEW_INFOBOX, $params );
 	}
 
 	/**
@@ -99,7 +126,31 @@ class Logger {
 	 * @param string $ip
 	 */
 	public function logViewPopup( UserIdentity $performer, string $ip ): void {
-		$this->debouncedLog( $performer, $ip, self::ACTION_VIEW_POPUP );
+		$level = $this->highestAccessLevel( $performer );
+		if ( !$level ) {
+			return;
+		}
+		$params = [ '4::level' => $level ];
+		$this->debouncedLog( $performer, $ip, self::ACTION_VIEW_POPUP, $params );
+	}
+
+	/**
+	 * Get the highest access level user has permissions for.
+	 *
+	 * @param UserIdentity $user
+	 * @return ?string null if the user has no rights to see IP information
+	 */
+	private function highestAccessLevel( $user ) {
+		$userPermissions = $this->permissionManager->getUserPermissions( $user );
+
+		$highestLevel = null;
+		foreach ( self::ACCESS_LEVELS as $level ) {
+			if ( in_array( $level, $userPermissions ) ) {
+				$highestLevel = $level;
+			}
+		}
+
+		return $highestLevel;
 	}
 
 	/**
@@ -107,8 +158,14 @@ class Logger {
 	 * @param string $ip
 	 * @param string $action Either `Logger::ACTION_VIEW_INFOBOX` or
 	 *  `Logger::ACTION_VIEW_POPUP`
+	 * @param array $params
 	 */
-	private function debouncedLog( UserIdentity $performer, string $ip, string $action ): void {
+	private function debouncedLog(
+		UserIdentity $performer,
+		string $ip,
+		string $action,
+		array $params
+	): void {
 		$timestamp = (int)wfTimestampNow() - $this->delay;
 
 		$actorId = $this->actorStore->acquireActorId( $performer, $this->dbw );
@@ -122,11 +179,16 @@ class Logger {
 				'log_namespace' => NS_USER,
 				'log_title' => $ip,
 				'log_timestamp > ' . $this->dbw->addQuotes( $this->dbw->timestamp( $timestamp ) ),
+				'log_params' . $this->dbw->buildLike(
+					$this->dbw->anyString(),
+					$params['4::level'],
+					$this->dbw->anyString()
+				),
 			]
 		) === 0;
 
 		if ( $shouldLog ) {
-			$this->log( $performer, $ip, $action );
+			$this->log( $performer, $ip, $action, $params );
 		}
 	}
 
@@ -134,11 +196,18 @@ class Logger {
 	 * @param UserIdentity $performer
 	 * @param string $ip
 	 * @param string $action
+	 * @param array $params
 	 */
-	private function log( UserIdentity $performer, string $ip, string $action ): void {
+	private function log(
+		UserIdentity $performer,
+		string $ip,
+		string $action,
+		array $params
+	): void {
 		$logEntry = $this->createManualLogEntry( $action );
 		$logEntry->setPerformer( $performer );
 		$logEntry->setTarget( Title::makeTitle( NS_USER, $ip ) );
+		$logEntry->setParameters( $params );
 
 		$logEntry->insert( $this->dbw );
 	}

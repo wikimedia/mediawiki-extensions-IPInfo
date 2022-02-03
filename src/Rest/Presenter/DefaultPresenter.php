@@ -19,6 +19,8 @@ class DefaultPresenter {
 	 * They are ordered from lowest to highest access and each
 	 * describe themselves independently of one another
 	 *
+	 * Should be kept up-to-date with Logger::ACCESS_LEVELS
+	 *
 	 * @var array
 	 */
 	private const VIEWING_RIGHTS = [
