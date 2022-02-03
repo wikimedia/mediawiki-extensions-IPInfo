@@ -5,6 +5,7 @@ namespace MediaWiki\IPInfo\HookHandler;
 use ExtensionRegistry;
 use Mediawiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 
 class PreferencesHandler implements GetPreferencesHook {
@@ -91,5 +92,25 @@ class PreferencesHandler implements GetPreferencesHook {
 
 		// Both are checked
 		return true;
+	}
+
+	/**
+	 * @param UserIdentity $user
+	 * @param array &$modifiedOptions
+	 * @param array $originalOptions
+	 */
+	public function onSaveUserOptions( UserIdentity $user, array &$modifiedOptions, array $originalOptions ) {
+		// The user is enabling IP Info beta feature
+		// We enable IP info tool on Special:Contributions page by default.
+
+		if (
+			isset( $originalOptions[ 'ipinfo-beta-feature-enable' ] ) &&
+			isset( $modifiedOptions[ 'ipinfo-beta-feature-enable' ] ) &&
+			$originalOptions[ 'ipinfo-beta-feature-enable' ] == false &&
+			$modifiedOptions[ 'ipinfo-beta-feature-enable' ] == true
+			) {
+			$modifiedOptions[ 'ipinfo-enable' ] = true;
+			$modifiedOptions[ 'ipinfo-use-agreement' ] = false;
+		}
 	}
 }
