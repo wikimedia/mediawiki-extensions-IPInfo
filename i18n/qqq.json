@@ -60,5 +60,13 @@
 	"action-ipinfo-view-basic": "{{doc-action|ipinfo-view-basic}}",
 	"right-ipinfo-view-basic": "{{doc-right|ipinfo-view-basic}}",
 	"action-ipinfo-view-full": "{{doc-action|ipinfo-view-full}}",
-	"right-ipinfo-view-full": "{{doc-right|ipinfo-view-full}}"
+	"right-ipinfo-view-full": "{{doc-right|ipinfo-view-full}}",
+	"action-ipinfo-view-log": "{{doc-action|ipinfo-view-log}}",
+	"right-ipinfo-view-log": "{{doc-right|ipinfo-view-log}}",
+	"ipinfo-log-name": "{{doc-logpage}}\n\nThe page name of [[Special:Log/ipinfo]]. Appears in the drop down menu of the [[Special:Log]] page and subpages.",
+	"ipinfo-log-header": "Appears on top of [[Special:Log/ipinfo]].",
+	"ipinfo-log-access-level-ipinfo-view-basic": "Used in {{msg-mw|logentry-ipinfo-view_infobox}} and {{msg-mw|logentry-ipinfo-view_popup}} to log the level of information a user was able to view.",
+	"ipinfo-log-access-level-ipinfo-view-full": "Used in {{msg-mw|logentry-ipinfo-view_infobox}} and {{msg-mw|logentry-ipinfo-view_popup}} to log the level of information a user was able to view.",
+	"logentry-ipinfo-view_infobox": "{{Logentry|[[Special:Log/ipinfo]]}}\n* $4 - the level of information the user was able to view. See also: {{msg-mw|ipinfo-log-access-level-ipinfo-view-basic}}, {{msg-mw|ipinfo-log-access-level-ipinfo-view-full}}\n\nUsed if the infobox was viewed.",
+	"logentry-ipinfo-view_popup": "{{Logentry|[[Special:Log/ipinfo]]}}\n* $4 - the level of information the user was able to view. See also: {{msg-mw|ipinfo-log-access-level-ipinfo-view-basic}}, {{msg-mw|ipinfo-log-access-level-ipinfo-view-full}}\n\nUsed if the popup was viewed."
 }

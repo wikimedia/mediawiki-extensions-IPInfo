@@ -59,5 +59,13 @@
 	"action-ipinfo-view-basic": "allow a basic view of the IP information attached to revisions or log entries",
 	"right-ipinfo-view-basic": "Allow a basic view of the IP information attached to revisions or log entries",
 	"action-ipinfo-view-full": "allow a full view of the IP information attached to revisions or log entries",
-	"right-ipinfo-view-full": "Allow a full view of the IP information attached to revisions or log entries"
+	"right-ipinfo-view-full": "Allow a full view of the IP information attached to revisions or log entries",
+	"action-ipinfo-view-log": "view a log of who has accessed IP information",
+	"right-ipinfo-view-log": "View a log of who has accessed IP information",
+	"ipinfo-log-name": "IPInfo log",
+	"ipinfo-log-header": "This is a log of:\n# Uses of the IPInfo tool to view information about IPs; and\n# Changes to user access levels for the tool.",
+	"ipinfo-log-access-level-ipinfo-view-basic": "limited",
+	"ipinfo-log-access-level-ipinfo-view-full": "full",
+	"logentry-ipinfo-view_infobox": "$1 {{GENDER:$2|viewed}} $4 IP Information infobox for $3.",
+	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|viewed}} $4 IP Information popup for $3."
 }

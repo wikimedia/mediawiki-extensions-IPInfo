@@ -26,7 +26,8 @@
 	"AvailableRights": [
 		"ipinfo",
 		"ipinfo-view-basic",
-		"ipinfo-view-full"
+		"ipinfo-view-full",
+		"ipinfo-view-log"
 	],
 	"DefaultUserOptions": {
 		"ipinfo-enable": 0,
@@ -180,5 +181,18 @@
 			"description": "Path to the directory containing the GeoIP2 Enterprise and Anonymous IP database file; should contain the trailing slash"
 		}
 	},
-	"load_composer_autoloader": true
+	"load_composer_autoloader": true,
+	"LogTypes": [ "ipinfo" ],
+	"LogNames": {
+		"ipinfo": "ipinfo-log-name"
+	},
+	"LogHeaders": {
+		"ipinfo": "ipinfo-log-header"
+	},
+	"LogActionsHandlers": {
+		"ipinfo/*": "MediaWiki\\IPInfo\\Logging\\IPInfoLogFormatter"
+	},
+	"LogRestrictions": {
+		"ipinfo": "ipinfo-view-log"
+	}
 }
