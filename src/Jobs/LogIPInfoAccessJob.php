@@ -3,7 +3,6 @@
 namespace MediaWiki\IPInfo\Jobs;
 
 use Job;
-use MediaWiki\IPInfo\Logging\Logger;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -30,9 +29,8 @@ class LogIPInfoAccessJob extends Job {
 			return false;
 		}
 
-		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		$dbw = $lb->getConnectionRef( DB_PRIMARY );
-		$logger = new Logger( $dbw );
+		$factory = MediaWikiServices::getInstance()->get( 'IPInfoLoggerFactory' );
+		$logger = $factory->getLogger();
 
 		switch ( $this->params['dataContext'] ) {
 			case 'infobox':

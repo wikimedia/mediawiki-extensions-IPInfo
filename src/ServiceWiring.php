@@ -7,6 +7,7 @@ use MediaWiki\IPInfo\InfoRetriever\ContributionInfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\GeoIp2EnterpriseInfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\GeoLite2InfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\ReaderFactory;
+use MediaWiki\IPInfo\Logging\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -46,6 +47,11 @@ return [
 			$services->get( 'IPInfoBlockInfoRetriever' ),
 			$services->get( 'IPInfoContributionInfoRetriever' ),
 		] );
+	},
+	'IPInfoLoggerFactory' => static function ( MediaWikiServices $services ): LoggerFactory {
+		$dbw = $services->getDBLoadBalancer()
+			->getConnectionRef( ILoadBalancer::DB_PRIMARY );
+		return new LoggerFactory( $dbw );
 	},
 	'ReaderFactory' => static function () {
 		return new ReaderFactory();
