@@ -42,6 +42,7 @@ class LogHandler extends SimpleHandler {
 			'location',
 			'connectionType',
 			'userType',
+			'asn',
 			'isp',
 			'organization',
 			'proxyType',
