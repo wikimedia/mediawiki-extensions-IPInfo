@@ -99,6 +99,9 @@
 			"class": "MediaWiki\\IPInfo\\HookHandler\\SchemaHandler"
 		}
 	},
+	"JobClasses": {
+		"ipinfoLogIPInfoAccess": "\\MediaWiki\\IPInfo\\Jobs\\LogIPInfoAccessJob"
+	},
 	"ResourceModules": {
 		"ext.ipInfo": {
 			"localBasePath": "modules/ext.ipInfo",
