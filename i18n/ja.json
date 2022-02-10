@@ -6,5 +6,6 @@
 		]
 	},
 	"ipinfo-property-label-organization": "組織",
+	"ipinfo-property-value-proxytype-isanonymousvpn": "匿名VPN",
 	"ipinfo-beta-feature-title": "IP情報"
 }
