@@ -64,6 +64,7 @@
 		"SpecialContributionsBeforeMainOutput": "infobox",
 		"GetPreferences": "preferences",
 		"GetBetaFeaturePreferences": "betaFeature",
+		"SaveUserOptions": "preferences",
 		"LoadExtensionSchemaUpdates": "schema"
 	},
 	"HookHandlers": {
