@@ -100,15 +100,14 @@ class PreferencesHandler implements GetPreferencesHook {
 	 * @param array $originalOptions
 	 */
 	public function onSaveUserOptions( UserIdentity $user, array &$modifiedOptions, array $originalOptions ) {
-		// The user is enabling IP Info beta feature
-		// We enable IP info tool on Special:Contributions page by default.
-
+		// The user is enabling IP Info beta feature.
+		// We enable IP info tool by default.
 		if (
 			isset( $originalOptions[ 'ipinfo-beta-feature-enable' ] ) &&
 			isset( $modifiedOptions[ 'ipinfo-beta-feature-enable' ] ) &&
 			$originalOptions[ 'ipinfo-beta-feature-enable' ] == false &&
 			$modifiedOptions[ 'ipinfo-beta-feature-enable' ] == true
-			) {
+		) {
 			$modifiedOptions[ 'ipinfo-enable' ] = true;
 			$modifiedOptions[ 'ipinfo-use-agreement' ] = false;
 		}
