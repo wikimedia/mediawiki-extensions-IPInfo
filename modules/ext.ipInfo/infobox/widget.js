@@ -54,24 +54,26 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 	}
 
 	var proxyTypes, $proxyTypes;
-	// Filter for true values of proxyType
-	proxyTypes = Object.keys( info.data[ 'ipinfo-source-geoip2' ].proxyType )
-		.filter( function ( proxyTypeKey ) {
-			return info.data[ 'ipinfo-source-geoip2' ].proxyType[ proxyTypeKey ];
-		} );
+	if ( info.data[ 'ipinfo-source-geoip2' ].proxyType ) {
+		// Filter for true values of proxyType
+		proxyTypes = Object.keys( info.data[ 'ipinfo-source-geoip2' ].proxyType )
+			.filter( function ( proxyTypeKey ) {
+				return info.data[ 'ipinfo-source-geoip2' ].proxyType[ proxyTypeKey ];
+			} );
 
-	// If there are any known proxy types, transform the array into a list of values
-	if ( proxyTypes.length ) {
-		$proxyTypes = $( '<ul>' );
-		proxyTypes.forEach( function ( proxyType ) {
-			// * ipinfo-property-value-proxytype-isanonymousvpn
-			// * ipinfo-property-value-proxytype-ispublicproxy
-			// * ipinfo-property-value-proxytype-isresidentialproxy
-			// * ipinfo-property-value-proxytype-islegitimateproxy
-			// * ipinfo-property-value-proxytype-istorexitnode
-			// * ipinfo-property-value-proxytype-ishostingprovider
-			$proxyTypes.append( $( '<li>' ).text( mw.msg( 'ipinfo-property-value-proxytype-' + proxyType.toLowerCase() ) ) );
-		} );
+		// If there are any known proxy types, transform the array into a list of values
+		if ( proxyTypes.length ) {
+			$proxyTypes = $( '<ul>' );
+			proxyTypes.forEach( function ( proxyType ) {
+				// * ipinfo-property-value-proxytype-isanonymousvpn
+				// * ipinfo-property-value-proxytype-ispublicproxy
+				// * ipinfo-property-value-proxytype-isresidentialproxy
+				// * ipinfo-property-value-proxytype-islegitimateproxy
+				// * ipinfo-property-value-proxytype-istorexitnode
+				// * ipinfo-property-value-proxytype-ishostingprovider
+				$proxyTypes.append( $( '<li>' ).text( mw.msg( 'ipinfo-property-value-proxytype-' + proxyType.toLowerCase() ) ) );
+			} );
+		}
 	}
 
 	return $( '<dl>' ).addClass( 'ext-ipinfo-widget-properties' )
