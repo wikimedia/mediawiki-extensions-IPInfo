@@ -37,7 +37,7 @@ class LoggerFactory {
 	 * @param int $delay
 	 * @return Logger
 	 */
-	protected function getLogger(
+	public function getLogger(
 		int $delay = self::DEFAULT_DEBOUNCE_DELAY
 	) {
 		return new Logger(
