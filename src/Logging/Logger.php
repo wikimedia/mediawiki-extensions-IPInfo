@@ -29,14 +29,6 @@ use Wikimedia\Assert\ParameterAssertionException;
 class Logger {
 
 	/**
-	 * The default amount of time after which a duplicate log entry can be inserted. 24 hours (in
-	 * seconds).
-	 *
-	 * @var int
-	 */
-	private const DEFAULT_DEBOUNCE_DELAY = 24 * 60 * 60;
-
-	/**
 	 * Represents a user (the performer) viewing information about an IP via the infobox.
 	 *
 	 * @var string
@@ -71,7 +63,7 @@ class Logger {
 	 *  created by `Logger::logViewInfobox` or `Logger::logViewPopup`
 	 * @throws ParameterAssertionException if `$delay` is less than 1
 	 */
-	public function __construct( IDatabase $dbw, int $delay = self::DEFAULT_DEBOUNCE_DELAY ) {
+	public function __construct( IDatabase $dbw, int $delay ) {
 		Assert::parameter( $delay > 0, 'delay', 'delay must be positive' );
 
 		$this->dbw = $dbw;

@@ -54,7 +54,10 @@ class LoggerTest extends MediaWikiUnitTestCase {
 			->willReturn( (int)$isDebounced );
 
 		$logger = $this->getMockBuilder( Logger::class )
-			->setConstructorArgs( [ $database ] )
+			->setConstructorArgs( [
+				$database,
+				24 * 60 * 60,
+			] )
 			->onlyMethods( [ 'createManualLogEntry' ] )
 			->getMock();
 
