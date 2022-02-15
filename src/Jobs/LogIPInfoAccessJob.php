@@ -12,7 +12,7 @@ class LogIPInfoAccessJob extends Job {
 	/**
 	 * @inheritDoc
 	 */
-	public function __construct( $params ) {
+	public function __construct( $title, $params ) {
 		parent::__construct( 'ipinfoLogIPInfoAccess', $params );
 	}
 
