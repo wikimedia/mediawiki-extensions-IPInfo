@@ -14,6 +14,11 @@ class IPInfoLogFormatter extends LogFormatter {
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
 
+		// Update the logline depending on if the user had their access enabled or disabled
+		if ( $this->entry->getSubtype() === 'change_access' ) {
+			$params[3] = $this->msg( 'ipinfo-change-access-level-' . $params[3] );
+		}
+
 		if (
 			$this->entry->getSubtype() === 'view_infobox' ||
 			$this->entry->getSubtype() === 'view_popup'
@@ -32,6 +37,7 @@ class IPInfoLogFormatter extends LogFormatter {
 			// - 'ipinfo-log-access-level-ipinfo-view-full'
 			$params[3] = $this->msg( 'ipinfo-log-access-level-' . $params[3] );
 		}
+
 		return $params;
 	}
 }
