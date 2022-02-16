@@ -7,7 +7,8 @@
 			"Gomoko",
 			"Vega",
 			"Verdy p",
-			"Wladek92"
+			"Wladek92",
+			"DreZhsh"
 		]
 	},
 	"ipinfo-extensionname": "IP Info",
@@ -19,19 +20,19 @@
 	"ipinfo-property-label-organization": "Organisation",
 	"ipinfo-property-label-source": "Source",
 	"ipinfo-property-no-data": "Non disponible",
-	"ipinfo-widget-error-default": "L’information IP n’a pas pu être récupérée.",
-	"ipinfo-widget-error-no-data": "Il n’y a aucune donnée pour cette adresse IP depuis $1.",
+	"ipinfo-widget-error-default": "Les informations sur l’adresse IP n’ont pas pu être récupérées.",
+	"ipinfo-widget-error-no-data": "Il n’y a aucune donnée venant de $1 pour cette adresse IP.",
 	"ipinfo-widget-error-wrong-ip": "L’adresse IP fournie ne correspond pas au journal ou à la révision.",
 	"ipinfo-preference-enable": "Voir les informations sur une adresse IP. Un enregistrement sera effectué lorsque vous activerez ou désactiverez cette option.",
 	"ipinfo-rest-access-denied": "Vous n’avez pas le droit d’effectuer cette action.",
 	"ipinfo-rest-access-denied-blocked-user": "Vous n’avez pas le droit d’effectuer l’action demandée parce que votre compte est bloqué",
 	"ipinfo-rest-revision-no-author": "Votre compte n’a pas l’accès pour voir l’auteur de la version",
-	"ipinfo-rest-revision-registered": "Impossible de récupérer les infos IP pour les versions des utilisateurs enregistrés",
+	"ipinfo-rest-revision-registered": "Impossible de récupérer les informations sur une adresse IP pour les versions des utilisateurs enregistrés",
 	"ipinfo-rest-log-nonexistent": "L’entrée de journal n’existe pas",
-	"ipinfo-rest-log-registered": "Impossible de récupérer les infos IP pour les journaux des utilisateurs enregistrés",
+	"ipinfo-rest-log-registered": "Impossible de récupérer les informations sur une adresse IP pour les journaux des utilisateurs enregistrés",
 	"ipinfo-rest-log-denied": "Votre compte n’a pas accès à l’affichage de l’auteur de l’entrée de journal ou de l’entrée de journal elle-même",
-	"ipinfo-source-geoip2": "L’information affichée ici provient des bases de données GeoIp2 de MaxMind. Elle peut ne pas être complètement  exacte.",
-	"prefs-ipinfo": "Informations sur l’IP",
+	"ipinfo-source-geoip2": "Les informations affichées ici proviennent des bases de données GeoIp2 de MaxMind. Elle peuvent ne pas être complètement exactes.",
+	"prefs-ipinfo": "Informations sur l’adresse IP",
 	"action-ipinfo": "récupère des informations relatives aux adresses IP attachées aux révisions ou aux entrées de journal",
 	"right-ipinfo": "Récupérer des informations relatives aux adresses IP attachées aux révisions ou aux entrées de journal"
 }
