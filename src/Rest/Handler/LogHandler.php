@@ -4,6 +4,8 @@ namespace MediaWiki\IPInfo\Rest\Handler;
 
 use DatabaseLogEntry;
 use ExtensionRegistry;
+use JobQueueGroup;
+use JobSpecification;
 use LogEventsList;
 use LogPage;
 use MediaWiki\IPInfo\InfoManager;
@@ -73,6 +75,9 @@ class LogHandler extends SimpleHandler {
 	/** @var DefaultPresenter */
 	private $presenter;
 
+	/** @var JobQueueGroup */
+	private $jobQueueGroup;
+
 	/**
 	 * @param InfoManager $infoManager
 	 * @param ILoadBalancer $loadBalancer
@@ -81,6 +86,7 @@ class LogHandler extends SimpleHandler {
 	 * @param UserFactory $userFactory
 	 * @param UserIdentity $user
 	 * @param DefaultPresenter $presenter
+	 * @param JobQueueGroup $jobQueueGroup
 	 */
 	public function __construct(
 		InfoManager $infoManager,
@@ -89,7 +95,8 @@ class LogHandler extends SimpleHandler {
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
 		UserIdentity $user,
-		DefaultPresenter $presenter
+		DefaultPresenter $presenter,
+		JobQueueGroup $jobQueueGroup
 	) {
 		$this->infoManager = $infoManager;
 		$this->loadBalancer = $loadBalancer;
@@ -98,6 +105,7 @@ class LogHandler extends SimpleHandler {
 		$this->userFactory = $userFactory;
 		$this->user = $user;
 		$this->presenter = $presenter;
+		$this->jobQueueGroup = $jobQueueGroup;
 	}
 
 	/**
@@ -106,6 +114,7 @@ class LogHandler extends SimpleHandler {
 	 * @param PermissionManager $permissionManager
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
+	 * @param JobQueueGroup $jobQueueGroup
 	 * @return self
 	 */
 	public static function factory(
@@ -113,7 +122,8 @@ class LogHandler extends SimpleHandler {
 		ILoadBalancer $loadBalancer,
 		PermissionManager $permissionManager,
 		UserOptionsLookup $userOptionsLookup,
-		UserFactory $userFactory
+		UserFactory $userFactory,
+		JobQueueGroup $jobQueueGroup
 	) {
 		return new self(
 			$infoManager,
@@ -123,7 +133,8 @@ class LogHandler extends SimpleHandler {
 			$userFactory,
 			// @TODO Replace with something better.
 			RequestContext::getMain()->getUser(),
-			new DefaultPresenter( $permissionManager )
+			new DefaultPresenter( $permissionManager ),
+			$jobQueueGroup
 		);
 	}
 
@@ -188,10 +199,12 @@ class LogHandler extends SimpleHandler {
 		$target = $entry->getTarget()->getText();
 
 		$info = [];
-		if ( IPUtils::isValid( $performer ) && $canAccessPerformer ) {
+		$showPerformer = IPUtils::isValid( $performer ) && $canAccessPerformer;
+		$showTarget = IPUtils::isValid( $target ) && $canAccessTarget;
+		if ( $showPerformer ) {
 			$info[] = $this->presenter->present( $this->infoManager->retrieveFromIP( $performer ), $user );
 		}
-		if ( IPUtils::isValid( $target ) && $canAccessTarget ) {
+		if ( $showTarget ) {
 			$info[] = $this->presenter->present( $this->infoManager->retrieveFromIP( $target ), $user );
 		}
 
@@ -215,6 +228,35 @@ class LogHandler extends SimpleHandler {
 					}
 				}
 			}
+		}
+
+		if ( $showPerformer ) {
+			$this->jobQueueGroup->push(
+				new JobSpecification(
+					'ipinfoLogIPInfoAccess',
+					[
+						'performer' => $user->getName(),
+						'ip' => $performer ,
+						'dataContext' => $dataContext
+					],
+					[],
+					null
+				)
+			);
+		}
+		if ( $showTarget ) {
+			$this->jobQueueGroup->push(
+				new JobSpecification(
+					'ipinfoLogIPInfoAccess',
+					[
+						'performer' => $user->getName(),
+						'ip' => $target ,
+						'dataContext' => $dataContext
+					],
+					[],
+					null
+				)
+			);
 		}
 
 		$response = $this->getResponseFactory()->createJson( [ 'info' => $info ] );

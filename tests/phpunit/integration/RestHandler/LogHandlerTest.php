@@ -2,6 +2,7 @@
 
 namespace MediaWiki\IPInfo\Test\Integration\RestHandler;
 
+use JobQueueGroup;
 use LogPage;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Handler\LogHandler;
@@ -43,6 +44,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 				'userFactory' => $this->createMock( UserFactory::class ),
 				'userIdentity' => $this->createMock( UserIdentity::class ),
 				'presenter' => $this->createMock( DefaultPresenter::class ),
+				'jobQueueGroup' => $this->createMock( JobQueueGroup::class ),
 			],
 			$options
 		) ) );
