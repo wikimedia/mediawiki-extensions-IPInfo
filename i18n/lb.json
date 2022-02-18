@@ -12,5 +12,8 @@
 	"ipinfo-property-label-edits": "Kontributiounen",
 	"ipinfo-property-no-data": "Net disponibel",
 	"ipinfo-rest-access-denied-blocked-user": "Dir hutt net d'Recht fir dës Aktioun ze maachen well Äre Benotzerkont gespaart ass",
-	"prefs-ipinfo": "IP-Informatioun"
+	"prefs-ipinfo": "IP-Informatioun",
+	"right-ipinfo-view-log": "E Log weisen wien op d'IP-Informatioun zougegraff huet",
+	"ipinfo-log-access-level-ipinfo-view-basic": "limitéiert",
+	"ipinfo-log-access-level-ipinfo-view-full": "komplett"
 }

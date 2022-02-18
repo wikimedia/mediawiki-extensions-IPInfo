@@ -5,11 +5,30 @@
 			"আফতাবুজ্জামান"
 		]
 	},
+	"ipinfo-extensionname": "আইপি তথ্য",
+	"ipinfo-desc": "আইপি ঠিকানা সম্পর্কে তথ্য প্রদান করে।",
+	"ipinfo-infobox-title": "আইপির তথ্য",
+	"ipinfo-property-label-location": "অবস্থান",
+	"ipinfo-property-label-isp": "আইএসপি",
+	"ipinfo-property-label-asn": "এএসএন",
+	"ipinfo-property-label-organization": "সংস্থা",
+	"ipinfo-property-label-connectiontype": "সংযোগের পদ্ধতি",
+	"ipinfo-property-label-usertype": "সংযোগের মালিক",
+	"ipinfo-property-label-proxytypes": "আসল আইপি/প্রক্সি",
+	"ipinfo-property-value-proxytype-isanonymousvpn": "বেনামী ভিপিএন",
+	"ipinfo-property-value-proxytype-istorexitnode": "টর প্রস্থান নোড",
+	"ipinfo-property-value-proxytype-ishostingprovider": "হোস্টিং প্রদানকারী",
 	"ipinfo-property-label-source": "উৎস",
-	"ipinfo-widget-error-default": "আইপি তথ্যসমূহ উদ্ধার করা যাচ্ছে না।",
+	"ipinfo-property-label-active-blocks": "সক্রিয় বাধা",
+	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1টি সক্রিয় বাধা রয়েছে|0=কোনও সক্রিয় বাধা নেই}}।",
+	"ipinfo-property-label-edits": "অবদান",
+	"ipinfo-value-recent-edits": "({{PLURAL:$1|গত ২৪ ঘণ্টায় $1টি}})",
+	"ipinfo-property-no-data": "উপলব্ধ নয়",
+	"ipinfo-widget-error-default": "আইপির তথ্য বের করা যাচ্ছে না।",
 	"ipinfo-widget-error-wrong-ip": "প্রদানকৃত আইপি ঠিকানাটি লগ ও সংস্করণের সাথে মিলছে না।",
 	"ipinfo-infobox-submit-agreement": "আইপির তথ্য সরঞ্জাম সক্রিয় করুন",
 	"ipinfo-rest-access-denied": "আপনার এই কর্মটি সঞ্চালন করার অনুমতি নেই",
 	"ipinfo-beta-feature-title": "আইপি তথ্য",
-	"prefs-ipinfo": "আইপির তথ্য"
+	"prefs-ipinfo": "আইপির তথ্য",
+	"ipinfo-log-name": "আইপি তথ্য লগ"
 }
