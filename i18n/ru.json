@@ -3,6 +3,7 @@
 		"authors": [
 			"Jesusmc",
 			"Kareyac",
+			"Tanzun",
 			"Vitalisman"
 		]
 	},
@@ -10,5 +11,6 @@
 	"ipinfo-property-label-source": "Источник",
 	"ipinfo-property-no-data": "Не доступно",
 	"ipinfo-rest-access-denied": "У вас нет прав для выполнения этого действия.",
-	"ipinfo-rest-revision-registered": "Не было возможным получить информацию IP адреса для досмотра зарегистрированных пользователей."
+	"ipinfo-rest-revision-registered": "Не было возможным получить информацию IP адреса для досмотра зарегистрированных пользователей.",
+	"action-ipinfo-view-log": "просмотреть журнал с записями о тех, кто получил доступ к IP-информации"
 }

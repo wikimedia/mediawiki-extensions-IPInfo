@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Eduardo Addad de Oliveira",
-			"Eduardoaddad"
+			"Eduardoaddad",
+			"TheEduGobi"
 		]
 	},
 	"ipinfo-desc": "Fornece informações sobre um endereço IP.",
@@ -29,5 +30,13 @@
 	"ipinfo-source-geoip2": "As informações mostradas aqui vêm dos bancos de dados GeoIP2 da MaxMind. Pode não ser totalmente preciso.",
 	"prefs-ipinfo": "Informação de IP",
 	"action-ipinfo": "recuperar informações sobre endereços IP anexados a revisões ou entradas de registro",
-	"right-ipinfo": "Recupere informações sobre endereços IP anexados a revisões ou entradas de registro"
+	"right-ipinfo": "Recupere informações sobre endereços IP anexados a revisões ou entradas de registro",
+	"action-ipinfo-view-log": "visualizar o registro de usuários que acessaram o IP Information",
+	"right-ipinfo-view-log": "Visualizar o registro de usuários que acessaram o IP Information",
+	"ipinfo-log-name": "Registro do IPInfo",
+	"ipinfo-log-header": "Este é um registro:\n# dos usos da ferramente IPInfo para visualizar informações sobre IPs; e\n# das mudanças aos níveis de acesso do usuário à ferramenta.",
+	"ipinfo-log-access-level-ipinfo-view-basic": "limitado",
+	"ipinfo-log-access-level-ipinfo-view-full": "completo",
+	"logentry-ipinfo-view_infobox": "$1 visualizou a infocaixa “$4” do IP Information para $3.",
+	"logentry-ipinfo-view_popup": "$1 visualizou o popup “$4” do IP Information para $3."
 }
