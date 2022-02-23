@@ -13,7 +13,7 @@
 	},
 	"ipinfo-extensionname": "IP Info",
 	"ipinfo-desc": "Fournit des informations sur une adresse IP.",
-	"ipinfo-infobox-title": "Informations sur l’adresse IP",
+	"ipinfo-infobox-title": "Informations sur une adresse IP",
 	"ipinfo-property-label-location": "Lieu",
 	"ipinfo-property-label-isp": "FAI",
 	"ipinfo-property-label-asn": "ASN",
@@ -32,7 +32,7 @@
 	"ipinfo-rest-log-registered": "Impossible de récupérer les informations sur une adresse IP pour les journaux des utilisateurs enregistrés",
 	"ipinfo-rest-log-denied": "Votre compte n’a pas accès à l’affichage de l’auteur de l’entrée de journal ou de l’entrée de journal elle-même",
 	"ipinfo-source-geoip2": "Les informations affichées ici proviennent des bases de données GeoIp2 de MaxMind. Elle peuvent ne pas être complètement exactes.",
-	"prefs-ipinfo": "Informations sur l’adresse IP",
+	"prefs-ipinfo": "Informations sur une adresse IP",
 	"action-ipinfo": "récupère des informations relatives aux adresses IP attachées aux révisions ou aux entrées de journal",
 	"right-ipinfo": "Récupérer des informations relatives aux adresses IP attachées aux révisions ou aux entrées de journal"
 }
