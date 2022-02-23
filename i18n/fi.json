@@ -40,5 +40,6 @@
 	"ipinfo-rest-log-denied": "Käyttäjälläsi ei ole oikeutta tarkastella lokimerkinnän suorittajaa tai itse lokimerkintää",
 	"ipinfo-beta-feature-title": "IP-tieto",
 	"prefs-ipinfo": "IP-tiedot",
-	"action-ipinfo": "hakea tietoja IP-osoitteista, jotka on liitetty versioihin tai lokimerkintöihin"
+	"action-ipinfo": "hakea tietoja IP-osoitteista, jotka on liitetty versioihin tai lokimerkintöihin",
+	"ipinfo-log-access-level-ipinfo-view-full": "täynnä"
 }
