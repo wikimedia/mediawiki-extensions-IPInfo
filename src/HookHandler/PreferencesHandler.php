@@ -100,14 +100,34 @@ class PreferencesHandler implements GetPreferencesHook {
 	 * @param array $originalOptions
 	 */
 	public function onSaveUserOptions( UserIdentity $user, array &$modifiedOptions, array $originalOptions ) {
-		// The user is enabling IP Info beta feature.
-		// We enable IP info tool by default.
+		$betaFeatureIsEnabled = isset( $originalOptions['ipinfo-beta-feature-enable'] ) &&
+			$originalOptions['ipinfo-beta-feature-enable'];
+		$betaFeatureIsDisabled = !$betaFeatureIsEnabled;
+
+		$betaFeatureWillEnable = isset( $modifiedOptions['ipinfo-beta-feature-enable'] ) &&
+			$modifiedOptions['ipinfo-beta-feature-enable'];
+		$betaFeatureWillDisable = isset( $modifiedOptions['ipinfo-beta-feature-enable'] ) &&
+			!$modifiedOptions['ipinfo-beta-feature-enable'];
+
+		// If enabling auto-enroll, treat as enabling IPInfo because:
+		// * IPInfo will become enabled
+		// * 'ipinfo-beta-feature-enable' won't be updated before this hook runs
+		// When disabling auto-enroll, do not treat as disabling IPnfo because:
+		// * IPInfo will not necessarily become disabled
+		// * 'ipinfo-beta-feature-enable' will be updated if IPInfo becomes disabled
+		$autoEnrollIsDisabled = !(
+			isset( $originalOptions['betafeatures-auto-enroll'] ) &&
+			$originalOptions['betafeatures-auto-enroll']
+		);
+		$autoEnrollWillEnable = isset( $modifiedOptions['betafeatures-auto-enroll'] ) &&
+			$modifiedOptions['betafeatures-auto-enroll'];
+
 		if (
-			isset( $originalOptions[ 'ipinfo-beta-feature-enable' ] ) &&
-			isset( $modifiedOptions[ 'ipinfo-beta-feature-enable' ] ) &&
-			$originalOptions[ 'ipinfo-beta-feature-enable' ] == false &&
-			$modifiedOptions[ 'ipinfo-beta-feature-enable' ] == true
+			$betaFeatureIsEnabled && $betaFeatureWillDisable ||
+			$betaFeatureIsDisabled && $betaFeatureWillEnable ||
+			$betaFeatureIsDisabled && $autoEnrollIsDisabled && $autoEnrollWillEnable
 		) {
+			// Restore default IPInfo preferences
 			$modifiedOptions[ 'ipinfo-enable' ] = true;
 			$modifiedOptions[ 'ipinfo-use-agreement' ] = false;
 		}
