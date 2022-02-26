@@ -2,9 +2,9 @@
 
 namespace MediaWiki\IPInfo\Logging;
 
-use IDatabase;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\ActorStore;
+use Wikimedia\Rdbms\IDatabase;
 
 class LoggerFactory {
 

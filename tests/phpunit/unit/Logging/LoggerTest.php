@@ -3,7 +3,6 @@
 namespace MediaWiki\IPInfo\Test\Unit\Logging;
 
 use Generator;
-use IDatabase;
 use ManualLogEntry;
 use MediaWiki\IPInfo\Logging\Logger;
 use MediaWiki\Permissions\PermissionManager;
@@ -11,6 +10,7 @@ use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use Title;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * @coversDefaultClass \MediaWiki\IPInfo\Logging\Logger

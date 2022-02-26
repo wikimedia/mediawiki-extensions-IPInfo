@@ -2,7 +2,6 @@
 
 namespace MediaWiki\IPInfo\Logging;
 
-use IDatabase;
 use ManualLogEntry;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\ActorStore;
@@ -10,6 +9,7 @@ use MediaWiki\User\UserIdentity;
 use Title;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\ParameterAssertionException;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Defines the API for the component responsible for logging the following interactions:
