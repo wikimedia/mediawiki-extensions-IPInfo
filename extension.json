@@ -162,6 +162,7 @@
 				"ipinfo-infobox-use-terms",
 				"ipinfo-preference-use-agreement",
 				"ipinfo-infobox-submit-agreement",
+				"ipinfo-use-agreement-submit-error",
 				"ipinfo-infobox-disable-instructions",
 				"ipinfo-preference-agreement-error"
 			]
