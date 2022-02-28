@@ -3,7 +3,8 @@
 		"authors": [
 			"Amire80",
 			"N100a",
-			"ישראל קלר"
+			"ישראל קלר",
+			"שוקו מוקה"
 		]
 	},
 	"ipinfo-desc": "מספקת מידע על כתובות IP.",
@@ -63,8 +64,8 @@
 	"right-ipinfo-view-log": "צפייה ביומן של מי שניגש למידע על IP",
 	"ipinfo-log-name": "יומן מידע על IP",
 	"ipinfo-log-header": "זהו יומן של:\n# שימושים בכלי הגישה למידע על IP כדי לצפות במידע על כתובות IP; וגם\n# שינויים ברמות הגישה של משתמשים לכלי.",
-	"ipinfo-log-access-level-ipinfo-view-basic": "מוגבל",
-	"ipinfo-log-access-level-ipinfo-view-full": "מלא",
-	"logentry-ipinfo-view_infobox": "$1 {{GENDER:$2|צפה|צפתה}} בתיבת מידע עם מידע $4 על IP על $3.",
-	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|צפה|צפתה}} בחלון קופץ עם מידע $4 על IP על $3."
+	"ipinfo-log-access-level-ipinfo-view-basic": "גישה מוגבלת",
+	"ipinfo-log-access-level-ipinfo-view-full": "גישה מלאה",
+	"logentry-ipinfo-view_infobox": "$1 {{GENDER:$2|צפה|צפתה}} בתיבת מידע עם על IP עבור $3. $4",
+	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|צפה|צפתה}} בחלון קופץ עם מידע על IP עבור $3. $4"
 }

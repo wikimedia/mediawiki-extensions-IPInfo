@@ -5,7 +5,7 @@
 			"Rsaawah"
 		]
 	},
-	"ipinfo-log-access-level-ipinfo-view-basic": "Ketewa",
-	"ipinfo-log-access-level-ipinfo-view-full": "Ma",
+	"ipinfo-log-access-level-ipinfo-view-basic": "Ɛho akwanya yɛ ketewa",
+	"ipinfo-log-access-level-ipinfo-view-full": "Akwanya mua",
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|Hwɛe}} $4 IP ho nsɛm a ɛbaeɛ maa $3."
 }

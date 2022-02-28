@@ -10,5 +10,6 @@
 	"ipinfo-beta-feature-title": "IP情報",
 	"action-ipinfo-view-log": "IP情報にアクセスした方のログを見る",
 	"right-ipinfo-view-log": "IP情報にアクセスした方のログを見る",
-	"ipinfo-log-access-level-ipinfo-view-basic": "限定されています"
+	"ipinfo-log-access-level-ipinfo-view-basic": "アクセスが制限されています",
+	"ipinfo-log-access-level-ipinfo-view-full": "完全なアクセス"
 }

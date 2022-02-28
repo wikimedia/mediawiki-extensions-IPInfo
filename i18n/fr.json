@@ -69,8 +69,8 @@
 	"right-ipinfo-view-log": "Afficher un journal de qui a accédé aux informations sur une adresse IP",
 	"ipinfo-log-name": "Journal InfosIP",
 	"ipinfo-log-header": "Ceci est un journal listant :\n# les utilisations de l’outil InfosIP pour afficher les informations concernant des IP ; et\n# les modifications des niveaux d’accès des utilisateurs à cet outil.",
-	"ipinfo-log-access-level-ipinfo-view-basic": "limitées",
-	"ipinfo-log-access-level-ipinfo-view-full": "complètes",
-	"logentry-ipinfo-view_infobox": "$1{{GENDER:$2|}} a consulté la boîte d’informations $4 sur une adresse IP pour $3.",
-	"logentry-ipinfo-view_popup": "$1{{GENDER:$2|}} a consulté la boîte d’informations $4 sur une adresse IP pour $3."
+	"ipinfo-log-access-level-ipinfo-view-basic": "Accès limité",
+	"ipinfo-log-access-level-ipinfo-view-full": "Accès complet",
+	"logentry-ipinfo-view_infobox": "$1{{GENDER:$2|}} a consulté la boîte d’informations sur une adresse IP pour $3. $4.",
+	"logentry-ipinfo-view_popup": "$1{{GENDER:$2|}} a consulté la boîte d’informations sur une adresse IP pour $3.  $4."
 }

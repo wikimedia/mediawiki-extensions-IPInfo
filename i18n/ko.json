@@ -13,6 +13,10 @@
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "조직",
 	"ipinfo-property-label-connectiontype": "연결 방식",
+	"ipinfo-property-label-proxytypes": "실제 IP/프록시",
+	"ipinfo-property-value-proxytype-isanonymousvpn": "익명 VPN",
+	"ipinfo-property-value-proxytype-ispublicproxy": "공개 프록시",
+	"ipinfo-property-value-proxytype-ishostingprovider": "호스팅 제공자",
 	"ipinfo-property-label-source": "출처",
 	"ipinfo-property-label-edits": "기여",
 	"ipinfo-property-no-data": "사용할 수 없음",
@@ -26,5 +30,8 @@
 	"ipinfo-rest-access-denied-blocked-user": "계정이 차단되어 있으므로 수행할 권한이 없습니다",
 	"ipinfo-rest-log-nonexistent": "로그 엔트리가 존재하지 않습니다",
 	"ipinfo-beta-feature-title": "아이피 정보",
-	"prefs-ipinfo": "IP 정보"
+	"prefs-ipinfo": "IP 정보",
+	"ipinfo-log-name": "IPInfo 기록",
+	"ipinfo-log-access-level-ipinfo-view-basic": "제한된 접근",
+	"ipinfo-log-access-level-ipinfo-view-full": "무제한 접근"
 }

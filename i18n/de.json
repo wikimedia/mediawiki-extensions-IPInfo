@@ -59,8 +59,8 @@
 	"right-ipinfo-view-log": "Ein Protokoll der Zugriffe auf IP-Informationen einsehen",
 	"ipinfo-log-name": "IPInfo-Logbuch",
 	"ipinfo-log-header": "Dies ist ein Logbuch der:\n# Verwendungen des IPInfo-Tools zur Anzeige von Informationen über IP-Adressen; und\n# Änderungen der Benutzerzugriffsebenen für das Tool.",
-	"ipinfo-log-access-level-ipinfo-view-basic": "begrenzte",
-	"ipinfo-log-access-level-ipinfo-view-full": "vollständige",
-	"logentry-ipinfo-view_infobox": "$1 {{GENDER:$2|sah}} die $4 IP-Information-Infobox für $3.",
-	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|sah}} das $4 IP-Information-Popup für $3."
+	"ipinfo-log-access-level-ipinfo-view-basic": "Begrenzter Zugang",
+	"ipinfo-log-access-level-ipinfo-view-full": "Voller Zugang",
+	"logentry-ipinfo-view_infobox": "$1 {{GENDER:$2|sah}} die IP-Information-Infobox für $3. $4.",
+	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|sah}} das IP-Information-Popup für $3. $4."
 }
