@@ -68,9 +68,17 @@
 		"GetPreferences": "preferences",
 		"GetBetaFeaturePreferences": "betaFeature",
 		"SaveUserOptions": "preferences",
-		"LoadExtensionSchemaUpdates": "schema"
+		"LoadExtensionSchemaUpdates": "schema",
+		"ApiOptions": "apiOptions"
 	},
 	"HookHandlers": {
+		"apiOptions": {
+			"class": "MediaWiki\\IPInfo\\HookHandler\\ApiOptionsHandler",
+			"services": [
+				"UserOptionsLookup",
+				"IPInfoLoggerFactory"
+			]
+		},
 		"popup": {
 			"class": "MediaWiki\\IPInfo\\HookHandler\\PopupHandler",
 			"services": [
@@ -89,7 +97,8 @@
 			"class": "MediaWiki\\IPInfo\\HookHandler\\PreferencesHandler",
 			"services": [
 				"PermissionManager",
-				"UserOptionsLookup"
+				"UserOptionsLookup",
+				"IPInfoLoggerFactory"
 			]
 		},
 		"betaFeature": {

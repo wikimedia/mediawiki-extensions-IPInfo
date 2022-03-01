@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo\HookHandler;
 
 use ExtensionRegistry;
+use MediaWiki\IPInfo\Logging\LoggerFactory;
 use Mediawiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\User\UserIdentity;
@@ -15,16 +16,22 @@ class PreferencesHandler implements GetPreferencesHook {
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
+	/** @var LoggerFactory */
+	private $loggerFactory;
+
 	/**
 	 * @param PermissionManager $permissionManager
 	 * @param UserOptionsLookup $userOptionsLookup
+	 * @param LoggerFactory $loggerFactory
 	 */
 	public function __construct(
 		PermissionManager $permissionManager,
-		UserOptionsLookup $userOptionsLookup
+		UserOptionsLookup $userOptionsLookup,
+		LoggerFactory $loggerFactory
 	) {
 		$this->permissionManager = $permissionManager;
 		$this->userOptionsLookup = $userOptionsLookup;
+		$this->loggerFactory = $loggerFactory;
 	}
 
 	/**
@@ -130,6 +137,23 @@ class PreferencesHandler implements GetPreferencesHook {
 			// Restore default IPInfo preferences
 			$modifiedOptions[ 'ipinfo-enable' ] = true;
 			$modifiedOptions[ 'ipinfo-use-agreement' ] = false;
+		}
+
+		$isEnabled = isset( $originalOptions[ 'ipinfo-enable' ] ) &&
+			isset( $originalOptions[ 'ipinfo-use-agreement' ] ) &&
+			$originalOptions[ 'ipinfo-enable' ] &&
+			$originalOptions[ 'ipinfo-use-agreement' ];
+		$willEnable = isset( $modifiedOptions[ 'ipinfo-enable' ] ) &&
+			isset( $modifiedOptions[ 'ipinfo-use-agreement' ] ) &&
+			$modifiedOptions[ 'ipinfo-enable' ] &&
+			$modifiedOptions[ 'ipinfo-use-agreement' ];
+		if ( $isEnabled !== $willEnable ) {
+			$logger = $this->loggerFactory->getLogger();
+			if ( $willEnable ) {
+				$logger->logAccessEnabled( $user );
+			} else {
+				$logger->logAccessDisabled( $user );
+			}
 		}
 	}
 }

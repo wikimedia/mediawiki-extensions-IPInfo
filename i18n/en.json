@@ -67,5 +67,8 @@
 	"ipinfo-log-access-level-ipinfo-view-basic": "Limited access",
 	"ipinfo-log-access-level-ipinfo-view-full": "Full access",
 	"logentry-ipinfo-view_infobox": "$1 {{GENDER:$2|viewed}} IP Information infobox for $3. $4.",
-	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|viewed}} IP Information popup for $3. $4."
+	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|viewed}} IP Information popup for $3. $4.",
+	"ipinfo-change-access-level-enable": "enabled",
+	"ipinfo-change-access-level-disable": "disabled",
+	"logentry-ipinfo-change_access": "$1 {{GENDER:$2|$4}} their own access to IPInfo"
 }

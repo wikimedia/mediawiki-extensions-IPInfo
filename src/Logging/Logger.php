@@ -18,13 +18,9 @@ use Wikimedia\Rdbms\IDatabase;
  * 2. A user views information about an IP via the popup
  * 3. A user enables IP Info (via Special:Preferences)
  * 4. A user disables IP Info
- * 5. A user has their access revoked
- * 6. A user has their access (re-)granted
  *
  * 1 and 2 are debounced. By default, if the same user views information about the same IP via the
  * same treatment within 24 hours, then only one such action should be logged.
- *
- * 3-6 will be implemented as part of T292842.
  *
  * All the above interactions will be logged to the `logging` table with a log type `ipinfo`.
  */
@@ -56,6 +52,23 @@ class Logger {
 	 * @var string
 	 */
 	public const ACTION_VIEW_POPUP = 'view_popup';
+
+	/**
+	 * Represents a user enabling or disabling their own access to IPInfo
+	 *
+	 * @var string
+	 */
+	public const ACTION_CHANGE_ACCESS = 'change_access';
+
+	/**
+	 * @var string
+	 */
+	public const ACTION_ACCESS_ENABLED = 'enable';
+
+	/**
+	 * @var string
+	 */
+	public const ACTION_ACCESS_DISABLED = 'disable';
 
 	/**
 	 * @var string
@@ -151,6 +164,30 @@ class Logger {
 		}
 
 		return $highestLevel;
+	}
+
+	/**
+	 * Log when the user enables their own access
+	 *
+	 * @param UserIdentity $performer
+	 */
+	public function logAccessEnabled( UserIdentity $performer ): void {
+		$params = [
+			'4::changeType' => self::ACTION_ACCESS_ENABLED,
+		];
+		$this->log( $performer, $performer->getName(), self::ACTION_CHANGE_ACCESS, $params );
+	}
+
+	/**
+	 * Log when the user disables their own access
+	 *
+	 * @param UserIdentity $performer
+	 */
+	public function logAccessDisabled( UserIdentity $performer ): void {
+		$params = [
+			'4::changeType' => self::ACTION_ACCESS_DISABLED,
+		];
+		$this->log( $performer, $performer->getName(), self::ACTION_CHANGE_ACCESS, $params );
 	}
 
 	/**
