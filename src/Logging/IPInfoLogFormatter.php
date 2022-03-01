@@ -16,6 +16,9 @@ class IPInfoLogFormatter extends LogFormatter {
 
 		// Update the logline depending on if the user had their access enabled or disabled
 		if ( $this->entry->getSubtype() === 'change_access' ) {
+			// Message keys used:
+			// - 'ipinfo-change-access-level-enable'
+			// - 'ipinfo-change-access-level-disable'
 			$params[3] = $this->msg( 'ipinfo-change-access-level-' . $params[3] );
 		}
 
