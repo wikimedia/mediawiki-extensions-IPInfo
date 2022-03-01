@@ -15,7 +15,7 @@
 	"prefs-ipinfo": "IP-Informatioun",
 	"right-ipinfo-view-log": "E Log weisen wien op d'IP-Informatioun zougegraff huet",
 	"ipinfo-log-name": "IPInfo-Logbuch",
-	"ipinfo-log-access-level-ipinfo-view-basic": "limitéiert",
-	"ipinfo-log-access-level-ipinfo-view-full": "komplett",
+	"ipinfo-log-access-level-ipinfo-view-basic": "Limitéierten Zougang",
+	"ipinfo-log-access-level-ipinfo-view-full": "Kompletten Zougang",
 	"logentry-ipinfo-view_popup": "$1 huet $4 IP-Informatioun's Pop-up fir $3 {{GENDER:$2|gekuckt}}."
 }
