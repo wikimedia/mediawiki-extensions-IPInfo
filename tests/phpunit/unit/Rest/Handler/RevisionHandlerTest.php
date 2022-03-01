@@ -87,10 +87,15 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 		$revisionLookup->method( 'getRevisionById' )
 			->willReturn( $revision );
 
+		$jobQueueGroup = $this->createMock( JobQueueGroup::class );
+		$jobQueueGroup->expects( $this->atLeastOnce() )
+			->method( 'push' );
+
 		$handler = $this->getRevisionHandler( [
 			'revisionLookup' => $revisionLookup,
 			'permissionManager' => $permissionManager,
 			'userOptionsLookup' => $userOptionsLookup,
+			'jobQueueGroup' => $jobQueueGroup,
 		] );
 
 		$request = $this->getRequestData();

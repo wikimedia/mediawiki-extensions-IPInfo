@@ -89,10 +89,15 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$userOptionsLookup->method( 'getOption' )
 			->willReturn( true );
 
+		$jobQueueGroup = $this->createMock( JobQueueGroup::class );
+		$jobQueueGroup->expects( $this->atLeastOnce() )
+			->method( 'push' );
+
 		$handler = $this->getLogHandler( [
 			'loadBalancer' => $loadBalancer,
 			'permissionManager' => $permissionManager,
 			'userOptionsLookup' => $userOptionsLookup,
+			'jobQueueGroup' => $jobQueueGroup,
 		] );
 
 		$request = $this->getRequestData( $id );
