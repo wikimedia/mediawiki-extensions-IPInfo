@@ -12,5 +12,7 @@
 	"ipinfo-property-no-data": "Не доступно",
 	"ipinfo-rest-access-denied": "У вас нет прав для выполнения этого действия.",
 	"ipinfo-rest-revision-registered": "Не было возможным получить информацию IP адреса для досмотра зарегистрированных пользователей.",
-	"action-ipinfo-view-log": "просмотреть журнал с записями о тех, кто получил доступ к IP-информации"
+	"action-ipinfo-view-log": "просмотреть журнал с записями о тех, кто получил доступ к IP-информации",
+	"ipinfo-change-access-level-enable": "включено",
+	"ipinfo-change-access-level-disable": "отключено"
 }

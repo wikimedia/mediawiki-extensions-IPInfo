@@ -62,8 +62,11 @@
 	"right-ipinfo-view-log": "Преглед на записник на сите кои погледале информации за IP",
 	"ipinfo-log-name": "IPInfo-записник",
 	"ipinfo-log-header": "Ова е записник на:\n# Употреба на алатката IPInfo за преглед на информации за IP-адреси; и\n# Промени во степенот на пристап кај корисниците на алатката.",
-	"ipinfo-log-access-level-ipinfo-view-basic": "ограничени",
-	"ipinfo-log-access-level-ipinfo-view-full": "целосни",
-	"logentry-ipinfo-view_infobox": "$1 {{GENDER:$2|прегледа}} инфокутија со $4 информации за IP-адреса за $3.",
-	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|прегледа}} отскочник со $4 информации за IP-адреса за $3."
+	"ipinfo-log-access-level-ipinfo-view-basic": "Ограничен пристап",
+	"ipinfo-log-access-level-ipinfo-view-full": "Целосен пристап",
+	"logentry-ipinfo-view_infobox": "$1 {{GENDER:$2|прегледа}} инфокутија со информации за IP-адреса за $3. $4.",
+	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|прегледа}} отскочник со информации за IP-адреса за $3. $4.",
+	"ipinfo-change-access-level-enable": "овозможено",
+	"ipinfo-change-access-level-disable": "оневозможено",
+	"logentry-ipinfo-change_access": "$1 {{GENDER:$2|$4}} сопствениот пристап до IPInfo"
 }
