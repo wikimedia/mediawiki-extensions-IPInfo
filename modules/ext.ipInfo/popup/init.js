@@ -1,4 +1,6 @@
 var IpInfoPopupWidget = require( './widget.js' );
+var log = require( '../log.js' );
+
 mw.hook( 'wikipage.content' ).add( function ( $content ) {
 	$content.find( '.mw-anonuserlink' ).after( function () {
 		var id, type;
@@ -62,37 +64,8 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 						}
 					}
 					mw.track( 'timing.MediaWiki.ipinfo_popup_delay', mw.now() - popupIpInfoDelayStart );
+					log( 'open_popup', 'page' );
 
-					var specialPage = mw.config.get( 'wgCanonicalSpecialPageName' );
-					switch ( specialPage ) {
-						case 'Log':
-							specialPage = 'special_log';
-							break;
-						case 'Recentchanges':
-							specialPage = 'special_recentchanges';
-							break;
-						case false:
-							specialPage = 'action_history';
-							break;
-					}
-
-					var popupInfoClick = {
-						/* eslint-disable camelcase */
-						$schema: '/analytics/mediawiki/ipinfo_interaction/1.0.0',
-						event_action: 'open_popup',
-						event_context: 'page',
-						event_source: specialPage,
-						user_edit_bucket: mw.config.get( 'wgUserEditCountBucket' ),
-						user_groups: mw.config.get( 'wgUserGroups', [] ).join( '|' )
-						/* eslint-enable camelcase */
-					};
-
-					mw.track( 'ipinfo.event', popupInfoClick );
-					mw.trackSubscribe( 'ipinfo.event', function ( topic, eventData ) {
-						if ( mw.eventLog ) {
-							mw.eventLog.submit( 'mediawiki.ipinfo_interaction', eventData );
-						}
-					} );
 					return data;
 				} )
 			).$element );
