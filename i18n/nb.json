@@ -24,5 +24,8 @@
 	"ipinfo-source-geoip2": "Informasjonen som vises her kommer fra GeoIP2-databasene fra MaxMind. Det kan være unøyaktigheter.",
 	"prefs-ipinfo": "IP-informasjon",
 	"action-ipinfo": "hente informasjon om IP-adresser tilknyttet revisjoner eller loggoppføringer",
-	"right-ipinfo": "hente informasjon om en IP-adresse tilknyttet revisjoner eller loggoppføringer"
+	"right-ipinfo": "hente informasjon om en IP-adresse tilknyttet revisjoner eller loggoppføringer",
+	"ipinfo-change-access-level-enable": "aktiverte",
+	"ipinfo-change-access-level-disable": "deaktiverte",
+	"logentry-ipinfo-change_access": "$1 {{GENDER:$2|$4}} sin egen tilgang til IPInfo"
 }

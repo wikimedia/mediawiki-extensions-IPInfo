@@ -13,5 +13,7 @@
 	"ipinfo-property-label-source": "Källa",
 	"ipinfo-preference-enable": "Se information om en IP-adress",
 	"ipinfo-source-geoip2": "GeoIp2",
-	"prefs-ipinfo": "IP-information"
+	"prefs-ipinfo": "IP-information",
+	"ipinfo-change-access-level-enable": "aktiverad",
+	"ipinfo-change-access-level-disable": "inaktiverad"
 }
