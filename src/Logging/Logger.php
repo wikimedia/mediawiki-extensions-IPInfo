@@ -203,7 +203,7 @@ class Logger {
 		string $action,
 		array $params
 	): void {
-		$timestamp = (int)wfTimestampNow() - $this->delay;
+		$timestamp = (int)wfTimestamp() - $this->delay;
 
 		$actorId = $this->actorStore->acquireActorId( $performer, $this->dbw );
 		$shouldLog = $this->dbw->selectRowCount(
