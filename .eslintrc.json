@@ -7,6 +7,6 @@
 	],
 	"rules": {
 		"no-jquery/no-global-selector": "off",
-		"no-implicit-globals": 0
+		"no-implicit-globals": "off"
 	}
 }
