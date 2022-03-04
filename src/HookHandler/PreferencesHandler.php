@@ -130,14 +130,11 @@ class PreferencesHandler implements GetPreferencesHook {
 	 * @param array $originalOptions
 	 */
 	public function onSaveUserOptions( UserIdentity $user, array &$modifiedOptions, array $originalOptions ) {
-		$betaFeatureIsEnabled = isset( $originalOptions['ipinfo-beta-feature-enable'] ) &&
-			$originalOptions['ipinfo-beta-feature-enable'];
+		$betaFeatureIsEnabled = $this->isTruthy( $originalOptions, 'ipinfo-beta-feature-enable' );
 		$betaFeatureIsDisabled = !$betaFeatureIsEnabled;
 
-		$betaFeatureWillEnable = isset( $modifiedOptions['ipinfo-beta-feature-enable'] ) &&
-			$modifiedOptions['ipinfo-beta-feature-enable'];
-		$betaFeatureWillDisable = isset( $modifiedOptions['ipinfo-beta-feature-enable'] ) &&
-			!$modifiedOptions['ipinfo-beta-feature-enable'];
+		$betaFeatureWillEnable = $this->isTruthy( $modifiedOptions, 'ipinfo-beta-feature-enable' );
+		$betaFeatureWillDisable = $this->isFalsey( $modifiedOptions, 'ipinfo-beta-feature-enable' );
 
 		// If enabling auto-enroll, treat as enabling IPInfo because:
 		// * IPInfo will become enabled
@@ -145,12 +142,9 @@ class PreferencesHandler implements GetPreferencesHook {
 		// When disabling auto-enroll, do not treat as disabling IPnfo because:
 		// * IPInfo will not necessarily become disabled
 		// * 'ipinfo-beta-feature-enable' will be updated if IPInfo becomes disabled
-		$autoEnrollIsDisabled = !(
-			isset( $originalOptions['betafeatures-auto-enroll'] ) &&
-			$originalOptions['betafeatures-auto-enroll']
-		);
-		$autoEnrollWillEnable = isset( $modifiedOptions['betafeatures-auto-enroll'] ) &&
-			$modifiedOptions['betafeatures-auto-enroll'];
+		$autoEnrollIsEnabled = $this->isTruthy( $originalOptions, 'betafeatures-auto-enroll' );
+		$autoEnrollIsDisabled = !$autoEnrollIsEnabled;
+		$autoEnrollWillEnable = $this->isTruthy( $modifiedOptions, 'betafeatures-auto-enroll' );
 
 		if (
 			$betaFeatureIsEnabled && $betaFeatureWillDisable ||
