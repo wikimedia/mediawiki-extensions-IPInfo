@@ -5,5 +5,8 @@
 		]
 	},
 	"ipinfo-property-label-location": "સ્થળ",
-	"ipinfo-property-label-edits": "યોગદાનો"
+	"ipinfo-property-label-edits": "યોગદાનો",
+	"group-ipinfo-viewer": "IP માહિતી અવલોકનકારો",
+	"group-ipinfo-viewer-member": "{{GENDER:$1|IP માહિતી અવલોકનકાર}}",
+	"grouppage-ipinfo-viewer": "{{ns:project}}:IP માહિતી અવલોકનકારો"
 }

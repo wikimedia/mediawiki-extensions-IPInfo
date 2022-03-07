@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"FiberAhmed"
+		]
+	},
+	"ipinfo-log-access-level-ipinfo-view-basic": "وصول محدود",
+	"ipinfo-log-access-level-ipinfo-view-full": "وصول كامل",
+	"ipinfo-change-access-level-enable": "مُفعّل",
+	"ipinfo-change-access-level-disable": "مُعطَّل"
+}

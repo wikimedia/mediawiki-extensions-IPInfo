@@ -3,12 +3,15 @@
 		"authors": [
 			"Baidoom",
 			"Kewl Sunshine",
+			"Robertjamal12",
 			"Rsaawah"
 		]
 	},
+	"ipinfo-property-label-location": "Bea",
+	"ipinfo-property-label-source": "Mfiti",
 	"ipinfo-log-access-level-ipinfo-view-basic": "Ɛho akwanya yɛ ketewa",
 	"ipinfo-log-access-level-ipinfo-view-full": "Akwanya mua",
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|Hwɛe}} $4 IP ho nsɛm a ɛbaeɛ maa $3.",
 	"ipinfo-change-access-level-enable": "w'ama kwan",
-	"ipinfo-change-access-level-disable": "didƐm"
+	"ipinfo-change-access-level-disable": "Ɛnnyɛ adwuma"
 }

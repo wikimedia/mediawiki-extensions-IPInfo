@@ -68,5 +68,8 @@
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|прегледа}} отскочник со информации за IP-адреса за $3. $4.",
 	"ipinfo-change-access-level-enable": "овозможено",
 	"ipinfo-change-access-level-disable": "оневозможено",
-	"logentry-ipinfo-change_access": "$1 {{GENDER:$2|$4}} сопствениот пристап до IPInfo"
+	"logentry-ipinfo-change_access": "$1 {{GENDER:$2|$4}} сопствениот пристап до IPInfo",
+	"group-ipinfo-viewer": "Прегледувачи на IP-информации",
+	"group-ipinfo-viewer-member": "{{GENDER:$1|Прегледувач на IP-информации}}",
+	"grouppage-ipinfo-viewer": "{{ns:project}}:Прегледувачи на IP-информации"
 }
