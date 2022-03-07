@@ -74,17 +74,9 @@
 		"GetPreferences": "preferences",
 		"GetBetaFeaturePreferences": "betaFeature",
 		"SaveUserOptions": "preferences",
-		"LoadExtensionSchemaUpdates": "schema",
-		"ApiOptions": "apiOptions"
+		"LoadExtensionSchemaUpdates": "schema"
 	},
 	"HookHandlers": {
-		"apiOptions": {
-			"class": "MediaWiki\\IPInfo\\HookHandler\\ApiOptionsHandler",
-			"services": [
-				"UserOptionsLookup",
-				"IPInfoLoggerFactory"
-			]
-		},
 		"popup": {
 			"class": "MediaWiki\\IPInfo\\HookHandler\\PopupHandler",
 			"services": [

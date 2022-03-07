@@ -102,6 +102,29 @@ class PreferencesHandler implements GetPreferencesHook {
 	}
 
 	/**
+	 * Utility function to make option checking less verbose.
+	 *
+	 * @param array $options
+	 * @param string $option
+	 * @return bool The option is set and truthy
+	 */
+	private function isTruthy( $options, $option ): bool {
+		return !empty( $options[$option] );
+	}
+
+	/**
+	 * Utility function to make option checking less verbose.
+	 * We avoid empty() here because we need the option to be set.
+	 *
+	 * @param array $options
+	 * @param string $option
+	 * @return bool The option is set and falsey
+	 */
+	private function isFalsey( $options, $option ): bool {
+		return isset( $options[$option] ) && !$options[$option];
+	}
+
+	/**
 	 * @param UserIdentity $user
 	 * @param array &$modifiedOptions
 	 * @param array $originalOptions
@@ -139,17 +162,27 @@ class PreferencesHandler implements GetPreferencesHook {
 			$modifiedOptions[ 'ipinfo-use-agreement' ] = false;
 		}
 
-		$isEnabled = isset( $originalOptions[ 'ipinfo-enable' ] ) &&
-			isset( $originalOptions[ 'ipinfo-use-agreement' ] ) &&
-			$originalOptions[ 'ipinfo-enable' ] &&
-			$originalOptions[ 'ipinfo-use-agreement' ];
-		$willEnable = isset( $modifiedOptions[ 'ipinfo-enable' ] ) &&
-			isset( $modifiedOptions[ 'ipinfo-use-agreement' ] ) &&
-			$modifiedOptions[ 'ipinfo-enable' ] &&
-			$modifiedOptions[ 'ipinfo-use-agreement' ];
-		if ( $isEnabled !== $willEnable ) {
+		// Is IPInfo already enabled?
+		$ipInfoBasicIsEnabled = $this->isTruthy( $originalOptions, 'ipinfo-enable' );
+		$ipInfoAgreementIsEnabled = $this->isTruthy( $originalOptions, 'ipinfo-use-agreement' );
+		$ipInfoIsEnabled = $ipInfoBasicIsEnabled && $ipInfoAgreementIsEnabled;
+		$ipInfoIsDisabled = !$ipInfoIsEnabled;
+
+		// Is IPInfo about to be enabled/disabled?
+		$ipInfoBasicWillEnable = $this->isTruthy( $modifiedOptions, 'ipinfo-enable' );
+		$ipInfoBasicWillDisable = $this->isFalsey( $modifiedOptions, 'ipinfo-enable' );
+		$ipInfoAgreementWillEnable = $this->isTruthy( $modifiedOptions, 'ipinfo-use-agreement' );
+		$ipInfoAgreementWillDisable = $this->isFalsey( $modifiedOptions, 'ipinfo-use-agreement' );
+		$ipInfoWillEnable = $ipInfoBasicWillEnable && $ipInfoAgreementWillEnable ||
+			$ipInfoBasicIsEnabled && !$ipInfoBasicWillDisable && $ipInfoAgreementWillEnable ||
+			$ipInfoAgreementIsEnabled && !$ipInfoAgreementWillDisable && $ipInfoBasicWillEnable;
+		$ipInfoWillDisable = $ipInfoBasicWillDisable || $ipInfoAgreementWillDisable;
+
+		if ( $ipInfoIsEnabled && $ipInfoWillDisable ||
+			$ipInfoIsDisabled && $ipInfoWillEnable
+		) {
 			$logger = $this->loggerFactory->getLogger();
-			if ( $willEnable ) {
+			if ( $ipInfoWillEnable ) {
 				$logger->logAccessEnabled( $user );
 			} else {
 				$logger->logAccessDisabled( $user );
