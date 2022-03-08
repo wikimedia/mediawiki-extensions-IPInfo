@@ -25,6 +25,7 @@
 	"ipinfo-rest-revision-registered": "No se puede recuperar información sobre la IP para revisiones realizadas por usuarios registrados.",
 	"ipinfo-rest-log-nonexistent": "No existe la entrada del registro",
 	"ipinfo-rest-log-registered": "No se puede obtener información sobre la IP de entradas de registro generadas por usuarios registrados",
+	"ipinfo-rest-log-denied": "Tu cuenta no tiene permisos suficientes para ver quien creó esa entrada de registro, o el propio registro en sí mismo",
 	"ipinfo-source-geoip2": "La información aquí mostrada procede de la base de datos GeoIP2 de MaxMind. Puede no ser del todo precisa.",
 	"prefs-ipinfo": "Información sobre la IP",
 	"action-ipinfo": "obtener información acerca de las direcciones IP de las revisiones y de las entradas del registro",
