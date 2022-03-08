@@ -13,5 +13,7 @@
 	"ipinfo-log-access-level-ipinfo-view-full": "Akwanya mua",
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|Hwɛe}} $4 IP ho nsɛm a ɛbaeɛ maa $3.",
 	"ipinfo-change-access-level-enable": "w'ama kwan",
-	"ipinfo-change-access-level-disable": "Ɛnnyɛ adwuma"
+	"ipinfo-change-access-level-disable": "Ɛnnyɛ adwuma",
+	"group-ipinfo-viewer": "IP info viewers",
+	"group-ipinfo-viewer-member": "{{GENDER:$1|IP info viewer}}"
 }
