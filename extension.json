@@ -133,6 +133,7 @@
 			],
 			"dependencies": [
 				"mediawiki.api",
+				"mediawiki.htmlform",
 				"oojs-ui-core",
 				"oojs-ui-widgets",
 				"oojs-ui.styles.icons-content"
