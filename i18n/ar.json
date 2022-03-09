@@ -11,5 +11,6 @@
 	"ipinfo-change-access-level-disable": "مُعطَّل",
 	"logentry-ipinfo-change_access": "$1{{GENDER:$2|$4}} الادخال الخاص بهم الى معلومات الاي بي",
 	"group-ipinfo-viewer": "معلومات المشاهدين ال اي بي",
+	"group-ipinfo-viewer-member": "{{  معلومات الاي بي للمشاهدGENDER:$1|}}",
 	"grouppage-ipinfo-viewer": "{{ns:project}} معلومات عنوان الاي بي للمشاهدين"
 }

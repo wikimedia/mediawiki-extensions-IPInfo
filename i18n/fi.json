@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"MITO",
-			"Maantietäjä"
+			"Maantietäjä",
+			"Markus Mikkonen"
 		]
 	},
 	"ipinfo-desc": "Tarjoaa tietoja IP-osoitteesta.",
@@ -41,5 +42,5 @@
 	"ipinfo-beta-feature-title": "IP-tieto",
 	"prefs-ipinfo": "IP-tiedot",
 	"action-ipinfo": "hakea tietoja IP-osoitteista, jotka on liitetty versioihin tai lokimerkintöihin",
-	"ipinfo-log-access-level-ipinfo-view-full": "täynnä"
+	"ipinfo-log-access-level-ipinfo-view-full": "Täysi pääsy"
 }

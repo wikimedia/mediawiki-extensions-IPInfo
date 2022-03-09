@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jenniferkene"
+		]
+	},
+	"group-ipinfo-viewer": "Ndị na-ekiri akụkọ IP",
+	"group-ipinfo-viewer-member": "{{GENDER:$1|IP info viewer}}",
+	"grouppage-ipinfo-viewer": "{{ns:project}}:IP info viewers"
+}
