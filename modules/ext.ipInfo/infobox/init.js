@@ -1,8 +1,9 @@
 var IpInfoInfoboxWidget = require( './widget.js' );
 var ip = mw.config.get( 'wgIPInfoTarget' ),
 	api = new mw.Api(),
-	isLoaded = false,
-	timerStart;
+	viewedAgreement = false,
+	timerStart,
+	log = require( '../log.js' );
 
 if ( ip ) {
 	var saveCollapsibleUserOption = function ( e ) {
@@ -51,10 +52,18 @@ if ( ip ) {
 		);
 
 		$( '.ext-ipinfo-collapsible-layout .mw-collapsible-content' ).append( ipPanelWidget.$element );
-		isLoaded = true;
 	};
 
-	if ( !mw.user.options.get( 'ipinfo-use-agreement' ) ) {
+	// Logging event for navigating away from the agreement as a function so that
+	// it can be unbound in the case the user has accepted the agreement and we no longer
+	// need to listen for this event
+	var logUnloadPageWithoutAcceptingAgreement = function () {
+		if ( viewedAgreement ) {
+			log( 'close_disclaimer', 'infobox' );
+		}
+	};
+
+	var loadUseAgreement = function () {
 		// Show the form to agree to the terms of use instead of ip info
 		var agreementFormWidget = new OO.ui.FormLayout( {
 			classes: [ 'ipinfo-use-agreement-form' ],
@@ -89,12 +98,23 @@ if ( ip ) {
 			]
 		} );
 		$( '.ext-ipinfo-collapsible-layout .mw-collapsible-content' ).append( agreementFormWidget.$element );
+
+		// Log that we're showing the use agreement form
+		viewedAgreement = true;
+		log( 'init_disclaimer', 'infobox' );
+
 		$( '.ipinfo-use-agreement-form' ).on( 'submit', function ( e ) {
 			e.preventDefault();
 			api.saveOption( 'ipinfo-use-agreement', '1' )
 				.always( function () {
 					$( '.ipinfo-use-agreement-form' ).remove();
 				} ).then( function () {
+					// Log that the use agreement was accepted
+					log( 'accept_disclaimer', 'infobox' );
+
+					// The user has successfully agreed; unbind the unload listener
+					$( window ).off( 'beforeunload', logUnloadPageWithoutAcceptingAgreement );
+
 					// Success - show ip info
 					$( '.ipinfo-use-agreement-form' ).remove();
 					loadIpInfo( ip );
@@ -108,27 +128,38 @@ if ( ip ) {
 					);
 				} );
 		} );
-	} else if ( $( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).attr( 'aria-expanded' ) === 'true' ) {
-		// Only auto-load ip info if infobox is expanded on-load
-		timerStart = mw.now();
-		loadIpInfo( ip );
-	} else {
-		// Watch for the first expand command and load on it
-		$( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).on( 'click keypress', function ( e ) {
-			if ( isLoaded ) {
-				return;
-			}
 
+		// If we load the form, also watch for the user leaving the page without agreeing (T296477)
+		$( window ).on( 'beforeunload', logUnloadPageWithoutAcceptingAgreement );
+	};
+
+	// Auto-load either the form or the ip info if the infobox is expanded on-load
+	if ( $( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).attr( 'aria-expanded' ) === 'true' ) {
+		if ( !mw.user.options.get( 'ipinfo-use-agreement' ) ) {
+			loadUseAgreement();
+		} else {
+			timerStart = mw.now();
+			loadIpInfo( ip );
+		}
+	} else {
+		// Watch for the first expand command, load content, and unbind listener
+		var onFirstInfoboxExpand = function ( e ) {
 			// Only trigger on enter and space keypresses
 			if ( e.type === 'keypress' && e.which !== 13 && e.which !== 32 ) {
 				return;
 			}
-
 			// Only load if expanding the infobox
 			if ( $( this ).attr( 'aria-expanded' ) === 'true' ) {
-				timerStart = mw.now();
-				loadIpInfo( ip );
+				if ( !mw.user.options.get( 'ipinfo-use-agreement' ) ) {
+					loadUseAgreement();
+				} else {
+					timerStart = mw.now();
+					loadIpInfo( ip );
+				}
 			}
-		} );
+
+			$( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).off( 'click keypress', onFirstInfoboxExpand );
+		};
+		$( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).on( 'click keypress', onFirstInfoboxExpand );
 	}
 }
