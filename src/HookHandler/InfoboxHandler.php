@@ -68,7 +68,12 @@ class InfoboxHandler implements SpecialContributionsBeforeMainOutputHook {
 		$out->addModules( 'ext.ipInfo' );
 		$out->addModuleStyles( 'ext.ipInfo.styles' );
 
-		$isExpanded = (bool)$this->userOptionsLookup->getOption( $accessingUser, 'ipinfo-infobox-expanded' );
+		// If the infoboxOpen parameter was passed, $isExpanded should be true regardless of user pref
+		if ( $sp->getRequest()->getVal( 'openInfobox' ) === 'true' ) {
+			$isExpanded = true;
+		} else {
+			$isExpanded = (bool)$this->userOptionsLookup->getOption( $accessingUser, 'ipinfo-infobox-expanded' );
+		}
 
 		$panelLayout = new PanelLayout( [
 			'classes' => [ 'ext-ipinfo-panel-layout' ],
