@@ -10,5 +10,13 @@
 	"ipinfo-property-label-source": "మూలం",
 	"ipinfo-property-no-data": "అందుబాటులో లేదు",
 	"action-ipinfo": "కూర్పులకు, చిట్టా పద్దులకూ చెందిన ఐపి అడ్రసుల సమాచారాన్ని వెలికితీసే",
-	"right-ipinfo": "కూర్పులకు, చిట్టా పద్దులకూ చెందిన ఐపి అడ్రసుల సమాచారాన్ని వెలికితీయడం"
+	"right-ipinfo": "కూర్పులకు, చిట్టా పద్దులకూ చెందిన ఐపి అడ్రసుల సమాచారాన్ని వెలికితీయడం",
+	"ipinfo-log-access-level-ipinfo-view-basic": "పరిమిత అందుబాటు",
+	"ipinfo-log-access-level-ipinfo-view-full": "పూర్తి అందుబాటు",
+	"ipinfo-change-access-level-enable": "చేతనం చేసారు",
+	"ipinfo-change-access-level-disable": "అచేతనం చేసారు",
+	"logentry-ipinfo-change_access": "IPInfo ను చూసే తన హక్కును $1, తానే స్వయంగా {{GENDER:$2|$4}}",
+	"group-ipinfo-viewer": "ఐపీ సమాచారం చూడగలవారు",
+	"group-ipinfo-viewer-member": "{{GENDER:$1|ఐపీ సమాచారం చూడగలవారు}}",
+	"grouppage-ipinfo-viewer": "{{ns:project}}:ఐపీ సమాచారం చూడగలవారు"
 }
