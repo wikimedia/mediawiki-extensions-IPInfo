@@ -7,6 +7,9 @@ var log = function ( action, context ) {
 		case 'Recentchanges':
 			specialPage = 'special_recentchanges';
 			break;
+		case 'Contributions':
+			specialPage = 'special_contributions';
+			break;
 		case false:
 			specialPage = 'action_history';
 			break;
