@@ -76,7 +76,7 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 		}
 	}
 
-	return $( '<dl>' ).addClass( 'ext-ipinfo-widget-properties' )
+	var $info = $( '<dl>' ).addClass( 'ext-ipinfo-widget-properties' )
 		.append(
 			$( '<div>' ).addClass( 'ext-ipinfo-widget-properties-col' ).append(
 				this.generatePropertyMarkup( location, mw.msg( 'ipinfo-property-label-location' ) ),
@@ -106,6 +106,10 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 				$( '<div>' ).addClass( 'ext-ipinfo-widget-property-source' ).text( mw.msg( 'ipinfo-source-geoip2' ) )
 			)
 		);
+
+	mw.hook( 'ext.ipinfo.infobox.widget' ).fire( $info );
+
+	return $info;
 };
 
 module.exports = ipInfoInfoboxWidget;
