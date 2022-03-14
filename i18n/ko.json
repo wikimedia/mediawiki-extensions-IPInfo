@@ -33,5 +33,8 @@
 	"prefs-ipinfo": "IP 정보",
 	"ipinfo-log-name": "IPInfo 기록",
 	"ipinfo-log-access-level-ipinfo-view-basic": "제한된 접근",
-	"ipinfo-log-access-level-ipinfo-view-full": "무제한 접근"
+	"ipinfo-log-access-level-ipinfo-view-full": "무제한 접근",
+	"group-ipinfo-viewer": "IP 정보 확인자",
+	"group-ipinfo-viewer-member": "{{GENDER:$1|IP 정보 확인자}}",
+	"grouppage-ipinfo-viewer": "{{ns:project}}:IP 정보 확인자"
 }
