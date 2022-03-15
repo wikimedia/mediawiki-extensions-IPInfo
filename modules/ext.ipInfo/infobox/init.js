@@ -13,8 +13,12 @@ if ( ip ) {
 		}
 		if ( $( this ).attr( 'aria-expanded' ) === 'true' ) {
 			api.saveOption( 'ipinfo-infobox-expanded', 1 );
+			// Log when the infobox is manually expanded
+			log( 'expand', 'infobox' );
 		} else {
 			api.saveOption( 'ipinfo-infobox-expanded', 0 );
+			// Log when the infobox is manually collasped
+			log( 'collapse', 'infobox' );
 		}
 	};
 
