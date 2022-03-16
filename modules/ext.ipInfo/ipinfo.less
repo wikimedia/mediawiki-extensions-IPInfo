@@ -69,10 +69,14 @@
 
 	.ext-ipinfo-widget-property-tooltip {
 		position: absolute;
-		right: 0;
 		// Using transform here to vertically center the tooltip
 		// results in a loss of the stacking context; instead hardcode
 		// the offset based on half the height (32px / 2)
 		top: ~'calc( 50% - 16px )';
+		font-weight: normal;
+
+		&.oo-ui-buttonElement-frameless.oo-ui-iconElement:first-child {
+			margin-left: 0;
+		}
 	}
 }

@@ -141,7 +141,8 @@ ipInfoWidget.prototype.generatePropertyMarkup = function (
 			popup: {
 				$content: $( '<span>' ).text( propertyTooltip ),
 				padded: true,
-				align: 'backwards'
+				align: 'backwards',
+				position: 'above'
 			},
 			classes: [ 'ext-ipinfo-widget-property-tooltip' ]
 		} );
