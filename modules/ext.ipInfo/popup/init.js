@@ -1,6 +1,7 @@
 var IpInfoPopupWidget = require( './widget.js' );
-var log = require( '../log.js' );
+var eventLogger = require( '../log.js' );
 
+eventLogger.init();
 mw.hook( 'wikipage.content' ).add( function ( $content ) {
 	$content.find( '.mw-anonuserlink' ).after( function () {
 		var id, type;
@@ -64,7 +65,7 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 						}
 					}
 					mw.track( 'timing.MediaWiki.ipinfo_popup_delay', mw.now() - popupIpInfoDelayStart );
-					log( 'open_popup', 'page' );
+					eventLogger.log( 'open_popup', 'page' );
 
 					return data;
 				} )

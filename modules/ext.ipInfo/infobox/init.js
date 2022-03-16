@@ -3,9 +3,10 @@ var ip = mw.config.get( 'wgIPInfoTarget' ),
 	api = new mw.Api(),
 	viewedAgreement = false,
 	timerStart,
-	log = require( '../log.js' );
+	eventLogger = require( '../log.js' );
 
 if ( ip ) {
+	eventLogger.init();
 	var saveCollapsibleUserOption = function ( e ) {
 		// Only trigger on enter and space keypresses
 		if ( e.type === 'keypress' && e.which !== 13 && e.which !== 32 ) {
@@ -14,11 +15,11 @@ if ( ip ) {
 		if ( $( this ).attr( 'aria-expanded' ) === 'true' ) {
 			api.saveOption( 'ipinfo-infobox-expanded', 1 );
 			// Log when the infobox is manually expanded
-			log( 'expand', 'infobox' );
+			eventLogger.log( 'expand', 'infobox' );
 		} else {
 			api.saveOption( 'ipinfo-infobox-expanded', 0 );
 			// Log when the infobox is manually collasped
-			log( 'collapse', 'infobox' );
+			eventLogger.log( 'collapse', 'infobox' );
 		}
 	};
 
@@ -63,7 +64,7 @@ if ( ip ) {
 	// need to listen for this event
 	var logUnloadPageWithoutAcceptingAgreement = function () {
 		if ( viewedAgreement ) {
-			log( 'close_disclaimer', 'infobox' );
+			eventLogger.log( 'close_disclaimer', 'infobox' );
 		}
 	};
 
@@ -105,7 +106,7 @@ if ( ip ) {
 
 		// Log that we're showing the use agreement form
 		viewedAgreement = true;
-		log( 'init_disclaimer', 'infobox' );
+		eventLogger.log( 'init_disclaimer', 'infobox' );
 
 		$( '.ipinfo-use-agreement-form' ).on( 'submit', function ( e ) {
 			e.preventDefault();
@@ -114,7 +115,7 @@ if ( ip ) {
 					$( '.ipinfo-use-agreement-form' ).remove();
 				} ).then( function () {
 					// Log that the use agreement was accepted
-					log( 'accept_disclaimer', 'infobox' );
+					eventLogger.log( 'accept_disclaimer', 'infobox' );
 
 					// The user has successfully agreed; unbind the unload listener
 					$( window ).off( 'beforeunload', logUnloadPageWithoutAcceptingAgreement );

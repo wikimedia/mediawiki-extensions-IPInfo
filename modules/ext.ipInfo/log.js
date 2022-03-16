@@ -27,6 +27,9 @@ var log = function ( action, context ) {
 	};
 
 	mw.track( 'ipinfo.event', event );
+};
+
+var init = function () {
 	mw.trackSubscribe( 'ipinfo.event', function ( topic, eventData ) {
 		if ( mw.eventLog ) {
 			mw.eventLog.submit( 'mediawiki.ipinfo_interaction', eventData );
@@ -34,4 +37,7 @@ var log = function ( action, context ) {
 	} );
 };
 
-module.exports = log;
+module.exports = {
+	init: init,
+	log: log
+};
