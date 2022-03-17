@@ -7,6 +7,8 @@
  * @param {jQuery.Deferred} info Promise that resolves to an info object.
  * @param {Object} [config] Configuration options
  */
+
+var eventLogger = require( '../log.js' );
 var ipInfoWidget = function ( info, config ) {
 	// Config initialization
 	config = $.extend( {
@@ -147,10 +149,30 @@ ipInfoWidget.prototype.generatePropertyMarkup = function (
 			classes: [ 'ext-ipinfo-widget-property-tooltip' ]
 		} );
 		$propertyLabel.append( $propertyTooltip.$element );
+
+		$propertyTooltip.on( 'click', function () {
+			if ( this.popup.isVisible() ) {
+				var eventAction;
+				switch ( propertyLabel ) {
+					case mw.msg( 'ipinfo-property-label-connectiontype' ):
+						eventAction = 'click_help_connection_method';
+						break;
+					case mw.msg( 'ipinfo-property-label-usertype' ):
+						eventAction = 'click_help_connection_owner';
+						break;
+					case mw.msg( 'ipinfo-property-label-proxytypes' ):
+						eventAction = 'click_help_proxy';
+						break;
+				}
+				eventLogger.log( eventAction, 'infobox' );
+			}
+		}.bind( $propertyTooltip ) );
 	}
+
 	$propertyContent.append(
 		$propertyLabel
 	);
+
 	if ( propertyValue !== null && propertyValue !== undefined ) {
 		$propertyContent.append(
 			$( '<dd>' ).addClass( 'ext-ipinfo-widget-property-value' ).append( propertyValue )

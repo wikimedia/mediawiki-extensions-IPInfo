@@ -17,7 +17,7 @@ var log = function ( action, context ) {
 
 	var event = {
 		/* eslint-disable camelcase */
-		$schema: '/analytics/mediawiki/ipinfo_interaction/1.0.0',
+		$schema: '/analytics/mediawiki/ipinfo_interaction/1.1.0',
 		event_action: action,
 		event_context: context,
 		event_source: specialPage,
