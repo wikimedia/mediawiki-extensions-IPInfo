@@ -23,6 +23,8 @@ class LogIPInfoAccessJob extends Job {
 		$performer = MediaWikiServices::getInstance()->getUserIdentityLookup()
 			->getUserIdentityByName( $this->params['performer'] );
 		$ip = $this->params['ip'];
+		$timestamp = $this->params['timestamp'];
+		$level = $this->params['access_level'];
 
 		if ( !$performer ) {
 			$this->setLastError( 'Invalid performer' );
@@ -34,10 +36,10 @@ class LogIPInfoAccessJob extends Job {
 
 		switch ( $this->params['dataContext'] ) {
 			case 'infobox':
-				$logger->logViewInfobox( $performer, $ip );
+				$logger->logViewInfobox( $performer, $ip, $timestamp, $level );
 				break;
 			case 'popup':
-				$logger->logViewPopup( $performer, $ip );
+				$logger->logViewPopup( $performer, $ip, $timestamp, $level );
 				break;
 			default:
 				$this->setLastError( 'Invalid dataContext: ' . $this->params['dataContext'] );

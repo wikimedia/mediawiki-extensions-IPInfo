@@ -84,6 +84,8 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
 			->willReturn( true );
+		$permissionManager->method( 'getUserPermissions' )
+			->willReturn( [] );
 
 		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
 		$userOptionsLookup->method( 'getOption' )
@@ -125,6 +127,8 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
 			->willReturn( $options['userHasRight'] ?? null );
+		$permissionManager->method( 'getUserPermissions' )
+			->willReturn( [] );
 
 		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
 		$userOptionsLookup->method( 'getOption' )
@@ -281,6 +285,8 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
 			->willReturn( true );
+		$permissionManager->method( 'getUserPermissions' )
+			->willReturn( [] );
 
 		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
 		$userOptionsLookup->method( 'getOption' )
@@ -465,6 +471,8 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
 			->willReturn( true );
+		$permissionManager->method( 'getUserPermissions' )
+			->willReturn( [] );
 
 		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
 		$userOptionsLookup->method( 'getOption' )

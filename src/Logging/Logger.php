@@ -25,20 +25,6 @@ use Wikimedia\Rdbms\IDatabase;
  * All the above interactions will be logged to the `logging` table with a log type `ipinfo`.
  */
 class Logger {
-
-	/**
-	 * An ordered list of the access levels for viewing IP infomation, ordered from lowest to
-	 * highest level.
-	 *
-	 * Should be kept up-to-date with DefaultPresenter::VIEWING_RIGHTS
-	 *
-	 * @var string[]
-	 */
-	private const ACCESS_LEVELS = [
-		'ipinfo-view-basic',
-		'ipinfo-view-full',
-	];
-
 	/**
 	 * Represents a user (the performer) viewing information about an IP via the infobox.
 	 *
@@ -122,14 +108,15 @@ class Logger {
 	 *
 	 * @param UserIdentity $performer
 	 * @param string $ip
+	 * @param int $timestamp
+	 * @param string|null $level
 	 */
-	public function logViewInfobox( UserIdentity $performer, string $ip ): void {
-		$level = $this->highestAccessLevel( $performer );
+	public function logViewInfobox( UserIdentity $performer, string $ip, int $timestamp, ?string $level ): void {
 		if ( !$level ) {
 			return;
 		}
 		$params = [ '4::level' => $level ];
-		$this->debouncedLog( $performer, $ip, self::ACTION_VIEW_INFOBOX, $params );
+		$this->debouncedLog( $performer, $ip, self::ACTION_VIEW_INFOBOX, $timestamp, $params );
 	}
 
 	/**
@@ -137,33 +124,15 @@ class Logger {
 	 *
 	 * @param UserIdentity $performer
 	 * @param string $ip
+	 * @param int $timestamp
+	 * @param string|null $level
 	 */
-	public function logViewPopup( UserIdentity $performer, string $ip ): void {
-		$level = $this->highestAccessLevel( $performer );
+	public function logViewPopup( UserIdentity $performer, string $ip, int $timestamp, ?string $level ): void {
 		if ( !$level ) {
 			return;
 		}
 		$params = [ '4::level' => $level ];
-		$this->debouncedLog( $performer, $ip, self::ACTION_VIEW_POPUP, $params );
-	}
-
-	/**
-	 * Get the highest access level user has permissions for.
-	 *
-	 * @param UserIdentity $user
-	 * @return ?string null if the user has no rights to see IP information
-	 */
-	private function highestAccessLevel( $user ) {
-		$userPermissions = $this->permissionManager->getUserPermissions( $user );
-
-		$highestLevel = null;
-		foreach ( self::ACCESS_LEVELS as $level ) {
-			if ( in_array( $level, $userPermissions ) ) {
-				$highestLevel = $level;
-			}
-		}
-
-		return $highestLevel;
+		$this->debouncedLog( $performer, $ip, self::ACTION_VIEW_POPUP, $timestamp, $params );
 	}
 
 	/**
@@ -195,15 +164,17 @@ class Logger {
 	 * @param string $ip
 	 * @param string $action Either `Logger::ACTION_VIEW_INFOBOX` or
 	 *  `Logger::ACTION_VIEW_POPUP`
+	 * @param int $timestamp
 	 * @param array $params
 	 */
 	private function debouncedLog(
 		UserIdentity $performer,
 		string $ip,
 		string $action,
+		int $timestamp,
 		array $params
 	): void {
-		$timestamp = (int)wfTimestamp() - $this->delay;
+		$timestampMinusDelay = $timestamp - $this->delay;
 
 		$actorId = $this->actorStore->findActorId( $performer, $this->dbw );
 		if ( !$actorId ) {
@@ -220,7 +191,7 @@ class Logger {
 				'log_actor' => $actorId,
 				'log_namespace' => NS_USER,
 				'log_title' => $ip,
-				'log_timestamp > ' . $this->dbw->addQuotes( $this->dbw->timestamp( $timestamp ) ),
+				'log_timestamp > ' . $this->dbw->addQuotes( $this->dbw->timestamp( $timestampMinusDelay ) ),
 				'log_params' . $this->dbw->buildLike(
 					$this->dbw->anyString(),
 					$params['4::level'],
@@ -230,7 +201,7 @@ class Logger {
 		);
 
 		if ( !$logline ) {
-			$this->log( $performer, $ip, $action, $params );
+			$this->log( $performer, $ip, $action, $params, $timestamp );
 		}
 	}
 
@@ -239,17 +210,23 @@ class Logger {
 	 * @param string $ip
 	 * @param string $action
 	 * @param array $params
+	 * @param int|null $timestamp
 	 */
 	private function log(
 		UserIdentity $performer,
 		string $ip,
 		string $action,
-		array $params
+		array $params,
+		?int $timestamp = null
 	): void {
 		$logEntry = $this->createManualLogEntry( $action );
 		$logEntry->setPerformer( $performer );
 		$logEntry->setTarget( Title::makeTitle( NS_USER, $ip ) );
 		$logEntry->setParameters( $params );
+
+		if ( $timestamp ) {
+			$logEntry->setTimestamp( wfTimestamp( TS_MW, $timestamp ) );
+		}
 
 		$logEntry->insert( $this->dbw );
 	}

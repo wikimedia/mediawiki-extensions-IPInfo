@@ -64,6 +64,8 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 			->willReturn( true );
 		$permissionManager->method( 'userCan' )
 			->willReturn( true );
+		$permissionManager->method( 'getUserPermissions' )
+			->willReturn( [] );
 
 		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
 		$userOptionsLookup->method( 'getOption' )
