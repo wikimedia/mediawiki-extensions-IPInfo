@@ -29,6 +29,14 @@
 		"ipinfo-view-full",
 		"ipinfo-view-log"
 	],
+	"RevokePermissions": {
+		"no-ipinfo": {
+			"ipinfo": true,
+			"ipinfo-view-basic": true,
+			"ipinfo-view-full": true,
+			"ipinfo-view-log": true
+		}
+	},
 	"DefaultUserOptions": {
 		"ipinfo-enable": 0,
 		"ipinfo-use-agreement": 0,
