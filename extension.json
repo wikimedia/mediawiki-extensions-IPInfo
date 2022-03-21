@@ -23,12 +23,6 @@
 	"ServiceWiringFiles": [
 		"src/ServiceWiring.php"
 	],
-	"GroupPermissions": {
-		"ipinfo-viewer": {
-			"ipinfo": true,
-			"ipinfo-view-basic": true
-		}
-	},
 	"AvailableRights": [
 		"ipinfo",
 		"ipinfo-view-basic",
