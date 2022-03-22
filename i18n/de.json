@@ -65,8 +65,5 @@
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|sah}} das IP-Information-Popup für $3. $4.",
 	"ipinfo-change-access-level-enable": "aktivierte",
 	"ipinfo-change-access-level-disable": "deaktivierte",
-	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|seinen|ihren|seinen}} eigenen Zugriff auf IPInfo",
-	"group-ipinfo-viewer": "Betrachter von Informationen zu IP-Addressen",
-	"group-ipinfo-viewer-member": "{{GENDER:$1|Betrachter von Informationen zu IP-Addressen|Betrachterin von Informationen zu IP-Addressen}}",
-	"grouppage-ipinfo-viewer": "{{ns:project}}:Betrachter von Informationen zu IP-Addressen"
+	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|seinen|ihren|seinen}} eigenen Zugriff auf IPInfo"
 }

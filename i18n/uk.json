@@ -71,8 +71,5 @@
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|переглянув|переглянула}} спливне віконце IP-інформації для $3. $4.",
 	"ipinfo-change-access-level-enable": "вмикає",
 	"ipinfo-change-access-level-disable": "вимикає",
-	"logentry-ipinfo-change_access": "$1 {{GENDER:$2|$4}} собі доступ до IP-інфо",
-	"group-ipinfo-viewer": "Переглядач IP-інфо",
-	"group-ipinfo-viewer-member": "{{GENDER:$1|Переглядач IP-інфо|Переглядачка IP-інфо}}",
-	"grouppage-ipinfo-viewer": "{{ns:project}}:Переглядачі IP-інфо"
+	"logentry-ipinfo-change_access": "$1 {{GENDER:$2|$4}} собі доступ до IP-інфо"
 }
