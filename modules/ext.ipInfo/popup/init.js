@@ -56,7 +56,7 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 
 					// Array.find is only available from ES6
 					for ( i = 0; i < response.info.length; i++ ) {
-						if ( response.info[ i ].subject === ip ) {
+						if ( response.info[ i ].subject === mw.util.prettifyIP( ip ) ) {
 							data = response.info[ i ];
 							break;
 						}
