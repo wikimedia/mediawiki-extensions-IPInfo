@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			")8",
+			"NACHOgao3",
 			"Shizhao",
 			"Shuiwater",
 			"SkEy",
@@ -32,5 +33,6 @@
 	"ipinfo-source-geoip2": "此处显示的信息来自MaxMind的GeoIP2数据库。它可能不完全准确。",
 	"prefs-ipinfo": "IP信息",
 	"action-ipinfo": "检索有关附加到版本或日志记录的IP地址信息",
-	"right-ipinfo": "检索有关附加到版本或日志记录的IP地址信息"
+	"right-ipinfo": "检索有关附加到版本或日志记录的IP地址信息",
+	"group-no-ipinfo": "被IPInfo阻止的用户"
 }
