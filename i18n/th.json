@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Trisorn Triboon"
+		]
+	},
+	"ipinfo-change-access-level-enable": "เปิดใช้งาน",
+	"ipinfo-change-access-level-disable": "ปิดใช้งาน"
+}

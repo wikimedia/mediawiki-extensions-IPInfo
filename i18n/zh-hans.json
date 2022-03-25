@@ -6,6 +6,8 @@
 			"Shizhao",
 			"Shuiwater",
 			"SkEy",
+			"Stang",
+			"SunAfterRain",
 			"Wuqianye",
 			"列维劳德"
 		]
@@ -16,12 +18,23 @@
 	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "组织",
+	"ipinfo-property-label-connectiontype": "接入方式",
+	"ipinfo-property-label-usertype": "连线所有者",
+	"ipinfo-property-label-proxytypes": "真实IP/代理",
+	"ipinfo-property-value-proxytype-isanonymousvpn": "匿名VPN",
+	"ipinfo-property-value-proxytype-ispublicproxy": "公共代理",
+	"ipinfo-property-value-proxytype-isresidentialproxy": "住宅代理",
+	"ipinfo-property-value-proxytype-islegitimateproxy": "合法代理",
+	"ipinfo-property-value-proxytype-istorexitnode": "Tor出口节点",
+	"ipinfo-property-value-proxytype-ishostingprovider": "托管服务提供商",
 	"ipinfo-property-label-source": "来源",
+	"ipinfo-property-label-active-blocks": "现有封禁",
+	"ipinfo-property-label-edits": "贡献",
 	"ipinfo-property-no-data": "不可用",
-	"ipinfo-widget-error-default": "这个IP的信息没法找回。",
+	"ipinfo-widget-error-default": "无法检索此IP的信息。",
 	"ipinfo-widget-error-no-data": "$1中没有此IP地址的数据。",
 	"ipinfo-widget-error-wrong-ip": "提供的IP地址与日志或修订版本不匹配。",
-	"ipinfo-preference-enable": "在特殊:用户贡献页面显示用于 IP 地址的 IP 信息工具。",
+	"ipinfo-preference-enable": "在“Special:用户贡献”页面显示用于IP地址的IP信息工具。",
 	"ipinfo-preference-agreement-error": "在同意其使用条件前，您必须启用 IP 信息工具。",
 	"ipinfo-rest-access-denied": "您没有权限来执行此操作",
 	"ipinfo-rest-access-denied-blocked-user": "您没有执行此行为的许可因为您的的账户被拦截",
@@ -34,5 +47,7 @@
 	"prefs-ipinfo": "IP信息",
 	"action-ipinfo": "检索有关附加到版本或日志记录的IP地址信息",
 	"right-ipinfo": "检索有关附加到版本或日志记录的IP地址信息",
-	"group-no-ipinfo": "被IPInfo阻止的用户"
+	"action-ipinfo-view-basic": "允許查看附加到修訂或日誌項目的 IP 信息的基本資訊",
+	"right-ipinfo-view-basic": "允許查看附加到修訂或日誌項目的 IP 信息的基本資訊",
+	"group-no-ipinfo": "被禁止访问IPInfo的用户"
 }

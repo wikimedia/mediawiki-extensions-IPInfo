@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Kly",
+			"SunAfterRain",
 			"Winston Sung",
 			"Xiplus"
 		]
@@ -39,6 +40,8 @@
 	"prefs-ipinfo": "IP 資訊",
 	"action-ipinfo": "檢索有關附加在修訂或日誌項目的 IP 位址資訊",
 	"right-ipinfo": "檢索有關附加在修訂或日誌項目的 IP 位址資訊",
+	"action-ipinfo-view-basic": "允許查看附加到修訂或日誌項目的 IP 信息的基本資訊",
+	"right-ipinfo-view-basic": "允許查看附加到修訂或日誌項目的 IP 信息的基本資訊",
 	"ipinfo-change-access-level-enable": "已啟用",
 	"ipinfo-change-access-level-disable": "已停用"
 }
