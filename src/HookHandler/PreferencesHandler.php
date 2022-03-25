@@ -3,9 +3,12 @@
 namespace MediaWiki\IPInfo\HookHandler;
 
 use ExtensionRegistry;
+use MediaWiki\Extension\EventLogging\EventLogging;
+use MediaWiki\Extension\EventLogging\Libs\UserBucketProvider\UserBucketProvider;
 use MediaWiki\IPInfo\Logging\LoggerFactory;
 use Mediawiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
+use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 
@@ -16,21 +19,27 @@ class PreferencesHandler implements GetPreferencesHook {
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
+	/** @var UserGroupManager */
+	private $userGroupManager;
+
 	/** @var LoggerFactory */
 	private $loggerFactory;
 
 	/**
 	 * @param PermissionManager $permissionManager
 	 * @param UserOptionsLookup $userOptionsLookup
+	 * @param UserGroupManager $userGroupManager
 	 * @param LoggerFactory $loggerFactory
 	 */
 	public function __construct(
 		PermissionManager $permissionManager,
 		UserOptionsLookup $userOptionsLookup,
+		UserGroupManager $userGroupManager,
 		LoggerFactory $loggerFactory
 	) {
 		$this->permissionManager = $permissionManager;
 		$this->userOptionsLookup = $userOptionsLookup;
+		$this->userGroupManager = $userGroupManager;
 		$this->loggerFactory = $loggerFactory;
 	}
 
@@ -180,6 +189,18 @@ class PreferencesHandler implements GetPreferencesHook {
 				$logger->logAccessEnabled( $user );
 			} else {
 				$logger->logAccessDisabled( $user );
+			}
+
+			$eventLoggingLoaded = ExtensionRegistry::getInstance()->isLoaded( 'EventLogging' );
+			if ( $eventLoggingLoaded ) {
+				EventLogging::submit( 'mediawiki.ipinfo_interaction', [
+					'$schema' => '/analytics/mediawiki/ipinfo_interaction/1.0.0',
+					'event_action' => $ipInfoWillEnable ? 'enable_ipinfo' : 'disable_ipinfo',
+					'event_context' => 'page',
+					'event_source' => 'special_preferences',
+					'user_edit_bucket' => UserBucketProvider::getUserEditCountBucket( $user ),
+					'user_groups' => implode( '|', $this->userGroupManager->getUserGroups( $user ) )
+				] );
 			}
 		}
 	}

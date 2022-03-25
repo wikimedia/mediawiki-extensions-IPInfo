@@ -6,15 +6,16 @@ use MediaWiki\IPInfo\HookHandler\PreferencesHandler;
 use MediaWiki\IPInfo\Logging\Logger;
 use MediaWiki\IPInfo\Logging\LoggerFactory;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
-use MediaWikiUnitTestCase;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @group IPInfo
  * @covers \MediaWiki\IPInfo\HookHandler\PreferencesHandler
  */
-class PreferencesHandlerTest extends MediaWikiUnitTestCase {
+class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param array $options
@@ -25,6 +26,7 @@ class PreferencesHandlerTest extends MediaWikiUnitTestCase {
 			[
 				'permissionManager' => $this->createMock( PermissionManager::class ),
 				'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
+				'userGroupManager' => $this->createMock( UserGroupManager::class ),
 				'loggerFactory' => $this->createMock( LoggerFactory::class ),
 			],
 			$options
