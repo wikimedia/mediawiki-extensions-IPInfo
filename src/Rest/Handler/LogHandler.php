@@ -139,7 +139,11 @@ class LogHandler extends SimpleHandler {
 	}
 
 	/**
-	 * Get IP Info for a Log entry.
+	 * Get information about an IP address (or IP addresses) associated with a log entry.
+	 *
+	 * A log entry logs an action performed by a performer, on a target. Either of the
+	 * performer or target may be an IP address. This returns info about whichever is an
+	 * IP address, or both, if both are IP addresses.
 	 *
 	 * @param int $id
 	 * @return Response

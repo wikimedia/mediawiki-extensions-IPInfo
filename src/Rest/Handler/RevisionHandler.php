@@ -136,7 +136,7 @@ class RevisionHandler extends SimpleHandler {
 	}
 
 	/**
-	 * Get IP Info for a Revision.
+	 * Get information about an IP address that authored a revision.
 	 *
 	 * @param int $id
 	 * @return Response
