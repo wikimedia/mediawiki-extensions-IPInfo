@@ -205,8 +205,13 @@ class Logger {
 	): void {
 		$timestamp = (int)wfTimestamp() - $this->delay;
 
-		$actorId = $this->actorStore->acquireActorId( $performer, $this->dbw );
-		$shouldLog = $this->dbw->selectRowCount(
+		$actorId = $this->actorStore->findActorId( $performer, $this->dbw );
+		if ( !$actorId ) {
+			$this->log( $performer, $ip, $action, $params );
+			return;
+		}
+
+		$logline = $this->dbw->selectRow(
 			'logging',
 			'*',
 			[
@@ -222,9 +227,9 @@ class Logger {
 					$this->dbw->anyString()
 				),
 			]
-		) === 0;
+		);
 
-		if ( $shouldLog ) {
+		if ( !$logline ) {
 			$this->log( $performer, $ip, $action, $params );
 		}
 	}
