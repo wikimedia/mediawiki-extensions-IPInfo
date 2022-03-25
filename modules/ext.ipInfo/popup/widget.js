@@ -1,4 +1,5 @@
 var ipInfoWidget = require( '../widget.js' );
+var eventLogger = require( '../log.js' );
 
 /**
  * Popup Widget
@@ -66,7 +67,10 @@ ipInfoPopupWidget.prototype.buildMarkup = function ( info ) {
 	$linkOut = $( '<a>' )
 		.addClass( 'ext-ipinfo-widget-popup-linkout' )
 		.attr( 'href', $linkOutURL )
-		.text( 'Special:Contributions/' + info.subject );
+		.text( 'Special:Contributions/' + info.subject )
+		.on( 'click', function () {
+			eventLogger.log( 'open_infobox', 'popup' );
+		} );
 
 	return $( '<div>' )
 		.append( $linkOut )
