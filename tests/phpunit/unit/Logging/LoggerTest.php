@@ -45,7 +45,7 @@ class LoggerTest extends MediaWikiUnitTestCase {
 			->willReturn( ' LIKE \'%ipinfo-view-full%\'' );
 
 		$database->expects( $this->once() )
-			->method( 'selectRowCount' )
+			->method( 'selectRow' )
 			->with(
 				'logging',
 				'*',
@@ -62,7 +62,7 @@ class LoggerTest extends MediaWikiUnitTestCase {
 			->willReturn( (int)$isDebounced );
 
 		$actorStore = $this->createMock( ActorStore::class );
-		$actorStore->method( 'acquireActorId' )
+		$actorStore->method( 'findActorId' )
 			->will(
 				$this->returnValueMap( [
 					[ $performer, $database, $actorId ],
