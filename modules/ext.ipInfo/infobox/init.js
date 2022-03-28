@@ -1,3 +1,6 @@
+// Disable this rule because jQuery.makeCollapsible stores state in the class
+/* eslint-disable no-jquery/no-class-state */
+
 var IpInfoInfoboxWidget = require( './widget.js' );
 var ip = mw.config.get( 'wgIPInfoTarget' ),
 	api = new mw.Api(),
@@ -12,7 +15,7 @@ if ( ip ) {
 		if ( e.type === 'keypress' && e.which !== 13 && e.which !== 32 ) {
 			return;
 		}
-		if ( $( this ).attr( 'aria-expanded' ) === 'true' ) {
+		if ( !$( this ).closest( '.mw-collapsible' ).hasClass( 'mw-collapsed' ) ) {
 			api.saveOption( 'ipinfo-infobox-expanded', 1 );
 			// Log when the infobox is manually expanded
 			eventLogger.log( 'expand', 'infobox' );
@@ -139,7 +142,7 @@ if ( ip ) {
 	};
 
 	// Auto-load either the form or the ip info if the infobox is expanded on-load
-	if ( $( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).attr( 'aria-expanded' ) === 'true' ) {
+	if ( !$( '.ext-ipinfo-collapsible-layout' ).hasClass( 'mw-collapsed' ) ) {
 		if ( !mw.user.options.get( 'ipinfo-use-agreement' ) ) {
 			loadUseAgreement();
 		} else {
@@ -154,7 +157,7 @@ if ( ip ) {
 				return;
 			}
 			// Only load if expanding the infobox
-			if ( $( this ).attr( 'aria-expanded' ) === 'true' ) {
+			if ( !$( this ).closest( '.mw-collapsible' ).hasClass( 'mw-collapsed' ) ) {
 				if ( !mw.user.options.get( 'ipinfo-use-agreement' ) ) {
 					loadUseAgreement();
 				} else {
