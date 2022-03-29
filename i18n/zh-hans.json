@@ -6,7 +6,10 @@
 			"SkEy",
 			"Wuqianye",
 			"Shizhao",
-			"列维劳德"
+			"列维劳德",
+			"NACHOgao3",
+			"Stang",
+			"SunAfterRain"
 		]
 	},
 	"ipinfo-desc": "提供有关IP地址的信息。",
@@ -17,7 +20,7 @@
 	"ipinfo-property-label-organization": "组织",
 	"ipinfo-property-label-source": "来源",
 	"ipinfo-property-no-data": "不可用",
-	"ipinfo-widget-error-default": "这个IP的信息没法找回。",
+	"ipinfo-widget-error-default": "无法检索此IP的信息。",
 	"ipinfo-widget-error-no-data": "$1中没有此IP地址的数据。",
 	"ipinfo-widget-error-wrong-ip": "提供的IP地址与日志或修订版本不匹配。",
 	"ipinfo-rest-access-denied": "您没有权限来执行此操作",
