@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Ajam",
-			"Jeeputer"
+			"Jeeputer",
+			"Beginneruser"
 		]
 	},
 	"ipinfo-extensionname": "اطلاعات آی‌پی",
@@ -20,7 +21,7 @@
 	"ipinfo-preference-enable": "مشاهدهٔ اطلاعات دربارهٔ یک نشانی آی‌پی. هرگاه این گزینه را فعال/غیرفعال کنید، عمل شما ثبت خواهد شد.",
 	"ipinfo-rest-access-denied": "شما دسترسی لازم برای انجام این کار را ندارید.",
 	"ipinfo-rest-access-denied-blocked-user": "شما دسترسی لازم برای انجام این کار را ندارید. زیرا حساب شما بسته شده‌است",
-	"ipinfo-rest-revision-no-author": "حساب کاربری شما دسترسی لازم برای مشاهدهٔ نگارندهٔ نسخه را ندارد",
+	"ipinfo-rest-revision-no-author": "حساب شما دسترسی لازم برای مشاهدهٔ نگارندهٔ نسخه را ندارد",
 	"ipinfo-rest-revision-registered": "ناتوان در واکشی اطلاعات آی‌پی برای نسخه‌های مرتبط با کاربران ثبت‌نام کرده",
 	"ipinfo-rest-log-nonexistent": "مدخل سیاهه موجود نیست",
 	"ipinfo-rest-log-registered": "ناتوان در واکشی اطلاعات آی‌پی برای سیاهه‌های کاربران ثبت‌نام کرده",
