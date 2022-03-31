@@ -6,12 +6,11 @@ var ip = mw.config.get( 'wgIPInfoTarget' ),
 	api = new mw.Api(),
 	viewedAgreement = false,
 	timerStart,
-	eventLogger = require( '../log.js' ),
-	logIpCopy = require( '../copy.js' );
+	eventLogger = require( '../log.js' );
 
 if ( ip ) {
-	eventLogger.init();
-	logIpCopy();
+	eventLogger.logIpCopy();
+
 	var saveCollapsibleUserOption = function ( e ) {
 		// Only trigger on enter and space keypresses
 		if ( e.type === 'keypress' && e.which !== 13 && e.which !== 32 ) {
