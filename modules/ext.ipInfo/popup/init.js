@@ -1,7 +1,9 @@
 var IpInfoPopupWidget = require( './widget.js' );
 var eventLogger = require( '../log.js' );
+var logIpCopy = require( '../copy.js' );
 
 eventLogger.init();
+logIpCopy();
 mw.hook( 'wikipage.content' ).add( function ( $content ) {
 	$content.find( '.mw-anonuserlink' ).after( function () {
 		var id, type;
