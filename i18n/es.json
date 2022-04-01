@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Avengium",
+			"DiegoAmbrocio",
 			"Fitoschido",
 			"MarcoAurelio",
 			"Rodney Araujo"
@@ -62,6 +63,7 @@
 	"right-ipinfo-view-full": "Obtener información completa de las direcciones IP asociadas a ediciones o entradas del registro",
 	"action-ipinfo-view-log": "ver un registro de quién ha accedido a la información sobre direcciones IP",
 	"right-ipinfo-view-log": "Ver un registro de quién ha accedido a la información sobre direcciones IP",
+	"group-no-ipinfo": "Usuarios bloqueados en IPInfo",
 	"ipinfo-log-name": "Registro de información sobre las direcciones IP",
 	"ipinfo-log-header": "Este es un registro sobre:\n# Los usos que se han realizado de la herramienta de información sobre direcciones IP.\n# Cambios en el nivel de acceso de los usuarios para la herramienta.",
 	"ipinfo-log-access-level-ipinfo-view-basic": "Acceso limitado",
