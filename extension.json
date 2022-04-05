@@ -122,7 +122,6 @@
 			"remoteExtPath": "IPInfo/modules/ext.ipInfo",
 			"packageFiles": [
 				"dispatcher.js",
-				"copy.js",
 				"log.js",
 				"infobox/init.js",
 				"infobox/widget.js",
