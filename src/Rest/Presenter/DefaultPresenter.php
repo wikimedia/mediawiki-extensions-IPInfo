@@ -2,6 +2,7 @@
 
 namespace MediaWiki\IPInfo\Rest\Presenter;
 
+use MediaWiki\IPInfo\AccessLevelTrait;
 use MediaWiki\IPInfo\Info\BlockInfo;
 use MediaWiki\IPInfo\Info\ContributionInfo;
 use MediaWiki\IPInfo\Info\Info;
@@ -11,15 +12,16 @@ use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 
 class DefaultPresenter {
+	use AccessLevelTrait;
+
 	/** @var PermissionManager */
 	private $permissionManager;
 
 	/**
-	 * An ordered list of the viewing privileges of each level
-	 * They are ordered from lowest to highest access and each
-	 * describe themselves independently of one another
+	 * The viewing privileges of each level. Each describe themselves
+	 * independently of one another.
 	 *
-	 * Should be kept up-to-date with Logger::ACCESS_LEVELS
+	 * Keys should be kept up-to-date with AccessLevelTrait
 	 *
 	 * @var array
 	 */
@@ -75,13 +77,8 @@ class DefaultPresenter {
 		];
 
 		// Get the highest access list of properties user has permissions for
-		$viewableProperties = [];
-		$userPermissions = $this->permissionManager->getUserPermissions( $user );
-		foreach ( self::VIEWING_RIGHTS as $level => $properties ) {
-			if ( in_array( $level, $userPermissions ) ) {
-				$viewableProperties = $properties;
-			}
-		}
+		$level = $this->highestAccessLevel( $this->permissionManager->getUserPermissions( $user ) );
+		$viewableProperties = $level ? self::VIEWING_RIGHTS[$level] : [];
 
 		foreach ( $info['data'] as $source => $info ) {
 			$data = [];

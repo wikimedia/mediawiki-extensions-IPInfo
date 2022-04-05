@@ -15,6 +15,8 @@ class LogIPInfoAccessJobTest extends MediaWikiIntegrationTestCase {
 			'performer' => $this->getTestUser()->getUser()->getName(),
 			'ip' => '127.0.0.1',
 			'dataContext' => 'infobox',
+			'timestamp' => (int)wfTimestamp(),
+			'access_level' => 'ipinfo-view-basic',
 		] );
 
 		$result = $job->run();
@@ -26,6 +28,8 @@ class LogIPInfoAccessJobTest extends MediaWikiIntegrationTestCase {
 			'performer' => 'Fake User',
 			'ip' => '127.0.0.1',
 			'dataContext' => 'infobox',
+			'timestamp' => (int)wfTimestamp(),
+			'access_level' => 'ipinfo-view-basic',
 		] );
 
 		$result = $job->run();
@@ -39,6 +43,8 @@ class LogIPInfoAccessJobTest extends MediaWikiIntegrationTestCase {
 			'performer' => $this->getTestUser()->getUser()->getName(),
 			'ip' => '127.0.0.1',
 			'dataContext' => $dataContext,
+			'timestamp' => (int)wfTimestamp(),
+			'access_level' => 'ipinfo-view-basic',
 		] );
 
 		$result = $job->run();

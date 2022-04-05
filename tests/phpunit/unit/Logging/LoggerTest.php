@@ -114,6 +114,11 @@ class LoggerTest extends MediaWikiUnitTestCase {
 				->willReturn( $logEntry );
 		}
 
-		$logger->logViewInfobox( $performer, $target );
+		$logger->logViewInfobox(
+			$performer,
+			$target,
+			(int)wfTimestamp(),
+			$expectedParams['4::level']
+		);
 	}
 }

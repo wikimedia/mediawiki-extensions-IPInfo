@@ -5,6 +5,7 @@ namespace MediaWiki\IPInfo\Rest\Handler;
 use ExtensionRegistry;
 use JobQueueGroup;
 use JobSpecification;
+use MediaWiki\IPInfo\AccessLevelTrait;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\Permissions\PermissionManager;
@@ -21,6 +22,9 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class RevisionHandler extends SimpleHandler {
+
+	use AccessLevelTrait;
+
 	/**
 	 * An array of contexts and the data
 	 * that should be available in those contexts
@@ -213,13 +217,16 @@ class RevisionHandler extends SimpleHandler {
 			}
 		}
 
+		$level = $this->highestAccessLevel( $this->permissionManager->getUserPermissions( $user ) );
 		$this->jobQueueGroup->push(
 			new JobSpecification(
 				'ipinfoLogIPInfoAccess',
 				[
 					'performer' => $user->getName(),
 					'ip' => $author->getName(),
-					'dataContext' => $dataContext
+					'dataContext' => $dataContext,
+					'timestamp' => (int)wfTimestamp(),
+					'access_level' => $level
 				],
 				[],
 				null

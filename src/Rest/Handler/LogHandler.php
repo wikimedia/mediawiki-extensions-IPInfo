@@ -8,6 +8,7 @@ use JobQueueGroup;
 use JobSpecification;
 use LogEventsList;
 use LogPage;
+use MediaWiki\IPInfo\AccessLevelTrait;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\Permissions\PermissionManager;
@@ -24,6 +25,9 @@ use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 class LogHandler extends SimpleHandler {
+
+	use AccessLevelTrait;
+
 	/**
 	 * An array of contexts and the data
 	 * that should be available in those contexts
@@ -234,6 +238,7 @@ class LogHandler extends SimpleHandler {
 			}
 		}
 
+		$level = $this->highestAccessLevel( $this->permissionManager->getUserPermissions( $user ) );
 		if ( $showPerformer ) {
 			$this->jobQueueGroup->push(
 				new JobSpecification(
@@ -241,7 +246,9 @@ class LogHandler extends SimpleHandler {
 					[
 						'performer' => $user->getName(),
 						'ip' => $performer ,
-						'dataContext' => $dataContext
+						'dataContext' => $dataContext,
+						'timestamp' => (int)wfTimestamp(),
+						'access_level' => $level
 					],
 					[],
 					null
@@ -255,7 +262,9 @@ class LogHandler extends SimpleHandler {
 					[
 						'performer' => $user->getName(),
 						'ip' => $target ,
-						'dataContext' => $dataContext
+						'dataContext' => $dataContext,
+						'timestamp' => (int)wfTimestamp(),
+						'access_level' => $level
 					],
 					[],
 					null
