@@ -16,16 +16,31 @@ if ( ip ) {
 		if ( e.type === 'keypress' && e.which !== 13 && e.which !== 32 ) {
 			return;
 		}
+
+		// Store user preference in mw.storage; if it's removed from the codebase,
+		// it'll need to be cleaned up via mw.storage.remove
 		if ( !$( this ).closest( '.mw-collapsible' ).hasClass( 'mw-collapsed' ) ) {
-			api.saveOption( 'ipinfo-infobox-expanded', 1 );
+			mw.storage.set( 'mw-ipinfo-infobox-expanded', 1 );
 			// Log when the infobox is manually expanded
 			eventLogger.log( 'expand', 'infobox' );
 		} else {
-			api.saveOption( 'ipinfo-infobox-expanded', 0 );
+			mw.storage.set( 'mw-ipinfo-infobox-expanded', 0 );
 			// Log when the infobox is manually collasped
 			eventLogger.log( 'collapse', 'infobox' );
+
+			// Cleaning up some legacy data
+			api.saveOption( 'ipinfo-infobox-expanded', 0 );
 		}
 	};
+
+	// Determine if infobox should be expanded on load
+	// Do this before we attach the click handler so we can use click() to expand
+	// the infobox without setting the user preference
+	if ( $( '.ext-ipinfo-collapsible-layout' ).hasClass( 'mw-collapsed' ) &&
+		( new URLSearchParams( window.location.search ).get( 'openInfobox' ) === 'true' ||
+		!!Number( mw.storage.get( 'mw-ipinfo-infobox-expanded' ) ) ) ) {
+		$( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).trigger( 'click' );
+	}
 
 	// Watch for collapse/expand events and save that state to a user option
 	$( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).on( 'click keypress', saveCollapsibleUserOption );
