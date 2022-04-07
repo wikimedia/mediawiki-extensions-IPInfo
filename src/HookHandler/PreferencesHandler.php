@@ -134,6 +134,29 @@ class PreferencesHandler implements GetPreferencesHook {
 	}
 
 	/**
+	 * Send events to the external event server
+	 *
+	 * @param string $action
+	 * @param string $context
+	 * @param string $source
+	 * @param UserIdentity $user
+	 */
+	private function logEvent( $action, $context, $source, $user ) {
+		$eventLoggingLoaded = ExtensionRegistry::getInstance()->isLoaded( 'EventLogging' );
+		if ( !$eventLoggingLoaded ) {
+			return;
+		}
+		EventLogging::submit( 'mediawiki.ipinfo_interaction', [
+			'$schema' => '/analytics/mediawiki/ipinfo_interaction/1.1.0',
+			'event_action' => $action,
+			'event_context' => $context,
+			'event_source' => $source,
+			'user_edit_bucket' => UserBucketProvider::getUserEditCountBucket( $user ),
+			'user_groups' => implode( '|', $this->userGroupManager->getUserGroups( $user ) )
+		] );
+	}
+
+	/**
 	 * @param UserIdentity $user
 	 * @param array &$modifiedOptions
 	 * @param array $originalOptions
@@ -181,6 +204,16 @@ class PreferencesHandler implements GetPreferencesHook {
 			$ipInfoAgreementIsEnabled && !$ipInfoAgreementWillDisable && $ipInfoBasicWillEnable;
 		$ipInfoWillDisable = $ipInfoBasicWillDisable || $ipInfoAgreementWillDisable;
 
+		if ( ( !$ipInfoAgreementIsEnabled && $ipInfoAgreementWillEnable ) ||
+			( $ipInfoAgreementIsEnabled && $ipInfoAgreementWillDisable ) ) {
+			$this->logEvent(
+				(bool)$modifiedOptions['ipinfo-use-agreement'] ? 'accept_disclaimer' : 'uncheck_iagree',
+				'page',
+				'special_preferences',
+				$user
+			);
+		}
+
 		if ( $ipInfoIsEnabled && $ipInfoWillDisable ||
 			$ipInfoIsDisabled && $ipInfoWillEnable
 		) {
@@ -191,17 +224,12 @@ class PreferencesHandler implements GetPreferencesHook {
 				$logger->logAccessDisabled( $user );
 			}
 
-			$eventLoggingLoaded = ExtensionRegistry::getInstance()->isLoaded( 'EventLogging' );
-			if ( $eventLoggingLoaded ) {
-				EventLogging::submit( 'mediawiki.ipinfo_interaction', [
-					'$schema' => '/analytics/mediawiki/ipinfo_interaction/1.0.0',
-					'event_action' => $ipInfoWillEnable ? 'enable_ipinfo' : 'disable_ipinfo',
-					'event_context' => 'page',
-					'event_source' => 'special_preferences',
-					'user_edit_bucket' => UserBucketProvider::getUserEditCountBucket( $user ),
-					'user_groups' => implode( '|', $this->userGroupManager->getUserGroups( $user ) )
-				] );
-			}
+			$this->logEvent(
+				$ipInfoWillEnable ? 'enable_ipinfo' : 'disable_ipinfo',
+				'page',
+				'special_preferences',
+				$user
+			);
 		}
 	}
 }
