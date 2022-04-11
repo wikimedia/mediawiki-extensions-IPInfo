@@ -33,6 +33,11 @@ if ( ip ) {
 		}
 	};
 
+	// Ensure collapsible panel event handlers are added first, so that the collapsible panel
+	// has the correct classes when the handlers added here run. (It would be better to have
+	// a collapsible panel that modelled its collapsed state, so we could check that instead.)
+	$( '.mw-collapsible' ).makeCollapsible();
+
 	// Determine if infobox should be expanded on load
 	// Do this before we attach the click handler so we can use click() to expand
 	// the infobox without setting the user preference
