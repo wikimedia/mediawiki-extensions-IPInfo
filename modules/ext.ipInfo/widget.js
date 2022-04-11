@@ -130,11 +130,12 @@ ipInfoWidget.prototype.always = function () {
  * @return {Object}
  */
 ipInfoWidget.prototype.generatePropertyMarkup = function (
+	propertyKey,
 	propertyValue,
 	propertyLabel,
 	propertyTooltip
 ) {
-	var $propertyContent = $( '<div>' ).addClass( 'ext-ipinfo-widget-property' ).attr( 'data-property', propertyLabel );
+	var $propertyContent = $( '<div>' ).addClass( 'ext-ipinfo-widget-property' ).attr( 'data-property', propertyKey );
 	var $propertyLabel = $( '<dt>' ).addClass( 'ext-ipinfo-widget-property-label' ).text( propertyLabel );
 	if ( propertyTooltip ) {
 		var $propertyTooltip = new OO.ui.PopupButtonWidget( {
@@ -153,14 +154,14 @@ ipInfoWidget.prototype.generatePropertyMarkup = function (
 		$propertyTooltip.on( 'click', function () {
 			if ( this.popup.isVisible() ) {
 				var eventAction;
-				switch ( propertyLabel ) {
-					case mw.msg( 'ipinfo-property-label-connectiontype' ):
+				switch ( propertyKey ) {
+					case 'connectiontype':
 						eventAction = 'click_help_connection_method';
 						break;
-					case mw.msg( 'ipinfo-property-label-usertype' ):
+					case 'usertype':
 						eventAction = 'click_help_connection_owner';
 						break;
-					case mw.msg( 'ipinfo-property-label-proxytypes' ):
+					case 'proxytypes':
 						eventAction = 'click_help_proxy';
 						break;
 				}
