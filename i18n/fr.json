@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"AGueyte",
 			"Cantons-de-l'Est",
 			"DreZhsh",
 			"Fitoschido",
@@ -30,7 +31,7 @@
 	"ipinfo-property-value-proxytype-ishostingprovider": "Fournisseur d’hébergement",
 	"ipinfo-property-label-source": "Source",
 	"ipinfo-property-label-active-blocks": "Blocages actifs",
-	"ipinfo-property-tooltip-proxytypes": "Les mandataires cachent les adresses IP. Dans certains cas cela se produit automatiquement, comme pour les mandataires résidentiels ou d’entreprises, dans d’autres c’est fait intentionnellement afin de masquer l’origine de l’adresse IP.",
+	"ipinfo-property-tooltip-proxytypes": "Les mandataires cachent les adresses IP. Dans certains cas cela se produit automatiquement, comme pour les mandataires résidentiels ou d’entreprises, dans d’autres cas, c’est fait intentionnellement afin de masquer l’origine de l’adresse IP.",
 	"ipinfo-property-tooltip-connectiontype": "La technologie via laquelle ils se sont connectés à l’internet.",
 	"ipinfo-property-tooltip-usertype": "Le type d’entité qui détient la connexion internet.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 blocage actif|$1 blocages actifs|0=Aucun blocage actif}}.",
@@ -42,7 +43,7 @@
 	"ipinfo-widget-error-no-data": "Il n’y a aucune donnée venant de $1 pour cette adresse IP.",
 	"ipinfo-widget-error-wrong-ip": "L’adresse IP fournie ne correspond pas au journal ou à la révision.",
 	"ipinfo-widget-error-ip-no-edits": "Les informations sur l’adresse IP pour cette adresse ne peuvent pas être récupérées puisqu’il n’y a eu aucune modification effectuée sur ce wiki.",
-	"ipinfo-preference-enable": "Afficher l’outil Informations sur une adresse IP sur la page Spécial:Contributions pour les adresses IP.",
+	"ipinfo-preference-enable": "Afficher l’outil Informations d’une adresse IP sur la page Spécial:Contributions",
 	"ipinfo-preference-use-agreement": "J’accepte d’utiliser ces informations dans le cadre de mes patrouilles et de mon travail de lutte contre le vandalisme.",
 	"ipinfo-preference-agreement-error": "Vous devez activer l’outil Informations sur une adresse IP avant d’accepter ses conditions d’utilisation.",
 	"ipinfo-infobox-use-terms": "L’outil Informations sur une adresse IP utilise la base de données MaxMind pour montrer des détails comme l’emplacement, le mandataire et le nombre d’appareils qui partagent cette adresse IP.",
@@ -76,7 +77,7 @@
 	"ipinfo-log-access-level-ipinfo-view-basic": "Accès limité",
 	"ipinfo-log-access-level-ipinfo-view-full": "Accès complet",
 	"logentry-ipinfo-view_infobox": "$1{{GENDER:$2|}} a consulté la boîte d’informations sur une adresse IP pour $3. $4.",
-	"logentry-ipinfo-view_popup": "$1{{GENDER:$2|}} a consulté la boîte d’informations sur une adresse IP pour $3. $4.",
+	"logentry-ipinfo-view_popup": "$1{{GENDER:$2|}} a consulté la fenêtre d’informations sur une adresse IP pour $3. $4.",
 	"ipinfo-change-access-level-enable": "activé",
 	"ipinfo-change-access-level-disable": "désactivé",
 	"logentry-ipinfo-change_access": "$1{{GENDER:$2|}} a $4 son propre accès à IPInfo"
