@@ -17,7 +17,7 @@ var log = function ( action, context ) {
 
 	var event = {
 		/* eslint-disable camelcase */
-		$schema: '/analytics/mediawiki/ipinfo_interaction/1.1.0',
+		$schema: '/analytics/mediawiki/ipinfo_interaction/1.2.0',
 		event_action: action,
 		event_context: context,
 		event_source: specialPage,
@@ -26,7 +26,27 @@ var log = function ( action, context ) {
 		/* eslint-enable camelcase */
 	};
 
-	mw.track( 'ipinfo.event', event );
+	if ( action === 'open_popup' ) {
+		mw.user.getRights( function ( rights ) {
+			var highestAccessLevel;
+
+			if ( rights.indexOf( 'ipinfo-view-full' ) !== -1 ) {
+				highestAccessLevel = 'full';
+			} else if ( rights.indexOf( 'ipinfo-view-basic' ) !== -1 ) {
+				highestAccessLevel = 'basic';
+			}
+
+			if ( highestAccessLevel ) {
+				/* eslint-disable camelcase */
+				event.event_ipinfo_version = highestAccessLevel;
+				/* eslint-enable camelcase */
+				mw.track( 'ipinfo.event', event );
+			}
+		} );
+	} else {
+		mw.track( 'ipinfo.event', event );
+	}
+
 };
 
 var logIpCopy = function () {
