@@ -75,9 +75,6 @@ class PreferencesHandler implements GetPreferencesHook {
 			'disable-if' => [ '!==', 'ipinfo-enable', '1' ],
 			'noglobal' => true,
 		];
-		$preferences[ 'ipinfo-infobox-expanded' ] = [
-			'type' => 'api',
-		];
 	}
 
 	/**

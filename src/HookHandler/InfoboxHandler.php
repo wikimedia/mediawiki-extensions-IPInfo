@@ -68,13 +68,6 @@ class InfoboxHandler implements SpecialContributionsBeforeMainOutputHook {
 		$out->addModules( 'ext.ipInfo' );
 		$out->addModuleStyles( 'ext.ipInfo.styles' );
 
-		// If the infoboxOpen parameter was passed, $isExpanded should be true regardless of user pref
-		if ( $sp->getRequest()->getVal( 'openInfobox' ) === 'true' ) {
-			$isExpanded = true;
-		} else {
-			$isExpanded = (bool)$this->userOptionsLookup->getOption( $accessingUser, 'ipinfo-infobox-expanded' );
-		}
-
 		$panelLayout = new PanelLayout( [
 			'classes' => [ 'ext-ipinfo-panel-layout' ],
 			'framed' => true,
@@ -83,7 +76,7 @@ class InfoboxHandler implements SpecialContributionsBeforeMainOutputHook {
 			'content' => ( new CollapsibleFieldsetLayout(
 				[
 					'label' => $out->getContext()->msg( 'ipinfo-infobox-title' ),
-					'collapsed' => !$isExpanded,
+					'collapsed' => true,
 					'classes' => [ 'ext-ipinfo-collapsible-layout' ],
 					'infusable' => true,
 				]

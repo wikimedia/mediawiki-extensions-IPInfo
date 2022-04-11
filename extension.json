@@ -39,8 +39,7 @@
 	},
 	"DefaultUserOptions": {
 		"ipinfo-enable": 0,
-		"ipinfo-use-agreement": 0,
-		"ipinfo-infobox-expanded": 0
+		"ipinfo-use-agreement": 0
 	},
 	"RestRoutes": [
 		{
@@ -142,7 +141,8 @@
 				"mediawiki.htmlform",
 				"oojs-ui-core",
 				"oojs-ui-widgets",
-				"oojs-ui.styles.icons-content"
+				"oojs-ui.styles.icons-content",
+				"web2017-polyfills"
 			],
 			"messages": [
 				"ipinfo-source-geoip2",
