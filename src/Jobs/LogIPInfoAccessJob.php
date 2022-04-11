@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo\Jobs;
 
 use Job;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -25,6 +26,12 @@ class LogIPInfoAccessJob extends Job {
 		$ip = $this->params['ip'];
 		$timestamp = $this->params['timestamp'];
 		$level = $this->params['access_level'];
+
+		LoggerFactory::getInstance( 'AdHocDebug' )
+			->info( 'Job run', [
+				'timestamp' => $timestamp,
+				'ip' => $ip
+			] );
 
 		if ( !$performer ) {
 			$this->setLastError( 'Invalid performer' );
