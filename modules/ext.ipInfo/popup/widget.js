@@ -56,10 +56,10 @@ ipInfoPopupWidget.prototype.buildMarkup = function ( info ) {
 
 	var $info, $linkOutURL, $linkOut;
 	$info = $( '<dl>' ).addClass( 'ext-ipinfo-widget-property-properties' ).append(
-		this.generatePropertyMarkup( location, mw.msg( 'ipinfo-property-label-location' ) ),
-		this.generatePropertyMarkup( info.data[ 'ipinfo-source-geoip2' ].organization, mw.msg( 'ipinfo-property-label-organization' ) ),
-		this.generatePropertyMarkup( activeBlocks, mw.msg( 'ipinfo-property-label-active-blocks' ) ),
-		this.generatePropertyMarkup( $edits, mw.msg( 'ipinfo-property-label-edits' ) )
+		this.generatePropertyMarkup( 'location', location, mw.msg( 'ipinfo-property-label-location' ) ),
+		this.generatePropertyMarkup( 'organization', info.data[ 'ipinfo-source-geoip2' ].organization, mw.msg( 'ipinfo-property-label-organization' ) ),
+		this.generatePropertyMarkup( 'active-blocks', activeBlocks, mw.msg( 'ipinfo-property-label-active-blocks' ) ),
+		this.generatePropertyMarkup( 'edits', $edits, mw.msg( 'ipinfo-property-label-edits' ) )
 	);
 
 	// Popup links out to the Special:Contributions page of the ip
