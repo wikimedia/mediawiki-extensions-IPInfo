@@ -1,4 +1,5 @@
 {
+	"name": "IPInfo",
 	"private": true,
 	"scripts": {
 		"test": "grunt test"
