@@ -48,5 +48,6 @@
 	"action-ipinfo": "检索有关附加到版本或日志记录的IP地址信息",
 	"right-ipinfo": "检索有关附加到版本或日志记录的IP地址信息",
 	"action-ipinfo-view-basic": "允許查看附加到修訂或日誌項目的 IP 信息的基本資訊",
-	"right-ipinfo-view-basic": "允許查看附加到修訂或日誌項目的 IP 信息的基本資訊"
+	"right-ipinfo-view-basic": "允許查看附加到修訂或日誌項目的 IP 信息的基本資訊",
+	"ipinfo-log-header": "以下日志包括了：\n# 通过IPInfo工具查看IP地址信息的使用情况；和\n# 此工具的用户权限级别变更。"
 }

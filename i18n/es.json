@@ -4,7 +4,8 @@
 			"Avengium",
 			"Fitoschido",
 			"MarcoAurelio",
-			"Rodney Araujo"
+			"Rodney Araujo",
+			"DiegoAmbrocio"
 		]
 	},
 	"ipinfo-extensionname": "Información de la IP",
@@ -53,6 +54,7 @@
 	"ipinfo-rest-log-denied": "Tu cuenta no tiene permisos suficientes para ver quien creó esa entrada de registro, o el propio registro en sí mismo",
 	"ipinfo-source-geoip2": "La información aquí mostrada procede de la base de datos GeoIP2 de MaxMind. Puede no ser del todo precisa.",
 	"ipinfo-beta-feature-title": "Información de la IP",
+	"ipinfo-beta-feature-description": "La herramienta de información sobre las direcciones IP (IP Info) pretende equipar a los patrulleros con información relevante sobre las direcciones IP para ayudarles en sus tareas. Esta información se mostrará en la página de contribuciones de la dirección IP (Especial:Contribuciones) mientras que en las entradas de registro, los historiales y en los cambios recientes solo se ofrecerá una versión resumida de la misma a través de una ventana emergente.",
 	"prefs-ipinfo": "Información sobre la IP",
 	"action-ipinfo": "obtener información acerca de las direcciones IP de las revisiones y de las entradas del registro",
 	"right-ipinfo": "Obtener información acerca de las direcciones IP de las revisiones y de las entradas del registro",
@@ -66,6 +68,8 @@
 	"ipinfo-log-header": "Este es un registro sobre:\n# Los usos que se han realizado de la herramienta de información sobre direcciones IP.\n# Cambios en el nivel de acceso de los usuarios para la herramienta.",
 	"ipinfo-log-access-level-ipinfo-view-basic": "Acceso limitado",
 	"ipinfo-log-access-level-ipinfo-view-full": "Acceso completo",
+	"logentry-ipinfo-view_infobox": "$1 {{GENDER:$2|vio}} el cuadro de información sobre la IP $3. $4.",
+	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|vio}} la ventana emergente de información sobre la IP $3. $4.",
 	"ipinfo-change-access-level-enable": "activó",
 	"ipinfo-change-access-level-disable": "desactivó",
 	"logentry-ipinfo-change_access": "$1 {{GENDER:$2|$4}} su propio acceso a la herramienta de información sobre direcciones IP"
