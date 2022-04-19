@@ -40,7 +40,7 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 		}
 
 		var button = new OO.ui.PopupButtonWidget( {
-			icon: 'infoFilled',
+			icon: 'info',
 			framed: false,
 			classes: [ 'ext-ipinfo-button' ]
 		} );
