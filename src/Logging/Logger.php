@@ -9,6 +9,7 @@ use MediaWiki\User\UserIdentity;
 use Title;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\ParameterAssertionException;
+use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -175,7 +176,7 @@ class Logger {
 		array $params
 	): void {
 		$timestampMinusDelay = $timestamp - $this->delay;
-
+		$ip = IPUtils::sanitizeIP( $ip );
 		$actorId = $this->actorStore->findActorId( $performer, $this->dbw );
 		if ( !$actorId ) {
 			$this->log( $performer, $ip, $action, $params );
