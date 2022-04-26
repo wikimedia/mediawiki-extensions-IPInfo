@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo\Logging;
 
 use ManualLogEntry;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentity;
@@ -182,6 +183,12 @@ class Logger {
 			$this->log( $performer, $ip, $action, $params );
 			return;
 		}
+
+		LoggerFactory::getInstance( 'AdHocDebug' )
+		->info( 'Logging', [
+			'timestamp' => $timestamp,
+			'ip' => $ip
+		] );
 
 		$logline = $this->dbw->selectRow(
 			'logging',

@@ -8,6 +8,7 @@ use JobSpecification;
 use MediaWiki\IPInfo\AccessLevelTrait;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
@@ -218,6 +219,13 @@ class RevisionHandler extends SimpleHandler {
 		}
 
 		$level = $this->highestAccessLevel( $this->permissionManager->getUserPermissions( $user ) );
+
+		LoggerFactory::getInstance( 'AdHocDebug' )
+			->info( 'Job queued', [
+				'timestamp' => (int)wfTimestamp(),
+				'ip' => $author->getName()
+			] );
+
 		$this->jobQueueGroup->push(
 			new JobSpecification(
 				'ipinfoLogIPInfoAccess',
