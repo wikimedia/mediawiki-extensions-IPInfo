@@ -27,9 +27,6 @@ if ( ip ) {
 			mw.storage.set( 'mw-ipinfo-infobox-expanded', 0 );
 			// Log when the infobox is manually collasped
 			eventLogger.log( 'collapse', 'infobox' );
-
-			// Cleaning up some legacy data
-			api.saveOption( 'ipinfo-infobox-expanded', 0 );
 		}
 	};
 
