@@ -34,7 +34,8 @@ class PopupHandler implements BeforePageDisplayHook {
 			$out->getRequest()->getVal( 'action' ) !== 'history' &&
 			!( $out->getTitle() &&
 				( $out->getTitle()->isSpecial( 'Log' ) ||
-					 $out->getTitle()->isSpecial( 'Recentchanges' ) ) )
+					 $out->getTitle()->isSpecial( 'Recentchanges' ) ||
+					 $out->getTitle()->isSpecial( 'Watchlist' ) ) )
 		) {
 			return;
 		}
