@@ -10,6 +10,9 @@ var log = function ( action, context ) {
 		case 'Contributions':
 			specialPage = 'special_contributions';
 			break;
+		case 'Watchlist':
+			specialPage = 'special_watchlist';
+			break;
 		case false:
 			specialPage = 'action_history';
 			break;
@@ -17,7 +20,7 @@ var log = function ( action, context ) {
 
 	var event = {
 		/* eslint-disable camelcase */
-		$schema: '/analytics/mediawiki/ipinfo_interaction/1.2.0',
+		$schema: '/analytics/mediawiki/ipinfo_interaction/1.3.0',
 		event_action: action,
 		event_context: context,
 		event_source: specialPage,
