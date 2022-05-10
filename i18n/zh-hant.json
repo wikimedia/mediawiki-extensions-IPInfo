@@ -16,6 +16,11 @@
 	"ipinfo-property-label-organization": "組織",
 	"ipinfo-property-label-connectiontype": "連線方式",
 	"ipinfo-property-label-usertype": "連線擁有者",
+	"ipinfo-property-label-proxytypes": "真實 IP/代理",
+	"ipinfo-property-value-proxytype-isanonymousvpn": "匿名 VPN",
+	"ipinfo-property-value-proxytype-ispublicproxy": "公共代理",
+	"ipinfo-property-value-proxytype-isresidentialproxy": "住宅代理",
+	"ipinfo-property-value-proxytype-islegitimateproxy": "合法代理",
 	"ipinfo-property-label-source": "來源",
 	"ipinfo-property-label-edits": "貢獻",
 	"ipinfo-property-no-data": "不可用",
@@ -42,6 +47,8 @@
 	"right-ipinfo": "檢索有關附加在修訂或日誌項目的 IP 位址資訊",
 	"action-ipinfo-view-basic": "允許查看附加到修訂或日誌項目的 IP 資訊的基本資訊",
 	"right-ipinfo-view-basic": "允許查看附加到修訂或日誌項目的 IP 資訊的基本資訊",
+	"ipinfo-log-name": "IPInfo 日誌",
+	"ipinfo-log-header": "此日誌為：\n# 藉由 IPInfo 工具來檢視有關 IP 的使用情況，以及\n# 對於此工具的使用者存取級別更改。",
 	"ipinfo-change-access-level-enable": "已啟用",
 	"ipinfo-change-access-level-disable": "已停用"
 }
