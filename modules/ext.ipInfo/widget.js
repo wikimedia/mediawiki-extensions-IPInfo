@@ -124,6 +124,7 @@ ipInfoWidget.prototype.always = function () {
 /**
  * Generate HTML for a property. All properties are shown regardless if a value exists or not.
  *
+ * @param {string} propertyKey
  * @param {Object} propertyValue
  * @param {string} propertyLabel
  * @param {string} propertyTooltip
