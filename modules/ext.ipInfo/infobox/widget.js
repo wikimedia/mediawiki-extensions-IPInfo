@@ -109,7 +109,9 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 			$( '<div>' ).addClass( 'ext-ipinfo-widget-properties-col' ).append(
 				this.generatePropertyMarkup( 'active-blocks', activeBlocks, mw.msg( 'ipinfo-property-label-active-blocks' ) ),
 				this.generatePropertyMarkup( 'edits', $edits, mw.msg( 'ipinfo-property-label-edits' ) ),
-				$( '<div>' ).addClass( 'ext-ipinfo-widget-property-source' ).text( mw.msg( 'ipinfo-source-geoip2' ) )
+				$( '<div>' ).addClass( 'ext-ipinfo-widget-property-source' ).html(
+					mw.message( 'ipinfo-source-geoip2' ).parse()
+				)
 			)
 		);
 

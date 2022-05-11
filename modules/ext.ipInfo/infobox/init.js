@@ -96,7 +96,9 @@ if ( ip ) {
 			content: [
 				new OO.ui.Element( {
 					content: [
-						mw.msg( 'ipinfo-infobox-use-terms' )
+						new OO.ui.HtmlSnippet(
+							mw.message( 'ipinfo-infobox-use-terms' ).parse()
+						)
 					]
 				} ),
 				new OO.ui.FieldLayout(
@@ -104,20 +106,30 @@ if ( ip ) {
 						value: 'ipinfo-use-agreement',
 						required: true
 					} ),
-					{ label: mw.msg( 'ipinfo-preference-use-agreement' ), align: 'inline' }
+					{
+						label: new OO.ui.HtmlSnippet(
+							mw.message( 'ipinfo-preference-use-agreement' ).parse()
+						),
+						align: 'inline'
+					}
 				),
 				new OO.ui.FieldLayout(
 					new OO.ui.ButtonInputWidget( {
 						type: 'submit',
 						name: 'submit-agreement',
-						label: mw.msg( 'ipinfo-infobox-submit-agreement' ),
+						label: new OO.ui.HtmlSnippet(
+							mw.message( 'ipinfo-infobox-submit-agreement' ).parse()
+						),
 						flags: [
 							'primary',
 							'progressive'
 						]
-					} ), {
+					} ),
+					{
 						align: 'top',
-						help: new OO.ui.HtmlSnippet( mw.message( 'ipinfo-infobox-disable-instructions' ).parse() ),
+						help: new OO.ui.HtmlSnippet(
+							mw.message( 'ipinfo-infobox-disable-instructions' ).parse()
+						),
 						helpInline: true
 					}
 				)
