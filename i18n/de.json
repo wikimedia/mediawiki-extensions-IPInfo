@@ -31,7 +31,7 @@
 	"ipinfo-widget-error-no-data": "Es gibt keine Daten für diese IP-Adresse von $1.",
 	"ipinfo-widget-error-wrong-ip": "Die angegebene IP-Adresse stimmte nicht mit dem Logbuch oder der Version überein.",
 	"ipinfo-widget-error-ip-no-edits": "Für diese IP-Adresse können keine Informationen abgerufen werden, da sie für keine Änderungen an diesem Wiki verwendet wurde.",
-	"ipinfo-preference-enable": "Zeige das IP-Informationstool auf Spezial:Beiträge für IP-Adressen an.",
+	"ipinfo-preference-enable": "Zeige das IP-Informationstool auf Spezial:Beiträge für nicht angemeldete Benutzer an.",
 	"ipinfo-preference-use-agreement": "Ich erkläre mich damit einverstanden, diese Informationen für meine Kontrolltätigkeit und die Bekämpfung von Vandalismus zu verwenden.",
 	"ipinfo-preference-agreement-error": "Du musst das IP-Informationstool aktivieren, bevor du den Nutzungsbedingungen zustimmst.",
 	"ipinfo-infobox-use-terms": "Das IP-Informationstool verwendet die MaxMind-Datenbank, um Details wie Standort, Proxy und die Anzahl der Geräte, die sich diese IP-Adresse teilen, anzuzeigen.",
