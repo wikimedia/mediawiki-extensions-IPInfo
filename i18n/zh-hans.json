@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			")8",
+			"GuoPC",
 			"NACHOgao3",
 			"Shizhao",
 			"Shuiwater",
@@ -34,7 +35,7 @@
 	"ipinfo-widget-error-default": "无法检索此IP的信息。",
 	"ipinfo-widget-error-no-data": "$1中没有此IP地址的数据。",
 	"ipinfo-widget-error-wrong-ip": "提供的IP地址与日志或修订版本不匹配。",
-	"ipinfo-preference-enable": "在“Special:用户贡献”页面显示用于IP地址的IP信息工具。",
+	"ipinfo-preference-enable": "在“Special:用户贡献”页面显示用于未注册贡献者的IP信息工具。",
 	"ipinfo-preference-agreement-error": "在同意其使用条件前，您必须启用 IP 信息工具。",
 	"ipinfo-rest-access-denied": "您没有权限来执行此操作",
 	"ipinfo-rest-access-denied-blocked-user": "您没有执行此行为的许可因为您的的账户被拦截",

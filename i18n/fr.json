@@ -43,7 +43,7 @@
 	"ipinfo-widget-error-no-data": "Il n’y a aucune donnée venant de $1 pour cette adresse IP.",
 	"ipinfo-widget-error-wrong-ip": "L’adresse IP fournie ne correspond pas au journal ou à la révision.",
 	"ipinfo-widget-error-ip-no-edits": "Les informations sur l’adresse IP pour cette adresse ne peuvent pas être récupérées puisqu’il n’y a eu aucune modification effectuée sur ce wiki.",
-	"ipinfo-preference-enable": "Afficher l’outil Informations d’une adresse IP sur la page Spécial:Contributions",
+	"ipinfo-preference-enable": "Afficher l’outil Informations d’une adresse IP sur la page Spécial:Contributions pour les contributeurs non inscrits.",
 	"ipinfo-preference-use-agreement": "J’accepte d’utiliser ces informations dans le cadre de mes patrouilles et de mon travail de lutte contre le vandalisme.",
 	"ipinfo-preference-agreement-error": "Vous devez activer l’outil Informations sur une adresse IP avant d’accepter ses conditions d’utilisation.",
 	"ipinfo-infobox-use-terms": "L’outil Informations sur une adresse IP utilise la base de données MaxMind pour montrer des détails comme l’emplacement, le mandataire et le nombre d’appareils qui partagent cette adresse IP.",
