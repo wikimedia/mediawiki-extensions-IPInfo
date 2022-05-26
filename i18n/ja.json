@@ -3,14 +3,24 @@
 		"authors": [
 			"A2y4",
 			"MathXplore",
-			"Shirayuki"
+			"Shirayuki",
+			"Whym"
 		]
 	},
+	"ipinfo-infobox-title": "IP情報",
+	"ipinfo-property-label-location": "位置",
 	"ipinfo-property-label-organization": "組織",
+	"ipinfo-property-label-connectiontype": "接続方法",
 	"ipinfo-property-value-proxytype-isanonymousvpn": "匿名VPN",
+	"ipinfo-property-label-active-blocks": "有効なブロック",
+	"ipinfo-property-label-edits": "投稿記録",
+	"ipinfo-widget-error-default": "IP情報を取得できませんでした。",
+	"ipinfo-preference-use-agreement": "私はこの情報を巡回と荒らし対策作業のために使うことに同意します。",
+	"ipinfo-infobox-use-terms": "IP情報ツールはMaxMindデータベースを利用して位置、プロキシ、このIPアドレスを共有しているデバイスの数などの情報を表示します。",
 	"ipinfo-beta-feature-title": "IP情報",
 	"action-ipinfo-view-log": "IP 情報にアクセスした利用者の記録の閲覧",
 	"right-ipinfo-view-log": "IP 情報にアクセスした利用者の記録を閲覧",
+	"ipinfo-log-header": "ここには\n# IPの情報を閲覧するためにIPInfoを使用した記録\n# IPInfo用の利用者アクセスレベルの変更の記録\nがあります。",
 	"ipinfo-log-access-level-ipinfo-view-basic": "アクセスが制限されています",
 	"ipinfo-log-access-level-ipinfo-view-full": "完全なアクセス",
 	"ipinfo-change-access-level-enable": "有効",
