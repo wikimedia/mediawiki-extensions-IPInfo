@@ -2,14 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"A2y4",
-			"MathXplore"
+			"MathXplore",
+			"Shirayuki"
 		]
 	},
 	"ipinfo-property-label-organization": "組織",
 	"ipinfo-property-value-proxytype-isanonymousvpn": "匿名VPN",
 	"ipinfo-beta-feature-title": "IP情報",
-	"action-ipinfo-view-log": "IP情報にアクセスした方のログを見る",
-	"right-ipinfo-view-log": "IP情報にアクセスした方のログを見る",
+	"action-ipinfo-view-log": "IP 情報にアクセスした利用者の記録の閲覧",
+	"right-ipinfo-view-log": "IP 情報にアクセスした利用者の記録を閲覧",
 	"ipinfo-log-access-level-ipinfo-view-basic": "アクセスが制限されています",
 	"ipinfo-log-access-level-ipinfo-view-full": "完全なアクセス",
 	"ipinfo-change-access-level-enable": "有効",
