@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Keo010122",
-			"NguoiDungKhongDinhDanh"
+			"NguoiDungKhongDinhDanh",
+			"Thingofme"
 		]
 	},
 	"ipinfo-desc": "Cung cấp thông tin về địa chỉ IP.",
@@ -39,7 +40,7 @@
 	"ipinfo-preference-agreement-error": "Bạn phải kích hoạt công cụ Thông tin IP trước khi đồng ý với điều kiện sử dụng.",
 	"ipinfo-infobox-use-terms": "Công cụ Thông tin IP sử dụng cơ sở dữ liệu MaxMind để hiển thị các thông tin như địa điểm, proxy hay số thiết bị dùng chung địa chỉ IP này.",
 	"ipinfo-infobox-submit-agreement": "Kích hoạt công cụ Thông tin IP",
-	"ipinfo-infobox-disable-instructions": "Để huỷ kích hoạt tính năng này, xem [[Special:Preferences|Đặc biệt:Đóng góp]].",
+	"ipinfo-infobox-disable-instructions": "Để huỷ kích hoạt tính năng này, xem [[Special:Preferences|Đặc biệt:Tùy chọn]].",
 	"ipinfo-use-agreement-submit-error": "Có lỗi xảy ra; vui lòng thử lại. Thông báo lỗi nhận được: $1",
 	"ipinfo-rest-access-denied": "Bạn không có quyền thực hiện tác vụ này",
 	"ipinfo-rest-access-denied-blocked-user": "Bạn không có quyền thực hiện tác vụ này vì tài khoản của bạn đã bị cấm",

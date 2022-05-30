@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"A2y4",
+			"Marine-Blue",
 			"MathXplore",
 			"Shirayuki",
 			"Whym"
@@ -15,9 +16,12 @@
 	"ipinfo-property-label-active-blocks": "有効なブロック",
 	"ipinfo-property-label-edits": "投稿記録",
 	"ipinfo-widget-error-default": "IP情報を取得できませんでした。",
+	"ipinfo-widget-error-ip-no-edits": "このIPアドレスはこのウィキで編集を行っていないため、IP情報を取得することができません。",
 	"ipinfo-preference-use-agreement": "私はこの情報を巡回と荒らし対策作業のために使うことに同意します。",
 	"ipinfo-infobox-use-terms": "IP情報ツールはMaxMindデータベースを利用して位置、プロキシ、このIPアドレスを共有しているデバイスの数などの情報を表示します。",
 	"ipinfo-beta-feature-title": "IP情報",
+	"ipinfo-beta-feature-description": "IP情報ツールは巡回を行う利用者を支援し、IPアドレスに関する情報を得やすくするために提供されます。この情報はSpecial:ContributionsのページでIPアドレスを表示したときに利用できます。情報の要約ログ、投稿記録、最近の更新からポップアップで閲覧できるようになる予定です。",
+	"prefs-ipinfo": "IP情報",
 	"action-ipinfo-view-log": "IP 情報にアクセスした利用者の記録の閲覧",
 	"right-ipinfo-view-log": "IP 情報にアクセスした利用者の記録を閲覧",
 	"ipinfo-log-header": "ここには\n# IPの情報を閲覧するためにIPInfoを使用した記録\n# IPInfo用の利用者アクセスレベルの変更の記録\nがあります。",

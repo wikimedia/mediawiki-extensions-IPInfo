@@ -1,0 +1,36 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"ipinfo-desc": "Forni information sur un adresse IP.",
+	"ipinfo-infobox-title": "Information IP",
+	"ipinfo-property-label-location": "Loco",
+	"ipinfo-property-label-isp": "Fornitor Internet",
+	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "Organisation",
+	"ipinfo-property-label-connectiontype": "Methodo de connexion",
+	"ipinfo-property-label-usertype": "Proprietario del connexion",
+	"ipinfo-property-label-proxytypes": "IP real/Proxy",
+	"ipinfo-property-value-proxytype-isanonymousvpn": "VPN anonyme",
+	"ipinfo-property-value-proxytype-ispublicproxy": "Proxy public",
+	"ipinfo-property-value-proxytype-isresidentialproxy": "Proxy residential",
+	"ipinfo-property-value-proxytype-islegitimateproxy": "Proxy legitime",
+	"ipinfo-property-value-proxytype-istorexitnode": "Nodo de exito de Tor",
+	"ipinfo-property-value-proxytype-ishostingprovider": "Fornitor de albergamento",
+	"ipinfo-property-label-source": "Fonte",
+	"ipinfo-property-label-active-blocks": "Blocadas active",
+	"ipinfo-property-tooltip-proxytypes": "Le proxies cela adresses IP. In alcun casos isto occurre automaticamente, p.ex. pro proxies residential o corporative, in altere casos isto es facite intentionalmente pro mascar le origine del adresse IP.",
+	"ipinfo-property-tooltip-connectiontype": "Le technologia que usa pro connecter a internet.",
+	"ipinfo-property-tooltip-usertype": "Le typo de entitate que possede le connexion a internet.",
+	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 blocada|$1 blocadas|0=Nulle blocada}} active.",
+	"ipinfo-property-label-edits": "Contributiones",
+	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 modification|$1 modificationes|0=Nulle modification}} local",
+	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 in le ultime 24 horas}})",
+	"ipinfo-property-no-data": "Non disponibile",
+	"ipinfo-widget-error-default": "Le information sur le adresse IP non poteva esser recuperate.",
+	"ipinfo-widget-error-no-data": "Il non ha datos de $1 pro iste adresse IP.",
+	"ipinfo-widget-error-wrong-ip": "Le adresse IP fornite non correspondeva al registro o al version.",
+	"ipinfo-widget-error-ip-no-edits": "Le information sur iste adresse IP non es disponibile perque nulle modification es attribuite a illo sur iste wiki."
+}
