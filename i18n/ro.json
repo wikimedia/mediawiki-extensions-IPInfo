@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"NGC 54"
+		]
+	},
+	"ipinfo-desc": "Furnizează informații despre o adresă IP.",
+	"ipinfo-infobox-title": "Informații despre IP",
+	"ipinfo-property-label-location": "Locație",
+	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "Organizație",
+	"ipinfo-property-label-source": "Sursă",
+	"ipinfo-property-no-data": "Indisponibil",
+	"ipinfo-widget-error-default": "Informațiile despre IP nu au putut fi redate.",
+	"ipinfo-widget-error-no-data": "Nu există nicio dată pentru această adresă IP din partea $1.",
+	"ipinfo-widget-error-wrong-ip": "Adresa IP furnizată nu s-a potrivit cu jurnalul sau versiunea.",
+	"ipinfo-rest-access-denied": "Nu aveți permisiunea să efectuați acțiunea",
+	"ipinfo-rest-access-denied-blocked-user": "Nu aveți permisiunea să efectuați acțiunea pentru că contul dvs. este blocat",
+	"ipinfo-rest-log-nonexistent": "Intrarea din jurnal nu există",
+	"prefs-ipinfo": "Informații despre IP"
+}

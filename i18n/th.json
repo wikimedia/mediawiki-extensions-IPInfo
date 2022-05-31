@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Patsagorn Y.",
+			"Trisorn Triboon"
+		]
+	},
+	"ipinfo-extensionname": "ข้อมูลไอพี",
+	"ipinfo-desc": "ให้ข้อมูลเกี่ยวกับที่อยู่ไอพี",
+	"ipinfo-infobox-title": "ข้อมูล IP",
+	"ipinfo-property-label-location": "สถานที่",
+	"ipinfo-property-label-isp": "ผู้ให้บริการ",
+	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "องค์กร",
+	"ipinfo-property-label-source": "แหล่งที่มา",
+	"ipinfo-property-no-data": "ไม่มี",
+	"ipinfo-widget-error-default": "ไม่สามารถเข้าถึงข้อมูลไอพีได้",
+	"ipinfo-widget-error-no-data": "ไม่พบข้อมูลสำหรับไอพีนี้จาก $1",
+	"ipinfo-widget-error-wrong-ip": "ที่อยู่ไอพีที่ให้ไม่ตรงกับปูมหรือรุ่นใด ๆ",
+	"ipinfo-rest-access-denied": "คุณไม่มีสิทธิดำเนินการนี้",
+	"ipinfo-rest-access-denied-blocked-user": "คุณไม่มีสิทธิ์ในการดำเนินการเนื่องจากบัญชีของคุณถูกบล็อก",
+	"ipinfo-rest-revision-no-author": "บัญชีของคุณไม่มีสิทธิ์เข้าถึงเจ้าของรุ่นการแก้ไข",
+	"ipinfo-rest-revision-registered": "ไม่สามารถเข้าถึงข้อมูลไอพีจากรุ่นการแก้ไขของผู้ใช้ที่ยังไม่ลงทะเบียน",
+	"ipinfo-rest-log-nonexistent": "ไม่พบปูมนี้",
+	"ipinfo-rest-log-registered": "ไม่สามารถเข้าถึงข้อมูลไอพีในปูมของผู้ใช้ที่ยังไม่ลงทะเบียน",
+	"ipinfo-rest-log-denied": "บัญชีของคุณไม่มีสิทธิ์มองเห็นผู้ดำเนินการปูมหรือปูมนี้ได้",
+	"ipinfo-source-geoip2": "ข้อมูลที่ถูกแสดงที่นี่ถูกนำมาจากฐานข้อมูล GeoIP2 โดย MaxMind ซึ่งข้อมูลอาจมีข้อผิดพลาด",
+	"prefs-ipinfo": "ข้อมูลไอพี",
+	"action-ipinfo": "เข้าถึงข้อมูลเกี่ยวกับที่อยู่ไอพีในปูมหรือรุ่นการแก้ไขต่าง ๆ",
+	"right-ipinfo": "เข้าถึงข้อมูลไอพีของที่อยู่ไอพีผ่านหน้าปูมหรือรุ่นแก้ไข"
+}

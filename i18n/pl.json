@@ -2,15 +2,29 @@
 	"@metadata": {
 		"authors": [
 			"Kareyac",
-			"Rail"
+			"Rail",
+			"Woytecr"
 		]
 	},
 	"ipinfo-extensionname": "Informacje o IP",
 	"ipinfo-desc": "Dostarcza informacje na temat adresów IP",
+	"ipinfo-infobox-title": "Informacje o IP",
 	"ipinfo-property-label-location": "Lokalizacja",
 	"ipinfo-property-label-isp": "Dostawca internetu",
+	"ipinfo-property-label-organization": "Organizacja",
 	"ipinfo-property-label-source": "Źródło",
 	"ipinfo-property-no-data": "Niedostępne",
+	"ipinfo-widget-error-default": "Nie dało się pobrać informacji o tym IP.",
+	"ipinfo-widget-error-no-data": "Brak danych z $1 dla tego adresu IP.",
 	"ipinfo-rest-access-denied": "Nie masz uprawnień do wykonywania tej operacji",
-	"ipinfo-rest-log-nonexistent": "Wpis w rejestrze nie istnieje"
+	"ipinfo-rest-access-denied-blocked-user": "Nie masz uprawnień do wykonania tej czynności, ponieważ Twoje konto jest zablokowane",
+	"ipinfo-rest-revision-no-author": "Twoje konto nie ma uprawnień do zobaczenia kto jest autorem tej wersji",
+	"ipinfo-rest-revision-registered": "Nie można pobrać informacji o IP dla wersji użytkowników zarejestrowanych",
+	"ipinfo-rest-log-nonexistent": "Wpis w rejestrze nie istnieje",
+	"ipinfo-rest-log-registered": "Nie można pobrać informacji o IP dla czynności wykonanych przez użytkowników zarejestrowanych",
+	"ipinfo-rest-log-denied": "Twoje konto nie ma uprawnień do wyświetlenia wykonawcy czynności w rejestrze lub wpisu w rejestrze",
+	"ipinfo-source-geoip2": "Informacje tu pokazywane pochodzą z baz danych GeoIP2 od MaxMind. Mogą nie być w pełni dokładne.",
+	"prefs-ipinfo": "Informacje o IP",
+	"action-ipinfo": "pobierania informacji o adresach IP dołączonych do wersji i wpisów rejestru",
+	"right-ipinfo": "Pobieranie informacji o adresach IP dołączonych do wersji i wpisów rejestru"
 }

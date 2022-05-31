@@ -2,7 +2,9 @@
 	"@metadata": {
 		"authors": [
 			"Maantietäjä",
-			"MITO"
+			"MITO",
+			"Kyykaarme",
+			"Markus Mikkonen"
 		]
 	},
 	"ipinfo-desc": "Tarjoaa tietoja IP-osoitteesta.",
@@ -18,7 +20,7 @@
 	"ipinfo-widget-error-wrong-ip": "Annettu IP-osoite ei vastannut lokia tai versiota.",
 	"ipinfo-rest-access-denied": "Sinulla ei ole oikeutta suorittaa toimintoa",
 	"ipinfo-rest-access-denied-blocked-user": "Sinulla ei ole lupaa suorittaa toimintoa, koska tilisi on estetty.",
-	"ipinfo-rest-revision-no-author": "Käyttäjälläsi ei ole oikeutta tarkastella version kirjoittajaa",
+	"ipinfo-rest-revision-no-author": "Käyttäjätililläsi ei ole oikeutta tarkastella version kirjoittajaa",
 	"ipinfo-rest-log-nonexistent": "Lokimerkintää ei ole olemassa",
 	"ipinfo-rest-log-denied": "Käyttäjälläsi ei ole oikeutta tarkastella lokimerkinnän suorittajaa tai itse lokimerkintää",
 	"prefs-ipinfo": "IP-tiedot",
