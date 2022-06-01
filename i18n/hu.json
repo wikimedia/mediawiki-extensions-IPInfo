@@ -6,8 +6,19 @@
 		]
 	},
 	"ipinfo-desc": "Információ IP-címről",
+	"ipinfo-infobox-title": "IP-információk",
+	"ipinfo-property-label-location": "Hely",
+	"ipinfo-property-label-isp": "Internetszolgáltató",
+	"ipinfo-property-label-organization": "Szervezet",
 	"ipinfo-property-label-source": "Forrás",
-	"ipinfo-widget-error-default": "Nem sikerült lehívni az IP információt.",
+	"ipinfo-property-no-data": "Nem érhető el",
+	"ipinfo-widget-error-default": "Nem sikerült lehívni az IP-információt.",
+	"ipinfo-rest-access-denied": "Nincs megfelelő jogosultságod a művelet végrehajtásához",
+	"ipinfo-rest-access-denied-blocked-user": "Nincs megfelelő jogosultságod a művelet végrehajtásához, mert a fiókod blokkolva van",
+	"ipinfo-rest-revision-no-author": "Nincs jogosultságod a lapváltozat szerzőjének megtekintéséhez",
+	"ipinfo-rest-revision-registered": "Regisztrált felhasználók szerkesztéseihez nem lehet lekérni az IP-információkat",
 	"ipinfo-rest-log-nonexistent": "A naplóbejegyzés nem létezik",
-	"ipinfo-rest-log-registered": "A regisztrált felhasználók ipinfojának lekérése sikertelen"
+	"ipinfo-rest-log-registered": "A regisztrált felhasználók naplóbejegyzéseihez nem lehet lekérni az IP-információkat",
+	"ipinfo-source-geoip2": "Az itt megjelenített információk a MaxMind GeoIP2 adatbázisaiból származik, és nem feltétlenül teljesen pontosak.",
+	"prefs-ipinfo": "IP-információk"
 }

@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mormegil"
+		]
+	},
+	"ipinfo-extensionname": "IP info",
+	"ipinfo-desc": "Poskytuje informace o IP adrese.",
+	"ipinfo-infobox-title": "Informace o IP",
+	"ipinfo-property-label-location": "Umístění",
+	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "Organizace",
+	"ipinfo-property-label-source": "Zdroj",
+	"ipinfo-property-no-data": "Není dostupné",
+	"ipinfo-widget-error-default": "Informace o IP se nepodařilo načíst.",
+	"ipinfo-widget-error-no-data": "Od $1 nejsou dostupné žádné údaje pro tuto IP adresu.",
+	"ipinfo-widget-error-wrong-ip": "Poskytnutá IP adresa neodpovídala protokolovacímu záznamu či revizi.",
+	"ipinfo-rest-access-denied": "K provedení této akce nemáte oprávnění",
+	"ipinfo-rest-access-denied-blocked-user": "K provedení této akce nemáte oprávnění, protože váš účet je zablokován",
+	"ipinfo-rest-revision-no-author": "Váš účet nemá přístup k zobrazení autora této revize",
+	"ipinfo-rest-revision-registered": "Nelze získávat ipinfo k revizím registrovaných uživatelů",
+	"ipinfo-rest-log-nonexistent": "Protokolovací záznam neexistuje",
+	"ipinfo-rest-log-registered": "Nelze získávat ipinfo k protokolovacím záznamům registrovaných uživatelů",
+	"ipinfo-rest-log-denied": "Váš účet nemá přístup k zobrazení původce tohoto protokolovacího záznamu nebo k protokolovacímu záznamu samému",
+	"ipinfo-source-geoip2": "Zde zobrazené informace pocházejí z databáze GeoIP2 od MaxMind. Nemusejí být zcela přesné.",
+	"prefs-ipinfo": "Informace o IP",
+	"action-ipinfo": "získávat informace o IP adresách připojených k revizím nebo protokolovacím záznamům",
+	"right-ipinfo": "Získávání informací o IP adresách připojených k revizím nebo protokolovacím záznamům"
+}

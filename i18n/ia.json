@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"ipinfo-desc": "Forni information sur un adresse IP.",
+	"ipinfo-infobox-title": "Information IP",
+	"ipinfo-property-label-location": "Loco",
+	"ipinfo-property-label-isp": "Fornitor Internet",
+	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "Organisation",
+	"ipinfo-property-label-source": "Fonte",
+	"ipinfo-property-no-data": "Non disponibile",
+	"ipinfo-widget-error-default": "Le information sur le adresse IP non poteva esser recuperate.",
+	"ipinfo-widget-error-no-data": "Il non ha datos de $1 pro iste adresse IP.",
+	"ipinfo-widget-error-wrong-ip": "Le adresse IP fornite non correspondeva al registro o al version."
+}

@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Keo010122",
+			"NguoiDungKhongDinhDanh",
+			"Thingofme"
+		]
+	},
+	"ipinfo-desc": "Cung cấp thông tin về địa chỉ IP.",
+	"ipinfo-infobox-title": "Thông tin IP",
+	"ipinfo-property-label-location": "Địa điểm",
+	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "Tổ chức",
+	"ipinfo-property-label-source": "Nguồn",
+	"ipinfo-property-no-data": "Không khả dụng",
+	"ipinfo-widget-error-default": "Không thể truy xuất thông tin về địa chỉ IP.",
+	"ipinfo-widget-error-no-data": "$1 không có dữ liệu về địa chỉ IP này.",
+	"ipinfo-widget-error-wrong-ip": "Địa chỉ IP đã định không khớp với nhật trình hoặc phiên bản.",
+	"ipinfo-rest-access-denied": "Bạn không có quyền thực hiện tác vụ này",
+	"ipinfo-rest-access-denied-blocked-user": "Bạn không có quyền thực hiện tác vụ này vì tài khoản của bạn đã bị cấm",
+	"ipinfo-rest-revision-no-author": "Tài khoản của bạn không có quyền xem thông tin tác giả phiên bản",
+	"ipinfo-rest-revision-registered": "Không thể truy xuất thông tin IP từ các phiên bản của người dùng đã đăng nhập.",
+	"ipinfo-rest-log-nonexistent": "Mục nhật trình không tồn tại",
+	"ipinfo-rest-log-registered": "Không thể truy xuất thông tin IP từ nhật trình của người dùng đã đăng nhập",
+	"ipinfo-rest-log-denied": "Tài khoản của bạn không có quyền xem thông tin về người thực hiện tác vụ được ghi lại hoặc nhật trình này.",
+	"ipinfo-source-geoip2": "Thông tin hiển thị ở đây được lấy từ cơ sở dữ liệu GeoIP2 của MaxMind. Nó có thể không hoàn toàn chính xác.",
+	"prefs-ipinfo": "Thông tin IP",
+	"action-ipinfo": "truy xuất thông tin về địa chỉ IP được đính kèm với phiên bản hoặc mục nhật trình",
+	"right-ipinfo": "Truy xuất thông tin về địa chỉ IP được đính kèm với phiên bản hoặc mục nhật trình"
+}

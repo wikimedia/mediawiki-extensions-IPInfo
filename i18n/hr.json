@@ -1,8 +1,28 @@
 {
 	"@metadata": {
 		"authors": [
-			"Neptune, the Mystic"
+			"Neptune, the Mystic",
+			"MaGa"
 		]
 	},
-	"ipinfo-property-label-source": "Izvor"
+	"ipinfo-extensionname": "Informacije o IP adresi",
+	"ipinfo-desc": "Pruža informacije o IP adresi.",
+	"ipinfo-infobox-title": "Informacije o IP adresi",
+	"ipinfo-property-label-location": "Lokacija",
+	"ipinfo-property-label-isp": "Pružatelj internetskih usluga",
+	"ipinfo-property-label-organization": "Organizacija",
+	"ipinfo-property-label-source": "Izvor",
+	"ipinfo-property-no-data": "Nije dostupno",
+	"ipinfo-widget-error-default": "Informacije o IP adresi ne mogu biti dohvaćene.",
+	"ipinfo-widget-error-no-data": "Za ovu IP adresu nema podataka iz $1.",
+	"ipinfo-widget-error-wrong-ip": "Navedena IP adresa ne odgovara evidenciji ili izmjeni.",
+	"ipinfo-rest-access-denied": "Nemate ovlaštenje za izvođenje ove radnje",
+	"ipinfo-rest-access-denied-blocked-user": "Nemate ovlaštenje za izvođenje ove radnje zato jer Vam je suradnički račun blokiran",
+	"ipinfo-rest-revision-no-author": "Vaš suradnički račun nema mogućnost pregleda autora izmjene",
+	"ipinfo-rest-revision-registered": "Nije moguće pribaviti informacije o IP adresama za izmjene registriranih suradnika",
+	"ipinfo-rest-log-nonexistent": "Zapis u evidenciji ne postoji",
+	"ipinfo-rest-log-registered": "Nije moguće pribaviti informacije o IP adresama za evidencije registriranih suradnika",
+	"ipinfo-rest-log-denied": "Vaš suradnički račun nema pristup pregledu izvođača unosa u evidenciju ili samog unosa u evidenciju",
+	"ipinfo-source-geoip2": "Ovdje prikazane informacije potječu iz MaxMindovih baza podataka GeoIP2. Moguće je da nisu u potpunosti točne.",
+	"prefs-ipinfo": "Informacije o IP adresi"
 }

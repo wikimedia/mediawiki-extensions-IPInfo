@@ -3,12 +3,23 @@
 		"authors": [
 			"Jesusmc",
 			"Kareyac",
-			"Vitalisman"
+			"Vitalisman",
+			"Stjn",
+			"Tanzun"
 		]
 	},
+	"ipinfo-desc": "Показывает информацию об IP-адресах.",
 	"ipinfo-infobox-title": "Информация об IP",
+	"ipinfo-property-label-location": "Местоположение",
+	"ipinfo-property-label-isp": "Интернет-провайдер",
+	"ipinfo-property-label-asn": "Номер AS (ASN)",
+	"ipinfo-property-label-organization": "Организация",
 	"ipinfo-property-label-source": "Источник",
-	"ipinfo-property-no-data": "Не доступно",
+	"ipinfo-property-no-data": "Недоступно",
+	"ipinfo-widget-error-default": "Не получилось загрузить информацию об IP.",
+	"ipinfo-widget-error-no-data": "У $1 нет данных для этого IP-адреса.",
+	"ipinfo-widget-error-wrong-ip": "Предоставленный IP-адрес не совпал с записью в журнале или правкой.",
 	"ipinfo-rest-access-denied": "У вас нет прав для выполнения этого действия.",
-	"ipinfo-rest-revision-registered": "Не было возможным получить информацию IP адреса для досмотра зарегистрированных пользователей."
+	"ipinfo-rest-revision-registered": "Не было возможным получить информацию IP адреса для досмотра зарегистрированных пользователей.",
+	"prefs-ipinfo": "Информация об IP"
 }
