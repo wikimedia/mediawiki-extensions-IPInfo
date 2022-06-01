@@ -115,13 +115,13 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 	public function testExecuteErrors( array $options, array $expected ) {
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
-			->willReturn( $options['userHasRight'] ?? null );
+			->willReturn( $options['userHasRight'] ?? false );
 
 		$user = $this->createMock( UserIdentity::class );
 		$user->method( 'isRegistered' )
 			->willReturn( $options['userIsRegistered'] ?? false );
 		$permissionManager->method( 'userCan' )
-			->willReturn( $options['userCan'] ?? null );
+			->willReturn( $options['userCan'] ?? false );
 
 		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
 		$userOptionsLookup->method( 'getOption' )
