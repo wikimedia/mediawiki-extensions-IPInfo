@@ -5,6 +5,7 @@ namespace MediaWiki\IPInfo\HookHandler;
 use CollapsibleFieldsetLayout;
 use ExtensionRegistry;
 use MediaWiki\Hook\SpecialContributionsBeforeMainOutputHook;
+use MediaWiki\MediaWikiServices;
 use Mediawiki\Permissions\PermissionManager;
 use MediaWiki\User\UserOptionsLookup;
 use OOUI\PanelLayout;
@@ -36,6 +37,14 @@ class InfoboxHandler implements SpecialContributionsBeforeMainOutputHook {
 	public function onSpecialContributionsBeforeMainOutput( $id, $user, $sp ): void {
 		$out = $sp->getOutput();
 		if ( !( $out->getTitle() && $out->getTitle()->isSpecial( 'Contributions' ) ) ) {
+			return;
+		}
+
+		// T309363: hide the panel on mobile until T268177 is resolved
+		$services = MediaWikiServices::getInstance();
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' ) &&
+			$services->getService( 'MobileFrontend.Context' )
+				->shouldDisplayMobileView() ) {
 			return;
 		}
 
