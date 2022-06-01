@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aram"
+		]
+	},
+	"ipinfo-extensionname": "زانیاریی ئایپی",
+	"ipinfo-desc": "زانیاری لەسەر ناونیشانی ئایپی دەدات.",
+	"ipinfo-infobox-title": "زانیاریی ئایپی",
+	"ipinfo-property-label-location": "شوێن",
+	"ipinfo-property-label-isp": "دابینکەری خزمەتگوزاریی ئینتەرنێت",
+	"ipinfo-property-label-source": "سەرچاوە",
+	"ipinfo-property-label-edits": "بەشدارییەکان",
+	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 دەستکاریی ناوخۆیی|0=ھیچ دەستکارییەکی ناوخۆیی نییە}}",
+	"ipinfo-value-recent-edits": "({{PLURAL:$1|لە دوایین ٢٤ سەعاتدا $1 دەستکاریی کردووە}})",
+	"ipinfo-property-no-data": "بەردەست نییە",
+	"ipinfo-preference-enable": "ئامرازی زانیاریی ئایپی لەسەر بەشداربووە تۆمارنەکراوەکان لە پەڕەی تایبەت:بەشدارییەکان پیشان دەدات.",
+	"ipinfo-infobox-submit-agreement": "ئامرازی زانیاریی ئایپی چالاک بکە",
+	"ipinfo-beta-feature-title": "زانیاریی ئایپی",
+	"ipinfo-beta-feature-description": "ئامانجی ئامرازی زانیاریی ئایپی پێدانی زانیاریی پێویستە لەسەر ناونیشانە ئایپیەکان بە پاسدەران تا لە کارەکانیاندا یارمەتییان بدات. ئەم زانیارییە لە پەڕەی تایبەت:بەشدارییەکانی دەستکاریکەرە ئایپییەکان بەردەستە. وەشانێکی کورتکراوەی ئەم زانیارییە لە پەنجەرەیەک لە تەنیشت ناونیشانە ئایپییەکان لە پەڕەکانی لۆگ، بەشدارییەکان و دوایین گۆڕانکارییەکان بەردەست دەبێت.",
+	"prefs-ipinfo": "زانیاریی ئایپی",
+	"ipinfo-log-name": "لۆگی زانیاریی ئایپی",
+	"ipinfo-log-access-level-ipinfo-view-basic": "دەستپێگەیشتنی سنووردار",
+	"ipinfo-log-access-level-ipinfo-view-full": "دەستپێگەیشتنی تەواو",
+	"ipinfo-change-access-level-enable": "چالاککراو",
+	"ipinfo-change-access-level-disable": "ناچالاککراو"
+}
