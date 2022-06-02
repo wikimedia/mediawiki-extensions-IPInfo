@@ -1,8 +1,34 @@
 {
 	"@metadata": {
 		"authors": [
-			"Norhorn"
+			"Norhorn",
+			"Geraki"
 		]
 	},
+	"ipinfo-desc": "Παραχωρεί πληροφορίες για μια διεύθυνση IP.",
+	"ipinfo-infobox-title": "Πληροφορίες IP",
+	"ipinfo-property-label-location": "Τοποθεσία",
+	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "Οργανισμός",
+	"ipinfo-property-label-connectiontype": "Μέθοδος Σύνδεσης",
+	"ipinfo-property-label-usertype": "Κάτοχος Σύνδεσης",
+	"ipinfo-property-label-proxytypes": "Αληθινή IP/Proxy",
+	"ipinfo-property-value-proxytype-isanonymousvpn": "Ανώνυμο VPN",
+	"ipinfo-property-value-proxytype-ispublicproxy": "Public Proxy",
+	"ipinfo-property-value-proxytype-isresidentialproxy": "Residential Proxy",
+	"ipinfo-property-label-source": "Πηγή",
+	"ipinfo-property-label-active-blocks": "Ενεργές Φραγές",
+	"ipinfo-property-tooltip-proxytypes": "Οι proxy κρύβουν διευθύνσεις IP. Σε κάποιες περιπτώσεις συμβαίνει αυτόματα όπως για proxy κατοικιών ή επιχειρήσεων, σε όλες τις άλλες περιπτώσεις γίνεται με πρόθεση να αποκρυφτεί η πηγή της διεύθυνσης IP.",
+	"ipinfo-property-tooltip-connectiontype": "Η τεχνολογία μέσα από την οποία συνδέεται στο διαδίκτυο.",
+	"ipinfo-property-tooltip-usertype": "Το είδος οντότητας που κατέχει την σύνδεση διαδικτύου.",
+	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 ενεργή φραγή|$1 ενεργές φραγές|0=Καμία ενεργή φραγή}}.",
+	"ipinfo-property-label-edits": "Συνεισφορές",
+	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 τοπική επεξεργασία|$1 τοπικές επεξεργασίες|0=Καμία τοπική επεξεργασία}}",
+	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 στις τελευταίες 24 ώρες}})",
+	"ipinfo-property-no-data": "Μη Διαθέσιμο",
+	"ipinfo-widget-error-default": "Δεν μπόρεσε να ανακτηθεί η διεύθυνση IP.",
+	"ipinfo-widget-error-no-data": "Δεν υπάρχουν δεδομένα για αυτή τη διεύθυνση IP από το $1.",
+	"ipinfo-beta-feature-description": "Το εργαλείο IP Info στοχεύει να εξοπλίσει όσους περιπολούν τις επεξεργασίες με ζωτικής σημασίας πληροφορίες σχετικά με τις διευθύνσεις IP για να τους βοηθήσει στον ρόλο τους. Αυτές οι πληροφορίες θα είναι διαθέσιμες στη σελίδα Special:Contributions για τον χρήστη IP. Μια συνοπτική έκδοση αυτών των πληροφοριών θα είναι διαθέσιμη σε ένα αναδυόμενο παράθυρο δίπλα στις διευθύνσεις IP στις σελίδες Μητρώου, Συνεισφορών και Πρόσφατες Αλλαγές.",
 	"prefs-ipinfo": "Πληροφορίες ΙΡ"
 }
