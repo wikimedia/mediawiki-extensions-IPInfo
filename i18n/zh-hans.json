@@ -44,7 +44,7 @@
 	"ipinfo-widget-error-no-data": "$1中没有此IP地址的数据。",
 	"ipinfo-widget-error-wrong-ip": "提供的IP地址与日志或修订版本不匹配。",
 	"ipinfo-widget-error-ip-no-edits": "无法检索此地址的IP信息，因为它没有在此wiki上进行任何编辑。",
-	"ipinfo-preference-enable": "在“特殊:用户贡献”页面显示为未注册贡献者提供的IP信息的工具。",
+	"ipinfo-preference-enable": "在未注册用户的“特殊:用户贡献”页面显示IP信息的工具。",
 	"ipinfo-preference-use-agreement": "我同意将此信息用于我的巡查和反破坏工作。",
 	"ipinfo-preference-agreement-error": "您必须先启用IP信息工具，然后才能同意其使用条款。",
 	"ipinfo-infobox-use-terms": "IP信息工具使用MaxMind数据库来显示位置、代理以及共享此IP地址的设备数量等详细信息。",
