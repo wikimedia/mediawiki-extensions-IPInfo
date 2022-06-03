@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Huñvreüs"
+		]
+	},
+	"ipinfo-desc": "Pourveziñ a ra titouroù diwar-benn ur chomlec’h IP.",
+	"ipinfo-infobox-title": "Titouroù diwar-benn ar chomlec’h IP",
+	"ipinfo-property-label-location": "Lec’h",
+	"ipinfo-property-label-isp": "Pourvezer moned war ar Genrouedad",
+	"ipinfo-property-label-asn": "Niver sistem emren (ASN)",
+	"ipinfo-property-label-organization": "Aozadur",
+	"ipinfo-property-label-connectiontype": "Seurt kevreadenn",
+	"ipinfo-property-label-usertype": "Perc’henner ar gevreadenn",
+	"ipinfo-property-label-proxytypes": "Chomlec’h IP gwir/Proksi",
+	"ipinfo-property-label-active-blocks": "Stankadennoù oberiant",
+	"ipinfo-value-active-blocks": "Stankadenn oberiant ebet.",
+	"ipinfo-property-label-edits": "Degasadennoù",
+	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 degasadenn lec’hel||0=Degasadenn lec’hel ebet}}",
+	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 e-pad ar 24 eur tremenet}})",
+	"ipinfo-property-no-data": "Dianav",
+	"ipinfo-widget-error-ip-no-edits": "Ne c’heller ket kaout an titouroù evit an IP-mañ peogwir n’en deus graet degasadenn ebet er wiki-mañ.",
+	"ipinfo-infobox-submit-agreement": "Gweredekaat ar benveg a bourvez titouroù diwar-benn ar chomlec’hioù IP",
+	"ipinfo-source-geoip2": "Dont a ra an titouroù diskwelet amañ eus diazez roadennoù GeoIP2 eus MaxMind. Gallout a rafent bezañ diresis.",
+	"ipinfo-beta-feature-title": "Titouroù diwar-benn ar chomlec’hioù IP",
+	"ipinfo-beta-feature-description": "Pal ar benveg Titouroù diwar-benn ar chomlec’hioù IP zo reiñ d’ar batrouilherien titouroù pouezus-kenañ evit skoazell anezho. Gallout a rit gwelout an titouroù-mañ war bajenn Special:Contributions an implijer a ra gant un IP. Diskwelet a vo un diverradenn eus an titouroù en ur prenestr popup e-kichen ar chomlec’hioù IP war pajennoù Marilh, Degasadennoù ha KemmoùDiwezhañ.",
+	"prefs-ipinfo": "Titouroù diwar-benn ur chomlec’h IP"
+}
