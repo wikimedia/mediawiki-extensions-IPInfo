@@ -4,9 +4,11 @@
 			"Kyykaarme",
 			"MITO",
 			"Maantietäjä",
-			"Markus Mikkonen"
+			"Markus Mikkonen",
+			"Stryn"
 		]
 	},
+	"ipinfo-extensionname": "IP-tieto",
 	"ipinfo-desc": "Tarjoaa tietoja IP-osoitteesta.",
 	"ipinfo-infobox-title": "IP-tiedot",
 	"ipinfo-property-label-location": "Sijainti",
@@ -32,7 +34,7 @@
 	"ipinfo-widget-error-no-data": "Tälle IP-osoitteelle ei ole tietoja lähteestä $1.",
 	"ipinfo-widget-error-wrong-ip": "Annettu IP-osoite ei vastannut lokia tai versiota.",
 	"ipinfo-widget-error-ip-no-edits": "Tämän IP-osoitteen tietoja ei voitu hakea, koska se ei ole tehnyt yhtään muokkausta tässä wikissä.",
-	"ipinfo-preference-enable": "Näytä IP-tietotyökalu Toiminnot:Muokkaukset-sivulla IP-osoitteille.",
+	"ipinfo-preference-enable": "Näytä IP-tietotyökalu Toiminnot:Muokkaukset-sivulla rekisteröitymättömille muokkaajille.",
 	"ipinfo-preference-use-agreement": "Vakuutan käyttäväni näitä tietoja seulonta- ja vandalismintorjuntatyössäni.",
 	"ipinfo-preference-agreement-error": "Sinun on otettava IP-tietotyökalu käyttöön ennen kuin hyväksyt sen käyttöehdot.",
 	"ipinfo-infobox-submit-agreement": "Ota IP-tietotyökalu käyttöön",
@@ -46,5 +48,10 @@
 	"ipinfo-beta-feature-title": "IP-tieto",
 	"prefs-ipinfo": "IP-tiedot",
 	"action-ipinfo": "hakea tietoja IP-osoitteista, jotka on liitetty versioihin tai lokimerkintöihin",
-	"ipinfo-log-access-level-ipinfo-view-full": "Täysi pääsy"
+	"ipinfo-log-name": "IP-tietoloki",
+	"ipinfo-log-access-level-ipinfo-view-basic": "Rajoitettu pääsy",
+	"ipinfo-log-access-level-ipinfo-view-full": "Täysi pääsy",
+	"ipinfo-change-access-level-enable": "otti käyttöön",
+	"ipinfo-change-access-level-disable": "poisti käytöstä",
+	"logentry-ipinfo-change_access": "$1 {{GENDER:$2|$4}} IP-tietoon pääsyn"
 }
