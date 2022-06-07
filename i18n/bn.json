@@ -54,6 +54,7 @@
 	"right-ipinfo-view-log": "কে আইপি তথ্য দেখেছেন তার লগ দেখা",
 	"group-no-ipinfo": "আইপি তথ্য থেকে বাধাপ্রাপ্ত ব্যবহারকারী",
 	"group-no-ipinfo-member": "{{GENDER:$1|আইপি তথ্য থেকে বাধাপ্রাপ্ত}}",
+	"grouppage-no-ipinfo": "{{ns:project}}:আইপি তথ্য থেকে বাধাপ্রাপ্ত ব্যবহারকারী",
 	"ipinfo-log-name": "আইপি তথ্য লগ",
 	"ipinfo-log-access-level-ipinfo-view-basic": "সীমিত প্রবেশাধিকার",
 	"ipinfo-log-access-level-ipinfo-view-full": "পূর্ণ প্রবেশাধিকার",
