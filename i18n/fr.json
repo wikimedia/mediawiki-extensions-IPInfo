@@ -73,7 +73,7 @@
 	"group-no-ipinfo": "Utilisateurs bloqués dans IPInfo",
 	"group-no-ipinfo-member": "bloqué{{GENDER:$1||e}} dans IPInfo",
 	"grouppage-no-ipinfo": "{{ns:project}}:Users blocked from IPInfo",
-	"ipinfo-log-name": "Journal IPInfo",
+	"ipinfo-log-name": "Journal d’IPInfo",
 	"ipinfo-log-header": "Ceci est un journal listant :\n# les utilisations de l’outil InfosIP pour afficher les informations concernant des IP ; et\n# les modifications des niveaux d’accès des utilisateurs à cet outil.",
 	"ipinfo-log-access-level-ipinfo-view-basic": "Accès limité",
 	"ipinfo-log-access-level-ipinfo-view-full": "Accès complet",
