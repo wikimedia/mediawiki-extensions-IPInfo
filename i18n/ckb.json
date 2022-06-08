@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aram"
+		]
+	},
+	"ipinfo-extensionname": "زانیاریی ئایپی",
+	"ipinfo-desc": "زانیاری لەسەر ناونیشانی ئایپی دەدات.",
+	"ipinfo-infobox-title": "زانیاریی ئایپی",
+	"ipinfo-property-label-location": "شوێن",
+	"ipinfo-property-label-isp": "دابینکەری خزمەتگوزاریی ئینتەرنێت",
+	"ipinfo-property-label-source": "سەرچاوە",
+	"ipinfo-property-no-data": "بەردەست نییە",
+	"prefs-ipinfo": "زانیاریی ئایپی"
+}

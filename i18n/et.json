@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Pikne"
+		]
+	},
+	"ipinfo-desc": "Näitab teavet IP-aadressi kohta.",
+	"ipinfo-infobox-title": "IP-aadressi teave",
+	"ipinfo-property-label-location": "Asukoht",
+	"ipinfo-property-label-organization": "Organisatsioon",
+	"ipinfo-property-no-data": "Pole saadaval",
+	"prefs-ipinfo": "IP-aadressi teave",
+	"action-ipinfo": "pärida teavet redaktsioonide ja logisissekannetega seotud IP-aadresside kohta",
+	"right-ipinfo": "Pärida teavet redaktsioonide ja logisissekannetega seotud IP-aadresside kohta"
+}

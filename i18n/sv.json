@@ -2,16 +2,31 @@
 	"@metadata": {
 		"authors": [
 			"Sabelöga",
-			"WikiPhoenix"
+			"WikiPhoenix",
+			"Ainali"
 		]
 	},
+	"ipinfo-desc": "Ger information om en IP-adress.",
 	"ipinfo-infobox-title": "IP-information",
 	"ipinfo-property-label-location": "Plats",
 	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Organisation",
 	"ipinfo-property-label-source": "Källa",
+	"ipinfo-property-no-data": "Inte tillgänglig",
+	"ipinfo-widget-error-default": "IP-informationen kunde inte hämtas.",
+	"ipinfo-widget-error-no-data": "Det finns ingen data för denna IP-adress från $1.",
+	"ipinfo-widget-error-wrong-ip": "Den angivna IP-adressen matchade inte loggen eller versionen.",
 	"ipinfo-preference-enable": "Se information om en IP-adress",
-	"ipinfo-source-geoip2": "GeoIp2",
-	"prefs-ipinfo": "IP-information"
+	"ipinfo-rest-access-denied": "Du har inte rättigheter för att utföra denna handling",
+	"ipinfo-rest-access-denied-blocked-user": "Du har inte rättigheter för att utföra denna handling för att ditt konto är blockerat",
+	"ipinfo-rest-revision-no-author": "Ditt konto har inte rättigheter att se användaren som gjorde revisionen",
+	"ipinfo-rest-revision-registered": "Kan inte hämta ip-info för versioner av registrerade användare",
+	"ipinfo-rest-log-nonexistent": "Det finns ingen rad i loggen",
+	"ipinfo-rest-log-registered": "Kan inte hämta ip-info för loggar av registrerade användare",
+	"ipinfo-rest-log-denied": "Ditt konto har inte rättigheter att se utföraren av en logghändelse eller logghändelsen",
+	"ipinfo-source-geoip2": "Informationen här kommer från GeoIP2 databaserna från MaxMind. De är kanske inte helt korrekta.",
+	"prefs-ipinfo": "IP-information",
+	"action-ipinfo": "hämta information om IP-adresser kopplade till versioner eller logghändelser",
+	"right-ipinfo": "Hämta information om IP-adresser kopplade till versioner eller logghändelser"
 }

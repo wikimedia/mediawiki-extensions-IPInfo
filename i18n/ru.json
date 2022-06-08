@@ -5,9 +5,11 @@
 			"Kareyac",
 			"Vitalisman",
 			"Stjn",
-			"Tanzun"
+			"Tanzun",
+			"WindEwriX"
 		]
 	},
+	"ipinfo-extensionname": "Информация об IP",
 	"ipinfo-desc": "Показывает информацию об IP-адресах.",
 	"ipinfo-infobox-title": "Информация об IP",
 	"ipinfo-property-label-location": "Местоположение",
@@ -20,6 +22,14 @@
 	"ipinfo-widget-error-no-data": "У $1 нет данных для этого IP-адреса.",
 	"ipinfo-widget-error-wrong-ip": "Предоставленный IP-адрес не совпал с записью в журнале или правкой.",
 	"ipinfo-rest-access-denied": "У вас нет прав для выполнения этого действия.",
-	"ipinfo-rest-revision-registered": "Не было возможным получить информацию IP адреса для досмотра зарегистрированных пользователей.",
-	"prefs-ipinfo": "Информация об IP"
+	"ipinfo-rest-access-denied-blocked-user": "У вас нет права выполнить действие, потому что ваша учётная запись заблокирована",
+	"ipinfo-rest-revision-no-author": "Ваша учётная запись не имеет доступа к просмотру автора ревизии",
+	"ipinfo-rest-revision-registered": "Нельзя получить информацию об IP для зарегистрированных пользователей",
+	"ipinfo-rest-log-nonexistent": "Запись журнала не существует.",
+	"ipinfo-rest-log-registered": "Нельзя получить информацию об IP для зарегистрированных пользователей",
+	"ipinfo-rest-log-denied": "Ваша учётная запись не имеет доступа к просмотру автора записи журнала или самой записи журнала",
+	"ipinfo-source-geoip2": "Отображаемая здесь информация взята из баз данных GeoIP2 MaxMind. Она может быть не полностью точна.",
+	"prefs-ipinfo": "Информация об IP",
+	"action-ipinfo": "получить информацию об IP, привязанной к правкам или записям журналов",
+	"right-ipinfo": "Получение информации об IP, привязанной к правкам или записям журналов"
 }

@@ -4,9 +4,11 @@
 			"Maantietäjä",
 			"MITO",
 			"Kyykaarme",
-			"Markus Mikkonen"
+			"Markus Mikkonen",
+			"Stryn"
 		]
 	},
+	"ipinfo-extensionname": "IP-tieto",
 	"ipinfo-desc": "Tarjoaa tietoja IP-osoitteesta.",
 	"ipinfo-infobox-title": "IP-tiedot",
 	"ipinfo-property-label-location": "Sijainti",

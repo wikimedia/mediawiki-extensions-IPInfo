@@ -8,12 +8,15 @@
 			"Vega",
 			"Verdy p",
 			"Wladek92",
-			"DreZhsh"
+			"DreZhsh",
+			"AGueyte",
+			"GrandEscogriffe",
+			"Thibaut120094"
 		]
 	},
 	"ipinfo-extensionname": "IP Info",
 	"ipinfo-desc": "Fournit des informations sur une adresse IP.",
-	"ipinfo-infobox-title": "Informations sur une adresse IP",
+	"ipinfo-infobox-title": "Informations sur l’adresse IP",
 	"ipinfo-property-label-location": "Lieu",
 	"ipinfo-property-label-isp": "FAI",
 	"ipinfo-property-label-asn": "ASN",

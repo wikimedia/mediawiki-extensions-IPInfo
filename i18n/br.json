@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Huñvreüs"
+		]
+	},
+	"ipinfo-desc": "Pourveziñ a ra titouroù diwar-benn ur chomlec’h IP.",
+	"ipinfo-infobox-title": "Titouroù diwar-benn ar chomlec’h IP",
+	"ipinfo-property-label-location": "Lec’h",
+	"ipinfo-property-label-isp": "Pourvezer moned war ar Genrouedad",
+	"ipinfo-property-label-asn": "Niver sistem emren (ASN)",
+	"ipinfo-property-label-organization": "Aozadur",
+	"ipinfo-property-no-data": "Dianav",
+	"ipinfo-source-geoip2": "Dont a ra an titouroù diskwelet amañ eus diazez roadennoù GeoIP2 eus MaxMind. Gallout a rafent bezañ diresis.",
+	"prefs-ipinfo": "Titouroù diwar-benn ur chomlec’h IP"
+}

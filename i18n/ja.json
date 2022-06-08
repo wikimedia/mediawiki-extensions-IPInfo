@@ -11,6 +11,7 @@
 	"ipinfo-infobox-title": "IP情報",
 	"ipinfo-property-label-location": "位置",
 	"ipinfo-property-label-organization": "組織",
+	"ipinfo-property-no-data": "情報なし",
 	"ipinfo-widget-error-default": "IP情報を取得できませんでした。",
 	"prefs-ipinfo": "IP情報"
 }

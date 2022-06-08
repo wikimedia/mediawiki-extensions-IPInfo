@@ -1,8 +1,19 @@
 {
 	"@metadata": {
 		"authors": [
-			"Norhorn"
+			"Norhorn",
+			"Geraki"
 		]
 	},
+	"ipinfo-desc": "Παραχωρεί πληροφορίες για μια διεύθυνση IP.",
+	"ipinfo-infobox-title": "Πληροφορίες IP",
+	"ipinfo-property-label-location": "Τοποθεσία",
+	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "Οργανισμός",
+	"ipinfo-property-label-source": "Πηγή",
+	"ipinfo-property-no-data": "Μη Διαθέσιμο",
+	"ipinfo-widget-error-default": "Δεν μπόρεσε να ανακτηθεί η διεύθυνση IP.",
+	"ipinfo-widget-error-no-data": "Δεν υπάρχουν δεδομένα για αυτή τη διεύθυνση IP από το $1.",
 	"prefs-ipinfo": "Πληροφορίες ΙΡ"
 }
