@@ -70,7 +70,7 @@
 	"right-ipinfo-view-full": "Permet d’avoir une vue complète des informations sur une adresse IP attachées aux révisions ou aux entrées des journaux",
 	"action-ipinfo-view-log": "afficher un journal de qui a accédé aux informations sur une adresse IP",
 	"right-ipinfo-view-log": "Afficher un journal de qui a accédé aux informations sur une adresse IP",
-	"ipinfo-log-name": "Journal IPInfo",
+	"ipinfo-log-name": "Journal d’IPInfo",
 	"ipinfo-log-header": "Ceci est un journal listant :\n# les utilisations de l’outil InfosIP pour afficher les informations concernant des IP ; et\n# les modifications des niveaux d’accès des utilisateurs à cet outil.",
 	"ipinfo-log-access-level-ipinfo-view-basic": "Accès limité",
 	"ipinfo-log-access-level-ipinfo-view-full": "Accès complet",

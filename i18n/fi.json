@@ -4,9 +4,11 @@
 			"MITO",
 			"Maantietäjä",
 			"Markus Mikkonen",
-			"Kyykaarme"
+			"Kyykaarme",
+			"Stryn"
 		]
 	},
+	"ipinfo-extensionname": "IP-tieto",
 	"ipinfo-desc": "Tarjoaa tietoja IP-osoitteesta.",
 	"ipinfo-infobox-title": "IP-tiedot",
 	"ipinfo-property-label-location": "Sijainti",
@@ -46,5 +48,10 @@
 	"ipinfo-beta-feature-title": "IP-tieto",
 	"prefs-ipinfo": "IP-tiedot",
 	"action-ipinfo": "hakea tietoja IP-osoitteista, jotka on liitetty versioihin tai lokimerkintöihin",
-	"ipinfo-log-access-level-ipinfo-view-full": "Täysi pääsy"
+	"ipinfo-log-name": "IP-tietoloki",
+	"ipinfo-log-access-level-ipinfo-view-basic": "Rajoitettu pääsy",
+	"ipinfo-log-access-level-ipinfo-view-full": "Täysi pääsy",
+	"ipinfo-change-access-level-enable": "otti käyttöön",
+	"ipinfo-change-access-level-disable": "poisti käytöstä",
+	"logentry-ipinfo-change_access": "$1 {{GENDER:$2|$4}} IP-tietoon pääsyn"
 }
