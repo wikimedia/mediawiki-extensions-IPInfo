@@ -14,7 +14,7 @@
 	"ipinfo-property-label-asn": "شماره سامانه خودگردان",
 	"ipinfo-property-label-organization": "سازمان",
 	"ipinfo-property-label-connectiontype": "روش اتصال",
-	"ipinfo-property-label-usertype": "صاحب اتصال",
+	"ipinfo-property-label-usertype": "مالک اتصال",
 	"ipinfo-property-label-proxytypes": "آی‌پی/پروکسی واقعی",
 	"ipinfo-property-value-proxytype-isanonymousvpn": "وی‌پی‌ان گمنام",
 	"ipinfo-property-value-proxytype-ispublicproxy": "پروکسی عمومی",
