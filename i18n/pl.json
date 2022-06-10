@@ -72,5 +72,5 @@
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|wyświetlił|wyświetliła}} wyskakujące okienko z informacjami o IP $3. $4.",
 	"ipinfo-change-access-level-enable": "włączył",
 	"ipinfo-change-access-level-disable": "wyłączył",
-	"logentry-ipinfo-change_access": "$1 {{GENDER:$2|$4|$4a}} sobie dostęp do narzędzia IPInfo"
+	"logentry-ipinfo-change_access": "$1 {{GENDER:$2|$4|$4a|$2(a)}} swój dostęp do narzędzia IPInfo"
 }

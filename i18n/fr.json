@@ -81,5 +81,5 @@
 	"logentry-ipinfo-view_popup": "$1{{GENDER:$2|}} a consulté la fenêtre d’informations sur une adresse IP pour $3. $4.",
 	"ipinfo-change-access-level-enable": "activé",
 	"ipinfo-change-access-level-disable": "désactivé",
-	"logentry-ipinfo-change_access": "$1{{GENDER:$2|}} a $4 son propre accès à IPInfo"
+	"logentry-ipinfo-change_access": "$1 a $4 {{GENDER:$2|son}} propre accès à IPInfo"
 }

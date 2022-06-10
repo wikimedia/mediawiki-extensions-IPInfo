@@ -81,5 +81,5 @@
 	"logentry-ipinfo-view_popup": "$1{{GENDER:$2|查看了}}$3的IP信息弹出框。$4。",
 	"ipinfo-change-access-level-enable": "启用",
 	"ipinfo-change-access-level-disable": "禁用",
-	"logentry-ipinfo-change_access": "$1{{GENDER:$2|$4}}了自己对IP信息的访问权限"
+	"logentry-ipinfo-change_access": "$1$4了{{GENDER:$2|他|她|他们}}自己对IP信息的访问权限"
 }
