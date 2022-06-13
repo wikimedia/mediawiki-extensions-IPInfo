@@ -1,8 +1,40 @@
 {
 	"@metadata": {
 		"authors": [
+			"BadDog",
 			"Kizule"
 		]
 	},
+	"ipinfo-extensionname": "Подаци о IP адреси",
+	"ipinfo-desc": "Приказује податке о одређеној IP адреси.",
+	"ipinfo-infobox-title": "Подаци о IP адреси",
+	"ipinfo-property-label-location": "Локација:",
+	"ipinfo-property-label-isp": "Провајдер:",
+	"ipinfo-property-label-asn": "ASN:",
+	"ipinfo-property-label-organization": "Организација:",
+	"ipinfo-property-label-connectiontype": "Начин повезивања:",
+	"ipinfo-property-label-usertype": "Власник везе:",
+	"ipinfo-property-label-proxytypes": "Стварни IP или прокси:",
+	"ipinfo-property-value-proxytype-isanonymousvpn": "анонимни VPN",
+	"ipinfo-property-value-proxytype-ispublicproxy": "јавни прокси",
+	"ipinfo-property-value-proxytype-isresidentialproxy": "стамбени прокси",
+	"ipinfo-property-value-proxytype-islegitimateproxy": "легитимни прокси",
+	"ipinfo-property-value-proxytype-istorexitnode": "излазни чвор програма Tor",
+	"ipinfo-property-value-proxytype-ishostingprovider": "пружалац хостинга",
+	"ipinfo-property-label-source": "Извор:",
+	"ipinfo-property-label-active-blocks": "Активне блокаде:",
+	"ipinfo-property-tooltip-proxytypes": "Посредници (проксији) сакривају IP адресе. У неким случајевима се то аутоматски догађа, као код стамбених или корпоративних проксија, док се у другим случајевима то намерно чини ради прикривања порекла IP адресе.",
+	"ipinfo-property-tooltip-connectiontype": "Технологија помоћу које се корисник повезује на интернет.",
+	"ipinfo-property-tooltip-usertype": "Врста ентитета који поседује интернетску везу.",
+	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 активна блокада|$1 активне блокаде|$1 активних блокада|0=нема активних блокада}}",
+	"ipinfo-property-label-edits": "Допринос:",
+	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 локална измена|$1 локалне измене|$1 локалних измена|0=нема локалних измена}}",
+	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 у последња 24 сата}})",
+	"ipinfo-property-no-data": "није доступно",
+	"ipinfo-widget-error-default": "Не могу да преузмем податке о IP адреси.",
+	"ipinfo-widget-error-no-data": "У извору $1 нема података за наведену IP адресу.",
+	"ipinfo-widget-error-wrong-ip": "Наведена IP адреса се не подудара с дневничком ставком или изменом.",
+	"ipinfo-widget-error-ip-no-edits": "Не могу да преузмем податке о наведеној IP адреси јер она нема објављених измена на овом пројекту.",
+	"ipinfo-beta-feature-title": "Подаци о IP адреси",
 	"prefs-ipinfo": "Информација о ИП адреси"
 }
