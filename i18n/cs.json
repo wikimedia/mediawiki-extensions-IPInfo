@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Matěj Suchánek",
 			"Mormegil"
 		]
 	},
@@ -66,5 +67,5 @@
 	"logentry-ipinfo-view_popup": "$1 si {{GENDER:$2|prohlédl|prohlédla}} vyskakovací okno IP informací k $3. $4.",
 	"ipinfo-change-access-level-enable": "povolil",
 	"ipinfo-change-access-level-disable": "zakázal",
-	"logentry-ipinfo-change_access": "$1 $4 svůj vlastní přístup k IPInfo"
+	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|svůj}} vlastní přístup k IPInfo"
 }
