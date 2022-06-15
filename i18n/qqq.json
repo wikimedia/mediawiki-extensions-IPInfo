@@ -8,7 +8,8 @@
 			"Raymond",
 			"Tran (WMF)",
 			"Umherirrender",
-			"Verdy p"
+			"Verdy p",
+			"MarcoAurelio"
 		]
 	},
 	"ipinfo-extensionname": "{{name}}\nThe name of the extension",
@@ -81,5 +82,9 @@
 	"logentry-ipinfo-view_popup": "{{Logentry|[[Special:Log/ipinfo]]}}\n* $4 - the level of information the user was able to view. See also: {{msg-mw|ipinfo-log-access-level-ipinfo-view-basic}}, {{msg-mw|ipinfo-log-access-level-ipinfo-view-full}}\n\nUsed if the popup was viewed.",
 	"ipinfo-change-access-level-enable": "Used in {{msg-mw|Logentry-ipinfo-change access}} to log that a user enabled access to ip information",
 	"ipinfo-change-access-level-disable": "Used in {{msg-mw|Logentry-ipinfo-change access}} to log that a user disabled access to ip information\n{{Identical|Disabled}}",
-	"logentry-ipinfo-change_access": "{{Logentry|[[Special:Log/ipinfo]]}}\n* $4 - whether the access was enabled or disabled. See also: {{msg-mw|Ipinfo-change-access-level-enable}}, {{msg-mw|Ipinfo-change-access-level-disable}}\n\nUsed if a user's state of access was changed."
+	"logentry-ipinfo-change_access": "{{Logentry|[[Special:Log/ipinfo]]}}\n* $4 - whether the access was enabled or disabled. See also: {{msg-mw|Ipinfo-change-access-level-enable}}, {{msg-mw|Ipinfo-change-access-level-disable}}\n\nUsed if a user's state of access was changed.",
+	"log-action-filter-ipinfo": "{{doc-log-action-filter-type|ipinfo}}\n{{related|Log-action-filter}}",
+	"log-action-filter-ipinfo-change_access": "{{doc-log-action-filter-action|ipinfo|change_access}}",
+	"log-action-filter-ipinfo-view_infobox": "{{doc-log-action-filter-action|ipinfo|view_infobox}}",
+	"log-action-filter-ipinfo-view_popup": "{{doc-log-action-filter-action|ipinfo|view_popup}}"
 }

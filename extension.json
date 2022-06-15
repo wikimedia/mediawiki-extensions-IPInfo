@@ -215,5 +215,12 @@
 	},
 	"LogRestrictions": {
 		"ipinfo": "ipinfo-view-log"
+	},
+	"ActionFilteredLogs": {
+		"ipinfo": {
+			"change_access": [ "change_access" ],
+			"view_infobox": [ "view_infobox" ],
+			"view_popup": [ "view_popup" ]
+		}
 	}
 }

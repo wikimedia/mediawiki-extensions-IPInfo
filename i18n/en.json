@@ -3,7 +3,8 @@
 		"authors": [
 			"David Barratt",
 			"STran",
-			"Thalia"
+			"Thalia",
+			"MarcoAurelio"
 		]
 	},
 	"ipinfo-extensionname": "IP Info",
@@ -76,5 +77,9 @@
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|viewed}} IP Information popup for $3. $4.",
 	"ipinfo-change-access-level-enable": "enabled",
 	"ipinfo-change-access-level-disable": "disabled",
-	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|his|her|their}} own access to IPInfo"
+	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|his|her|their}} own access to IPInfo",
+	"log-action-filter-ipinfo": "Type of IPInfo operation:",
+	"log-action-filter-ipinfo-change_access": "Enable or disable of tool",
+	"log-action-filter-ipinfo-view_infobox": "View of infobox data",
+	"log-action-filter-ipinfo-view_popup": "View of popup data"
 }
