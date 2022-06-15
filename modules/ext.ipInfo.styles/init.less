@@ -8,6 +8,12 @@
 	padding-right: 22px;
 }
 
+// Remove padding of the IPInfo icon from Special:Contributions
+// as we don't intend to load the popup from this page
+.client-js .mw-special-Contributions .mw-anonuserlink:not( .ext-ipinfo-anonuserlink-loaded ) {
+	padding-right: 0;
+}
+
 .client-nojs .ext-ipinfo-panel-layout {
 	display: none;
 }
