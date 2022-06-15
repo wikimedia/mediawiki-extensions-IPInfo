@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Გიო ოქრო"
+		]
+	},
+	"ipinfo-extensionname": "IP-ის ინფორმაცია",
+	"ipinfo-desc": "აჩვენებს ინფორმაციას IP-მისამართის შესახებ.",
+	"ipinfo-infobox-title": "IP-ის ინფორმაცია",
+	"ipinfo-property-label-location": "მდებარეობა",
+	"ipinfo-property-label-isp": "ინტერნეტპროვაიდერი",
+	"ipinfo-property-label-asn": "ავტონომიური სისტემის ნომერი (ASN)",
+	"ipinfo-property-label-organization": "ორგანიზაცია",
+	"ipinfo-property-label-source": "წყარო",
+	"ipinfo-property-no-data": "არ არის ხელმისაწვდომი",
+	"ipinfo-widget-error-default": "IP-ის ინფორმაცია ვერ ჩაიტვირთა.",
+	"ipinfo-widget-error-no-data": "$1-ს ამ IP-მისამართის შესახებ მონაცემები არ აქვს.",
+	"ipinfo-widget-error-wrong-ip": "წარმოდგენლი IP-მისამართი არ შეესაბამება ჟურნალის ჩანაწერს ან ცვლილებას.",
+	"ipinfo-rest-access-denied": "თქვენ არ გაქვთ ამ მოქმედების შესრულების უფლება",
+	"ipinfo-rest-access-denied-blocked-user": "თქვენ არ გაქვთ ამ მოქმედების შესრულების უფლება, რადგან თქვენი ანგარიში დაბლოკილია",
+	"ipinfo-rest-revision-no-author": "თქვენს ანგარიშს არ აქვს წვდომა ამ ცვლილების ავტორის სანახავად",
+	"ipinfo-rest-revision-registered": "დარეგისტრირებული მომხმარებლების ცვლილებებისათვის IP-ის ინფორმაციის მიღება შეუძლებელია",
+	"ipinfo-rest-log-nonexistent": "ჟურნალის ჩანაწერი არ არსებობს",
+	"ipinfo-rest-log-registered": "დარეგისტრირებული მომხმარებლების ჟურნალის ჩანაწერებისათვის IP-ის ინფორმაციის მიღება შეუძლებელია",
+	"ipinfo-rest-log-denied": "თქვენს ანგარიშს არ აქვს წვდომა, რომ იხილოთ ჟურნალის ჩანაწერების ავტორი ან თავად ჟურნალის ჩანაწერები",
+	"ipinfo-source-geoip2": "აქ მოცემული ინფორმაცია აღებულია MaxMind-ის GeoIP2-ის მონაცემთა ბაზებიდან. ის შესალოა სრულად ზუსტი არ იყოს.",
+	"prefs-ipinfo": "IP-ის ინფორმაცია",
+	"action-ipinfo": "IP-ის შესახებ ცვლილებებთან ან ჟურნალის ჩანაწერებთან მიმაგრებული ინფორმაციის მიღება",
+	"right-ipinfo": "IP-ის შესახებ ცვლილებებთან ან ჟურნალის ჩანაწერებთან მიმაგრებული ინფორმაციის მიღება"
+}

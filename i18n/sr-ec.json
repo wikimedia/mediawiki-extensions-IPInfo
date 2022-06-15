@@ -1,8 +1,21 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kizule"
+			"Kizule",
+			"BadDog"
 		]
 	},
+	"ipinfo-extensionname": "Подаци о IP адреси",
+	"ipinfo-desc": "Приказује податке о одређеној IP адреси.",
+	"ipinfo-infobox-title": "Подаци о IP адреси",
+	"ipinfo-property-label-location": "Локација:",
+	"ipinfo-property-label-isp": "Провајдер:",
+	"ipinfo-property-label-asn": "ASN:",
+	"ipinfo-property-label-organization": "Организација:",
+	"ipinfo-property-label-source": "Извор:",
+	"ipinfo-property-no-data": "није доступно",
+	"ipinfo-widget-error-default": "Не могу да преузмем податке о IP адреси.",
+	"ipinfo-widget-error-no-data": "У извору $1 нема података за наведену IP адресу.",
+	"ipinfo-widget-error-wrong-ip": "Наведена IP адреса се не подудара с дневничком ставком или изменом.",
 	"prefs-ipinfo": "Информација о ИП адреси"
 }
