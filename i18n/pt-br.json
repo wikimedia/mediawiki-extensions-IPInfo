@@ -3,7 +3,8 @@
 		"authors": [
 			"Eduardo Addad de Oliveira",
 			"Eduardoaddad",
-			"TheEduGobi"
+			"TheEduGobi",
+			"Stanglavine"
 		]
 	},
 	"ipinfo-desc": "Fornece informações sobre um endereço IP.",
@@ -38,5 +39,7 @@
 	"ipinfo-log-access-level-ipinfo-view-basic": "limitado",
 	"ipinfo-log-access-level-ipinfo-view-full": "completo",
 	"logentry-ipinfo-view_infobox": "$1 visualizou a infocaixa “$4” do IP Information para $3.",
-	"logentry-ipinfo-view_popup": "$1 visualizou o popup “$4” do IP Information para $3."
+	"logentry-ipinfo-view_popup": "$1 visualizou o popup “$4” do IP Information para $3.",
+	"ipinfo-change-access-level-enable": "habilitou",
+	"ipinfo-change-access-level-disable": "desabilitou"
 }
