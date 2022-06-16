@@ -4,6 +4,7 @@ namespace MediaWiki\IPInfo\Test\Integration\RestHandler;
 
 use JobQueueGroup;
 use LogPage;
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Handler\LogHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
@@ -15,6 +16,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWikiIntegrationTestCase;
+use User;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -57,11 +59,14 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 	private function getRequestData( int $id = 123 ): RequestData {
 		return new RequestData( [
 			'pathParams' => [ 'id' => $id ],
-			'queryParams' => [ 'dataContext' => 'infobox' ]
+			'queryParams' => [ 'dataContext' => 'infobox' ],
 		] );
 	}
 
-	public function testExecute() {
+	/**
+	 * @dataProvider provideExecute
+	 */
+	public function testExecute( $expected, $dataProperty ) {
 		$id = 123;
 
 		$db = $this->createMock( IDatabase::class );
@@ -84,12 +89,21 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
 			->willReturn( true );
-		$permissionManager->method( 'getUserPermissions' )
-			->willReturn( [] );
 
 		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
 		$userOptionsLookup->method( 'getOption' )
 			->willReturn( true );
+
+		$presenter = $this->createMock( DefaultPresenter::class );
+		$presenter->method( 'present' )
+			->willReturn( [
+				'subject' => '127.0.0.2',
+				'data' => [
+					'provider' => [
+						$dataProperty => 'testValue',
+					],
+				],
+			] );
 
 		$jobQueueGroup = $this->createMock( JobQueueGroup::class );
 		$jobQueueGroup->expects( $this->atLeastOnce() )
@@ -99,6 +113,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 			'loadBalancer' => $loadBalancer,
 			'permissionManager' => $permissionManager,
 			'userOptionsLookup' => $userOptionsLookup,
+			'presenter' => $presenter,
 			'jobQueueGroup' => $jobQueueGroup,
 		] );
 
@@ -112,6 +127,15 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayHasKey( 'info', $body );
 		$this->assertIsArray( $body['info'] );
 		$this->assertCount( 2, $body['info'] );
+
+		$this->assertCount( $expected, $body['info'][0]['data']['provider'] );
+	}
+
+	public function provideExecute() {
+		return [
+			'Allowed property is returned' => [ 1, 'country' ],
+			'Restricted property is not returned' => [ 0, 'testProperty' ],
+		];
 	}
 
 	/**
@@ -352,6 +376,42 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	public function testPerformerBlocked() {
+		$permissionManager = $this->createMock( PermissionManager::class );
+		$permissionManager->method( 'userHasRight' )
+			->willReturn( true );
+		$permissionManager->method( 'getUserPermissions' )
+			->willReturn( [] );
+
+		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
+		$userOptionsLookup->method( 'getOption' )
+			->willReturn( true );
+
+		$userFactory = $this->createMock( UserFactory::class );
+		$userFactoryUser = $this->createMock( User::class );
+		$userFactoryUser->method( 'getBlock' )
+			->willReturn( $this->createMock( DatabaseBlock::class ) );
+		$userFactory->method( 'newFromUserIdentity' )
+			->willReturn( $userFactoryUser );
+
+		$handler = $this->getLogHandler( [
+			'permissionManager' => $permissionManager,
+			'userOptionsLookup' => $userOptionsLookup,
+			'userFactory' => $userFactory,
+		] );
+
+		$request = $this->getRequestData();
+
+		$this->expectExceptionObject(
+			new LocalizedHttpException(
+				new MessageValue( 'ipinfo-rest-access-denied-blocked-user' ),
+				403
+			)
+		);
+
+		$this->executeHandler( $handler, $request );
+	}
+
 	public function testPerformerRegistered() {
 		$id = 123;
 		$performer = $this->getTestUser()->getUser();
@@ -499,5 +559,19 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayHasKey( 'info', $body );
 		$this->assertIsArray( $body['info'] );
 		$this->assertCount( 1, $body['info'] );
+	}
+
+	public function testFactory() {
+		$this->assertInstanceOf(
+			LogHandler::class,
+			LogHandler::factory(
+				$this->createMock( InfoManager::class ),
+				$this->createMock( ILoadBalancer::class ),
+				$this->createMock( PermissionManager::class ),
+				$this->createMock( UserOptionsLookup::class ),
+				$this->createMock( UserFactory::class ),
+				$this->createMock( JobQueueGroup::class )
+			)
+		);
 	}
 }
