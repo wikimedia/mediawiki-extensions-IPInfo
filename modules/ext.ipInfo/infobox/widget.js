@@ -76,13 +76,18 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 		}
 	}
 
+	var ipversion = mw.util.isIPv4Address( info.subject, true ) ?
+		mw.msg( 'ipinfo-value-ipversion-ipv4' ) :
+		mw.msg( 'ipinfo-value-ipversion-ipv6' );
+
 	var $info = $( '<dl>' ).addClass( 'ext-ipinfo-widget-properties' )
 		.append(
 			$( '<div>' ).addClass( 'ext-ipinfo-widget-properties-col' ).append(
 				this.generatePropertyMarkup( 'location', location, mw.msg( 'ipinfo-property-label-location' ) ),
 				this.generatePropertyMarkup( 'isp', info.data[ 'ipinfo-source-geoip2' ].isp, mw.msg( 'ipinfo-property-label-isp' ) ),
 				this.generatePropertyMarkup( 'asn', info.data[ 'ipinfo-source-geoip2' ].asn, mw.msg( 'ipinfo-property-label-asn' ) ),
-				this.generatePropertyMarkup( 'organization', info.data[ 'ipinfo-source-geoip2' ].organization, mw.msg( 'ipinfo-property-label-organization' ) )
+				this.generatePropertyMarkup( 'organization', info.data[ 'ipinfo-source-geoip2' ].organization, mw.msg( 'ipinfo-property-label-organization' ) ),
+				this.generatePropertyMarkup( 'version', ipversion, mw.msg( 'ipinfo-property-label-ipversion' ) )
 			)
 		).append(
 			$( '<div>' ).addClass( 'ext-ipinfo-widget-properties-col' ).append(
