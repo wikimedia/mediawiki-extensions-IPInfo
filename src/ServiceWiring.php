@@ -11,6 +11,9 @@ use MediaWiki\IPInfo\Logging\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ILoadBalancer;
 
+// PHPUnit doesn't understand code coverage for code outside of classes/functions,
+// like service wiring files. see T310509
+// @codeCoverageIgnoreStart
 return [
 	'IPInfoGeoLite2InfoRetriever' => static function ( MediaWikiServices $services ) {
 		$config = $services->getMainConfig();
@@ -61,3 +64,5 @@ return [
 		return new ReaderFactory();
 	}
 ];
+
+// @codeCoverageIgnoreEnd
