@@ -27,10 +27,10 @@
 	"ipinfo-property-tooltip-proxytypes": "پروکسی‌ها، نشانی‌های آی‌پی را پنهان می‌کنند. در برخی موارد، مانند پروکسی‌های مسکونی یا شرکتی، این اتفاق به‌صورت خودکار رخ می‌دهد؛ در سایر موارد، این کار به‌طور عمدی و برای پوشاندن مبدأ نشانی آی‌پی انجام می‌شود.",
 	"ipinfo-property-tooltip-connectiontype": "فناوری مورد استفاده برای اتصال به اینترنت.",
 	"ipinfo-property-tooltip-usertype": "نوع موجودیت مالک اتصال اینترنت.",
-	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 قطع دسترسی فعال|0=فاقد قطع دسترسی فعال}}.",
+	"ipinfo-value-active-blocks": "{{PLURAL:$1|{{formatnum:$1}} قطع دسترسی فعال|0=فاقد قطع دسترسی فعال}}.",
 	"ipinfo-property-label-edits": "مشارکت‌ها",
-	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 ویرایش محلی|0=فاقد ویرایش محلی}}",
-	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 ویرایش در ۲۴ ساعت گذشته}})",
+	"ipinfo-value-local-edits": "{{PLURAL:$1|{{formatnum:$1}} ویرایش محلی|0=فاقد ویرایش محلی}}",
+	"ipinfo-value-recent-edits": "({{PLURAL:$1|{{formatnum:$1}} ویرایش در ۲۴ ساعت گذشته}})",
 	"ipinfo-property-no-data": "در دسترس نیست",
 	"ipinfo-widget-error-default": "ناتوان در واکشی اطلاعات آی‌پی.",
 	"ipinfo-widget-error-no-data": "داده‌ای برای این نشانی آی‌پی از $1 موجود نیست.",
@@ -59,7 +59,7 @@
 	"action-ipinfo-view-basic": "اعطای اجازهٔ نمایش ساده‌ای از اطلاعات نشانی آی‌پی که به نسخه‌ها یا مدخل‌های سیاهه پیوست شده‌اند",
 	"right-ipinfo-view-basic": "اعطای اجازهٔ نمایش ساده‌ای از اطلاعات نشانی آی‌پی که به نسخه‌ها یا مدخل‌های سیاهه پیوست شده‌اند",
 	"action-ipinfo-view-full": "اعطای اجازهٔ نمایش کاملی از اطلاعات نشانی آی‌پی که به نسخه‌ها یا مدخل‌های سیاهه پیوست شده‌اند",
-	"right-ipinfo-view-full": "اعطای اجازهٔ نمایش کاملی از اطلاعات نشانی آی‌پی که به نسخه‌ها یا مدخل‌های سیاهه پیوست شده‌اند",
+	"right-ipinfo-view-full": "اجازهٔ مشاهدهٔ کامل اطلاعات آی‌پی پیوست‌شده به نسخه‌ها یا ورودی‌های سیاهه",
 	"action-ipinfo-view-log": "مشاهدهٔ سیاهه‌ای از کسانی که به اطلاعات نشانی آی‌پی دسترسی داشته‌اند",
 	"right-ipinfo-view-log": "مشاهدهٔ سیاهه‌ای از کسانی که به اطلاعات نشانی آی‌پی دسترسی داشته‌اند",
 	"group-no-ipinfo": "کاربران مسدود شده از اطلاعات آی‌پی",
@@ -73,5 +73,5 @@
 	"logentry-ipinfo-view_popup": "$1 بالاپر اطلاعات آی‌پی برای $3 را {{GENDER:$2|مشاهده کرد}}. $4.",
 	"ipinfo-change-access-level-enable": "فعال کرد",
 	"ipinfo-change-access-level-disable": "غیرفعال کرد",
-	"logentry-ipinfo-change_access": "$1 دسترسی خود به اطلاعات آی‌پی را {{GENDER:$2|$4}}"
+	"logentry-ipinfo-change_access": "$1 دسترسی {{GENDER:$2|خود}} به اطلاعات آی‌پی را $4"
 }
