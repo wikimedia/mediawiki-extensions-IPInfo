@@ -34,6 +34,7 @@
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 local edit|$1 local edits|0=No local edits}}",
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 in the last 24 hours}})",
 	"ipinfo-property-no-data": "Not available",
+	"ipinfo-property-no-access": "No access",
 	"ipinfo-widget-error-default": "The IP information could not be retrieved.",
 	"ipinfo-widget-error-no-data": "There is no data for this IP address from $1.",
 	"ipinfo-widget-error-wrong-ip": "The IP address provided did not match the log or revision.",

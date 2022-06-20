@@ -171,6 +171,7 @@
 				"ipinfo-property-label-edits",
 				"ipinfo-value-local-edits",
 				"ipinfo-value-recent-edits",
+				"ipinfo-property-no-access",
 				"ipinfo-property-no-data",
 				"ipinfo-widget-error-default",
 				"ipinfo-widget-error-no-data",

@@ -25,56 +25,19 @@ OO.inheritClass( ipInfoInfoboxWidget, ipInfoWidget );
  * @return {Object}
  */
 ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
-	var $edits;
-	var activeBlocks;
+	var location = this.getLocation(
+		info.data[ 'ipinfo-source-geoip2' ].location,
+		info.data[ 'ipinfo-source-geoip2' ].country
+	);
 
-	var location = ( info.data[ 'ipinfo-source-geoip2' ].location || [] )
-		.concat( info.data[ 'ipinfo-source-geoip2' ].country || [] )
-		.map( function ( item ) {
-			return item.label;
-		} ).join( mw.msg( 'comma-separator' ) );
-	location = location.length ? location : null;
+	var activeBlocks = this.getActiveBlocks( info.data[ 'ipinfo-source-block' ].numActiveBlocks );
 
-	// Check to see if we have the appropriate data before trying to translate values
-	if ( info.data[ 'ipinfo-source-block' ].numActiveBlocks !== undefined ) {
-		activeBlocks = mw.msg( 'ipinfo-value-active-blocks', info.data[ 'ipinfo-source-block' ].numActiveBlocks );
-	}
+	var $edits = this.getEdits(
+		info.data[ 'ipinfo-source-contributions' ].numLocalEdits,
+		info.data[ 'ipinfo-source-contributions' ].numRecentEdits
+	);
 
-	if ( info.data[ 'ipinfo-source-contributions' ].numLocalEdits !== undefined || info.data[ 'ipinfo-source-contributions' ].numRecentEdits !== undefined ) {
-		var localEdits = mw.msg( 'ipinfo-value-local-edits', info.data[ 'ipinfo-source-contributions' ].numLocalEdits );
-
-		var $recentEdits = $( '<span>' ).addClass( 'ext-ipinfo-widget-value-recent-edits' )
-			.append( mw.msg( 'ipinfo-value-recent-edits', info.data[ 'ipinfo-source-contributions' ].numRecentEdits ) );
-
-		$edits = $( '<span>' ).append(
-			localEdits,
-			$( '<br>' ),
-			$recentEdits
-		);
-	}
-
-	var proxyTypes, $proxyTypes;
-	if ( info.data[ 'ipinfo-source-geoip2' ].proxyType ) {
-		// Filter for true values of proxyType
-		proxyTypes = Object.keys( info.data[ 'ipinfo-source-geoip2' ].proxyType )
-			.filter( function ( proxyTypeKey ) {
-				return info.data[ 'ipinfo-source-geoip2' ].proxyType[ proxyTypeKey ];
-			} );
-
-		// If there are any known proxy types, transform the array into a list of values
-		if ( proxyTypes.length ) {
-			$proxyTypes = $( '<ul>' );
-			proxyTypes.forEach( function ( proxyType ) {
-				// * ipinfo-property-value-proxytype-isanonymousvpn
-				// * ipinfo-property-value-proxytype-ispublicproxy
-				// * ipinfo-property-value-proxytype-isresidentialproxy
-				// * ipinfo-property-value-proxytype-islegitimateproxy
-				// * ipinfo-property-value-proxytype-istorexitnode
-				// * ipinfo-property-value-proxytype-ishostingprovider
-				$proxyTypes.append( $( '<li>' ).text( mw.msg( 'ipinfo-property-value-proxytype-' + proxyType.toLowerCase() ) ) );
-			} );
-		}
-	}
+	var $proxyTypes = this.getProxyTypes( info.data[ 'ipinfo-source-geoip2' ].proxyType );
 
 	var ipversion = mw.util.isIPv4Address( info.subject, true ) ?
 		mw.msg( 'ipinfo-value-ipversion-ipv4' ) :
@@ -96,11 +59,9 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 					info.data[ 'ipinfo-source-geoip2' ].connectionType,
 					mw.msg( 'ipinfo-property-label-connectiontype' ),
 					mw.msg( 'ipinfo-property-tooltip-connectiontype' ) ),
-				// Only show userType if it's not the same as connectionType
 				this.generatePropertyMarkup(
 					'usertype',
-					info.data[ 'ipinfo-source-geoip2' ].userType !== info.data[ 'ipinfo-source-geoip2' ].connectionType ?
-						info.data[ 'ipinfo-source-geoip2' ].userType : null,
+					info.data[ 'ipinfo-source-geoip2' ].userType,
 					mw.msg( 'ipinfo-property-label-usertype' ),
 					mw.msg( 'ipinfo-property-tooltip-usertype' ) ),
 				this.generatePropertyMarkup(

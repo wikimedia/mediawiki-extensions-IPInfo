@@ -122,10 +122,100 @@ ipInfoWidget.prototype.always = function () {
 };
 
 /**
+ * @param {Array|null|undefined} location (null if missing data;
+ *  undefined if access is restricted)
+ * @param {Array|null|undefined} country (null if missing data;
+ *  undefined if access is restricted)
+ * @return {Array|null|undefined}
+ */
+ipInfoWidget.prototype.getLocation = function ( location, country ) {
+	if ( location === undefined && country === undefined ) {
+		return undefined;
+	}
+	var locationData = ( location || [] )
+		.concat( country || [] )
+		.map( function ( item ) {
+			return item.label;
+		} ).join( mw.msg( 'comma-separator' ) );
+	return locationData.length ? locationData : null;
+};
+
+/**
+ * @param {Object|null|undefined} proxyType (null if missing data;
+ *  undefined if access is restricted)
+ * @return {Object|null|undefined}
+ */
+ipInfoWidget.prototype.getProxyTypes = function ( proxyType ) {
+	if ( proxyType === undefined || proxyType === null ) {
+		return proxyType;
+	}
+	// Filter for true values of proxyType
+	var proxyTypes = Object.keys( proxyType )
+		.filter( function ( proxyTypeKey ) {
+			return proxyType[ proxyTypeKey ];
+		} );
+
+	// If there are any known proxy types, transform the array into a list of values
+	if ( proxyTypes.length === 0 ) {
+		return null;
+	}
+
+	var $proxyTypes = $( '<ul>' );
+	proxyTypes.forEach( function ( type ) {
+		// * ipinfo-property-value-proxytype-isanonymousvpn
+		// * ipinfo-property-value-proxytype-ispublicproxy
+		// * ipinfo-property-value-proxytype-isresidentialproxy
+		// * ipinfo-property-value-proxytype-islegitimateproxy
+		// * ipinfo-property-value-proxytype-istorexitnode
+		// * ipinfo-property-value-proxytype-ishostingprovider
+		$proxyTypes.append( $( '<li>' ).text( mw.msg( 'ipinfo-property-value-proxytype-' + type.toLowerCase() ) ) );
+	} );
+	return $proxyTypes;
+};
+
+/**
+ * The data should never be missing, as it is not from an external database.
+ *
+ * @param {number|undefined} numActiveBlocks (undefined if access is restricted)
+ * @return {string|undefined}
+ */
+ipInfoWidget.prototype.getActiveBlocks = function ( numActiveBlocks ) {
+	if ( numActiveBlocks === undefined ) {
+		return undefined;
+	}
+	return mw.msg( 'ipinfo-value-active-blocks', numActiveBlocks );
+};
+
+/**
+ * The data should never be missing, as it is not from an external database.
+ *
+ * @param {number|undefined} numLocalEdits (undefined if access is restricted)
+ * @param {number|undefined} numRecentEdits (undefined if access is restricted)
+ * @return {Object|undefined}
+ */
+ipInfoWidget.prototype.getEdits = function ( numLocalEdits, numRecentEdits ) {
+	if ( numLocalEdits === undefined && numRecentEdits === undefined ) {
+		return undefined;
+	}
+	var localEdits = mw.msg( 'ipinfo-value-local-edits', numLocalEdits );
+
+	var $recentEdits = $( '<span>' ).addClass( 'ext-ipinfo-widget-value-recent-edits' )
+		.append( mw.msg( 'ipinfo-value-recent-edits', numRecentEdits ) );
+
+	return $( '<span>' ).append(
+		localEdits,
+		$( '<br>' ),
+		$recentEdits
+	);
+};
+
+/**
  * Generate HTML for a property. All properties are shown regardless if a value exists or not.
  *
  * @param {string} propertyKey
- * @param {Object} propertyValue
+ * @param {Object|string|null|undefined} propertyValue
+ * - null indicates missing data
+ * - undefined indicates access is restricted
  * @param {string} propertyLabel
  * @param {string} propertyTooltip
  * @return {Object}
@@ -175,14 +265,19 @@ ipInfoWidget.prototype.generatePropertyMarkup = function (
 		$propertyLabel
 	);
 
-	if ( propertyValue !== null && propertyValue !== undefined ) {
-		$propertyContent.append(
-			$( '<dd>' ).addClass( 'ext-ipinfo-widget-property-value' ).append( propertyValue )
-		);
-	} else {
+	if ( propertyValue === null ) {
 		$propertyContent.addClass( 'ext-ipinfo-widget-property-no-data' );
 		$propertyContent.append(
 			$( '<dd>' ).addClass( 'ext-ipinfo-widget-property-value' ).text( mw.msg( 'ipinfo-property-no-data' ) )
+		);
+	} else if ( propertyValue === undefined ) {
+		$propertyContent.addClass( 'ext-ipinfo-widget-property-no-data' );
+		$propertyContent.append(
+			$( '<dd>' ).addClass( 'ext-ipinfo-widget-property-value' ).text( mw.msg( 'ipinfo-property-no-access' ) )
+		);
+	} else {
+		$propertyContent.append(
+			$( '<dd>' ).addClass( 'ext-ipinfo-widget-property-value' ).append( propertyValue )
 		);
 	}
 	return $propertyContent;
