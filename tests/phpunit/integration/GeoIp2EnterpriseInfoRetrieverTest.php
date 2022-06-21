@@ -4,15 +4,17 @@ namespace MediaWiki\IPInfo\Test\Integration;
 
 use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
-use GeoIp2\Model\Asn;
-use GeoIp2\Model\City;
+use GeoIp2\Model\AnonymousIp;
+use GeoIp2\Model\Enterprise;
 use GeoIp2\Record\Country;
 use GeoIp2\Record\Location as LocationRecord;
+use GeoIp2\Record\Traits;
 use LoggedServiceOptions;
 use MediaWiki\IPInfo\Info\Coordinates;
 use MediaWiki\IPInfo\Info\Info;
 use MediaWiki\IPInfo\Info\Location;
-use MediaWiki\IPInfo\InfoRetriever\GeoLite2InfoRetriever;
+use MediaWiki\IPInfo\Info\ProxyType;
+use MediaWiki\IPInfo\InfoRetriever\GeoIp2EnterpriseInfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\ReaderFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
@@ -20,12 +22,12 @@ use TestAllServiceOptionsUsed;
 
 /**
  * @group IPInfo
- * @covers \MediaWiki\IPInfo\InfoRetriever\GeoLite2InfoRetriever
+ * @covers \MediaWiki\IPInfo\InfoRetriever\GeoIp2EnterpriseInfoRetriever
  */
-class GeoLite2InfoRetrieverTest extends MediaWikiIntegrationTestCase {
+class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 	use TestAllServiceOptionsUsed;
 
-	public function testNoGeoLite2Prefix() {
+	public function testNoGeoIP2EnterprisePath() {
 		$reader = $this->createMock( Reader::class );
 		$readerFactory = $this->createMock( ReaderFactory::class );
 		$readerFactory->method( 'get' )
@@ -33,10 +35,10 @@ class GeoLite2InfoRetrieverTest extends MediaWikiIntegrationTestCase {
 		$readerFactory->expects( $this->never() )
 			->method( 'get' );
 
-		$infoRetriever = new GeoLite2InfoRetriever(
+		$infoRetriever = new GeoIp2EnterpriseInfoRetriever(
 			new LoggedServiceOptions(
 				self::$serviceOptionsAccessLog,
-				GeoLite2InfoRetriever::CONSTRUCTOR_OPTIONS,
+				GeoIp2EnterpriseInfoRetriever::CONSTRUCTOR_OPTIONS,
 				MediaWikiServices::getInstance()->getMainConfig()
 			),
 			$readerFactory
@@ -46,18 +48,18 @@ class GeoLite2InfoRetrieverTest extends MediaWikiIntegrationTestCase {
 
 	public function testNullRetrieveFromIP() {
 		$this->setMwGlobals( [
-			'wgIPInfoGeoLite2Prefix' => 'test',
+			'wgIPInfoGeoIP2EnterprisePath' => 'test',
 		] );
 		$ip = '127.0.0.1';
 
 		$reader = $this->createMock( Reader::class );
-		$reader->method( 'asn' )
+		$reader->method( 'enterprise' )
 			->will(
 				$this->throwException(
 					new AddressNotFoundException()
 				)
 			);
-		$reader->method( 'city' )
+		$reader->method( 'anonymousIp' )
 			->will(
 				$this->throwException(
 					new AddressNotFoundException()
@@ -70,10 +72,10 @@ class GeoLite2InfoRetrieverTest extends MediaWikiIntegrationTestCase {
 		$readerFactory->expects( $this->atLeastOnce() )
 			->method( 'get' );
 
-		$infoRetriever = new GeoLite2InfoRetriever(
+		$infoRetriever = new GeoIp2EnterpriseInfoRetriever(
 			new LoggedServiceOptions(
 				self::$serviceOptionsAccessLog,
-				GeoLite2InfoRetriever::CONSTRUCTOR_OPTIONS,
+				GeoIp2EnterpriseInfoRetriever::CONSTRUCTOR_OPTIONS,
 				MediaWikiServices::getInstance()->getMainConfig()
 			),
 			$readerFactory
@@ -95,7 +97,7 @@ class GeoLite2InfoRetrieverTest extends MediaWikiIntegrationTestCase {
 
 	public function testRetrieveFromIP() {
 		$this->setMwGlobals( [
-			'wgIPInfoGeoLite2Prefix' => 'test',
+			'wgIPInfoGeoIP2EnterprisePath' => 'test',
 		] );
 		$ip = '127.0.0.1';
 
@@ -111,37 +113,48 @@ class GeoLite2InfoRetrieverTest extends MediaWikiIntegrationTestCase {
 				[ 'latitude', 1 ],
 				[ 'longitude', 2 ]
 			] );
-		$city = $this->createMock( City::class );
-		$city->method( '__get' )
+		$traits = $this->createMock( Traits::class );
+		$traits->method( '__get' )
+			->willReturnMap( [
+				[ 'autonomousSystemNumber', 123 ],
+				[ 'autonomousSystemOrganization', 'foobar' ],
+				[ 'isLegitimateProxy', true ]
+			] );
+
+		$enterprise = $this->createMock( Enterprise::class );
+		$enterprise->method( '__get' )
 			->willReturnMap( [
 				[ 'location', $location ],
 				[ 'country', $country ],
 				[ 'city', $country ],
-				[ 'subdivisions', [] ]
+				[ 'subdivisions', [] ],
+				[ 'traits', $traits ]
 			] );
-
-		$asn = $this->createMock( ASN::class );
-		$asn->method( '__get' )
+		$anonymousIp = $this->createMock( AnonymousIp::class );
+		$anonymousIp->method( '__get' )
 			->willReturnMap( [
-				[ 'autonomousSystemNumber', 123 ],
-				[ 'autonomousSystemOrganization', 'foobar' ]
+				[ 'isAnonymousVpn', true ],
+				[ 'isPublicProxy', true ],
+				[ 'isResidentialProxy', true ],
+				[ 'isTorExitNode', true ],
+				[ 'isHostingProvider', true ]
 			] );
-		$reader = $this->createMock( Reader::class );
-		$reader->method( 'asn' )
-			->with( $ip )
-			->willReturn( $asn );
-		$reader->method( 'city' )
-			->with( $ip )
-			->willReturn( $city );
 
+		$reader = $this->createMock( Reader::class );
+		$reader->method( 'enterprise' )
+			->with( $ip )
+			->willReturn( $enterprise );
+		$reader->method( 'anonymousIp' )
+			->with( $ip )
+			->willReturn( $anonymousIp );
 		$readerFactory = $this->createMock( ReaderFactory::class );
 		$readerFactory->method( 'get' )
 			->willReturn( $reader );
 
-		$infoRetriever = new GeoLite2InfoRetriever(
+		$infoRetriever = new GeoIp2EnterpriseInfoRetriever(
 			new LoggedServiceOptions(
 				self::$serviceOptionsAccessLog,
-				GeoLite2InfoRetriever::CONSTRUCTOR_OPTIONS,
+				GeoIp2EnterpriseInfoRetriever::CONSTRUCTOR_OPTIONS,
 				MediaWikiServices::getInstance()->getMainConfig()
 			),
 			$readerFactory
@@ -156,7 +169,7 @@ class GeoLite2InfoRetrieverTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $info->getIsp() );
 		$this->assertNull( $info->getConnectionType() );
 		$this->assertNull( $info->getUserType() );
-		$this->assertNull( $info->getProxyType() );
+		$this->assertEquals( new ProxyType( true, true, true, true, true, true ), $info->getProxyType() );
 	}
 
 }

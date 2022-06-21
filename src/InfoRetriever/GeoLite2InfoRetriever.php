@@ -49,6 +49,7 @@ class GeoLite2InfoRetriever implements InfoRetriever {
 	/**
 	 * @param string $filename
 	 * @return Reader|null null if the file path or file is invalid
+	 * @codeCoverageIgnore tested when retrieveFromIP is run
 	 */
 	protected function getReader( string $filename ): ?Reader {
 		$path = $this->options->get( 'IPInfoGeoLite2Prefix' );
@@ -208,6 +209,7 @@ class GeoLite2InfoRetriever implements InfoRetriever {
 	 * See https://www.maxmind.com/en/solutions/geoip2-enterprise-product-suite/enterprise-database
 	 * @param string $ip
 	 * @return null
+	 * @codeCoverageIgnore tested when retrieveFromIP is run
 	 */
 	private function getIsp( string $ip ) {
 		return null;

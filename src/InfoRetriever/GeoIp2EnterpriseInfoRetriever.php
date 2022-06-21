@@ -52,8 +52,9 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 	/**
 	 * @param string $filename
 	 * @return Reader|null null if the file path or file is invalid
+	 * @codeCoverageIgnore tested when retrieveFromIP is run
 	 */
-	private function getReader( string $filename ): ?Reader {
+	public function getReader( string $filename ): ?Reader {
 		$path = $this->options->get( 'IPInfoGeoIP2EnterprisePath' );
 
 		if ( $path === false ) {
@@ -106,10 +107,9 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 		if ( $anonymousIpReader ) {
 			try {
 				$anonymousIpInfo = $anonymousIpReader->anonymousIp( $ip );
+				$isLegitimateProxy = null;
 				if ( isset( $enterpriseInfo ) ) {
-					$isLegitimateProxy = $enterpriseInfo->traits->isLegitimateProxy ?? null;
-				} else {
-					$isLegitimateProxy = null;
+					$isLegitimateProxy = (bool)$enterpriseInfo->traits->isLegitimateProxy;
 				}
 				$info['proxyType'] = $this->getProxyType( $anonymousIpInfo, $isLegitimateProxy );
 			} catch ( AddressNotFoundException $e ) {
@@ -219,7 +219,7 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 	 * @param Enterprise $info
 	 * @return string|null null if GeoIP2 does not return a connection type
 	 */
-	private function getConnectionType( Enterprise $info ): ?string {
+	public function getConnectionType( Enterprise $info ): ?string {
 		return $info->traits->connectionType;
 	}
 
@@ -238,12 +238,12 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 	 */
 	private function getProxyType( AnonymousIp $anonymousIpinfo, ?bool $isLegitimateProxy ): ProxyType {
 		return new ProxyType(
-			$anonymousIpinfo->isAnonymousVpn ?? null,
-			$anonymousIpinfo->isPublicProxy ?? null,
-			$anonymousIpinfo->isResidentialProxy ?? null,
+			(bool)$anonymousIpinfo->isAnonymousVpn || null,
+			(bool)$anonymousIpinfo->isPublicProxy || null,
+			(bool)$anonymousIpinfo->isResidentialProxy || null,
 			$isLegitimateProxy,
-			$anonymousIpinfo->isTorExitNode ?? null,
-			$anonymousIpinfo->isHostingProvider ?? null
+			(bool)$anonymousIpinfo->isTorExitNode || null,
+			(bool)$anonymousIpinfo->isHostingProvider || null
 		);
 	}
 }
