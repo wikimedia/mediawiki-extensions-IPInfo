@@ -13,7 +13,7 @@ use Wikimedia\Rdbms\IDatabase;
 
 /**
  * @group IPInfo
- * @covers \MediaWiki\IPInfo\InfoManager
+ * @covers \MediaWiki\IPInfo\InfoRetriever\BlockInfoRetriever
  */
 class BlockInfoRetrieverTest extends MediaWikiUnitTestCase {
 	public function provideRetrieveFromIP(): Generator {
@@ -48,6 +48,7 @@ class BlockInfoRetrieverTest extends MediaWikiUnitTestCase {
 			->willReturn( $block );
 
 		$retriever = new BlockInfoRetriever( $blockManager, $database );
+		$this->assertSame( 'ipinfo-source-block', $retriever->getName() );
 		$info = $retriever->retrieveFromIP( $ip );
 
 		$this->assertInstanceOf( BlockInfo::class, $info );

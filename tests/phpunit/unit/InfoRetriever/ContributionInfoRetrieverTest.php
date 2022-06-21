@@ -10,7 +10,7 @@ use Wikimedia\Rdbms\IDatabase;
 
 /**
  * @group IPInfo
- * @covers \MediaWiki\IPInfo\Info\ContributionInfo
+ * @covers \MediaWiki\IPInfo\InfoRetriever\ContributionInfoRetriever
  */
 class ContributionInfoRetrieverTest extends MediaWikiUnitTestCase {
 	public function testRetrieveFromIP() {
@@ -49,6 +49,7 @@ class ContributionInfoRetrieverTest extends MediaWikiUnitTestCase {
 		->willReturn( $numRecentEdits );
 
 		$retriever = new ContributionInfoRetriever( $database );
+		$this->assertSame( 'ipinfo-source-contributions', $retriever->getName() );
 		$info = $retriever->retrieveFromIP( $ip );
 
 		$this->assertInstanceOf( ContributionInfo::class, $info );
