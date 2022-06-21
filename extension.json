@@ -154,6 +154,7 @@
 				"ipinfo-property-label-organization",
 				"ipinfo-property-label-connectiontype",
 				"ipinfo-property-label-proxytypes",
+				"ipinfo-property-label-ipversion",
 				"ipinfo-property-tooltip-proxytypes",
 				"ipinfo-property-value-proxytype-isanonymousvpn",
 				"ipinfo-property-value-proxytype-ispublicproxy",
@@ -180,7 +181,9 @@
 				"ipinfo-infobox-submit-agreement",
 				"ipinfo-use-agreement-submit-error",
 				"ipinfo-infobox-disable-instructions",
-				"ipinfo-preference-agreement-error"
+				"ipinfo-preference-agreement-error",
+				"ipinfo-value-ipversion-ipv4",
+				"ipinfo-value-ipversion-ipv6"
 			]
 		},
 		"ext.ipInfo.styles": {
