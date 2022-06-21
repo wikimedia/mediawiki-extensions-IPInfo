@@ -15,6 +15,7 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use stdClass;
 use Wikimedia\Assert\ParameterElementTypeException;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group IPInfo
@@ -80,14 +81,6 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 						false
 					)
 				),
-			],
-			[
-				'quuz' => [
-					'numActiveBlocks' => 1,
-				],
-				[
-					'quuz' => new BlockInfo( 1 ),
-				]
 			]
 		];
 		yield [
@@ -100,6 +93,17 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 			[
 				'quuz' => new ContributionInfo( 42, 24 )
 			]
+		];
+		yield [
+			[
+				'quuz' => [
+					'numActiveBlocks' => 1,
+				]
+				],
+				[
+					'quuz' => new BlockInfo( 1 ),
+				]
+
 		];
 	}
 
@@ -249,5 +253,13 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 			'subject' => '172.18.0.1',
 			'data' => [ 'foo' => $data ],
 		], $user );
+	}
+
+	public function testPresentBlockInfo() {
+		$info = new BlockInfo( 1 );
+		$permissionManager = $this->createMock( PermissionManager::class );
+		$wrapper = TestingAccessWrapper::newFromObject( new DefaultPresenter( $permissionManager ) );
+
+		$this->assertArrayEquals( [ 0 => 1 ], $wrapper->presentBlockInfo( $info ) );
 	}
 }
