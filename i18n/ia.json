@@ -14,5 +14,16 @@
 	"ipinfo-property-no-data": "Non disponibile",
 	"ipinfo-widget-error-default": "Le information sur le adresse IP non poteva esser recuperate.",
 	"ipinfo-widget-error-no-data": "Il non ha datos de $1 pro iste adresse IP.",
-	"ipinfo-widget-error-wrong-ip": "Le adresse IP fornite non correspondeva al registro o al version."
+	"ipinfo-widget-error-wrong-ip": "Le adresse IP fornite non correspondeva al registro o al version.",
+	"ipinfo-rest-access-denied": "Tu non ha le permission de exequer le action",
+	"ipinfo-rest-access-denied-blocked-user": "Tu non ha le permission de exequer le action perque tu conto es blocate",
+	"ipinfo-rest-revision-no-author": "Tu conto non ha le derecto de accesso necessari pro vider le autor del version",
+	"ipinfo-rest-revision-registered": "Non pote recuperar le information IP de versiones de usatores registrate",
+	"ipinfo-rest-log-nonexistent": "Le entrata de registro non existe",
+	"ipinfo-rest-log-registered": "Non pote recuperar information IP pro le registros de usatores registrate",
+	"ipinfo-rest-log-denied": "Tu conto non ha le accesso pro vider le autor del entrata de registro o le entrata mesme",
+	"ipinfo-source-geoip2": "Le information monstrate hic proveni del bases de datos GeoIP2 de MaxMind e pote non esser toto exacte.",
+	"prefs-ipinfo": "Information IP",
+	"action-ipinfo": "recuperar informationes sur adresses IP associate a versiones o a entratas de registro",
+	"right-ipinfo": "Recuperar informationes sur adresses IP associate a versiones o a entratas de registro"
 }

@@ -5,9 +5,11 @@
 			"Michel Bakni",
 			"NancyMilad",
 			"Shbib Al-Subaie",
-			"أَحمد"
+			"أَحمد",
+			"علاء"
 		]
 	},
+	"ipinfo-extensionname": "معلومات بروتوكول الإنترنت",
 	"ipinfo-desc": "يؤمِّن معلومات تخص عنوان بروتوكول الإنترنت.",
 	"ipinfo-infobox-title": "معلومات بروتوكول الإنترنت",
 	"ipinfo-property-label-location": "الموقع",
