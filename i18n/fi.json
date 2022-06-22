@@ -12,6 +12,7 @@
 	"ipinfo-desc": "Tarjoaa tietoja IP-osoitteesta.",
 	"ipinfo-infobox-title": "IP-tiedot",
 	"ipinfo-property-label-location": "Sijainti",
+	"ipinfo-property-label-ipversion": "VERSIO",
 	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Organisaatio",

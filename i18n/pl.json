@@ -11,6 +11,7 @@
 	"ipinfo-desc": "Dostarcza informacje na temat adresów IP.",
 	"ipinfo-infobox-title": "Informacje o IP",
 	"ipinfo-property-label-location": "Lokalizacja",
+	"ipinfo-property-label-ipversion": "WERSJA",
 	"ipinfo-property-label-isp": "Dostawca internetu",
 	"ipinfo-property-label-asn": "Numer AS",
 	"ipinfo-property-label-organization": "Organizacja",

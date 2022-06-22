@@ -11,6 +11,7 @@
 	"ipinfo-desc": "IP 주소에 관한 정보를 제공합니다.",
 	"ipinfo-infobox-title": "IP 정보",
 	"ipinfo-property-label-location": "위치",
+	"ipinfo-property-label-ipversion": "버전",
 	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "조직",

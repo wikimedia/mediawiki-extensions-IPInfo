@@ -10,6 +10,7 @@
 	"ipinfo-desc": "מספקת מידע על כתובות IP.",
 	"ipinfo-infobox-title": "מידע על IP",
 	"ipinfo-property-label-location": "מיקום",
+	"ipinfo-property-label-ipversion": "גרסה",
 	"ipinfo-property-label-isp": "ספק אינטרנט",
 	"ipinfo-property-label-asn": "מספר מערכת אוטונומית (ASN)",
 	"ipinfo-property-label-organization": "ארגון",

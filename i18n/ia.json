@@ -7,6 +7,7 @@
 	"ipinfo-desc": "Forni information sur un adresse IP.",
 	"ipinfo-infobox-title": "Information IP",
 	"ipinfo-property-label-location": "Loco",
+	"ipinfo-property-label-ipversion": "VERSION",
 	"ipinfo-property-label-isp": "Fornitor Internet",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Organisation",

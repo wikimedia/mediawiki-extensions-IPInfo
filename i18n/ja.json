@@ -10,6 +10,7 @@
 	},
 	"ipinfo-infobox-title": "IP情報",
 	"ipinfo-property-label-location": "位置",
+	"ipinfo-property-label-ipversion": "バージョン",
 	"ipinfo-property-label-organization": "組織",
 	"ipinfo-property-label-connectiontype": "接続方法",
 	"ipinfo-property-value-proxytype-isanonymousvpn": "匿名VPN",

@@ -18,6 +18,7 @@
 	"ipinfo-desc": "Fournit des informations sur une adresse IP.",
 	"ipinfo-infobox-title": "Informations sur l’adresse IP",
 	"ipinfo-property-label-location": "Lieu",
+	"ipinfo-property-label-ipversion": "VERSION",
 	"ipinfo-property-label-isp": "FAI",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Organisation",
