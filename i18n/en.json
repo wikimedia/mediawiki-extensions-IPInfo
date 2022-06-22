@@ -10,7 +10,7 @@
 	"ipinfo-desc": "Provides information about an IP address.",
 	"ipinfo-infobox-title": "IP Information",
 	"ipinfo-property-label-location": "Location",
-	"ipinfo-property-label-ipversion": "VERSION",
+	"ipinfo-property-label-ipversion": "Version",
 	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Organization",
