@@ -11,7 +11,8 @@
 			"Stang",
 			"SunAfterRain",
 			"GuoPC",
-			"Tiger"
+			"Tiger",
+			"Diskdance"
 		]
 	},
 	"ipinfo-extensionname": "IP信息",
@@ -49,7 +50,7 @@
 	"ipinfo-preference-agreement-error": "您必须先启用IP信息工具，然后才能同意其使用条款。",
 	"ipinfo-infobox-use-terms": "IP信息工具使用MaxMind数据库来显示位置、代理以及共享此IP地址的设备数量等详细信息。",
 	"ipinfo-infobox-submit-agreement": "启用IP信息工具",
-	"ipinfo-infobox-disable-instructions": "如需禁用此功能，请到[[Special:Preferences|Special:Preferences]]。",
+	"ipinfo-infobox-disable-instructions": "如需禁用此功能，请前往[[Special:Preferences|Special:参数设置]]。",
 	"ipinfo-use-agreement-submit-error": "出问题了。请再试一次。收到的错误信息是：$1",
 	"ipinfo-rest-access-denied": "您没有权限来执行此操作",
 	"ipinfo-rest-access-denied-blocked-user": "您没有执行此操作的权限，因为您的的账户已被封禁",
@@ -60,7 +61,7 @@
 	"ipinfo-rest-log-denied": "您的帐户无权查看该日志项或该日志项的操作者",
 	"ipinfo-source-geoip2": "此处显示的信息来自MaxMind的GeoIP2数据库。它可能不完全准确。",
 	"ipinfo-beta-feature-title": "IP信息",
-	"ipinfo-beta-feature-description": "IP信息工具旨在为巡查员提供有关IP地址的重要信息，以帮助他们履行职责。此信息可在IP编者的 Special:Contributions页面上查看。日志、贡献和最近更改页面上IP地址旁边的弹出窗口中将提供此信息的精简版本。",
+	"ipinfo-beta-feature-description": "IP信息工具旨在为巡查员提供有关IP地址的重要信息，以帮助他们履行职责。此信息可在IP编者的Special:Contributions页面上查看。日志、贡献和最近更改页面上IP地址旁边的弹出窗口中将提供此信息的精简版本。",
 	"prefs-ipinfo": "IP信息",
 	"action-ipinfo": "检索附加到修订版本或日志记录中的IP地址信息",
 	"right-ipinfo": "检索有关附加到修订版本或日志记录中的IP地址信息",

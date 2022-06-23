@@ -7,7 +7,8 @@
 			"Raymond",
 			"Umherirrender",
 			"Verdy p",
-			"Tran (WMF)"
+			"Tran (WMF)",
+			"McDutchie"
 		]
 	},
 	"ipinfo-extensionname": "{{name}}\nThe name of the extension",
@@ -45,7 +46,7 @@
 	"ipinfo-preference-agreement-error": "Error message shown on [[Special:Preferences]].",
 	"ipinfo-infobox-use-terms": "Used on [[Special:Contributions]] to describe information provided by IP Info",
 	"ipinfo-infobox-submit-agreement": "Used for the user agreement form on [[Special:Contributions]]",
-	"ipinfo-infobox-disable-instructions": "Used for the user agreement form on [[Special:Contributions]]",
+	"ipinfo-infobox-disable-instructions": "Used for the user agreement form on [[Special:Contributions]].\n\nIn the link, translate only the part to the right of the <code>|</code>.",
 	"ipinfo-use-agreement-submit-error": "Used for the user agreement form on [[Special:Contributions]]",
 	"ipinfo-rest-access-denied": "Error message for REST API debugging, shown when access is denied.",
 	"ipinfo-rest-access-denied-blocked-user": "Error message for REST API debugging, shown when access is denied because the user is blocked.",

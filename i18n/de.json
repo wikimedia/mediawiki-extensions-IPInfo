@@ -20,7 +20,7 @@
 	"ipinfo-property-label-source": "Quelle",
 	"ipinfo-property-label-active-blocks": "Aktive Sperren",
 	"ipinfo-property-tooltip-proxytypes": "Proxys verbergen IP-Adressen. In einigen Fällen geschieht dies automatisch, wie bei Proxys für Privatpersonen oder Unternehmen, in anderen Fällen geschieht dies absichtlich, um den Ursprung der IP-Adresse zu verschleiern.",
-	"ipinfo-property-tooltip-connectiontype": "Die Technologie, über die sie sich mit dem Internet verbinden.",
+	"ipinfo-property-tooltip-connectiontype": "Die Technologie, über die die Verbindung mit dem Internet hergestellt wird.",
 	"ipinfo-property-tooltip-usertype": "Die Art des Unternehmens, dem die Internetverbindung gehört.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 aktive Sperre|$1 aktive Sperren|0=Keine aktiven Sperren}}.",
 	"ipinfo-property-label-edits": "Beiträge",
