@@ -62,6 +62,8 @@
 	"ipinfo-source-geoip2": "Les informations affichées ici proviennent des bases de données GeoIp2 de MaxMind. Elle peuvent ne pas être complètement exactes.",
 	"ipinfo-beta-feature-title": "Informations sur une adresse IP",
 	"ipinfo-beta-feature-description": "L’outil Infos sur une adresse IP vise à fournir aux patrouilleurs des informations vitales sur les adresses IP pour les aider dans leur tâche. Ces informations seront accessibles sur la page Spécial:Contributions pour un éditeur IP. Une version abrégée de ces informations sera disponible dans une fenêtre surgissante à côté des adresses IP sur les pages Journal, Contributions et Modifications récentes.",
+	"ipinfo-value-ipversion-ipv4": "IPv4",
+	"ipinfo-value-ipversion-ipv6": "IPv6",
 	"prefs-ipinfo": "Informations sur une adresse IP",
 	"action-ipinfo": "récupère des informations relatives aux adresses IP attachées aux révisions ou aux entrées de journal",
 	"right-ipinfo": "Récupérer des informations relatives aux adresses IP attachées aux révisions ou aux entrées de journal",

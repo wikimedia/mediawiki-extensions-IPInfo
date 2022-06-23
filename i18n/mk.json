@@ -8,6 +8,7 @@
 	"ipinfo-desc": "Дава информации за IP-адреса",
 	"ipinfo-infobox-title": "Информации за IP-адреса",
 	"ipinfo-property-label-location": "Местоположба",
+	"ipinfo-property-label-ipversion": "ВЕРЗИЈА",
 	"ipinfo-property-label-isp": "Услужник",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Организација",

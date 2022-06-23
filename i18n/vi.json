@@ -9,6 +9,7 @@
 	"ipinfo-desc": "Cung cấp thông tin về địa chỉ IP.",
 	"ipinfo-infobox-title": "Thông tin IP",
 	"ipinfo-property-label-location": "Địa điểm",
+	"ipinfo-property-label-ipversion": "Phiên bản",
 	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Tổ chức",
@@ -72,5 +73,5 @@
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|đã xem}} bóng thoại thông tin IP của $3. $4.",
 	"ipinfo-change-access-level-enable": "kích hoạt",
 	"ipinfo-change-access-level-disable": "tắt kích hoạt",
-	"logentry-ipinfo-change_access": "$1 đã tự {{GENDER:$2|$4}} quyền truy cập thông tin IP"
+	"logentry-ipinfo-change_access": "$1 đã tự {{GENDER:$2}}$4 quyền truy cập thông tin IP"
 }
