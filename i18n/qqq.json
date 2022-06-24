@@ -60,7 +60,7 @@
 	"ipinfo-rest-log-denied": "Error message for REST API debugging, shown when a user does not have permission to read the performer of a log entry.",
 	"ipinfo-source-geoip2": "Disclaimer about the accuracy of the data, MaxMind is the provider name, GeoIP2 is the collection of their databases.",
 	"ipinfo-beta-feature-title": "Label for BetaFeatures listing",
-	"ipinfo-beta-feature-description": "Description for BetaFeatures listing",
+	"ipinfo-beta-feature-description": "Description for BetaFeatures listing. \"Log\" is {{msg-mw|all-logs-page}}; \"Contributions\" is {{msg-mw|contributions}}; \"Recent changes\" is {{msg-mw|recentchanges}}.",
 	"ipinfo-value-ipversion-ipv4": "IP address version 4",
 	"ipinfo-value-ipversion-ipv6": "IP address version 6",
 	"prefs-ipinfo": "Text of a section header in [[Special:Preferences]].",
