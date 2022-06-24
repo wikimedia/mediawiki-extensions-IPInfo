@@ -7,6 +7,7 @@
 	},
 	"ipinfo-infobox-title": "Informazioni IP",
 	"ipinfo-property-label-location": "Località",
+	"ipinfo-property-label-ipversion": "Versione",
 	"ipinfo-property-label-source": "Fonte",
 	"ipinfo-property-no-data": "Non disponibile",
 	"ipinfo-widget-error-default": "Non è stato possibile recuperare le informazioni sull'IP.",
