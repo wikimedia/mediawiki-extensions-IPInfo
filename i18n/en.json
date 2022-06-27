@@ -82,5 +82,6 @@
 	"log-action-filter-ipinfo": "Type of IPInfo operation:",
 	"log-action-filter-ipinfo-change_access": "Enable or disable of tool",
 	"log-action-filter-ipinfo-view_infobox": "View of infobox data",
-	"log-action-filter-ipinfo-view_popup": "View of popup data"
+	"log-action-filter-ipinfo-view_popup": "View of popup data",
+	"ipinfo-property-tooltip-asn": "A unique identifier for networks assigned to a region and further to organizations like governments and ISPs"
 }

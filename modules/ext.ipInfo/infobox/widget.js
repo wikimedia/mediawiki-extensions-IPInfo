@@ -48,7 +48,10 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 			$( '<div>' ).addClass( 'ext-ipinfo-widget-properties-col' ).append(
 				this.generatePropertyMarkup( 'location', location, mw.msg( 'ipinfo-property-label-location' ) ),
 				this.generatePropertyMarkup( 'isp', info.data[ 'ipinfo-source-geoip2' ].isp, mw.msg( 'ipinfo-property-label-isp' ) ),
-				this.generatePropertyMarkup( 'asn', info.data[ 'ipinfo-source-geoip2' ].asn, mw.msg( 'ipinfo-property-label-asn' ) ),
+				this.generatePropertyMarkup( 'asn',
+					info.data[ 'ipinfo-source-geoip2' ].asn,
+					mw.msg( 'ipinfo-property-label-asn' ),
+					mw.msg( 'ipinfo-property-tooltip-asn' ) ),
 				this.generatePropertyMarkup( 'organization', info.data[ 'ipinfo-source-geoip2' ].organization, mw.msg( 'ipinfo-property-label-organization' ) ),
 				this.generatePropertyMarkup( 'version', ipversion, mw.msg( 'ipinfo-property-label-ipversion' ) )
 			)
