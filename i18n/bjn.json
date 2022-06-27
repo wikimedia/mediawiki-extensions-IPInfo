@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ezagren"
+		]
+	},
+	"group-no-ipinfo": "Pamakai diblukir matan IPInfo",
+	"group-no-ipinfo-member": "{{GENDER:$1|diblukir matan IPInfo}}",
+	"grouppage-no-ipinfo": "{{ns:project}}:Pamakai diblukir matan IPInfo"
+}

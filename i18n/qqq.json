@@ -3,13 +3,13 @@
 		"authors": [
 			"Ajeje Brazorf",
 			"Amire80",
+			"MarcoAurelio",
 			"Matěj Suchánek",
 			"McDutchie",
 			"Raymond",
 			"Tran (WMF)",
 			"Umherirrender",
-			"Verdy p",
-			"MarcoAurelio"
+			"Verdy p"
 		]
 	},
 	"ipinfo-extensionname": "{{name}}\nThe name of the extension",
@@ -38,8 +38,8 @@
 	"ipinfo-property-label-edits": "Label for both recent and local edits\n\n{{Identical|Contribution}}",
 	"ipinfo-value-local-edits": "Message for displaying the local edits data. \n\nParameters:\n* $1 - Number of edits.",
 	"ipinfo-value-recent-edits": "Message for displaying the recent edits data. \n\nParameters:\n* $1 - Number of edits.",
-	"ipinfo-property-no-access": "Returned when access is restricted from a property",
 	"ipinfo-property-no-data": "Returned when no data is available for a property",
+	"ipinfo-property-no-access": "Returned when access is restricted from a property",
 	"ipinfo-widget-error-default": "Error message shown in the widget.",
 	"ipinfo-widget-error-no-data": "Error message shown in the widget.\n\nParameters:\n* $1 - Name of a data source",
 	"ipinfo-widget-error-wrong-ip": "Error message shown in the widget.",

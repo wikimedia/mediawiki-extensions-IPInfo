@@ -28,6 +28,7 @@
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 lokale Bearbeitung|$1 lokale Bearbeitungen|0=Keine lokalen Bearbeitungen}}",
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 in den letzten 24 Stunden}})",
 	"ipinfo-property-no-data": "Nicht verfügbar",
+	"ipinfo-property-no-access": "Kein Zugriff",
 	"ipinfo-widget-error-default": "Die Informationen zur IP-Adresse konnten nicht abgerufen werden.",
 	"ipinfo-widget-error-no-data": "Es gibt keine Daten für diese IP-Adresse von $1.",
 	"ipinfo-widget-error-wrong-ip": "Die angegebene IP-Adresse stimmte nicht mit dem Logbuch oder der Version überein.",
@@ -52,10 +53,10 @@
 	"prefs-ipinfo": "IP-Information",
 	"action-ipinfo": "Abrufen von Informationen über IP-Adressen, die mit Versionen oder Logbüchern verbunden sind",
 	"right-ipinfo": "Abrufen von Informationen über IP-Adressen, die mit Versionen oder Logbüchern verbunden sind",
-	"action-ipinfo-view-basic": "einen grundlegenden Überblick über die IP-Informationen zu Versionen oder Logbucheinträgen ermöglichen",
-	"right-ipinfo-view-basic": "Einen grundlegenden Überblick über die IP-Informationen zu Versionen oder Logbucheinträgen ermöglichen",
-	"action-ipinfo-view-full": "einen vollständigen Überblick über die IP-Informationen zu Versionen oder Logbucheinträgen ermöglichen",
-	"right-ipinfo-view-full": "Einen vollständigen Überblick über die IP-Informationen zu Versionen oder Logbucheinträgen ermöglichen",
+	"action-ipinfo-view-basic": "einen grundlegenden Überblick über die IP-Informationen zu Versionen oder Logbucheinträgen erlauben",
+	"right-ipinfo-view-basic": "Einen grundlegenden Überblick über die IP-Informationen zu Versionen oder Logbucheinträgen erlauben",
+	"action-ipinfo-view-full": "einen vollständigen Überblick über die IP-Informationen zu Versionen oder Logbucheinträgen erlauben",
+	"right-ipinfo-view-full": "Einen vollständigen Überblick über die IP-Informationen zu Versionen oder Logbucheinträgen erlauben",
 	"action-ipinfo-view-log": "ein Protokoll der Zugriffe auf IP-Informationen einsehen",
 	"right-ipinfo-view-log": "Ein Protokoll der Zugriffe auf IP-Informationen einsehen",
 	"group-no-ipinfo": "Für IPInfo gesperrte Benutzer",
@@ -69,5 +70,9 @@
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|sah}} das IP-Information-Popup für $3. $4.",
 	"ipinfo-change-access-level-enable": "aktivierte",
 	"ipinfo-change-access-level-disable": "deaktivierte",
-	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|seinen|ihren|seinen}} eigenen Zugriff auf IPInfo"
+	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|seinen|ihren|seinen}} eigenen Zugriff auf IPInfo",
+	"log-action-filter-ipinfo": "Art des IPInfo-Vorgangs:",
+	"log-action-filter-ipinfo-change_access": "Aktivieren oder Deaktivieren des Werkzeugs",
+	"log-action-filter-ipinfo-view_infobox": "Ansicht der Infoboxdaten",
+	"log-action-filter-ipinfo-view_popup": "Ansicht der Popup-Daten"
 }
