@@ -79,5 +79,6 @@
 	"log-action-filter-ipinfo": "סוג פעולת המידע על IP:",
 	"log-action-filter-ipinfo-change_access": "הפעלה או כיבוי של הכלי",
 	"log-action-filter-ipinfo-view_infobox": "הצגת נתוני תיבת מידע",
-	"log-action-filter-ipinfo-view_popup": "הצגת נתוני חלון קופץ"
+	"log-action-filter-ipinfo-view_popup": "הצגת נתוני חלון קופץ",
+	"ipinfo-property-tooltip-asn": "מזהה ייחודי לרשתות שהוקצה לאזור ולאחר מכן לארגונים כמו ממשלות וספקי אינטרנט"
 }

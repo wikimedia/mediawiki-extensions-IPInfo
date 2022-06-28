@@ -74,5 +74,6 @@
 	"log-action-filter-ipinfo": "Art des IPInfo-Vorgangs:",
 	"log-action-filter-ipinfo-change_access": "Aktivieren oder Deaktivieren des Werkzeugs",
 	"log-action-filter-ipinfo-view_infobox": "Ansicht der Infoboxdaten",
-	"log-action-filter-ipinfo-view_popup": "Ansicht der Popup-Daten"
+	"log-action-filter-ipinfo-view_popup": "Ansicht der Popup-Daten",
+	"ipinfo-property-tooltip-asn": "Eine eindeutige Kennung für Netze, die einer Region und darüber hinaus Organisationen wie Regierungen und Internetanbietern zugewiesen wird"
 }
