@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			")8",
+			"Cwek",
 			"Diskdance",
 			"GuoPC",
 			"NACHOgao3",
@@ -19,6 +20,7 @@
 	"ipinfo-desc": "提供IP地址的相关信息。",
 	"ipinfo-infobox-title": "IP信息",
 	"ipinfo-property-label-location": "位置",
+	"ipinfo-property-label-ipversion": "版本",
 	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "机构",
@@ -41,6 +43,7 @@
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1次本地编辑|0=无本地编辑}}",
 	"ipinfo-value-recent-edits": "（{{PLURAL:$1|最近24小时内$1次}}）",
 	"ipinfo-property-no-data": "不可用",
+	"ipinfo-property-no-access": "不许访问",
 	"ipinfo-widget-error-default": "无法检索此IP的信息。",
 	"ipinfo-widget-error-no-data": "$1中没有此IP地址的数据。",
 	"ipinfo-widget-error-wrong-ip": "提供的IP地址与日志或修订版本不匹配。",
@@ -82,5 +85,10 @@
 	"logentry-ipinfo-view_popup": "$1{{GENDER:$2|查看了}}$3的IP信息弹出框。$4。",
 	"ipinfo-change-access-level-enable": "启用",
 	"ipinfo-change-access-level-disable": "禁用",
-	"logentry-ipinfo-change_access": "$1$4了{{GENDER:$2|他|她|他们}}自己对IP信息的访问权限"
+	"logentry-ipinfo-change_access": "$1$4了{{GENDER:$2|他|她|他们}}自己对IP信息的访问权限",
+	"log-action-filter-ipinfo": "IP信息操作的类型：",
+	"log-action-filter-ipinfo-change_access": "启用或禁用工具",
+	"log-action-filter-ipinfo-view_infobox": "查看信息盒的数据",
+	"log-action-filter-ipinfo-view_popup": "查看弹出框的数据",
+	"ipinfo-property-tooltip-asn": "网络唯一标识，分配给一个地区或一个组织，例如政府或互联网服务提供商"
 }

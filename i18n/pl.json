@@ -32,6 +32,7 @@
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 lokalna edycja|$1 lokalne edycje|$1 lokalnych edycji|0=Brak edycji lokalnych}}",
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 w ciągu ostatnich 24 godzin}})",
 	"ipinfo-property-no-data": "Niedostępne",
+	"ipinfo-property-no-access": "Brak dostępu",
 	"ipinfo-widget-error-default": "Nie udało się pobrać informacji o tym IP.",
 	"ipinfo-widget-error-no-data": "Brak danych z $1 dla tego adresu IP.",
 	"ipinfo-widget-error-wrong-ip": "Podany adres IP nie pasuje do rejestrów lub rewizji.",
@@ -73,5 +74,10 @@
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|wyświetlił|wyświetliła|wyświetlił(a)}} wyskakujące okienko z informacjami o IP $3. $4.",
 	"ipinfo-change-access-level-enable": "włączył",
 	"ipinfo-change-access-level-disable": "wyłączył",
-	"logentry-ipinfo-change_access": "$1 {{GENDER:$2|$4|$4a|$2(a)}} swój dostęp do narzędzia IPInfo"
+	"logentry-ipinfo-change_access": "$1 {{GENDER:$2|$4|$4a|$2(a)}} swój dostęp do narzędzia IPInfo",
+	"log-action-filter-ipinfo": "Rodzaj operacji narzędzia IPInfo",
+	"log-action-filter-ipinfo-change_access": "Włączanie bądź wyłączanie narzędzia",
+	"log-action-filter-ipinfo-view_infobox": "Wyświetlanie infoboksu z danymi",
+	"log-action-filter-ipinfo-view_popup": "Wyświetlanie okna z danymi",
+	"ipinfo-property-tooltip-asn": "Unikalny identyfikator przypisywany sieciom powiązanym z konkretnym regionem lub organizacjami jak rządy państw oraz dostawcy internetu"
 }
