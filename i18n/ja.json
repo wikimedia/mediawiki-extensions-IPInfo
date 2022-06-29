@@ -8,10 +8,15 @@
 			"Whym"
 		]
 	},
+	"ipinfo-extensionname": "IP情報",
+	"ipinfo-desc": "IPアドレスについての情報を提供する。",
 	"ipinfo-infobox-title": "IP情報",
 	"ipinfo-property-label-location": "位置",
+	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "組織",
 	"ipinfo-property-no-data": "情報なし",
 	"ipinfo-widget-error-default": "IP情報を取得できませんでした。",
+	"ipinfo-widget-error-wrong-ip": "指定されたIPアドレスに一致する記録や版は見つかりませんでした。",
 	"prefs-ipinfo": "IP情報"
 }
