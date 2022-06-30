@@ -161,6 +161,8 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 		$author = $this->createMock( UserIdentity::class );
 		$author->method( 'isRegistered' )
 			->willReturn( $options['authorIsRegistered'] ?? false );
+		$author->method( 'getName' )
+			->willReturn( $options['authorName'] ?? '' );
 
 		$linkTarget = $this->createMock( LinkTarget::class );
 
@@ -265,6 +267,20 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 				[
 					'message' => 'ipinfo-rest-revision-no-author',
 					'status' => 403,
+				],
+			],
+			'Unregistered author and not an ip' => [
+				[
+					'userHasRight' => true,
+					'userCan' => true,
+					'getOption' => true,
+					'authorIsRegistered' => false,
+					'author' => true,
+					'authorName' => 'foo'
+				],
+				[
+					'message' => 'ipinfo-rest-revision-invalid-ip',
+					'status' => 404,
 				],
 			],
 			'Registered author' => [
