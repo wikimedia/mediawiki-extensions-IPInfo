@@ -35,6 +35,7 @@
 	"ipinfo-property-tooltip-connectiontype": "Additional information about the connection method info",
 	"ipinfo-property-tooltip-usertype": "Additional information about the connection owner info",
 	"ipinfo-value-active-blocks": "Message for displaying the active blocks data. \n\nParameters:\n* $1 - Number of blocks.",
+	"ipinfo-active-blocks-url-text": "Link text to a relevant block log",
 	"ipinfo-property-label-edits": "Label for both recent and local edits\n\n{{Identical|Contribution}}",
 	"ipinfo-value-local-edits": "Message for displaying the local edits data. \n\nParameters:\n* $1 - Number of edits.",
 	"ipinfo-value-recent-edits": "Message for displaying the recent edits data. \n\nParameters:\n* $1 - Number of edits.",

@@ -31,6 +31,14 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 	);
 
 	var activeBlocks = this.getActiveBlocks( info.data[ 'ipinfo-source-block' ].numActiveBlocks );
+	var blockLogUrl, $blockLogLink;
+	if ( info.data[ 'ipinfo-source-block' ].numActiveBlocks > 0 ) {
+		blockLogUrl = mw.util.getUrl( 'Special:Log' ) + '?type=block&page=' + info.subject;
+		$blockLogLink = $( '<a>' )
+			.addClass( 'ext-ipinfo-block-links' )
+			.attr( 'href', blockLogUrl )
+			.text( mw.msg( 'ipinfo-active-blocks-url-text' ) );
+	}
 
 	var $edits = this.getEdits(
 		info.data[ 'ipinfo-source-contributions' ].numLocalEdits,
@@ -76,7 +84,10 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 			)
 		).append(
 			$( '<div>' ).addClass( 'ext-ipinfo-widget-properties-col' ).append(
-				this.generatePropertyMarkup( 'active-blocks', activeBlocks, mw.msg( 'ipinfo-property-label-active-blocks' ) ),
+				this.generatePropertyMarkup(
+					'active-blocks',
+					activeBlocks,
+					mw.msg( 'ipinfo-property-label-active-blocks' ) ).append( $blockLogLink ),
 				this.generatePropertyMarkup( 'edits', $edits, mw.msg( 'ipinfo-property-label-edits' ) ),
 				$( '<div>' ).addClass( 'ext-ipinfo-widget-property-source' ).html(
 					mw.message( 'ipinfo-source-geoip2' ).parse()
