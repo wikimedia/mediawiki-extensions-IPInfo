@@ -30,6 +30,7 @@
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 modification|$1 modificationes|0=Nulle modification}} local",
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 in le ultime 24 horas}})",
 	"ipinfo-property-no-data": "Non disponibile",
+	"ipinfo-property-no-access": "Nulle accesso",
 	"ipinfo-widget-error-default": "Le information sur le adresse IP non poteva esser recuperate.",
 	"ipinfo-widget-error-no-data": "Il non ha datos de $1 pro iste adresse IP.",
 	"ipinfo-widget-error-wrong-ip": "Le adresse IP fornite non correspondeva al registro o al version.",
@@ -71,5 +72,10 @@
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|ha consultate}} le fenestra emergente de information IP pro $3. $4.",
 	"ipinfo-change-access-level-enable": "activate",
 	"ipinfo-change-access-level-disable": "disactivate",
-	"logentry-ipinfo-change_access": "$1 ha $4 {{GENDER:$2|su}} proprie accesso a IPInfo"
+	"logentry-ipinfo-change_access": "$1 ha $4 {{GENDER:$2|su}} proprie accesso a IPInfo",
+	"log-action-filter-ipinfo": "Typo de operation IPInfo:",
+	"log-action-filter-ipinfo-change_access": "Activation o disactivation del instrumento",
+	"log-action-filter-ipinfo-view_infobox": "Inspection del datos del quadro de information",
+	"log-action-filter-ipinfo-view_popup": "Inspection del datos del fenestra emergente",
+	"ipinfo-property-tooltip-asn": "Un identificator unic pro retes assignate a un region e ulteriormente a organisationes como governamentos e fornitores de accesso a internet"
 }

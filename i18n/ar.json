@@ -6,13 +6,15 @@
 			"NancyMilad",
 			"Shbib Al-Subaie",
 			"أَحمد",
-			"علاء"
+			"علاء",
+			"محمد أحمد عبد الفتاح"
 		]
 	},
 	"ipinfo-extensionname": "معلومات بروتوكول الإنترنت",
 	"ipinfo-desc": "يؤمِّن معلومات تخص عنوان بروتوكول الإنترنت.",
 	"ipinfo-infobox-title": "معلومات بروتوكول الإنترنت",
 	"ipinfo-property-label-location": "الموقع",
+	"ipinfo-property-label-ipversion": "الإصدار",
 	"ipinfo-property-label-isp": "مُزوِّد خدمة الإنترنت",
 	"ipinfo-property-label-asn": "رقم النظام المُستقِل",
 	"ipinfo-property-label-organization": "المنظمة",
