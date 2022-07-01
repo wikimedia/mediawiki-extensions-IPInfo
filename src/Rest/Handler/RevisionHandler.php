@@ -18,6 +18,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 use RequestContext;
+use Wikimedia\IPUtils;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -197,6 +198,12 @@ class RevisionHandler extends SimpleHandler {
 			//      (which would result in a 404) or throw a fatal (which could result in a 403).
 			throw new LocalizedHttpException(
 				new MessageValue( 'ipinfo-rest-revision-registered' ), 404 );
+		}
+
+		if ( !IPUtils::isValid( $author->getName() ) ) {
+			// Not a valid IP and probably an imported edit
+			throw new LocalizedHttpException(
+				new MessageValue( 'ipinfo-rest-revision-invalid-ip' ), 404 );
 		}
 
 		$info = [

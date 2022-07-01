@@ -55,6 +55,7 @@
 	"ipinfo-rest-access-denied-blocked-user": "Error message for REST API debugging, shown when access is denied because the user is blocked.",
 	"ipinfo-rest-revision-no-author": "Error message for REST API debugging, shown when a user does not have permission to read the author of a revision.",
 	"ipinfo-rest-revision-registered": "Error message for REST API debugging, shown when a revision belongs to a registered user.",
+	"ipinfo-rest-revision-invalid-ip": "Error message for REST API debugging, shown when a revision belongs to a non-IP author.",
 	"ipinfo-rest-log-nonexistent": "Error message for REST API debugging, shown when a log entry does not exist.",
 	"ipinfo-rest-log-registered": "Error message for REST API debugging, shown when a log entry belongs to a registered user.",
 	"ipinfo-rest-log-denied": "Error message for REST API debugging, shown when a user does not have permission to read the performer of a log entry.",
