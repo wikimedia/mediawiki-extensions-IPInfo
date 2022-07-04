@@ -1,6 +1,8 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"Brettchenweber"
+		]
 	},
 	"ipinfo-desc": "Stellt Informationen über eine IP-Adresse zur Verfügung.",
 	"ipinfo-infobox-title": "IP-Information",
@@ -38,18 +40,19 @@
 	"ipinfo-preference-agreement-error": "Du musst das IP-Informationstool aktivieren, bevor du den Nutzungsbedingungen zustimmst.",
 	"ipinfo-infobox-use-terms": "Das IP-Informationstool verwendet die MaxMind-Datenbank, um Details wie Standort, Proxy und die Anzahl der Geräte, die sich diese IP-Adresse teilen, anzuzeigen.",
 	"ipinfo-infobox-submit-agreement": "IP-Informationstool aktivieren",
-	"ipinfo-infobox-disable-instructions": "Wenn du diese Funktion deaktivieren möchtest, kannst du dies über [[{{#special:Preferences}}]] tun.",
+	"ipinfo-infobox-disable-instructions": "Wenn du diese Funktion deaktivieren möchtest, kannst du dies über [[Special:Preferences|deine Einstellungen]] erreichen.",
 	"ipinfo-use-agreement-submit-error": "Es ist ein Fehler aufgetreten. Bitte versuche es erneut. Die erhaltene Fehlermeldung lautete: $1",
 	"ipinfo-rest-access-denied": "Du hast keine Berechtigung, diese Aktion durchzuführen",
 	"ipinfo-rest-access-denied-blocked-user": "Du hast keine Berechtigung, die Aktion auszuführen, da dein Konto gesperrt ist",
 	"ipinfo-rest-revision-no-author": "Dein Benutzerkonto hat keinen Zugriff zum Anzeigen des Autors der Version",
+	"ipinfo-rest-revision-invalid-ip": "IP-Informationen für einen Nicht-IP-Autor können nicht abgerufen werden",
 	"ipinfo-rest-revision-registered": "Kann ipinfo für Versionen registrierter Benutzer nicht abrufen",
 	"ipinfo-rest-log-nonexistent": "Logbucheintrag existiert nicht",
 	"ipinfo-rest-log-registered": "Kann ipinfo für Logbücher registrierter Benutzer nicht abrufen",
 	"ipinfo-rest-log-denied": "Dein Benutzerkonto hat keinen Zugriff auf den ausführenden Benutzer des Logbucheintrags oder den Protokolleintrag selbst.",
 	"ipinfo-source-geoip2": "Die hier gezeigten Informationen stammen aus den GeoIP2-Datenbanken von MaxMind. Sie sind möglicherweise nicht ganz genau.",
 	"ipinfo-beta-feature-title": "IP-Information",
-	"ipinfo-beta-feature-description": "Das IP-Info-Tool zielt darauf ab, berechtigte Benutzer mit wichtigen Informationen über IP-Adressen auszustatten, um sie bei ihren Aufgaben zu unterstützen. Diese Informationen werden auf der Seite Spezial:Beiträge für berechtigte Benutzer zugänglich sein. Eine verkürzte Version dieser Informationen wird in einem Popup neben den IP-Adressen auf den Seiten {{PAGENAME:{{#special:Log}}}}, {{PAGENAME:{{#special:Contributions}}}} und {{PAGENAME:{{#special:RecentChanges}}}}  verfügbar sein.",
+	"ipinfo-beta-feature-description": "Das IP-Info-Tool zielt darauf ab, berechtigte Benutzer mit wichtigen Informationen über IP-Adressen auszustatten, um sie bei ihren Aufgaben zu unterstützen. Diese Informationen werden auf der Seite Spezial:Beiträge für berechtigte Benutzer zugänglich sein. Eine verkürzte Version dieser Informationen wird in einem Pop-up neben den IP-Adressen auf den Seiten [[Special:Log|Logbuch]], [[Special:Contributions|Beiträge]] und [[Special:RecentChanges|letzte Änderungen]] verfügbar sein.",
 	"prefs-ipinfo": "IP-Information",
 	"action-ipinfo": "Abrufen von Informationen über IP-Adressen, die mit Versionen oder Logbüchern verbunden sind",
 	"right-ipinfo": "Abrufen von Informationen über IP-Adressen, die mit Versionen oder Logbüchern verbunden sind",
