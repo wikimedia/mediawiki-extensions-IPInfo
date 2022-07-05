@@ -65,7 +65,7 @@
 	"right-ipinfo-view-full": "גישה לתצוגה מלאה של מידע על IP שמשויך לגרסאות או רשומות יומן",
 	"action-ipinfo-view-log": "לצפות ביומן של מי שניגש למידע על IP",
 	"right-ipinfo-view-log": "צפייה ביומן של מי שניגש למידע על IP",
-	"group-no-ipinfo": "המשתמשים נחסמו מ־IPInfo",
+	"group-no-ipinfo": "משתמשים שנחסמו מ־IPInfo",
 	"group-no-ipinfo-member": "{{GENDER:$1|חסום|חסומה}} מ־IPInfo",
 	"grouppage-no-ipinfo": "{{ns:project}}:משתמשים שחסומים מ־IPInfo",
 	"ipinfo-log-name": "יומן מידע על IP",
