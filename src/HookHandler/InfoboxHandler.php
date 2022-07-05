@@ -35,8 +35,7 @@ class InfoboxHandler implements SpecialContributionsBeforeMainOutputHook {
 	 * @inheritDoc
 	 */
 	public function onSpecialContributionsBeforeMainOutput( $id, $user, $sp ): void {
-		$out = $sp->getOutput();
-		if ( !( $out->getTitle() && $out->getTitle()->isSpecial( 'Contributions' ) ) ) {
+		if ( !( $sp->getName() === 'Contributions' ) ) {
 			return;
 		}
 
@@ -48,7 +47,7 @@ class InfoboxHandler implements SpecialContributionsBeforeMainOutputHook {
 			return;
 		}
 
-		$accessingUser = $out->getUser();
+		$accessingUser = $sp->getUser();
 		$isBetaFeaturesLoaded = ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' );
 
 		if (
@@ -70,6 +69,8 @@ class InfoboxHandler implements SpecialContributionsBeforeMainOutputHook {
 		if ( !$target ) {
 			return;
 		}
+
+		$out = $sp->getOutput();
 		$out->addJsConfigVars( [
 			'wgIPInfoTarget' => $target
 		] );
@@ -84,7 +85,7 @@ class InfoboxHandler implements SpecialContributionsBeforeMainOutputHook {
 			'padded' => true,
 			'content' => ( new CollapsibleFieldsetLayout(
 				[
-					'label' => $out->getContext()->msg( 'ipinfo-infobox-title' ),
+					'label' => $sp->msg( 'ipinfo-infobox-title' ),
 					'collapsed' => true,
 					'classes' => [ 'ext-ipinfo-collapsible-layout' ],
 					'infusable' => true,
