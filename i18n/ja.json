@@ -26,6 +26,7 @@
 	"ipinfo-property-tooltip-connectiontype": "インターネットに接続するために使っている技術の種類。",
 	"ipinfo-property-tooltip-usertype": "インターネット接続を所有する事業者の種類。",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|有効なブロック $1 件|0=なし}}",
+	"ipinfo-active-blocks-url-text": "ログ",
 	"ipinfo-property-label-edits": "投稿記録",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|ローカルの編集 $1 件|0=ローカルの編集なし}}",
 	"ipinfo-value-recent-edits": "(直近24時間以内で {{PLURAL:$1|$1}} 件)",

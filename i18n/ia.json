@@ -26,6 +26,7 @@
 	"ipinfo-property-tooltip-connectiontype": "Le technologia que usa pro connecter a internet.",
 	"ipinfo-property-tooltip-usertype": "Le typo de entitate que possede le connexion a internet.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 blocada|$1 blocadas|0=Nulle blocada}} active.",
+	"ipinfo-active-blocks-url-text": "Registros",
 	"ipinfo-property-label-edits": "Contributiones",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 modification|$1 modificationes|0=Nulle modification}} local",
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 in le ultime 24 horas}})",

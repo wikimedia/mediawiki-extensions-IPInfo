@@ -90,5 +90,5 @@
 	"log-action-filter-ipinfo-change_access": "{{doc-log-action-filter-action|ipinfo|change_access}}",
 	"log-action-filter-ipinfo-view_infobox": "{{doc-log-action-filter-action|ipinfo|view_infobox}}",
 	"log-action-filter-ipinfo-view_popup": "{{doc-log-action-filter-action|ipinfo|view_popup}}",
-	"ipinfo-property-tooltip-asn": "Additional information about the asn info"
+	"ipinfo-property-tooltip-asn": "Additional information about the ASN info."
 }

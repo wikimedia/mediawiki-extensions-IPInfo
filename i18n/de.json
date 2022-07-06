@@ -26,6 +26,7 @@
 	"ipinfo-property-tooltip-connectiontype": "Die Technologie, über die die Verbindung mit dem Internet hergestellt wird.",
 	"ipinfo-property-tooltip-usertype": "Die Art des Unternehmens, dem die Internetverbindung gehört.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 aktive Sperre|$1 aktive Sperren|0=Keine aktiven Sperren}}.",
+	"ipinfo-active-blocks-url-text": "Logbücher",
 	"ipinfo-property-label-edits": "Beiträge",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 lokale Bearbeitung|$1 lokale Bearbeitungen|0=Keine lokalen Bearbeitungen}}",
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 in den letzten 24 Stunden}})",

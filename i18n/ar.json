@@ -33,6 +33,7 @@
 	"ipinfo-property-tooltip-connectiontype": "التقانة التي يستعملونها للوصول إلى الإنترنت.",
 	"ipinfo-property-tooltip-usertype": "نوع الكيان الذي يملك الاتصال مع الإنترنت.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 منع وحيد سارٍِ|$1 عملية منع|0=لا يوجد عمليات منع}}.",
+	"ipinfo-active-blocks-url-text": "سجلات",
 	"ipinfo-property-label-edits": "المساهمات",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 تعديل محلي|$1 تعديلات محلية|0=لا تعديلات محلية}}",
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 في آخر 24 ساعة}})",

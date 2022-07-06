@@ -12,6 +12,7 @@
 	"ipinfo-desc": "Proporciona información sobre una dirección IP.",
 	"ipinfo-infobox-title": "Información de la IP",
 	"ipinfo-property-label-location": "Ubicación",
+	"ipinfo-property-label-ipversion": "Versión",
 	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Organización",
@@ -30,10 +31,12 @@
 	"ipinfo-property-tooltip-connectiontype": "La tecnología a través de la cual el usuario se conecta a Internet.",
 	"ipinfo-property-tooltip-usertype": "El tipo de entidad que posee la conexión a Internet.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 bloqueo activo|$1 bloqueos activos|0=Sin bloqueos activos}}.",
+	"ipinfo-active-blocks-url-text": "Registros",
 	"ipinfo-property-label-edits": "Contribuciones",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 edición local|$1 ediciones locales|0=Sin ediciones locales}}",
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 en las últimas 24 horas}})",
 	"ipinfo-property-no-data": "No disponible",
+	"ipinfo-property-no-access": "Sin acceso",
 	"ipinfo-widget-error-default": "No se pudo recuperar la información de la IP.",
 	"ipinfo-widget-error-no-data": "No hay datos para esta dirección IP desde $1.",
 	"ipinfo-widget-error-wrong-ip": "La dirección IP proporcionada no coincide con el registro o la revisión.",
@@ -75,5 +78,9 @@
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|vio}} la ventana emergente de información sobre la IP $3. $4.",
 	"ipinfo-change-access-level-enable": "activó",
 	"ipinfo-change-access-level-disable": "desactivó",
-	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|su}} propio acceso a la herramienta de información sobre direcciones IP"
+	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|su}} propio acceso a la herramienta de información sobre direcciones IP",
+	"log-action-filter-ipinfo": "Tipo de operación con IPInfo:",
+	"log-action-filter-ipinfo-change_access": "Activar o desactivar la herramienta",
+	"log-action-filter-ipinfo-view_infobox": "Ver el cuadro de información",
+	"log-action-filter-ipinfo-view_popup": "Ver la ventana emergente"
 }
