@@ -81,9 +81,9 @@
 	"ipinfo-change-access-level-enable": "enabled",
 	"ipinfo-change-access-level-disable": "disabled",
 	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|his|her|their}} own access to IPInfo",
-	"log-action-filter-ipinfo": "Type of IPInfo operation:",
-	"log-action-filter-ipinfo-change_access": "Enable or disable of tool",
-	"log-action-filter-ipinfo-view_infobox": "View of infobox data",
-	"log-action-filter-ipinfo-view_popup": "View of popup data",
+	"log-action-filter-ipinfo": "Type of IP Information operation:",
+	"log-action-filter-ipinfo-change_access": "Tool enabled or disabled",
+	"log-action-filter-ipinfo-view_infobox": "Data viewed in information box",
+	"log-action-filter-ipinfo-view_popup": "Data viewed in popup",
 	"ipinfo-property-tooltip-asn": "A unique identifier for networks assigned to a region and further to organizations like governments and ISPs"
 }
