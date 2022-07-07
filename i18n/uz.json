@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Malikxan"
+		]
+	},
+	"ipinfo-extensionname": "IP haqida maʼlumot",
+	"ipinfo-infobox-title": "IP haqida maʼlumot",
+	"ipinfo-property-label-location": "Joylashuv",
+	"ipinfo-property-label-ipversion": "Versiya",
+	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "Tashkilot",
+	"ipinfo-property-label-proxytypes": "Haqiqiy IP/proksi",
+	"ipinfo-property-value-proxytype-isanonymousvpn": "Anonim VPN",
+	"ipinfo-property-value-proxytype-ispublicproxy": "Ochiq proksi",
+	"ipinfo-property-value-proxytype-ishostingprovider": "Hosting-provayder",
+	"ipinfo-property-label-source": "Manba",
+	"ipinfo-property-label-active-blocks": "Faol bloklar",
+	"ipinfo-active-blocks-url-text": "Qaydlar",
+	"ipinfo-property-label-edits": "Hissa",
+	"ipinfo-value-recent-edits": "({{PLURAL:$1|oxirgi 24 soatda $1}})",
+	"ipinfo-property-no-data": "Mavjud emas",
+	"ipinfo-beta-feature-title": "IP haqida maʼlumot",
+	"prefs-ipinfo": "IP haqida maʼlumot",
+	"group-no-ipinfo": "IPInfodan chetlatilgan foydalanuvchilar",
+	"ipinfo-log-name": "IPInfo qaydi",
+	"ipinfo-change-access-level-enable": "yoqilgan",
+	"ipinfo-change-access-level-disable": "oʻchirilgan"
+}

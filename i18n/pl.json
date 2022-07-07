@@ -28,6 +28,7 @@
 	"ipinfo-property-tooltip-connectiontype": "Technologia, za pomocą której łączą się z Internetem.",
 	"ipinfo-property-tooltip-usertype": "Rodzaj podmiotu będącego właścicielem połączenia internetowego.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 aktywna blokada|$1 aktywne blokady|$1 aktywnych blokad|0=Brak aktywnych blokad}}.",
+	"ipinfo-active-blocks-url-text": "Rejestr",
 	"ipinfo-property-label-edits": "Wkład",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 lokalna edycja|$1 lokalne edycje|$1 lokalnych edycji|0=Brak edycji lokalnych}}",
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 w ciągu ostatnich 24 godzin}})",

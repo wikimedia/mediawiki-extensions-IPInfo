@@ -11,6 +11,7 @@
 	"ipinfo-property-label-connectiontype": "Metodo di connessione",
 	"ipinfo-property-label-source": "Fonte",
 	"ipinfo-property-label-active-blocks": "Blocchi attivi",
+	"ipinfo-active-blocks-url-text": "Registri",
 	"ipinfo-property-no-data": "Non disponibile",
 	"ipinfo-widget-error-default": "Non è stato possibile recuperare le informazioni sull'IP.",
 	"prefs-ipinfo": "Informazioni su IP"
