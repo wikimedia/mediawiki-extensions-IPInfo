@@ -10,6 +10,8 @@ use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWikiIntegrationTestCase;
+use Message;
+use User;
 
 /**
  * @group IPInfo
@@ -236,4 +238,124 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	/**
+	 * @dataProvider provideOnSaveUserOptionsRestoreDefaultPreferences
+	 */
+	public function testOnSaveUserOptionsRestoreDefaultPreferences( $originalOptions, $modifiedOptions ) {
+		$user = $this->createMock( UserIdentity::class );
+		$logger = $this->createMock( Logger::class );
+
+		$loggerFactory = $this->createMock( LoggerFactory::class );
+		$loggerFactory->method( 'getLogger' )
+			->willReturn( $logger );
+		$handler = $this->getPreferencesHandler( [
+			'loggerFactory' => $loggerFactory,
+		] );
+
+		$handler->onSaveUserOptions( $user, $modifiedOptions, $originalOptions );
+
+		$this->assertTrue( $modifiedOptions[ 'ipinfo-enable' ] );
+		$this->assertFalse( $modifiedOptions[ 'ipinfo-use-agreement' ] );
+	}
+
+	public function provideOnSaveUserOptionsRestoreDefaultPreferences() {
+		return [
+			'Disable beta feature' => [
+				[
+					'ipinfo-beta-feature-enable' => true
+				],
+				[
+					'ipinfo-beta-feature-enable' => false
+				],
+			],
+			'Enable beta feature' => [
+				[
+					'ipinfo-beta-feature-enable' => false
+				],
+				[
+					'ipinfo-beta-feature-enable' => true
+				],
+			],
+			'Enable auto enroll' => [
+				[
+					'ipinfo-beta-feature-enable' => false,
+					'betafeatures-auto-enroll' => false
+				],
+				[
+					'betafeatures-auto-enroll' => true
+				],
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideCheckAllIPInfoAgreements
+	 */
+	public function testCheckAllIPInfoAgreements( $value, $allData ) {
+		$logger = $this->createMock( Logger::class );
+
+		$loggerFactory = $this->createMock( LoggerFactory::class );
+		$loggerFactory->method( 'getLogger' )
+			->willReturn( $logger );
+
+		$handler = $this->getPreferencesHandler( [
+			'loggerFactory' => $loggerFactory,
+		] );
+
+		$checkAgreements = $handler::checkAllIPInfoAgreements( $value, $allData );
+
+		if ( is_bool( $checkAgreements ) ) {
+			$this->assertTrue( $checkAgreements );
+		} else {
+			$this->assertInstanceOf( Message::class, $checkAgreements );
+		}
+	}
+
+	public function provideCheckAllIPInfoAgreements() {
+		return [
+			'ipinfo-preference-use-agreement is null' => [
+				null,
+				[],
+			],
+			'ipinfo-preference-use-agreement is not checked' => [
+				'0',
+				[],
+			],
+			'ipinfo-preference-use-agreement is checked and ipinfo-enable is not checked' => [
+				'1',
+				[
+					'ipinfo-enable' => '0'
+				],
+			],
+			'Both ipinfo-preference-use-agreement and ipinfo-enable are checked' => [
+				'1',
+				[
+					'ipinfo-enable' => '1'
+				],
+			],
+		];
+	}
+
+	public function testOnGetPreferences() {
+		$user = $this->createMock( User::class );
+
+		$logger = $this->createMock( Logger::class );
+		$loggerFactory = $this->createMock( LoggerFactory::class );
+		$loggerFactory->method( 'getLogger' )
+			->willReturn( $logger );
+
+		$permissionManager = $this->createMock( PermissionManager::class );
+		$permissionManager->method( 'userHasRight' )
+			->willReturn( true );
+
+		$handler = $this->getPreferencesHandler( [
+			'loggerFactory' => $loggerFactory,
+			'permissionManager' => $permissionManager
+		] );
+
+		$preferences = [];
+		$handler->onGetPreferences( $user, $preferences );
+		$this->assertArrayHasKey( 'ipinfo-enable', $preferences );
+		$this->assertArrayHasKey( 'ipinfo-use-agreement', $preferences );
+	}
 }
