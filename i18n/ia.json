@@ -75,9 +75,9 @@
 	"ipinfo-change-access-level-enable": "activate",
 	"ipinfo-change-access-level-disable": "disactivate",
 	"logentry-ipinfo-change_access": "$1 ha $4 {{GENDER:$2|su}} proprie accesso a IPInfo",
-	"log-action-filter-ipinfo": "Typo de operation IPInfo:",
-	"log-action-filter-ipinfo-change_access": "Activation o disactivation del instrumento",
-	"log-action-filter-ipinfo-view_infobox": "Inspection del datos del quadro de information",
-	"log-action-filter-ipinfo-view_popup": "Inspection del datos del fenestra emergente",
+	"log-action-filter-ipinfo": "Typo de operation de information IP:",
+	"log-action-filter-ipinfo-change_access": "Instrumento activate o disactivate",
+	"log-action-filter-ipinfo-view_infobox": "Datos inspectate in le quadro de information",
+	"log-action-filter-ipinfo-view_popup": "Datos inspectate in le fenestra emergente",
 	"ipinfo-property-tooltip-asn": "Un identificator unic pro retes assignate a un region e ulteriormente a organisationes como governamentos e fornitores de accesso a internet"
 }

@@ -3,6 +3,7 @@
 		"authors": [
 			"FiberAhmed",
 			"Michel Bakni",
+			"Mohanad Kh",
 			"NancyMilad",
 			"Shbib Al-Subaie",
 			"أَحمد",
@@ -79,5 +80,7 @@
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|استعرض|استعرضت}} نافذة معلومات بروتوكول الإنترنت الخاصة بـ $3. $4.",
 	"ipinfo-change-access-level-enable": "فعّل",
 	"ipinfo-change-access-level-disable": "عطَّل",
-	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|وصوله|وصولها|وصولهم}} إلى معلومات عنوان بروتوكول الإنترنت"
+	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|وصوله|وصولها|وصولهم}} إلى معلومات عنوان بروتوكول الإنترنت",
+	"log-action-filter-ipinfo-view_infobox": "البيانات معروضة في صندوق معلومات",
+	"log-action-filter-ipinfo-view_popup": "البيانات معروضة في نافذة منبثقة"
 }
