@@ -77,9 +77,9 @@
 	"ipinfo-change-access-level-enable": "włączył",
 	"ipinfo-change-access-level-disable": "wyłączył",
 	"logentry-ipinfo-change_access": "$1 {{GENDER:$2|$4|$4a|$2(a)}} swój dostęp do narzędzia IPInfo",
-	"log-action-filter-ipinfo": "Rodzaj operacji narzędzia IPInfo",
+	"log-action-filter-ipinfo": "Rodzaj operacji narzędzia informacji o IP",
 	"log-action-filter-ipinfo-change_access": "Włączanie bądź wyłączanie narzędzia",
-	"log-action-filter-ipinfo-view_infobox": "Wyświetlanie infoboksu z danymi",
-	"log-action-filter-ipinfo-view_popup": "Wyświetlanie okna z danymi",
+	"log-action-filter-ipinfo-view_infobox": "Dane wyświetlone w infoboksie",
+	"log-action-filter-ipinfo-view_popup": "Dane wyświetlone w wyskakującym okienku",
 	"ipinfo-property-tooltip-asn": "Unikalny identyfikator przypisywany sieciom powiązanym z konkretnym regionem lub organizacjami jak rządy państw oraz dostawcy internetu"
 }

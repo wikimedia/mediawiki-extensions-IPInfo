@@ -42,7 +42,7 @@
 	"ipinfo-widget-error-wrong-ip": "La dirección IP proporcionada no coincide con el registro o la revisión.",
 	"ipinfo-widget-error-ip-no-edits": "No se puede proporcionar información sobre esta dirección IP porque no ha realizado edición alguna en esta wiki.",
 	"ipinfo-preference-enable": "Muestra la herramienta de información de IP en la página Especial:Contribuciones para usuarios no registrados.",
-	"ipinfo-preference-use-agreement": "Acepto usar esta información para mi trabajo de patrullaje y anti-vandalismo.",
+	"ipinfo-preference-use-agreement": "Acepto usar esta información para mis labores de patrullaje y contra el vandalismo.",
 	"ipinfo-preference-agreement-error": "Debes habilitar la herramienta de información de IP antes de aceptar sus condiciones de uso.",
 	"ipinfo-infobox-use-terms": "La herramienta de información sobre IPs usa información de la base de datos MaxMind para mostrar detalles como la localización, si es un proxy, así como cuántos dispositivos están compartiendo esta dirección IP.",
 	"ipinfo-infobox-submit-agreement": "Activar la herramienta de información sobre IPs",
@@ -80,7 +80,7 @@
 	"ipinfo-change-access-level-disable": "desactivó",
 	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|su}} propio acceso a la herramienta de información sobre direcciones IP",
 	"log-action-filter-ipinfo": "Tipo de operación con IPInfo:",
-	"log-action-filter-ipinfo-change_access": "Activar o desactivar la herramienta",
-	"log-action-filter-ipinfo-view_infobox": "Ver el cuadro de información",
-	"log-action-filter-ipinfo-view_popup": "Ver la ventana emergente"
+	"log-action-filter-ipinfo-change_access": "Activación o desactivación de la herramienta",
+	"log-action-filter-ipinfo-view_infobox": "Ver datos en el cuadro de información",
+	"log-action-filter-ipinfo-view_popup": "Ver datos en la ventana emergente"
 }

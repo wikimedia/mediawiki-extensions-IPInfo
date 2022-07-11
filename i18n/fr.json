@@ -89,8 +89,8 @@
 	"ipinfo-change-access-level-disable": "désactivé",
 	"logentry-ipinfo-change_access": "$1{{GENDER:$2|}} a $4 son propre accès à IPInfo",
 	"log-action-filter-ipinfo": "Type d’opération sur IPInfo :",
-	"log-action-filter-ipinfo-change_access": "Activation ou désactivation de l’outil",
-	"log-action-filter-ipinfo-view_infobox": "Visualisation des données de la boîte d’informations",
-	"log-action-filter-ipinfo-view_popup": "Visualisation des données de fenêtre surgissante",
+	"log-action-filter-ipinfo-change_access": "Outil activé ou désactivé",
+	"log-action-filter-ipinfo-view_infobox": "Données visualisées dans la boîte d’informations",
+	"log-action-filter-ipinfo-view_popup": "Données visualisées dans la fenêtre surgissante",
 	"ipinfo-property-tooltip-asn": "Un identifiant unique pour les réseaux affectés à une région et de façon plus avancée aux organisations telles comme des gouvernements et des FAI."
 }

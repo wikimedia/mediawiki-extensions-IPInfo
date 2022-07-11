@@ -14,5 +14,6 @@
 	"ipinfo-active-blocks-url-text": "Registri",
 	"ipinfo-property-no-data": "Non disponibile",
 	"ipinfo-widget-error-default": "Non è stato possibile recuperare le informazioni sull'IP.",
-	"prefs-ipinfo": "Informazioni su IP"
+	"prefs-ipinfo": "Informazioni su IP",
+	"log-action-filter-ipinfo-change_access": "Strumento abilitato o disabilitato"
 }

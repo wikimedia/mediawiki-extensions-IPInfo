@@ -87,8 +87,8 @@
 	"ipinfo-change-access-level-disable": "禁用",
 	"logentry-ipinfo-change_access": "$1$4了{{GENDER:$2|他|她|他们}}自己对IP信息的访问权限",
 	"log-action-filter-ipinfo": "IP信息操作的类型：",
-	"log-action-filter-ipinfo-change_access": "启用或禁用工具",
-	"log-action-filter-ipinfo-view_infobox": "查看信息盒的数据",
-	"log-action-filter-ipinfo-view_popup": "查看弹出框的数据",
+	"log-action-filter-ipinfo-change_access": "工具启用或禁用",
+	"log-action-filter-ipinfo-view_infobox": "在信息框中查看的数据",
+	"log-action-filter-ipinfo-view_popup": "在弹出框中查看的数据",
 	"ipinfo-property-tooltip-asn": "网络唯一标识，分配给一个地区或一个组织，例如政府或互联网服务提供商"
 }
