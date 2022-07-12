@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Malikxan"
+		]
+	},
+	"ipinfo-extensionname": "IP haqida maʼlumot",
+	"ipinfo-infobox-title": "IP haqida maʼlumot",
+	"ipinfo-property-label-location": "Joylashuv",
+	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "Tashkilot",
+	"ipinfo-property-label-source": "Manba",
+	"prefs-ipinfo": "IP haqida maʼlumot"
+}
