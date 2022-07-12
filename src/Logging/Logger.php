@@ -3,7 +3,6 @@
 namespace MediaWiki\IPInfo\Logging;
 
 use ManualLogEntry;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentity;
 use Title;
@@ -68,11 +67,6 @@ class Logger {
 	private $actorStore;
 
 	/**
-	 * @var PermissionManager
-	 */
-	private $permissionManager;
-
-	/**
 	 * @var IDatabase
 	 */
 	private $dbw;
@@ -84,7 +78,6 @@ class Logger {
 
 	/**
 	 * @param ActorStore $actorStore
-	 * @param PermissionManager $permissionManager
 	 * @param IDatabase $dbw
 	 * @param int $delay The number of seconds after which a duplicate log entry can be
 	 *  created by `Logger::logViewInfobox` or `Logger::logViewPopup`
@@ -92,14 +85,12 @@ class Logger {
 	 */
 	public function __construct(
 		ActorStore $actorStore,
-		PermissionManager $permissionManager,
 		IDatabase $dbw,
 		int $delay
 	) {
 		Assert::parameter( $delay > 0, 'delay', 'delay must be positive' );
 
 		$this->actorStore = $actorStore;
-		$this->permissionManager = $permissionManager;
 		$this->dbw = $dbw;
 		$this->delay = $delay;
 	}
