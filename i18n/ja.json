@@ -38,6 +38,8 @@
 	"ipinfo-beta-feature-title": "IP情報",
 	"ipinfo-beta-feature-description": "IP情報ツールは巡回を行う利用者を支援し、IPアドレスに関する情報を得やすくするために提供されます。この情報はSpecial:ContributionsのページでIPアドレスを表示したときに利用できます。情報の要約ログ、投稿記録、最近の更新からポップアップで閲覧できるようになる予定です。",
 	"prefs-ipinfo": "IP情報",
+	"action-ipinfo": "版やログエントリに添えられたIP情報を取得する",
+	"right-ipinfo": "版やログエントリに添えられたIPアドレスの情報を取得する",
 	"action-ipinfo-view-log": "IP 情報にアクセスした利用者の記録の閲覧",
 	"right-ipinfo-view-log": "IP 情報にアクセスした利用者の記録を閲覧",
 	"ipinfo-log-header": "ここには\n# IPの情報を閲覧するためにIP情報ツールを使用した記録\n# IP情報ツール用の利用者アクセスレベルの変更の記録\nがあります。",
