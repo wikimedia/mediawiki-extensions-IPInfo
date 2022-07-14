@@ -13,7 +13,8 @@
 			"SunAfterRain",
 			"Tiger",
 			"Wuqianye",
-			"列维劳德"
+			"列维劳德",
+			"沈澄心"
 		]
 	},
 	"ipinfo-extensionname": "IP信息",
@@ -43,7 +44,7 @@
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1次本地编辑|0=无本地编辑}}",
 	"ipinfo-value-recent-edits": "（{{PLURAL:$1|最近24小时内$1次}}）",
 	"ipinfo-property-no-data": "不可用",
-	"ipinfo-property-no-access": "不许访问",
+	"ipinfo-property-no-access": "无权访问",
 	"ipinfo-widget-error-default": "无法检索此IP的信息。",
 	"ipinfo-widget-error-no-data": "$1中没有此IP地址的数据。",
 	"ipinfo-widget-error-wrong-ip": "提供的IP地址与日志或修订版本不匹配。",
