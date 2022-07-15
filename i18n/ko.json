@@ -57,6 +57,6 @@
 	"ipinfo-change-access-level-enable": "활성화됨",
 	"ipinfo-change-access-level-disable": "비활성화됨",
 	"log-action-filter-ipinfo-change_access": "도구 활성화 또는 비활성화",
-	"log-action-filter-ipinfo-view_infobox": "정보상자 데이터 뷰",
-	"log-action-filter-ipinfo-view_popup": "팝업 데이터 뷰"
+	"log-action-filter-ipinfo-view_infobox": "정보 상자에서 보이는 데이터",
+	"log-action-filter-ipinfo-view_popup": "팝업에서 보이는 데이터"
 }
