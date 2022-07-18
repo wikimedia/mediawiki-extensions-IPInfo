@@ -12,6 +12,7 @@
 			"Stang",
 			"SunAfterRain",
 			"Tiger",
+			"Tr jason",
 			"Wuqianye",
 			"列维劳德",
 			"沈澄心"
@@ -40,6 +41,7 @@
 	"ipinfo-property-tooltip-connectiontype": "连接到互联网所采用的技术。",
 	"ipinfo-property-tooltip-usertype": "拥有互联网接入的实体。",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|现有$1个封禁|0=当前未封禁}}。",
+	"ipinfo-active-blocks-url-text": "日志",
 	"ipinfo-property-label-edits": "贡献",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1次本地编辑|0=无本地编辑}}",
 	"ipinfo-value-recent-edits": "（{{PLURAL:$1|最近24小时内$1次}}）",
@@ -59,6 +61,7 @@
 	"ipinfo-rest-access-denied": "您没有权限来执行此操作",
 	"ipinfo-rest-access-denied-blocked-user": "您没有执行此操作的权限，因为您的的账户已被封禁",
 	"ipinfo-rest-revision-no-author": "您的帐户无权查看修订版本的作者",
+	"ipinfo-rest-revision-invalid-ip": "无法检索到非 IP 编者的 IP 信息。",
 	"ipinfo-rest-revision-registered": "无法获取修订版本中注册用户的IP信息",
 	"ipinfo-rest-log-nonexistent": "日志项不存在",
 	"ipinfo-rest-log-registered": "无法获取日志中注册用户的IP信息",

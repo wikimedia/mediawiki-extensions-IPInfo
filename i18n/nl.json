@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mainframe98"
+			"Mainframe98",
+			"Romaine"
 		]
 	},
 	"ipinfo-infobox-title": "IP-gegevens",
@@ -10,5 +11,6 @@
 	"ipinfo-property-label-source": "Bron",
 	"ipinfo-property-no-data": "Niet beschikbaar",
 	"ipinfo-rest-log-nonexistent": "Logboekregel bestaat niet",
+	"ipinfo-beta-feature-description": "De IP Info-tool is bedoeld om patrouilleurs uit te rusten met essentiële informatie over IP-adressen om hen te helpen bij hun taken. Deze informatie zal toegankelijk zijn op de Speciaal:Bijdragen-pagina van de IP-bewerker. Een verkorte versie van deze informatie zal beschikbaar zijn in een pop-up naast IP-adressen op [[Special:Log|Logboeken]]-, [[Special:Contributions|Bijdragen]]- en [[Special:RecentChanges|Recente wijzigingen]]-pagina's.",
 	"prefs-ipinfo": "IP-informatie"
 }
