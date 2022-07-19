@@ -18,5 +18,7 @@
 	"ipinfo-property-no-data": "情報なし",
 	"ipinfo-widget-error-default": "IP情報を取得できませんでした。",
 	"ipinfo-widget-error-wrong-ip": "指定されたIPアドレスに一致する記録や版は見つかりませんでした。",
-	"prefs-ipinfo": "IP情報"
+	"prefs-ipinfo": "IP情報",
+	"action-ipinfo": "版やログエントリに添えられたIP情報を取得する",
+	"right-ipinfo": "版やログエントリに添えられたIPアドレスの情報を取得する"
 }
