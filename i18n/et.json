@@ -20,7 +20,7 @@
 	"ipinfo-property-label-active-blocks": "Aktiivsed blokeeringud",
 	"ipinfo-property-tooltip-proxytypes": "Puhverserverid peidavad IP-aadresse. Mõnikord juhtub see automaatselt, näiteks kodu või ettevõtte puhverserveri kasutamisel. Teistel juhtudel kasutatakse puhverserverit sihilikult IP-aadressi päritolu varjamiseks.",
 	"ipinfo-property-tooltip-connectiontype": "Tehniline lahendus, mille kaudu kasutaja interetti ühendub.",
-	"ipinfo-property-tooltip-usertype": "Interneti ühendust omava üksuse tüüp.",
+	"ipinfo-property-tooltip-usertype": "Internetiühendust omava üksuse tüüp.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 aktiivne blokeering|$1 aktiivset blokeeringut|0=Aktiivsed blokeeringud puuduvad}}.",
 	"ipinfo-property-label-edits": "Kaastöö",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 kohalik muudatus|$1 kohalikku muudatust|0=Kohalikud muudatused puuduvad.}}",
