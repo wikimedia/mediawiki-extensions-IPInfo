@@ -5,7 +5,6 @@ namespace MediaWiki\IPInfo\Test\Unit\Logging;
 use Generator;
 use ManualLogEntry;
 use MediaWiki\IPInfo\Logging\Logger;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
@@ -83,18 +82,9 @@ class LoggerTest extends MediaWikiUnitTestCase {
 				] )
 			);
 
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'getUserPermissions' )
-			->will(
-				$this->returnValueMap( [
-					[ $performer, [ 'ipinfo-view-basic', 'ipinfo-view-full' ] ],
-				] )
-			);
-
 		$logger = $this->getMockBuilder( Logger::class )
 			->setConstructorArgs( [
 				$actorStore,
-				$permissionManager,
 				$database,
 				24 * 60 * 60,
 			] )
@@ -150,7 +140,6 @@ class LoggerTest extends MediaWikiUnitTestCase {
 	public function testLogViewNoLevel( string $logMethod ): void {
 		$logger = new Logger(
 			$this->createMock( ActorStore::class ),
-			$this->createMock( PermissionManager::class ),
 			$this->createMock( IDatabase::class ),
 			24 * 60 * 60
 		);
@@ -192,7 +181,6 @@ class LoggerTest extends MediaWikiUnitTestCase {
 		$logger = $this->getMockBuilder( Logger::class )
 			->setConstructorArgs( [
 				$this->createMock( ActorStore::class ),
-				$this->createMock( PermissionManager::class ),
 				$database,
 				24 * 60 * 60,
 			] )

@@ -2,7 +2,6 @@
 
 namespace MediaWiki\IPInfo\Logging;
 
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\ActorStore;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -19,24 +18,18 @@ class LoggerFactory {
 	/** @var ActorStore */
 	private $actorStore;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var IDatabase */
 	private $dbw;
 
 	/**
 	 * @param ActorStore $actorStore
-	 * @param PermissionManager $permissionManager
 	 * @param IDatabase $dbw
 	 */
 	public function __construct(
 		ActorStore $actorStore,
-		PermissionManager $permissionManager,
 		IDatabase $dbw
 	) {
 		$this->actorStore = $actorStore;
-		$this->permissionManager = $permissionManager;
 		$this->dbw = $dbw;
 	}
 
@@ -49,7 +42,6 @@ class LoggerFactory {
 	) {
 		return new Logger(
 			$this->actorStore,
-			$this->permissionManager,
 			$this->dbw,
 			$delay
 		);

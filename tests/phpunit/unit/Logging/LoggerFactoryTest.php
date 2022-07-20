@@ -4,7 +4,6 @@ namespace MediaWiki\IPInfo\Test\Unit\Logging;
 
 use MediaWiki\IPInfo\Logging\Logger;
 use MediaWiki\IPInfo\Logging\LoggerFactory;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\ActorStore;
 use MediaWikiUnitTestCase;
 use Wikimedia\Rdbms\IDatabase;
@@ -17,7 +16,6 @@ class LoggerFactoryTest extends MediaWikiUnitTestCase {
 	private function getFactory(): LoggerFactory {
 		return new LoggerFactory(
 			$this->createMock( ActorStore::class ),
-			$this->createMock( PermissionManager::class ),
 			$this->createMock( IDatabase::class )
 		);
 	}

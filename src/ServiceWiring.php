@@ -56,7 +56,6 @@ return [
 			->getConnectionRef( ILoadBalancer::DB_PRIMARY );
 		return new LoggerFactory(
 			$services->getActorStore(),
-			$services->getPermissionManager(),
 			$dbw
 		);
 	},
