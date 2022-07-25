@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Bjankuloski06"
+			"Bjankuloski06",
+			"Vlad5250"
 		]
 	},
 	"ipinfo-extensionname": "IP-инфо",
@@ -23,7 +24,7 @@
 	"ipinfo-property-value-proxytype-ishostingprovider": "Вдомувачки услужник",
 	"ipinfo-property-label-source": "Извор",
 	"ipinfo-property-label-active-blocks": "Активни блокови",
-	"ipinfo-property-tooltip-proxytypes": "Застапниците ги скриваат IP-адресите. Во некои случаи ова се случува автоматски, како кај домашните или  like for претпријатиските застапници, додека пак во други случаи ова се прави намерно за да се прикрие потеклото на IP-адресата.",
+	"ipinfo-property-tooltip-proxytypes": "Застапниците ги скриваат IP-адресите. Во некои случаи ова се случува автоматски, како кај домашните или претпријатиските застапници, додека пак во други случаи ова се прави намерно за да се прикрие потеклото на IP-адресата.",
 	"ipinfo-property-tooltip-connectiontype": "Технологијата преку која се поврзуваат на семрежјето.",
 	"ipinfo-property-tooltip-usertype": "Видот на единица што ја поседува семрежната врска.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 активен блок|$1 активни блокови|0=Нема активни блокови}}.",
