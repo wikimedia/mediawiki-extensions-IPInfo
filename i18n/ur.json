@@ -1,8 +1,19 @@
 {
 	"@metadata": {
 		"authors": [
-			"Muhammad Affan Wahid"
+			"Muhammad Affan Wahid",
+			"Obaid Raza"
 		]
 	},
-	"ipinfo-rest-access-denied": "آپ کو کارروائی کرنے کی اجازت نہیں ہے"
+	"ipinfo-desc": "آئی پی پتے کے بارے میں معلومات فراہم کرتا ہے۔",
+	"ipinfo-infobox-title": "آئی پی معلومات",
+	"ipinfo-property-label-location": "مقام",
+	"ipinfo-property-label-isp": "آئی ایس پی",
+	"ipinfo-property-label-asn": "اے ایس این",
+	"ipinfo-property-label-organization": "ادارہ",
+	"ipinfo-property-label-source": "ماخذ",
+	"ipinfo-widget-error-default": "آئی پی کی معلومات کو بازیافت نہیں کیا جا سکا۔",
+	"ipinfo-rest-access-denied": "آپ کو کارروائی کرنے کی اجازت نہیں ہے",
+	"ipinfo-rest-log-nonexistent": "لاگ موجود نہیں ہے۔",
+	"prefs-ipinfo": "آئی پی معلومات"
 }

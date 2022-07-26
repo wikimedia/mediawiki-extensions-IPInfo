@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Vlad5250"
+		]
+	},
+	"ipinfo-desc": "Предоставя информация за IP-адрес.",
+	"ipinfo-infobox-title": "Информация за IP-адреса",
+	"ipinfo-property-label-location": "Местоположение",
+	"ipinfo-property-label-isp": "Интернет доставчик",
+	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "Организация",
+	"ipinfo-property-label-source": "Източник",
+	"ipinfo-widget-error-default": "IP-информацията не можа да бъде извлечена.",
+	"ipinfo-widget-error-no-data": "Няма данни за този IP-адрес от $1.",
+	"ipinfo-widget-error-wrong-ip": "Предоставеният IP-адрес не съответства на дневника или версията.",
+	"ipinfo-rest-access-denied": "Нямате необходимите права за извършване на това действие",
+	"ipinfo-rest-access-denied-blocked-user": "Нямате необходимите права за извършване на това действие, защото сметката ви е блокирана",
+	"ipinfo-rest-revision-no-author": "Вашата сметка няма достъп за преглед на автора на редакцията",
+	"ipinfo-rest-revision-registered": "Не може да се извлече IP-информацията за редакциите от регистрираните потребители",
+	"ipinfo-rest-log-nonexistent": "Записът в дневника не съществува",
+	"ipinfo-rest-log-registered": "Не може да се извлече IP-информацията за дневниците от регистрираните потребители",
+	"ipinfo-rest-log-denied": "Вашата сметка няма достъп за преглед на изпълнителя на записа в дневника или на самия запис в дневника",
+	"ipinfo-source-geoip2": "Показаната тук информация идва от базите данни GeoIP2 от MaxMind. Може да не е напълно точно.",
+	"prefs-ipinfo": "Информация за IP-адреса",
+	"action-ipinfo": "получаване на информации за IP-адреси, прикачени към версии или записи в дневника",
+	"right-ipinfo": "Получаване на информации за IP-адреси, прикачени към версии или записи в дневника"
+}

@@ -2,14 +2,16 @@
 	"@metadata": {
 		"authors": [
 			"DDPAT",
-			"Base"
+			"Base",
+			"Ice bulldog",
+			"Ата"
 		]
 	},
-	"ipinfo-extensionname": "Інформація про IP",
+	"ipinfo-extensionname": "IP-інфо",
 	"ipinfo-desc": "Надає інформацію про IP-адресу.",
 	"ipinfo-infobox-title": "Інформація про IP",
 	"ipinfo-property-label-location": "Розташування",
-	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-isp": "Інтернет-провайдер",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Організація",
 	"ipinfo-property-label-source": "Джерело",
@@ -21,12 +23,12 @@
 	"ipinfo-rest-access-denied": "У вас немає дозволу на виконання цієї дії",
 	"ipinfo-rest-access-denied-blocked-user": "У вас немає дозволу на виконання цієї дії, оскільки ваш обліковий запис заблоковано",
 	"ipinfo-rest-revision-no-author": "Ваш обліковий запис не має доступу для перегляду автора версії",
-	"ipinfo-rest-revision-registered": "Не вдається отримати ipinfo для перегляду зареєстрованих користувачів",
+	"ipinfo-rest-revision-registered": "Не вдається отримати інформацію про IP для версій зареєстрованих користувачів",
 	"ipinfo-rest-log-nonexistent": "Запис журналу не існує",
-	"ipinfo-rest-log-registered": "Не вдається отримати ipinfo для журналів зареєстрованих користувачів",
+	"ipinfo-rest-log-registered": "Не вдається отримати інформацію про IP для журналів зареєстрованих користувачів",
 	"ipinfo-rest-log-denied": "Ваш обліковий запис не має доступу до перегляду виконавця запису журналу або самого запису журналу",
 	"ipinfo-source-geoip2": "Показана тут інформація надходить із баз даних GeoIP2 компанії MaxMind. Вона може бути не зовсім точною.",
 	"prefs-ipinfo": "Інформація про IP",
-	"action-ipinfo": "отримати інформацію про IP-адреси, додані до змін або записів журналу",
-	"right-ipinfo": "Отримати інформацію про IP-адреси, додані до змін або записів журналу"
+	"action-ipinfo": "отримання інформації про IP-адреси, пов'язані з версіями або записами журналу",
+	"right-ipinfo": "Отримання інформації про IP-адреси, пов'язані з версіями або записами журналів"
 }
