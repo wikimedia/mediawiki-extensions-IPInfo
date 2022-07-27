@@ -77,9 +77,9 @@
 	"ipinfo-change-access-level-enable": "овозможено",
 	"ipinfo-change-access-level-disable": "оневозможено",
 	"logentry-ipinfo-change_access": "$1 го стави {{GENDER:$2|неговиот|нејзиниот|неговиот}} сопствен пристап до IPInfo на $4",
-	"log-action-filter-ipinfo": "Вид на операција со IPInfo:",
-	"log-action-filter-ipinfo-change_access": "Вклучи или исклучи алатка",
-	"log-action-filter-ipinfo-view_infobox": "Погл. податоци во инфокутија",
-	"log-action-filter-ipinfo-view_popup": "Погл. податоци во отскочник",
+	"log-action-filter-ipinfo": "Вид на операција со информации за IP:",
+	"log-action-filter-ipinfo-change_access": "Алатката е овозможена или оневозможена",
+	"log-action-filter-ipinfo-view_infobox": "Податоци гледани во информациска кутија",
+	"log-action-filter-ipinfo-view_popup": "Податоци гледани во отскочник",
 	"ipinfo-property-tooltip-asn": "Единствена назнака за мрежи доделена на регион и потоа на организации како влади и семрежни услужници"
 }
