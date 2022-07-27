@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Snævar"
+		]
+	},
+	"ipinfo-infobox-title": "Upplýsingar um vistfang",
+	"ipinfo-property-label-location": "Staðsetning",
+	"ipinfo-property-label-organization": "Félagssamtök",
+	"ipinfo-property-label-proxytypes": "Raunveruleg IP/proxy",
+	"ipinfo-property-value-proxytype-isanonymousvpn": "Nafnlaus VPN",
+	"ipinfo-property-value-proxytype-ispublicproxy": "Opinn proxy",
+	"ipinfo-property-value-proxytype-isresidentialproxy": "Íbúa proxy",
+	"ipinfo-property-value-proxytype-islegitimateproxy": "Gildur proxy",
+	"ipinfo-property-value-proxytype-istorexitnode": "Tor útgangspunktur",
+	"ipinfo-property-value-proxytype-ishostingprovider": "Hýsingaraðili",
+	"ipinfo-property-label-source": "Uppruni",
+	"ipinfo-property-tooltip-proxytypes": "Proxy er milliliður sem felur vistföng. Í sumum tilfellum gerist þetta sjálfkrafa eins og með íbúa eða fyrirtækja proxy, í öðrum tilfellum er það gert viljandi til að fela uppruna vistfangsins.",
+	"ipinfo-property-tooltip-connectiontype": "Tæknin sem þau nota til að tengjast netinu.",
+	"ipinfo-property-tooltip-usertype": "Félagið sem á nettenginguna.",
+	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 virkt bann|$1 virk bönn|0=Engin virk bönn}}.",
+	"ipinfo-property-label-edits": "Framlög",
+	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 staðbundin breyting|$1 staðbundnar breytingar|0=engar staðbundnar breytingar}}",
+	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 á síðustu 24 klukkutímunum}})",
+	"ipinfo-widget-error-default": "Vistfangið fannst ekki.",
+	"ipinfo-widget-error-no-data": "Engin gögn eru til fyrir þetta vistfang frá $1.",
+	"ipinfo-widget-error-wrong-ip": "Uppgefið vistfang passaði ekki við aðgerðarskrá eða breytingu.",
+	"ipinfo-change-access-level-enable": "virkjaði",
+	"ipinfo-change-access-level-disable": "afvirkjaði"
+}
