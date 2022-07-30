@@ -55,7 +55,7 @@ class IPInfoLogFormatterTest extends LogFormatterTestCase {
 					],
 				],
 				'extra' => [
-					'text' => 'Sysop enabled their own access to IPInfo',
+					'text' => 'Sysop enabled their own access to IP Information',
 					'api' => [
 						'changeType' => Logger::ACTION_ACCESS_ENABLED,
 					],
@@ -71,7 +71,7 @@ class IPInfoLogFormatterTest extends LogFormatterTestCase {
 					],
 				],
 				'extra' => [
-					'text' => 'Sysop disabled their own access to IPInfo',
+					'text' => 'Sysop disabled their own access to IP Information',
 					'api' => [
 						'changeType' => Logger::ACTION_ACCESS_DISABLED,
 					],
