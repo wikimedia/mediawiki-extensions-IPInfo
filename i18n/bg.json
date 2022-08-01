@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"StanProg",
 			"Vlad5250"
 		]
 	},
@@ -66,7 +67,7 @@
 	"group-no-ipinfo": "Потребители, блокирани от IPInfo",
 	"group-no-ipinfo-member": "{{GENDER:$1|блокиран от IPInfo|блокирана от IPInfo}}",
 	"grouppage-no-ipinfo": "{{ns:project}}:Потребители, блокирани от IPInfo",
-	"ipinfo-log-name": "IPInfo-дневник",
+	"ipinfo-log-name": "Дневник на IPInfo",
 	"ipinfo-log-header": "Това е дневник на:\n# Използвания на инструмента IPInfo за преглед на информация за IP-адреси; и\n# Промени в нивата на потребителския достъп до инструмента.",
 	"ipinfo-log-access-level-ipinfo-view-basic": "Ограничен достъп",
 	"ipinfo-log-access-level-ipinfo-view-full": "Пълен достъп",
