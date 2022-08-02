@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Snævar"
+		]
+	},
+	"ipinfo-infobox-title": "Upplýsingar um vistfang",
+	"ipinfo-property-label-location": "Staðsetning",
+	"ipinfo-property-label-organization": "Félagssamtök",
+	"ipinfo-property-label-source": "Uppruni",
+	"ipinfo-widget-error-default": "Vistfangið fannst ekki.",
+	"ipinfo-widget-error-no-data": "Engin gögn eru til fyrir þetta vistfang frá $1.",
+	"ipinfo-widget-error-wrong-ip": "Uppgefið vistfang passaði ekki við aðgerðarskrá eða breytingu."
+}

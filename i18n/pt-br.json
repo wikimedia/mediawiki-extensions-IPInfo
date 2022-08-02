@@ -2,9 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Eduardo Addad de Oliveira",
-			"Eduardoaddad"
+			"Eduardoaddad",
+			"Stanglavine",
+			"TheEduGobi"
 		]
 	},
+	"ipinfo-extensionname": "Informações de IP",
 	"ipinfo-desc": "Fornece informações sobre um endereço IP.",
 	"ipinfo-infobox-title": "Informação de IP",
 	"ipinfo-property-label-location": "Localização",
