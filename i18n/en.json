@@ -51,7 +51,7 @@
 	"ipinfo-rest-access-denied-blocked-user": "You do not have permission to perform the action because your account is blocked",
 	"ipinfo-rest-revision-no-author": "Your account does not have access to view the author of the revision",
 	"ipinfo-rest-revision-invalid-ip": "Cannot retrieve IP information for a non-IP author",
-	"ipinfo-rest-revision-registered": "Cannot retrieve IP information for logs of registered users",
+	"ipinfo-rest-revision-registered": "Cannot retrieve IP information for revisions of registered users",
 	"ipinfo-rest-log-nonexistent": "Log entry does not exist",
 	"ipinfo-rest-log-registered": "Cannot retrieve IP information for logs of registered users",
 	"ipinfo-rest-log-denied": "Your account does not have access to view the performer of the log entry or the log entry itself",
