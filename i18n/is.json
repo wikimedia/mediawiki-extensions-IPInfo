@@ -32,6 +32,9 @@
 	"ipinfo-widget-error-default": "Vistfangið fannst ekki.",
 	"ipinfo-widget-error-no-data": "Engin gögn eru til fyrir þetta vistfang frá $1.",
 	"ipinfo-widget-error-wrong-ip": "Uppgefið vistfang passaði ekki við aðgerðarskrá eða breytingu.",
+	"ipinfo-preference-use-agreement": "Ég samþykki að nota þessar upplýsingar við vöktun og við vinnu gegn skemmdarverkum.",
+	"ipinfo-infobox-use-terms": "IP vistfangar tólið notar MaxMind gagnabankann til að sýna upplýsingar eins og staðsetningu, proxy og hversu mörg tæki eru að deila þessari IP tölu.",
+	"ipinfo-infobox-submit-agreement": "Virkja vistfanga upplýsinga tólið",
 	"ipinfo-change-access-level-enable": "virkjaði",
 	"ipinfo-change-access-level-disable": "afvirkjaði",
 	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|hans|hennar|þeirra}} eigin aðgang að IPInfo"
