@@ -33,10 +33,11 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 	var activeBlocks = this.getActiveBlocks( info.data[ 'ipinfo-source-block' ].numActiveBlocks );
 	var blockLogUrl, $blockLogLink;
 	blockLogUrl = mw.util.getUrl( 'Special:Log' ) + '?type=block&page=' + info.subject;
-	$blockLogLink = $( '<a>' )
+	$blockLogLink = $( '<div>' )
 		.addClass( 'ext-ipinfo-block-links' )
-		.attr( 'href', blockLogUrl )
-		.text( mw.msg( 'ipinfo-active-blocks-url-text' ) );
+		.append( $( '<a>' )
+			.attr( 'href', blockLogUrl )
+			.text( mw.msg( 'ipinfo-active-blocks-url-text' ) ) );
 
 	var $edits = this.getEdits(
 		info.data[ 'ipinfo-source-contributions' ].numLocalEdits,
