@@ -47,7 +47,7 @@
 	"ipinfo-rest-access-denied-blocked-user": "Du hast keine Berechtigung, die Aktion auszuführen, da dein Konto gesperrt ist",
 	"ipinfo-rest-revision-no-author": "Dein Benutzerkonto hat keinen Zugriff zum Anzeigen des Autors der Version",
 	"ipinfo-rest-revision-invalid-ip": "IP-Informationen für einen Nicht-IP-Autor können nicht abgerufen werden",
-	"ipinfo-rest-revision-registered": "IP-Informationen für Logbücher registrierter Benutzer können nicht abgerufen werden",
+	"ipinfo-rest-revision-registered": "IP-Informationen für Versionen registrierter Benutzer können nicht abgerufen werden",
 	"ipinfo-rest-log-nonexistent": "Logbucheintrag existiert nicht",
 	"ipinfo-rest-log-registered": "Kann ipinfo für Logbücher registrierter Benutzer nicht abrufen",
 	"ipinfo-rest-log-denied": "Dein Benutzerkonto hat keinen Zugriff auf den ausführenden Benutzer des Logbucheintrags oder den Protokolleintrag selbst.",

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Duke of Wikipädia",
 			"Eduardo Addad de Oliveira",
 			"Eduardoaddad",
 			"Stanglavine",
@@ -25,7 +26,7 @@
 	"ipinfo-rest-access-denied": "Você não tem permissão para realizar a ação",
 	"ipinfo-rest-access-denied-blocked-user": "Você não tem permissão para realizar a ação porque sua conta está bloqueada",
 	"ipinfo-rest-revision-no-author": "Sua conta não tem acesso para ver o autor da revisão",
-	"ipinfo-rest-revision-registered": "Não é possível recuperar ipinfo para revisões de usuários registrados",
+	"ipinfo-rest-revision-registered": "Não é possível recuperar informações de IP para revisões de usuários registrados",
 	"ipinfo-rest-log-nonexistent": "A entrada de registro não existe",
 	"ipinfo-rest-log-registered": "Não é possível recuperar ipinfo para registros de usuários registrados",
 	"ipinfo-rest-log-denied": "Sua conta não tem acesso para visualizar o executor da entrada de registro ou a própria entrada de registro",

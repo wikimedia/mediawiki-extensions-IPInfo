@@ -9,11 +9,14 @@
 	"ipinfo-property-label-location": "Località",
 	"ipinfo-property-label-ipversion": "Versione",
 	"ipinfo-property-label-connectiontype": "Metodo di connessione",
+	"ipinfo-property-value-proxytype-ispublicproxy": "Proxy pubblico",
+	"ipinfo-property-value-proxytype-istorexitnode": "Nodo di uscita Tor",
 	"ipinfo-property-label-source": "Fonte",
 	"ipinfo-property-label-active-blocks": "Blocchi attivi",
 	"ipinfo-active-blocks-url-text": "Registri",
 	"ipinfo-property-no-data": "Non disponibile",
 	"ipinfo-widget-error-default": "Non è stato possibile recuperare le informazioni sull'IP.",
+	"ipinfo-beta-feature-title": "Informazioni IP",
 	"prefs-ipinfo": "Informazioni su IP",
 	"log-action-filter-ipinfo-change_access": "Strumento abilitato o disabilitato"
 }
