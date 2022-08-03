@@ -85,5 +85,7 @@
 	"log-action-filter-ipinfo-change_access": "Tool enabled or disabled",
 	"log-action-filter-ipinfo-view_infobox": "Data viewed in information box",
 	"log-action-filter-ipinfo-view_popup": "Data viewed in popup",
-	"ipinfo-property-tooltip-asn": "A unique identifier for networks assigned to a region and further to organizations like governments and ISPs"
+	"ipinfo-property-tooltip-asn": "A unique identifier for networks assigned to a region and further to organizations like governments and ISPs",
+	"ipinfo-blocklist-url-text": "Block list"
+
 }

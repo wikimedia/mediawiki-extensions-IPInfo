@@ -31,13 +31,22 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 	);
 
 	var activeBlocks = this.getActiveBlocks( info.data[ 'ipinfo-source-block' ].numActiveBlocks );
-	var blockLogUrl, $blockLogLink;
+	var blockLogUrl, $blockLogLink, blockListUrl, $blockListLink;
 	blockLogUrl = mw.util.getUrl( 'Special:Log' ) + '?type=block&page=' + info.subject;
+	blockListUrl = mw.util.getUrl( 'Special:BlockList' ) + '?wpTarget' + info.subject;
 	$blockLogLink = $( '<div>' )
 		.addClass( 'ext-ipinfo-block-links' )
 		.append( $( '<a>' )
 			.attr( 'href', blockLogUrl )
 			.text( mw.msg( 'ipinfo-active-blocks-url-text' ) ) );
+
+	if ( info.data[ 'ipinfo-source-block' ].numActiveBlocks ) {
+		$blockListLink = $( '<div>' )
+			.addClass( 'ext-ipinfo-block-links' )
+			.append( $( '<a>' )
+				.attr( 'href', blockListUrl )
+				.text( mw.msg( 'ipinfo-blocklist-url-text' ) ) );
+	}
 
 	var $edits = this.getEdits(
 		info.data[ 'ipinfo-source-contributions' ].numLocalEdits,
@@ -86,7 +95,7 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 				this.generatePropertyMarkup(
 					'active-blocks',
 					activeBlocks,
-					mw.msg( 'ipinfo-property-label-active-blocks' ) ).append( $blockLogLink ),
+					mw.msg( 'ipinfo-property-label-active-blocks' ) ).append( $blockLogLink, $blockListLink ),
 				this.generatePropertyMarkup( 'edits', $edits, mw.msg( 'ipinfo-property-label-edits' ) ),
 				$( '<div>' ).addClass( 'ext-ipinfo-widget-property-source' ).html(
 					mw.message( 'ipinfo-source-geoip2' ).parse()
