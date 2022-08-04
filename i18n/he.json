@@ -50,7 +50,7 @@
 	"ipinfo-rest-access-denied-blocked-user": "אין לך הרשאה לבצע את הפעולה הזאת כי החשבון שלך חסום",
 	"ipinfo-rest-revision-no-author": "לחשבון שלך אין גישה להציג את מחבר הגרסה",
 	"ipinfo-rest-revision-invalid-ip": "לא ניתן לאחזר מידע IP עבור מחבר שאינו IP",
-	"ipinfo-rest-revision-registered": "לא ניתן לאחזר מידע על IP עבור יומנים של משתמשים רשומים",
+	"ipinfo-rest-revision-registered": "לא ניתן לאחזר מידע על IP עבור גרסאות של משתמשים רשומים",
 	"ipinfo-rest-log-nonexistent": "רשומת היומן אינה קיימת",
 	"ipinfo-rest-log-registered": "לא ניתן לאחר ipinfo על יומנים של משתמשים רשומים",
 	"ipinfo-rest-log-denied": "לחשבון שלך אין גישה להצגה של המבצע של רשומת היומן או של רשומת היומן עצמה",
