@@ -13,7 +13,6 @@ class SchemaHandlerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Check that the ipinfo_ip_changes table is created
-	 * @covers \MediaWiki\IPInfo\HookHandler\SchemaHandler::onLoadExtensionSchemaUpdates
 	 */
 	public function testSchemaUpdate() {
 		$services = $this->getServiceContainer();

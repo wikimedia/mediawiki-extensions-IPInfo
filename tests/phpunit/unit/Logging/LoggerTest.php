@@ -12,7 +12,7 @@ use Title;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
- * @coversDefaultClass \MediaWiki\IPInfo\Logging\Logger
+ * @covers \MediaWiki\IPInfo\Logging\Logger
  */
 class LoggerTest extends MediaWikiUnitTestCase {
 	public function provideLogViewDebounced(): Generator {
@@ -30,10 +30,6 @@ class LoggerTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideLogViewDebounced
-	 * @covers ::logViewInfobox
-	 * @covers ::logViewPopup
-	 * @covers ::debouncedLog
-	 * @covers ::log
 	 */
 	public function testLogViewDebounced(
 		string $logMethod,
@@ -133,9 +129,6 @@ class LoggerTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideTestLogViewNoLevel
-	 * @covers ::__construct
-	 * @covers ::logViewInfobox
-	 * @covers ::logViewPopup
 	 */
 	public function testLogViewNoLevel( string $logMethod ): void {
 		$logger = new Logger(
@@ -166,8 +159,6 @@ class LoggerTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideLogAccess
-	 * @covers ::logAccessEnabled
-	 * @covers ::logAccessDisabled
 	 */
 	public function testLogAccess( $logMethod, $changeType ) {
 		$name = 'Foo';

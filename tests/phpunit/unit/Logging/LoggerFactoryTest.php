@@ -10,7 +10,7 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @coversDefaultClass \MediaWiki\IPInfo\Logging\LoggerFactory
+ * @covers \MediaWiki\IPInfo\Logging\LoggerFactory
  */
 class LoggerFactoryTest extends MediaWikiUnitTestCase {
 	private function getFactory(): LoggerFactory {
@@ -20,17 +20,11 @@ class LoggerFactoryTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::__construct
-	 */
 	public function testCreateFactory(): void {
 		$factory = $this->getFactory();
 		$this->assertInstanceOf( LoggerFactory::class, $factory );
 	}
 
-	/**
-	 * @covers ::getLogger
-	 */
 	public function testGetLogger(): void {
 		$delay = 60;
 		$factory = $this->getFactory();

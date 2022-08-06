@@ -6,7 +6,7 @@ use LogFormatterTestCase;
 use MediaWiki\IPInfo\Logging\Logger;
 
 /**
- * @coversDefaultClass \MediaWiki\IPInfo\Logging\IPInfoLogFormatter
+ * @covers \MediaWiki\IPInfo\Logging\IPInfoLogFormatter
  */
 class IPInfoLogFormatterTest extends LogFormatterTestCase {
 	public function provideIPInfoLogDatabaseRows(): array {
@@ -82,7 +82,6 @@ class IPInfoLogFormatterTest extends LogFormatterTestCase {
 
 	/**
 	 * @dataProvider provideIPInfoLogDatabaseRows
-	 * @covers ::getMessageParameters
 	 */
 	public function testIPInfoLogDatabaseRows( $row, $extra ): void {
 		$this->setGroupPermissions( 'sysop', 'ipinfo-view-log', true );
