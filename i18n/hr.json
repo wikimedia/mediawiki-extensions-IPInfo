@@ -24,6 +24,7 @@
 	"ipinfo-property-tooltip-connectiontype": "Tehnologija kojom se spaja na internet.",
 	"ipinfo-property-tooltip-usertype": "Vrsta vlasnika ove internetske veze.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 aktivna blokada|$1 aktivne blokade|$1 aktivnih blokada|0=Bez aktivnih blokada}}.",
+	"ipinfo-active-blocks-url-text": "Evidencije",
 	"ipinfo-property-label-edits": "Doprinosi",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 lokalno uređivanje|$1 lokalna uređivanja|$1 lokalnih uređivanja|0=Bez lokalnih uređivanja}}",
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 u zadnja 24 sata}})",
@@ -56,5 +57,6 @@
 	"ipinfo-log-access-level-ipinfo-view-basic": "Ograničeni pristup",
 	"ipinfo-log-access-level-ipinfo-view-full": "Puni pristup",
 	"ipinfo-change-access-level-enable": "omogućeno",
-	"ipinfo-change-access-level-disable": "onemogućeno"
+	"ipinfo-change-access-level-disable": "onemogućeno",
+	"ipinfo-property-tooltip-asn": "Jedinstveni mrežni identifikator dodijeljen regiji te organizacijama kao što su vlade i davatelji internetskih usluga"
 }
