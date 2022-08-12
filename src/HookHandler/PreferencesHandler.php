@@ -176,9 +176,9 @@ class PreferencesHandler implements GetPreferencesHook {
 		$autoEnrollWillEnable = $this->isTruthy( $modifiedOptions, 'betafeatures-auto-enroll' );
 
 		if (
-			$betaFeatureIsEnabled && $betaFeatureWillDisable ||
-			$betaFeatureIsDisabled && $betaFeatureWillEnable ||
-			$betaFeatureIsDisabled && $autoEnrollIsDisabled && $autoEnrollWillEnable
+			( $betaFeatureIsEnabled && $betaFeatureWillDisable ) ||
+			( $betaFeatureIsDisabled && $betaFeatureWillEnable ) ||
+			( $betaFeatureIsDisabled && $autoEnrollIsDisabled && $autoEnrollWillEnable )
 		) {
 			// Restore default IPInfo preferences
 			$modifiedOptions[ 'ipinfo-enable' ] = true;
@@ -196,9 +196,9 @@ class PreferencesHandler implements GetPreferencesHook {
 		$ipInfoBasicWillDisable = $this->isFalsey( $modifiedOptions, 'ipinfo-enable' );
 		$ipInfoAgreementWillEnable = $this->isTruthy( $modifiedOptions, 'ipinfo-use-agreement' );
 		$ipInfoAgreementWillDisable = $this->isFalsey( $modifiedOptions, 'ipinfo-use-agreement' );
-		$ipInfoWillEnable = $ipInfoBasicWillEnable && $ipInfoAgreementWillEnable ||
-			$ipInfoBasicIsEnabled && !$ipInfoBasicWillDisable && $ipInfoAgreementWillEnable ||
-			$ipInfoAgreementIsEnabled && !$ipInfoAgreementWillDisable && $ipInfoBasicWillEnable;
+		$ipInfoWillEnable = ( $ipInfoBasicWillEnable && $ipInfoAgreementWillEnable ) ||
+			( $ipInfoBasicIsEnabled && !$ipInfoBasicWillDisable && $ipInfoAgreementWillEnable ) ||
+			( $ipInfoAgreementIsEnabled && !$ipInfoAgreementWillDisable && $ipInfoBasicWillEnable );
 		$ipInfoWillDisable = $ipInfoBasicWillDisable || $ipInfoAgreementWillDisable;
 
 		if ( ( !$ipInfoAgreementIsEnabled && $ipInfoAgreementWillEnable ) ||
@@ -211,8 +211,8 @@ class PreferencesHandler implements GetPreferencesHook {
 			);
 		}
 
-		if ( $ipInfoIsEnabled && $ipInfoWillDisable ||
-			$ipInfoIsDisabled && $ipInfoWillEnable
+		if ( ( $ipInfoIsEnabled && $ipInfoWillDisable ) ||
+			( $ipInfoIsDisabled && $ipInfoWillEnable )
 		) {
 			$logger = $this->loggerFactory->getLogger();
 			if ( $ipInfoWillEnable ) {
