@@ -79,5 +79,6 @@
 	"log-action-filter-ipinfo-change_access": "Werkzeug aktiviert oder deaktiviert",
 	"log-action-filter-ipinfo-view_infobox": "Daten im Informationsfeld angezeigt",
 	"log-action-filter-ipinfo-view_popup": "Daten im Pop-up angezeigt",
-	"ipinfo-property-tooltip-asn": "Eine eindeutige Kennung für Netze, die einer Region und darüber hinaus Organisationen wie Regierungen und Internetanbietern zugewiesen wird"
+	"ipinfo-property-tooltip-asn": "Eine eindeutige Kennung für Netze, die einer Region und darüber hinaus Organisationen wie Regierungen und Internetanbietern zugewiesen wird",
+	"ipinfo-blocklist-url-text": "Sperrliste"
 }
