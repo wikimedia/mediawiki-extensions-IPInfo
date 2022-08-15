@@ -79,5 +79,6 @@
 	"log-action-filter-ipinfo-change_access": "Instrumento activate o disactivate",
 	"log-action-filter-ipinfo-view_infobox": "Datos inspectate in le quadro de information",
 	"log-action-filter-ipinfo-view_popup": "Datos inspectate in le fenestra emergente",
-	"ipinfo-property-tooltip-asn": "Un identificator unic pro retes assignate a un region e ulteriormente a organisationes como governamentos e fornitores de accesso a internet"
+	"ipinfo-property-tooltip-asn": "Un identificator unic pro retes assignate a un region e ulteriormente a organisationes como governamentos e fornitores de accesso a internet",
+	"ipinfo-blocklist-url-text": "Lista de blocage"
 }

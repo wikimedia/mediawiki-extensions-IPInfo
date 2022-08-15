@@ -59,9 +59,9 @@
 	"prefs-ipinfo": "আইপির তথ্য",
 	"action-ipinfo-view-log": "কে আইপি তথ্য দেখেছেন তার লগ দেখার",
 	"right-ipinfo-view-log": "কে আইপি তথ্য দেখেছেন তার লগ দেখা",
-	"group-no-ipinfo": "আইপি তথ্য থেকে বাধাপ্রাপ্ত ব্যবহারকারী",
-	"group-no-ipinfo-member": "{{GENDER:$1|আইপি তথ্য থেকে বাধাপ্রাপ্ত}}",
-	"grouppage-no-ipinfo": "{{ns:project}}:আইপি তথ্য থেকে বাধাপ্রাপ্ত ব্যবহারকারী",
+	"group-no-ipinfo": "আইপি তথ্য সরঞ্জাম থেকে বাধাপ্রাপ্ত ব্যবহারকারী",
+	"group-no-ipinfo-member": "{{GENDER:$1|আইপি তথ্য সরঞ্জাম থেকে বাধাপ্রাপ্ত}}",
+	"grouppage-no-ipinfo": "{{ns:project}}:আইপি তথ্য সরঞ্জাম থেকে বাধাপ্রাপ্ত ব্যবহারকারী",
 	"ipinfo-log-name": "আইপি তথ্য লগ",
 	"ipinfo-log-access-level-ipinfo-view-basic": "সীমিত প্রবেশাধিকার",
 	"ipinfo-log-access-level-ipinfo-view-full": "পূর্ণ প্রবেশাধিকার",
@@ -73,5 +73,6 @@
 	"log-action-filter-ipinfo": "আইপি তথ্য কার্যক্রমের ধরন:",
 	"log-action-filter-ipinfo-change_access": "সরঞ্জাম সক্রিয় বা নিষ্ক্রিয় করা",
 	"log-action-filter-ipinfo-view_infobox": "তথ্য বাক্সে উপাত্ত দেখা",
-	"log-action-filter-ipinfo-view_popup": "পপআপে উপাত্ত দেখা"
+	"log-action-filter-ipinfo-view_popup": "পপআপে উপাত্ত দেখা",
+	"ipinfo-blocklist-url-text": "বধাদান তালিকা"
 }

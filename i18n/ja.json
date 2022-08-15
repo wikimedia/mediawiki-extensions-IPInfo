@@ -61,5 +61,6 @@
 	"ipinfo-log-access-level-ipinfo-view-basic": "アクセスが制限されています",
 	"ipinfo-log-access-level-ipinfo-view-full": "完全なアクセス",
 	"ipinfo-change-access-level-enable": "有効",
-	"ipinfo-change-access-level-disable": "無効"
+	"ipinfo-change-access-level-disable": "無効",
+	"ipinfo-blocklist-url-text": "ブロックリスト"
 }

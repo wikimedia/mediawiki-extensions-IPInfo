@@ -83,5 +83,6 @@
 	"log-action-filter-ipinfo-change_access": "הכלי הופעל או כובה",
 	"log-action-filter-ipinfo-view_infobox": "נתונים הוצגו בתיבת מידע",
 	"log-action-filter-ipinfo-view_popup": "נתונים הוצגו בחלון קופץ",
-	"ipinfo-property-tooltip-asn": "מזהה ייחודי לרשתות שהוקצה לאזור ולאחר מכן לארגונים כמו ממשלות וספקי אינטרנט"
+	"ipinfo-property-tooltip-asn": "מזהה ייחודי לרשתות שהוקצה לאזור ולאחר מכן לארגונים כמו ממשלות וספקי אינטרנט",
+	"ipinfo-blocklist-url-text": "רשימת חסימות"
 }

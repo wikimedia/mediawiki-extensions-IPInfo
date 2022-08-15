@@ -65,9 +65,9 @@
 	"right-ipinfo-view-full": "Пристап до целосен преглед на IP-информации приложени кон преработки или дневнички ставки",
 	"action-ipinfo-view-log": "преглед на записник на сите кои погледале информации за IP",
 	"right-ipinfo-view-log": "Преглед на записник на сите кои погледале информации за IP",
-	"group-no-ipinfo": "Корисници блокирани од IPInfo",
-	"group-no-ipinfo-member": "{{GENDER:$1|блокиран од IPInfo|блокирана од IPInfo}}",
-	"grouppage-no-ipinfo": "{{ns:project}}:Корисници блокирани од IPInfo",
+	"group-no-ipinfo": "Корисници блокирани од Информациите за IP",
+	"group-no-ipinfo-member": "{{GENDER:$1|блокиран од IPInfo|блокирана од алатката Информации за IP}}",
+	"grouppage-no-ipinfo": "{{ns:project}}:Корисници блокирани од алатката Информации за IP",
 	"ipinfo-log-name": "IPInfo-записник",
 	"ipinfo-log-header": "Ова е записник на:\n# Употреба на алатката IPInfo за преглед на информации за IP-адреси; и\n# Промени во степенот на пристап кај корисниците на алатката.",
 	"ipinfo-log-access-level-ipinfo-view-basic": "Ограничен пристап",
@@ -81,5 +81,6 @@
 	"log-action-filter-ipinfo-change_access": "Алатката е овозможена или оневозможена",
 	"log-action-filter-ipinfo-view_infobox": "Податоци гледани во информациска кутија",
 	"log-action-filter-ipinfo-view_popup": "Податоци гледани во отскочник",
-	"ipinfo-property-tooltip-asn": "Единствена назнака за мрежи доделена на регион и потоа на организации како влади и семрежни услужници"
+	"ipinfo-property-tooltip-asn": "Единствена назнака за мрежи доделена на регион и потоа на организации како влади и семрежни услужници",
+	"ipinfo-blocklist-url-text": "Список на блокирани"
 }

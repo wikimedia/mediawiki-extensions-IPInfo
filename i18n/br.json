@@ -21,10 +21,14 @@
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 degasadenn lec’hel||0=Degasadenn lec’hel ebet}}",
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 e-pad ar 24 eur tremenet}})",
 	"ipinfo-property-no-data": "Dianav",
-	"ipinfo-widget-error-ip-no-edits": "Ne c’heller ket kaout an titouroù evit an IP-mañ peogwir n’en deus graet degasadenn ebet er wiki-mañ.",
+	"ipinfo-widget-error-ip-no-edits": "Ne c’heller ket kaout an titouroù evit an IP-mañ peogwir n’eo bet graet degasadenn ebet gantañ.",
+	"ipinfo-preference-enable": "Diskwel an benveg Titouroù IP e pajenn Special:Contributions evit an aozerien dienskriv.",
 	"ipinfo-infobox-submit-agreement": "Gweredekaat ar benveg a bourvez titouroù diwar-benn ar chomlec’hioù IP",
 	"ipinfo-source-geoip2": "Dont a ra an titouroù diskwelet amañ eus diazez roadennoù GeoIP2 eus MaxMind. Gallout a rafent bezañ diresis.",
 	"ipinfo-beta-feature-title": "Titouroù diwar-benn ar chomlec’hioù IP",
 	"ipinfo-beta-feature-description": "Pal ar benveg Titouroù diwar-benn ar chomlec’hioù IP zo reiñ d’ar batrouilherien titouroù pouezus-kenañ evit skoazell anezho. Gallout a rit gwelout an titouroù-mañ war bajenn Special:Contributions an implijer a ra gant un IP. Diskwelet a vo un diverradenn eus an titouroù en ur prenestr popup e-kichen ar chomlec’hioù IP war pajennoù Marilh, Degasadennoù ha KemmoùDiwezhañ.",
-	"prefs-ipinfo": "Titouroù diwar-benn ur chomlec’h IP"
+	"prefs-ipinfo": "Titouroù diwar-benn ur chomlec’h IP",
+	"group-no-ipinfo": "Implijerien n’int ket aotreet da ober gant ar benveg Titouroù IP",
+	"group-no-ipinfo-member": "{{ns:project$1:n’eo ket aotreet da ober gant ar benveg Titouroù IP}}",
+	"grouppage-no-ipinfo": "{{ns:project}}:Implijerien n’int ket aotreet da ober gant ar benveg Titouroù IP"
 }

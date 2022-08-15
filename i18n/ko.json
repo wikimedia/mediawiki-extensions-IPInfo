@@ -67,5 +67,6 @@
 	"log-action-filter-ipinfo-change_access": "도구가 활성화 또는 비활성화됨",
 	"log-action-filter-ipinfo-view_infobox": "정보 상자에서 보이는 데이터",
 	"log-action-filter-ipinfo-view_popup": "팝업에서 보이는 데이터",
-	"ipinfo-property-tooltip-asn": "지역, 더 나아가 정부, ISP와 같은 단체에 할당된 네트워크의 고유 식별자입니다"
+	"ipinfo-property-tooltip-asn": "지역, 더 나아가 정부, ISP와 같은 단체에 할당된 네트워크의 고유 식별자입니다",
+	"ipinfo-blocklist-url-text": "차단 목록"
 }
