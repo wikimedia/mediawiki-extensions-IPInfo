@@ -33,7 +33,7 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 	var activeBlocks = this.getActiveBlocks( info.data[ 'ipinfo-source-block' ].numActiveBlocks );
 	var blockLogUrl, $blockLogLink, blockListUrl, $blockListLink;
 	blockLogUrl = mw.util.getUrl( 'Special:Log' ) + '?type=block&page=' + info.subject;
-	blockListUrl = mw.util.getUrl( 'Special:BlockList' ) + '?wpTarget' + info.subject;
+	blockListUrl = mw.util.getUrl( 'Special:BlockList' ) + '?wpTarget=' + info.subject;
 	$blockLogLink = $( '<div>' )
 		.addClass( 'ext-ipinfo-block-links' )
 		.append( $( '<a>' )
