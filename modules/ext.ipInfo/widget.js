@@ -283,4 +283,20 @@ ipInfoWidget.prototype.generatePropertyMarkup = function (
 	return $propertyContent;
 };
 
+/**
+ * @param {string|null} connectionType
+ * @return {string|null}
+ */
+ipInfoWidget.prototype.getConnectionTypes = function ( connectionType ) {
+	if ( connectionType ) {
+		// * ipinfo-property-value-connectiontype-cableordsl
+		// * ipinfo-property-value-connectiontype-cellular
+		// * ipinfo-property-value-connectiontype-corporate
+		// * ipinfo-property-value-connectiontype-dialup
+		return mw.msg( 'ipinfo-property-value-connectiontype-' + connectionType.toLowerCase().replace( /\//g, 'or' ) );
+	}
+
+	return null;
+};
+
 module.exports = ipInfoWidget;
