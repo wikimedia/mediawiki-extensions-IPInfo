@@ -19,6 +19,7 @@
 	"ipinfo-property-label-organization": "組織",
 	"ipinfo-property-label-connectiontype": "接続方法",
 	"ipinfo-property-label-proxytypes": "実IP/プロキシ",
+	"ipinfo-property-value-connectiontype-dialup": "ダイヤルアップ",
 	"ipinfo-property-value-proxytype-isanonymousvpn": "匿名VPN",
 	"ipinfo-property-value-proxytype-ispublicproxy": "公開プロキシ",
 	"ipinfo-property-value-proxytype-ishostingprovider": "ホスティングプロバイダー",
