@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Beta16",
-			"Mpayansilva"
+			"Mpayansilva",
+			"Valepert"
 		]
 	},
 	"ipinfo-infobox-title": "Informazioni IP",
@@ -10,5 +11,6 @@
 	"ipinfo-property-label-source": "Fonte",
 	"ipinfo-property-no-data": "Non disponibile",
 	"ipinfo-widget-error-default": "Non è stato possibile recuperare le informazioni sull'IP.",
+	"ipinfo-preference-use-agreement": "Accetto di utilizzare queste informazioni a scopi di patrolling e lotta ai vandalismi.",
 	"prefs-ipinfo": "Informazioni su IP"
 }
