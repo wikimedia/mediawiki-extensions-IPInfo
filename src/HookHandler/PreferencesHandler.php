@@ -58,53 +58,12 @@ class PreferencesHandler implements GetPreferencesHook {
 			return;
 		}
 
-		$preferences['ipinfo-enable'] = [
-			'type' => 'toggle',
-			'label-message' => 'ipinfo-preference-enable',
-			'section' => 'personal/ipinfo',
-			'noglobal' => true,
-		];
 		$preferences['ipinfo-use-agreement'] = [
 			'type' => 'toggle',
 			'label-message' => 'ipinfo-preference-use-agreement',
 			'section' => 'personal/ipinfo',
-			'validation-callback' => [
-				__CLASS__,
-				'checkAllIPInfoAgreements'
-			],
-			'disable-if' => [ '!==', 'ipinfo-enable', '1' ],
 			'noglobal' => true,
 		];
-	}
-
-	/**
-	 * Check pre-requisite ipinfo-preference-enable is checked
-	 * if ipinfo-preference-use-agreement is checked
-	 *
-	 * @param string|null $value Value of ipinfo-preference-use-agreement
-	 * @param array $allData All form data
-	 * @return bool|string|null true on success, string on error
-	 */
-	public static function checkAllIPInfoAgreements( ?string $value, array $allData ) {
-		if ( $value === null ) {
-			// Return true because form is still setting default values
-			// so there's nothing to check against yet
-			return true;
-		}
-
-		// If ipinfo-preference-use-agreement isn't checked, no need to validate
-		if ( !$value ) {
-			return true;
-		}
-
-		// If it is, check that ipinfo-enable is also checked
-		$ipInfoEnable = $allData['ipinfo-enable'];
-		if ( !$ipInfoEnable ) {
-			return wfMessage( 'ipinfo-preference-agreement-error' );
-		}
-
-		// Both are checked
-		return true;
 	}
 
 	/**
@@ -181,25 +140,18 @@ class PreferencesHandler implements GetPreferencesHook {
 			( $betaFeatureIsDisabled && $autoEnrollIsDisabled && $autoEnrollWillEnable )
 		) {
 			// Restore default IPInfo preferences
-			$modifiedOptions[ 'ipinfo-enable' ] = true;
 			$modifiedOptions[ 'ipinfo-use-agreement' ] = false;
 		}
 
 		// Is IPInfo already enabled?
-		$ipInfoBasicIsEnabled = $this->isTruthy( $originalOptions, 'ipinfo-enable' );
 		$ipInfoAgreementIsEnabled = $this->isTruthy( $originalOptions, 'ipinfo-use-agreement' );
-		$ipInfoIsEnabled = $ipInfoBasicIsEnabled && $ipInfoAgreementIsEnabled;
+		$ipInfoIsEnabled = $betaFeatureIsEnabled && $ipInfoAgreementIsEnabled;
 		$ipInfoIsDisabled = !$ipInfoIsEnabled;
 
-		// Is IPInfo about to be enabled/disabled?
-		$ipInfoBasicWillEnable = $this->isTruthy( $modifiedOptions, 'ipinfo-enable' );
-		$ipInfoBasicWillDisable = $this->isFalsey( $modifiedOptions, 'ipinfo-enable' );
 		$ipInfoAgreementWillEnable = $this->isTruthy( $modifiedOptions, 'ipinfo-use-agreement' );
 		$ipInfoAgreementWillDisable = $this->isFalsey( $modifiedOptions, 'ipinfo-use-agreement' );
-		$ipInfoWillEnable = ( $ipInfoBasicWillEnable && $ipInfoAgreementWillEnable ) ||
-			( $ipInfoBasicIsEnabled && !$ipInfoBasicWillDisable && $ipInfoAgreementWillEnable ) ||
-			( $ipInfoAgreementIsEnabled && !$ipInfoAgreementWillDisable && $ipInfoBasicWillEnable );
-		$ipInfoWillDisable = $ipInfoBasicWillDisable || $ipInfoAgreementWillDisable;
+		$ipInfoWillEnable = $betaFeatureIsEnabled && !$betaFeatureWillDisable && $ipInfoAgreementWillEnable;
+		$ipInfoWillDisable = $betaFeatureWillDisable || $ipInfoAgreementWillDisable;
 
 		if ( ( !$ipInfoAgreementIsEnabled && $ipInfoAgreementWillEnable ) ||
 			( $ipInfoAgreementIsEnabled && $ipInfoAgreementWillDisable ) ) {

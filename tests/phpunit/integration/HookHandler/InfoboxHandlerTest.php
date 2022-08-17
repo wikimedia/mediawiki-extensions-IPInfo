@@ -183,22 +183,9 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 
 	public function provideOnSpecialContributionsBeforeMainOutputPreferences() {
 		return [
-			'displays with correct preferences' => [
-				[
-					'ipinfo-enable',
-					'ipinfo-use-agreement',
-				],
-				true
-			],
-			'displays without ipinfo-use-agreement' => [
-				[
-					'ipinfo-enable',
-				],
-				true
-			],
-			'doesn\'t display with no relevant preferences' => [
+			'Display with no preferences set' => [
 				[],
-				false
+				true
 			],
 		];
 	}

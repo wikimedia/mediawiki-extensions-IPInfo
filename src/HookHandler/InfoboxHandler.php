@@ -52,10 +52,9 @@ class InfoboxHandler implements SpecialContributionsBeforeMainOutputHook {
 
 		if (
 			!$this->permissionManager->userHasRight( $accessingUser, 'ipinfo' ) ||
-			!$this->userOptionsLookup->getOption( $accessingUser, 'ipinfo-enable' ) ||
 			( $isBetaFeaturesLoaded &&
-			 !$this->userOptionsLookup->getOption( $accessingUser, 'ipinfo-beta-feature-enable' ) )
-			) {
+			!$this->userOptionsLookup->getOption( $accessingUser, 'ipinfo-beta-feature-enable' )
+			) ) {
 			return;
 		}
 
