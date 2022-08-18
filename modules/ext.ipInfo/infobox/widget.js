@@ -55,6 +55,7 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 
 	var $proxyTypes = this.getProxyTypes( info.data[ 'ipinfo-source-geoip2' ].proxyType );
 	var connectionTypes = this.getConnectionTypes( info.data[ 'ipinfo-source-geoip2' ].connectionType );
+	var userType = this.getUserTypes( info.data[ 'ipinfo-source-geoip2' ].userType );
 
 	var ipversion = mw.util.isIPv4Address( info.subject, true ) ?
 		mw.msg( 'ipinfo-value-ipversion-ipv4' ) :
@@ -81,7 +82,7 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 					mw.msg( 'ipinfo-property-tooltip-connectiontype' ) ),
 				this.generatePropertyMarkup(
 					'usertype',
-					info.data[ 'ipinfo-source-geoip2' ].userType,
+					userType,
 					mw.msg( 'ipinfo-property-label-usertype' ),
 					mw.msg( 'ipinfo-property-tooltip-usertype' ) ),
 				this.generatePropertyMarkup(

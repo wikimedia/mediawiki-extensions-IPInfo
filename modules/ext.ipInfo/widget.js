@@ -295,7 +295,33 @@ ipInfoWidget.prototype.getConnectionTypes = function ( connectionType ) {
 		// * ipinfo-property-value-connectiontype-dialup
 		return mw.msg( 'ipinfo-property-value-connectiontype-' + connectionType.toLowerCase().replace( /\//g, 'or' ) );
 	}
+	return null;
+};
 
+/**
+ * @param {string|null} userType
+ * @return {string|null}
+ */
+ipInfoWidget.prototype.getUserTypes = function ( userType ) {
+	if ( userType ) {
+		// * ipinfo-property-value-usertype-college
+		// * ipinfo-property-value-usertype-residential
+		// * ipinfo-property-value-usertype-searchenginespider
+		// * ipinfo-property-value-usertype-contentdeliverynetwork
+		// * ipinfo-property-value-usertype-consumerprivacynetwork
+		// * ipinfo-property-value-usertype-business
+		// * ipinfo-property-value-usertype-cafe
+		// * ipinfo-property-value-usertype-cellular
+		// * ipinfo-property-value-usertype-dialup
+		// * ipinfo-property-value-usertype-government
+		// * ipinfo-property-value-usertype-hosting
+		// * ipinfo-property-value-usertype-library
+		// * ipinfo-property-value-usertype-military
+		// * ipinfo-property-value-usertype-router
+		// * ipinfo-property-value-usertype-school
+		// * ipinfo-property-value-usertype-traveler
+		return mw.msg( 'ipinfo-property-value-usertype-' + userType.replace( /_/g, '' ) );
+	}
 	return null;
 };
 
