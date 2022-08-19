@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"MthulisiNcube"
+		]
+	},
+	"ipinfo-property-value-connectiontype-cableordsl": "Khebuli",
+	"ipinfo-property-value-connectiontype-cellular": "Selula",
+	"ipinfo-property-value-connectiontype-corporate": "Khophorethi",
+	"ipinfo-property-value-connectiontype-dialup": "lidzila"
+}

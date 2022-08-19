@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Vlad5250"
+		]
+	},
+	"ipinfo-property-value-usertype-business": "Biznis",
+	"ipinfo-property-value-usertype-government": "Vlada",
+	"ipinfo-property-value-usertype-library": "Biblioteka",
+	"ipinfo-property-value-usertype-school": "Škola"
+}
