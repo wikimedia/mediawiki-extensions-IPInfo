@@ -7,6 +7,9 @@
 		]
 	},
 	"ipinfo-property-label-organization": "संगठन",
+	"ipinfo-property-value-usertype-government": "सरकार",
+	"ipinfo-property-value-usertype-library": "पुस्तकालय",
+	"ipinfo-property-value-usertype-school": "विद्यालय",
 	"ipinfo-active-blocks-url-text": "लॉग",
 	"ipinfo-property-label-edits": "योगदान",
 	"ipinfo-beta-feature-title": "IP जानकारी",

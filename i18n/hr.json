@@ -15,6 +15,8 @@
 	"ipinfo-property-label-connectiontype": "Način spajanja",
 	"ipinfo-property-label-usertype": "Vlasnik veze",
 	"ipinfo-property-label-proxytypes": "Stvarni IP/Posrednički poslužitelj (proxy)",
+	"ipinfo-property-value-connectiontype-cellular": "Mobilna mreža",
+	"ipinfo-property-value-usertype-cellular": "Mobilna mreža",
 	"ipinfo-property-value-proxytype-isanonymousvpn": "Anonimni VPN",
 	"ipinfo-property-value-proxytype-ispublicproxy": "Javni posrednički poslužitelj (proxy)",
 	"ipinfo-property-value-proxytype-ishostingprovider": "Pružatelj hostinga",
@@ -54,9 +56,11 @@
 	"ipinfo-value-ipversion-ipv4": "IPv4",
 	"ipinfo-value-ipversion-ipv6": "IPv6",
 	"prefs-ipinfo": "Informacije o IP adresi",
+	"ipinfo-log-name": "Evidencije",
 	"ipinfo-log-access-level-ipinfo-view-basic": "Ograničeni pristup",
 	"ipinfo-log-access-level-ipinfo-view-full": "Puni pristup",
 	"ipinfo-change-access-level-enable": "omogućeno",
 	"ipinfo-change-access-level-disable": "onemogućeno",
-	"ipinfo-property-tooltip-asn": "Jedinstveni mrežni identifikator dodijeljen regiji te organizacijama kao što su vlade i davatelji internetskih usluga"
+	"ipinfo-property-tooltip-asn": "Jedinstveni mrežni identifikator dodijeljen regiji te organizacijama kao što su vlade i davatelji internetskih usluga",
+	"ipinfo-blocklist-url-text": "Popis blokiranja"
 }

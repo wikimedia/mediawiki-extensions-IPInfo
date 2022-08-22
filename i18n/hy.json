@@ -1,9 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"GeoO",
 			"Kareyac"
 		]
 	},
 	"ipinfo-property-label-ipversion": "Տարբերակ",
+	"ipinfo-property-value-usertype-business": "Բիզնես",
+	"ipinfo-property-value-usertype-library": "Գրադարան",
+	"ipinfo-property-value-usertype-traveler": "Ճամփորդ",
 	"ipinfo-property-label-source": "Աղբյուր"
 }
