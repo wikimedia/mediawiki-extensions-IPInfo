@@ -19,7 +19,7 @@ class IPInfoLogFormatter extends LogFormatter {
 			// Message keys used:
 			// - 'ipinfo-change-access-level-enable'
 			// - 'ipinfo-change-access-level-disable'
-			$params[3] = $this->msg( 'ipinfo-change-access-level-' . $params[3] );
+			$params[3] = $this->msg( 'ipinfo-change-access-level-' . $params[3], $params[1] );
 		}
 
 		if (
