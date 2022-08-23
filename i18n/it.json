@@ -10,6 +10,8 @@
 	"ipinfo-property-label-location": "Località",
 	"ipinfo-property-label-ipversion": "Versione",
 	"ipinfo-property-label-connectiontype": "Metodo di connessione",
+	"ipinfo-property-value-usertype-government": "Governo",
+	"ipinfo-property-value-usertype-school": "Scuola",
 	"ipinfo-property-value-proxytype-ispublicproxy": "Proxy pubblico",
 	"ipinfo-property-value-proxytype-istorexitnode": "Nodo di uscita Tor",
 	"ipinfo-property-label-source": "Fonte",

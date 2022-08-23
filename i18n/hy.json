@@ -6,8 +6,11 @@
 		]
 	},
 	"ipinfo-property-label-ipversion": "Տարբերակ",
+	"ipinfo-property-value-usertype-college": "Քոլեջ",
 	"ipinfo-property-value-usertype-business": "Բիզնես",
+	"ipinfo-property-value-usertype-cafe": "Սրճարան",
 	"ipinfo-property-value-usertype-library": "Գրադարան",
+	"ipinfo-property-value-usertype-school": "Դպրոց",
 	"ipinfo-property-value-usertype-traveler": "Ճամփորդ",
 	"ipinfo-property-label-source": "Աղբյուր"
 }
