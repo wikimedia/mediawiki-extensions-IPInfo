@@ -5,7 +5,8 @@
 			"Xiplus",
 			"SunAfterRain",
 			"Winston Sung",
-			"LuciferianThomas"
+			"LuciferianThomas",
+			"沈澄心"
 		]
 	},
 	"ipinfo-extensionname": "IP資訊",
@@ -64,6 +65,8 @@
 	"right-ipinfo-view-log": "查看IP資訊的獲取日誌",
 	"ipinfo-log-name": "IPInfo 日誌",
 	"ipinfo-log-header": "此日誌為：\n# 藉由 IPInfo 工具來檢視有關 IP 的使用情況，以及\n# 對於此工具的使用者存取級別更改。",
+	"ipinfo-log-access-level-ipinfo-view-basic": "受限存取",
+	"ipinfo-log-access-level-ipinfo-view-full": "完整存取",
 	"ipinfo-change-access-level-enable": "已啟用",
 	"ipinfo-change-access-level-disable": "已停用"
 }
