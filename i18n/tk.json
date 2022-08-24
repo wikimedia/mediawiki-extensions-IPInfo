@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"TayfunEt."
+		]
+	},
+	"ipinfo-property-value-usertype-college": "Kollej",
+	"ipinfo-property-value-usertype-cafe": "Kafe",
+	"ipinfo-property-value-usertype-cellular": "Öýjükli",
+	"ipinfo-property-value-usertype-government": "Hökümet",
+	"ipinfo-property-value-usertype-military": "Harby",
+	"ipinfo-property-value-usertype-school": "Mekdep",
+	"ipinfo-property-value-usertype-traveler": "Syýahatçy",
+	"ipinfo-property-value-usertype-residential": "Identaşaýyş jaýy",
+	"ipinfo-property-value-usertype-searchenginespider": "Gözleg motory möý",
+	"ipinfo-property-value-usertype-contentdeliverynetwork": "Mazmuny gowşurmak ulgamy",
+	"ipinfo-property-value-usertype-consumerprivacynetwork": "Sarp edijiniň gizlinlik ulgamy"
+}

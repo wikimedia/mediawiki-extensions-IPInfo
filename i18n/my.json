@@ -4,5 +4,13 @@
 			"Dr Lotus Black"
 		]
 	},
-	"ipinfo-property-label-location": "တည်နေရာ"
+	"ipinfo-property-label-location": "တည်နေရာ",
+	"ipinfo-property-value-usertype-college": "ကောလိပ်",
+	"ipinfo-property-value-usertype-business": "စီးပွားရေး",
+	"ipinfo-property-value-usertype-cafe": "လက်ဖက်ရည်ဆိုင်",
+	"ipinfo-property-value-usertype-government": "အစိုးရ",
+	"ipinfo-property-value-usertype-military": "စစ်တပ်",
+	"ipinfo-property-value-usertype-school": "ကျောင်း",
+	"ipinfo-property-value-usertype-traveler": "ခရီးသွား",
+	"ipinfo-property-value-usertype-residential": "လူနေထိုင်ရာ"
 }
