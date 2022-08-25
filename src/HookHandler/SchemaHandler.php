@@ -12,6 +12,6 @@ class SchemaHandler implements LoadExtensionSchemaUpdatesHook {
 		$extensionRoot = __DIR__ . '/../..';
 		$engine = $updater->getDB()->getType();
 
-		$updater->addExtensionTable( 'ipinfo_ip_changes', "$extensionRoot/sql/$engine/ipinfo_ip_changes.sql" );
+		$updater->dropExtensionTable( 'ipinfo_ip_changes' );
 	}
 }
