@@ -52,7 +52,7 @@
 	"ipinfo-log-name": "IP-tietoloki",
 	"ipinfo-log-access-level-ipinfo-view-basic": "Rajoitettu pääsy",
 	"ipinfo-log-access-level-ipinfo-view-full": "Täysi pääsy",
-	"ipinfo-change-access-level-enable": "otti käyttöön",
-	"ipinfo-change-access-level-disable": "poisti käytöstä",
+	"ipinfo-change-access-level-enable": "{{GENDER:$1|otti käyttöön}}",
+	"ipinfo-change-access-level-disable": "{{GENDER:$1|poisti käytöstä}}",
 	"logentry-ipinfo-change_access": "$1 {{GENDER:$2|$4}} IP-tietoon pääsyn"
 }

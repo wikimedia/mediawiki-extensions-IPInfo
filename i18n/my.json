@@ -4,13 +4,31 @@
 			"Dr Lotus Black"
 		]
 	},
+	"ipinfo-extensionname": "အိုင်ပီ အချက်အလက်",
+	"ipinfo-desc": "အိုင်ပီလိပ်စာတစ်ခုအကြောင်း အချက်အလက်ကို ပေးသည်။",
+	"ipinfo-infobox-title": "အိုင်ပီ သတင်းအချက်အလက်",
 	"ipinfo-property-label-location": "တည်နေရာ",
+	"ipinfo-property-label-ipversion": "ဗားရှင်း",
+	"ipinfo-property-label-organization": "အဖွဲ့အစည်း",
+	"ipinfo-property-label-connectiontype": "ချိတ်ဆက်မှုနည်းလမ်း",
+	"ipinfo-property-label-usertype": "ဆက်သွယ်မှု ပိုင်ရှင်",
+	"ipinfo-property-value-connectiontype-cellular": "ဆယ်လူလာ",
+	"ipinfo-property-value-connectiontype-corporate": "အသင်းအဖွဲ့",
 	"ipinfo-property-value-usertype-college": "ကောလိပ်",
 	"ipinfo-property-value-usertype-business": "စီးပွားရေး",
 	"ipinfo-property-value-usertype-cafe": "လက်ဖက်ရည်ဆိုင်",
+	"ipinfo-property-value-usertype-cellular": "ဆယ်လူလာ",
 	"ipinfo-property-value-usertype-government": "အစိုးရ",
 	"ipinfo-property-value-usertype-military": "စစ်တပ်",
 	"ipinfo-property-value-usertype-school": "ကျောင်း",
 	"ipinfo-property-value-usertype-traveler": "ခရီးသွား",
-	"ipinfo-property-value-usertype-residential": "လူနေထိုင်ရာ"
+	"ipinfo-property-value-usertype-residential": "လူနေထိုင်ရာ",
+	"ipinfo-active-blocks-url-text": "မှတ်​တမ်း​များ​",
+	"ipinfo-property-label-edits": "ဆောင်ရွက်ချက်များ",
+	"ipinfo-property-no-data": "မရရှိနိုင်ပါ",
+	"ipinfo-beta-feature-title": "အိုင်ပီ သတင်းအချက်အလက်",
+	"prefs-ipinfo": "အိုင်ပီ သတင်းအချက်အလက်",
+	"group-no-ipinfo": "အိုင်ပီသတင်းအချက်အလက်ကိရိယာမှ ပိတ်ပင်ခံရသောအသုံးပြုသူများ",
+	"group-no-ipinfo-member": "{{GENDER:$1|အိုင်ပီသတင်းအချက်အလက်ကိရိယာမှ ပိတ်ပင်ထားသည်}}",
+	"grouppage-no-ipinfo": "{{ns:project}}:အိုင်ပီသတင်းအချက်အလက်ကိရိယာမှ ပိတ်ပင်ခံရသောအသုံးပြုသူများ"
 }
