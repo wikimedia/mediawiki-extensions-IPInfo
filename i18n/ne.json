@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bada Kaji"
+		]
+	},
+	"ipinfo-property-value-usertype-business": "ब्यवसाय",
+	"ipinfo-property-value-usertype-government": "सरकार",
+	"ipinfo-property-value-usertype-library": "पुस्तकालय",
+	"ipinfo-property-value-usertype-school": "विद्यालय",
+	"ipinfo-property-value-usertype-traveler": "यात्री"
+}
