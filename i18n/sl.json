@@ -4,5 +4,6 @@
 			"Eleassar"
 		]
 	},
-	"group-no-ipinfo": "Uporabniki, blokirani z Orodjem za podatke o IP-jih"
+	"group-no-ipinfo": "Uporabniki, blokirani z Orodjem za podatke o IP-jih",
+	"ipinfo-change-access-level-disable": "{{GENDER:$1|onemogočil|onemogočila|onemogočil/a}}"
 }

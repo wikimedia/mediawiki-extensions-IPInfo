@@ -13,6 +13,10 @@
 	"ipinfo-property-label-connectiontype": "Kapcsolattípus",
 	"ipinfo-property-label-usertype": "Kapcsolattulajdonos",
 	"ipinfo-property-label-proxytypes": "Valódi IP/proxy",
+	"ipinfo-property-value-usertype-cafe": "Kávézó",
+	"ipinfo-property-value-usertype-library": "Könyvtár",
+	"ipinfo-property-value-usertype-school": "Iskola",
+	"ipinfo-property-value-usertype-traveler": "Utazó",
 	"ipinfo-property-value-proxytype-isanonymousvpn": "Névtelen VPN",
 	"ipinfo-property-value-proxytype-ispublicproxy": "Nyilvános proxy",
 	"ipinfo-property-value-proxytype-isresidentialproxy": "Lakossági proxy",
@@ -53,5 +57,6 @@
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|megtekintette}} $3 IP-információs felugró ablakát. $4.",
 	"ipinfo-change-access-level-enable": "engedélyezte",
 	"ipinfo-change-access-level-disable": "letiltotta",
-	"logentry-ipinfo-change_access": "$1 {{GENDER:$2|$4}} a saját hozzáférését az IP-információs eszközhöz"
+	"logentry-ipinfo-change_access": "$1 {{GENDER:$2|$4}} a saját hozzáférését az IP-információs eszközhöz",
+	"ipinfo-blocklist-url-text": "Tiltólista"
 }
