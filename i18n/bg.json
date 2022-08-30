@@ -6,7 +6,7 @@
 			"StanProg"
 		]
 	},
-	"ipinfo-desc": "Предоставя информация за IP-адрес.",
+	"ipinfo-desc": "Предоставя информация за IP адрес.",
 	"ipinfo-infobox-title": "Информация за IP адреса",
 	"ipinfo-property-label-location": "Местоположение",
 	"ipinfo-property-label-isp": "Интернет доставчик",
@@ -15,7 +15,7 @@
 	"ipinfo-property-label-source": "Източник",
 	"ipinfo-widget-error-default": "Информацията за IP адреса не можа да бъде извлечена.",
 	"ipinfo-widget-error-no-data": "Няма данни за този IP адрес от $1.",
-	"ipinfo-widget-error-wrong-ip": "Предоставеният IP-адрес не съответства на дневника или версията.",
+	"ipinfo-widget-error-wrong-ip": "Предоставеният IP адрес не съответства на дневника или версията.",
 	"ipinfo-rest-access-denied": "Нямате необходимите права за извършване на това действие",
 	"ipinfo-rest-access-denied-blocked-user": "Нямате необходимите права за извършване на това действие, защото сметката Ви е блокирана",
 	"ipinfo-rest-revision-no-author": "Вашата сметка няма достъп за преглед на автора на редакцията",

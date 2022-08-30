@@ -4,5 +4,9 @@
 			"Dr Lotus Black"
 		]
 	},
-	"ipinfo-property-label-location": "တည်နေရာ"
+	"ipinfo-extensionname": "အိုင်ပီ အချက်အလက်",
+	"ipinfo-desc": "အိုင်ပီလိပ်စာတစ်ခုအကြောင်း အချက်အလက်ကို ပေးသည်။",
+	"ipinfo-infobox-title": "အိုင်ပီ သတင်းအချက်အလက်",
+	"ipinfo-property-label-location": "တည်နေရာ",
+	"ipinfo-property-label-organization": "အဖွဲ့အစည်း"
 }
