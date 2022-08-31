@@ -32,15 +32,16 @@
 .ext-ipinfo-widget-property-label {
 	margin-bottom: 4px;
 	font-size: @ipinfo-property-font-size;
-	color: @color-base--subtle;
+	color: @color-subtle;
 }
 
 .ext-ipinfo-widget-property-value {
 	margin-left: 0;
+	color: @color-base;
 }
 
 .ext-ipinfo-widget-property-no-data > .ext-ipinfo-widget-property-value {
-	color: @color-base--subtle;
+	color: @color-placeholder;
 	font-style: italic;
 }
 
@@ -56,7 +57,7 @@
 }
 
 .ext-ipinfo-widget-value-recent-edits {
-	color: @color-base--subtle;
+	color: @color-subtle;
 }
 
 // Style the tooltip available for some properties in the infobox
@@ -81,6 +82,7 @@
 
 		&.oo-ui-buttonElement-frameless.oo-ui-iconElement:first-child {
 			margin-left: 0;
+			opacity: @icon-opacity-subtle;
 		}
 	}
 }
