@@ -63,8 +63,8 @@
 	"ipinfo-log-header": "ეს არის ჟურნალი შემდეგი ჩანაწერებისა:\n# IP-ის ინფორმაციის ხელსაწყოს გამოყენება IP-ის შესახებ ინფორმაციის სანახავად; და\n# მომხმარებლების მიერ ამ ხელსაწყოზე წვდომის ცვლილებები.",
 	"ipinfo-log-access-level-ipinfo-view-basic": "შეზღუდული წვდომა",
 	"ipinfo-log-access-level-ipinfo-view-full": "სრული წვდომა",
-	"logentry-ipinfo-view_infobox": "მომხმარებელმა $1 ნახა $3-ის IP-ის ინფორმაციის დაფა. $4.",
-	"logentry-ipinfo-view_popup": "მომხმარებელმა $1 ნახა $3-ის IP-ის ინფორმაციის კონტექსტური სარკმელი. $4.",
+	"logentry-ipinfo-view_infobox": "მომხმარებელმა $1 {{GENDER:$2|ნახა}} $3-ის IP-ის ინფორმაციის დაფა. $4.",
+	"logentry-ipinfo-view_popup": "მომხმარებელმა $1 {{GENDER:$2|ნახა}} $3-ის IP-ის ინფორმაციის კონტექსტური სარკმელი. $4.",
 	"ipinfo-change-access-level-enable": "ჩართო",
 	"ipinfo-change-access-level-disable": "გამორთო"
 }
