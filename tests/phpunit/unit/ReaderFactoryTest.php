@@ -1,11 +1,11 @@
 <?php
 
-namespace MediaWiki\IPInfo\Test\Unit\InfoRetriever;
+namespace MediaWiki\IPInfo\Test\Unit;
 
 use GeoIp2\Database\Reader;
 use MediaWiki\IPInfo\InfoRetriever\ReaderFactory;
+use MediaWiki\Languages\LanguageFallback;
 use MediaWikiUnitTestCase;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group IPInfo
@@ -13,7 +13,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ReaderFactoryTest extends MediaWikiUnitTestCase {
 	private function getFactory() {
-		return new ReaderFactory();
+		return new ReaderFactory( $this->createMock( LanguageFallback::class ) );
 	}
 
 	public function testCreateFactory() {
@@ -28,15 +28,10 @@ class ReaderFactoryTest extends MediaWikiUnitTestCase {
 		$this->assertNull( $actual );
 	}
 
-	public function testGetReaderThrowsException() {
-		$this->expectException( \InvalidArgumentException::class );
-		$factory = $this->getFactory();
-		TestingAccessWrapper::newFromObject( $factory )->getReader( '/broken/path/filename' );
-	}
-
 	public function testGetReader() {
 		$factory = $this->getMockBuilder( ReaderFactory::class )
 			->onlyMethods( [ 'getReader' ] )
+			->setConstructorArgs( [ $this->createMock( LanguageFallback::class ) ] )
 			->getMock();
 		$factory->expects( $this->once() )
 			->method( 'getReader' )
