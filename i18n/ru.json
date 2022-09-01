@@ -3,6 +3,7 @@
 		"authors": [
 			"Jesusmc",
 			"Kareyac",
+			"Okras",
 			"Pacha Tchernof",
 			"Stjn",
 			"Tanzun",
@@ -77,6 +78,6 @@
 	"ipinfo-log-access-level-ipinfo-view-full": "Полный доступ",
 	"logentry-ipinfo-view_infobox": "$1 {{GENDER:$2|посмотрел|посмотрела}} карточку информации об IP для $3. $4.",
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|посмотрел|посмотрела}} всплывающее окно информации об IP для $3. $4.",
-	"ipinfo-change-access-level-enable": "включено",
-	"ipinfo-change-access-level-disable": "отключено"
+	"ipinfo-change-access-level-enable": "{{GENDER:$1|включено}}",
+	"ipinfo-change-access-level-disable": "{{GENDER:$1|отключено}}"
 }
