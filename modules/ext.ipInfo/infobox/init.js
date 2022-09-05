@@ -50,6 +50,7 @@ if ( ip ) {
 	var loadIpInfo = function ( targetIp ) {
 		var revId = $( '.mw-contributions-list [data-mw-revid]' ).first().attr( 'data-mw-revid' );
 		if ( !revId ) {
+			$( '.ext-ipinfo-collapsible-layout' ).addClass( 'ext-ipinfo-contains-error' );
 			$( '.ext-ipinfo-collapsible-layout .mw-collapsible-content' ).append(
 				new OO.ui.MessageWidget( {
 					type: 'error',
