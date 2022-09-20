@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Vlad5250"
+		]
+	},
+	"ipinfo-desc": "Pruža informacije o IP adresi",
+	"ipinfo-infobox-title": "Informacije o IP adresi",
+	"ipinfo-property-label-location": "Lokacija",
+	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "Organizacija",
+	"ipinfo-property-label-source": "Izvor",
+	"ipinfo-widget-error-default": "Informacije o IP adresi ne mogu biti dohvaćene.",
+	"ipinfo-widget-error-no-data": "Za ovu IP adresu nema podataka iz $1."
+}
