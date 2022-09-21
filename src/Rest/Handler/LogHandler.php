@@ -163,7 +163,6 @@ class LogHandler extends SimpleHandler {
 
 		if (
 			!$this->permissionManager->userHasRight( $this->user, 'ipinfo' ) ||
-			!$this->userOptionsLookup->getOption( $this->user, 'ipinfo-enable' ) ||
 			!$this->userOptionsLookup->getOption( $this->user, 'ipinfo-use-agreement' )
 		) {
 			throw new LocalizedHttpException(

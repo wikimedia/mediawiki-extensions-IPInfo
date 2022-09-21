@@ -38,7 +38,6 @@
 		}
 	},
 	"DefaultUserOptions": {
-		"ipinfo-enable": 0,
 		"ipinfo-use-agreement": 0
 	},
 	"RestRoutes": [

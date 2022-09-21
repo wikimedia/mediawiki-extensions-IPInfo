@@ -178,20 +178,13 @@ class PopupHandlerTest extends MediaWikiUnitTestCase {
 
 	public function provideOnBeforePageDisplayPreferences() {
 		return [
-			'displays with correct preferences' => [
+			'displays with ipinfo-use-agreement set' => [
 				[
-					'ipinfo-enable',
 					'ipinfo-use-agreement',
 				],
 				true
 			],
 			'doesn\'t display without ipinfo-use-agreement' => [
-				[
-					'ipinfo-enable',
-				],
-				false
-			],
-			'doesn\'t display with no relevant preferences' => [
 				[],
 				false
 			],
