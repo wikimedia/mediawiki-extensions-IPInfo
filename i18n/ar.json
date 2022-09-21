@@ -6,7 +6,9 @@
 			"Michel Bakni",
 			"Shbib Al-Subaie",
 			"أَحمد",
-			"علاء"
+			"علاء",
+			"Mohanad Kh",
+			"محمد أحمد عبد الفتاح"
 		]
 	},
 	"ipinfo-extensionname": "معلومات بروتوكول الإنترنت",
@@ -27,7 +29,7 @@
 	"ipinfo-property-value-proxytype-ishostingprovider": "مزوِّد الاستضافة",
 	"ipinfo-property-label-source": "المصدر",
 	"ipinfo-property-label-active-blocks": "عمليات المنع المفعلة",
-	"ipinfo-property-tooltip-proxytypes": "يخفي الوكلاء عناوين بروتوكول الإنترنت. في بعض الحالات يحص هذا آلياً مثل حالة الوكلاء المقيمين أو المتعاونين، وفي حالات أخرى تكون عملية إحفاء العنوان الأصيل غير مقصودة.",
+	"ipinfo-property-tooltip-proxytypes": "يخفي الوكلاء عناوين بروتوكول الإنترنت. يحصل هذا آلياً في بعض الحالات مثل حالة الوكلاء المقيمين أو المتعاونين، وفي حالات أخرى تكون عملية إحفاء العنوان الأصيل غير مقصودة.",
 	"ipinfo-property-tooltip-connectiontype": "التقانة التي يستعملونها للوصول إلى الإنترنت.",
 	"ipinfo-property-tooltip-usertype": "نوع الكيان الذي يملك الاتصال مع الإنترنت.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 منع وحيد سارٍِ|$1 عملية منع|0=لا يوجد عمليات منع}}.",
