@@ -4,6 +4,8 @@
 			"Eleassar"
 		]
 	},
+	"ipinfo-beta-feature-description": "Orodje IP Information poskuša pregledovalcem urejanj zagotoviti bistvene podatke o IP-naslovih, koristne za njihovo delo. Ti podatki so za posameznega IP-urejevalca dostopni na strani Posebno:Contributions. Skrajšana različica teh informacij bo na voljo v pojavnem oknu ob IP-naslovih na straneh [[Special:Log|Dnevnik]], [[Special:Contributions|Prispevki]] in [[Special:RecentChanges|Zadnje spremembe]].",
+	"prefs-ipinfo": "IP Information",
 	"group-no-ipinfo": "Uporabniki, blokirani z Orodjem za podatke o IP-jih",
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|onemogočil|onemogočila|onemogočil/a}}"
 }
