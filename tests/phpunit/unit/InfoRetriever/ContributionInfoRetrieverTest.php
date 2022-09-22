@@ -7,6 +7,7 @@ use MediaWiki\IPInfo\InfoRetriever\ContributionInfoRetriever;
 use MediaWikiUnitTestCase;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * @group IPInfo
@@ -15,38 +16,47 @@ use Wikimedia\Rdbms\IDatabase;
 class ContributionInfoRetrieverTest extends MediaWikiUnitTestCase {
 	public function testRetrieveFromIP() {
 		$ip = '1.1.1.1';
-		$database = $this->createMock( IDatabase::class );
 		$expectedIP = IPUtils::toHex( $ip );
+		$database = $this->createMock( IDatabase::class );
 		$numLocalEdits = 42;
 		$numRecentEdits = 24;
 
-		$database->expects( $this->at( 0 ) )
-			->method( 'selectRowCount' )
-			->with(
-			'ip_changes',
-			'*',
-			[
-				'ipc_hex' => $expectedIP,
-			]
-		)
-		->willReturn( $numLocalEdits );
+		$database->method( 'addQuotes' )
+			->willReturn( 30 );
 
-		$database->expects( $this->once() )
-		->method( 'addQuotes' )
-		->with( $this->anything() )
-		->willReturn( 30 );
-
-		$database->expects( $this->at( 3 ) )
-			->method( 'selectRowCount' )
-			->with(
-			'ip_changes',
-			'*',
+		$map = [
 			[
-				'ipc_hex' => $expectedIP,
-				'ipc_rev_timestamp > 30',
-			]
-		)
-		->willReturn( $numRecentEdits );
+				[ 'ip_changes' ],
+				'*',
+				[
+					'ipc_hex' => $expectedIP
+				],
+				'MediaWiki\IPInfo\InfoRetriever\ContributionInfoRetriever::retrieveFromIP',
+				[],
+				[],
+				$numLocalEdits,
+			],
+			[
+				[ 'ip_changes' ],
+				'*',
+				[
+					'ipc_hex' => $expectedIP,
+					'ipc_rev_timestamp > 30',
+				],
+				'MediaWiki\IPInfo\InfoRetriever\ContributionInfoRetriever::retrieveFromIP',
+				[],
+				[],
+				$numRecentEdits,
+			],
+		];
+
+		$database->method( 'newSelectQueryBuilder' )
+			->willReturnOnConsecutiveCalls(
+				new SelectQueryBuilder( $database ),
+				new SelectQueryBuilder( $database )
+			);
+		$database->method( 'selectRowCount' )
+			->will( $this->returnValueMap( $map ) );
 
 		$retriever = new ContributionInfoRetriever( $database );
 		$this->assertSame( 'ipinfo-source-contributions', $retriever->getName() );

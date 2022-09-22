@@ -31,24 +31,26 @@ class ContributionInfoRetriever implements InfoRetriever {
 	 */
 	public function retrieveFromIP( string $ip ): ContributionInfo {
 		$hexIP = IPUtils::toHex( $ip );
-		$numLocalEdits = $this->database->selectRowCount(
-			'ip_changes',
-			'*',
-			[
-				'ipc_hex' => $hexIP,
-			],
-			__METHOD__
-		);
+
+		$numLocalEdits = $this->database->newSelectQueryBuilder()
+			->from( 'ip_changes' )
+			->where( [
+					'ipc_hex' => $hexIP,
+				]
+			)
+			->caller( __METHOD__ )
+			->fetchRowCount();
+
 		$oneDayTS = (int)wfTimestamp( TS_UNIX ) - ( 24 * 60 * 60 );
-		$numRecentEdits = $this->database->selectRowCount(
-			'ip_changes',
-			'*',
-			[
-				'ipc_hex' => $hexIP,
-				'ipc_rev_timestamp > ' . $this->database->addQuotes( $this->database->timestamp( $oneDayTS ) ),
-			],
-			__METHOD__
-		);
+		$numRecentEdits = $this->database->newSelectQueryBuilder()
+			->from( 'ip_changes' )
+			->where( [
+					'ipc_hex' => $hexIP,
+					'ipc_rev_timestamp > ' . $this->database->addQuotes( $this->database->timestamp( $oneDayTS ) ),
+				]
+			)
+			->caller( __METHOD__ )
+			->fetchRowCount();
 
 		return new ContributionInfo( $numLocalEdits, $numRecentEdits );
 	}
