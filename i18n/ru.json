@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Deltaspace",
 			"Jesusmc",
 			"Kareyac",
 			"Okras",
@@ -50,7 +51,7 @@
 	"ipinfo-preference-agreement-error": "Вы должны включить инструмент Информации об IP перед принятием этих условий.",
 	"ipinfo-infobox-use-terms": "Инструмент «Информация об IP» использует базы данных MaxMind для показа таких деталей, как приблизительное местоположение, статус прокси и количество устройств, использующих данный IP-адрес.",
 	"ipinfo-infobox-submit-agreement": "Включить инструмент информации об IP",
-	"ipinfo-infobox-disable-instructions": "Если вы хотите отключить этот инструмент, вы можете сделать это в [[Special:Preferences|ваших настройках]].",
+	"ipinfo-infobox-disable-instructions": "Если вы хотите отключить этот инструмент, вы можете сделать это в [[Special:Preferences#mw-prefsection-betafeatures|ваших настройках]].",
 	"ipinfo-use-agreement-submit-error": "Что-то пошло не так. Пожалуйста, попробуйте ещё раз. Полученное сообщение об ошибке: $1",
 	"ipinfo-rest-access-denied": "У вас нет прав для выполнения этого действия.",
 	"ipinfo-rest-access-denied-blocked-user": "У вас нет права выполнить действие, потому что ваша учётная запись заблокирована",

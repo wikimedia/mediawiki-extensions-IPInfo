@@ -61,7 +61,7 @@
 	"ipinfo-preference-agreement-error": "Du musst das IP-Informationstool aktivieren, bevor du den Nutzungsbedingungen zustimmst.",
 	"ipinfo-infobox-use-terms": "Das IP-Informationstool verwendet die MaxMind-Datenbank, um Details wie Standort, Proxy und die Anzahl der Geräte, die sich diese IP-Adresse teilen, anzuzeigen.",
 	"ipinfo-infobox-submit-agreement": "IP-Informationstool aktivieren",
-	"ipinfo-infobox-disable-instructions": "Wenn du diese Funktion deaktivieren möchtest, kannst du dies über [[Special:Preferences|deine Einstellungen]] erreichen.",
+	"ipinfo-infobox-disable-instructions": "Wenn du diese Funktion deaktivieren möchtest, kannst du dies über [[Special:Preferences#mw-prefsection-betafeatures|deine Einstellungen]] erreichen.",
 	"ipinfo-use-agreement-submit-error": "Es ist ein Fehler aufgetreten. Bitte versuche es erneut. Die erhaltene Fehlermeldung lautete: $1",
 	"ipinfo-rest-access-denied": "Du hast keine Berechtigung, diese Aktion durchzuführen",
 	"ipinfo-rest-access-denied-blocked-user": "Du hast keine Berechtigung, die Aktion auszuführen, da dein Konto gesperrt ist",

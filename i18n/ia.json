@@ -61,7 +61,7 @@
 	"ipinfo-preference-agreement-error": "Tu debe activar le utensile de information IP ante de acceptar su conditiones de uso.",
 	"ipinfo-infobox-use-terms": "Le utensile de information IP usa le base de datos MaxMind pro monstrar detalios como position geographic, uso de proxy, e le numero de apparatos que condivide iste adresse IP.",
 	"ipinfo-infobox-submit-agreement": "Activar le utensile de information IP",
-	"ipinfo-infobox-disable-instructions": "Si tu vole disactivar iste function, tu pote facer lo in [[Special:Preferences|tu preferentias]].",
+	"ipinfo-infobox-disable-instructions": "Si tu vole disactivar iste function, tu pote facer lo in [[Special:Preferences#mw-prefsection-betafeatures|tu preferentias]].",
 	"ipinfo-use-agreement-submit-error": "Un problema ha occurrite. Per favor tenta lo de novo. Le message de error recipite es: $1",
 	"ipinfo-rest-access-denied": "Tu non ha le permission de exequer le action",
 	"ipinfo-rest-access-denied-blocked-user": "Tu non ha le permission de exequer le action perque tu conto es blocate",
