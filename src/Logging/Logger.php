@@ -174,10 +174,10 @@ class Logger {
 			return;
 		}
 
-		$logline = $this->dbw->selectRow(
-			'logging',
-			'*',
-			[
+		$logline = $this->dbw->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'logging' )
+			->where( [
 				'log_type' => self::LOG_TYPE,
 				'log_action' => $action,
 				'log_actor' => $actorId,
@@ -189,8 +189,8 @@ class Logger {
 					$params['4::level'],
 					$this->dbw->anyString()
 				),
-			]
-		);
+			] )
+			->fetchRow();
 
 		if ( !$logline ) {
 			$this->log( $performer, $ip, $action, $params, $timestamp );

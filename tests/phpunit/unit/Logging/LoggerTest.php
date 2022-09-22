@@ -10,6 +10,7 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use Title;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * @covers \MediaWiki\IPInfo\Logging\Logger
@@ -45,6 +46,11 @@ class LoggerTest extends MediaWikiUnitTestCase {
 
 		$database = $this->createMock( IDatabase::class );
 
+		$queryBuilder = new SelectQueryBuilder( $database );
+
+		$database->method( 'newSelectQueryBuilder' )
+			->willReturn( $queryBuilder );
+
 		// We don't need to stub IDatabase::timestamp() since it is wrapped in
 		// a call to IDatabase::addQuotes().
 		$database->method( 'addQuotes' )
@@ -53,22 +59,46 @@ class LoggerTest extends MediaWikiUnitTestCase {
 		$database->method( 'buildLike' )
 			->willReturn( ' LIKE \'%ipinfo-view-full%\'' );
 
-		$database->expects( $this->once() )
-			->method( 'selectRow' )
-			->with(
-				'logging',
-				'*',
+		$map = [
 				[
-					'log_type' => Logger::LOG_TYPE,
-					'log_action' => $action,
-					'log_actor' => $actorId,
-					'log_namespace' => NS_USER,
-					'log_title' => $target,
-					'log_timestamp > 42',
-					'log_params LIKE \'%ipinfo-view-full%\'',
+					[ 'logging' ],
+					[ '*' ],
+					[
+						"log_type" => "ipinfo",
+						"log_action" => Logger::ACTION_VIEW_INFOBOX,
+						"log_actor" => 2,
+						"log_namespace" => 2,
+						"log_title" => "127.0.0.1",
+						0 => "log_timestamp > 42",
+						1 => "log_params LIKE '%ipinfo-view-full%'",
+					],
+					"Wikimedia\Rdbms\SelectQueryBuilder",
+					[],
+					[],
+					(int)$isDebounced
 				]
-			)
-			->willReturn( (int)$isDebounced );
+				,
+				[
+					[ 'logging' ],
+					[ '*' ],
+					[
+						"log_type" => "ipinfos",
+						"log_action" => Logger::ACTION_VIEW_INFOBOX,
+						"log_actor" => 2,
+						"log_namespace" => 2,
+						"log_title" => "127.0.0.1",
+						0 => "log_timestamp > 42",
+						1 => "log_params LIKE '%ipinfo-view-full%'",
+					],
+					"Wikimedia\Rdbms\SelectQueryBuilder",
+					[],
+					[],
+					(int)$isDebounced
+				]
+		];
+
+		$database->method( 'selectRow' )
+			->will( $this->returnValueMap( $map ) );
 
 		$actorStore = $this->createMock( ActorStore::class );
 		$actorStore->method( 'findActorId' )
