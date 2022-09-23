@@ -65,7 +65,7 @@
 	"ipinfo-preference-agreement-error": "יש להפעיל את כלי המידע על כתובות IP לפני הסכמה לתנאי השימוש שלו.",
 	"ipinfo-infobox-use-terms": "כלי המידע על כתובות IP משתמש במסד נתונים MaxMind כדי להציג פרטים כמו מיקום, שרת מתווך (פרוקסי), וכמה מכשירים משתפים את כתובת ה־IP הזאת.",
 	"ipinfo-infobox-submit-agreement": "הפעלת כלי מידע IP",
-	"ipinfo-infobox-disable-instructions": "אם ברצונך לכבות את האפשרות הזאת, אפשר לעשות זאת ב[[Special:Preferences|דף ההעדפות]].",
+	"ipinfo-infobox-disable-instructions": "אם ברצונך לכבות את האפשרות הזאת, אפשר לעשות זאת ב[[Special:Preferences#mw-prefsection-betafeatures|דף ההעדפות]].",
 	"ipinfo-use-agreement-submit-error": "משהו השתבש. נא לנסות שוב. הודעת השגיאה שהתקבלה: $1",
 	"ipinfo-rest-access-denied": "אין לך הרשאה לבצע את הפעולה הזאת",
 	"ipinfo-rest-access-denied-blocked-user": "אין לך הרשאה לבצע את הפעולה הזאת כי החשבון שלך חסום",

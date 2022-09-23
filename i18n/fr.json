@@ -73,7 +73,7 @@
 	"ipinfo-preference-agreement-error": "Vous devez activer l’outil Informations sur une adresse IP avant d’accepter ses conditions d’utilisation.",
 	"ipinfo-infobox-use-terms": "L’outil Informations sur une adresse IP utilise la base de données MaxMind pour montrer des détails comme l’emplacement, la présence d’un serveur mandataire et le nombre d’appareils qui partagent cette adresse IP.",
 	"ipinfo-infobox-submit-agreement": "Activer l’outil Informations sur une adresse IP",
-	"ipinfo-infobox-disable-instructions": "Si vous souhaitez désactiver cette fonctionnalité, vous pouvez le faire à partir de [[Special:Preferences|vos préférences]].",
+	"ipinfo-infobox-disable-instructions": "Si vous souhaitez désactiver cette fonctionnalité, vous pouvez le faire dans [[Special:Preferences#mw-prefsection-betafeatures|vos préférences]].",
 	"ipinfo-use-agreement-submit-error": "Un problème est survenu. Veuillez réessayer. Le message d'erreur reçu était : $1",
 	"ipinfo-rest-access-denied": "Vous n’avez pas le droit d’effectuer cette action.",
 	"ipinfo-rest-access-denied-blocked-user": "Vous n’avez pas le droit d’effectuer l’action demandée parce que votre compte est bloqué",
