@@ -57,7 +57,7 @@
 	"ipinfo-preference-agreement-error": "您必须先启用IP信息工具，然后才能同意其使用条款。",
 	"ipinfo-infobox-use-terms": "IP信息工具使用MaxMind数据库来显示位置、代理以及共享此IP地址的设备数量等详细信息。",
 	"ipinfo-infobox-submit-agreement": "启用IP信息工具",
-	"ipinfo-infobox-disable-instructions": "如需禁用此功能，请前往[[Special:Preferences|您的参数设置]]。",
+	"ipinfo-infobox-disable-instructions": "如需禁用此功能，请前往[[Special:Preferences#mw-prefsection-betafeatures|您的参数设置]]。",
 	"ipinfo-use-agreement-submit-error": "出问题了。请再试一次。收到的错误信息是：$1",
 	"ipinfo-rest-access-denied": "您没有权限来执行此操作",
 	"ipinfo-rest-access-denied-blocked-user": "您没有执行此操作的权限，因为您的的账户已被封禁",

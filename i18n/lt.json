@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"Pavel1513",
 			"Tomasdd"
 		]
 	},
 	"ipinfo-infobox-title": "IP informacija",
 	"ipinfo-property-label-isp": "IPT",
-	"ipinfo-property-label-source": "Šaltinis"
+	"ipinfo-property-label-source": "Šaltinis",
+	"ipinfo-infobox-disable-instructions": "Jei norėtumėte išjungti šią funkciją, galite tai padaryti [[Special:Preferences#mw-prefsection-betafeatures|savo nuostatose]]."
 }
