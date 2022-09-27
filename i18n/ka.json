@@ -62,7 +62,7 @@
 	"ipinfo-preference-agreement-error": "სანამ პირობებს დაეთანხმებოდეთ, მანამ უნდა ჩართოთ IP-ის ინფორმაციის ხელსაწყო.",
 	"ipinfo-infobox-use-terms": "IP-ის ინფორმაციის ხელსაწყო იყენებს MaxMind-ის მონაცემთა ბაზას, რათა აჩვენოს ისეთი დეტალები, როგორიცაა ადგილმდებარეობა, პროქსი და რამდენი მოწყობილობა იყენებს ამ IP-მისამართს.",
 	"ipinfo-infobox-submit-agreement": "IP-ის ინფორმაციის ხელსაწყოს ჩართვა",
-	"ipinfo-infobox-disable-instructions": "თუკი ამ ხელსაწყოს გამორთვა გსურთ, ეწვიეთ [[Special:Preferences|თქვენს კონფიგურაციის გვერდს]].",
+	"ipinfo-infobox-disable-instructions": "თუკი ამ ხელსაწყოს გამორთვა გსურთ, ეწვიეთ [[Special:Preferences#mw-prefsection-betafeatures|თქვენს კონფიგურაციის გვერდს]].",
 	"ipinfo-use-agreement-submit-error": "რაღაც ვერ გამოვიდა. გთხოვთ, ხელახლა სცადოთ. ხარვეზის შესახებ შეტყობინება: $1",
 	"ipinfo-rest-access-denied": "თქვენ არ გაქვთ ამ მოქმედების შესრულების უფლება",
 	"ipinfo-rest-access-denied-blocked-user": "თქვენ არ გაქვთ ამ მოქმედების შესრულების უფლება, რადგან თქვენი ანგარიში დაბლოკილია",
@@ -98,6 +98,10 @@
 	"ipinfo-change-access-level-enable": "{{GENDER:$1|ჩართო}}",
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|გამორთო}}",
 	"logentry-ipinfo-change_access": "მომხმარებელმა $1 $4 {{GENDER:$2|თავისი}} წვდომა IP-ის ინფორმაციაზე",
+	"log-action-filter-ipinfo": "IP-ის ინფორმაციის ოპერაციის ტიპი:",
+	"log-action-filter-ipinfo-change_access": "ხელსაწყო ჩართულია თუ გამორთული",
+	"log-action-filter-ipinfo-view_infobox": "მონაცემები ნანახია ინფორმაციის დაფაზე",
+	"log-action-filter-ipinfo-view_popup": "მონაცემები ნანახია კონტექსტურ სარკმელში",
 	"ipinfo-property-tooltip-asn": "რეგიონისა და შემდგომ ორგანიზაციებისთვის (როგორიცაა მთავრობები და ინტერნეტპროვაიდერები) მიკუთვნებული ქსელების უნიკალური იდენტიფიკატორი",
 	"ipinfo-blocklist-url-text": "ბლოკების სია"
 }
