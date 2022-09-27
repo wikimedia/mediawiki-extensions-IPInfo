@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bada Kaji",
+			"बडा काजी"
+		]
+	},
+	"ipinfo-desc": "आईपी ठेगाना बारे जानकारी प्रदान गर्दछ।",
+	"ipinfo-infobox-title": "आईपी जानकारी",
+	"ipinfo-property-label-location": "स्थान",
+	"ipinfo-property-label-organization": "संस्था",
+	"ipinfo-property-label-source": "स्रोत",
+	"ipinfo-rest-log-nonexistent": "अभिलेख प्रविष्टि अवस्थित छैन"
+}
