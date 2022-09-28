@@ -63,7 +63,7 @@
 	"ipinfo-preference-agreement-error": "Ќе мора да ја овозможите алатката за информации за IP пре да се согласите со нејзините услови на употреба.",
 	"ipinfo-infobox-use-terms": "Алатката за информации за IP-адреса ја користи базата MaxMind за прикажување на поединости како местоположба, застапник и бројот на уреди што ја делат истата IP-адреса.",
 	"ipinfo-infobox-submit-agreement": "Овозможи ја алатката за информации за IP-адреса",
-	"ipinfo-infobox-disable-instructions": "Ако сакате да ја исклучите оваа можност, направете го тоа во [[Special:Preferences|вашите нагодувања]].",
+	"ipinfo-infobox-disable-instructions": "Ако сакате да ја исклучите оваа можност, направете го тоа во [[Special:Preferences#mw-prefsection-betafeatures|вашите нагодувања]].",
 	"ipinfo-use-agreement-submit-error": "Нешто не е во ред. Обидете се повторно. Ја добив грешката: $1",
 	"ipinfo-rest-access-denied": "Немате дозвола да го изведете ова дејство",
 	"ipinfo-rest-access-denied-blocked-user": "Немате дозвола да го извршите дејството бидејќи вашата сметка е блокирана",
