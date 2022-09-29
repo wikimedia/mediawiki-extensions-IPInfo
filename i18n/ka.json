@@ -98,6 +98,10 @@
 	"ipinfo-change-access-level-enable": "{{GENDER:$1|ჩართო}}",
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|გამორთო}}",
 	"logentry-ipinfo-change_access": "მომხმარებელმა $1 $4 {{GENDER:$2|თავისი}} წვდომა IP-ის ინფორმაციაზე",
+	"log-action-filter-ipinfo": "IP-ის ინფორმაციის ოპერაციის ტიპი:",
+	"log-action-filter-ipinfo-change_access": "ხელსაწყო ჩართულია თუ გამორთული",
+	"log-action-filter-ipinfo-view_infobox": "მონაცემები ნანახია ინფორმაციის დაფაზე",
+	"log-action-filter-ipinfo-view_popup": "მონაცემები ნანახია კონტექსტურ სარკმელში",
 	"ipinfo-property-tooltip-asn": "რეგიონისა და შემდგომ ორგანიზაციებისთვის (როგორიცაა მთავრობები და ინტერნეტპროვაიდერები) მიკუთვნებული ქსელების უნიკალური იდენტიფიკატორი",
 	"ipinfo-blocklist-url-text": "ბლოკების სია"
 }
