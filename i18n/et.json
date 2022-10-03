@@ -32,7 +32,7 @@
 	"ipinfo-widget-error-ip-no-edits": "Teavet selle IP-aadressi kohta ei saa hankida, sest selle alt pole muudatusi tehtud.",
 	"ipinfo-preference-enable": "Näita IP-aadressi teabe vahendit registreerimata kasutaja kaastöö loendi juures.",
 	"ipinfo-infobox-submit-agreement": "Luba IP-aadressi teabe vahend",
-	"ipinfo-infobox-disable-instructions": "Kui soovid selle funktsiooni keelata, saad seda teha  [[Special:Preferences|eelistuste leheküljel]].",
+	"ipinfo-infobox-disable-instructions": "Kui soovid selle funktsiooni keelata, saad seda teha  [[Special:Preferences#mw-prefsection-betafeatures|eelistuste leheküljel]].",
 	"ipinfo-beta-feature-title": "IP-aadressi teave",
 	"ipinfo-beta-feature-description": "IP-aadressi teabe vahendi abil näevad muudatuste ülevaatajad IP-aadresside kohta vajalikku teavet. See teave tehakse kättesaadavaks IP-aadressi kaastöö loendis. Kärbitud versioon sellest teabest tehakse kättesaadavaks [[Special:Log|logis]] ning [[Special:Contributions|kaastöö]] ja [[Special:RecentChanges|viimaste muudatuste loendis]] IP-aadresside juures hüpikkaardil.",
 	"prefs-ipinfo": "IP-aadressi teave",

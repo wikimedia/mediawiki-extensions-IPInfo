@@ -4,6 +4,7 @@
 			"Avengium",
 			"DiegoAmbrocio",
 			"Fitoschido",
+			"La Mantis",
 			"MarcoAurelio",
 			"Rodney Araujo"
 		]
@@ -46,7 +47,7 @@
 	"ipinfo-preference-agreement-error": "Debes habilitar la herramienta de información de IP antes de aceptar sus condiciones de uso.",
 	"ipinfo-infobox-use-terms": "La herramienta de información sobre IPs usa información de la base de datos MaxMind para mostrar detalles como la localización, si es un proxy, así como cuántos dispositivos están compartiendo esta dirección IP.",
 	"ipinfo-infobox-submit-agreement": "Activar la herramienta de información sobre IPs",
-	"ipinfo-infobox-disable-instructions": "Si deseas desactivar esta herramienta puedes hacerlo a través de tus [[Special:Preferences|preferencias]].",
+	"ipinfo-infobox-disable-instructions": "Si desea desactivar esta función, puede hacerlo en [[Special:Preferences#mw-prefsection-betafeatures|sus preferencias]].",
 	"ipinfo-use-agreement-submit-error": "Algo salió mal. Por favor inténtalo nuevamente. El mensaje de error recibido fue: $1",
 	"ipinfo-rest-access-denied": "No tienes permiso para efectuar la acción",
 	"ipinfo-rest-access-denied-blocked-user": "No tienes permiso para efectuar la acción porque tu cuenta está bloqueada",
