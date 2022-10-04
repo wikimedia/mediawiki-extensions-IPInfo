@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar"
+		]
+	},
+	"ipinfo-extensionname": "Informacije o IP-ju",
+	"ipinfo-desc": "Zagotavlja podatke o IP-naslovih",
+	"ipinfo-infobox-title": "Podatki o IP-jih",
+	"ipinfo-property-label-location": "Kraj",
+	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "Organizacija",
+	"ipinfo-property-label-source": "Vir",
+	"ipinfo-widget-error-default": "Podatkov o IP-ju ni bilo mogoče pridobiti.",
+	"ipinfo-widget-error-no-data": "Za ta IP-naslov od $1 ni podatkov.",
+	"ipinfo-widget-error-wrong-ip": "Navedeni IP-naslov se ne ujema z dnevnikom ali revizijo.",
+	"ipinfo-rest-access-denied": "Za izvedbo tega dejanja nimate dovoljenja.",
+	"ipinfo-rest-access-denied-blocked-user": "Za izvedbo tega dejanja nimate dovoljenja, ker je vaš račun blokiran",
+	"ipinfo-rest-revision-no-author": "Vaš račun nima dostopa za ogled avtorja redakcije",
+	"ipinfo-rest-log-nonexistent": "Dnevniški vnos ne obstaja",
+	"ipinfo-rest-log-denied": "Vaš račun nima dostopa za ogled izvajalca dnevniškega vnosa ali samega dnevniškega vnosa",
+	"ipinfo-source-geoip2": "Tukaj prikazani podatki izvirajo iz podatkovnih zbirk GeoIP2 podjetja MaxMind. Morda niso popolnoma natančni.",
+	"action-ipinfo": "pridobivanje podatkov o IP-naslovih, pripisanih redakcijam ali dnevniškim vnosom",
+	"right-ipinfo": "Pridobivanje podatkov o IP-naslovih, pripisanih redakcijam ali dnevniškim vnosom"
+}

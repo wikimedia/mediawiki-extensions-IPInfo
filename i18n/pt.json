@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hamilton Abreu"
+		]
+	},
+	"ipinfo-desc": "Fornece informações sobre um endereço IP.",
+	"ipinfo-infobox-title": "Informações IP",
+	"ipinfo-property-label-location": "Localização",
+	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "Organização",
+	"ipinfo-property-label-source": "Fonte",
+	"ipinfo-widget-error-default": "Não foi possível obter as informações do IP.",
+	"ipinfo-widget-error-no-data": "Não há dados de $1 para este endereço IP.",
+	"ipinfo-widget-error-wrong-ip": "O endereço IP fornecido não coincidiu com o registo nem com a revisão.",
+	"ipinfo-rest-access-denied": "Não tem privilégios para realizar esta operação",
+	"ipinfo-rest-access-denied-blocked-user": "Não tem privilégios para realizar esta operação porque a sua conta está bloqueada",
+	"ipinfo-rest-revision-no-author": "A sua conta não tem acesso para ver o autor da revisão",
+	"ipinfo-rest-log-nonexistent": "A entrada de registo não existe",
+	"ipinfo-rest-log-denied": "A sua conta não tem acesso para ver quem realizou a entrada do registo nem a própria entrada do registo em si",
+	"ipinfo-source-geoip2": "As informações mostradas aqui provêm das bases de dados GeoIP2 da MaxMind. Podem não ser completamente precisas.",
+	"action-ipinfo": "obter informações sobre endereços IP relacionados com revisões ou entradas de registos",
+	"right-ipinfo": "Obter informações sobre endereços IP relacionados com revisões ou entradas de registos"
+}
