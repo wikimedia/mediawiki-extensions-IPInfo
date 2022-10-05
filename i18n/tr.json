@@ -9,6 +9,7 @@
 			"Victor Trevor"
 		]
 	},
+	"ipinfo-extensionname": "IP Bilgisi",
 	"ipinfo-desc": "Bir IP adresi hakkında bilgi sağlar.",
 	"ipinfo-infobox-title": "IP Bilgisi",
 	"ipinfo-property-label-location": "Konum",

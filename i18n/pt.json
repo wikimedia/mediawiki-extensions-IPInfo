@@ -1,6 +1,46 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"Hamilton Abreu"
+		]
 	},
+	"ipinfo-desc": "Fornece informações sobre um endereço IP.",
+	"ipinfo-infobox-title": "Informações IP",
+	"ipinfo-property-label-location": "Localização",
+	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "Organização",
+	"ipinfo-property-label-proxytypes": "IP real/proxy",
+	"ipinfo-property-value-proxytype-isanonymousvpn": "VPN anónima",
+	"ipinfo-property-label-source": "Fonte",
+	"ipinfo-property-tooltip-proxytypes": "Os ''proxies'' ocultam endereços IP. Em alguns casos isto acontece automaticamente, como para ''proxies'' residenciais ou corporativos, noutros casos é feito intencionalmente para mascarar a origem do endereço IP.",
+	"ipinfo-property-tooltip-connectiontype": "A tecnologia através da qual eles se estão a ligar à internet.",
+	"ipinfo-property-tooltip-usertype": "O tipo de entidade que detém a ligação à internet.",
+	"ipinfo-value-active-blocks": "{{PLURAL:$1|Um bloqueio ativo|$1 bloqueios ativos|0=Nenhum bloqueio ativo}}.",
+	"ipinfo-property-label-edits": "Contribuições",
+	"ipinfo-value-local-edits": "{{PLURAL:$1|Uma edição local|$1 edições locais|0=Nenhuma edição local}}",
+	"ipinfo-value-recent-edits": "($1 nas últimas 24 horas){{PLURAL:$1|}}",
+	"ipinfo-widget-error-default": "Não foi possível obter as informações do IP.",
+	"ipinfo-widget-error-no-data": "Não há dados de $1 para este endereço IP.",
+	"ipinfo-widget-error-wrong-ip": "O endereço IP fornecido não coincidiu com o registo nem com a revisão.",
+	"ipinfo-preference-use-agreement": "Concordo usar esta informação para o meu trabalho de patrulhamento e anti-vandalismo.",
+	"ipinfo-preference-agreement-error": "Tem de ativar a ferramenta de informações de IP antes de concordar com as respetivas condições de utilização.",
+	"ipinfo-infobox-use-terms": "A ferramenta de informações de IP usa a base de dados MaxMind para mostrar detalhes como a localização, o ''proxy'' e quantos dispositivos estão a compartilhar este endereço IP.",
+	"ipinfo-infobox-submit-agreement": "Ativar a ferramenta de informações de IP",
+	"ipinfo-use-agreement-submit-error": "Ocorreu um problema não identificado. Tente novamente, por favor. A mensagem de erro recebida foi: $1",
+	"ipinfo-rest-access-denied": "Não tem privilégios para realizar esta operação",
+	"ipinfo-rest-access-denied-blocked-user": "Não tem privilégios para realizar esta operação porque a sua conta está bloqueada",
+	"ipinfo-rest-revision-no-author": "A sua conta não tem acesso para ver o autor da revisão",
+	"ipinfo-rest-log-nonexistent": "A entrada de registo não existe",
+	"ipinfo-rest-log-denied": "A sua conta não tem acesso para ver quem realizou a entrada do registo nem a própria entrada do registo em si",
+	"ipinfo-source-geoip2": "As informações mostradas aqui provêm das bases de dados GeoIP2 da MaxMind. Podem não ser completamente precisas.",
+	"action-ipinfo": "obter informações sobre endereços IP relacionados com revisões ou entradas de registos",
+	"right-ipinfo": "Obter informações sobre endereços IP relacionados com revisões ou entradas de registos",
+	"action-ipinfo-view-log": "ver um registo de quem acedeu a informações de IP",
+	"right-ipinfo-view-log": "Ver um registo de quem acedeu a informações de IP",
+	"ipinfo-log-access-level-ipinfo-view-basic": "Acesso limitado",
+	"ipinfo-log-access-level-ipinfo-view-full": "Acesso completo",
+	"logentry-ipinfo-view_infobox": "$1 viu caixa informativa com informações de IP para $3. $4.{{GENDER:$2|}}",
+	"logentry-ipinfo-view_popup": "$1 viu janela flutuante com informações de IP para $3. $4.{{GENDER:$2|}}",
 	"ipinfo-change-access-level-disable": "desativado"
 }
