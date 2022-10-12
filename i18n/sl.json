@@ -6,7 +6,7 @@
 	},
 	"ipinfo-extensionname": "Informacije o IP-ju",
 	"ipinfo-desc": "Zagotavlja podatke o IP-naslovih",
-	"ipinfo-infobox-title": "Podatki o IP-jih",
+	"ipinfo-infobox-title": "Podatki o IP-ju",
 	"ipinfo-property-label-location": "Kraj",
 	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
@@ -37,6 +37,6 @@
 	"ipinfo-source-geoip2": "Tukaj prikazani podatki izvirajo iz podatkovnih zbirk GeoIP2 podjetja MaxMind. Morda niso popolnoma natančni.",
 	"action-ipinfo": "pridobivanje podatkov o IP-naslovih, pripisanih redakcijam ali dnevniškim vnosom",
 	"right-ipinfo": "Pridobivanje podatkov o IP-naslovih, pripisanih redakcijam ali dnevniškim vnosom",
-	"action-ipinfo-view-log": "prikaz dnevnika dostopov do podatkov o IP-jih",
-	"right-ipinfo-view-log": "Prikaz dnevnika dostopov do podatkov o IP-jih"
+	"action-ipinfo-view-log": "prikaz dnevnika dostopov do orodja Podatki o IP-ju",
+	"right-ipinfo-view-log": "Prikaz dnevnika dostopov do orodja Podatki o IP-ju"
 }
