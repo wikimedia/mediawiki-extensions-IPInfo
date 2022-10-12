@@ -4,6 +4,16 @@
 			"Toghrul Rahimli"
 		]
 	},
+	"ipinfo-property-label-location": "Yer",
+	"ipinfo-property-label-organization": "Təşkilat",
+	"ipinfo-property-label-active-blocks": "Qüvvədə olan bloklamalar",
+	"ipinfo-value-active-blocks": "{{PLURAL:$1|Qüvvədə olan blok sayı: $1|Qüvvədə olan blok sayı: $1|0=Bloklama yoxdur}}.",
+	"ipinfo-property-label-edits": "Töhfələr",
+	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 yerli redaktə|$1 yerli redaktə|0=Yerli redaktə yoxdur}}",
+	"ipinfo-value-recent-edits": "({{PLURAL:$1|Son 24 saatda $1 redaktə }})",
+	"ipinfo-widget-error-default": "IP-ünvanı məlumatları əldə edilə bilmədi.",
+	"ipinfo-widget-error-no-data": "$1 mənbəsindən IP-ünvanı haqqında heç bir məlumat yoxdur.",
+	"ipinfo-infobox-submit-agreement": "IP-ünvanı məlumatı alətini aktivləşdir",
 	"ipinfo-beta-feature-title": "IP-ünvanı məlumatı",
 	"ipinfo-beta-feature-description": "IP-ünvanı məlumatı aləti patrullara IP-ünvanları haqqında mühüm məlumatları əldə etməyə kömək edir. Bu məlumatlar IP redaktorunun Xüsusi:Töhfələr səhifəsindən əldə edilə bilər. Məlumatların qısa versiyası isə [[Special:Log|qeydlər]], [[Special:Contributions|töhfələr]] və [[Special:RecentChanges|son dəyişikliklər]] səhifələrində IP-ünvanlarının yanında açılan pəncərədə göstəriləcəkdir.",
 	"prefs-ipinfo": "IP-ünvanı məlumatı"
