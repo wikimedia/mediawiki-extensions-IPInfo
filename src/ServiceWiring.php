@@ -59,8 +59,10 @@ return [
 			$dbw
 		);
 	},
-	'ReaderFactory' => static function () {
-		return new ReaderFactory();
+	'ReaderFactory' => static function ( MediaWikiServices $services ) {
+		return new ReaderFactory(
+			$services->getLanguageFallback()
+		);
 	}
 ];
 
