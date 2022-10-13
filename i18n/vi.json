@@ -28,6 +28,7 @@
 	"ipinfo-property-tooltip-connectiontype": "Công nghệ mà họ sử dụng để kết nối mạng.",
 	"ipinfo-property-tooltip-usertype": "Loại thực thể sở hữu kết nối mạng.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 tác vụ cấm|0=Không có}}.",
+	"ipinfo-active-blocks-url-text": "Nhật trình",
 	"ipinfo-property-label-edits": "Đóng góp",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 sửa đổi|0=Không có sửa đổi}}",
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 trong 24 giờ qua}})",
