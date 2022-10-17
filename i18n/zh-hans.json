@@ -95,5 +95,6 @@
 	"log-action-filter-ipinfo-change_access": "工具启用或禁用",
 	"log-action-filter-ipinfo-view_infobox": "在信息框中查看的数据",
 	"log-action-filter-ipinfo-view_popup": "在弹出框中查看的数据",
-	"ipinfo-property-tooltip-asn": "网络唯一标识，分配给一个地区或一个组织，例如政府或互联网服务提供商"
+	"ipinfo-property-tooltip-asn": "网络唯一标识，分配给一个地区或一个组织，例如政府或互联网服务提供商",
+	"ipinfo-blocklist-url-text": "封禁列表"
 }
