@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Toghrul Rahimli"
+		]
+	},
+	"ipinfo-property-label-location": "Yer",
+	"ipinfo-property-label-organization": "Təşkilat",
+	"ipinfo-widget-error-default": "IP-ünvanı məlumatları əldə edilə bilmədi.",
+	"ipinfo-widget-error-no-data": "$1 mənbəsindən IP-ünvanı haqqında heç bir məlumat yoxdur."
+}
