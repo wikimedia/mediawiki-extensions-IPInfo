@@ -142,7 +142,8 @@
 				"oojs-ui-widgets",
 				"oojs-ui.styles.icons-content",
 				"web2017-polyfills",
-				"mediawiki.storage"
+				"mediawiki.storage",
+				"mediawiki.user"
 			],
 			"messages": [
 				"ipinfo-source-geoip2",
