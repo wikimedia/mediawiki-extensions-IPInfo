@@ -1,10 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Toghrul Rahimli"
+			"Toghrul Rahimli",
+			"NMW03"
 		]
 	},
+	"ipinfo-desc": "IP ünvan haqqında məlumat verir",
+	"ipinfo-infobox-title": "IP ünvan haqqında məlumat",
 	"ipinfo-property-label-location": "Yer",
+	"ipinfo-property-label-isp": "İSP",
+	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Təşkilat",
 	"ipinfo-widget-error-default": "IP-ünvanı məlumatları əldə edilə bilmədi.",
 	"ipinfo-widget-error-no-data": "$1 mənbəsindən IP-ünvanı haqqında heç bir məlumat yoxdur."
