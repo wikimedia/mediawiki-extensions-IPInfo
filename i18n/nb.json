@@ -51,6 +51,8 @@
 	"prefs-ipinfo": "IP-informasjon",
 	"action-ipinfo": "hente informasjon om IP-adresser tilknyttet revisjoner eller loggoppføringer",
 	"right-ipinfo": "hente informasjon om en IP-adresse tilknyttet revisjoner eller loggoppføringer",
+	"action-ipinfo-view-log": "vise en logg over hvem som har hentet IP-informasjon",
+	"right-ipinfo-view-log": "Vise en logg over hvem som har hentet IP-informasjon",
 	"ipinfo-log-name": "IPInfo-logg",
 	"ipinfo-log-header": "Dette er en logg over:\n# Bruken av IPInfo-verktøyet for å vise informasjon om IP-er, og\n# Endringer i tilgangsnivåer for verktøyet.",
 	"ipinfo-log-access-level-ipinfo-view-basic": "Begrenset tilgang",
