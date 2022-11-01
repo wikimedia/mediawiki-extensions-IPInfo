@@ -6,8 +6,9 @@
 			"StanProg"
 		]
 	},
+	"ipinfo-extensionname": "Информация за IP",
 	"ipinfo-desc": "Предоставя информация за IP адрес.",
-	"ipinfo-infobox-title": "Информация за IP адреса",
+	"ipinfo-infobox-title": "Информация за IP адрес",
 	"ipinfo-property-label-location": "Местоположение",
 	"ipinfo-property-label-isp": "Интернет доставчик",
 	"ipinfo-property-label-asn": "ASN",
