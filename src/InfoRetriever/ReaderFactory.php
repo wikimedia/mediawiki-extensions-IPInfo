@@ -56,6 +56,27 @@ class ReaderFactory {
 			[ $userLang ],
 			$this->languageFallback->getAll( $userLang )
 		);
+		$langCodes = $this->normaliseLanguageCodes( $langCodes );
 		return new Reader( $filename, $langCodes );
+	}
+
+	/**
+	 * @param array $languageCodes
+	 * @return array
+	 */
+	public function normaliseLanguageCodes( $languageCodes ) {
+		$normalisedLanguageCodes = [];
+		foreach ( $languageCodes as $languageCode ) {
+			$exploded = explode( "-", $languageCode );
+			if ( isset( $exploded[1] ) ) {
+				array_push(
+					$normalisedLanguageCodes,
+					$exploded[0] . "-" . strtoupper( $exploded[1] )
+				);
+			} else {
+				array_push( $normalisedLanguageCodes, $languageCode );
+			}
+		}
+		return $normalisedLanguageCodes;
 	}
 }

@@ -39,4 +39,33 @@ class ReaderFactoryTest extends MediaWikiUnitTestCase {
 		$factory->get( '/path/', 'filename' );
 		$factory->get( '/path/', 'filename' );
 	}
+
+	/**
+	 * @dataProvider providesTestNormaliseLanguageCodes
+	 */
+	public function testNormaliseLanguageCodes( $langCode, $expected ) {
+		$factory = $this->getFactory();
+		$this->assertArrayEquals( $expected, $factory->normaliseLanguageCodes( $langCode ) );
+	}
+
+	public function providesTestNormaliseLanguageCodes() {
+		return [
+			[
+				[ "es", "fr" ],
+				[ "es", "fr" ]
+			],
+			[
+				[ "pt-br" , "es" ],
+				[ "pt-BR", "es" ]
+			],
+			[
+				[ "de-ch", "nds-nl" ],
+				[ "de-CH", "nds-NL" ]
+			],
+			[
+				[ "tt-latn", "nl-informal" ],
+				[ "tt-LATN", "nl-INFORMAL" ]
+			],
+		];
+	}
 }
