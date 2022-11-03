@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"MaGa",
-			"Neptune, the Mystic"
+			"Neptune, the Mystic",
+			"Ponor"
 		]
 	},
 	"ipinfo-extensionname": "Informacije o IP adresi",
@@ -59,8 +60,9 @@
 	"ipinfo-log-name": "Evidencije",
 	"ipinfo-log-access-level-ipinfo-view-basic": "Ograničeni pristup",
 	"ipinfo-log-access-level-ipinfo-view-full": "Puni pristup",
-	"ipinfo-change-access-level-enable": "omogućeno",
-	"ipinfo-change-access-level-disable": "onemogućeno",
+	"ipinfo-change-access-level-enable": "{{GENDER:$1|omogućuje}}",
+	"ipinfo-change-access-level-disable": "{{GENDER:$1|onemogućuje}}",
+	"logentry-ipinfo-change_access": "$1 sebi $4 pristup informacijama o IP-adresama",
 	"ipinfo-property-tooltip-asn": "Jedinstveni mrežni identifikator dodijeljen regiji te organizacijama kao što su vlade i davatelji internetskih usluga",
 	"ipinfo-blocklist-url-text": "Popis blokiranja"
 }

@@ -4,7 +4,8 @@
 			"Base",
 			"DDPAT",
 			"Ice bulldog",
-			"Ата"
+			"Ата",
+			"Пан Хаунд"
 		]
 	},
 	"ipinfo-extensionname": "IP-інфо",
@@ -78,7 +79,7 @@
 	"ipinfo-log-access-level-ipinfo-view-full": "Повний доступ",
 	"logentry-ipinfo-view_infobox": "$1 {{GENDER:$2|переглянув|переглянула}} картку IP-інформації для $3. $4.",
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|переглянув|переглянула}} спливне віконце IP-інформації для $3. $4.",
-	"ipinfo-change-access-level-enable": "вмикає",
+	"ipinfo-change-access-level-enable": "{{GENDER:$1|ввімкнено}}",
 	"ipinfo-change-access-level-disable": "вимикає",
 	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|собі}} доступ до IP-інфо",
 	"log-action-filter-ipinfo": "Тип операції IP-інформації:",
