@@ -18,5 +18,8 @@
 	"ipinfo-property-value-connectiontype-cableordsl": "Kablovski / DSL",
 	"ipinfo-property-value-connectiontype-cellular": "Mobilna mreža",
 	"ipinfo-property-value-connectiontype-corporate": "Poslovna mreža",
-	"ipinfo-property-value-connectiontype-dialup": "Dialup"
+	"ipinfo-property-value-connectiontype-dialup": "Dialup",
+	"ipinfo-property-label-source": "Izvor",
+	"ipinfo-property-label-active-blocks": "Aktivne blokade",
+	"ipinfo-property-no-data": "Nije dostupno"
 }

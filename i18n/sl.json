@@ -58,7 +58,7 @@
 	"ipinfo-widget-error-wrong-ip": "Navedeni IP-naslov se ne ujema z dnevnikom ali revizijo.",
 	"ipinfo-widget-error-ip-no-edits": "Podatkov o IP-ju za ta naslov ni bilo mogoče pridobiti, ker na njem ni bilo nobenih sprememb.",
 	"ipinfo-preference-enable": "Prikaži orodje Podatki o IP-ju na strani Posebno:Prispevki za neregistrirane sodelavce.",
-	"ipinfo-preference-use-agreement": "Strinjam se z uporabo teh informacij za svoje patruljiranje in boj proti vandalizmu.",
+	"ipinfo-preference-use-agreement": "Strinjam se z uporabo teh informacij za pregledovanje strani in boj proti vandalizmu.",
 	"ipinfo-preference-agreement-error": "Preden se strinjate s pogoji uporabe, morate orodje Podatki o IP-ju omogočiti.",
 	"ipinfo-infobox-use-terms": "Orodje Podatki o IP-ju uporablja za prikaz podrobnosti, kot so kraj, posredniški strežnik in število naprav, ki si delijo ta IP-naslov, podatkovno zbirko MaxMind.",
 	"ipinfo-infobox-submit-agreement": "Omogoči orodje Podatki o IP-ju",
@@ -91,5 +91,17 @@
 	"grouppage-no-ipinfo": "{{ns:project}}:Uporabniki, ki jim je uporaba orodja Podatki o IP-ju preprečena",
 	"ipinfo-log-name": "Dnevnik orodja Podatki o IP-ju",
 	"ipinfo-log-header": "To je dnevnik:\n# uporabe orodja Podatki o IP-ju za ogled podatkov o IP-jih; in\n# sprememb ravni dostopa uporabnikov do orodja.",
-	"ipinfo-change-access-level-disable": "{{GENDER:$1|onemogočil|onemogočila|onemogočil/a}}"
+	"ipinfo-log-access-level-ipinfo-view-basic": "Omejen dostop",
+	"ipinfo-log-access-level-ipinfo-view-full": "Poln dostop",
+	"logentry-ipinfo-view_infobox": "$1 {{GENDER:$2|si je ogledal|si je ogledala|si je ogledal/a}} infopolje s podatki o IP-ju za $3. $4 .",
+	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|si je ogledal|si je ogledala|si je ogledal/a}} pojavno okno s podatki o IP-ju za $3. $4 .",
+	"ipinfo-change-access-level-enable": "{{GENDER:$1|omogočil|omogočila|omogočil/a}}",
+	"ipinfo-change-access-level-disable": "{{GENDER:$1|onemogočil|onemogočila|onemogočil/a}}",
+	"logentry-ipinfo-change_access": "$1 je $4 {{GENDER:$2|svoj}} lastni dostop do podatkov o IP-ju",
+	"log-action-filter-ipinfo": "Vrsta dejanja v Podatkih o IP-ju:",
+	"log-action-filter-ipinfo-change_access": "Orodje omogočeno ali onemogočeno",
+	"log-action-filter-ipinfo-view_infobox": "Podatki, prikazani v infopolju",
+	"log-action-filter-ipinfo-view_popup": "Podatki, prikazani v pojavnem oknu",
+	"ipinfo-property-tooltip-asn": "Enolični identifikator za omrežja, dodeljena regiji in nadalje organizacijam, kot so vlade in ponudniki internetnih storitev",
+	"ipinfo-blocklist-url-text": "Seznam blokiranja"
 }
