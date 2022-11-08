@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Srđan"
+		]
+	},
+	"ipinfo-extensionname": "Informacije o IP-adresi",
+	"ipinfo-desc": "Pruža informacije o IP-adresi.",
+	"ipinfo-infobox-title": "Informacije o IP-adresi",
+	"ipinfo-property-label-location": "Lokacija",
+	"ipinfo-property-label-isp": "Pružalac internetskih usluga (ISP)",
+	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "Organizacija",
+	"ipinfo-property-label-source": "Izvor"
+}
