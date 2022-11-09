@@ -21,5 +21,6 @@
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 lokalna izmjena|$1 lokalne izmjene|$1 lokalnih izmjena|0=Bez lokalnih izmjena}}",
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 u zadnja 24 sata}})",
 	"ipinfo-widget-error-default": "Informacije o IP adresi ne mogu biti dohvaćene.",
-	"ipinfo-widget-error-no-data": "Za ovu IP adresu nema podataka iz $1."
+	"ipinfo-widget-error-no-data": "Za ovu IP adresu nema podataka iz $1.",
+	"ipinfo-preference-use-agreement": "Slažem se s uporabom ovih informacija za ophođenje i antivandalizam."
 }

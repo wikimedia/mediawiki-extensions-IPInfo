@@ -24,7 +24,7 @@
 	"ipinfo-widget-error-default": "Podatkov o IP-ju ni bilo mogoče pridobiti.",
 	"ipinfo-widget-error-no-data": "Za ta IP-naslov od $1 ni podatkov.",
 	"ipinfo-widget-error-wrong-ip": "Navedeni IP-naslov se ne ujema z dnevnikom ali revizijo.",
-	"ipinfo-preference-use-agreement": "Strinjam se z uporabo teh informacij za svoje patruljiranje in boj proti vandalizmu.",
+	"ipinfo-preference-use-agreement": "Strinjam se z uporabo teh informacij za pregledovanje strani in boj proti vandalizmu.",
 	"ipinfo-preference-agreement-error": "Preden se strinjate s pogoji uporabe, morate orodje Podatki o IP-ju omogočiti.",
 	"ipinfo-infobox-use-terms": "Orodje Podatki o IP-ju uporablja za prikaz podrobnosti, kot so kraj, posredniški strežnik in število naprav, ki si delijo ta IP-naslov, podatkovno zbirko MaxMind.",
 	"ipinfo-infobox-submit-agreement": "Omogoči orodje Podatki o IP-ju",
@@ -38,5 +38,9 @@
 	"action-ipinfo": "pridobivanje podatkov o IP-naslovih, pripisanih redakcijam ali dnevniškim vnosom",
 	"right-ipinfo": "Pridobivanje podatkov o IP-naslovih, pripisanih redakcijam ali dnevniškim vnosom",
 	"action-ipinfo-view-log": "prikaz dnevnika dostopov do orodja Podatki o IP-ju",
-	"right-ipinfo-view-log": "Prikaz dnevnika dostopov do orodja Podatki o IP-ju"
+	"right-ipinfo-view-log": "Prikaz dnevnika dostopov do orodja Podatki o IP-ju",
+	"ipinfo-log-access-level-ipinfo-view-basic": "Omejen dostop",
+	"ipinfo-log-access-level-ipinfo-view-full": "Poln dostop",
+	"logentry-ipinfo-view_infobox": "$1 {{GENDER:$2|si je ogledal|si je ogledala|si je ogledal/a}} infopolje s podatki o IP-ju za $3. $4 .",
+	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|si je ogledal|si je ogledala|si je ogledal/a}} pojavno okno s podatki o IP-ju za $3. $4 ."
 }
