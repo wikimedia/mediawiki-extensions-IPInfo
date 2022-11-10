@@ -36,5 +36,8 @@
 	"ipinfo-property-no-data": "Nije dostupno",
 	"ipinfo-property-no-access": "Nema pristupa",
 	"ipinfo-widget-error-default": "Informacije o IP adresi ne mogu biti dohvaćene.",
-	"ipinfo-widget-error-no-data": "Za ovu IP adresu nema podataka iz $1."
+	"ipinfo-widget-error-no-data": "Za ovu IP adresu nema podataka iz $1.",
+	"ipinfo-widget-error-ip-no-edits": "Informacije o ovoj IP adresi ne mogu biti dohvaćene jer s nje nema izmjena na ovom wikiju.",
+	"ipinfo-preference-enable": "Prikaži alat za informacije o IP adresi za neregistrovane suradnike na stranici Posebno:Doprinosi.",
+	"ipinfo-preference-use-agreement": "Slažem se s uporabom ovih informacija za ophođenje i antivandalizam."
 }

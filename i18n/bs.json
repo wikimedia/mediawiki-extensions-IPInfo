@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Srđan"
+		]
+	},
+	"ipinfo-extensionname": "Informacije o IP-adresi",
+	"ipinfo-desc": "Pruža informacije o IP-adresi.",
+	"ipinfo-infobox-title": "Informacije o IP-adresi",
+	"ipinfo-property-label-location": "Lokacija",
+	"ipinfo-property-label-ipversion": "Verzija",
+	"ipinfo-property-label-isp": "Pružalac internetskih usluga (ISP)",
+	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "Organizacija",
+	"ipinfo-property-label-connectiontype": "Način povezivanja",
+	"ipinfo-property-label-usertype": "Vlasnik veze",
+	"ipinfo-property-label-proxytypes": "Stvarni IP / proxy",
+	"ipinfo-property-value-connectiontype-cableordsl": "Kablovski / DSL",
+	"ipinfo-property-value-connectiontype-cellular": "Mobilna mreža",
+	"ipinfo-property-value-connectiontype-corporate": "Poslovna mreža",
+	"ipinfo-property-value-connectiontype-dialup": "Dialup",
+	"ipinfo-property-label-source": "Izvor",
+	"ipinfo-property-label-active-blocks": "Aktivne blokade",
+	"ipinfo-property-no-data": "Nije dostupno"
+}
