@@ -57,7 +57,7 @@
 	"ipinfo-property-tooltip-proxytypes": "Les serveurs mandataires cachent les adresses IP. Dans certains cas cela se produit automatiquement, comme pour les serveurs mandataires résidentiels ou d’entreprises, dans d’autres cas, c’est fait intentionnellement afin de masquer l’origine de l’adresse IP.",
 	"ipinfo-property-tooltip-connectiontype": "La technologie via laquelle cette personne se connecte à l’internet.",
 	"ipinfo-property-tooltip-usertype": "Le type d’entité qui détient cette connexion internet.",
-	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 blocage actif|$1 blocages actifs|0=Aucun blocage actif}}.",
+	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1|0=Aucun}} blocage{{PLURAL:$1||s}} actif{{PLURAL:$1||s}}",
 	"ipinfo-active-blocks-url-text": "Journaux",
 	"ipinfo-property-label-edits": "Contributions",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 modification locale|$1 modifications locales|0=Aucune modification locale}}",

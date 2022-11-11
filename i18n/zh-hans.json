@@ -60,7 +60,7 @@
 	"ipinfo-property-tooltip-proxytypes": "代理会隐藏IP地址。在某些情况下，网络代理是自动生效的，例如住宅或公司代理；在其他情况下，代理则被故意用来隐藏源IP地址。",
 	"ipinfo-property-tooltip-connectiontype": "连接到互联网所采用的技术。",
 	"ipinfo-property-tooltip-usertype": "拥有互联网接入的实体。",
-	"ipinfo-value-active-blocks": "{{PLURAL:$1|现有$1个封禁|0=当前未封禁}}。",
+	"ipinfo-value-active-blocks": "{{PLURAL:$1|现有$1个封禁|0=当前未封禁}}",
 	"ipinfo-active-blocks-url-text": "日志",
 	"ipinfo-property-label-edits": "贡献",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1次本地编辑|0=无本地编辑}}",

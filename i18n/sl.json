@@ -46,7 +46,7 @@
 	"ipinfo-property-tooltip-proxytypes": "Posredniški strežniki (proxyji) skrijejo IP-naslove. Včasih se to zgodi samodejno, na primer pri stanovanjskih ali korporativnih strežnikih, v drugih primerih pa je to namerno dejanje za prikritje IP-naslova.",
 	"ipinfo-property-tooltip-connectiontype": "Tehnologija, s katero se povezuje v internet.",
 	"ipinfo-property-tooltip-usertype": "Vrsta subjekta, ki ima v lasti internetno povezavo.",
-	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1aktivno blokiranje|$1 aktivni blokiranji|$1 aktivna blokiranja|$1 aktivnih blokiranj}}.",
+	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1aktivno blokiranje|$1 aktivni blokiranji|$1 aktivna blokiranja|$1 aktivnih blokiranj}}",
 	"ipinfo-active-blocks-url-text": "Dnevniki",
 	"ipinfo-property-label-edits": "Prispevki",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 lokalno urejanje|$1 lokalni urejanji|$1 lokalna urejanja|$1 lokalnih urejanj|0=Brez lokalnih urejanj}}",
