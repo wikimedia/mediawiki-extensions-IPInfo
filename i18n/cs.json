@@ -26,7 +26,7 @@
 	"ipinfo-property-tooltip-proxytypes": "Proxy skrývají IP adresy. V některých případech se to děje automaticky, např. u proxy pro domácí uživatele nebo firmy, jindy to dělá uživatel úmyslně, aby skryl původní IP adresu.",
 	"ipinfo-property-tooltip-connectiontype": "Technologie, pomocí které jsou připojeni k internetu.",
 	"ipinfo-property-tooltip-usertype": "Druh entity, která vlastní toto připojení k internetu.",
-	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 aktivní|$1 aktivní|$1 aktivních|0=Žádná aktivní}} zablokování.",
+	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 aktivní|$1 aktivní|$1 aktivních|0=Žádná aktivní}} zablokování",
 	"ipinfo-property-label-edits": "Příspěvky",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 místní editace|$1 místní editace|$1 místních editací|0=Žádné místní editace}}",
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 za posledních 24 hodin}})",

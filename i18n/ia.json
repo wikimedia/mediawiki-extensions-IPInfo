@@ -45,7 +45,7 @@
 	"ipinfo-property-tooltip-proxytypes": "Le proxies cela adresses IP. In alcun casos isto occurre automaticamente, p.ex. pro proxies residential o corporative, in altere casos isto es facite intentionalmente pro mascar le origine del adresse IP.",
 	"ipinfo-property-tooltip-connectiontype": "Le technologia que usa pro connecter a internet.",
 	"ipinfo-property-tooltip-usertype": "Le typo de entitate que possede le connexion a internet.",
-	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 blocada|$1 blocadas|0=Nulle blocada}} active.",
+	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 blocada|$1 blocadas|0=Nulle blocada}} active",
 	"ipinfo-active-blocks-url-text": "Registros",
 	"ipinfo-property-label-edits": "Contributiones",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 modification|$1 modificationes|0=Nulle modification}} local",

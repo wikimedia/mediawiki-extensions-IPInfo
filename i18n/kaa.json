@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ajiniyaz Nurniyazov"
+		]
+	},
+	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 aktiv blok|$1 aktiv bloklar|0=Aktiv bloklar joq}}"
+}
