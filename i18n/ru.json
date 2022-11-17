@@ -8,7 +8,8 @@
 			"Stjn",
 			"Tanzun",
 			"Vitalisman",
-			"WindEwriX"
+			"WindEwriX",
+			"Deltaspace"
 		]
 	},
 	"ipinfo-extensionname": "Информация об IP",
@@ -37,6 +38,7 @@
 	"ipinfo-property-tooltip-connectiontype": "Технология, через которую IP-адрес подключается к Интернету.",
 	"ipinfo-property-tooltip-usertype": "Тип организации, владеющей интернет-соединением.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 активная блокировка|$1 активные блокировки|$1 активных блокировок|0=Нет активных блокировок}}.",
+	"ipinfo-active-blocks-url-text": "Журнал",
 	"ipinfo-property-label-edits": "Вклад",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 правка в вики|$1 правки в вики|$1 правок в вики|0=Нет правок в вики}}",
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 за последние 24 часа}})",

@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Reedy"
+		]
+	},
+	"ipinfo-property-label-organization": "Organisation",
+	"ipinfo-property-tooltip-asn": "A unique identifier for networks assigned to a region and further to organisations like governments and ISPs"
+}
