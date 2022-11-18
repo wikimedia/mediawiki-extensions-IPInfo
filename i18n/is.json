@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Snævar"
+			"Snævar",
+			"Sveinn í Felli"
 		]
 	},
 	"ipinfo-infobox-title": "Upplýsingar um vistfang",
@@ -22,7 +23,7 @@
 	"ipinfo-property-tooltip-proxytypes": "Proxy er milliliður sem felur vistföng. Í sumum tilfellum gerist þetta sjálfkrafa eins og með íbúa eða fyrirtækja proxy, í öðrum tilfellum er það gert viljandi til að fela uppruna vistfangsins.",
 	"ipinfo-property-tooltip-connectiontype": "Tæknin sem þau nota til að tengjast netinu.",
 	"ipinfo-property-tooltip-usertype": "Félagið sem á nettenginguna.",
-	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 virkt bann|$1 virk bönn|0=Engin virk bönn}}.",
+	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 virkt bann|$1 virk bönn|0=Engin virk bönn}}",
 	"ipinfo-active-blocks-url-text": "Aðgerðaskrá",
 	"ipinfo-property-label-edits": "Framlög",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 staðbundin breyting|$1 staðbundnar breytingar|0=engar staðbundnar breytingar}}",
@@ -35,7 +36,7 @@
 	"ipinfo-preference-use-agreement": "Ég samþykki að nota þessar upplýsingar við vöktun og við vinnu gegn skemmdarverkum.",
 	"ipinfo-infobox-use-terms": "IP vistfangar tólið notar MaxMind gagnabankann til að sýna upplýsingar eins og staðsetningu, proxy og hversu mörg tæki eru að deila þessari IP tölu.",
 	"ipinfo-infobox-submit-agreement": "Virkja vistfanga upplýsinga tólið",
-	"ipinfo-change-access-level-enable": "virkjaði",
-	"ipinfo-change-access-level-disable": "afvirkjaði",
+	"ipinfo-change-access-level-enable": "{{GENDER:$1|virkjaði}}",
+	"ipinfo-change-access-level-disable": "{{GENDER:$1|gerði óvirkt}}",
 	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|hans|hennar|þeirra}} eigin aðgang að IPInfo"
 }
