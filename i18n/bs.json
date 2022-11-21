@@ -21,5 +21,6 @@
 	"ipinfo-property-value-connectiontype-dialup": "Dialup",
 	"ipinfo-property-label-source": "Izvor",
 	"ipinfo-property-label-active-blocks": "Aktivne blokade",
+	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 aktivna blokada|$1 aktivne blokade|$1 aktivnih blokada|0=Nema aktivnih blokada}}",
 	"ipinfo-property-no-data": "Nije dostupno"
 }
