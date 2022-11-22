@@ -45,7 +45,7 @@
 	"ipinfo-property-tooltip-proxytypes": "Os ''proxies'' ocultam endereços IP. Em alguns casos isto acontece automaticamente, como para ''proxies'' residenciais ou corporativos, noutros casos é feito intencionalmente para mascarar a origem do endereço IP.",
 	"ipinfo-property-tooltip-connectiontype": "A tecnologia através da qual eles se estão a ligar à internet.",
 	"ipinfo-property-tooltip-usertype": "O tipo de entidade que detém a ligação à internet.",
-	"ipinfo-value-active-blocks": "{{PLURAL:$1|Um bloqueio ativo|$1 bloqueios ativos|0=Nenhum bloqueio ativo}}.",
+	"ipinfo-value-active-blocks": "{{PLURAL:$1|Um bloqueio ativo|$1 bloqueios ativos|0=Nenhum bloqueio ativo}}",
 	"ipinfo-active-blocks-url-text": "Registos",
 	"ipinfo-property-label-edits": "Contribuições",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|Uma edição local|$1 edições locais|0=Nenhuma edição local}}",

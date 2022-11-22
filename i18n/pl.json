@@ -4,6 +4,7 @@
 			"Kareyac",
 			"Nux",
 			"Rail",
+			"WTM",
 			"Woytecr"
 		]
 	},
@@ -61,7 +62,7 @@
 	"ipinfo-preference-agreement-error": "Musisz najpierw włączyć narzędzie Informacje o IP, aby zatwierdzić jego warunki użytkowania.",
 	"ipinfo-infobox-use-terms": "Narzędzie Informacje o IP wykorzystuje bazę danych MaxMind. Na tej podstawie podaje takie dane jak: lokalizacja, użyte proxy oraz ile urządzeń wykorzystuje ten adres IP.",
 	"ipinfo-infobox-submit-agreement": "Włącz narzędzie Informacje o IP",
-	"ipinfo-infobox-disable-instructions": "Jeżeli chcesz wyłączyć tę funkcję, możesz to zrobić w swoich [[{{#special:Preferences}}|preferencjach]].",
+	"ipinfo-infobox-disable-instructions": "Jeżeli chcesz wyłączyć tę funkcję, możesz to zrobić w swoich [[Special:Preferences#mw-prefsection-betafeatures|preferencjach]].",
 	"ipinfo-use-agreement-submit-error": "Coś poszło nie tak. Spróbuj ponownie. Komunikat błędu: $1",
 	"ipinfo-rest-access-denied": "Nie masz uprawnień do wykonywania tej operacji",
 	"ipinfo-rest-access-denied-blocked-user": "Nie masz uprawnień do wykonania tej operacji, ponieważ Twoje konto zostało zablokowane",
