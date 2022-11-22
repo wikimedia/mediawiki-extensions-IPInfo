@@ -52,6 +52,16 @@ class ContributionInfoRetriever implements InfoRetriever {
 			->caller( __METHOD__ )
 			->fetchRowCount();
 
-		return new ContributionInfo( $numLocalEdits, $numRecentEdits );
+		$numDeletedEdits = $this->database->newSelectQueryBuilder()
+			->from( 'archive' )
+			->join( 'actor', null, 'actor_id=ar_actor' )
+			->where( [
+					'actor_name' => $ip,
+				]
+			)
+			->caller( __METHOD__ )
+			->fetchRowCount();
+
+		return new ContributionInfo( $numLocalEdits, $numRecentEdits, $numDeletedEdits );
 	}
 }

@@ -20,6 +20,7 @@ class ContributionInfoRetrieverTest extends MediaWikiUnitTestCase {
 		$database = $this->createMock( IDatabase::class );
 		$numLocalEdits = 42;
 		$numRecentEdits = 24;
+		$numDeletedEdits = 10;
 
 		$database->method( 'addQuotes' )
 			->willReturn( 30 );
@@ -48,10 +49,23 @@ class ContributionInfoRetrieverTest extends MediaWikiUnitTestCase {
 				[],
 				$numRecentEdits,
 			],
+			[
+				[ 0 => 'archive', 'actor' => 'actor' ],
+				'*',
+				[ 'actor_name' => $ip ],
+				'MediaWiki\IPInfo\InfoRetriever\ContributionInfoRetriever::retrieveFromIP',
+				[],
+				[ 'actor' => [
+					'JOIN',
+					'actor_id=ar_actor'
+				] ],
+				$numDeletedEdits,
+			],
 		];
 
 		$database->method( 'newSelectQueryBuilder' )
 			->willReturnOnConsecutiveCalls(
+				new SelectQueryBuilder( $database ),
 				new SelectQueryBuilder( $database ),
 				new SelectQueryBuilder( $database )
 			);
@@ -65,5 +79,6 @@ class ContributionInfoRetrieverTest extends MediaWikiUnitTestCase {
 		$this->assertInstanceOf( ContributionInfo::class, $info );
 		$this->assertEquals( $numLocalEdits, $info->getNumLocalEdits() );
 		$this->assertEquals( $numRecentEdits, $info->getNumRecentEdits() );
+		$this->assertEquals( $numDeletedEdits, $info->getNumDeletedEdits() );
 	}
 }

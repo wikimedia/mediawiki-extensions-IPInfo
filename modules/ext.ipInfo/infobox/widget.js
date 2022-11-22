@@ -31,7 +31,7 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 	);
 
 	var activeBlocks = this.getActiveBlocks( info.data[ 'ipinfo-source-block' ].numActiveBlocks );
-	var blockLogUrl, $blockLogLink, blockListUrl, $blockListLink;
+	var blockLogUrl, $blockLogLink, blockListUrl, $blockListLink, $edits, deletedEditsUrl, $deletedEditsLink;
 	blockLogUrl = mw.util.getUrl( 'Special:Log' ) + '?type=block&page=' + info.subject;
 	blockListUrl = mw.util.getUrl( 'Special:BlockList' ) + '?wpTarget=' + info.subject;
 	$blockLogLink = $( '<div>' )
@@ -48,10 +48,20 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 				.text( mw.msg( 'ipinfo-blocklist-url-text' ) ) );
 	}
 
-	var $edits = this.getEdits(
+	$edits = this.getEdits(
 		info.data[ 'ipinfo-source-contributions' ].numLocalEdits,
-		info.data[ 'ipinfo-source-contributions' ].numRecentEdits
+		info.data[ 'ipinfo-source-contributions' ].numRecentEdits,
+		info.data[ 'ipinfo-source-contributions' ].numDeletedEdits
 	);
+
+	if ( info.data[ 'ipinfo-source-contributions' ].numDeletedEdits ) {
+		deletedEditsUrl = mw.util.getUrl( 'Special:DeletedContributions' ) + '?target=' + info.subject;
+		$deletedEditsLink = $( '<div>' )
+			.addClass( 'ext-ipinfo-contribution-links' )
+			.append( $( '<a>' )
+				.attr( 'href', deletedEditsUrl )
+				.text( mw.msg( 'ipinfo-deleted-edits-url-text' ) ) );
+	}
 
 	var $proxyTypes = this.getProxyTypes( info.data[ 'ipinfo-source-geoip2' ].proxyType );
 	var connectionTypes = this.getConnectionTypes( info.data[ 'ipinfo-source-geoip2' ].connectionType );
@@ -98,7 +108,10 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 					'active-blocks',
 					activeBlocks,
 					mw.msg( 'ipinfo-property-label-active-blocks' ) ).append( $blockLogLink, $blockListLink ),
-				this.generatePropertyMarkup( 'edits', $edits, mw.msg( 'ipinfo-property-label-edits' ) ),
+				this.generatePropertyMarkup(
+					'edits',
+					$edits,
+					mw.msg( 'ipinfo-property-label-edits' ) ).append( $deletedEditsLink ),
 				$( '<div>' ).addClass( 'ext-ipinfo-widget-property-source' ).html(
 					mw.message( 'ipinfo-source-geoip2' ).parse()
 				)

@@ -106,6 +106,8 @@
 	"log-action-filter-ipinfo-view_infobox": "Data viewed in information box",
 	"log-action-filter-ipinfo-view_popup": "Data viewed in popup",
 	"ipinfo-property-tooltip-asn": "A unique identifier for networks assigned to a region and further to organizations like governments and ISPs",
-	"ipinfo-blocklist-url-text": "Block list"
+	"ipinfo-blocklist-url-text": "Block list",
+	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 deleted edit|$1 deleted edits|0=No deleted edits}}",
+	"ipinfo-deleted-edits-url-text": "Deleted contributions"
 
 }

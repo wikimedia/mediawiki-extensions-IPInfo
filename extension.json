@@ -222,7 +222,9 @@
 				"ipinfo-value-ipversion-ipv6",
 				"ipinfo-property-tooltip-asn",
 				"ipinfo-active-blocks-url-text",
-				"ipinfo-blocklist-url-text"
+				"ipinfo-blocklist-url-text",
+				"ipinfo-value-deleted-edits",
+				"ipinfo-deleted-edits-url-text"
 			]
 		},
 		"ext.ipInfo.styles": {

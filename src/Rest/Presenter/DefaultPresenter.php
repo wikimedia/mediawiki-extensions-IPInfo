@@ -47,6 +47,7 @@ class DefaultPresenter {
 			'numActiveBlocks',
 			'numLocalEdits',
 			'numRecentEdits',
+			'numDeletedEdits',
 		]
 	];
 
@@ -88,7 +89,7 @@ class DefaultPresenter {
 			} elseif ( $info instanceof BlockInfo ) {
 				$data += $this->presentBlockInfo( $info );
 			} elseif ( $info instanceof ContributionInfo ) {
-				$data += $this->presentContributionInfo( $info );
+				$data += $this->presentContributionInfo( $info, $user );
 			}
 
 			// Unset all properties the user doesn't have access to before writing to $result
@@ -162,12 +163,22 @@ class DefaultPresenter {
 
 	/**
 	 * @param ContributionInfo $info
+	 * @param UserIdentity $user
 	 * @return array<string,int>
 	 */
-	private function presentContributionInfo( ContributionInfo $info ): array {
-		return [
-			'numLocalEdits' => $info->getNumLocalEdits(),
-			'numRecentEdits' => $info->getNumRecentEdits(),
-		];
+	private function presentContributionInfo( ContributionInfo $info, UserIdentity $user ): array {
+		if ( !$this->permissionManager->userHasRight(
+			 $user, 'deletedhistory' ) ) {
+			return [
+				'numLocalEdits' => $info->getNumLocalEdits(),
+				'numRecentEdits' => $info->getNumRecentEdits()
+			];
+		} else {
+			return [
+				'numLocalEdits' => $info->getNumLocalEdits(),
+				'numRecentEdits' => $info->getNumRecentEdits(),
+				'numDeletedEdits' => $info->getNumDeletedEdits(),
+			];
+		}
 	}
 }

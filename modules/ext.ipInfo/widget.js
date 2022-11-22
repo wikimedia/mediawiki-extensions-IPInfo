@@ -191,22 +191,35 @@ ipInfoWidget.prototype.getActiveBlocks = function ( numActiveBlocks ) {
  *
  * @param {number|undefined} numLocalEdits (undefined if access is restricted)
  * @param {number|undefined} numRecentEdits (undefined if access is restricted)
+ * @param {number|undefined} numDeletedEdits (undefined if access is restricted)
  * @return {Object|undefined}
  */
-ipInfoWidget.prototype.getEdits = function ( numLocalEdits, numRecentEdits ) {
+ipInfoWidget.prototype.getEdits = function ( numLocalEdits, numRecentEdits, numDeletedEdits ) {
 	if ( numLocalEdits === undefined && numRecentEdits === undefined ) {
 		return undefined;
 	}
 	var localEdits = mw.msg( 'ipinfo-value-local-edits', numLocalEdits );
-
 	var $recentEdits = $( '<span>' ).addClass( 'ext-ipinfo-widget-value-recent-edits' )
 		.append( mw.msg( 'ipinfo-value-recent-edits', numRecentEdits ) );
 
-	return $( '<span>' ).append(
-		localEdits,
-		$( '<br>' ),
-		$recentEdits
-	);
+	if ( numDeletedEdits === undefined ) {
+		return $( '<span>' ).append(
+			localEdits,
+			$( '<br>' ),
+			$recentEdits,
+			$( '<br>' )
+		);
+	} else {
+		var deletedEdits = mw.msg( 'ipinfo-value-deleted-edits', numDeletedEdits );
+		return $( '<span>' ).append(
+			localEdits,
+			$( '<br>' ),
+			$recentEdits,
+			$( '<br>' ),
+			deletedEdits,
+			$( '<br>' )
+		);
+	}
 };
 
 /**
