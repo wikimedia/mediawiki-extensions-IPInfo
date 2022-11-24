@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Snævar"
+			"Snævar",
+			"Sveinn í Felli"
 		]
 	},
 	"ipinfo-infobox-title": "Upplýsingar um vistfang",
@@ -35,7 +36,7 @@
 	"ipinfo-preference-use-agreement": "Ég samþykki að nota þessar upplýsingar við vöktun og við vinnu gegn skemmdarverkum.",
 	"ipinfo-infobox-use-terms": "IP vistfangar tólið notar MaxMind gagnabankann til að sýna upplýsingar eins og staðsetningu, proxy og hversu mörg tæki eru að deila þessari IP tölu.",
 	"ipinfo-infobox-submit-agreement": "Virkja vistfanga upplýsinga tólið",
-	"ipinfo-change-access-level-enable": "virkjaði",
-	"ipinfo-change-access-level-disable": "afvirkjaði",
+	"ipinfo-change-access-level-enable": "{{GENDER:$1|virkjaði}}",
+	"ipinfo-change-access-level-disable": "{{GENDER:$1|gerði óvirkt}}",
 	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|hans|hennar|þeirra}} eigin aðgang að IPInfo"
 }
