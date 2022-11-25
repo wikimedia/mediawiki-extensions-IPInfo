@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Brettchenweber"
+			"Brettchenweber",
+			"Umherirrender"
 		]
 	},
 	"ipinfo-desc": "Stellt Informationen über eine IP-Adresse zur Verfügung.",
@@ -85,7 +86,7 @@
 	"right-ipinfo-view-log": "Ein Protokoll der Zugriffe auf IP-Informationen einsehen",
 	"group-no-ipinfo": "Für das IP-Informationstool gesperrte Benutzer",
 	"group-no-ipinfo-member": "{{GENDER:$1|für das IP-Informationstool gesperrt}}",
-	"grouppage-no-ipinfo": "{{ns:project}}:Für das IP-Informationstool  gesperrte Benutzer",
+	"grouppage-no-ipinfo": "{{ns:project}}:Für das IP-Informationstool gesperrte Benutzer",
 	"ipinfo-log-name": "IPInfo-Logbuch",
 	"ipinfo-log-header": "Dies ist ein Logbuch der:\n# Verwendungen des IPInfo-Tools zur Anzeige von Informationen über IP-Adressen; und\n# Änderungen der Benutzerzugriffsebenen für das Tool.",
 	"ipinfo-log-access-level-ipinfo-view-basic": "Begrenzter Zugang",
