@@ -39,7 +39,7 @@
 	"ipinfo-preference-agreement-error": "Engedélyezned kell az IP-információs eszközt, mielőtt elfogadhatnád a felhasználási feltételeit.",
 	"ipinfo-infobox-use-terms": "Az IP-információs eszköz a MaxMind adatbázisát használja az olyan részletek megjelenítéséhez, mint a hely, proxy és az IP-címen osztozó eszközök száma.",
 	"ipinfo-infobox-submit-agreement": "IP-információs eszköz engedélyezése",
-	"ipinfo-infobox-disable-instructions": "Bármikor letilthatod ezt a funkciót a [[Special:Preferences|beállításaidban]].",
+	"ipinfo-infobox-disable-instructions": "Bármikor letilthatod ezt a funkciót a [[Special:Preferences#mw-prefsection-betafeatures|beállításaidban]].",
 	"ipinfo-use-agreement-submit-error": "Hiba történt, próbáld újra. A hibaüzenet a következő volt: $1",
 	"ipinfo-rest-access-denied": "Nincs megfelelő jogosultságod a művelet végrehajtásához",
 	"ipinfo-rest-access-denied-blocked-user": "Nincs megfelelő jogosultságod a művelet végrehajtásához, mert a fiókod blokkolva van",
@@ -55,8 +55,8 @@
 	"ipinfo-log-access-level-ipinfo-view-full": "Teljes hozzáférés",
 	"logentry-ipinfo-view_infobox": "$1 {{GENDER:$2|megtekintette}} $3 IP-információs infoboxát. $4.",
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|megtekintette}} $3 IP-információs felugró ablakát. $4.",
-	"ipinfo-change-access-level-enable": "engedélyezte",
-	"ipinfo-change-access-level-disable": "letiltotta",
+	"ipinfo-change-access-level-enable": "{{GENDER:$1|engedélyezte}}",
+	"ipinfo-change-access-level-disable": "{{GENDER:$1|letiltotta}}",
 	"logentry-ipinfo-change_access": "$1 {{GENDER:$2|$4}} a saját hozzáférését az IP-információs eszközhöz",
 	"ipinfo-blocklist-url-text": "Tiltólista"
 }
