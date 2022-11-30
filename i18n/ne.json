@@ -5,6 +5,7 @@
 			"बडा काजी"
 		]
 	},
+	"ipinfo-extensionname": "आईपी जानकारी",
 	"ipinfo-desc": "आईपी ठेगाना बारे जानकारी प्रदान गर्दछ।",
 	"ipinfo-infobox-title": "आईपी जानकारी",
 	"ipinfo-property-label-location": "स्थान",
@@ -32,6 +33,7 @@
 	"ipinfo-property-value-usertype-residential": "आवासीय",
 	"ipinfo-property-label-source": "स्रोत",
 	"ipinfo-property-label-active-blocks": "सक्रिय निषेधहरू",
+	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 सक्रिय निषेध| $1 सक्रिय निषेधहरू|0=कुनै सक्रिय निषेधहरू छैनन्}}",
 	"ipinfo-active-blocks-url-text": "अभिलेखहरू",
 	"ipinfo-property-label-edits": "योगदानहरू",
 	"ipinfo-property-no-data": "उपलब्ध छैन",
