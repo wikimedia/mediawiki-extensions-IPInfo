@@ -9,7 +9,8 @@
 			"Raymond",
 			"Tran (WMF)",
 			"Umherirrender",
-			"Verdy p"
+			"Verdy p",
+			"Wnme"
 		]
 	},
 	"ipinfo-extensionname": "{{name}}\nThe name of the extension",
@@ -21,7 +22,7 @@
 	"ipinfo-property-label-asn": "Label for Autonomous System Number (ASN) data returned (an ASN refers to a block of IP addresses)",
 	"ipinfo-property-label-organization": "Label for Autonomous System Organization data returned",
 	"ipinfo-property-label-connectiontype": "Label for the connection method data returned",
-	"ipinfo-property-label-usertype": "Label for the connection owner data returned",
+	"ipinfo-property-label-usertype": "Label for the connection usertype returned - for more see https://support.maxmind.com/hc/en-us/articles/4408208479131-User-Context-Data#h_01FN9BTGFQVP41YNPDGM454T2T",
 	"ipinfo-property-label-proxytypes": "Label for proxy type data returned",
 	"ipinfo-property-value-connectiontype-cableordsl": "Possible type of connection returned. Cable/DSL for more see https://support.maxmind.com/hc/en-us/articles/4408200231067-IP-Network-Data#h_01FN988THBX8RVERNTZ12BY2EC",
 	"ipinfo-property-value-connectiontype-cellular": "Possible type of connection returned. Cellular for more see https://support.maxmind.com/hc/en-us/articles/4408200231067-IP-Network-Data#h_01FN988THBX8RVERNTZ12BY2EC",
@@ -83,8 +84,8 @@
 	"ipinfo-source-geoip2": "Disclaimer about the accuracy of the data, MaxMind is the provider name, GeoIP2 is the collection of their databases.",
 	"ipinfo-beta-feature-title": "Label for BetaFeatures listing",
 	"ipinfo-beta-feature-description": "Description for BetaFeatures listing. \"Log\" is {{msg-mw|all-logs-page}}; \"Contributions\" is {{msg-mw|contributions}}; \"Recent changes\" is {{msg-mw|recentchanges}}.",
-	"ipinfo-value-ipversion-ipv4": "IP address version 4",
-	"ipinfo-value-ipversion-ipv6": "IP address version 6",
+	"ipinfo-value-ipversion-ipv4": "{{optional}}\nIP address version 4",
+	"ipinfo-value-ipversion-ipv6": "{{optional}}\nIP address version 6",
 	"prefs-ipinfo": "Text of a section header in [[Special:Preferences]].",
 	"action-ipinfo": "{{doc-action|ipinfo}}",
 	"right-ipinfo": "{{doc-right|ipinfo}}",

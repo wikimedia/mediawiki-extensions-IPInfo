@@ -1,25 +1,27 @@
 {
 	"@metadata": {
 		"authors": [
-			"Brettchenweber"
+			"Brettchenweber",
+			"Umherirrender",
+			"Wnme"
 		]
 	},
 	"ipinfo-desc": "Stellt Informationen über eine IP-Adresse zur Verfügung.",
-	"ipinfo-infobox-title": "IP-Information",
+	"ipinfo-infobox-title": "IP-Informationen",
 	"ipinfo-property-label-location": "Standort",
 	"ipinfo-property-label-ipversion": "Version",
-	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-isp": "Provider",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Organisation",
 	"ipinfo-property-label-connectiontype": "Verbindungsmethode",
-	"ipinfo-property-label-usertype": "Eigentümer der Verbindung",
-	"ipinfo-property-label-proxytypes": "Echte IP-Adresse/Proxy",
+	"ipinfo-property-label-usertype": "Art des Anschlusses",
+	"ipinfo-property-label-proxytypes": "Tatsächliche IP-Adresse/Proxy",
 	"ipinfo-property-value-connectiontype-cableordsl": "Kabel/DSL",
 	"ipinfo-property-value-connectiontype-cellular": "Mobilfunk",
 	"ipinfo-property-value-connectiontype-corporate": "Unternehmen",
 	"ipinfo-property-value-connectiontype-dialup": "Wählverbindung",
 	"ipinfo-property-value-usertype-college": "Hochschule",
-	"ipinfo-property-value-usertype-business": "Wirtschaft",
+	"ipinfo-property-value-usertype-business": "Unternehmen",
 	"ipinfo-property-value-usertype-cafe": "Café",
 	"ipinfo-property-value-usertype-cellular": "Mobilfunk",
 	"ipinfo-property-value-usertype-dialup": "Wählverbindung",
@@ -29,8 +31,8 @@
 	"ipinfo-property-value-usertype-military": "Militär",
 	"ipinfo-property-value-usertype-router": "Router",
 	"ipinfo-property-value-usertype-school": "Schule",
-	"ipinfo-property-value-usertype-traveler": "Reise",
-	"ipinfo-property-value-usertype-residential": "Wohnen",
+	"ipinfo-property-value-usertype-traveler": "Reisender",
+	"ipinfo-property-value-usertype-residential": "Privater Anschluss",
 	"ipinfo-property-value-usertype-searchenginespider": "Suchmaschinen-Spider",
 	"ipinfo-property-value-usertype-contentdeliverynetwork": "Content-Delivery-Netzwerk",
 	"ipinfo-property-value-usertype-consumerprivacynetwork": "Netzwerk zum Schutz der Privatsphäre der Verbraucher",
@@ -85,7 +87,7 @@
 	"right-ipinfo-view-log": "Ein Protokoll der Zugriffe auf IP-Informationen einsehen",
 	"group-no-ipinfo": "Für das IP-Informationstool gesperrte Benutzer",
 	"group-no-ipinfo-member": "{{GENDER:$1|für das IP-Informationstool gesperrt}}",
-	"grouppage-no-ipinfo": "{{ns:project}}:Für das IP-Informationstool  gesperrte Benutzer",
+	"grouppage-no-ipinfo": "{{ns:project}}:Für das IP-Informationstool gesperrte Benutzer",
 	"ipinfo-log-name": "IPInfo-Logbuch",
 	"ipinfo-log-header": "Dies ist ein Logbuch der:\n# Verwendungen des IPInfo-Tools zur Anzeige von Informationen über IP-Adressen; und\n# Änderungen der Benutzerzugriffsebenen für das Tool.",
 	"ipinfo-log-access-level-ipinfo-view-basic": "Begrenzter Zugang",
@@ -100,5 +102,5 @@
 	"log-action-filter-ipinfo-view_infobox": "Daten im Informationsfeld angezeigt",
 	"log-action-filter-ipinfo-view_popup": "Daten im Pop-up angezeigt",
 	"ipinfo-property-tooltip-asn": "Eine eindeutige Kennung für Netze, die einer Region und darüber hinaus Organisationen wie Regierungen und Internetanbietern zugewiesen wird",
-	"ipinfo-blocklist-url-text": "Sperrliste"
+	"ipinfo-blocklist-url-text": "Liste der Sperren"
 }
