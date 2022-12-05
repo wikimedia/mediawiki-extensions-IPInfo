@@ -7,12 +7,17 @@ use ExtensionRegistry;
 use MediaWiki\Hook\SpecialContributionsBeforeMainOutputHook;
 use MediaWiki\MediaWikiServices;
 use Mediawiki\Permissions\PermissionManager;
+use MediaWiki\SpecialPage\Hook\SpecialPageBeforeExecuteHook;
 use MediaWiki\User\UserOptionsLookup;
 use OOUI\PanelLayout;
 use OutputPage;
+use SpecialPage;
 use Wikimedia\IPUtils;
 
-class InfoboxHandler implements SpecialContributionsBeforeMainOutputHook {
+class InfoboxHandler implements
+	SpecialContributionsBeforeMainOutputHook,
+	SpecialPageBeforeExecuteHook
+{
 	/** @var PermissionManager */
 	private $permissionManager;
 
@@ -32,13 +37,13 @@ class InfoboxHandler implements SpecialContributionsBeforeMainOutputHook {
 	}
 
 	/**
-	 * @inheritDoc
+	 * This fuction is used to add an info box on Special:Contributions and Special:DeletedContributions
+	 *
+	 * @param string $username Username or IP Address
+	 * @param SpecialPage $sp
+	 * @return void
 	 */
-	public function onSpecialContributionsBeforeMainOutput( $id, $user, $sp ): void {
-		if ( $sp->getName() !== 'Contributions' ) {
-			return;
-		}
-
+	private function addInfoBox( $username, $sp ) {
 		// T309363: hide the panel on mobile until T268177 is resolved
 		$services = MediaWikiServices::getInstance();
 		$extensionRegistry = ExtensionRegistry::getInstance();
@@ -51,7 +56,6 @@ class InfoboxHandler implements SpecialContributionsBeforeMainOutputHook {
 
 		$accessingUser = $sp->getUser();
 		$isBetaFeaturesLoaded = $extensionRegistry->isLoaded( 'BetaFeatures' );
-
 		if (
 			!$this->permissionManager->userHasRight( $accessingUser, 'ipinfo' ) ||
 			( $isBetaFeaturesLoaded &&
@@ -60,26 +64,23 @@ class InfoboxHandler implements SpecialContributionsBeforeMainOutputHook {
 		) {
 			return;
 		}
-
 		// Check if the target is an IP address
-		$target = $user->getName();
-		if ( IPUtils::isValid( $target ) ) {
-			$target = IPUtils::prettifyIP( $target );
+		if ( IPUtils::isValid( $username ) ) {
+			$username = IPUtils::prettifyIP( $username );
 		} else {
-			$target = null;
+			$username = null;
 		}
-		if ( !$target ) {
+
+		if ( !$username ) {
 			return;
 		}
 
 		$out = $sp->getOutput();
 		$out->addJsConfigVars( [
-			'wgIPInfoTarget' => $target
+			'wgIPInfoTarget' => $username
 		] );
-
 		$out->addModules( 'ext.ipInfo' );
 		$out->addModuleStyles( 'ext.ipInfo.styles' );
-
 		$panelLayout = new PanelLayout( [
 			'classes' => [ 'ext-ipinfo-panel-layout' ],
 			'framed' => true,
@@ -96,5 +97,31 @@ class InfoboxHandler implements SpecialContributionsBeforeMainOutputHook {
 		] );
 		OutputPage::setupOOUI();
 		$out->addHTML( $panelLayout );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function onSpecialContributionsBeforeMainOutput( $id, $user, $sp ) {
+		if ( $sp->getName() !== 'Contributions' ) {
+			return;
+		}
+
+		$this->addInfoBox( $user->getName(), $sp );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function onSpecialPageBeforeExecute( $sp, $subPage ) {
+		if ( $sp->getName() !== 'DeletedContributions' ) {
+			return;
+		}
+
+		if ( $subPage === null ) {
+			$subPage = $sp->getRequest()->getText( 'target' );
+		}
+
+		$this->addInfoBox( $subPage, $sp );
 	}
 }

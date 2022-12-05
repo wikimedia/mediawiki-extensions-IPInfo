@@ -88,7 +88,8 @@
 		"GetPreferences": "preferences",
 		"GetBetaFeaturePreferences": "betaFeature",
 		"SaveUserOptions": "preferences",
-		"LoadExtensionSchemaUpdates": "schema"
+		"LoadExtensionSchemaUpdates": "schema",
+		"SpecialPageBeforeExecute": "infobox"
 	},
 	"HookHandlers": {
 		"popup": {
