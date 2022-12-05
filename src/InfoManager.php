@@ -33,10 +33,8 @@ class InfoManager {
 			$data[$retriever->getName()] = $retriever->retrieveFromIP( $ip );
 		}
 
-		$ip = IPUtils::prettifyIP( $ip );
-
 		return [
-			'subject' => $ip,
+			'subject' => IPUtils::prettifyIP( $ip ),
 			'data' => $data,
 		];
 	}

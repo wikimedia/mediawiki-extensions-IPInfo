@@ -41,27 +41,22 @@ class GeoLite2InfoRetrieverTest extends MediaWikiIntegrationTestCase {
 			),
 			$readerFactory
 		);
-		$info = $infoRetriever->retrieveFromIP( '127.0.0.1' );
+		$infoRetriever->retrieveFromIP( '127.0.0.1' );
 	}
 
 	public function testNullRetrieveFromIP() {
 		$this->setMwGlobals( [
 			'wgIPInfoGeoLite2Prefix' => 'test',
 		] );
-		$ip = '127.0.0.1';
 
 		$reader = $this->createMock( Reader::class );
 		$reader->method( 'asn' )
-			->will(
-				$this->throwException(
-					new AddressNotFoundException()
-				)
+			->willThrowException(
+				new AddressNotFoundException()
 			);
 		$reader->method( 'city' )
-			->will(
-				$this->throwException(
-					new AddressNotFoundException()
-				)
+			->willThrowException(
+				new AddressNotFoundException()
 			);
 
 		$readerFactory = $this->createMock( ReaderFactory::class );

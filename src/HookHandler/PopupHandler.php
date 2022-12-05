@@ -35,7 +35,9 @@ class PopupHandler implements BeforePageDisplayHook {
 			!( $out->getTitle() &&
 				( $out->getTitle()->isSpecial( 'Log' ) ||
 					 $out->getTitle()->isSpecial( 'Recentchanges' ) ||
-					 $out->getTitle()->isSpecial( 'Watchlist' ) ) )
+					 $out->getTitle()->isSpecial( 'Watchlist' )
+				)
+			)
 		) {
 			return;
 		}
@@ -47,7 +49,8 @@ class PopupHandler implements BeforePageDisplayHook {
 			!$this->permissionManager->userHasRight( $user, 'ipinfo' ) ||
 			!$this->userOptionsLookup->getOption( $user, 'ipinfo-use-agreement' ) ||
 			( $isBetaFeaturesLoaded &&
-			!$this->userOptionsLookup->getOption( $user, 'ipinfo-beta-feature-enable' ) )
+				!$this->userOptionsLookup->getOption( $user, 'ipinfo-beta-feature-enable' )
+			)
 		) {
 			return;
 		}

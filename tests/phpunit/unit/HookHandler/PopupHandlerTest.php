@@ -14,7 +14,7 @@ use User;
 
 /**
  * @group IPInfo
- * @covers MediaWiki\IPInfo\HookHandler\PopupHandler
+ * @covers \MediaWiki\IPInfo\HookHandler\PopupHandler
  */
 class PopupHandlerTest extends MediaWikiUnitTestCase {
 
@@ -62,9 +62,9 @@ class PopupHandlerTest extends MediaWikiUnitTestCase {
 	public function testOnBeforePageDisplayTitles( $special, $expected ) {
 		$title = $this->createMock( Title::class );
 		$title->method( 'isSpecial' )
-			->will( $this->returnValueMap( [
+			->willReturnMap( [
 				[ $special, true ],
-			] ) );
+			] );
 
 		$out = $this->getOutputPage( [
 			'title' => $title,
@@ -116,9 +116,9 @@ class PopupHandlerTest extends MediaWikiUnitTestCase {
 
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
-			->will( $this->ReturnValueMap( [
+			->willReturnMap( [
 				[ $user, 'ipinfo', $permission ]
-			] ) );
+			] );
 
 		$title = $this->createMock( Title::class );
 		$title->method( 'isSpecial' )
@@ -158,7 +158,7 @@ class PopupHandlerTest extends MediaWikiUnitTestCase {
 			array_merge( $preferences, [ 'ipinfo-beta-feature-enable' ] )
 		);
 		$userOptionsLookup->method( 'getOption' )
-			->will( $this->ReturnValueMap( $map ) );
+			->willReturnMap( $map );
 
 		$title = $this->createMock( Title::class );
 		$title->method( 'isSpecial' )

@@ -54,7 +54,8 @@ class PreferencesHandler implements GetPreferencesHook {
 		$isBetaFeaturesLoaded = ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' );
 		// If the betafeature isn't enabled, do not show preferences checkboxes
 		if ( $isBetaFeaturesLoaded &&
-			!$this->userOptionsLookup->getOption( $user, 'ipinfo-beta-feature-enable' ) ) {
+			!$this->userOptionsLookup->getOption( $user, 'ipinfo-beta-feature-enable' )
+		) {
 			return;
 		}
 

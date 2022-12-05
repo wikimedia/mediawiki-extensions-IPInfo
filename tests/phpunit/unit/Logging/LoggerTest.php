@@ -72,7 +72,7 @@ class LoggerTest extends MediaWikiUnitTestCase {
 						0 => "log_timestamp > 42",
 						1 => "log_params LIKE '%ipinfo-view-full%'",
 					],
-					"Wikimedia\Rdbms\SelectQueryBuilder",
+					SelectQueryBuilder::class,
 					[],
 					[],
 					(int)$isDebounced
@@ -90,7 +90,7 @@ class LoggerTest extends MediaWikiUnitTestCase {
 						0 => "log_timestamp > 42",
 						1 => "log_params LIKE '%ipinfo-view-full%'",
 					],
-					"Wikimedia\Rdbms\SelectQueryBuilder",
+					SelectQueryBuilder::class,
 					[],
 					[],
 					(int)$isDebounced
@@ -98,14 +98,12 @@ class LoggerTest extends MediaWikiUnitTestCase {
 		];
 
 		$database->method( 'selectRow' )
-			->will( $this->returnValueMap( $map ) );
+			->willReturnMap( $map );
 
 		$actorStore = $this->createMock( ActorStore::class );
 		$actorStore->method( 'findActorId' )
-			->will(
-				$this->returnValueMap( [
-					[ $performer, $database, $actorId ],
-				] )
+			->willReturnMap(
+				[ [ $performer, $database, $actorId ], ]
 			);
 
 		$logger = $this->getMockBuilder( Logger::class )

@@ -54,16 +54,12 @@ class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 
 		$reader = $this->createMock( Reader::class );
 		$reader->method( 'enterprise' )
-			->will(
-				$this->throwException(
-					new AddressNotFoundException()
-				)
+			->willThrowException(
+				new AddressNotFoundException()
 			);
 		$reader->method( 'anonymousIp' )
-			->will(
-				$this->throwException(
-					new AddressNotFoundException()
-				)
+			->willThrowException(
+				new AddressNotFoundException()
 			);
 
 		$readerFactory = $this->createMock( ReaderFactory::class );

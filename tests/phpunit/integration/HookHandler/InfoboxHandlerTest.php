@@ -17,7 +17,7 @@ use User;
  * to this (if it's even possible), this is an integration test.
  *
  * @group IPInfo
- * @covers MediaWiki\IPInfo\HookHandler\InfoboxHandler
+ * @covers \MediaWiki\IPInfo\HookHandler\InfoboxHandler
  */
 class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 
@@ -100,9 +100,9 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
-			->will( $this->ReturnValueMap( [
+			->willReturnMap( [
 				[ $accessingUser, 'ipinfo', $permission ]
-			] ) );
+			] );
 
 		$out = $this->getOutputPage();
 
@@ -158,7 +158,7 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 			array_merge( $preferences, [ 'ipinfo-beta-feature-enable' ] )
 		);
 		$userOptionsLookup->method( 'getOption' )
-			->will( $this->ReturnValueMap( $map ) );
+			->willReturnMap( $map );
 
 		$out = $this->getOutputPage();
 

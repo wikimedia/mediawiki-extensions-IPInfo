@@ -35,26 +35,29 @@ class InfoboxHandler implements SpecialContributionsBeforeMainOutputHook {
 	 * @inheritDoc
 	 */
 	public function onSpecialContributionsBeforeMainOutput( $id, $user, $sp ): void {
-		if ( !( $sp->getName() === 'Contributions' ) ) {
+		if ( $sp->getName() !== 'Contributions' ) {
 			return;
 		}
 
 		// T309363: hide the panel on mobile until T268177 is resolved
 		$services = MediaWikiServices::getInstance();
-		if ( ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' ) &&
-			$services->getService( 'MobileFrontend.Context' )
-				->shouldDisplayMobileView() ) {
+		$extensionRegistry = ExtensionRegistry::getInstance();
+		if (
+			$extensionRegistry->isLoaded( 'MobileFrontend' ) &&
+			$services->getService( 'MobileFrontend.Context' )->shouldDisplayMobileView()
+		) {
 			return;
 		}
 
 		$accessingUser = $sp->getUser();
-		$isBetaFeaturesLoaded = ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' );
+		$isBetaFeaturesLoaded = $extensionRegistry->isLoaded( 'BetaFeatures' );
 
 		if (
 			!$this->permissionManager->userHasRight( $accessingUser, 'ipinfo' ) ||
 			( $isBetaFeaturesLoaded &&
-			!$this->userOptionsLookup->getOption( $accessingUser, 'ipinfo-beta-feature-enable' )
-			) ) {
+				!$this->userOptionsLookup->getOption( $accessingUser, 'ipinfo-beta-feature-enable' )
+			)
+		) {
 			return;
 		}
 

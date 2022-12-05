@@ -226,12 +226,13 @@ class LogHandler extends SimpleHandler {
 		// Only show data required for the context
 		$dataContext = $this->getValidatedParams()['dataContext'];
 		foreach ( $info as $index => $set ) {
-			if ( isset( $set['data'] ) ) {
-				foreach ( $set['data'] as $provider => $dataset ) {
-					foreach ( $dataset as $datum => $value ) {
-						if ( !in_array( $datum, self::VIEWING_CONTEXTS[$dataContext] ?? [] ) ) {
-							unset( $info[$index]['data'][$provider][$datum] );
-						}
+			if ( !isset( $set['data'] ) ) {
+				continue;
+			}
+			foreach ( $set['data'] as $provider => $dataset ) {
+				foreach ( $dataset as $datum => $value ) {
+					if ( !in_array( $datum, self::VIEWING_CONTEXTS[$dataContext] ?? [] ) ) {
+						unset( $info[$index]['data'][$provider][$datum] );
 					}
 				}
 			}

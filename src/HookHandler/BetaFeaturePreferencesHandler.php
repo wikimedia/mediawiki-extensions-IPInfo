@@ -37,8 +37,7 @@ class BetaFeaturePreferencesHandler {
 		) {
 			$url = "https://meta.wikimedia.org/wiki/";
 			$infoLink = $url . "IP_Editing:_Privacy_Enhancement_and_Abuse_Mitigation/IP_Info_feature";
-			$discussionLink = $url . "Talk:IP_Editing:
-			_Privacy_Enhancement_and_Abuse_Mitigation/IP_Info_feature";
+			$discussionLink = $url . "Talk:IP_Editing:_Privacy_Enhancement_and_Abuse_Mitigation/IP_Info_feature";
 
 			$betaPrefs['ipinfo-beta-feature-enable'] = [
 				'label-message' => 'ipinfo-beta-feature-title',

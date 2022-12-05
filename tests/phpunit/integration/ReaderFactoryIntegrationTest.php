@@ -2,6 +2,7 @@
 
 namespace MediaWiki\IPInfo\Test\Integration;
 
+use InvalidArgumentException;
 use MediaWiki\IPInfo\InfoRetriever\ReaderFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWikiIntegrationTestCase;
@@ -21,7 +22,7 @@ class ReaderFactoryIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetReaderThrowsException() {
-		$this->expectException( \InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$factory = $this->getFactory();
 		TestingAccessWrapper::newFromObject( $factory )->getReader( '/broken/path/filename' );
 	}
