@@ -1,16 +1,20 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"Brettchenweber",
+			"Umherirrender",
+			"Wnme"
+		]
 	},
 	"ipinfo-desc": "Stellt Informationen über eine IP-Adresse zur Verfügung.",
-	"ipinfo-infobox-title": "IP-Information",
+	"ipinfo-infobox-title": "IP-Informationen",
 	"ipinfo-property-label-location": "Standort",
-	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-isp": "Provider",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Organisation",
 	"ipinfo-property-label-connectiontype": "Verbindungsmethode",
 	"ipinfo-property-label-usertype": "Eigentümer der Verbindung",
-	"ipinfo-property-label-proxytypes": "Echte IP-Adresse/Proxy",
+	"ipinfo-property-label-proxytypes": "Tatsächliche IP-Adresse/Proxy",
 	"ipinfo-property-value-proxytype-isanonymousvpn": "Anonymes VPN",
 	"ipinfo-property-value-proxytype-ispublicproxy": "Öffentlicher Proxy",
 	"ipinfo-property-value-proxytype-isresidentialproxy": "Proxy für Privatanwender",
