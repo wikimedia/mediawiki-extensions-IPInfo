@@ -86,7 +86,7 @@
 	"action-ipinfo-view-log": "prikaz dnevnika dostopov do orodja Podatki o IP-ju",
 	"right-ipinfo-view-log": "Prikaz dnevnika dostopov do orodja Podatki o IP-ju",
 	"group-no-ipinfo": "Uporabniki, blokirani z orodjem Podatki o IP-ju",
-	"group-no-ipinfo-member": "{{GENDER:$1|je uporaba orodja Podatki o IP-ju preprečena}}",
+	"group-no-ipinfo-member": "{{GENDER:$1|preprečena uporaba orodja Podatki o IP-ju}}",
 	"grouppage-no-ipinfo": "{{ns:project}}:Uporabniki, ki jim je uporaba orodja Podatki o IP-ju preprečena",
 	"ipinfo-log-name": "Dnevnik orodja Podatki o IP-ju",
 	"ipinfo-log-header": "To je dnevnik:\n# uporabe orodja Podatki o IP-ju za ogled podatkov o IP-jih; in\n# sprememb ravni dostopa uporabnikov do orodja.",
