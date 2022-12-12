@@ -60,10 +60,13 @@ if ( ip ) {
 			return;
 		}
 
+		var endpoint = mw.config.get( 'wgCanonicalSpecialPageName' ) === 'Contributions' ?
+			'revision' : 'archivedrevision';
+
 		var ipPanelWidget = new IpInfoInfoboxWidget(
 			$.get(
 				mw.config.get( 'wgScriptPath' ) +
-					'/rest.php/ipinfo/v0/revision/' + revId + '?dataContext=infobox'
+					'/rest.php/ipinfo/v0/' + endpoint + '/' + revId + '?dataContext=infobox'
 			).then( function ( response ) {
 				var i, data;
 				// Array.find is only available from ES6

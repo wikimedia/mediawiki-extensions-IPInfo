@@ -6,21 +6,26 @@ use JobQueueGroup;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 use RequestContext;
+use Wikimedia\Rdbms\ILoadBalancer;
 
-class RevisionHandler extends AbstractRevisionHandler {
+class ArchivedRevisionHandler extends AbstractRevisionHandler {
 
-	/** @var RevisionLookup */
-	private $revisionLookup;
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var RevisionStore */
+	private $revisionStore;
 
 	/**
 	 * @param InfoManager $infoManager
-	 * @param RevisionLookup $revisionLookup
+	 * @param ILoadBalancer $loadBalancer
+	 * @param RevisionStore $revisionStore
 	 * @param PermissionManager $permissionManager
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
@@ -30,7 +35,8 @@ class RevisionHandler extends AbstractRevisionHandler {
 	 */
 	public function __construct(
 		InfoManager $infoManager,
-		RevisionLookup $revisionLookup,
+		ILoadBalancer $loadBalancer,
+		RevisionStore $revisionStore,
 		PermissionManager $permissionManager,
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
@@ -47,12 +53,14 @@ class RevisionHandler extends AbstractRevisionHandler {
 			$presenter,
 			$jobQueueGroup
 		);
-		$this->revisionLookup = $revisionLookup;
+		$this->loadBalancer = $loadBalancer;
+		$this->revisionStore = $revisionStore;
 	}
 
 	/**
 	 * @param InfoManager $infoManager
-	 * @param RevisionLookup $revisionLookup
+	 * @param ILoadBalancer $loadBalancer
+	 * @param RevisionStore $revisionStore
 	 * @param PermissionManager $permissionManager
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
@@ -61,7 +69,8 @@ class RevisionHandler extends AbstractRevisionHandler {
 	 */
 	public static function factory(
 		InfoManager $infoManager,
-		RevisionLookup $revisionLookup,
+		ILoadBalancer $loadBalancer,
+		RevisionStore $revisionStore,
 		PermissionManager $permissionManager,
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
@@ -69,7 +78,8 @@ class RevisionHandler extends AbstractRevisionHandler {
 	) {
 		return new self(
 			$infoManager,
-			$revisionLookup,
+			$loadBalancer,
+			$revisionStore,
 			$permissionManager,
 			$userOptionsLookup,
 			$userFactory,
@@ -84,6 +94,21 @@ class RevisionHandler extends AbstractRevisionHandler {
 	 * @inheritDoc
 	 */
 	protected function getRevision( int $id ): ?RevisionRecord {
-		return $this->revisionLookup->getRevisionById( $id );
+		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
+		$query = $this->revisionStore->getArchiveQueryInfo();
+		$row = $dbr->newSelectQueryBuilder()
+			->tables( $query['tables'] )
+			->select(
+				array_merge(
+					$query['fields'],
+					[ 'ar_namespace', 'ar_title' ]
+				)
+			)
+			->where( [ 'ar_rev_id' => $id ] )
+			->joinConds( $query['joins'] )
+			->caller( __METHOD__ )
+			->fetchRow();
+
+		return $this->revisionStore->newRevisionFromArchiveRow( $row );
 	}
 }

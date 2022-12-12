@@ -174,7 +174,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 
 		$revisionLookup = $this->createMock( RevisionLookup::class );
 		$revisionLookup->method( 'getRevisionById' )
-			->willReturn( $options['getRevisionById'] ?? $revision );
+			->willReturn( isset( $options['getRevisionById'] ) ? null : $revision );
 
 		$handler = $this->getRevisionHandler( [
 			'revisionLookup' => $revisionLookup,
