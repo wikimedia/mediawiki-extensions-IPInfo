@@ -41,6 +41,6 @@
 	"right-ipinfo-view-log": "Prikaz dnevnika dostopov do orodja Podatki o IP-ju",
 	"ipinfo-log-access-level-ipinfo-view-basic": "Omejen dostop",
 	"ipinfo-log-access-level-ipinfo-view-full": "Poln dostop",
-	"logentry-ipinfo-view_infobox": "$1 {{GENDER:$2|si je ogledal|si je ogledala|si je ogledal/a}} infopolje s podatki o IP-ju za $3. $4 .",
-	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|si je ogledal|si je ogledala|si je ogledal/a}} pojavno okno s podatki o IP-ju za $3. $4 ."
+	"logentry-ipinfo-view_infobox": "$1 {{GENDER:$2|si je ogledal|si je ogledala|si je ogledal_a}} infopolje s podatki o IP-ju za $3. $4 .",
+	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|si je ogledal|si je ogledala|si je ogledal_a}} pojavno okno s podatki o IP-ju za $3. $4 ."
 }
