@@ -55,7 +55,7 @@
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1次本地編輯|0=無本地編輯}}",
 	"ipinfo-value-recent-edits": "（{{PLURAL:$1|最近24小時內$1次}}）",
 	"ipinfo-property-no-data": "不可用",
-	"ipinfo-property-no-access": "無權訪問",
+	"ipinfo-property-no-access": "沒有權限存取",
 	"ipinfo-widget-error-default": "IP 資訊無法檢索。",
 	"ipinfo-widget-error-no-data": "$1沒有用於此 IP 位址的資料。",
 	"ipinfo-widget-error-wrong-ip": "所提供 IP 位址不符合日誌或修訂。",

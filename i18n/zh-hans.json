@@ -50,6 +50,7 @@
 	"ipinfo-property-value-usertype-residential": "住宅",
 	"ipinfo-property-value-usertype-searchenginespider": "搜索引擎爬虫",
 	"ipinfo-property-value-usertype-contentdeliverynetwork": "内容分发网络",
+	"ipinfo-property-value-usertype-consumerprivacynetwork": "消费者隐私网络",
 	"ipinfo-property-value-proxytype-isanonymousvpn": "匿名VPN",
 	"ipinfo-property-value-proxytype-ispublicproxy": "公共代理",
 	"ipinfo-property-value-proxytype-isresidentialproxy": "住宅代理",
