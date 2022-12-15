@@ -3,84 +3,25 @@
 namespace MediaWiki\IPInfo\Rest\Handler;
 
 use DatabaseLogEntry;
-use ExtensionRegistry;
 use JobQueueGroup;
-use JobSpecification;
 use LogEventsList;
 use LogPage;
-use MediaWiki\IPInfo\AccessLevelTrait;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
-use MediaWiki\Rest\Response;
-use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 use RequestContext;
 use Wikimedia\IPUtils;
 use Wikimedia\Message\MessageValue;
-use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\ILoadBalancer;
 
-class LogHandler extends SimpleHandler {
-
-	use AccessLevelTrait;
-
-	/**
-	 * An array of contexts and the data
-	 * that should be available in those contexts
-	 *
-	 * @var array
-	 */
-	private const VIEWING_CONTEXTS = [
-		'popup' => [
-			'country',
-			'location',
-			'organization',
-			'numActiveBlocks',
-			'numLocalEdits',
-			'numRecentEdits',
-		],
-		'infobox' => [
-			'country',
-			'location',
-			'connectionType',
-			'userType',
-			'asn',
-			'isp',
-			'organization',
-			'proxyType',
-			'numActiveBlocks',
-			'numLocalEdits',
-			'numRecentEdits',
-		]
-	];
-
-	/** @var InfoManager */
-	private $infoManager;
+class LogHandler extends IPInfoHandler {
 
 	/** @var ILoadBalancer */
 	private $loadBalancer;
-
-	/** @var PermissionManager */
-	private $permissionManager;
-
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var UserIdentity */
-	private $user;
-
-	/** @var DefaultPresenter */
-	private $presenter;
-
-	/** @var JobQueueGroup */
-	private $jobQueueGroup;
 
 	/**
 	 * @param InfoManager $infoManager
@@ -102,14 +43,16 @@ class LogHandler extends SimpleHandler {
 		DefaultPresenter $presenter,
 		JobQueueGroup $jobQueueGroup
 	) {
-		$this->infoManager = $infoManager;
+		parent::__construct(
+			$infoManager,
+			$permissionManager,
+			$userOptionsLookup,
+			$userFactory,
+			$user,
+			$presenter,
+			$jobQueueGroup
+		);
 		$this->loadBalancer = $loadBalancer;
-		$this->permissionManager = $permissionManager;
-		$this->userOptionsLookup = $userOptionsLookup;
-		$this->userFactory = $userFactory;
-		$this->user = $user;
-		$this->presenter = $presenter;
-		$this->jobQueueGroup = $jobQueueGroup;
 	}
 
 	/**
@@ -143,40 +86,9 @@ class LogHandler extends SimpleHandler {
 	}
 
 	/**
-	 * Get information about an IP address (or IP addresses) associated with a log entry.
-	 *
-	 * A log entry logs an action performed by a performer, on a target. Either of the
-	 * performer or target may be an IP address. This returns info about whichever is an
-	 * IP address, or both, if both are IP addresses.
-	 *
-	 * @param int $id
-	 * @return Response
+	 * @inheritDoc
 	 */
-	public function run( int $id ): Response {
-		$isBetaFeaturesLoaded = ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' );
-		// Disallow access to API if BetaFeatures is enabled but the feature is not
-		if ( $isBetaFeaturesLoaded &&
-			!$this->userOptionsLookup->getOption( $this->user, 'ipinfo-beta-feature-enable' ) ) {
-			throw new LocalizedHttpException(
-				new MessageValue( 'ipinfo-rest-access-denied' ), $this->user->isRegistered() ? 403 : 401 );
-		}
-
-		if (
-			!$this->permissionManager->userHasRight( $this->user, 'ipinfo' ) ||
-			!$this->userOptionsLookup->getOption( $this->user, 'ipinfo-use-agreement' )
-		) {
-			throw new LocalizedHttpException(
-				new MessageValue( 'ipinfo-rest-access-denied' ), $this->user->isRegistered() ? 403 : 401 );
-		}
-
-		$user = $this->userFactory->newFromUserIdentity( $this->user );
-
-		// Users with blocks on their accounts shouldn't be allowed to view ip info
-		if ( $user->getBlock() ) {
-			throw new LocalizedHttpException(
-				new MessageValue( 'ipinfo-rest-access-denied-blocked-user' ), 403 );
-		}
-
+	protected function getInfo( int $id ): array {
 		$db = $this->loadBalancer->getConnection( DB_REPLICA );
 		$entry = DatabaseLogEntry::newFromId( $id, $db );
 
@@ -185,11 +97,15 @@ class LogHandler extends SimpleHandler {
 				new MessageValue( 'ipinfo-rest-log-nonexistent' ), 404 );
 		}
 
+		$user = $this->userFactory->newFromUserIdentity( $this->user );
 		if ( !LogEventsList::userCanViewLogType( $entry->getType(), $user ) ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'ipinfo-rest-log-denied' ), 403 );
 		}
 
+		// A log entry logs an action performed by a performer, on a target. Either of the
+		// performer or target may be an IP address. This returns info about whichever is an
+		// IP address, or both, if both are IP addresses.
 		$canAccessPerformer = LogEventsList::userCanBitfield( $entry->getDeleted(), LogPage::DELETED_USER, $user );
 		$canAccessTarget = LogEventsList::userCanBitfield( $entry->getDeleted(), LogPage::DELETED_ACTION, $user );
 
@@ -209,10 +125,10 @@ class LogHandler extends SimpleHandler {
 		$showPerformer = IPUtils::isValid( $performer ) && $canAccessPerformer;
 		$showTarget = IPUtils::isValid( $target ) && $canAccessTarget;
 		if ( $showPerformer ) {
-			$info[] = $this->presenter->present( $this->infoManager->retrieveFromIP( $performer ), $user );
+			$info[] = $this->presenter->present( $this->infoManager->retrieveFromIP( $performer ), $this->user );
 		}
 		if ( $showTarget ) {
-			$info[] = $this->presenter->present( $this->infoManager->retrieveFromIP( $target ), $user );
+			$info[] = $this->presenter->present( $this->infoManager->retrieveFromIP( $target ), $this->user );
 		}
 
 		if ( count( $info ) === 0 ) {
@@ -223,75 +139,6 @@ class LogHandler extends SimpleHandler {
 				new MessageValue( 'ipinfo-rest-log-registered' ), 404 );
 		}
 
-		// Only show data required for the context
-		$dataContext = $this->getValidatedParams()['dataContext'];
-		foreach ( $info as $index => $set ) {
-			if ( !isset( $set['data'] ) ) {
-				continue;
-			}
-			foreach ( $set['data'] as $provider => $dataset ) {
-				foreach ( $dataset as $datum => $value ) {
-					if ( !in_array( $datum, self::VIEWING_CONTEXTS[$dataContext] ?? [] ) ) {
-						unset( $info[$index]['data'][$provider][$datum] );
-					}
-				}
-			}
-		}
-
-		$level = $this->highestAccessLevel( $this->permissionManager->getUserPermissions( $user ) );
-		if ( $showPerformer ) {
-			$this->jobQueueGroup->push(
-				new JobSpecification(
-					'ipinfoLogIPInfoAccess',
-					[
-						'performer' => $user->getName(),
-						'ip' => $performer ,
-						'dataContext' => $dataContext,
-						'timestamp' => (int)wfTimestamp(),
-						'access_level' => $level
-					],
-					[],
-					null
-				)
-			);
-		}
-		if ( $showTarget ) {
-			$this->jobQueueGroup->push(
-				new JobSpecification(
-					'ipinfoLogIPInfoAccess',
-					[
-						'performer' => $user->getName(),
-						'ip' => $target ,
-						'dataContext' => $dataContext,
-						'timestamp' => (int)wfTimestamp(),
-						'access_level' => $level
-					],
-					[],
-					null
-				)
-			);
-		}
-
-		$response = $this->getResponseFactory()->createJson( [ 'info' => $info ] );
-		$response->setHeader( 'Cache-Control', 'private, max-age=86400' );
-		return $response;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function getParamSettings() {
-		return [
-			'id' => [
-				self::PARAM_SOURCE => 'path',
-				ParamValidator::PARAM_TYPE => 'integer',
-				ParamValidator::PARAM_REQUIRED => true,
-			],
-			'dataContext' => [
-				self::PARAM_SOURCE => 'query',
-				ParamValidator::PARAM_TYPE => 'string',
-				ParamValidator::PARAM_REQUIRED => true,
-			],
-		];
+		return $info;
 	}
 }

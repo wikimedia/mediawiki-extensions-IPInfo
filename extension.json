@@ -55,6 +55,20 @@
 			"factory": "MediaWiki\\IPInfo\\Rest\\Handler\\RevisionHandler::factory"
 		},
 		{
+			"path": "/ipinfo/v0/archivedrevision/{id}",
+			"method": "GET",
+			"services": [
+				"IPInfoInfoManager",
+				"DBLoadBalancer",
+				"RevisionStore",
+				"PermissionManager",
+				"UserOptionsLookup",
+				"UserFactory",
+				"JobQueueGroup"
+			],
+			"factory": "MediaWiki\\IPInfo\\Rest\\Handler\\ArchivedRevisionHandler::factory"
+		},
+		{
 			"path": "/ipinfo/v0/log/{id}",
 			"method": "GET",
 			"services": [
