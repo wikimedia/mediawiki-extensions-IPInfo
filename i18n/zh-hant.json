@@ -6,6 +6,7 @@
 			"SunAfterRain",
 			"Winston Sung",
 			"Xiplus",
+			"捍粵者",
 			"沈澄心"
 		]
 	},
@@ -67,7 +68,7 @@
 	"ipinfo-infobox-submit-agreement": "啟用 IP 資訊工具",
 	"ipinfo-infobox-disable-instructions": "若您想停用此功能，您可以在[[Special:Preferences|您的偏好設定]]來進行。",
 	"ipinfo-use-agreement-submit-error": "發生一些問題，請再重試。皆受到的錯誤訊息為：$1",
-	"ipinfo-rest-access-denied": "您沒有權限執行此操作",
+	"ipinfo-rest-access-denied": "您無權這樣做",
 	"ipinfo-rest-access-denied-blocked-user": "因您的帳號已被封鎖，您無權執行該操作",
 	"ipinfo-rest-revision-no-author": "您的帳號沒有權限來查看修訂作者",
 	"ipinfo-rest-revision-registered": "無法檢索已註冊使用者修訂的 IP 資訊",
