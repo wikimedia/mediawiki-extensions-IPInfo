@@ -4,6 +4,7 @@
 			"Salvemm el lombard"
 		]
 	},
+	"ipinfo-infobox-title": "Informazzion IP",
 	"ipinfo-property-label-connectiontype": "Manera de conession",
 	"ipinfo-property-label-usertype": "Proprietari de la conession",
 	"ipinfo-property-label-active-blocks": "Bloch Ativ",
@@ -17,5 +18,6 @@
 	"ipinfo-infobox-disable-instructions": "Se te voeulet smorzà questa fonzion chì te podet fàll in [[Special:Preferences|Special:preferenze]].",
 	"ipinfo-use-agreement-submit-error": "On quaicoss l'è andad minga ben. Proeuvegh an'mò. l'error de messag ricevud l'è: $1",
 	"ipinfo-rest-access-denied-blocked-user": "Te gh'hee minga el permess de fà quel'azzion chì desgià che 'l to cunt l'è blocad.",
+	"ipinfo-beta-feature-description": "L'arnes \"Informazzion\" IP el ponta a fornì di informazzion essenziai sora i adress IP per jutai a fà i sò mester. Se po rivà a 'ste informazzion chì con la pagina Special:Contribuzzion de l'adress IP. Una version sintetica de queste informazzion chì l'è disponibel in d'un popup in pari ai adress IP in di pagine [[Special:Log|Register]],  [[Special:Contributions|Contribuzzion]] e [[Special:RecentChanges|Ultime modifiche]].",
 	"group-no-ipinfo": "Utent blocad de l'istrument Informazzion IP"
 }
