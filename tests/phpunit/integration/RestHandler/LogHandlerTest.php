@@ -9,6 +9,7 @@ use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Handler\LogHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\Languages\LanguageFallback;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -45,7 +46,6 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 				'permissionManager' => $this->createMock( PermissionManager::class ),
 				'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
 				'userFactory' => $this->createMock( UserFactory::class ),
-				'userIdentity' => $this->createMock( UserIdentity::class ),
 				'presenter' => $this->createMock( DefaultPresenter::class ),
 				'jobQueueGroup' => $this->createMock( JobQueueGroup::class ),
 				'languageFallback' => $this->createMock( LanguageFallback::class ),
@@ -154,6 +154,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @param array $expected
 	 */
 	public function testExecuteErrors( array $options, array $expected ) {
+		$authority = $this->createMock( Authority::class );
 		$loadBalancer = $this->createMock( ILoadBalancer::class );
 		$loadBalancer->method( 'getConnection' )
 			->willReturn( $this->createMock( IDatabase::class ) );
@@ -169,6 +170,8 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 			->willReturn( $options['getOption'] ?? null );
 
 		$user = $this->createMock( UserIdentity::class );
+		$authority->method( 'getUser' )
+			->willReturn( $user );
 		$user->method( 'isRegistered' )
 			->willReturn( $options['isRegistered'] ?? false );
 
@@ -188,7 +191,11 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 			)
 		);
 
-		$this->executeHandler( $handler, $request );
+		$this->executeHandler( $handler, $request, [],
+			[],
+			[],
+			[],
+			$authority );
 	}
 
 	public function provideExecuteErrors() {
@@ -240,6 +247,10 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 	public function testAccessDeniedLogType() {
 		$id = 123;
 
+		$authority = $this->createMock( Authority::class );
+		$user = $this->createMock( UserIdentity::class );
+		$authority->method( 'getUser' )
+			->willReturn( $user );
 		$db = $this->createMock( IDatabase::class );
 		$db->method( 'selectRow' )
 			->willReturn( [
@@ -287,7 +298,11 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 			new LocalizedHttpException( new MessageValue( 'ipinfo-rest-log-denied' ), 403 )
 		);
 
-		$this->executeHandler( $handler, $request );
+		$this->executeHandler( $handler, $request, [],
+			[],
+			[],
+			[],
+			$authority );
 	}
 
 	/**
@@ -330,10 +345,10 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
 		$userOptionsLookup->method( 'getOption' )
 			->willReturn( true );
-
+		$testSysop = $this->getTestUser( [ 'sysop' ] );
 		$userFactory = $this->createMock( UserFactory::class );
 		$userFactory->method( 'newFromUserIdentity' )
-			->willReturn( $this->getTestUser( [ 'sysop' ] )->getUser() );
+			->willReturn( $this->getTestUser( [ 'testSysop' ] )->getUser() );
 
 		$languageFallback = $this->createMock( LanguageFallback::class );
 		$languageFallback->method( 'getAll' )
@@ -348,9 +363,13 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$request = $this->getRequestData( $id );
+		$authority = $testSysop->getAuthority();
 
-		$response = $this->executeHandler( $handler, $request );
-
+		$response = $this->executeHandler( $handler, $request, [],
+			[],
+			[],
+			[],
+			$authority );
 		$this->assertSame( 200, $response->getStatusCode() );
 
 		$body = json_decode( $response->getBody()->getContents(), true );
@@ -381,6 +400,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 				[
 					'deletedhistory' => true,
 					'suppressrevision' => false,
+					'viewsuppressed' => false,
 				],
 				LogPage::DELETED_USER | LogPage::DELETED_RESTRICTED,
 				1,
@@ -397,6 +417,10 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testPerformerBlocked() {
+		$user = $this->createMock( UserIdentity::class );
+		$authority = $this->createMock( Authority::class );
+		$authority->method( 'getUser' )
+			->willReturn( $user );
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
 			->willReturn( true );
@@ -434,7 +458,11 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 			)
 		);
 
-		$this->executeHandler( $handler, $request );
+		$this->executeHandler( $handler, $request, [],
+			[],
+			[],
+			[],
+			$authority );
 	}
 
 	public function testPerformerRegistered() {
@@ -490,6 +518,10 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$id = 123;
 
 		$performer = $this->getTestUser()->getUser();
+		$authority = $this->createMock( Authority::class );
+		$user = $this->createMock( UserIdentity::class );
+		$authority->method( 'getUser' )
+			->willReturn( $user );
 
 		$db = $this->createMock( IDatabase::class );
 		$db->method( 'selectRow' )
@@ -538,7 +570,11 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 			new LocalizedHttpException( new MessageValue( 'ipinfo-rest-log-registered' ), 404 )
 		);
 
-		$this->executeHandler( $handler, $request );
+		$this->executeHandler( $handler, $request, [],
+			[],
+			[],
+			[],
+			$authority );
 	}
 
 	public function testDeletedTargetAllowed() {

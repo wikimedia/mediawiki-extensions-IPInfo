@@ -9,6 +9,7 @@ use MediaWiki\IPInfo\Rest\Handler\RevisionHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -42,7 +43,6 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 				'permissionManager' => $this->createMock( PermissionManager::class ),
 				'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
 				'userFactory' => $this->createMock( UserFactory::class ),
-				'userIdentity' => $this->createMock( UserIdentity::class ),
 				'presenter' => $this->createMock( DefaultPresenter::class ),
 				'jobQueueGroup' => $this->createMock( JobQueueGroup::class ),
 				'languageFallback' => $this->createMock( LanguageFallback::class )
@@ -159,6 +159,9 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 			->willReturn( $options['userHasRight'] ?? false );
 
 		$user = $this->createMock( UserIdentity::class );
+		$authority = $this->createMock( Authority::class );
+		$authority->method( 'getUser' )
+			->willReturn( $user );
 		$user->method( 'isRegistered' )
 			->willReturn( $options['userIsRegistered'] ?? false );
 		$permissionManager->method( 'userCan' )
@@ -210,7 +213,11 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 			)
 		);
 
-		$this->executeHandler( $handler, $request );
+		$this->executeHandler( $handler, $request, [],
+			[],
+			[],
+			[],
+			$authority );
 	}
 
 	public function provideExecuteErrors() {
@@ -315,6 +322,10 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testPerformerBlocked() {
+		$user = $this->createMock( UserIdentity::class );
+		$authority = $this->createMock( Authority::class );
+		$authority->method( 'getUser' )
+			->willReturn( $user );
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
 			->willReturn( true );
@@ -349,7 +360,11 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 			)
 		);
 
-		$this->executeHandler( $handler, $request );
+		$this->executeHandler( $handler, $request, [],
+			[],
+			[],
+			[],
+			$authority );
 	}
 
 	public function testFactory() {

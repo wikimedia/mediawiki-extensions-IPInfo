@@ -68,9 +68,6 @@ abstract class IPInfoHandler extends SimpleHandler {
 	/** @var UserFactory */
 	protected $userFactory;
 
-	/** @var UserIdentity */
-	protected $user;
-
 	/** @var DefaultPresenter */
 	protected $presenter;
 
@@ -85,7 +82,6 @@ abstract class IPInfoHandler extends SimpleHandler {
 	 * @param PermissionManager $permissionManager
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
-	 * @param UserIdentity $user
 	 * @param DefaultPresenter $presenter
 	 * @param JobQueueGroup $jobQueueGroup
 	 * @param LanguageFallback $languageFallback
@@ -95,7 +91,6 @@ abstract class IPInfoHandler extends SimpleHandler {
 		PermissionManager $permissionManager,
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
-		UserIdentity $user,
 		DefaultPresenter $presenter,
 		JobQueueGroup $jobQueueGroup,
 		LanguageFallback $languageFallback
@@ -104,7 +99,6 @@ abstract class IPInfoHandler extends SimpleHandler {
 		$this->permissionManager = $permissionManager;
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->userFactory = $userFactory;
-		$this->user = $user;
 		$this->presenter = $presenter;
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->languageFallback = $languageFallback;
@@ -137,20 +131,21 @@ abstract class IPInfoHandler extends SimpleHandler {
 		$isBetaFeaturesLoaded = ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' );
 		// Disallow access to API if BetaFeatures is enabled but the feature is not
 		if ( $isBetaFeaturesLoaded &&
-			!$this->userOptionsLookup->getOption( $this->user, 'ipinfo-beta-feature-enable' ) ) {
+			!$this->userOptionsLookup->getOption( $this->getAuthority()->getUser(), 'ipinfo-beta-feature-enable' ) ) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'ipinfo-rest-access-denied' ), $this->user->isRegistered() ? 403 : 401 );
+				new MessageValue( 'ipinfo-rest-access-denied' ),
+				$this->getAuthority()->getUser()->isRegistered() ? 403 : 401 );
 		}
 
 		if (
-			!$this->permissionManager->userHasRight( $this->user, 'ipinfo' ) ||
-			!$this->userOptionsLookup->getOption( $this->user, 'ipinfo-use-agreement' )
+			!$this->permissionManager->userHasRight( $this->getAuthority()->getUser(), 'ipinfo' ) ||
+			!$this->userOptionsLookup->getOption( $this->getAuthority()->getUser(), 'ipinfo-use-agreement' )
 		) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'ipinfo-rest-access-denied' ), $this->user->isRegistered() ? 403 : 401 );
+				new MessageValue( 'ipinfo-rest-access-denied' ),
+				$this->getAuthority()->getUser()->isRegistered() ? 403 : 401 );
 		}
-
-		$user = $this->userFactory->newFromUserIdentity( $this->user );
+		$user = $this->userFactory->newFromUserIdentity( $this->getAuthority()->getUser() );
 
 		// Users with blocks on their accounts shouldn't be allowed to view ip info
 		if ( $user->getBlock() ) {
@@ -185,7 +180,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 			if ( !isset( $set['subject'] ) ) {
 				continue;
 			}
-			$this->logAccess( $this->user, $set['subject'], $dataContext );
+			$this->logAccess( $this->getAuthority()->getUser(), $set['subject'], $dataContext );
 		}
 
 		$response = $this->getResponseFactory()->createJson( [ 'info' => $info ] );

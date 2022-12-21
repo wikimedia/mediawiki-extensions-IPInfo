@@ -12,9 +12,7 @@ use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\User\UserFactory;
-use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
-use RequestContext;
 use Wikimedia\IPUtils;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -30,7 +28,6 @@ class LogHandler extends IPInfoHandler {
 	 * @param PermissionManager $permissionManager
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
-	 * @param UserIdentity $user
 	 * @param DefaultPresenter $presenter
 	 * @param JobQueueGroup $jobQueueGroup
 	 * @param LanguageFallback $languageFallback
@@ -41,7 +38,6 @@ class LogHandler extends IPInfoHandler {
 		PermissionManager $permissionManager,
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
-		UserIdentity $user,
 		DefaultPresenter $presenter,
 		JobQueueGroup $jobQueueGroup,
 		LanguageFallback $languageFallback
@@ -51,7 +47,6 @@ class LogHandler extends IPInfoHandler {
 			$permissionManager,
 			$userOptionsLookup,
 			$userFactory,
-			$user,
 			$presenter,
 			$jobQueueGroup,
 			$languageFallback,
@@ -84,8 +79,6 @@ class LogHandler extends IPInfoHandler {
 			$permissionManager,
 			$userOptionsLookup,
 			$userFactory,
-			// @TODO Replace with something better.
-			RequestContext::getMain()->getUser(),
 			new DefaultPresenter( $permissionManager ),
 			$jobQueueGroup,
 			$languageFallback
@@ -104,8 +97,7 @@ class LogHandler extends IPInfoHandler {
 				new MessageValue( 'ipinfo-rest-log-nonexistent' ), 404 );
 		}
 
-		$user = $this->userFactory->newFromUserIdentity( $this->user );
-		if ( !LogEventsList::userCanViewLogType( $entry->getType(), $user ) ) {
+		if ( !LogEventsList::userCanViewLogType( $entry->getType(), $this->getAuthority() ) ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'ipinfo-rest-log-denied' ), 403 );
 		}
@@ -113,8 +105,10 @@ class LogHandler extends IPInfoHandler {
 		// A log entry logs an action performed by a performer, on a target. Either of the
 		// performer or target may be an IP address. This returns info about whichever is an
 		// IP address, or both, if both are IP addresses.
-		$canAccessPerformer = LogEventsList::userCanBitfield( $entry->getDeleted(), LogPage::DELETED_USER, $user );
-		$canAccessTarget = LogEventsList::userCanBitfield( $entry->getDeleted(), LogPage::DELETED_ACTION, $user );
+		$canAccessPerformer = LogEventsList::userCanBitfield( $entry->getDeleted(), LogPage::DELETED_USER,
+			$this->getAuthority() );
+		$canAccessTarget = LogEventsList::userCanBitfield( $entry->getDeleted(), LogPage::DELETED_ACTION,
+			$this->getAuthority() );
 
 		// If the user cannot access the performer, nor the target, throw an error since there wont
 		// be anything to respond with.
@@ -132,10 +126,12 @@ class LogHandler extends IPInfoHandler {
 		$showPerformer = IPUtils::isValid( $performer ) && $canAccessPerformer;
 		$showTarget = IPUtils::isValid( $target ) && $canAccessTarget;
 		if ( $showPerformer ) {
-			$info[] = $this->presenter->present( $this->infoManager->retrieveFromIP( $performer ), $this->user );
+			$info[] = $this->presenter->present( $this->infoManager->retrieveFromIP( $performer ),
+				$this->getAuthority()->getUser() );
 		}
 		if ( $showTarget ) {
-			$info[] = $this->presenter->present( $this->infoManager->retrieveFromIP( $target ), $this->user );
+			$info[] = $this->presenter->present( $this->infoManager->retrieveFromIP( $target ),
+			$this->getAuthority()->getUser() );
 		}
 
 		if ( count( $info ) === 0 ) {

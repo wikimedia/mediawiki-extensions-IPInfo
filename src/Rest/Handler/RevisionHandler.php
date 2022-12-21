@@ -10,9 +10,7 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserFactory;
-use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
-use RequestContext;
 
 class RevisionHandler extends AbstractRevisionHandler {
 
@@ -25,7 +23,6 @@ class RevisionHandler extends AbstractRevisionHandler {
 	 * @param PermissionManager $permissionManager
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
-	 * @param UserIdentity $user
 	 * @param DefaultPresenter $presenter
 	 * @param JobQueueGroup $jobQueueGroup
 	 * @param LanguageFallback $languageFallback
@@ -36,7 +33,6 @@ class RevisionHandler extends AbstractRevisionHandler {
 		PermissionManager $permissionManager,
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
-		UserIdentity $user,
 		DefaultPresenter $presenter,
 		JobQueueGroup $jobQueueGroup,
 		LanguageFallback $languageFallback
@@ -46,7 +42,6 @@ class RevisionHandler extends AbstractRevisionHandler {
 			$permissionManager,
 			$userOptionsLookup,
 			$userFactory,
-			$user,
 			$presenter,
 			$jobQueueGroup,
 			$languageFallback
@@ -79,8 +74,6 @@ class RevisionHandler extends AbstractRevisionHandler {
 			$permissionManager,
 			$userOptionsLookup,
 			$userFactory,
-			// @TODO Replace with something better.
-			RequestContext::getMain()->getUser(),
 			new DefaultPresenter( $permissionManager ),
 			$jobQueueGroup,
 			$languageFallback

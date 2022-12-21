@@ -11,9 +11,7 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\User\UserFactory;
-use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
-use RequestContext;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -33,7 +31,6 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 	 * @param PermissionManager $permissionManager
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
-	 * @param UserIdentity $user
 	 * @param DefaultPresenter $presenter
 	 * @param JobQueueGroup $jobQueueGroup
 	 * @param LanguageFallback $languageFallback
@@ -45,7 +42,6 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 		PermissionManager $permissionManager,
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
-		UserIdentity $user,
 		DefaultPresenter $presenter,
 		JobQueueGroup $jobQueueGroup,
 		LanguageFallback $languageFallback
@@ -55,7 +51,6 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 			$permissionManager,
 			$userOptionsLookup,
 			$userFactory,
-			$user,
 			$presenter,
 			$jobQueueGroup,
 			$languageFallback
@@ -92,8 +87,6 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 			$permissionManager,
 			$userOptionsLookup,
 			$userFactory,
-			// @TODO Replace with something better.
-			RequestContext::getMain()->getUser(),
 			new DefaultPresenter( $permissionManager ),
 			$jobQueueGroup,
 			$languageFallback
@@ -104,9 +97,10 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 	 * @inheritDoc
 	 */
 	protected function getRevision( int $id ): ?RevisionRecord {
-		if ( !$this->permissionManager->userHasRight( $this->user, 'deletedhistory' ) ) {
+		if ( !$this->permissionManager->userHasRight( $this->getAuthority()->getUser(), 'deletedhistory' ) ) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'ipinfo-rest-access-denied' ), $this->user->isRegistered() ? 403 : 401 );
+				new MessageValue( 'ipinfo-rest-access-denied' ),
+				$this->getAuthority()->getUser()->isRegistered() ? 403 : 401 );
 		}
 
 		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );

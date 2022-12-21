@@ -8,6 +8,7 @@ use MediaWiki\IPInfo\Rest\Handler\ArchivedRevisionHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -50,6 +51,9 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 	 */
 	public function testExecuteErrors( array $options, array $expected ) {
 		$user = $this->createMock( UserIdentity::class );
+		$authority = $this->createMock( Authority::class );
+		$authority->method( 'getUser' )
+			->willReturn( $user );
 		$user->method( 'isRegistered' )
 			->willReturn( $options['userIsRegistered'] ?? false );
 
@@ -93,7 +97,6 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 				'permissionManager' => $permissionManager,
 				'userOptionsLookup' => $userOptionsLookup,
 				'userFactory' => $this->createMock( UserFactory::class ),
-				'user' => $user,
 				'presenter' => $this->createMock( DefaultPresenter::class ),
 				'jobQueueGroup' => $this->createMock( JobQueueGroup::class ),
 				'languageFallback' => $this->createMock( LanguageFallback::class )
@@ -115,7 +118,11 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 			)
 		);
 
-		$this->executeHandler( $handler, $request );
+		$this->executeHandler( $handler, $request, [],
+			[],
+			[],
+			[],
+			$authority );
 	}
 
 	public function provideExecuteErrors() {
