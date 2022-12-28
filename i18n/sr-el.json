@@ -4,5 +4,23 @@
 			"Kareyac"
 		]
 	},
-	"ipinfo-property-label-source": "Izvor"
+	"ipinfo-extensionname": "Podaci o IP adresi",
+	"ipinfo-desc": "Prikazuje podatke o određenoj IP adresi.",
+	"ipinfo-infobox-title": "Podaci o IP adresi",
+	"ipinfo-property-label-location": "Lokacija:",
+	"ipinfo-property-label-isp": "Provajder:",
+	"ipinfo-property-label-asn": "ASN:",
+	"ipinfo-property-label-organization": "Organizacija:",
+	"ipinfo-property-label-proxytypes": "Stvarni IP ili proksi:",
+	"ipinfo-property-value-proxytype-isanonymousvpn": "anonimni VPN",
+	"ipinfo-property-label-source": "Izvor:",
+	"ipinfo-property-tooltip-proxytypes": "Posrednici (proksiji) sakrivaju IP adrese. U nekim slučajevima se to automatski događa, kao kod stambenih ili korporativnih proksija, dok se u drugim slučajevima to namerno čini radi prikrivanja porekla IP adrese.",
+	"ipinfo-property-tooltip-connectiontype": "Tehnologija pomoću koje se korisnik povezuje na internet.",
+	"ipinfo-property-tooltip-usertype": "Vrsta entiteta koji poseduje internetsku vezu.",
+	"ipinfo-property-label-edits": "Doprinos:",
+	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 lokalna izmena|$1 lokalne izmene|$1 lokalnih izmena|0=nema lokalnih izmena}}",
+	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 u poslednja 24 sata}})",
+	"ipinfo-widget-error-default": "Ne mogu da preuzmem podatke o IP adresi.",
+	"ipinfo-widget-error-no-data": "U izvoru $1 nema podataka za navedenu IP adresu.",
+	"ipinfo-widget-error-wrong-ip": "Navedena IP adresa se ne podudara s dnevničkom stavkom ili izmenom."
 }
