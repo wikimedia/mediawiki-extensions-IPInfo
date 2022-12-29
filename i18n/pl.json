@@ -100,5 +100,6 @@
 	"log-action-filter-ipinfo-change_access": "Włączanie bądź wyłączanie narzędzia",
 	"log-action-filter-ipinfo-view_infobox": "Dane wyświetlone w infoboksie",
 	"log-action-filter-ipinfo-view_popup": "Dane wyświetlone w wyskakującym okienku",
-	"ipinfo-property-tooltip-asn": "Unikalny identyfikator przypisywany sieciom powiązanym z konkretnym regionem lub organizacjami jak rządy państw oraz dostawcy internetu"
+	"ipinfo-property-tooltip-asn": "Unikalny identyfikator przypisywany sieciom powiązanym z konkretnym regionem lub organizacjami jak rządy państw oraz dostawcy internetu",
+	"ipinfo-blocklist-url-text": "Lista zablokowanych"
 }
