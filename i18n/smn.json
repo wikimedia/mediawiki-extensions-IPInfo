@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Seipinne"
+			"Seipinne",
+			"Yupik"
 		]
 	},
+	"ipinfo-property-value-usertype-library": "Kirjerááju",
 	"ipinfo-property-label-source": "Käldee",
 	"ipinfo-property-label-edits": "Hammiimeh"
 }
