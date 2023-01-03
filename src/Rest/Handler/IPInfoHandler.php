@@ -8,6 +8,7 @@ use JobSpecification;
 use MediaWiki\IPInfo\AccessLevelTrait;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
+use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
@@ -31,6 +32,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 	protected const VIEWING_CONTEXTS = [
 		'popup' => [
 			'country',
+			'countryNames',
 			'location',
 			'organization',
 			'numActiveBlocks',
@@ -39,6 +41,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 		],
 		'infobox' => [
 			'country',
+			'countryNames',
 			'location',
 			'connectionType',
 			'userType',
@@ -74,6 +77,9 @@ abstract class IPInfoHandler extends SimpleHandler {
 	/** @var JobQueueGroup */
 	protected $jobQueueGroup;
 
+	/** @var LanguageFallback */
+	protected $languageFallback;
+
 	/**
 	 * @param InfoManager $infoManager
 	 * @param PermissionManager $permissionManager
@@ -82,6 +88,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 	 * @param UserIdentity $user
 	 * @param DefaultPresenter $presenter
 	 * @param JobQueueGroup $jobQueueGroup
+	 * @param LanguageFallback $languageFallback
 	 */
 	public function __construct(
 		InfoManager $infoManager,
@@ -90,7 +97,8 @@ abstract class IPInfoHandler extends SimpleHandler {
 		UserFactory $userFactory,
 		UserIdentity $user,
 		DefaultPresenter $presenter,
-		JobQueueGroup $jobQueueGroup
+		JobQueueGroup $jobQueueGroup,
+		LanguageFallback $languageFallback
 	) {
 		$this->infoManager = $infoManager;
 		$this->permissionManager = $permissionManager;
@@ -99,6 +107,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 		$this->user = $user;
 		$this->presenter = $presenter;
 		$this->jobQueueGroup = $jobQueueGroup;
+		$this->languageFallback = $languageFallback;
 	}
 
 	/**
@@ -150,6 +159,11 @@ abstract class IPInfoHandler extends SimpleHandler {
 		}
 
 		$info = $this->getInfo( $id );
+		$userLang = strtolower( $this->getValidatedParams()['language'] );
+		$langCodes = array_unique( array_merge(
+			[ $userLang ],
+			$this->languageFallback->getAll( $userLang )
+		) );
 
 		// Only show data required for the context
 		$dataContext = $this->getValidatedParams()['dataContext'];
@@ -157,6 +171,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 			if ( !isset( $set['data'] ) ) {
 				continue;
 			}
+			$info[$index] += [ 'language-fallback' => $langCodes ];
 			foreach ( $set['data'] as $provider => $dataset ) {
 				foreach ( $dataset as $datum => $value ) {
 					if ( !in_array( $datum, self::VIEWING_CONTEXTS[$dataContext] ?? [] ) ) {
@@ -216,6 +231,11 @@ abstract class IPInfoHandler extends SimpleHandler {
 				ParamValidator::PARAM_REQUIRED => true,
 			],
 			'dataContext' => [
+				self::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
+			],
+			'language' => [
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,

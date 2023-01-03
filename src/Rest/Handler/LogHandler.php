@@ -8,6 +8,7 @@ use LogEventsList;
 use LogPage;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
+use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\User\UserFactory;
@@ -32,6 +33,7 @@ class LogHandler extends IPInfoHandler {
 	 * @param UserIdentity $user
 	 * @param DefaultPresenter $presenter
 	 * @param JobQueueGroup $jobQueueGroup
+	 * @param LanguageFallback $languageFallback
 	 */
 	public function __construct(
 		InfoManager $infoManager,
@@ -41,7 +43,8 @@ class LogHandler extends IPInfoHandler {
 		UserFactory $userFactory,
 		UserIdentity $user,
 		DefaultPresenter $presenter,
-		JobQueueGroup $jobQueueGroup
+		JobQueueGroup $jobQueueGroup,
+		LanguageFallback $languageFallback
 	) {
 		parent::__construct(
 			$infoManager,
@@ -50,7 +53,8 @@ class LogHandler extends IPInfoHandler {
 			$userFactory,
 			$user,
 			$presenter,
-			$jobQueueGroup
+			$jobQueueGroup,
+			$languageFallback,
 		);
 		$this->loadBalancer = $loadBalancer;
 	}
@@ -62,6 +66,7 @@ class LogHandler extends IPInfoHandler {
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
 	 * @param JobQueueGroup $jobQueueGroup
+	 * @param LanguageFallback $languageFallback
 	 * @return self
 	 */
 	public static function factory(
@@ -70,7 +75,8 @@ class LogHandler extends IPInfoHandler {
 		PermissionManager $permissionManager,
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
-		JobQueueGroup $jobQueueGroup
+		JobQueueGroup $jobQueueGroup,
+		LanguageFallback $languageFallback
 	) {
 		return new self(
 			$infoManager,
@@ -81,7 +87,8 @@ class LogHandler extends IPInfoHandler {
 			// @TODO Replace with something better.
 			RequestContext::getMain()->getUser(),
 			new DefaultPresenter( $permissionManager ),
-			$jobQueueGroup
+			$jobQueueGroup,
+			$languageFallback
 		);
 	}
 

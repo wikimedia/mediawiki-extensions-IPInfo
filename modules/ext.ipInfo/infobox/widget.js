@@ -26,10 +26,14 @@ OO.inheritClass( ipInfoInfoboxWidget, ipInfoWidget );
  */
 ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 	var blockListUrl, $blockListLink, deletedEditsUrl, $deletedEditsLink;
+	var localizedCountryName = this.getLocalizedCountryName(
+		info.data[ 'ipinfo-source-geoip2' ].countryNames,
+		info[ 'language-fallback' ]
+	);
 
 	var location = this.getLocation(
 		info.data[ 'ipinfo-source-geoip2' ].location,
-		info.data[ 'ipinfo-source-geoip2' ].country
+		localizedCountryName
 	);
 
 	var activeBlocks = this.getActiveBlocks( info.data[ 'ipinfo-source-block' ].numActiveBlocks );

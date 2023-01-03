@@ -6,6 +6,7 @@ use JobQueueGroup;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Handler\ArchivedRevisionHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
+use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -35,7 +36,10 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 	private function getRequestData( int $id = 123 ): RequestData {
 		return new RequestData( [
 			'pathParams' => [ 'id' => $id ],
-			'queryParams' => [ 'dataContext' => 'infobox' ],
+			'queryParams' => [
+				'dataContext' => 'infobox',
+				'language' => 'en'
+			],
 		] );
 	}
 
@@ -91,7 +95,8 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 				'userFactory' => $this->createMock( UserFactory::class ),
 				'user' => $user,
 				'presenter' => $this->createMock( DefaultPresenter::class ),
-				'jobQueueGroup' => $this->createMock( JobQueueGroup::class )
+				'jobQueueGroup' => $this->createMock( JobQueueGroup::class ),
+				'languageFallback' => $this->createMock( LanguageFallback::class )
 			] )
 			->onlyMethods( [ 'getRevisionFromTable' ] )
 			->getMock();
@@ -159,7 +164,8 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 				$this->createMock( PermissionManager::class ),
 				$this->createMock( UserOptionsLookup::class ),
 				$this->createMock( UserFactory::class ),
-				$this->createMock( JobQueueGroup::class )
+				$this->createMock( JobQueueGroup::class ),
+				$this->createMock( LanguageFallback::class )
 			)
 		);
 	}

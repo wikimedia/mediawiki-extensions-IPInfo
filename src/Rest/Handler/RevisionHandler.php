@@ -5,6 +5,7 @@ namespace MediaWiki\IPInfo\Rest\Handler;
 use JobQueueGroup;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
+use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -27,6 +28,7 @@ class RevisionHandler extends AbstractRevisionHandler {
 	 * @param UserIdentity $user
 	 * @param DefaultPresenter $presenter
 	 * @param JobQueueGroup $jobQueueGroup
+	 * @param LanguageFallback $languageFallback
 	 */
 	public function __construct(
 		InfoManager $infoManager,
@@ -36,7 +38,8 @@ class RevisionHandler extends AbstractRevisionHandler {
 		UserFactory $userFactory,
 		UserIdentity $user,
 		DefaultPresenter $presenter,
-		JobQueueGroup $jobQueueGroup
+		JobQueueGroup $jobQueueGroup,
+		LanguageFallback $languageFallback
 	) {
 		parent::__construct(
 			$infoManager,
@@ -45,7 +48,8 @@ class RevisionHandler extends AbstractRevisionHandler {
 			$userFactory,
 			$user,
 			$presenter,
-			$jobQueueGroup
+			$jobQueueGroup,
+			$languageFallback
 		);
 		$this->revisionLookup = $revisionLookup;
 	}
@@ -57,6 +61,7 @@ class RevisionHandler extends AbstractRevisionHandler {
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
 	 * @param JobQueueGroup $jobQueueGroup
+	 * @param LanguageFallback $languageFallback
 	 * @return self
 	 */
 	public static function factory(
@@ -65,7 +70,8 @@ class RevisionHandler extends AbstractRevisionHandler {
 		PermissionManager $permissionManager,
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
-		JobQueueGroup $jobQueueGroup
+		JobQueueGroup $jobQueueGroup,
+		LanguageFallback $languageFallback
 	) {
 		return new self(
 			$infoManager,
@@ -76,7 +82,8 @@ class RevisionHandler extends AbstractRevisionHandler {
 			// @TODO Replace with something better.
 			RequestContext::getMain()->getUser(),
 			new DefaultPresenter( $permissionManager ),
-			$jobQueueGroup
+			$jobQueueGroup,
+			$languageFallback
 		);
 	}
 

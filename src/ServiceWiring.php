@@ -60,9 +60,7 @@ return [
 		);
 	},
 	'ReaderFactory' => static function ( MediaWikiServices $services ) {
-		return new ReaderFactory(
-			$services->getLanguageFallback()
-		);
+		return new ReaderFactory();
 	}
 ];
 

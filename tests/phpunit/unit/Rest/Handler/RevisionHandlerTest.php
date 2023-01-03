@@ -7,6 +7,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Handler\RevisionHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
+use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -43,7 +44,8 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 				'userFactory' => $this->createMock( UserFactory::class ),
 				'userIdentity' => $this->createMock( UserIdentity::class ),
 				'presenter' => $this->createMock( DefaultPresenter::class ),
-				'jobQueueGroup' => $this->createMock( JobQueueGroup::class )
+				'jobQueueGroup' => $this->createMock( JobQueueGroup::class ),
+				'languageFallback' => $this->createMock( LanguageFallback::class )
 			],
 			$options
 		) ) );
@@ -56,7 +58,10 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 	private function getRequestData( int $id = 123 ): RequestData {
 		return new RequestData( [
 			'pathParams' => [ 'id' => $id ],
-			'queryParams' => [ 'dataContext' => 'infobox' ],
+			'queryParams' => [
+				'dataContext' => 'infobox',
+				'language' => 'en'
+			],
 		] );
 	}
 
@@ -109,12 +114,17 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 		$jobQueueGroup->expects( $this->atLeastOnce() )
 			->method( 'push' );
 
+		$languageFallback = $this->createMock( LanguageFallback::class );
+		$languageFallback->method( 'getAll' )
+			->willReturn( [ 'en' ] );
+
 		$handler = $this->getRevisionHandler( [
 			'revisionLookup' => $revisionLookup,
 			'permissionManager' => $permissionManager,
 			'userOptionsLookup' => $userOptionsLookup,
 			'presenter' => $presenter,
 			'jobQueueGroup' => $jobQueueGroup,
+			'languageFallback' => $languageFallback,
 		] );
 
 		$request = $this->getRequestData();
@@ -176,11 +186,16 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 		$revisionLookup->method( 'getRevisionById' )
 			->willReturn( isset( $options['getRevisionById'] ) ? null : $revision );
 
+		$languageFallback = $this->createMock( LanguageFallback::class );
+		$languageFallback->method( 'getAll' )
+			->willReturn( [ 'en' ] );
+
 		$handler = $this->getRevisionHandler( [
 			'revisionLookup' => $revisionLookup,
 			'permissionManager' => $permissionManager,
 			'userOptionsLookup' => $userOptionsLookup,
 			'userIdentity' => $user,
+			'languageFallback' => $languageFallback,
 		] );
 
 		$request = $this->getRequestData( $options['id'] ?? 123 );
@@ -314,11 +329,15 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 			->willReturn( $this->createMock( DatabaseBlock::class ) );
 		$userFactory->method( 'newFromUserIdentity' )
 			->willReturn( $userFactoryUser );
+		$languageFallback = $this->createMock( LanguageFallback::class );
+		$languageFallback->method( 'getAll' )
+			->willReturn( [ 'en' ] );
 
 		$handler = $this->getRevisionHandler( [
 			'permissionManager' => $permissionManager,
 			'userOptionsLookup' => $userOptionsLookup,
 			'userFactory' => $userFactory,
+			'languageFallback' => $languageFallback,
 		] );
 
 		$request = $this->getRequestData();
@@ -342,7 +361,8 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 				$this->createMock( PermissionManager::class ),
 				$this->createMock( UserOptionsLookup::class ),
 				$this->createMock( UserFactory::class ),
-				$this->createMock( JobQueueGroup::class )
+				$this->createMock( JobQueueGroup::class ),
+				$this->createMock( LanguageFallback::class )
 			)
 		);
 	}

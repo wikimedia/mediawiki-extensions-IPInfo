@@ -51,7 +51,9 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 				$.get(
 					mw.config.get( 'wgScriptPath' ) +
 						'/rest.php/ipinfo/v0/' +
-						type + '/' + id + '?dataContext=popup'
+						type + '/' + id +
+					'?dataContext=popup' +
+					'&language=' + mw.config.values.wgUserLanguage
 				).then( function ( response ) {
 					var i, data;
 

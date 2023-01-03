@@ -8,6 +8,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Handler\LogHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
+use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -47,6 +48,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 				'userIdentity' => $this->createMock( UserIdentity::class ),
 				'presenter' => $this->createMock( DefaultPresenter::class ),
 				'jobQueueGroup' => $this->createMock( JobQueueGroup::class ),
+				'languageFallback' => $this->createMock( LanguageFallback::class ),
 			],
 			$options
 		) ) );
@@ -59,7 +61,10 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 	private function getRequestData( int $id = 123 ): RequestData {
 		return new RequestData( [
 			'pathParams' => [ 'id' => $id ],
-			'queryParams' => [ 'dataContext' => 'infobox' ],
+			'queryParams' => [
+				'dataContext' => 'infobox',
+				'language' => 'en'
+			],
 		] );
 	}
 
@@ -109,12 +114,17 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$jobQueueGroup->expects( $this->atLeastOnce() )
 			->method( 'push' );
 
+		$languageFallback = $this->createMock( LanguageFallback::class );
+		$languageFallback->method( 'getAll' )
+			->willReturn( [ 'en' ] );
+
 		$handler = $this->getLogHandler( [
 			'loadBalancer' => $loadBalancer,
 			'permissionManager' => $permissionManager,
 			'userOptionsLookup' => $userOptionsLookup,
 			'presenter' => $presenter,
 			'jobQueueGroup' => $jobQueueGroup,
+			'languageFallback' => $languageFallback,
 		] );
 
 		$request = $this->getRequestData( $id );
@@ -259,11 +269,16 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$userFactory->method( 'newFromUserIdentity' )
 			->willReturn( $this->getTestUser()->getUser() );
 
+		$languageFallback = $this->createMock( LanguageFallback::class );
+		$languageFallback->method( 'getAll' )
+			->willReturn( [ 'en' ] );
+
 		$handler = $this->getLogHandler( [
 			'loadBalancer' => $loadBalancer,
 			'permissionManager' => $permissionManager,
 			'userOptionsLookup' => $userOptionsLookup,
 			'userFactory' => $userFactory,
+			'languageFallback' => $languageFallback,
 		] );
 
 		$request = $this->getRequestData( $id );
@@ -320,11 +335,16 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$userFactory->method( 'newFromUserIdentity' )
 			->willReturn( $this->getTestUser( [ 'sysop' ] )->getUser() );
 
+		$languageFallback = $this->createMock( LanguageFallback::class );
+		$languageFallback->method( 'getAll' )
+			->willReturn( [ 'en' ] );
+
 		$handler = $this->getLogHandler( [
 			'loadBalancer' => $loadBalancer,
 			'permissionManager' => $permissionManager,
 			'userOptionsLookup' => $userOptionsLookup,
 			'userFactory' => $userFactory,
+			'languageFallback' => $languageFallback,
 		] );
 
 		$request = $this->getRequestData( $id );
@@ -394,10 +414,15 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$userFactory->method( 'newFromUserIdentity' )
 			->willReturn( $userFactoryUser );
 
+		$languageFallback = $this->createMock( LanguageFallback::class );
+		$languageFallback->method( 'getAll' )
+			->willReturn( [ 'en' ] );
+
 		$handler = $this->getLogHandler( [
 			'permissionManager' => $permissionManager,
 			'userOptionsLookup' => $userOptionsLookup,
 			'userFactory' => $userFactory,
+			'languageFallback' => $languageFallback,
 		] );
 
 		$request = $this->getRequestData();
@@ -441,10 +466,15 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$userOptionsLookup->method( 'getOption' )
 			->willReturn( true );
 
+		$languageFallback = $this->createMock( LanguageFallback::class );
+		$languageFallback->method( 'getAll' )
+			->willReturn( [ 'en' ] );
+
 		$handler = $this->getLogHandler( [
 			'loadBalancer' => $loadBalancer,
 			'permissionManager' => $permissionManager,
 			'userOptionsLookup' => $userOptionsLookup,
+			'languageFallback' => $languageFallback,
 		] );
 
 		$request = $this->getRequestData();
@@ -490,11 +520,16 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$userFactory->method( 'newFromUserIdentity' )
 			->willReturn( $this->getTestUser()->getUser() );
 
+		$languageFallback = $this->createMock( LanguageFallback::class );
+		$languageFallback->method( 'getAll' )
+			->willReturn( [ 'en' ] );
+
 		$handler = $this->getLogHandler( [
 			'loadBalancer' => $loadBalancer,
 			'permissionManager' => $permissionManager,
 			'userOptionsLookup' => $userOptionsLookup,
 			'userFactory' => $userFactory,
+			'languageFallback' => $languageFallback,
 		] );
 
 		$request = $this->getRequestData( $id );
@@ -542,11 +577,16 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$userFactory->method( 'newFromUserIdentity' )
 			->willReturn( $this->getTestSysop()->getUser() );
 
+		$languageFallback = $this->createMock( LanguageFallback::class );
+		$languageFallback->method( 'getAll' )
+			->willReturn( [ 'en' ] );
+
 		$handler = $this->getLogHandler( [
 			'loadBalancer' => $loadBalancer,
 			'permissionManager' => $permissionManager,
 			'userOptionsLookup' => $userOptionsLookup,
 			'userFactory' => $userFactory,
+			'languageFallback' => $languageFallback,
 		] );
 
 		$request = $this->getRequestData( $id );
@@ -570,7 +610,8 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 				$this->createMock( PermissionManager::class ),
 				$this->createMock( UserOptionsLookup::class ),
 				$this->createMock( UserFactory::class ),
-				$this->createMock( JobQueueGroup::class )
+				$this->createMock( JobQueueGroup::class ),
+				$this->createMock( LanguageFallback::class )
 			)
 		);
 	}

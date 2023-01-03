@@ -27,7 +27,7 @@ class DefaultPresenter {
 	 */
 	private const VIEWING_RIGHTS = [
 		'ipinfo-view-basic' => [
-			'country',
+			'countryNames',
 			'connectionType',
 			'userType',
 			'proxyType',
@@ -36,7 +36,7 @@ class DefaultPresenter {
 			'numRecentEdits',
 		],
 		'ipinfo-view-full' => [
-			'country',
+			'countryNames',
 			'location',
 			'connectionType',
 			'userType',
@@ -114,7 +114,6 @@ class DefaultPresenter {
 	private function presentInfo( Info $info ): array {
 		$coordinates = $info->getCoordinates();
 		$proxyType = $info->getProxyType();
-		$country = $info->getCountry();
 		$location = $info->getLocation();
 
 		return [
@@ -124,12 +123,7 @@ class DefaultPresenter {
 			] : null,
 			'asn' => $info->getAsn(),
 			'organization' => $info->getOrganization(),
-			'country' => $country ? array_map( static function ( Location $location ) {
-				return [
-					'id' => $location->getId(),
-					'label' => $location->getLabel(),
-				];
-			}, $country ) : null,
+			'countryNames' => $info->getCountryNames(),
 			'location' => $location ? array_map( static function ( Location $location ) {
 				return [
 					'id' => $location->getId(),

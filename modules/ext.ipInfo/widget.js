@@ -133,11 +133,30 @@ ipInfoWidget.prototype.getLocation = function ( location, country ) {
 		return undefined;
 	}
 	var locationData = ( location || [] )
-		.concat( country || [] )
 		.map( function ( item ) {
 			return item.label;
-		} ).join( mw.msg( 'comma-separator' ) );
+		} ).concat( country || [] ).join( mw.msg( 'comma-separator' ) );
 	return locationData.length ? locationData : null;
+};
+
+/**
+ *
+ * @param {Array|null|undefined} countryNames
+ * @param {Array|null|undefined} languageFallback
+ * @return {string|undefined}
+ */
+ipInfoWidget.prototype.getLocalizedCountryName = function ( countryNames, languageFallback ) {
+	if ( !countryNames || !languageFallback ) {
+		return undefined;
+	}
+
+	for ( var i = 0; i < languageFallback.length; i++ ) {
+		for ( var langCode in countryNames ) {
+			if ( langCode.toLowerCase() === languageFallback[ i ] ) {
+				return countryNames[ langCode ];
+			}
+		}
+	}
 };
 
 /**

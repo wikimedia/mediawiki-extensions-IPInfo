@@ -68,7 +68,7 @@ class GeoLite2InfoRetriever implements InfoRetriever {
 			$this->getCoordinates( $ip ),
 			$this->getAsn( $ip ),
 			$this->getOrganization( $ip ),
-			$this->getCountry( $ip ),
+			$this->getCountryNames( $ip ),
 			$this->getLocations( $ip ),
 			$this->getIsp( $ip ),
 			$this->getConnectionType( $ip ),
@@ -140,9 +140,9 @@ class GeoLite2InfoRetriever implements InfoRetriever {
 
 	/**
 	 * @param string $ip
-	 * @return Location[]|null null if this IP address is not in the database
+	 * @return array|null
 	 */
-	private function getCountry( string $ip ): ?array {
+	private function getCountryNames( string $ip ): ?array {
 		$reader = $this->getReader( 'City.mmdb' );
 		if ( !$reader ) {
 			return null;
@@ -154,14 +154,7 @@ class GeoLite2InfoRetriever implements InfoRetriever {
 			return null;
 		}
 
-		if ( !$city->country->geonameId || !$city->country->name ) {
-			return null;
-		}
-
-		return [ new Location(
-			$city->country->geonameId,
-			$city->country->name
-		) ];
+		return $city->country->names;
 	}
 
 	/**

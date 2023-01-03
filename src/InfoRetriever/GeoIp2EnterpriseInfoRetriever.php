@@ -74,7 +74,7 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 				'coordinates',
 				'asn',
 				'organization',
-				'country',
+				'countryNames',
 				'locations',
 				'isp',
 				'connectionType',
@@ -92,7 +92,7 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 				$info['coordinates'] = $this->getCoordinates( $enterpriseInfo );
 				$info['asn'] = $this->getAsn( $enterpriseInfo );
 				$info['organization'] = $this->getOrganization( $enterpriseInfo );
-				$info['country'] = $this->getCountry( $enterpriseInfo );
+				$info['countryNames'] = $this->getCountryNames( $enterpriseInfo );
 				$info['locations'] = $this->getLocations( $enterpriseInfo );
 				$info['isp'] = $this->getIsp( $enterpriseInfo );
 				$info['connectionType'] = $this->getConnectionType( $enterpriseInfo );
@@ -122,7 +122,7 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 			$info['coordinates'],
 			$info['asn'],
 			$info['organization'],
-			$info['country'],
+			$info['countryNames'],
 			$info['locations'],
 			$info['isp'],
 			$info['connectionType'],
@@ -165,17 +165,10 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 
 	/**
 	 * @param Enterprise $info
-	 * @return Location[]|null null if this IP address does not return a country
+	 * @return array|null null if this IP address does not return a country
 	 */
-	private function getCountry( Enterprise $info ): ?array {
-		if ( !$info->country->geonameId || !$info->country->name ) {
-			return null;
-		}
-
-		return [ new Location(
-			$info->country->geonameId,
-			$info->country->name
-		) ];
+	private function getCountryNames( Enterprise $info ): ?array {
+		return $info->country->names;
 	}
 
 	/**

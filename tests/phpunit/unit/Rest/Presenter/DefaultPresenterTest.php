@@ -27,7 +27,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 		yield [
 			[
 				'foo' => [
-					'country' => null,
+					'countryNames' => null,
 					'connectionType' => null,
 					'userType' => null,
 					'proxyType' => null,
@@ -40,12 +40,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 		yield [
 			[
 				'bar' => [
-					'country' => [
-						[
-							'id' => 1605651,
-							'label' => 'Thailand'
-						],
-					],
+					'countryNames' => [ 'en' => 'Thailand' ],
 					'connectionType' => 'quux',
 					'userType' => 'residential',
 					'proxyType' => array_fill_keys( [
@@ -63,9 +58,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 					new Coordinates( 51.509865, -0.118092 ),
 					0,
 					'baz',
-					[
-						new Location( 1605651, 'Thailand' )
-					],
+					[ 'en' => 'Thailand' ],
 					[
 						new Location( 123456789, 'London' )
 					],
@@ -138,7 +131,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 			[
 				'foo' => [
 					'organization' => null,
-					'country' => null,
+					'countryNames' => null,
 					'location' => null,
 					'asn' => null,
 					'isp' => null,
@@ -155,12 +148,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 			[
 				'bar' => [
 					'organization' => 'baz',
-					'country' => [
-						[
-							'id' => 1605651,
-							'label' => 'Thailand'
-						],
-					],
+					'countryNames' => [ 'en' => 'Thailand' ],
 					'location' => [
 						[
 							'id' => 123456789,
@@ -186,9 +174,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 					new Coordinates( 51.509865, -0.118092 ),
 					0,
 					'baz',
-					[
-						new Location( 1605651, 'Thailand' )
-					],
+					[ 'en' => 'Thailand' ],
 					[
 						new Location( 123456789, 'London' )
 					],

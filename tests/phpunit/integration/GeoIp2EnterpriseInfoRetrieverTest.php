@@ -83,7 +83,7 @@ class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $info->getCoordinates() );
 		$this->assertNull( $info->getAsn() );
 		$this->assertNull( $info->getOrganization() );
-		$this->assertNull( $info->getCountry() );
+		$this->assertNull( $info->getCountryNames() );
 		$this->assertNull( $info->getLocation() );
 		$this->assertNull( $info->getIsp() );
 		$this->assertNull( $info->getConnectionType() );
@@ -102,7 +102,8 @@ class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 		$country->method( '__get' )
 			->willReturnMap( [
 				[ 'geonameId', 1 ],
-				[ 'name', 'bar' ]
+				[ 'name', 'bar' ],
+				[ 'names', [ 'en' => 'bar' ] ]
 			] );
 		$location->method( '__get' )
 			->willReturnMap( [
@@ -160,7 +161,7 @@ class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( new Coordinates( 1.0, 2.0 ), $info->getCoordinates() );
 		$this->assertSame( 123, $info->getAsn() );
 		$this->assertEquals( 'foobar', $info->getOrganization() );
-		$this->assertEquals( [ new Location( 1, 'bar' ) ], $info->getCountry() );
+		$this->assertEquals( [ 'en' => 'bar' ], $info->getCountryNames() );
 		$this->assertEquals( [ new Location( 1, 'bar' ) ], $info->getLocation() );
 		$this->assertNull( $info->getIsp() );
 		$this->assertNull( $info->getConnectionType() );
