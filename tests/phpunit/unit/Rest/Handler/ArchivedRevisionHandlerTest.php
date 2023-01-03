@@ -29,27 +29,6 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 	use HandlerTestTrait;
 
 	/**
-	 * @param array $options
-	 * @return ArchivedRevisionHandler
-	 */
-	private function getArchivedRevisionHandler( array $options = [] ): ArchivedRevisionHandler {
-		return new ArchivedRevisionHandler( ...array_values( array_merge(
-			[
-				'infoManager' => $this->createMock( InfoManager::class ),
-				'loadBalancer' => $this->createMock( ILoadBalancer::class ),
-				'revisionStore' => $this->createMock( RevisionStore::class ),
-				'permissionManager' => $this->createMock( PermissionManager::class ),
-				'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
-				'userFactory' => $this->createMock( UserFactory::class ),
-				'userIdentity' => $this->createMock( UserIdentity::class ),
-				'presenter' => $this->createMock( DefaultPresenter::class ),
-				'jobQueueGroup' => $this->createMock( JobQueueGroup::class )
-			],
-			$options
-		) ) );
-	}
-
-	/**
 	 * @param int $id
 	 * @return RequestData
 	 */
@@ -102,12 +81,22 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 		$revisionStore->method( 'newRevisionFromArchiveRow' )
 			->willReturn( $revision );
 
-		$handler = $this->getArchivedRevisionHandler( [
-			'revisionStore' => $revisionStore,
-			'permissionManager' => $permissionManager,
-			'userOptionsLookup' => $userOptionsLookup,
-			'userIdentity' => $user,
-		] );
+		$handler = $this->getMockBuilder( ArchivedRevisionHandler::class )
+			->setConstructorArgs( [
+				'infoManager' => $this->createMock( InfoManager::class ),
+				'loadBalancer' => $this->createMock( ILoadBalancer::class ),
+				'revisionStore' => $revisionStore,
+				'permissionManager' => $permissionManager,
+				'userOptionsLookup' => $userOptionsLookup,
+				'userFactory' => $this->createMock( UserFactory::class ),
+				'user' => $user,
+				'presenter' => $this->createMock( DefaultPresenter::class ),
+				'jobQueueGroup' => $this->createMock( JobQueueGroup::class )
+			] )
+			->onlyMethods( [ 'getRevisionFromTable' ] )
+			->getMock();
+		$handler->method( 'getRevisionFromTable' )
+			->willReturn( false );
 
 		$request = $this->getRequestData( $options['id'] ?? 123 );
 
@@ -147,6 +136,16 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 					'status' => 401,
 				],
 			],
+			'Revision does not exist' => [
+				[
+					'userIsRegistered' => true,
+					'deletedhistory' => true,
+				],
+				[
+					'message' => 'rest-nonexistent-revision',
+					'status' => 404,
+				],
+			]
 		];
 	}
 

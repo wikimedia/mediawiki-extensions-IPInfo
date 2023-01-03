@@ -14,6 +14,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 use RequestContext;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 class ArchivedRevisionHandler extends AbstractRevisionHandler {
@@ -103,7 +104,24 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 
 		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
 		$query = $this->revisionStore->getArchiveQueryInfo();
-		$row = $dbr->newSelectQueryBuilder()
+		$row = $this->getRevisionFromTable( $dbr, $query, $id );
+
+		if ( !$row ) {
+			throw new LocalizedHttpException(
+				new MessageValue( 'rest-nonexistent-revision', [ $id ] ), 404 );
+		}
+
+		return $this->revisionStore->newRevisionFromArchiveRow( $row );
+	}
+
+	/**
+	 * @param IDatabase $dbr
+	 * @param array $query
+	 * @param int $id
+	 * @return \stdClass|false
+	 */
+	protected function getRevisionFromTable( $dbr, $query, $id ) {
+		return $dbr->newSelectQueryBuilder()
 			->tables( $query['tables'] )
 			->select(
 				array_merge(
@@ -115,7 +133,5 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 			->joinConds( $query['joins'] )
 			->caller( __METHOD__ )
 			->fetchRow();
-
-		return $this->revisionStore->newRevisionFromArchiveRow( $row );
 	}
 }
