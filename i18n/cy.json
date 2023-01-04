@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Afalau"
+		]
+	},
+	"ipinfo-property-label-location": "Lleoliad",
+	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "Sefydliad",
+	"ipinfo-property-label-edits": "Cyfraniadau"
+}
