@@ -4,5 +4,6 @@
 			"Yupik"
 		]
 	},
-	"ipinfo-property-value-usertype-library": "Girjerádju"
+	"ipinfo-property-value-usertype-library": "Girjerádju",
+	"ipinfo-property-value-proxytype-isanonymousvpn": "Anonyma VPN"
 }
