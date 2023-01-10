@@ -202,24 +202,21 @@ ipInfoWidget.prototype.getEdits = function ( numLocalEdits, numRecentEdits, numD
 	var $recentEdits = $( '<span>' ).addClass( 'ext-ipinfo-widget-value-recent-edits' )
 		.append( mw.msg( 'ipinfo-value-recent-edits', numRecentEdits ) );
 
-	if ( numDeletedEdits === undefined ) {
-		return $( '<span>' ).append(
-			localEdits,
-			$( '<br>' ),
-			$recentEdits,
-			$( '<br>' )
-		);
-	} else {
-		var deletedEdits = mw.msg( 'ipinfo-value-deleted-edits', numDeletedEdits );
-		return $( '<span>' ).append(
-			localEdits,
-			$( '<br>' ),
-			$recentEdits,
-			$( '<br>' ),
-			deletedEdits,
+	var $edits = $( '<span>' ).append(
+		localEdits,
+		$( '<br>' ),
+		$recentEdits,
+		$( '<br>' )
+	);
+
+	if ( numDeletedEdits !== undefined ) {
+		$edits.append(
+			mw.msg( 'ipinfo-value-deleted-edits', numDeletedEdits ),
 			$( '<br>' )
 		);
 	}
+
+	return $edits;
 };
 
 /**

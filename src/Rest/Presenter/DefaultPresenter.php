@@ -167,18 +167,14 @@ class DefaultPresenter {
 	 * @return array<string,int>
 	 */
 	private function presentContributionInfo( ContributionInfo $info, UserIdentity $user ): array {
-		if ( !$this->permissionManager->userHasRight(
+		$contributionInfo = [
+			'numLocalEdits' => $info->getNumLocalEdits(),
+			'numRecentEdits' => $info->getNumRecentEdits(),
+		];
+		if ( $this->permissionManager->userHasRight(
 			 $user, 'deletedhistory' ) ) {
-			return [
-				'numLocalEdits' => $info->getNumLocalEdits(),
-				'numRecentEdits' => $info->getNumRecentEdits()
-			];
-		} else {
-			return [
-				'numLocalEdits' => $info->getNumLocalEdits(),
-				'numRecentEdits' => $info->getNumRecentEdits(),
-				'numDeletedEdits' => $info->getNumDeletedEdits(),
-			];
+			$contributionInfo['numDeletedEdits'] = $info->getNumDeletedEdits();
 		}
+		return $contributionInfo;
 	}
 }
