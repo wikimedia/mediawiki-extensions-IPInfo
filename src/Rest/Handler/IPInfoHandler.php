@@ -49,6 +49,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 			'numActiveBlocks',
 			'numLocalEdits',
 			'numRecentEdits',
+			'numDeletedEdits',
 		]
 	];
 
