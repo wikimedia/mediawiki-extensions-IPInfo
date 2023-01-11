@@ -100,5 +100,7 @@
 	"log-action-filter-ipinfo-view_infobox": "Datos inspectate in le quadro de information",
 	"log-action-filter-ipinfo-view_popup": "Datos inspectate in le fenestra emergente",
 	"ipinfo-property-tooltip-asn": "Un identificator unic pro retes assignate a un region e ulteriormente a organisationes como governamentos e fornitores de accesso a internet",
-	"ipinfo-blocklist-url-text": "Lista de blocage"
+	"ipinfo-blocklist-url-text": "Lista de blocage",
+	"ipinfo-value-deleted-edits": "{{PLURAL:$1|Un|$1|0=Necun}} modification{{PLURAL:$1||es|0=}} delite",
+	"ipinfo-deleted-edits-url-text": "Contributiones delite"
 }

@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"BadDog",
-			"Kizule"
+			"Kizule",
+			"Milicevic01"
 		]
 	},
 	"ipinfo-extensionname": "Подаци о IP адреси",
@@ -36,5 +37,6 @@
 	"ipinfo-widget-error-wrong-ip": "Наведена IP адреса се не подудара с дневничком ставком или изменом.",
 	"ipinfo-widget-error-ip-no-edits": "Не могу да преузмем податке о наведеној IP адреси јер она нема објављених измена на овом пројекту.",
 	"ipinfo-beta-feature-title": "Подаци о IP адреси",
-	"prefs-ipinfo": "Информација о ИП адреси"
+	"prefs-ipinfo": "Информација о ИП адреси",
+	"ipinfo-deleted-edits-url-text": "Избрисани доприноси"
 }

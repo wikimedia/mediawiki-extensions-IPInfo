@@ -58,5 +58,6 @@
 	"ipinfo-change-access-level-enable": "{{GENDER:$1|engedélyezte}}",
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|letiltotta}}",
 	"logentry-ipinfo-change_access": "$1 {{GENDER:$2|$4}} a saját hozzáférését az IP-információs eszközhöz",
-	"ipinfo-blocklist-url-text": "Tiltólista"
+	"ipinfo-blocklist-url-text": "Tiltólista",
+	"ipinfo-deleted-edits-url-text": "Törölt szerkesztések"
 }

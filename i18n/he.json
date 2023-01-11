@@ -104,5 +104,7 @@
 	"log-action-filter-ipinfo-view_infobox": "נתונים הוצגו בתיבת מידע",
 	"log-action-filter-ipinfo-view_popup": "נתונים הוצגו בחלון קופץ",
 	"ipinfo-property-tooltip-asn": "מזהה ייחודי לרשתות שהוקצה לאזור ולאחר מכן לארגונים כמו ממשלות וספקי אינטרנט",
-	"ipinfo-blocklist-url-text": "רשימת חסימות"
+	"ipinfo-blocklist-url-text": "רשימת חסימות",
+	"ipinfo-value-deleted-edits": "{{PLURAL:$1|עריכה מחוקה אחת|$1 עריכות מחוקות|0=אין עריכות מחוקות}}",
+	"ipinfo-deleted-edits-url-text": "עריכות מחוקות"
 }

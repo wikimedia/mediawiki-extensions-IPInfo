@@ -73,5 +73,6 @@
 	"ipinfo-log-access-level-ipinfo-view-full": "完全なアクセス",
 	"ipinfo-change-access-level-enable": "有効",
 	"ipinfo-change-access-level-disable": "無効",
-	"ipinfo-blocklist-url-text": "ブロックリスト"
+	"ipinfo-blocklist-url-text": "ブロックリスト",
+	"ipinfo-deleted-edits-url-text": "削除された投稿"
 }
