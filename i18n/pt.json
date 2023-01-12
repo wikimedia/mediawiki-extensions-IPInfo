@@ -100,5 +100,7 @@
 	"log-action-filter-ipinfo-view_infobox": "Dados vistos em caixa informativa",
 	"log-action-filter-ipinfo-view_popup": "Dados vistos em janela flutuante",
 	"ipinfo-property-tooltip-asn": "Um identificador único para redes atribuídas a uma região e ainda a organizações como governos e ISPs",
-	"ipinfo-blocklist-url-text": "Lista de bloqueios"
+	"ipinfo-blocklist-url-text": "Lista de bloqueios",
+	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 edição eliminada|$1 edições eliminadas|0=Nenhuma edição eliminada}}",
+	"ipinfo-deleted-edits-url-text": "Contribuições eliminadas"
 }
