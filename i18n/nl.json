@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Mainframe98",
+			"McDutchie",
 			"Romaine"
 		]
 	},
@@ -12,5 +13,7 @@
 	"ipinfo-property-no-data": "Niet beschikbaar",
 	"ipinfo-rest-log-nonexistent": "Logboekregel bestaat niet",
 	"ipinfo-beta-feature-description": "De IP Info-tool is bedoeld om patrouilleurs uit te rusten met essentiële informatie over IP-adressen om hen te helpen bij hun taken. Deze informatie zal toegankelijk zijn op de Speciaal:Bijdragen-pagina van de IP-bewerker. Een verkorte versie van deze informatie zal beschikbaar zijn in een pop-up naast IP-adressen op [[Special:Log|Logboeken]]-, [[Special:Contributions|Bijdragen]]- en [[Special:RecentChanges|Recente wijzigingen]]-pagina's.",
-	"prefs-ipinfo": "IP-informatie"
+	"prefs-ipinfo": "IP-informatie",
+	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 verwijderde bewerking|$1 verwijderde bewerkingen|0=Geen verwijderde bewerkingen}}",
+	"ipinfo-deleted-edits-url-text": "Verwijderde bijdragen"
 }

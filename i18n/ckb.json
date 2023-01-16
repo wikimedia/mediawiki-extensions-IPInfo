@@ -32,5 +32,6 @@
 	"ipinfo-log-access-level-ipinfo-view-basic": "دەستپێگەیشتنی سنووردار",
 	"ipinfo-log-access-level-ipinfo-view-full": "دەستپێگەیشتنی تەواو",
 	"ipinfo-change-access-level-enable": "چالاککراو",
-	"ipinfo-change-access-level-disable": "ناچالاککراو"
+	"ipinfo-change-access-level-disable": "ناچالاککراو",
+	"ipinfo-deleted-edits-url-text": "بەشدارییە سڕاوەکان"
 }

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Eukarióta",
 			"Hanna Tardos",
 			"Tacsipacsi"
 		]
@@ -59,5 +60,6 @@
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|letiltotta}}",
 	"logentry-ipinfo-change_access": "$1 {{GENDER:$2|$4}} a saját hozzáférését az IP-információs eszközhöz",
 	"ipinfo-blocklist-url-text": "Tiltólista",
+	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 törölt szerkesztés|0=nincsenek törölt szerkesztések}}",
 	"ipinfo-deleted-edits-url-text": "Törölt szerkesztések"
 }
