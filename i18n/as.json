@@ -1,8 +1,34 @@
 {
 	"@metadata": {
 		"authors": [
+			"Simbu123",
 			"আজিজ"
 		]
 	},
+	"ipinfo-extensionname": "আইপি তথ্য",
+	"ipinfo-infobox-title": "আইপি তথ্য",
+	"ipinfo-property-label-location": "অৱস্থান",
+	"ipinfo-property-label-ipversion": "সংস্কৰণ",
+	"ipinfo-property-label-isp": "আই এছ পি",
+	"ipinfo-property-label-asn": "এ এছ এন",
+	"ipinfo-property-label-organization": "সংস্থা",
+	"ipinfo-property-label-connectiontype": "সংযোগ পদ্ধতি",
+	"ipinfo-property-label-usertype": "সংযোগৰ গৰাকী",
+	"ipinfo-property-value-usertype-college": "মহাবিদ্যালয়",
+	"ipinfo-property-value-usertype-business": "ব্যৱসায়",
+	"ipinfo-property-value-usertype-government": "চৰকাৰ",
+	"ipinfo-property-value-usertype-library": "পুথিভঁৰাল",
+	"ipinfo-property-value-usertype-military": "সৈনিক",
+	"ipinfo-property-value-usertype-router": "ৰাউটাৰ",
+	"ipinfo-property-value-usertype-school": "বিদ্যালয়",
+	"ipinfo-property-value-usertype-traveler": "ভ্ৰমণকাৰী",
+	"ipinfo-property-value-usertype-residential": "আৱাসিক",
+	"ipinfo-property-label-source": "উৎস",
+	"ipinfo-active-blocks-url-text": "অভিলেখ",
+	"ipinfo-property-label-edits": "বৰঙণিসমূহ",
+	"group-no-ipinfo": "আইপি তথ্য সঁজুলিৰ দ্বাৰা অৱৰোধ কৰা সদস্য",
+	"ipinfo-log-name": "আইপি তথ্য অভিলেখ",
+	"ipinfo-log-access-level-ipinfo-view-basic": "সীমিত প্ৰৱেশাধিকাৰ",
+	"ipinfo-log-access-level-ipinfo-view-full": "সম্পূৰ্ণ প্ৰৱেশাধিকাৰ",
 	"ipinfo-blocklist-url-text": "ব্লক তালিকা"
 }
