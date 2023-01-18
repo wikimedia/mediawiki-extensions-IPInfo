@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Simbu123",
+			"আজিজ"
+		]
+	},
+	"ipinfo-extensionname": "আইপি তথ্য",
+	"ipinfo-infobox-title": "আইপি তথ্য",
+	"ipinfo-property-label-location": "অৱস্থান",
+	"ipinfo-property-label-isp": "আই এছ পি",
+	"ipinfo-property-label-asn": "এ এছ এন",
+	"ipinfo-property-label-organization": "সংস্থা",
+	"ipinfo-property-label-source": "উৎস",
+	"ipinfo-property-label-edits": "বৰঙণিসমূহ",
+	"ipinfo-log-access-level-ipinfo-view-basic": "সীমিত প্ৰৱেশাধিকাৰ",
+	"ipinfo-log-access-level-ipinfo-view-full": "সম্পূৰ্ণ প্ৰৱেশাধিকাৰ"
+}
