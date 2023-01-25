@@ -4,13 +4,17 @@
 			"Robby"
 		]
 	},
+	"ipinfo-extensionname": "IP Info",
 	"ipinfo-infobox-title": "IP-Informatioun",
 	"ipinfo-property-label-location": "Plaz",
 	"ipinfo-property-label-organization": "Organisatioun",
+	"ipinfo-property-value-proxytype-isanonymousvpn": "Anonyme VPN",
 	"ipinfo-property-label-source": "Quell",
 	"ipinfo-property-label-active-blocks": "Aktiv Spären",
 	"ipinfo-property-label-edits": "Kontributiounen",
 	"ipinfo-property-no-data": "Net disponibel",
+	"ipinfo-use-agreement-submit-error": "Et ass eppes schief gaangen. Probéiert wgl. nach eng Kéier. De Feelermessage war: $1",
+	"ipinfo-rest-access-denied": "Dir hutt net d'Recht fir dës Aktioun ze maachen.",
 	"ipinfo-rest-access-denied-blocked-user": "Dir hutt net d'Recht fir dës Aktioun ze maachen well Äre Benotzerkont gespaart ass",
 	"prefs-ipinfo": "IP-Informatioun",
 	"right-ipinfo-view-log": "E Log weisen wien op d'IP-Informatioun zougegraff huet",
