@@ -105,5 +105,7 @@
 	"log-action-filter-ipinfo-view_infobox": "Данните се разглеждат в информационното поле",
 	"log-action-filter-ipinfo-view_popup": "Данните се разглеждат в изскачащ прозорец",
 	"ipinfo-property-tooltip-asn": "Уникален идентификатор за мрежи, присвоен на регион и както и на организации като правителства и интернет доставчици",
-	"ipinfo-blocklist-url-text": "Блокирани потребители"
+	"ipinfo-blocklist-url-text": "Блокирани потребители",
+	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 изтрита редакция|$1 изтрити редакции|0=Няма изтрити редакции}}",
+	"ipinfo-deleted-edits-url-text": "Изтрити приноси"
 }
