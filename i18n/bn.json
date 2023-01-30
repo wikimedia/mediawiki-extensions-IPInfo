@@ -74,5 +74,7 @@
 	"log-action-filter-ipinfo-change_access": "সরঞ্জাম সক্রিয় বা নিষ্ক্রিয় করা",
 	"log-action-filter-ipinfo-view_infobox": "তথ্য বাক্সে উপাত্ত দেখা",
 	"log-action-filter-ipinfo-view_popup": "পপআপে উপাত্ত দেখা",
-	"ipinfo-blocklist-url-text": "বধাদান তালিকা"
+	"ipinfo-blocklist-url-text": "বধাদান তালিকা",
+	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1টি অপসারিত অবদান|0=কোনও অপসারিত অবদান নেই}}",
+	"ipinfo-deleted-edits-url-text": "অপসারিত অবদান"
 }
