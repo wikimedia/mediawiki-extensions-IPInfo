@@ -7,7 +7,8 @@
 			"Winston Sung",
 			"Xiplus",
 			"沈澄心",
-			"捍粵者"
+			"捍粵者",
+			"Diskdance"
 		]
 	},
 	"ipinfo-extensionname": "IP資訊",
@@ -77,7 +78,7 @@
 	"ipinfo-rest-log-denied": "您的帳號沒有來查看日誌項目操作者或是日誌項目本身的權限",
 	"ipinfo-source-geoip2": "顯示於此的資訊來自於 MaxMind 的 GeoIP2 資料庫。內容可能不完全準確。",
 	"ipinfo-beta-feature-title": "IP資訊",
-	"ipinfo-beta-feature-description": "IP資訊工具旨在為巡查員提供有關IP地址的重要信息，以幫助他們履行職責。此信息可在IP編者的使用者貢獻特殊頁面上查看。日誌、貢獻和近期變更頁面上IP地址旁邊的彈出窗口中將提供此信息的精簡版本。",
+	"ipinfo-beta-feature-description": "IP資訊工具旨在為巡查員提供有關IP地址的重要信息，以幫助其履行職責。此信息可在IP編者的使用者貢獻特殊頁面上查看。日誌、貢獻和近期變更頁面上IP地址旁邊的彈出窗口中將提供此信息的精簡版本。",
 	"prefs-ipinfo": "IP 資訊",
 	"action-ipinfo": "檢索有關附加在修訂或日誌項目的 IP 位址資訊",
 	"right-ipinfo": "檢索有關附加在修訂或日誌項目的 IP 位址資訊",
