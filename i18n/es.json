@@ -83,5 +83,6 @@
 	"log-action-filter-ipinfo": "Tipo de operación con IPInfo:",
 	"log-action-filter-ipinfo-change_access": "Activación o desactivación de la herramienta",
 	"log-action-filter-ipinfo-view_infobox": "Ver datos en el cuadro de información",
-	"log-action-filter-ipinfo-view_popup": "Ver datos en la ventana emergente"
+	"log-action-filter-ipinfo-view_popup": "Ver datos en la ventana emergente",
+	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 edición borrada|$1 ediciones borradas|0=Sin ediciones borradas}}"
 }
