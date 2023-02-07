@@ -5,7 +5,8 @@
 			"DiegoAmbrocio",
 			"Fitoschido",
 			"MarcoAurelio",
-			"Rodney Araujo"
+			"Rodney Araujo",
+			"La Mantis"
 		]
 	},
 	"ipinfo-extensionname": "Información de la IP",
@@ -19,6 +20,7 @@
 	"ipinfo-property-label-connectiontype": "Método de conexión",
 	"ipinfo-property-label-usertype": "Propietario de la conexión",
 	"ipinfo-property-label-proxytypes": "Dirección IP real/Proxy",
+	"ipinfo-property-value-connectiontype-corporate": "Corporativo",
 	"ipinfo-property-value-proxytype-isanonymousvpn": "Red privada virtual anónima",
 	"ipinfo-property-value-proxytype-ispublicproxy": "Proxy público",
 	"ipinfo-property-value-proxytype-isresidentialproxy": "Proxy residencial",
@@ -57,7 +59,7 @@
 	"ipinfo-rest-log-denied": "Tu cuenta no tiene permisos suficientes para ver quien creó esa entrada de registro, o el propio registro en sí mismo",
 	"ipinfo-source-geoip2": "La información aquí mostrada procede de la base de datos GeoIP2 de MaxMind. Puede no ser del todo precisa.",
 	"ipinfo-beta-feature-title": "Información de la IP",
-	"ipinfo-beta-feature-description": "La herramienta de información sobre las direcciones IP (IP Info) pretende equipar a los patrulleros con información relevante sobre las direcciones IP para ayudarles en sus tareas. Esta información se mostrará en la página de contribuciones de la dirección IP (Especial:Contribuciones) mientras que en las entradas de registro, los historiales y en los cambios recientes solo se ofrecerá una versión resumida de la misma a través de una ventana emergente.",
+	"ipinfo-beta-feature-description": "La herramienta de información sobre las direcciones IP ofrece a los patrulleros información relevante sobre las direcciones IP para ayudarles en sus tareas. Esta información se mostrará en la página de contribuciones de la dirección IP (Especial:Contribuciones) mientras que en las entradas del [[Special:Log|registro]], las páginas de [[Special:Contributions|contribuciones]] y en los [[Special:RecentChanges|cambios recientes]] solo se ofrecerá una versión resumida de la misma a través de una ventana emergente.",
 	"prefs-ipinfo": "Información sobre la IP",
 	"action-ipinfo": "obtener información acerca de las direcciones IP de las revisiones y de las entradas del registro",
 	"right-ipinfo": "Obtener información acerca de las direcciones IP de las revisiones y de las entradas del registro",
@@ -82,5 +84,6 @@
 	"log-action-filter-ipinfo": "Tipo de operación con IPInfo:",
 	"log-action-filter-ipinfo-change_access": "Activación o desactivación de la herramienta",
 	"log-action-filter-ipinfo-view_infobox": "Ver datos en el cuadro de información",
-	"log-action-filter-ipinfo-view_popup": "Ver datos en la ventana emergente"
+	"log-action-filter-ipinfo-view_popup": "Ver datos en la ventana emergente",
+	"ipinfo-blocklist-url-text": "Lista de bloqueos"
 }
