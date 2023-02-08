@@ -20,13 +20,13 @@ abstract class AbstractRevisionHandler extends IPInfoHandler {
 				new MessageValue( 'rest-nonexistent-revision', [ $id ] ), 404 );
 		}
 
-		$user = $this->userFactory->newFromUserIdentity( $this->user );
+		$user = $this->userFactory->newFromUserIdentity( $this->getAuthority()->getUser() );
 		if ( !$this->permissionManager->userCan( 'read', $user, $revision->getPageAsLinkTarget() ) ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'rest-revision-permission-denied-revision', [ $id ] ), 403 );
 		}
 
-		$author = $revision->getUser( RevisionRecord::FOR_THIS_USER, $user );
+		$author = $revision->getUser( RevisionRecord::FOR_THIS_USER, $this->getAuthority() );
 
 		if ( !$author ) {
 			// User does not have access to author.
@@ -49,7 +49,8 @@ abstract class AbstractRevisionHandler extends IPInfoHandler {
 		}
 
 		$info = [
-			$this->presenter->present( $this->infoManager->retrieveFromIP( $author->getName() ), $this->user )
+			$this->presenter->present( $this->infoManager->retrieveFromIP( $author->getName() ),
+			$this->getAuthority()->getUser() )
 		];
 
 		return $info;
