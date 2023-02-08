@@ -44,6 +44,8 @@
 	"ipinfo-rest-log-nonexistent": "로그 엔트리가 존재하지 않습니다",
 	"ipinfo-beta-feature-title": "IP 정보",
 	"prefs-ipinfo": "IP 정보",
+	"action-ipinfo": "판 또는 기록 항목에 연결된 IP 주소에 관한 정보를 검색할",
+	"right-ipinfo": "판 또는 기록 항목에 연결된 IP 주소에 관한 정보 검색",
 	"action-ipinfo-view-log": "누가 IP 정보에 접근했는지에 대한 기록 보기",
 	"right-ipinfo-view-log": "누가 IP 정보에 접근했는지에 대한 기록 보기",
 	"ipinfo-log-name": "IPInfo 기록",
