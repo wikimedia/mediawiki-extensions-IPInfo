@@ -69,7 +69,7 @@
 	"ipinfo-widget-error-default": "Les informations sur l’adresse IP n’ont pas pu être récupérées.",
 	"ipinfo-widget-error-no-data": "Il n’y a aucune donnée venant de $1 pour cette adresse IP.",
 	"ipinfo-widget-error-wrong-ip": "L’adresse IP fournie ne correspond pas au journal ou à la révision.",
-	"ipinfo-widget-error-ip-no-edits": "Les informations sur cette adresse IP ne peuvent pas être récupérées puisqu'aucune modification n'a été effectuée depuis cette adresse.",
+	"ipinfo-widget-error-ip-no-edits": "Les informations sur cette adresse IP ne peuvent pas être récupérées puisqu’aucune modification n’a été effectuée depuis cette adresse.",
 	"ipinfo-preference-enable": "Afficher l’outil Informations d’une adresse IP sur la page Spécial:Contributions pour les contributeurs non inscrits.",
 	"ipinfo-preference-use-agreement": "J’accepte d’utiliser ces informations dans le cadre de mes patrouilles et de mon travail de lutte contre le vandalisme.",
 	"ipinfo-preference-agreement-error": "Vous devez activer l’outil Informations sur une adresse IP avant d’accepter ses conditions d’utilisation.",
