@@ -13,14 +13,19 @@
 	"ipinfo-property-label-organization": "Organizacija:",
 	"ipinfo-property-label-proxytypes": "Stvarni IP ili proksi:",
 	"ipinfo-property-value-proxytype-isanonymousvpn": "anonimni VPN",
-	"ipinfo-property-label-source": "Izvor:",
+	"ipinfo-property-label-source": "Izvor",
 	"ipinfo-property-tooltip-proxytypes": "Posrednici (proksiji) sakrivaju IP adrese. U nekim slučajevima se to automatski događa, kao kod stambenih ili korporativnih proksija, dok se u drugim slučajevima to namerno čini radi prikrivanja porekla IP adrese.",
 	"ipinfo-property-tooltip-connectiontype": "Tehnologija pomoću koje se korisnik povezuje na internet.",
-	"ipinfo-property-tooltip-usertype": "Vrsta entiteta koji poseduje internetsku vezu.",
-	"ipinfo-property-label-edits": "Doprinos:",
+	"ipinfo-property-tooltip-usertype": "Vrsta entiteta koji poseduje internet vezu.",
+	"ipinfo-property-label-edits": "Doprinosi:",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 lokalna izmena|$1 lokalne izmene|$1 lokalnih izmena|0=nema lokalnih izmena}}",
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 u poslednja 24 sata}})",
 	"ipinfo-widget-error-default": "Ne mogu da preuzmem podatke o IP adresi.",
 	"ipinfo-widget-error-no-data": "U izvoru $1 nema podataka za navedenu IP adresu.",
-	"ipinfo-widget-error-wrong-ip": "Navedena IP adresa se ne podudara s dnevničkom stavkom ili izmenom."
+	"ipinfo-widget-error-wrong-ip": "Navedena IP adresa se ne podudara s dnevničkom stavkom ili izmenom.",
+	"ipinfo-rest-access-denied": "Nemate dozvolu da izvršite ovu radnju",
+	"ipinfo-rest-access-denied-blocked-user": "Nemate dozvolu da izvršite ovu radnju zato što vam je nalog blokiran",
+	"ipinfo-rest-log-nonexistent": "Unos dnevnika ne postoji",
+	"ipinfo-log-access-level-ipinfo-view-basic": "Ograničen pristup",
+	"ipinfo-log-access-level-ipinfo-view-full": "Pun pristup"
 }
