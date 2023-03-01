@@ -3,10 +3,11 @@
 		"authors": [
 			"Brettchenweber",
 			"Umherirrender",
-			"Wnme"
+			"Wnme",
+			"Schniggendiller"
 		]
 	},
-	"ipinfo-desc": "Stellt Informationen über eine IP-Adresse zur Verfügung.",
+	"ipinfo-desc": "Stellt Informationen über eine IP-Adresse zur Verfügung",
 	"ipinfo-infobox-title": "IP-Informationen",
 	"ipinfo-property-label-location": "Standort",
 	"ipinfo-property-label-isp": "Provider",

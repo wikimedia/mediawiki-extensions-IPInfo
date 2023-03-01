@@ -20,7 +20,7 @@
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1aktivno blokiranje|$1 aktivni blokiranji|$1 aktivna blokiranja|$1 aktivnih blokiranj}}.",
 	"ipinfo-property-label-edits": "Prispevki",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 lokalno urejanje|$1 lokalni urejanji|$1 lokalna urejanja|$1 lokalnih urejanj|0=Brez lokalnih urejanj}}",
-	"ipinfo-value-recent-edits": "( {{PLURAL:$1|$1 v zadnjih 24 urah}})",
+	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 v zadnjih 24 urah}})",
 	"ipinfo-widget-error-default": "Podatkov o IP-ju ni bilo mogoče pridobiti.",
 	"ipinfo-widget-error-no-data": "Za ta IP-naslov od $1 ni podatkov.",
 	"ipinfo-widget-error-wrong-ip": "Navedeni IP-naslov se ne ujema z dnevnikom ali revizijo.",
