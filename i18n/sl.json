@@ -50,7 +50,7 @@
 	"ipinfo-active-blocks-url-text": "Dnevniki",
 	"ipinfo-property-label-edits": "Prispevki",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 lokalno urejanje|$1 lokalni urejanji|$1 lokalna urejanja|$1 lokalnih urejanj|0=Brez lokalnih urejanj}}",
-	"ipinfo-value-recent-edits": "( {{PLURAL:$1|$1 v zadnjih 24 urah}})",
+	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 v zadnjih 24 urah}})",
 	"ipinfo-property-no-data": "Ni na voljo",
 	"ipinfo-property-no-access": "Ni dostopa",
 	"ipinfo-widget-error-default": "Podatkov o IP-ju ni bilo mogoče pridobiti.",
