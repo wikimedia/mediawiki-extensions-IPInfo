@@ -7,10 +7,12 @@
 	"descriptionmsg": "ipinfo-desc",
 	"manifest_version": 2,
 	"requires": {
-		"MediaWiki": ">= 1.38.0"
+		"MediaWiki": ">= 1.40.0"
 	},
 	"MessagesDirs": {
-		"IPInfo": [ "i18n" ]
+		"IPInfo": [
+			"i18n"
+		]
 	},
 	"type": "other",
 	"AutoloadNamespaces": {
@@ -247,7 +249,9 @@
 		}
 	},
 	"load_composer_autoloader": true,
-	"LogTypes": [ "ipinfo" ],
+	"LogTypes": [
+		"ipinfo"
+	],
 	"LogNames": {
 		"ipinfo": "ipinfo-log-name"
 	},
@@ -262,9 +266,15 @@
 	},
 	"ActionFilteredLogs": {
 		"ipinfo": {
-			"change_access": [ "change_access" ],
-			"view_infobox": [ "view_infobox" ],
-			"view_popup": [ "view_popup" ]
+			"change_access": [
+				"change_access"
+			],
+			"view_infobox": [
+				"view_infobox"
+			],
+			"view_popup": [
+				"view_popup"
+			]
 		}
 	}
 }
