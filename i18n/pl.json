@@ -74,7 +74,7 @@
 	"ipinfo-rest-log-denied": "Twoje konto nie ma uprawnień do wyświetlenia wykonawcy czynności w rejestrze lub wpisu w rejestrze",
 	"ipinfo-source-geoip2": "Informacje tu pokazywane pochodzą z baz danych GeoIP2 od MaxMind. Mogą nie być w pełni dokładne.",
 	"ipinfo-beta-feature-title": "Informacje o IP",
-	"ipinfo-beta-feature-description": "Narzędzie Informacje o IP ma na celu wyposażenie użytkowników patrolujących zmiany w niezbędne informacje o adresach IP, aby wspierać ich w wypełnianiu swojej funkcji. Te informacje będą dostępne na stronie Specjalna:Wkład podczas przeglądania edycji IP. Skrócona wersja tych informacji będzie także widoczna w wyskakującym okienku obok adresów IP w [[{{#special:Log}}|rejestrze]], [[{{#special:Contributions}}|wkładzie]] i [[{{#special:Recentchanges}}|ostatnich zmianach]].",
+	"ipinfo-beta-feature-description": "Narzędzie Informacje o IP ma na celu wyposażenie użytkowników patrolujących zmiany w niezbędne informacje o adresach IP, aby wspierać ich w wypełnianiu swojej funkcji. Te informacje będą dostępne na stronie Specjalna:Wkład podczas przeglądania edycji IP. Skrócona wersja tych informacji będzie także widoczna w wyskakującym okienku obok adresów IP w [[Special:Log|rejestrze]], [[Special:Contributions|wkładzie]] i [[Special:RecentChanges|ostatnich zmianach]].",
 	"prefs-ipinfo": "Informacje o IP",
 	"action-ipinfo": "pobierania informacji o adresach IP dołączonych do wersji i wpisów rejestru",
 	"right-ipinfo": "Pobieranie informacji o adresach IP dołączonych do wersji i wpisów rejestru",
