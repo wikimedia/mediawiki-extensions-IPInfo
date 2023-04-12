@@ -2,7 +2,7 @@
 /* eslint-disable no-jquery/no-class-state */
 
 var IpInfoInfoboxWidget = require( './widget.js' );
-var ip = mw.config.get( 'wgIPInfoTarget' ),
+var ip = mw.util.prettifyIP( mw.config.get( 'wgRelevantUserName' ) ),
 	api = new mw.Api(),
 	viewedAgreement = false,
 	timerStart,

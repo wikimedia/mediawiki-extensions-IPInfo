@@ -76,9 +76,6 @@ class InfoboxHandler implements
 		}
 
 		$out = $sp->getOutput();
-		$out->addJsConfigVars( [
-			'wgIPInfoTarget' => $username
-		] );
 		$out->addModules( 'ext.ipInfo' );
 		$out->addModuleStyles( 'ext.ipInfo.styles' );
 		$panelLayout = new PanelLayout( [
