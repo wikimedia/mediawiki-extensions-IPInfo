@@ -48,7 +48,7 @@
 	"ipinfo-property-tooltip-proxytypes": "پروکسی‌ها، نشانی‌های آی‌پی را پنهان می‌کنند. در برخی موارد، مانند پروکسی‌های مسکونی یا شرکتی، این اتفاق به‌صورت خودکار رخ می‌دهد؛ در سایر موارد، این کار به‌طور عمدی و برای پوشاندن مبدأ نشانی آی‌پی انجام می‌شود.",
 	"ipinfo-property-tooltip-connectiontype": "فناوری مورد استفاده برای اتصال به اینترنت.",
 	"ipinfo-property-tooltip-usertype": "نوع موجودیت مالک اتصال اینترنت.",
-	"ipinfo-value-active-blocks": "{{PLURAL:$1|{{formatnum:$1}} قطع دسترسی فعال|0=فاقد قطع دسترسی فعال}}.",
+	"ipinfo-value-active-blocks": "{{PLURAL:$1|{{formatnum:$1}} قطع دسترسی فعال|0=فاقد قطع دسترسی فعال}}",
 	"ipinfo-active-blocks-url-text": "سیاهه‌ها",
 	"ipinfo-property-label-edits": "مشارکت‌ها",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|{{formatnum:$1}} ویرایش محلی|0=فاقد ویرایش محلی}}",
@@ -105,5 +105,7 @@
 	"log-action-filter-ipinfo-view_infobox": "داده‌های مشاهده‌شده در جعبهٔ اطلاعات",
 	"log-action-filter-ipinfo-view_popup": "داده‌های مشاهده‌شده در بالاپر",
 	"ipinfo-property-tooltip-asn": "شناسهٔ منحصر به فرد برای شبکه‌های اختصاص یافته به یک منطقه و سازمان‌هایی نظیر دولت‌ها و ارائه‌دهندگان خدمات اینترنت",
-	"ipinfo-blocklist-url-text": "فهرست قطع دسترسی"
+	"ipinfo-blocklist-url-text": "فهرست قطع دسترسی",
+	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 ویرایش حذف‌شده|0=فاقد ویرایش‌های حذف‌شده}}",
+	"ipinfo-deleted-edits-url-text": "مشارکت‌های حذف‌شده"
 }
