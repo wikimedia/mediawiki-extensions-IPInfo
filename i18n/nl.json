@@ -49,7 +49,7 @@
 	"ipinfo-active-blocks-url-text": "Logboeken",
 	"ipinfo-property-label-edits": "Bijdragen",
 	"ipinfo-value-local-edits": "{{PLURAL:$1| $1 lokale bewerking| $1 lokale bewerkingen|0=Geen lokale bewerkingen}}",
-	"ipinfo-value-recent-edits": "( {{PLURAL:$1| $1 in de afgelopen 24 uur}})",
+	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 in de afgelopen 24 uur}})",
 	"ipinfo-property-no-data": "Niet beschikbaar",
 	"ipinfo-property-no-access": "Geen toegang",
 	"ipinfo-rest-log-nonexistent": "Logboekregel bestaat niet",
