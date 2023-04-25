@@ -6,7 +6,8 @@
 			"Fitoschido",
 			"MarcoAurelio",
 			"Rodney Araujo",
-			"La Mantis"
+			"La Mantis",
+			"ZebaX2010"
 		]
 	},
 	"ipinfo-extensionname": "Información de la IP",
@@ -24,8 +25,11 @@
 	"ipinfo-property-value-connectiontype-corporate": "Corporativo",
 	"ipinfo-property-value-usertype-college": "Universidad/Facultad",
 	"ipinfo-property-value-usertype-cafe": "Cafetería",
+	"ipinfo-property-value-usertype-cellular": "Red móvil",
 	"ipinfo-property-value-usertype-government": "Red gubernamental",
+	"ipinfo-property-value-usertype-library": "Biblioteca",
 	"ipinfo-property-value-usertype-military": "Fuerzas armadas",
+	"ipinfo-property-value-usertype-residential": "Residencial",
 	"ipinfo-property-value-proxytype-isanonymousvpn": "Red privada virtual anónima",
 	"ipinfo-property-value-proxytype-ispublicproxy": "Proxy público",
 	"ipinfo-property-value-proxytype-isresidentialproxy": "Proxy residencial",
