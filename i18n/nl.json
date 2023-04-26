@@ -1,13 +1,24 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mainframe98"
+			"Mainframe98",
+			"McDutchie",
+			"Romaine",
+			"Sjoerddebruin"
 		]
 	},
+	"ipinfo-desc": "Geeft informatie over een IP-adres.",
 	"ipinfo-infobox-title": "IP-gegevens",
 	"ipinfo-property-label-location": "Locatie",
+	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Organisatie",
+	"ipinfo-property-label-proxytypes": "Echt IP/Proxy",
+	"ipinfo-property-value-proxytype-isanonymousvpn": "Anonieme VPN",
 	"ipinfo-property-label-source": "Bron",
+	"ipinfo-property-label-edits": "Bijdragen",
+	"ipinfo-value-local-edits": "{{PLURAL:$1| $1 lokale bewerking| $1 lokale bewerkingen|0=Geen lokale bewerkingen}}",
+	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 in de afgelopen 24 uur}})",
 	"ipinfo-property-no-data": "Niet beschikbaar",
 	"ipinfo-rest-log-nonexistent": "Logboekregel bestaat niet",
 	"prefs-ipinfo": "IP-informatie"

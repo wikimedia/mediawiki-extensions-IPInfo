@@ -12,5 +12,10 @@
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Organizacija",
 	"ipinfo-property-label-proxytypes": "Stvarni IP / proxy",
-	"ipinfo-property-label-source": "Izvor"
+	"ipinfo-property-value-proxytype-isanonymousvpn": "Anonimni VPN",
+	"ipinfo-property-label-source": "Izvor",
+	"ipinfo-property-label-edits": "Doprinosi",
+	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 izmjena|$1 lokalne izmjene|$1 lokalnih izmjena|0=Nema lokalnih izmjena}}",
+	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 u posljednja 24 sata}})",
+	"ipinfo-widget-error-default": "Ne mogu dobiti informacije o IP-adresi."
 }
