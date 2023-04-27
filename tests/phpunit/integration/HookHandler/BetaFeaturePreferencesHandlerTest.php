@@ -2,7 +2,6 @@
 
 namespace MediaWiki\IPInfo\Test\Integration\HookHandler;
 
-use Hooks;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWikiIntegrationTestCase;
 use User;
@@ -27,7 +26,7 @@ class BetaFeaturePreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$user = $this->createMock( User::class );
 		$preferences = [];
-		Hooks::run( 'GetBetaFeaturePreferences', [ $user, &$preferences ] );
+		$this->getServiceContainer()->getHookContainer()->run( 'GetBetaFeaturePreferences', [ $user, &$preferences ] );
 		$this->assertArrayHasKey( 'ipinfo-beta-feature-enable', $preferences );
 	}
 }
