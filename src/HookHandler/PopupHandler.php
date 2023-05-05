@@ -4,7 +4,7 @@ namespace MediaWiki\IPInfo\HookHandler;
 
 use ExtensionRegistry;
 use MediaWiki\Hook\BeforePageDisplayHook;
-use Mediawiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserOptionsLookup;
 
 class PopupHandler implements BeforePageDisplayHook {

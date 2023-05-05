@@ -2,7 +2,7 @@
 namespace MediaWiki\IPInfo\HookHandler;
 
 use Config;
-use Mediawiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\PermissionManager;
 use User;
 
 class BetaFeaturePreferencesHandler {

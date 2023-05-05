@@ -6,7 +6,7 @@ use ExtensionRegistry;
 use MediaWiki\Extension\EventLogging\EventLogging;
 use MediaWiki\Extension\EventLogging\Libs\UserBucketProvider\UserBucketProvider;
 use MediaWiki\IPInfo\Logging\LoggerFactory;
-use Mediawiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;

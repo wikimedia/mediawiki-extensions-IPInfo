@@ -6,7 +6,7 @@ use CollapsibleFieldsetLayout;
 use ExtensionRegistry;
 use MediaWiki\Hook\SpecialContributionsBeforeMainOutputHook;
 use MediaWiki\MediaWikiServices;
-use Mediawiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\SpecialPage\Hook\SpecialPageBeforeExecuteHook;
 use MediaWiki\User\UserOptionsLookup;
 use OOUI\PanelLayout;
