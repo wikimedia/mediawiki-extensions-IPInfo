@@ -8,15 +8,18 @@
 			"Umherirrender",
 			"Verdy p",
 			"Tran (WMF)",
-			"McDutchie"
+			"McDutchie",
+			"MarcoAurelio",
+			"Robby",
+			"Wnme"
 		]
 	},
 	"ipinfo-extensionname": "{{name}}\nThe name of the extension",
 	"ipinfo-desc": "{{desc|name=IPInfo|url=https://www.mediawiki.org/wiki/Extension:IPInfo}}",
 	"ipinfo-infobox-title": "Text of the header for a box that shows information from the widget",
 	"ipinfo-property-label-location": "Label for location data returned",
-	"ipinfo-property-label-isp": "Label for Internet Service Provider (ISP) data returned",
-	"ipinfo-property-label-asn": "Label for Autonomous System Number (ASN) data returned (an ASN refers to a block of IP addresses)",
+	"ipinfo-property-label-isp": "{{optional}}\nLabel for Internet Service Provider (ISP) data returned",
+	"ipinfo-property-label-asn": "{{optional}}\nLabel for Autonomous System Number (ASN) data returned (an ASN refers to a block of IP addresses)",
 	"ipinfo-property-label-organization": "Label for Autonomous System Organization data returned",
 	"ipinfo-property-label-connectiontype": "Label for the connection method data returned",
 	"ipinfo-property-label-usertype": "Label for the connection owner data returned",
