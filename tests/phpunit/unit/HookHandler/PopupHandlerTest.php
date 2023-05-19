@@ -2,9 +2,9 @@
 
 namespace MediaWiki\IPInfo\Test\Unit\HookHandler;
 
-use FauxRequest;
 use MediaWiki\IPInfo\HookHandler\PopupHandler;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWikiUnitTestCase;
 use OutputPage;
