@@ -82,7 +82,7 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, in_array( 'ext.ipInfo', $out->getModules() ) );
 	}
 
-	public function provideOnSpecialContributionsBeforeMainOutputTitles() {
+	public static function provideOnSpecialContributionsBeforeMainOutputTitles() {
 		return [
 			'displays on Special:Contributions' => [ 'Contributions', true ],
 			'doesn\'t display on Special:AllPages' => [ 'AllPages', false ],
@@ -125,7 +125,7 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, in_array( 'ext.ipInfo', $out->getModules() ) );
 	}
 
-	public function provideOnSpecialContributionsBeforeMainOutputPermissions() {
+	public static function provideOnSpecialContributionsBeforeMainOutputPermissions() {
 		return [
 			'displays with ipinfo right' => [ true, true ],
 			'doesn\'t display with no ipinfo right' => [ false, false ],
@@ -181,7 +181,7 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, in_array( 'ext.ipInfo', $out->getModules() ) );
 	}
 
-	public function provideOnSpecialContributionsBeforeMainOutputPreferences() {
+	public static function provideOnSpecialContributionsBeforeMainOutputPreferences() {
 		return [
 			'Display with no preferences set' => [
 				[],

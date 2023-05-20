@@ -10,7 +10,7 @@ use MediaWikiIntegrationTestCase;
  * @covers \MediaWiki\IPInfo\Jobs\LogIPInfoAccessJob
  */
 class LogIPInfoAccessJobTest extends MediaWikiIntegrationTestCase {
-	public function provideDataContext() {
+	public static function provideDataContext() {
 		return [ [ 'infobox' ], [ 'popup' ] ];
 	}
 

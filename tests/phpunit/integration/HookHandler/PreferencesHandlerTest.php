@@ -57,7 +57,7 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 		$handler->onSaveUserOptions( $user, $modifiedOptions, $originalOptions );
 	}
 
-	public function provideOnSaveUserOptionsNoAccessChange() {
+	public static function provideOnSaveUserOptionsNoAccessChange() {
 		return [
 			'Enabled to begin with, then not set' => [
 				[
@@ -113,7 +113,7 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $modifiedOptions[ 'ipinfo-use-agreement' ] );
 	}
 
-	public function provideOnSaveUserOptionsRestoreDefaultPreferences() {
+	public static function provideOnSaveUserOptionsRestoreDefaultPreferences() {
 		return [
 			'Disable beta feature' => [
 				[

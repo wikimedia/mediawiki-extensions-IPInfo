@@ -16,7 +16,7 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  * @covers \MediaWiki\IPInfo\Logging\Logger
  */
 class LoggerTest extends MediaWikiUnitTestCase {
-	public function provideLogViewDebounced(): Generator {
+	public static function provideLogViewDebounced(): Generator {
 		yield [
 			'logMethod' => 'logViewInfobox',
 			'logAction' => Logger::ACTION_VIEW_INFOBOX,
@@ -150,7 +150,7 @@ class LoggerTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideTestLogViewNoLevel(): Generator {
+	public static function provideTestLogViewNoLevel(): Generator {
 		yield [ 'logMethod' => 'logViewInfobox' ];
 		yield [ 'logMethod' => 'logViewPopup' ];
 	}
@@ -174,7 +174,7 @@ class LoggerTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideLogAccess(): Generator {
+	public static function provideLogAccess(): Generator {
 		yield [
 			'logMethod' => 'logAccessEnabled',
 			'changeType' => Logger::ACTION_ACCESS_ENABLED

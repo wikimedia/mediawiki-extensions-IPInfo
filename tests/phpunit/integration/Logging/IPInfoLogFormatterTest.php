@@ -9,7 +9,7 @@ use MediaWiki\IPInfo\Logging\Logger;
  * @covers \MediaWiki\IPInfo\Logging\IPInfoLogFormatter
  */
 class IPInfoLogFormatterTest extends LogFormatterTestCase {
-	public function provideIPInfoLogDatabaseRows(): array {
+	public static function provideIPInfoLogDatabaseRows(): array {
 		return [
 			'View infobox, full access' => [
 				'row' => [

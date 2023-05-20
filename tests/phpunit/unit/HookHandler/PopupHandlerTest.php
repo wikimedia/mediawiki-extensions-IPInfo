@@ -75,7 +75,7 @@ class PopupHandlerTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, in_array( 'ext.ipInfo', $out->getModules() ) );
 	}
 
-	public function provideOnBeforePageDisplayTitles() {
+	public static function provideOnBeforePageDisplayTitles() {
 		return [
 			'displays on Special:Log' => [ 'Log', true ],
 			'displays on Special:RecentChanges' => [ 'Recentchanges', true ],
@@ -101,7 +101,7 @@ class PopupHandlerTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, in_array( 'ext.ipInfo', $out->getModules() ) );
 	}
 
-	public function provideOnBeforePageDisplayActions() {
+	public static function provideOnBeforePageDisplayActions() {
 		return [
 			'displays on history' => [ 'history', true ],
 			'doesn\'t display on read' => [ 'read', false ],
@@ -136,7 +136,7 @@ class PopupHandlerTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, in_array( 'ext.ipInfo', $out->getModules() ) );
 	}
 
-	public function provideOnBeforePageDisplayPermissions() {
+	public static function provideOnBeforePageDisplayPermissions() {
 		return [
 			'displays with ipinfo right' => [ true, true ],
 			'doesn\'t display with no ipinfo right' => [ false, false ],
@@ -176,7 +176,7 @@ class PopupHandlerTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, in_array( 'ext.ipInfo', $out->getModules() ) );
 	}
 
-	public function provideOnBeforePageDisplayPreferences() {
+	public static function provideOnBeforePageDisplayPreferences() {
 		return [
 			'displays with ipinfo-use-agreement set' => [
 				[

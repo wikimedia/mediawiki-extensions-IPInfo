@@ -141,7 +141,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 		$this->assertCount( $expected, $body['info'][0]['data']['provider'] );
 	}
 
-	public function provideExecute() {
+	public static function provideExecute() {
 		return [
 			'Allowed property is returned' => [ 1, 'country' ],
 			'Restricted property is not returned' => [ 0, 'testProperty' ],
@@ -220,7 +220,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 			$authority );
 	}
 
-	public function provideExecuteErrors() {
+	public static function provideExecuteErrors() {
 		$id = 123;
 		return [
 			'Access denied, registered' => [

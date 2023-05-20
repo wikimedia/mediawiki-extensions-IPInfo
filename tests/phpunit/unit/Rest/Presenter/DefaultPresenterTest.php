@@ -22,7 +22,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter
  */
 class DefaultPresenterTest extends MediaWikiUnitTestCase {
-	public function providePresentBasic(): Generator {
+	public static function providePresentBasic(): Generator {
 		yield [ [], [] ];
 		yield [
 			[
@@ -126,7 +126,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function providePresentFull(): Generator {
+	public static function providePresentFull(): Generator {
 		yield [
 			[
 				'foo' => [
@@ -220,7 +220,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function providePresentUnknownDataType(): Generator {
+	public static function providePresentUnknownDataType(): Generator {
 		yield [ null ];
 		yield [ [] ];
 		yield [ new stdClass() ];

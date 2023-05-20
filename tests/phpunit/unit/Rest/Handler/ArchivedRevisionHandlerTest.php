@@ -125,7 +125,7 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 			$authority );
 	}
 
-	public function provideExecuteErrors() {
+	public static function provideExecuteErrors() {
 		$id = 123;
 		return [
 			'Access denied, registered' => [

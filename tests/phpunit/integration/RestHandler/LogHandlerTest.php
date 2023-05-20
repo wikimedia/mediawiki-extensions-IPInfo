@@ -141,7 +141,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertCount( $expected, $body['info'][0]['data']['provider'] );
 	}
 
-	public function provideExecute() {
+	public static function provideExecute() {
 		return [
 			'Allowed property is returned' => [ 1, 'country' ],
 			'Restricted property is not returned' => [ 0, 'testProperty' ],
@@ -198,7 +198,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 			$authority );
 	}
 
-	public function provideExecuteErrors() {
+	public static function provideExecuteErrors() {
 		return [
 			'access denied, registered' => [
 				[
@@ -378,7 +378,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertCount( $results, $body['info'] );
 	}
 
-	public function provideTestDeletedUser() {
+	public static function provideTestDeletedUser() {
 		return [
 			'not allowed, only returns target' => [
 				[
