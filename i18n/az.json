@@ -12,6 +12,10 @@
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Təşkilat",
 	"ipinfo-property-label-proxytypes": "Həqiqi IP/Proksi",
+	"ipinfo-property-value-proxytype-isanonymousvpn": "Anonim VPN",
+	"ipinfo-property-label-source": "Mənbə",
+	"ipinfo-property-tooltip-proxytypes": "Proksilər IP ünvanlarını gizlədir. Bəzi hallarda bu, yaşayış və ya korporativ proksilər kimi avtomatik olaraq baş verir, digər hallarda isə IP ünvanının mənşəyini maskalamaq üçün qəsdən edilir.",
+	"ipinfo-property-tooltip-connectiontype": "Onların internetə qoşulduğu texnologiya.",
 	"ipinfo-property-tooltip-usertype": "İnternet bağlantısına sahib olan qurum növü.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 aktiv blok|0=Bloklama yoxdur}}.",
 	"ipinfo-property-label-edits": "Töhfələr",
@@ -19,5 +23,16 @@
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|Son 24 saatda $1 redaktə }})",
 	"ipinfo-widget-error-default": "IP-ünvanı məlumatları əldə edilə bilmədi.",
 	"ipinfo-widget-error-no-data": "$1 mənbəsindən IP-ünvanı haqqında heç bir məlumat yoxdur.",
-	"ipinfo-infobox-submit-agreement": "IP-ünvanı məlumatı alətini aktivləşdir"
+	"ipinfo-widget-error-wrong-ip": "Təqdim olunan IP ünvanı ilə əlaqəli jurnal və ya redaktə tapılmadı.",
+	"ipinfo-preference-use-agreement": "Mən bu məlumatı patrul və anti-vandalizm üçün istifadə etməyə razıyam.",
+	"ipinfo-preference-agreement-error": "İstifadə şərtləri ilə razılaşmadan əvvəl IP Məlumat alətini aktivləşdirməlisiniz.",
+	"ipinfo-infobox-use-terms": "IP Məlumat aləti yer, proksi və neçə cihazın bu IP ünvanını paylaşdığı kimi təfərrüatları göstərmək üçün MaxMind verilənlər bazasından istifadə edir.",
+	"ipinfo-infobox-submit-agreement": "IP-ünvanı məlumatı alətini aktivləşdir",
+	"ipinfo-use-agreement-submit-error": "Xəta baş verdi. Zəhmət olmasa bir daha cəhd edin. Xəta: $1",
+	"ipinfo-rest-access-denied": "Bu əməliyyatı yerinə yetirmək üçün icazəniz yoxdur",
+	"ipinfo-rest-access-denied-blocked-user": "Hesabınız bloklandığı üçün əməliyyatı yerinə yetirmək üçün icazəniz yoxdur",
+	"ipinfo-rest-revision-no-author": "Hesabınızın bu versiyanın müəllifinə baxmaq icazəsi yoxdur",
+	"ipinfo-rest-log-nonexistent": "Jurnal qeydi mövcud deyil",
+	"ipinfo-log-access-level-ipinfo-view-full": "Tam giriş",
+	"logentry-ipinfo-view_infobox": "$1 $3 üçün IP Məlumat qutusuna {{GENDER:$2|baxdı.}} $4"
 }
