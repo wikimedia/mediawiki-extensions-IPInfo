@@ -51,7 +51,7 @@
 	"ipinfo-property-tooltip-proxytypes": "Proxy'ler IP adreslerini gizler. Bazı durumlarda bu, konut veya kurumsal proxy'lerde olduğu gibi otomatik olarak gerçekleşir. Diğer durumlarda ise kasıtlı olarak IP adresinin kaynağını gizlemek için yapılır.",
 	"ipinfo-property-tooltip-connectiontype": "İnternete bağlandıkları teknoloji yöntemi.",
 	"ipinfo-property-tooltip-usertype": "İnternet bağlantısına sahip olan varlık türü.",
-	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 etkin engel|0=Etkin engel yok}}.",
+	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 etkin engel|0=Etkin engel yok}}",
 	"ipinfo-active-blocks-url-text": "Günlükler",
 	"ipinfo-property-label-edits": "Katkılar",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 yerel düzenleme|0=Yerel düzenleme yok}}",
