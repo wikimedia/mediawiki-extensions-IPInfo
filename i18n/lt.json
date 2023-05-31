@@ -1,10 +1,32 @@
 {
 	"@metadata": {
 		"authors": [
-			"Tomasdd"
+			"Tomasdd",
+			"Nokeoo",
+			"Pavel1513"
 		]
 	},
+	"ipinfo-desc": "Pateikia informaciją apie IP adresus.",
 	"ipinfo-infobox-title": "IP informacija",
+	"ipinfo-property-label-location": "Vietovė",
 	"ipinfo-property-label-isp": "IPT",
-	"ipinfo-property-label-source": "Šaltinis"
+	"ipinfo-property-label-organization": "Organizacija",
+	"ipinfo-property-label-proxytypes": "Tikras IP/Proxy",
+	"ipinfo-property-value-proxytype-isanonymousvpn": "Anoniminis VPN",
+	"ipinfo-property-label-source": "Šaltinis",
+	"ipinfo-property-tooltip-connectiontype": "Technologija, per kurią jie prisijungia prie interneto.",
+	"ipinfo-property-tooltip-usertype": "Organizacija, kuri yra interneto ryšio savininkė.",
+	"ipinfo-property-label-edits": "Indėlis",
+	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 vietinis keitimas|$1 vietiniai keitimai|0=Nėra vietinių keitimų}}",
+	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 per paskutines 24 valandas}})",
+	"ipinfo-widget-error-default": "Nepavyko gauti IP informacijos.",
+	"ipinfo-widget-error-no-data": "Nėra duomenų apie šį IP adresą $1.",
+	"ipinfo-infobox-submit-agreement": "Įgalinti IP informacijos įrankį",
+	"ipinfo-use-agreement-submit-error": "Kažkas nutiko ne taip. Pabandykite dar kartą. Gautas klaidos pranešimas: $1",
+	"ipinfo-rest-access-denied": "Neturite leidimo atlikti veiksmo",
+	"ipinfo-rest-access-denied-blocked-user": "Neturite leidimo atlikti veiksmo, nes jūsų paskyra užblokuota",
+	"ipinfo-rest-log-nonexistent": "Žurnalo įrašo nėra",
+	"ipinfo-source-geoip2": "Čia rodoma informacija gaunama iš MaxMind GeoIP2 duomenų bazių. Ji gali būti ne visiškai tiksli.",
+	"ipinfo-log-access-level-ipinfo-view-basic": "Ribotas priėjimas",
+	"ipinfo-log-access-level-ipinfo-view-full": "Pilnas priėjimas"
 }
