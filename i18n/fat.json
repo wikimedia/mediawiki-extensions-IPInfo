@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Leonard Nketsia"
+		]
+	},
+	"ipinfo-change-access-level-enable": "{{GENDER:$1|ama ho kwan}}",
+	"ipinfo-change-access-level-disable": "{{GENDER:$1|mmaa ho kwan}}",
+	"logentry-ipinfo-change_access": "$1 $4 ama {{GENDER:$2|nankasa noho wɔ ne|hɔnankasa hɔnho wɔ hɔn}} IP ho nsɛm ho."
+}
