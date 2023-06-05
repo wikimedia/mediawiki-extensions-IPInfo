@@ -15,7 +15,7 @@
 	"ipinfo-widget-error-default": "攞唔到IP資訊。",
 	"ipinfo-widget-error-no-data": "$1冇呢個IP地址嘅數據。",
 	"ipinfo-widget-error-wrong-ip": "提供咗嘅IP地址唔符合日誌或修訂。",
-	"ipinfo-widget-error-ip-no-edits": "攞唔到呢個地址嘅IP資訊，因為呢個地址未喺呢個wiki度作出過修改。",
+	"ipinfo-widget-error-ip-no-edits": "因為未有嚟自呢個地址嘅修改，攞唔到IP資訊。",
 	"ipinfo-preference-enable": "喺未註冊用戶嘅貢獻版度顯示IP地址資訊工具。",
 	"ipinfo-preference-use-agreement": "我同意利用呢項資訊係為咗我嘅巡查同反破壞工作。",
 	"ipinfo-rest-access-denied": "你冇權做嗰個動作。",
