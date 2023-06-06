@@ -49,5 +49,6 @@
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 u posljednja 24 sata}})",
 	"ipinfo-property-no-data": "Nije dostupno",
 	"ipinfo-property-no-access": "Nema pristupa",
-	"ipinfo-widget-error-default": "Ne mogu dobiti informacije o IP-adresi."
+	"ipinfo-widget-error-default": "Ne mogu dobiti informacije o IP-adresi.",
+	"prefs-ipinfo": "Informacije o IP-adresi"
 }
