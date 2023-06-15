@@ -51,5 +51,6 @@
 	"ipinfo-property-no-data": "Nije dostupno",
 	"ipinfo-property-no-access": "Nema pristupa",
 	"ipinfo-widget-error-default": "Ne mogu dobiti informacije o IP-adresi.",
+	"ipinfo-widget-error-ip-no-edits": "Ne mogu dobiti informacije o IP-adresi jer nema izmjena.",
 	"prefs-ipinfo": "Informacije o IP-adresi"
 }
