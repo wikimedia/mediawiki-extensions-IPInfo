@@ -152,9 +152,6 @@
 				"infobox/infobox.less",
 				"popup/popup.less"
 			],
-			"targets": [
-				"desktop"
-			],
 			"dependencies": [
 				"mediawiki.api",
 				"mediawiki.htmlform",

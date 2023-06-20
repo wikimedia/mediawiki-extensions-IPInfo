@@ -1,12 +1,12 @@
 <?php
 
-namespace MediaWiki\IPInfo\Test\Unit\HookHandler;
+namespace MediaWiki\IPInfo\Test\Integration\HookHandler;
 
 use MediaWiki\IPInfo\HookHandler\PopupHandler;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\User\UserOptionsLookup;
-use MediaWikiUnitTestCase;
+use MediaWikiIntegrationTestCase;
 use OutputPage;
 use Skin;
 use Title;
@@ -16,7 +16,7 @@ use User;
  * @group IPInfo
  * @covers \MediaWiki\IPInfo\HookHandler\PopupHandler
  */
-class PopupHandlerTest extends MediaWikiUnitTestCase {
+class PopupHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private function getPermissionManager() {
 		$permissionManager = $this->createMock( PermissionManager::class );

@@ -4,6 +4,7 @@ namespace MediaWiki\IPInfo\HookHandler;
 
 use ExtensionRegistry;
 use MediaWiki\Hook\BeforePageDisplayHook;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserOptionsLookup;
 
@@ -30,6 +31,16 @@ class PopupHandler implements BeforePageDisplayHook {
 	 * @inheritDoc
 	 */
 	public function onBeforePageDisplay( $out, $skin ): void {
+		// T339861: Don't load on mobile until T268177 is resolved
+		$services = MediaWikiServices::getInstance();
+		$extensionRegistry = ExtensionRegistry::getInstance();
+		if (
+			$extensionRegistry->isLoaded( 'MobileFrontend' ) &&
+			$services->getService( 'MobileFrontend.Context' )->shouldDisplayMobileView()
+		) {
+			return;
+		}
+
 		if (
 			$out->getRequest()->getVal( 'action' ) !== 'history' &&
 			!( $out->getTitle() &&
@@ -43,7 +54,7 @@ class PopupHandler implements BeforePageDisplayHook {
 		}
 
 		$user = $out->getUser();
-		$isBetaFeaturesLoaded = ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' );
+		$isBetaFeaturesLoaded = $extensionRegistry->isLoaded( 'BetaFeatures' );
 
 		if (
 			!$this->permissionManager->userHasRight( $user, 'ipinfo' ) ||
