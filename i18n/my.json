@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Dr Lotus Black"
+			"Dr Lotus Black",
+			"Ninjastrikers"
 		]
 	},
 	"ipinfo-extensionname": "အိုင်ပီ အချက်အလက်",
@@ -28,6 +29,7 @@
 	"ipinfo-property-no-data": "မရရှိနိုင်ပါ",
 	"ipinfo-beta-feature-title": "အိုင်ပီ သတင်းအချက်အလက်",
 	"prefs-ipinfo": "အိုင်ပီ သတင်းအချက်အလက်",
+	"action-ipinfo-view-basic": "တည်းဖြတ်မူများ သို့မဟုတ် မှတ်တမ်းထည့်သွင်းမှုများတွင် ပူးတွဲပါရှိသော အိုင်ပီ အချက်အလက်၏ အခြေခံမြင်ကွင်းကို ဝင်ရောက်ကြည့်ရှုခြင်း",
 	"group-no-ipinfo": "အိုင်ပီသတင်းအချက်အလက်ကိရိယာမှ ပိတ်ပင်ခံရသောအသုံးပြုသူများ",
 	"group-no-ipinfo-member": "{{GENDER:$1|အိုင်ပီသတင်းအချက်အလက်ကိရိယာမှ ပိတ်ပင်ထားသည်}}",
 	"grouppage-no-ipinfo": "{{ns:project}}:အိုင်ပီသတင်းအချက်အလက်ကိရိယာမှ ပိတ်ပင်ခံရသောအသုံးပြုသူများ"
