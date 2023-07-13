@@ -18,5 +18,8 @@
 	"ipinfo-property-value-usertype-school": "Ysgol",
 	"ipinfo-property-value-usertype-traveler": "Teithiwr",
 	"ipinfo-active-blocks-url-text": "Logiau",
-	"ipinfo-property-label-edits": "Cyfraniadau"
+	"ipinfo-property-label-edits": "Cyfraniadau",
+	"ipinfo-preference-use-agreement": "Rwy'n cytuno i ddefnyddio'r wybodaeth hon ar gyfer fy ngwaith patrolio a gwrth-fandaleiddio.",
+	"ipinfo-beta-feature-title": "Gwybodaeth IP",
+	"prefs-ipinfo": "Gwybodaeth IP"
 }
