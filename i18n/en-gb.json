@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Piano1forte2",
 			"Reedy"
 		]
 	},
 	"ipinfo-property-label-organization": "Organisation",
+	"ipinfo-property-value-usertype-traveler": "Traveller",
 	"ipinfo-property-tooltip-asn": "A unique identifier for networks assigned to a region and further to organisations like governments and ISPs"
 }
