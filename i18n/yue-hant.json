@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Winston Sung"
+		]
+	},
+	"ipinfo-desc": "提供關於IP地址嘅資訊。",
+	"ipinfo-infobox-title": "IP資訊",
+	"ipinfo-property-label-location": "位置",
+	"ipinfo-property-label-isp": "ISP",
+	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "組織",
+	"ipinfo-property-label-source": "來源",
+	"ipinfo-widget-error-default": "攞唔到IP資訊。",
+	"ipinfo-widget-error-no-data": "$1冇呢個IP地址嘅數據。",
+	"ipinfo-widget-error-wrong-ip": "提供咗嘅IP地址唔符合日誌或修訂。",
+	"ipinfo-preference-use-agreement": "我同意利用呢項資訊係為咗我嘅巡查同反破壞工作。",
+	"ipinfo-rest-access-denied": "你冇權做嗰個動作。",
+	"ipinfo-rest-access-denied-blocked-user": "你冇權做嗰個動作，因為你嘅戶口畀人封鎖咗。",
+	"ipinfo-rest-revision-no-author": "你嘅戶口冇得睇個修訂版本嘅作者。",
+	"ipinfo-rest-log-nonexistent": "日誌項目唔存在",
+	"ipinfo-rest-log-denied": "你嘅戶口冇得睇個日誌項目嘅執行者或個日誌項目本身。",
+	"ipinfo-source-geoip2": "呢度顯示嘅資訊來自MaxMind嘅GeoIP2資料庫，未必完全準確。",
+	"action-ipinfo": "攞有關附加喺修訂版本或日誌項目嘅IP地址資訊",
+	"right-ipinfo": "攞有關附加喺修訂版本或日誌項目嘅IP地址資訊"
+}
