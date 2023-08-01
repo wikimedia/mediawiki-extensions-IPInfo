@@ -34,13 +34,13 @@ return [
 	},
 	'IPInfoBlockInfoRetriever' => static function ( MediaWikiServices $services ): BlockInfoRetriever {
 		$database = $services->getDBLoadBalancer()
-			->getConnectionRef( ILoadBalancer::DB_REPLICA );
+			->getConnection( ILoadBalancer::DB_REPLICA );
 
 		return new BlockInfoRetriever( $services->getBlockManager(), $database );
 	},
 	'IPInfoContributionInfoRetriever' => static function ( MediaWikiServices $services ): ContributionInfoRetriever {
 		$database = $services->getDBLoadBalancer()
-			->getConnectionRef( ILoadBalancer::DB_REPLICA );
+			->getConnection( ILoadBalancer::DB_REPLICA );
 
 		return new ContributionInfoRetriever( $database );
 	},
@@ -53,7 +53,7 @@ return [
 	},
 	'IPInfoLoggerFactory' => static function ( MediaWikiServices $services ): LoggerFactory {
 		$dbw = $services->getDBLoadBalancer()
-			->getConnectionRef( ILoadBalancer::DB_PRIMARY );
+			->getConnection( ILoadBalancer::DB_PRIMARY );
 		return new LoggerFactory(
 			$services->getActorStore(),
 			$dbw
