@@ -17,7 +17,8 @@
 			"Lakejason0",
 			"Lanyun1103",
 			"Tr jason",
-			"沈澄心"
+			"沈澄心",
+			"Hehua"
 		]
 	},
 	"ipinfo-extensionname": "IP信息",
@@ -63,7 +64,7 @@
 	"ipinfo-rest-revision-registered": "无法获取修订版本中注册用户的IP信息",
 	"ipinfo-rest-log-nonexistent": "日志项不存在",
 	"ipinfo-rest-log-registered": "无法获取日志中注册用户的IP信息",
-	"ipinfo-rest-log-denied": "您的帐户无权查看该日志项或该日志项的操作者",
+	"ipinfo-rest-log-denied": "您的账号无权查看该日志项或该日志项的操作者",
 	"ipinfo-source-geoip2": "此处显示的信息来自MaxMind的GeoIP2数据库。它可能不完全准确。",
 	"ipinfo-beta-feature-title": "IP信息",
 	"ipinfo-beta-feature-description": "IP信息工具旨在为巡查员提供有关IP地址的重要信息，以帮助他们履行职责。此信息可在IP编者的Special:Contributions页面上查看。日志、贡献和最近更改页面上IP地址旁边的弹出窗口中将提供此信息的精简版本。",
