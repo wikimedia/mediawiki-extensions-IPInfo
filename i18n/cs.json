@@ -65,7 +65,7 @@
 	"ipinfo-log-access-level-ipinfo-view-full": "Plný přístup",
 	"logentry-ipinfo-view_infobox": "$1 si {{GENDER:$2|prohlédl|prohlédla}} infobox IP informací k $3. $4.",
 	"logentry-ipinfo-view_popup": "$1 si {{GENDER:$2|prohlédl|prohlédla}} vyskakovací okno IP informací k $3. $4.",
-	"ipinfo-change-access-level-enable": "povolil",
-	"ipinfo-change-access-level-disable": "zakázal",
+	"ipinfo-change-access-level-enable": "{{GENDER:$1|povolil|povolila}}",
+	"ipinfo-change-access-level-disable": "{{GENDER:$1|zakázal|zakázala}}",
 	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|svůj}} vlastní přístup k IPInfo"
 }
