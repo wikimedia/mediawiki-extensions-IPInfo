@@ -3,9 +3,9 @@
 namespace MediaWiki\IPInfo\Logging;
 
 use ManualLogEntry;
+use MediaWiki\Title\Title;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentity;
-use Title;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\ParameterAssertionException;
 use Wikimedia\IPUtils;

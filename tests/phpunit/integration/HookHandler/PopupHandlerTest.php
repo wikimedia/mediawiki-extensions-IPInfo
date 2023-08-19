@@ -5,11 +5,11 @@ namespace MediaWiki\IPInfo\Test\Integration\HookHandler;
 use MediaWiki\IPInfo\HookHandler\PopupHandler;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWikiIntegrationTestCase;
 use OutputPage;
 use Skin;
-use Title;
 use User;
 
 /**
