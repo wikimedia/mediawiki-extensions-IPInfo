@@ -25,6 +25,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * @group IPInfo
+ * @group Database
  * @covers \MediaWiki\IPInfo\Rest\Handler\LogHandler
  *
  * The static methods in LogHandler require this test to be an integration test,

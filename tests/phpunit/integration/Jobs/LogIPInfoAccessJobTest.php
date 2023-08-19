@@ -7,6 +7,7 @@ use MediaWikiIntegrationTestCase;
 
 /**
  * @group IPInfo
+ * @group Database
  * @covers \MediaWiki\IPInfo\Jobs\LogIPInfoAccessJob
  */
 class LogIPInfoAccessJobTest extends MediaWikiIntegrationTestCase {
