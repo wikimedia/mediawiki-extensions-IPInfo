@@ -5,6 +5,7 @@
 			"Toghrul Rahimli"
 		]
 	},
+	"ipinfo-extensionname": "IP məlumatı",
 	"ipinfo-desc": "IP ünvan haqqında məlumat verir",
 	"ipinfo-infobox-title": "IP ünvan haqqında məlumat",
 	"ipinfo-property-label-location": "Yer",
@@ -33,6 +34,14 @@
 	"ipinfo-rest-access-denied-blocked-user": "Hesabınız bloklandığı üçün əməliyyatı yerinə yetirmək üçün icazəniz yoxdur",
 	"ipinfo-rest-revision-no-author": "Hesabınızın bu versiyanın müəllifinə baxmaq icazəsi yoxdur",
 	"ipinfo-rest-log-nonexistent": "Jurnal qeydi mövcud deyil",
+	"ipinfo-rest-log-denied": "Bu jurnal qeydinin icraçısını və ya qeydin özünü görmək icazəniz yoxdur",
+	"ipinfo-source-geoip2": "Burdakı məlumat MaxMind-ın GeoIP2 məlumat bazasından əldə olunub. Məlumat tam dəqiq olmaya bilər.",
+	"action-ipinfo": "redaktə və ya jurnal qeydi yaratmış IP ünvanları haqqında məlumat əldə etmək",
+	"right-ipinfo": "Redaktə və ya jurnal qeydi yaratmış IP ünvanları haqqında məlumat əldə etmək",
+	"action-ipinfo-view-log": "IP məlumatlarına baxılma jurnalına giriş",
+	"right-ipinfo-view-log": "IP məlumatlarına baxılma jurnalına giriş",
+	"ipinfo-log-access-level-ipinfo-view-basic": "Məhdud icazə",
 	"ipinfo-log-access-level-ipinfo-view-full": "Tam giriş",
-	"logentry-ipinfo-view_infobox": "$1 $3 üçün IP Məlumat qutusuna {{GENDER:$2|baxdı.}} $4"
+	"logentry-ipinfo-view_infobox": "$1 $3 üçün IP Məlumat qutusuna {{GENDER:$2|baxdı.}} $4",
+	"logentry-ipinfo-view_popup": "$1 $3 üçün IP Məlumatı məlumat qutucuğuna baxdı. $4"
 }
