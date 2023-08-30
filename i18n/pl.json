@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Kareyac",
+			"Msz2001",
 			"Nux",
 			"Rail",
 			"WTM",
@@ -29,8 +30,10 @@
 	"ipinfo-property-value-usertype-cellular": "Sieć komórkowa",
 	"ipinfo-property-value-usertype-dialup": "Połączenie wdzwaniane",
 	"ipinfo-property-value-usertype-government": "Sieć rządowa",
+	"ipinfo-property-value-usertype-hosting": "Dostawca hostingu",
 	"ipinfo-property-value-usertype-library": "Biblioteka",
 	"ipinfo-property-value-usertype-military": "Sieć wojskowa",
+	"ipinfo-property-value-usertype-router": "Router",
 	"ipinfo-property-value-usertype-school": "Szkoła",
 	"ipinfo-property-value-usertype-traveler": "Podróżny",
 	"ipinfo-property-value-usertype-residential": "Połączenie mieszkaniowe",
@@ -39,6 +42,8 @@
 	"ipinfo-property-value-usertype-consumerprivacynetwork": "Konsumencka sieć prywatna (VPN)",
 	"ipinfo-property-value-proxytype-isanonymousvpn": "Anonimowy VPN",
 	"ipinfo-property-value-proxytype-ispublicproxy": "Publiczne proxy",
+	"ipinfo-property-value-proxytype-isresidentialproxy": "Proxy konsumenckie",
+	"ipinfo-property-value-proxytype-islegitimateproxy": "Prawowite proxy",
 	"ipinfo-property-value-proxytype-istorexitnode": "Węzeł wyjściowy TOR",
 	"ipinfo-property-value-proxytype-ishostingprovider": "Dostawca hostingu",
 	"ipinfo-property-label-source": "Źródło",
