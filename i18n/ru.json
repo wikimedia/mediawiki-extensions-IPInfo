@@ -9,7 +9,8 @@
 			"Stjn",
 			"Tanzun",
 			"Vitalisman",
-			"WindEwriX"
+			"WindEwriX",
+			"NBS"
 		]
 	},
 	"ipinfo-extensionname": "Информация об IP",
@@ -34,7 +35,7 @@
 	"ipinfo-property-value-proxytype-ishostingprovider": "Хостинг-провайдер",
 	"ipinfo-property-label-source": "Источник",
 	"ipinfo-property-label-active-blocks": "Активные блокировки",
-	"ipinfo-property-tooltip-proxytypes": "Прокси скрывают IP-адреса. В некоторых случаях это происходит автоматически, например для жилых или корпоративных прокси, в других случаях это делается намеренно, чтобы скрыть происхождение IP-адреса.",
+	"ipinfo-property-tooltip-proxytypes": "Прокси скрывают IP-адреса. В некоторых случаях это происходит автоматически, например, для жилых или корпоративных прокси; в других случаях это делается намеренно, чтобы скрыть происхождение IP-адреса.",
 	"ipinfo-property-tooltip-connectiontype": "Технология, через которую IP-адрес подключается к Интернету.",
 	"ipinfo-property-tooltip-usertype": "Тип организации, владеющей интернет-соединением.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 активная блокировка|$1 активные блокировки|$1 активных блокировок|0=Нет активных блокировок}}",
