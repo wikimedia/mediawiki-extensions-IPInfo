@@ -18,7 +18,7 @@ use MediaWiki\Tests\Rest\Handler\HandlerTestTrait;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
-use MediaWikiUnitTestCase;
+use MediaWikiIntegrationTestCase;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -26,7 +26,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * @group IPInfo
  * @covers \MediaWiki\IPInfo\Rest\Handler\ArchivedRevisionHandler
  */
-class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
+class ArchivedRevisionHandlerTest extends MediaWikiIntegrationTestCase {
 
 	use HandlerTestTrait;
 

@@ -19,7 +19,7 @@ use MediaWiki\Tests\Rest\Handler\HandlerTestTrait;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
-use MediaWikiUnitTestCase;
+use MediaWikiIntegrationTestCase;
 use User;
 use Wikimedia\Message\MessageValue;
 
@@ -27,7 +27,7 @@ use Wikimedia\Message\MessageValue;
  * @group IPInfo
  * @covers \MediaWiki\IPInfo\Rest\Handler\RevisionHandler
  */
-class RevisionHandlerTest extends MediaWikiUnitTestCase {
+class RevisionHandlerTest extends MediaWikiIntegrationTestCase {
 
 	use HandlerTestTrait;
 
