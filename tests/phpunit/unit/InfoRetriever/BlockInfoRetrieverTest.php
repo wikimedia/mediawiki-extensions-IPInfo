@@ -6,6 +6,7 @@ use Generator;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\CompositeBlock;
+use MediaWiki\Block\SystemBlock;
 use MediaWiki\IPInfo\Info\BlockInfo;
 use MediaWiki\IPInfo\InfoRetriever\BlockInfoRetriever;
 use MediaWikiUnitTestCase;
@@ -19,7 +20,7 @@ class BlockInfoRetrieverTest extends MediaWikiUnitTestCase {
 	public function provideRetrieveFromIP(): Generator {
 		yield [ null, 0 ];
 
-		$block = $this->createMock( AbstractBlock::class );
+		$block = new SystemBlock();
 
 		yield [ $block, 1 ];
 

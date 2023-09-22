@@ -4,7 +4,6 @@ namespace MediaWiki\IPInfo\InfoRetriever;
 
 use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockManager;
-use MediaWiki\Block\CompositeBlock;
 use MediaWiki\IPInfo\Info\BlockInfo;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -43,7 +42,7 @@ class BlockInfoRetriever implements InfoRetriever {
 
 		if ( $activeBlock ) {
 			// SECURITY: do not include autoblocks in the number of blocks shown to the user, T310763
-			$allBlocks = $activeBlock instanceof CompositeBlock ? $activeBlock->getOriginalBlocks() : [ $activeBlock ];
+			$allBlocks = $activeBlock->toArray();
 			$nonAutoBlocks = array_filter(
 				$allBlocks,
 				static function ( $block ) {
