@@ -17,6 +17,7 @@
 	"ipinfo-desc": "Показывает информацию об IP-адресах.",
 	"ipinfo-infobox-title": "Информация об IP",
 	"ipinfo-property-label-location": "Местоположение",
+	"ipinfo-property-label-ipversion": "Версия",
 	"ipinfo-property-label-isp": "Интернет-провайдер",
 	"ipinfo-property-label-asn": "Номер AS (ASN)",
 	"ipinfo-property-label-organization": "Организация",
@@ -44,6 +45,7 @@
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 правка в вики|$1 правки в вики|$1 правок в вики|0=Нет правок в вики}}",
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 за последние 24 часа}})",
 	"ipinfo-property-no-data": "Недоступно",
+	"ipinfo-property-no-access": "Нет доступа",
 	"ipinfo-widget-error-default": "Не получилось загрузить информацию об IP.",
 	"ipinfo-widget-error-no-data": "У $1 нет данных для этого IP-адреса.",
 	"ipinfo-widget-error-wrong-ip": "Предоставленный IP-адрес не совпал с записью в журнале или правкой.",
@@ -82,5 +84,9 @@
 	"logentry-ipinfo-view_infobox": "$1 {{GENDER:$2|посмотрел|посмотрела}} карточку информации об IP для $3. $4.",
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|посмотрел|посмотрела}} всплывающее окно информации об IP для $3. $4.",
 	"ipinfo-change-access-level-enable": "{{GENDER:$1|включено}}",
-	"ipinfo-change-access-level-disable": "{{GENDER:$1|отключено}}"
+	"ipinfo-change-access-level-disable": "{{GENDER:$1|отключено}}",
+	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|его|её|свой}} доступ к информации об IP",
+	"ipinfo-blocklist-url-text": "Список блокировок",
+	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 удалённая правка|$1 удалённые правки|$1 удалённых правок|0=Нет удалённых правок}}",
+	"ipinfo-deleted-edits-url-text": "Удалённый вклад"
 }

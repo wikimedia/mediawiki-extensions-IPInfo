@@ -16,7 +16,7 @@
 	"ipinfo-property-value-proxytype-isresidentialproxy": "Proksi annez",
 	"ipinfo-property-label-active-blocks": "Stankadennoù oberiant",
 	"ipinfo-property-tooltip-proxytypes": "Proksioù a guzh chomlec’hioù IP. A-wechoù e vez graet ent emgefreek, evel gant proksioù annez pe proksioù embregezh, a-hend-all e vez graet a-ratozh evit kuzhat orin ar chomlec’h IP.",
-	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 stankadenn oberiant|0=Stankadenn oberiant ebet}}.",
+	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 stankadenn oberiant|0=Stankadenn oberiant ebet}}",
 	"ipinfo-active-blocks-url-text": "Marilhoù",
 	"ipinfo-property-label-edits": "Degasadennoù",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 degasadenn lec’hel||0=Degasadenn lec’hel ebet}}",
