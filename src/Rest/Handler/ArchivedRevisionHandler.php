@@ -8,26 +8,20 @@ use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
+use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Revision\RevisionStore;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Message\MessageValue;
-use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 
 class ArchivedRevisionHandler extends AbstractRevisionHandler {
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
-
-	/** @var RevisionStore */
-	private $revisionStore;
+	/** @var ArchivedRevisionLookup */
+	private $archivedRevisionLookup;
 
 	/**
 	 * @param InfoManager $infoManager
-	 * @param ILoadBalancer $loadBalancer
-	 * @param RevisionStore $revisionStore
+	 * @param ArchivedRevisionLookup $archivedRevisionLookup
 	 * @param PermissionManager $permissionManager
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
@@ -37,8 +31,7 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 	 */
 	public function __construct(
 		InfoManager $infoManager,
-		ILoadBalancer $loadBalancer,
-		RevisionStore $revisionStore,
+		ArchivedRevisionLookup $archivedRevisionLookup,
 		PermissionManager $permissionManager,
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
@@ -55,14 +48,12 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 			$jobQueueGroup,
 			$languageFallback
 		);
-		$this->loadBalancer = $loadBalancer;
-		$this->revisionStore = $revisionStore;
+		$this->archivedRevisionLookup = $archivedRevisionLookup;
 	}
 
 	/**
 	 * @param InfoManager $infoManager
-	 * @param ILoadBalancer $loadBalancer
-	 * @param RevisionStore $revisionStore
+	 * @param ArchivedRevisionLookup $archivedRevisionLookup
 	 * @param PermissionManager $permissionManager
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
@@ -72,8 +63,7 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 	 */
 	public static function factory(
 		InfoManager $infoManager,
-		ILoadBalancer $loadBalancer,
-		RevisionStore $revisionStore,
+		ArchivedRevisionLookup $archivedRevisionLookup,
 		PermissionManager $permissionManager,
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
@@ -82,8 +72,7 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 	) {
 		return new self(
 			$infoManager,
-			$loadBalancer,
-			$revisionStore,
+			$archivedRevisionLookup,
 			$permissionManager,
 			$userOptionsLookup,
 			$userFactory,
@@ -103,36 +92,6 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 				$this->getAuthority()->getUser()->isRegistered() ? 403 : 401 );
 		}
 
-		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
-		$query = $this->revisionStore->getArchiveQueryInfo();
-		$row = $this->getRevisionFromTable( $dbr, $query, $id );
-
-		if ( !$row ) {
-			throw new LocalizedHttpException(
-				new MessageValue( 'rest-nonexistent-revision', [ $id ] ), 404 );
-		}
-
-		return $this->revisionStore->newRevisionFromArchiveRow( $row );
-	}
-
-	/**
-	 * @param IDatabase $dbr
-	 * @param array $query
-	 * @param int $id
-	 * @return \stdClass|false
-	 */
-	protected function getRevisionFromTable( $dbr, $query, $id ) {
-		return $dbr->newSelectQueryBuilder()
-			->tables( $query['tables'] )
-			->select(
-				array_merge(
-					$query['fields'],
-					[ 'ar_namespace', 'ar_title' ]
-				)
-			)
-			->where( [ 'ar_rev_id' => $id ] )
-			->joinConds( $query['joins'] )
-			->caller( __METHOD__ )
-			->fetchRow();
+		return $this->archivedRevisionLookup->getArchivedRevisionRecord( null, $id );
 	}
 }

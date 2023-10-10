@@ -9,7 +9,6 @@ use MediaWiki\IPInfo\InfoRetriever\GeoLite2InfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\ReaderFactory;
 use MediaWiki\IPInfo\Logging\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ILoadBalancer;
 
 // PHPUnit doesn't understand code coverage for code outside of classes/functions,
 // like service wiring files. see T310509
@@ -33,16 +32,10 @@ return [
 		);
 	},
 	'IPInfoBlockInfoRetriever' => static function ( MediaWikiServices $services ): BlockInfoRetriever {
-		$database = $services->getDBLoadBalancer()
-			->getConnection( ILoadBalancer::DB_REPLICA );
-
-		return new BlockInfoRetriever( $services->getBlockManager(), $database );
+		return new BlockInfoRetriever( $services->getBlockManager() );
 	},
 	'IPInfoContributionInfoRetriever' => static function ( MediaWikiServices $services ): ContributionInfoRetriever {
-		$database = $services->getDBLoadBalancer()
-			->getConnection( ILoadBalancer::DB_REPLICA );
-
-		return new ContributionInfoRetriever( $database );
+		return new ContributionInfoRetriever( $services->getDBLoadBalancerFactory()->getReplicaDatabase() );
 	},
 	'IPInfoInfoManager' => static function ( MediaWikiServices $services ): InfoManager {
 		return new InfoManager( [
@@ -52,14 +45,12 @@ return [
 		] );
 	},
 	'IPInfoLoggerFactory' => static function ( MediaWikiServices $services ): LoggerFactory {
-		$dbw = $services->getDBLoadBalancer()
-			->getConnection( ILoadBalancer::DB_PRIMARY );
 		return new LoggerFactory(
 			$services->getActorStore(),
-			$dbw
+			$services->getDBLoadBalancerFactory()->getPrimaryDatabase()
 		);
 	},
-	'ReaderFactory' => static function ( MediaWikiServices $services ) {
+	'ReaderFactory' => static function () {
 		return new ReaderFactory();
 	}
 ];

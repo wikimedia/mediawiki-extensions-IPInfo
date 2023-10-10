@@ -15,16 +15,16 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\IPUtils;
 use Wikimedia\Message\MessageValue;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 class LogHandler extends IPInfoHandler {
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbProvider;
 
 	/**
 	 * @param InfoManager $infoManager
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param PermissionManager $permissionManager
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
@@ -34,7 +34,7 @@ class LogHandler extends IPInfoHandler {
 	 */
 	public function __construct(
 		InfoManager $infoManager,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		PermissionManager $permissionManager,
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
@@ -51,12 +51,12 @@ class LogHandler extends IPInfoHandler {
 			$jobQueueGroup,
 			$languageFallback,
 		);
-		$this->loadBalancer = $loadBalancer;
+		$this->dbProvider = $dbProvider;
 	}
 
 	/**
 	 * @param InfoManager $infoManager
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbProvider
 	 * @param PermissionManager $permissionManager
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
@@ -66,7 +66,7 @@ class LogHandler extends IPInfoHandler {
 	 */
 	public static function factory(
 		InfoManager $infoManager,
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbProvider,
 		PermissionManager $permissionManager,
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
@@ -75,7 +75,7 @@ class LogHandler extends IPInfoHandler {
 	) {
 		return new self(
 			$infoManager,
-			$loadBalancer,
+			$dbProvider,
 			$permissionManager,
 			$userOptionsLookup,
 			$userFactory,
@@ -89,8 +89,8 @@ class LogHandler extends IPInfoHandler {
 	 * @inheritDoc
 	 */
 	protected function getInfo( int $id ): array {
-		$db = $this->loadBalancer->getConnection( DB_REPLICA );
-		$entry = DatabaseLogEntry::newFromId( $id, $db );
+		$dbr = $this->dbProvider->getReplicaDatabase();
+		$entry = DatabaseLogEntry::newFromId( $id, $dbr );
 
 		if ( !$entry ) {
 			throw new LocalizedHttpException(

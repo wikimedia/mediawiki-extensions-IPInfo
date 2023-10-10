@@ -62,8 +62,7 @@
 			"method": "GET",
 			"services": [
 				"IPInfoInfoManager",
-				"DBLoadBalancer",
-				"RevisionStore",
+				"ArchivedRevisionLookup",
 				"PermissionManager",
 				"UserOptionsLookup",
 				"UserFactory",
@@ -77,7 +76,7 @@
 			"method": "GET",
 			"services": [
 				"IPInfoInfoManager",
-				"DBLoadBalancer",
+				"DBLoadBalancerFactory",
 				"PermissionManager",
 				"UserOptionsLookup",
 				"UserFactory",

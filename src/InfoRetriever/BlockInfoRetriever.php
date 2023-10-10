@@ -5,25 +5,16 @@ namespace MediaWiki\IPInfo\InfoRetriever;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\IPInfo\Info\BlockInfo;
-use Wikimedia\Rdbms\IDatabase;
 
 class BlockInfoRetriever implements InfoRetriever {
 	/** @var BlockManager */
 	private $blockManager;
 
-	/** @var IDatabase */
-	private $database;
-
 	/**
 	 * @param BlockManager $blockManager
-	 * @param IDatabase $database
 	 */
-	public function __construct(
-		BlockManager $blockManager,
-		IDatabase $database
-	) {
+	public function __construct( BlockManager $blockManager ) {
 		$this->blockManager = $blockManager;
-		$this->database = $database;
 	}
 
 	/**

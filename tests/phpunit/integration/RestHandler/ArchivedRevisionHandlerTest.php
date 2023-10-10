@@ -7,20 +7,19 @@ use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Handler\ArchivedRevisionHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\Languages\LanguageFallback;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
+use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Tests\Rest\Handler\HandlerTestTrait;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Message\MessageValue;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group IPInfo
@@ -73,27 +72,16 @@ class ArchivedRevisionHandlerTest extends MediaWikiIntegrationTestCase {
 		$userOptionsLookup->method( 'getOption' )
 			->willReturn( true );
 
-		$author = $this->createMock( UserIdentity::class );
-		$author->method( 'isRegistered' )
-			->willReturn( false );
-		$author->method( 'getName' )
-			->willReturn( '127.0.0.1' );
-
-		$revision = $this->createMock( RevisionRecord::class );
-		$revision->method( 'getPageAsLinkTarget' )
-			->willReturn( $this->createMock( LinkTarget::class ) );
-		$revision->method( 'getUser' )
-			->willReturn( $author );
-
-		$revisionStore = $this->createMock( RevisionStore::class );
-		$revisionStore->method( 'newRevisionFromArchiveRow' )
-			->willReturn( $revision );
+		// Revision is mocked to not exist by returning null.
+		$archivedRevisionLookup = $this->createMock( ArchivedRevisionLookup::class );
+		$archivedRevisionLookup->method( 'getArchivedRevisionRecord' )
+			->with( null, 123 )
+			->willReturn( null );
 
 		$handler = $this->getMockBuilder( ArchivedRevisionHandler::class )
 			->setConstructorArgs( [
 				'infoManager' => $this->createMock( InfoManager::class ),
-				'loadBalancer' => $this->createMock( ILoadBalancer::class ),
-				'revisionStore' => $revisionStore,
+				'archivedRevisionLookup' => $archivedRevisionLookup,
 				'permissionManager' => $permissionManager,
 				'userOptionsLookup' => $userOptionsLookup,
 				'userFactory' => $this->createMock( UserFactory::class ),
@@ -101,12 +89,10 @@ class ArchivedRevisionHandlerTest extends MediaWikiIntegrationTestCase {
 				'jobQueueGroup' => $this->createMock( JobQueueGroup::class ),
 				'languageFallback' => $this->createMock( LanguageFallback::class )
 			] )
-			->onlyMethods( [ 'getRevisionFromTable' ] )
+			->onlyMethods( [] )
 			->getMock();
-		$handler->method( 'getRevisionFromTable' )
-			->willReturn( false );
 
-		$request = $this->getRequestData( $options['id'] ?? 123 );
+		$request = $this->getRequestData();
 
 		$this->expectExceptionObject(
 			new LocalizedHttpException(
@@ -126,7 +112,6 @@ class ArchivedRevisionHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideExecuteErrors() {
-		$id = 123;
 		return [
 			'Access denied, registered' => [
 				[
@@ -147,18 +132,50 @@ class ArchivedRevisionHandlerTest extends MediaWikiIntegrationTestCase {
 					'message' => 'ipinfo-rest-access-denied',
 					'status' => 401,
 				],
-			],
-			'Revision does not exist' => [
-				[
-					'userIsRegistered' => true,
-					'deletedhistory' => true,
-				],
-				[
-					'message' => 'rest-nonexistent-revision',
-					'status' => 404,
-				],
 			]
 		];
+	}
+
+	public function testGetRevisionWithExistingRevision() {
+		$user = $this->createMock( UserIdentity::class );
+		$authority = $this->createMock( Authority::class );
+		$authority->method( 'getUser' )
+			->willReturn( $user );
+
+		$permissionManager = $this->createMock( PermissionManager::class );
+		$permissionManager->method( 'userHasRight' )
+			->with( $user, 'deletedhistory' )
+			->willReturn( true );
+
+		$revision = $this->createMock( RevisionRecord::class );
+
+		$archivedRevisionLookup = $this->createMock( ArchivedRevisionLookup::class );
+		$archivedRevisionLookup->method( 'getArchivedRevisionRecord' )
+			->with( null, 123 )
+			->willReturn( $revision );
+
+		$handler = $this->getMockBuilder( ArchivedRevisionHandler::class )
+			->setConstructorArgs( [
+				'infoManager' => $this->createMock( InfoManager::class ),
+				'archivedRevisionLookup' => $archivedRevisionLookup,
+				'permissionManager' => $permissionManager,
+				'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
+				'userFactory' => $this->createMock( UserFactory::class ),
+				'presenter' => $this->createMock( DefaultPresenter::class ),
+				'jobQueueGroup' => $this->createMock( JobQueueGroup::class ),
+				'languageFallback' => $this->createMock( LanguageFallback::class )
+			] )
+			->onlyMethods( [ 'getAuthority' ] )
+			->getMock();
+		$handler->method( 'getAuthority' )
+			->willReturn( $authority );
+		$handler = TestingAccessWrapper::newFromObject( $handler );
+
+		$this->assertSame(
+			$handler->getRevision( 123 ),
+			$revision,
+			'::getRevision did not return the expected RevisionRecord object.'
+		);
 	}
 
 	public function testFactory() {
@@ -166,8 +183,7 @@ class ArchivedRevisionHandlerTest extends MediaWikiIntegrationTestCase {
 			ArchivedRevisionHandler::class,
 			ArchivedRevisionHandler::factory(
 				$this->createMock( InfoManager::class ),
-				$this->createMock( ILoadBalancer::class ),
-				$this->createMock( RevisionStore::class ),
+				$this->createMock( ArchivedRevisionLookup::class ),
 				$this->createMock( PermissionManager::class ),
 				$this->createMock( UserOptionsLookup::class ),
 				$this->createMock( UserFactory::class ),

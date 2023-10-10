@@ -20,8 +20,8 @@ use MediaWiki\User\UserOptionsLookup;
 use MediaWikiIntegrationTestCase;
 use User;
 use Wikimedia\Message\MessageValue;
-use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * @group IPInfo
@@ -43,7 +43,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		return new LogHandler( ...array_values( array_merge(
 			[
 				'infoManager' => $this->createMock( InfoManager::class ),
-				'loadBalancer' => $this->createMock( ILoadBalancer::class ),
+				'dbProvider' => $this->createMock( IConnectionProvider::class ),
 				'permissionManager' => $this->createMock( PermissionManager::class ),
 				'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
 				'userFactory' => $this->createMock( UserFactory::class ),
@@ -75,8 +75,8 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 	public function testExecute( $expected, $dataProperty ) {
 		$id = 123;
 
-		$db = $this->createMock( IDatabase::class );
-		$db->method( 'selectRow' )
+		$dbr = $this->createMock( IReadableDatabase::class );
+		$dbr->method( 'selectRow' )
 			->willReturn( [
 				'logid' => $id,
 				'log_type' => 'block',
@@ -88,9 +88,9 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 				'log_actor' => 1,
 			] );
 
-		$loadBalancer = $this->createMock( ILoadBalancer::class );
-		$loadBalancer->method( 'getConnection' )
-			->willReturn( $db );
+		$dbProvider = $this->createMock( IConnectionProvider::class );
+		$dbProvider->method( 'getReplicaDatabase' )
+			->willReturn( $dbr );
 
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
@@ -120,7 +120,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 			->willReturn( [ 'en' ] );
 
 		$handler = $this->getLogHandler( [
-			'loadBalancer' => $loadBalancer,
+			'dbProvider' => $dbProvider,
 			'permissionManager' => $permissionManager,
 			'userOptionsLookup' => $userOptionsLookup,
 			'presenter' => $presenter,
@@ -156,9 +156,9 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testExecuteErrors( array $options, array $expected ) {
 		$authority = $this->createMock( Authority::class );
-		$loadBalancer = $this->createMock( ILoadBalancer::class );
-		$loadBalancer->method( 'getConnection' )
-			->willReturn( $this->createMock( IDatabase::class ) );
+		$dbProvider = $this->createMock( IConnectionProvider::class );
+		$dbProvider->method( 'getReplicaDatabase' )
+			->willReturn( $this->createMock( IReadableDatabase::class ) );
 
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
@@ -177,7 +177,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 			->willReturn( $options['isRegistered'] ?? false );
 
 		$handler = $this->getLogHandler( [
-			'loadBalancer' => $loadBalancer,
+			'dbProvider' => $dbProvider,
 			'permissionManager' => $permissionManager,
 			'userOptionsLookup' => $userOptionsLookup,
 			'userIdentity' => $user,
@@ -252,8 +252,8 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$user = $this->createMock( UserIdentity::class );
 		$authority->method( 'getUser' )
 			->willReturn( $user );
-		$db = $this->createMock( IDatabase::class );
-		$db->method( 'selectRow' )
+		$dbr = $this->createMock( IReadableDatabase::class );
+		$dbr->method( 'selectRow' )
 			->willReturn( [
 				'logid' => $id,
 				'log_type' => 'suppress',
@@ -265,9 +265,9 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 				'log_actor' => 1,
 			] );
 
-		$loadBalancer = $this->createMock( ILoadBalancer::class );
-		$loadBalancer->method( 'getConnection' )
-			->willReturn( $db );
+		$dbProvider = $this->createMock( IConnectionProvider::class );
+		$dbProvider->method( 'getReplicaDatabase' )
+			->willReturn( $dbr );
 
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
@@ -286,7 +286,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 			->willReturn( [ 'en' ] );
 
 		$handler = $this->getLogHandler( [
-			'loadBalancer' => $loadBalancer,
+			'dbProvider' => $dbProvider,
 			'permissionManager' => $permissionManager,
 			'userOptionsLookup' => $userOptionsLookup,
 			'userFactory' => $userFactory,
@@ -320,8 +320,8 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 			$this->setGroupPermissions( 'sysop', $right, $value );
 		}
 
-		$db = $this->createMock( IDatabase::class );
-		$db->method( 'selectRow' )
+		$dbr = $this->createMock( IReadableDatabase::class );
+		$dbr->method( 'selectRow' )
 			->willReturn( [
 				'logid' => $id,
 				'log_type' => 'block',
@@ -333,9 +333,9 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 				'log_actor' => 1,
 			] );
 
-		$loadBalancer = $this->createMock( ILoadBalancer::class );
-		$loadBalancer->method( 'getConnection' )
-			->willReturn( $db );
+		$dbProvider = $this->createMock( IConnectionProvider::class );
+		$dbProvider->method( 'getReplicaDatabase' )
+			->willReturn( $dbr );
 
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
@@ -356,7 +356,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 			->willReturn( [ 'en' ] );
 
 		$handler = $this->getLogHandler( [
-			'loadBalancer' => $loadBalancer,
+			'dbProvider' => $dbProvider,
 			'permissionManager' => $permissionManager,
 			'userOptionsLookup' => $userOptionsLookup,
 			'userFactory' => $userFactory,
@@ -470,8 +470,8 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$id = 123;
 		$performer = $this->getTestUser()->getUser();
 
-		$db = $this->createMock( IDatabase::class );
-		$db->method( 'selectRow' )
+		$dbr = $this->createMock( IReadableDatabase::class );
+		$dbr->method( 'selectRow' )
 			->willReturn( [
 				'logid' => $id,
 				'log_type' => 'block',
@@ -483,9 +483,9 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 				'log_actor' => $performer->getActorId(),
 			] );
 
-		$loadBalancer = $this->createMock( ILoadBalancer::class );
-		$loadBalancer->method( 'getConnection' )
-			->willReturn( $db );
+		$dbProvider = $this->createMock( IConnectionProvider::class );
+		$dbProvider->method( 'getReplicaDatabase' )
+			->willReturn( $dbr );
 
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
@@ -500,7 +500,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 			->willReturn( [ 'en' ] );
 
 		$handler = $this->getLogHandler( [
-			'loadBalancer' => $loadBalancer,
+			'dbProvider' => $dbProvider,
 			'permissionManager' => $permissionManager,
 			'userOptionsLookup' => $userOptionsLookup,
 			'languageFallback' => $languageFallback,
@@ -524,8 +524,8 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		$authority->method( 'getUser' )
 			->willReturn( $user );
 
-		$db = $this->createMock( IDatabase::class );
-		$db->method( 'selectRow' )
+		$dbr = $this->createMock( IReadableDatabase::class );
+		$dbr->method( 'selectRow' )
 			->willReturn( [
 				'logid' => $id,
 				'log_type' => 'block',
@@ -537,9 +537,9 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 				'log_actor' => $performer->getActorId(),
 			] );
 
-		$loadBalancer = $this->createMock( ILoadBalancer::class );
-		$loadBalancer->method( 'getConnection' )
-			->willReturn( $db );
+		$dbProvider = $this->createMock( IConnectionProvider::class );
+		$dbProvider->method( 'getReplicaDatabase' )
+			->willReturn( $dbr );
 
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
@@ -558,7 +558,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 			->willReturn( [ 'en' ] );
 
 		$handler = $this->getLogHandler( [
-			'loadBalancer' => $loadBalancer,
+			'dbProvider' => $dbProvider,
 			'permissionManager' => $permissionManager,
 			'userOptionsLookup' => $userOptionsLookup,
 			'userFactory' => $userFactory,
@@ -583,8 +583,8 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$performer = $this->getTestUser()->getUser();
 
-		$db = $this->createMock( IDatabase::class );
-		$db->method( 'selectRow' )
+		$dbr = $this->createMock( IReadableDatabase::class );
+		$dbr->method( 'selectRow' )
 			->willReturn( [
 				'logid' => $id,
 				'log_type' => 'block',
@@ -596,9 +596,9 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 				'log_actor' => $performer->getActorId(),
 			] );
 
-		$loadBalancer = $this->createMock( ILoadBalancer::class );
-		$loadBalancer->method( 'getConnection' )
-			->willReturn( $db );
+		$dbProvider = $this->createMock( IConnectionProvider::class );
+		$dbProvider->method( 'getReplicaDatabase' )
+			->willReturn( $dbr );
 
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
@@ -619,7 +619,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 			->willReturn( [ 'en' ] );
 
 		$handler = $this->getLogHandler( [
-			'loadBalancer' => $loadBalancer,
+			'dbProvider' => $dbProvider,
 			'permissionManager' => $permissionManager,
 			'userOptionsLookup' => $userOptionsLookup,
 			'userFactory' => $userFactory,
@@ -643,7 +643,7 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 			LogHandler::class,
 			LogHandler::factory(
 				$this->createMock( InfoManager::class ),
-				$this->createMock( ILoadBalancer::class ),
+				$this->createMock( IConnectionProvider::class ),
 				$this->createMock( PermissionManager::class ),
 				$this->createMock( UserOptionsLookup::class ),
 				$this->createMock( UserFactory::class ),
