@@ -26,6 +26,8 @@ use Wikimedia\Message\MessageValue;
 /**
  * @group IPInfo
  * @covers \MediaWiki\IPInfo\Rest\Handler\RevisionHandler
+ * @covers \MediaWiki\IPInfo\Rest\Handler\AbstractRevisionHandler
+ * @covers \MediaWiki\IPInfo\Rest\Handler\IPInfoHandler
  */
 class RevisionHandlerTest extends MediaWikiIntegrationTestCase {
 
