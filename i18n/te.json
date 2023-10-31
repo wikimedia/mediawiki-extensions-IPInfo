@@ -5,13 +5,17 @@
 			"Veeven"
 		]
 	},
+	"ipinfo-desc": "ఐపీ చిరునామా గురించిన సమాచారాన్ని అందిస్తుంది.",
 	"ipinfo-infobox-title": "ఐపీ సమాచారం",
 	"ipinfo-property-label-location": "ప్రాంతం",
 	"ipinfo-property-label-source": "మూలం",
 	"ipinfo-property-no-data": "అందుబాటులో లేదు",
+	"ipinfo-beta-feature-title": "ఐపీ సమాచారం",
+	"prefs-ipinfo": "ఐపీ సమాచారం",
 	"action-ipinfo": "కూర్పులకు, చిట్టా పద్దులకూ చెందిన ఐపి అడ్రసుల సమాచారాన్ని వెలికితీసే",
 	"right-ipinfo": "కూర్పులకు, చిట్టా పద్దులకూ చెందిన ఐపి అడ్రసుల సమాచారాన్ని వెలికితీయడం",
 	"grouppage-no-ipinfo": "{{ns:project}}:IPInfo నుండి నిరోధించబడిన వాడుకరులు",
+	"ipinfo-log-name": "ఐపీ సమాచార లాగ్",
 	"ipinfo-log-access-level-ipinfo-view-basic": "పరిమిత అందుబాటు",
 	"ipinfo-log-access-level-ipinfo-view-full": "పూర్తి అందుబాటు",
 	"ipinfo-change-access-level-enable": "చేతనం చేసారు",
