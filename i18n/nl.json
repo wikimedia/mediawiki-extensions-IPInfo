@@ -97,6 +97,12 @@
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|heeft}} het infovak IP-informatie voor $3 bekeken. $4.",
 	"ipinfo-change-access-level-enable": "{{GENDER:$1|geactiveerd}}",
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|gedeactiveerd}}",
+	"logentry-ipinfo-change_access": "$1 heeft {{GENDER:$2|zijn|haar|de}} eigen toegang tot IP-informatie $4",
+	"log-action-filter-ipinfo": "Type IP-informatiebewerking:",
+	"log-action-filter-ipinfo-change_access": "Tool ingeschakeld of uitgeschakeld",
+	"log-action-filter-ipinfo-view_infobox": "Gegevens bekeken in informatievak",
+	"log-action-filter-ipinfo-view_popup": "Gegevens bekeken in pop-up",
+	"ipinfo-property-tooltip-asn": "Een unieke identificatiecode voor netwerken die zijn toegewezen aan een regio en verder aan organisaties zoals overheden en internetaanbieders",
 	"ipinfo-blocklist-url-text": "Blokkadelijst",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 verwijderde bewerking|$1 verwijderde bewerkingen|0=Geen verwijderde bewerkingen}}",
 	"ipinfo-deleted-edits-url-text": "Verwijderde bijdragen"
