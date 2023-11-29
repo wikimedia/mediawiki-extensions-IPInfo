@@ -8,7 +8,7 @@ use MediaWiki\Hook\SpecialContributionsBeforeMainOutputHook;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\SpecialPage\Hook\SpecialPageBeforeExecuteHook;
-use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\User\Options\UserOptionsLookup;
 use OOUI\PanelLayout;
 use OutputPage;
 use SpecialPage;

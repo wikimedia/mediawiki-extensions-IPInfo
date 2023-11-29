@@ -6,9 +6,9 @@ use MediaWiki\IPInfo\HookHandler\PreferencesHandler;
 use MediaWiki\IPInfo\Logging\Logger;
 use MediaWiki\IPInfo\Logging\LoggerFactory;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserOptionsLookup;
 use MediaWikiIntegrationTestCase;
 use User;
 

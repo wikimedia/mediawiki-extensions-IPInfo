@@ -4,7 +4,7 @@ namespace MediaWiki\IPInfo\Test\Integration\HookHandler;
 
 use MediaWiki\IPInfo\HookHandler\InfoboxHandler;
 use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWikiIntegrationTestCase;
 use OutputPage;
 use SpecialPage;

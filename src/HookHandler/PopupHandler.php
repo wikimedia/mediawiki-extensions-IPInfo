@@ -6,7 +6,7 @@ use ExtensionRegistry;
 use MediaWiki\Hook\BeforePageDisplayHook;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\User\Options\UserOptionsLookup;
 
 class PopupHandler implements BeforePageDisplayHook {
 	/** @var PermissionManager */

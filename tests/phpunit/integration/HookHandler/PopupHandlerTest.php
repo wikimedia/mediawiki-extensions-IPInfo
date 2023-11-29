@@ -6,7 +6,7 @@ use MediaWiki\IPInfo\HookHandler\PopupHandler;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
-use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWikiIntegrationTestCase;
 use OutputPage;
 use Skin;

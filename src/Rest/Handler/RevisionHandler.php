@@ -9,8 +9,8 @@ use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserFactory;
-use MediaWiki\User\UserOptionsLookup;
 
 class RevisionHandler extends AbstractRevisionHandler {
 

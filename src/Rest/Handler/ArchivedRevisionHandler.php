@@ -10,8 +10,8 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserFactory;
-use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Message\MessageValue;
 
 class ArchivedRevisionHandler extends AbstractRevisionHandler {
