@@ -36,7 +36,7 @@
 	"ipinfo-property-value-usertype-residential": "Домаћинство",
 	"ipinfo-property-value-usertype-searchenginespider": "Претраживачки паук",
 	"ipinfo-property-value-usertype-contentdeliverynetwork": "Мрежа за испоруку садржаја",
-	"ipinfo-property-value-usertype-consumerprivacynetwork": "Google/Apple VPN",
+	"ipinfo-property-value-usertype-consumerprivacynetwork": "Apple/Google VPN",
 	"ipinfo-property-value-proxytype-isanonymousvpn": "анонимни VPN",
 	"ipinfo-property-value-proxytype-ispublicproxy": "јавни прокси",
 	"ipinfo-property-value-proxytype-isresidentialproxy": "стамбени прокси",
