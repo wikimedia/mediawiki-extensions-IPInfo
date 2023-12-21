@@ -73,7 +73,7 @@
 	"ipinfo-infobox-submit-agreement": "تفعيل أداة معلومات بروتوكول الإنترنت",
 	"ipinfo-infobox-disable-instructions": "إذا كنت ترغب في تعطيل هذه الميزة ، فيمكن ذلك في صفحة [[Special:Preferences#mw-prefsection-betafeatures|تفضيلاتك]].",
 	"ipinfo-use-agreement-submit-error": "حصل خطأ ما. الرجاء حاول مجدداً. رسالة الخطأ هي: $1",
-	"ipinfo-rest-access-denied": "ليست لديك الصلاحية المطلوبة للقيام بهذا الفعل",
+	"ipinfo-rest-access-denied": "ليس لديك الصلاحية المطلوبة للقيام بهذا الفعل",
 	"ipinfo-rest-access-denied-blocked-user": "لا تملك الصلاحية للقيام بهذا الفعل لأن حسابك ممنوع",
 	"ipinfo-rest-revision-no-author": "لا يملك حسابك صلاحية استعراض مؤلف هذه المراجعة",
 	"ipinfo-rest-revision-invalid-ip": "لا يمكن استعادة عنوان بروتوكول الإنترنت لمستخدم ليس له عنوان صريح",
