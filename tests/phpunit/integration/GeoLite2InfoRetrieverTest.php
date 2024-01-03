@@ -26,6 +26,7 @@ class GeoLite2InfoRetrieverTest extends MediaWikiIntegrationTestCase {
 	use TestAllServiceOptionsUsed;
 
 	public function testNoGeoLite2Prefix() {
+		$this->overrideConfigValue( 'IPInfoGeoLite2Prefix', false );
 		$reader = $this->createMock( Reader::class );
 		$readerFactory = $this->createMock( ReaderFactory::class );
 		$readerFactory->method( 'get' )

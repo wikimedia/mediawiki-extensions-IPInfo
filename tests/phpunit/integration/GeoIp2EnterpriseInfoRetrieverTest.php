@@ -28,6 +28,7 @@ class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 	use TestAllServiceOptionsUsed;
 
 	public function testNoGeoIP2EnterprisePath() {
+		$this->overrideConfigValue( 'IPInfoGeoIP2EnterprisePath', false );
 		$reader = $this->createMock( Reader::class );
 		$readerFactory = $this->createMock( ReaderFactory::class );
 		$readerFactory->method( 'get' )
