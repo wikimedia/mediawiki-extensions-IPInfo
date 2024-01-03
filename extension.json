@@ -242,6 +242,10 @@
 		"IPInfoGeoIP2EnterprisePath": {
 			"value": false,
 			"description": "Path to the directory containing the GeoIP2 Enterprise and Anonymous IP database file; should contain the trailing slash"
+		},
+		"IPInfoIpoidUrl": {
+			"description": "Base URL for calling the ipoid API to retrieve data about an IP address",
+			"value": false
 		}
 	},
 	"load_composer_autoloader": true,

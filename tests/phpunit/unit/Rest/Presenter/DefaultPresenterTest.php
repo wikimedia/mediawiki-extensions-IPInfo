@@ -7,6 +7,7 @@ use MediaWiki\IPInfo\Info\BlockInfo;
 use MediaWiki\IPInfo\Info\ContributionInfo;
 use MediaWiki\IPInfo\Info\Coordinates;
 use MediaWiki\IPInfo\Info\Info;
+use MediaWiki\IPInfo\Info\IPoidInfo;
 use MediaWiki\IPInfo\Info\Location;
 use MediaWiki\IPInfo\Info\ProxyType;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
@@ -247,5 +248,20 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 		$wrapper = TestingAccessWrapper::newFromObject( new DefaultPresenter( $permissionManager ) );
 
 		$this->assertArrayEquals( [ 0 => 1 ], $wrapper->presentBlockInfo( $info ) );
+	}
+
+	public function testPresentIPoidInfo() {
+		$info = new IPoidInfo( [], [ 'GEO_MISMATCH', 'CALLBACK_PROXY' ], [], [], [], 2 );
+		$permissionManager = $this->createMock( PermissionManager::class );
+		$wrapper = TestingAccessWrapper::newFromObject( new DefaultPresenter( $permissionManager ) );
+
+		$this->assertArrayEquals( [
+			'behaviors' => [],
+			'risks' => [ 'GEO_MISMATCH', 'CALLBACK_PROXY' ],
+			'connectionTypes' => [],
+			'tunnelOperators' => [],
+			'proxies' => [],
+			'numUsersOnThisIP' => 2,
+		], $wrapper->presentIPoidInfo( $info ) );
 	}
 }

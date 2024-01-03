@@ -6,6 +6,7 @@ use MediaWiki\IPInfo\AccessLevelTrait;
 use MediaWiki\IPInfo\Info\BlockInfo;
 use MediaWiki\IPInfo\Info\ContributionInfo;
 use MediaWiki\IPInfo\Info\Info;
+use MediaWiki\IPInfo\Info\IPoidInfo;
 use MediaWiki\IPInfo\Info\Location;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserIdentity;
@@ -44,6 +45,12 @@ class DefaultPresenter {
 			'isp',
 			'organization',
 			'proxyType',
+			'behaviors',
+			'risks',
+			'connectionTypes',
+			'tunnelOperators',
+			'proxies',
+			'numUsersOnThisIP',
 			'numActiveBlocks',
 			'numLocalEdits',
 			'numRecentEdits',
@@ -67,7 +74,7 @@ class DefaultPresenter {
 	 */
 	public function present( array $info, UserIdentity $user ): array {
 		Assert::parameterElementType(
-			[ Info::class, BlockInfo::class, ContributionInfo::class ],
+			[ Info::class, IPoidInfo::class, BlockInfo::class, ContributionInfo::class ],
 			$info['data'],
 			"info['data']"
 		);
@@ -86,6 +93,8 @@ class DefaultPresenter {
 
 			if ( $info instanceof Info ) {
 				$data += $this->presentInfo( $info );
+			} elseif ( $info instanceof IPoidInfo ) {
+				$data += $this->presentIPoidInfo( $info );
 			} elseif ( $info instanceof BlockInfo ) {
 				$data += $this->presentBlockInfo( $info );
 			} elseif ( $info instanceof ContributionInfo ) {
@@ -142,6 +151,21 @@ class DefaultPresenter {
 				'isHostingProvider' => $proxyType->isHostingProvider(),
 
 			] : null,
+		];
+	}
+
+	/**
+	 * @param IPoidInfo $info
+	 * @return array<string,mixed>
+	 */
+	private function presentIPoidInfo( IPoidInfo $info ): array {
+		return [
+			'behaviors' => $info->getBehaviors(),
+			'risks' => $info->getRisks(),
+			'connectionTypes' => $info->getConnectionTypes(),
+			'tunnelOperators' => $info->getTunnelOperators(),
+			'proxies' => $info->getProxies(),
+			'numUsersOnThisIP' => $info->getNumUsersOnThisIP(),
 		];
 	}
 
