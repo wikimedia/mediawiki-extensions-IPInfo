@@ -45,9 +45,7 @@ class GeoLite2InfoRetrieverTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNullRetrieveFromIP() {
-		$this->setMwGlobals( [
-			'wgIPInfoGeoLite2Prefix' => 'test',
-		] );
+		$this->overrideConfigValue( 'IPInfoGeoLite2Prefix', 'test' );
 
 		$reader = $this->createMock( Reader::class );
 		$reader->method( 'asn' )
@@ -89,9 +87,7 @@ class GeoLite2InfoRetrieverTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testRetrieveFromIP() {
-		$this->setMwGlobals( [
-			'wgIPInfoGeoLite2Prefix' => 'test',
-		] );
+		$this->overrideConfigValue( 'IPInfoGeoLite2Prefix', 'test' );
 		$ip = '127.0.0.1';
 
 		$location = $this->createMock( LocationRecord::class );

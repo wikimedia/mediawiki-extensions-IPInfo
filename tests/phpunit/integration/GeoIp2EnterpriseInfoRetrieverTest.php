@@ -47,9 +47,7 @@ class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNullRetrieveFromIP() {
-		$this->setMwGlobals( [
-			'wgIPInfoGeoIP2EnterprisePath' => 'test',
-		] );
+		$this->overrideConfigValue( 'IPInfoGeoIP2EnterprisePath', 'test' );
 		$ip = '127.0.0.1';
 
 		$reader = $this->createMock( Reader::class );
@@ -92,9 +90,7 @@ class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testRetrieveFromIP() {
-		$this->setMwGlobals( [
-			'wgIPInfoGeoIP2EnterprisePath' => 'test',
-		] );
+		$this->overrideConfigValue( 'IPInfoGeoIP2EnterprisePath', 'test' );
 		$ip = '127.0.0.1';
 
 		$location = $this->createMock( LocationRecord::class );
