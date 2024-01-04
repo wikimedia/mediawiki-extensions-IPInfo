@@ -2,9 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Fitoschido",
-			"Mguix"
+			"Mguix",
+			"SMP"
 		]
 	},
 	"ipinfo-property-label-organization": "Organització",
-	"ipinfo-rest-access-denied": "No teniu permís per a efectuar l’acció"
+	"ipinfo-rest-access-denied": "No teniu permís per a efectuar l’acció",
+	"right-ipinfo": "Consultar informació sobre les adreces IP associades a revisions o entrades del registre",
+	"right-ipinfo-view-basic": "Accedir a una vista bàsica de la informació IP associada a revisions o a entrades del registre",
+	"right-ipinfo-view-full": "Accedir a tota la informació IP associada a revisions o entrades del registre",
+	"right-ipinfo-view-log": "Veure un registre de qui ha accedit a la informació IP"
 }
