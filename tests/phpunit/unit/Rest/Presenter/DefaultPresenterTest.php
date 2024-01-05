@@ -98,6 +98,15 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 				'quuz' => new BlockInfo( 1 ),
 			]
 		];
+		yield [
+			[
+				'quuz' => []
+				],
+				[
+					'quuz' => new IPoidInfo(),
+				]
+
+		];
 	}
 
 	/**
