@@ -93,11 +93,10 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 				'quuz' => [
 					'numActiveBlocks' => 1,
 				]
-				],
-				[
-					'quuz' => new BlockInfo( 1 ),
-				]
-
+			],
+			[
+				'quuz' => new BlockInfo( 1 ),
+			]
 		];
 	}
 
