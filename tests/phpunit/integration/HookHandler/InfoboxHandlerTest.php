@@ -3,12 +3,12 @@
 namespace MediaWiki\IPInfo\Test\Integration\HookHandler;
 
 use MediaWiki\IPInfo\HookHandler\InfoboxHandler;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
-use OutputPage;
-use SpecialPage;
-use User;
 
 /**
  * TODO: Make this into a unit test once T268177 is resolved.

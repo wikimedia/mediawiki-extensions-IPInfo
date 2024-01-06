@@ -2,8 +2,8 @@
 
 namespace MediaWiki\IPInfo\Logging;
 
-use Linker;
 use LogFormatter;
+use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
 use Message;
 

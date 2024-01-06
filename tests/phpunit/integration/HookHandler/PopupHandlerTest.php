@@ -3,14 +3,14 @@
 namespace MediaWiki\IPInfo\Test\Integration\HookHandler;
 
 use MediaWiki\IPInfo\HookHandler\PopupHandler;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
-use OutputPage;
 use Skin;
-use User;
 
 /**
  * @group IPInfo

@@ -7,10 +7,10 @@ use MediaWiki\IPInfo\Logging\Logger;
 use MediaWiki\IPInfo\Logging\LoggerFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\User\User;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWikiIntegrationTestCase;
-use User;
 
 /**
  * @group IPInfo

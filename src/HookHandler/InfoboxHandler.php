@@ -6,12 +6,12 @@ use CollapsibleFieldsetLayout;
 use ExtensionRegistry;
 use MediaWiki\Hook\SpecialContributionsBeforeMainOutputHook;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\SpecialPage\Hook\SpecialPageBeforeExecuteHook;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\Options\UserOptionsLookup;
 use OOUI\PanelLayout;
-use OutputPage;
-use SpecialPage;
 use Wikimedia\IPUtils;
 
 class InfoboxHandler implements

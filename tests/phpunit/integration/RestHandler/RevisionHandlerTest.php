@@ -16,11 +16,11 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Tests\Rest\Handler\HandlerTestTrait;
+use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserOptionsLookup;
 use MediaWikiIntegrationTestCase;
-use User;
 use Wikimedia\Message\MessageValue;
 
 /**

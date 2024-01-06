@@ -1,9 +1,9 @@
 <?php
 namespace MediaWiki\IPInfo\HookHandler;
 
-use Config;
+use MediaWiki\Config\Config;
 use MediaWiki\Permissions\PermissionManager;
-use User;
+use MediaWiki\User\User;
 
 class BetaFeaturePreferencesHandler {
 
