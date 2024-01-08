@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Draceane",
 			"Matěj Suchánek",
 			"Mormegil"
 		]
@@ -16,6 +17,23 @@
 	"ipinfo-property-label-connectiontype": "Způsob připojení",
 	"ipinfo-property-label-usertype": "Vlastník přípojky",
 	"ipinfo-property-label-proxytypes": "Skutečná IP/proxy",
+	"ipinfo-property-value-connectiontype-cellular": "Mobilní",
+	"ipinfo-property-value-connectiontype-corporate": "Firemní",
+	"ipinfo-property-value-connectiontype-dialup": "Vytáčené",
+	"ipinfo-property-value-usertype-college": "Univerzitní",
+	"ipinfo-property-value-usertype-business": "Služební",
+	"ipinfo-property-value-usertype-cafe": "Kavárna",
+	"ipinfo-property-value-usertype-cellular": "Mobilní",
+	"ipinfo-property-value-usertype-dialup": "Vytáčené",
+	"ipinfo-property-value-usertype-government": "Veřejná správa",
+	"ipinfo-property-value-usertype-hosting": "Hostování",
+	"ipinfo-property-value-usertype-library": "Knihovna",
+	"ipinfo-property-value-usertype-military": "Armáda",
+	"ipinfo-property-value-usertype-router": "Směrovač",
+	"ipinfo-property-value-usertype-school": "Škola",
+	"ipinfo-property-value-usertype-traveler": "Cestovní",
+	"ipinfo-property-value-usertype-residential": "Domácí",
+	"ipinfo-property-value-usertype-searchenginespider": "Vyhledávací pavouk",
 	"ipinfo-property-value-proxytype-isanonymousvpn": "Anonymní VPN",
 	"ipinfo-property-value-proxytype-ispublicproxy": "Veřejná proxy",
 	"ipinfo-property-value-proxytype-isresidentialproxy": "Rezidenční proxy",
@@ -28,10 +46,12 @@
 	"ipinfo-property-tooltip-connectiontype": "Technologie, pomocí které jsou připojeni k internetu.",
 	"ipinfo-property-tooltip-usertype": "Druh entity, která vlastní toto připojení k internetu.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 aktivní|$1 aktivní|$1 aktivních|0=Žádná aktivní}} zablokování",
+	"ipinfo-active-blocks-url-text": "Protokolovací záznamy",
 	"ipinfo-property-label-edits": "Příspěvky",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 místní editace|$1 místní editace|$1 místních editací|0=Žádné místní editace}}",
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 za posledních 24 hodin}})",
 	"ipinfo-property-no-data": "Není dostupné",
+	"ipinfo-property-no-access": "Přístup zamítnut",
 	"ipinfo-widget-error-default": "Informace o IP se nepodařilo načíst.",
 	"ipinfo-widget-error-no-data": "Od $1 nejsou dostupné žádné údaje pro tuto IP adresu.",
 	"ipinfo-widget-error-wrong-ip": "Poskytnutá IP adresa neodpovídala protokolovacímu záznamu či revizi.",
@@ -68,5 +88,6 @@
 	"logentry-ipinfo-view_popup": "$1 si {{GENDER:$2|prohlédl|prohlédla}} vyskakovací okno IP informací k $3. $4.",
 	"ipinfo-change-access-level-enable": "{{GENDER:$1|povolil|povolila}}",
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|zakázal|zakázala}}",
-	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|svůj}} vlastní přístup k IPInfo"
+	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|svůj}} vlastní přístup k IPInfo",
+	"ipinfo-deleted-edits-url-text": "Smazané příspěvky"
 }
