@@ -16,6 +16,7 @@
 	"ipinfo-property-value-connectiontype-cableordsl": "Kabel/DSL",
 	"ipinfo-property-value-connectiontype-cellular": "Mobil",
 	"ipinfo-property-value-usertype-cellular": "Mobil",
+	"ipinfo-property-value-usertype-government": "Offentlig myndighed",
 	"ipinfo-property-value-usertype-residential": "Bolig",
 	"ipinfo-property-value-proxytype-ispublicproxy": "Offentlig proxy",
 	"ipinfo-property-value-proxytype-isresidentialproxy": "Boligproxy",
