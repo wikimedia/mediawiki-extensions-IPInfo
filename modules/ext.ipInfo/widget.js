@@ -316,7 +316,7 @@ ipInfoWidget.prototype.generatePropertyMarkup = function (
  * @param {string|null} connectionType
  * @return {string|null}
  */
-ipInfoWidget.prototype.getConnectionTypes = function ( connectionType ) {
+ipInfoWidget.prototype.getConnectionType = function ( connectionType ) {
 	if ( connectionType ) {
 		// * ipinfo-property-value-connectiontype-cableordsl
 		// * ipinfo-property-value-connectiontype-cellular
@@ -350,6 +350,45 @@ ipInfoWidget.prototype.getUserTypes = function ( userType ) {
 		// * ipinfo-property-value-usertype-school
 		// * ipinfo-property-value-usertype-traveler
 		return mw.msg( 'ipinfo-property-value-usertype-' + userType.replace( /_/g, '' ) );
+	}
+	return null;
+};
+
+/**
+ * @param {Array} risks
+ * @return {string|null}
+ */
+ipInfoWidget.prototype.getRisks = function ( risks ) {
+	// See https://docs.spur.us/data-types?id=risk-enums
+	// * ipinfo-property-value-risk-callbackproxy
+	// * ipinfo-property-value-risk-geomismatch
+	// * ipinfo-property-value-risk-loginbruteforce
+	// * ipinfo-property-value-risk-tunnel
+	// * ipinfo-property-value-risk-webscraping
+	// * ipinfo-property-value-risk-unknown
+	if ( risks.length ) {
+		return risks.map( function ( risk ) {
+			return mw.msg( 'ipinfo-property-value-risk-' + risk.replace( /_/g, '' ).toLowerCase() );
+		} );
+	}
+	return null;
+};
+
+/**
+ * @param {Array} connectionTypes
+ * @return {string|null}
+ */
+ipInfoWidget.prototype.getConnectionTypes = function ( connectionTypes ) {
+	// See https://docs.spur.us/data-types?id=client-enums
+	// * ipinfo-property-value-connectiontype-desktop
+	// * ipinfo-property-value-connectiontype-headless
+	// * ipinfo-property-value-connectiontype-iot
+	// * ipinfo-property-value-connectiontype-mobile
+	// * ipinfo-property-value-connectiontype-unknown
+	if ( connectionTypes.length ) {
+		return connectionTypes.map( function ( connectionType ) {
+			return mw.msg( 'ipinfo-property-value-connectiontype-' + connectionType.toLowerCase() );
+		} );
 	}
 	return null;
 };

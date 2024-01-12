@@ -68,9 +68,37 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 				.text( mw.msg( 'ipinfo-deleted-edits-url-text' ) ) );
 	}
 
-	var $proxyTypes = this.getProxyTypes( info.data[ 'ipinfo-source-geoip2' ].proxyType );
-	var connectionTypes = this.getConnectionTypes( info.data[ 'ipinfo-source-geoip2' ].connectionType );
-	var userType = this.getUserTypes( info.data[ 'ipinfo-source-geoip2' ].userType );
+	// IPoid-provided data
+	var behaviors = info.data[ 'ipinfo-source-ipoid' ].behaviors;
+	if ( behaviors ) {
+		if ( behaviors.length ) {
+			behaviors = behaviors.join( '</br>' );
+		} else {
+			behaviors = null;
+		}
+	}
+	var risks = info.data[ 'ipinfo-source-ipoid' ].risks;
+	risks = risks ? this.getRisks( info.data[ 'ipinfo-source-ipoid' ].risks ) : risks;
+	risks = risks ? risks.join( '<br />' ) : risks;
+	var connectionTypes = info.data[ 'ipinfo-source-ipoid' ].connectionTypes;
+	connectionTypes = connectionTypes ? this.getConnectionTypes( info.data[ 'ipinfo-source-ipoid' ].connectionTypes ) : connectionTypes;
+	connectionTypes = connectionTypes ? connectionTypes.join( '<br />' ) : connectionTypes;
+	var tunnelOperators = info.data[ 'ipinfo-source-ipoid' ].tunnelOperators;
+	if ( tunnelOperators ) {
+		if ( tunnelOperators.length ) {
+			tunnelOperators = tunnelOperators.join( '</br>' );
+		} else {
+			tunnelOperators = null;
+		}
+	}
+	var proxies = info.data[ 'ipinfo-source-ipoid' ].proxies;
+	if ( proxies ) {
+		if ( proxies.length ) {
+			proxies = proxies.join( '</br>' );
+		} else {
+			proxies = null;
+		}
+	}
 
 	var ipversion = mw.util.isIPv4Address( info.subject, true ) ?
 		mw.msg( 'ipinfo-value-ipversion-ipv4' ) :
@@ -91,20 +119,35 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 		).append(
 			$( '<div>' ).addClass( 'ext-ipinfo-widget-properties-col' ).append(
 				this.generatePropertyMarkup(
-					'connectiontype',
+					'behaviors',
+					behaviors,
+					mw.msg( 'ipinfo-property-label-behaviors' ),
+					mw.msg( 'ipinfo-property-tooltip-behaviors' ) ),
+				this.generatePropertyMarkup(
+					'risks',
+					risks,
+					mw.msg( 'ipinfo-property-label-risks' ),
+					mw.msg( 'ipinfo-property-tooltip-risks' ) ),
+				this.generatePropertyMarkup(
+					'connectionTypes',
 					connectionTypes,
-					mw.msg( 'ipinfo-property-label-connectiontype' ),
-					mw.msg( 'ipinfo-property-tooltip-connectiontype' ) ),
+					mw.msg( 'ipinfo-property-label-connectiontypes' ),
+					mw.msg( 'ipinfo-property-tooltip-connectiontypes' ) ),
 				this.generatePropertyMarkup(
-					'usertype',
-					userType,
-					mw.msg( 'ipinfo-property-label-usertype' ),
-					mw.msg( 'ipinfo-property-tooltip-usertype' ) ),
+					'tunnelOperators',
+					tunnelOperators,
+					mw.msg( 'ipinfo-property-label-tunneloperators' ),
+					mw.msg( 'ipinfo-property-tooltip-tunneloperators' ) ),
 				this.generatePropertyMarkup(
-					'proxytypes',
-					$proxyTypes,
-					mw.msg( 'ipinfo-property-label-proxytypes' ),
-					mw.msg( 'ipinfo-property-tooltip-proxytypes' )
+					'proxies',
+					proxies,
+					mw.msg( 'ipinfo-property-label-proxies' ),
+					mw.msg( 'ipinfo-property-tooltip-proxies' ) ),
+				this.generatePropertyMarkup(
+					'userCount',
+					info.data[ 'ipinfo-source-ipoid' ].numUsersOnThisIP,
+					mw.msg( 'ipinfo-property-label-usercount' ),
+					mw.msg( 'ipinfo-property-tooltip-usercount' )
 				)
 			)
 		).append(
