@@ -66,7 +66,7 @@
 	"ipinfo-property-tooltip-proxytypes": "Proxies hide IP addresses. In some cases this happens automatically like for residential or corporate proxies, in other cases it's done intentionally to mask the origin of the IP address.",
 	"ipinfo-property-tooltip-connectiontype": "The technology through which they’re connecting to the internet.",
 	"ipinfo-property-tooltip-usertype": "The kind of entity that owns the internet connection.",
-	"ipinfo-property-tooltip-behaviors": "Specific types of activity devices on this IP Address have engaged in or have been previously affiliated with.",
+	"ipinfo-property-tooltip-behaviors": "Specific types of activities that devices on this IP Address have engaged in or have been previously affiliated with.",
 	"ipinfo-property-tooltip-risks": "Risks that Spur has determined based on their collection of data. These risks vary and will matter differently based on specific use-cases of Spur Context data.",
 	"ipinfo-property-tooltip-connectiontypes": "The different type of client devices that have been observed on this IP address.",
 	"ipinfo-property-tooltip-tunneloperators": "The provider or operator of the VPN service.",
