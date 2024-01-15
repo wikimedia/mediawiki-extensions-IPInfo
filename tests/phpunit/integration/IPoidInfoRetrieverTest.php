@@ -71,7 +71,8 @@ class IPoidInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 			),
 			$this->makeMockHttpRequestFactory(
 				$this->makeFakeHttpRequest(
-					$body = "{\"127.0.0.1\":{\"ip\":\"127.0.0.1\",\"org\":\"Organization 1\"," .
+					$body = "{\"2001:db8::8a2e:370:7334\":{\"ip\":\"2001:db8::8a2e:370:7334\"," .
+						"\"org\":\"Organization 1\"," .
 						"\"client_count\":10,\"types\":[\"UNKNOWN\"],\"conc_city\":\"\"," .
 						"\"conc_state\":\"\",\"conc_country\":\"\",\"countries\":0," .
 						"\"location_country\":\"VN\",\"risks\":[]," .
@@ -82,7 +83,7 @@ class IPoidInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 			),
 			$this->createmock( LoggerInterface::class )
 		);
-		$info = $infoRetriever->retrieveFromIP( '127.0.0.1' );
+		$info = $infoRetriever->retrieveFromIP( '2001:0db8:0000:0000:0000:8a2e:0370:7334' );
 		$this->assertArrayEquals( [], $info->getBehaviors() );
 		$this->assertArrayEquals( [], $info->getRisks() );
 		$this->assertSame( [ "UNKNOWN" ], $info->getConnectionTypes() );

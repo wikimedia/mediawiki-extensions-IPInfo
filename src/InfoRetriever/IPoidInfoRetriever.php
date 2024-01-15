@@ -6,6 +6,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\IPInfo\Info\IPoidInfo;
 use Psr\Log\LoggerInterface;
+use Wikimedia\IPUtils;
 
 /**
  * Manager for getting information from the IPoid service.
@@ -104,8 +105,9 @@ class IPoidInfoRetriever implements InfoRetriever {
 
 		if ( $response->isOK() ) {
 			$content = json_decode( $request->getContent(), true );
-			if ( is_array( $content ) && is_array( $content[$ip] ) ) {
-				$data = $content[$ip];
+			$ipInIpoidFormat = IPUtils::prettifyIP( $ip );
+			if ( is_array( $content ) && is_array( $content[$ipInIpoidFormat] ) ) {
+				$data = $content[$ipInIpoidFormat];
 			} else {
 				$this->logger->debug(
 					"ipoid results were not in the expected format: " . $request->getContent()
