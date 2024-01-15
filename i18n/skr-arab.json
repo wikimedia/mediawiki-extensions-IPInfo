@@ -7,6 +7,8 @@
 	"ipinfo-infobox-title": "آئی پی معلومات",
 	"ipinfo-property-label-location": "محل وقوع",
 	"ipinfo-property-label-asn": "اے ایس این",
+	"ipinfo-property-value-risk-tunnel": "سرنگ",
+	"ipinfo-property-value-connectiontype-unknown": "نامعلوم",
 	"ipinfo-property-label-source": "ماخذ",
 	"ipinfo-active-blocks-url-text": "لاگز",
 	"ipinfo-property-no-data": "دستیاب کائنی",
