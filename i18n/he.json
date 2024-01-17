@@ -66,7 +66,7 @@
 	"ipinfo-property-tooltip-proxytypes": "שרתים מתווכים (פרוקסי) מסתירים כתובות IP. במקרים מסוימים זה קורה אוטומטית, למשל בשביל שרתים מתווכים ביתיים (Residential proxy) או תאגידיים (Corporate proxy), במקרים אחרים זה נעשה כדי להסתיר בכוונה את המקור של כתובת ה־IP",
 	"ipinfo-property-tooltip-connectiontype": "הטכנולוגיה שהם מתחברים לאינטרנט באמצעותה.",
 	"ipinfo-property-tooltip-usertype": "סוג הישות שמחזיקה בבעלות על חיבור האינטרנט.",
-	"ipinfo-property-tooltip-behaviors": "סוגים מסימים של פעילויות שמכשירים בכתובת ה־IP הזאת עסקו בהן או היו קשורים אליהן בעבר.",
+	"ipinfo-property-tooltip-behaviors": "סוגים מסוימים של פעילויות שמכשירים בכתובת ה־IP הזאת עסקו בהן או היו קשורים אליהן בעבר.",
 	"ipinfo-property-tooltip-risks": "סיכונים שחברת Spur זיהתה על סמך איסוף הנתונים שלה. הסיכונים האלה מגוונים ותהיה להם חשיבות שונה בהתבסס על סוגי שימוש מסוימים בנתוני Spur Context.",
 	"ipinfo-property-tooltip-connectiontypes": "הסוגים השונים של מכשירי לקוח שנצפו בכתובת ה־IP הזאת.",
 	"ipinfo-property-tooltip-tunneloperators": "הספק או המפעיל של שירות ה־VPN.",

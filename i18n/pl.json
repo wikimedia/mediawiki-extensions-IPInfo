@@ -67,6 +67,7 @@
 	"ipinfo-property-tooltip-proxytypes": "Serwery proxy ukrywają właściwe adresy IP. W niektórych przypadkach dzieje się to automatycznie, jak w przypadku niektórych osiedlowych czy firmowych serwerów proxy, w innych przypadkach może to być celowe maskowanie pochodzenia adresu IP.",
 	"ipinfo-property-tooltip-connectiontype": "Technologia, za pomocą której łączą się z Internetem.",
 	"ipinfo-property-tooltip-usertype": "Rodzaj podmiotu będącego właścicielem połączenia internetowego.",
+	"ipinfo-property-tooltip-behaviors": "Rodzaje działań, jakie urządzenia korzystające z tego adresu IP wykonywały, bądź z którymi były wcześniej powiązane.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 aktywna blokada|$1 aktywne blokady|$1 aktywnych blokad|0=Brak aktywnych blokad}}",
 	"ipinfo-active-blocks-url-text": "Rejestr",
 	"ipinfo-property-label-edits": "Wkład",
