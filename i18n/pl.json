@@ -22,7 +22,7 @@
 	"ipinfo-property-label-proxytypes": "Prawdziwe IP/proxy",
 	"ipinfo-property-label-behaviors": "Zachowania",
 	"ipinfo-property-label-risks": "Ryzyka",
-	"ipinfo-property-label-connectiontypes": "Rodzaj połączenia",
+	"ipinfo-property-label-connectiontypes": "Rodzaje połączenia",
 	"ipinfo-property-label-tunneloperators": "Administrator tunelu",
 	"ipinfo-property-label-proxies": "Serwery proxy",
 	"ipinfo-property-label-usercount": "Użytkownicy o tym adresie IP",

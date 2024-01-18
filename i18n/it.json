@@ -10,7 +10,7 @@
 	"ipinfo-property-label-location": "Località",
 	"ipinfo-property-label-ipversion": "Versione",
 	"ipinfo-property-label-connectiontype": "Metodo di connessione",
-	"ipinfo-property-label-connectiontypes": "Tipo di connessione",
+	"ipinfo-property-label-connectiontypes": "Tipi di connessione",
 	"ipinfo-property-label-usercount": "Utenti su questo IP",
 	"ipinfo-property-value-usertype-government": "Governo",
 	"ipinfo-property-value-usertype-school": "Scuola",

@@ -34,6 +34,7 @@
 	"ipinfo-property-value-proxytype-islegitimateproxy": "Легитимный прокси",
 	"ipinfo-property-value-proxytype-istorexitnode": "Выходной узел Tor",
 	"ipinfo-property-value-proxytype-ishostingprovider": "Хостинг-провайдер",
+	"ipinfo-property-value-risk-tunnel": "Тоннель",
 	"ipinfo-property-label-source": "Источник",
 	"ipinfo-property-label-active-blocks": "Активные блокировки",
 	"ipinfo-property-tooltip-proxytypes": "Прокси скрывают IP-адреса. В некоторых случаях это происходит автоматически, например, для жилых или корпоративных прокси; в других случаях это делается намеренно, чтобы скрыть происхождение IP-адреса.",
