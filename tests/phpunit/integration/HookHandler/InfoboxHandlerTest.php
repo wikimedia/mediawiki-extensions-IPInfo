@@ -2,6 +2,7 @@
 
 namespace MediaWiki\IPInfo\Test\Integration\HookHandler;
 
+use IDBAccessObject;
 use MediaWiki\IPInfo\HookHandler\InfoboxHandler;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\PermissionManager;
@@ -150,7 +151,7 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 					$preference,
 					null,
 					false,
-					UserOptionsLookup::READ_NORMAL,
+					IDBAccessObject::READ_NORMAL,
 					true
 				];
 			},

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\IPInfo\Test\Integration\HookHandler;
 
+use IDBAccessObject;
 use MediaWiki\IPInfo\HookHandler\PopupHandler;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\PermissionManager;
@@ -152,7 +153,7 @@ class PopupHandlerTest extends MediaWikiIntegrationTestCase {
 		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
 		$map = array_map(
 			static function ( $preference ) use ( $user ) {
-				return [ $user, $preference, null, false, UserOptionsLookup::READ_NORMAL, true ];
+				return [ $user, $preference, null, false, IDBAccessObject::READ_NORMAL, true ];
 			},
 			// In case BetaFeatures is loaded
 			array_merge( $preferences, [ 'ipinfo-beta-feature-enable' ] )
