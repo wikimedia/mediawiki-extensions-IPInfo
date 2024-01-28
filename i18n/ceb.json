@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Như Gây Mê"
+		]
+	},
+	"ipinfo-property-label-connectiontypes": "Mga matang sa koneksyon",
+	"ipinfo-property-tooltip-behaviors": "Ang piho nga mga tipo sa mga galamiton sa kalihokan sa kini nga IP adres nakiglambigit o kaniadto kauban.",
+	"ipinfo-property-tooltip-connectiontypes": "Ang lainlaing mga lahi sa mga aparato sa kliyente nga naobserbahan sa kini nga IP address.",
+	"ipinfo-property-tooltip-proxies": "Mga proxy nga naobserbahan sa mga kliyente nga naggamit niini nga IP address. Wala kini magpasabot nga ang tanang trapiko gikan niini nga IP address iya sa niini nga proxy network, kondili nga adunay proxy niini nga IP address."
+}

@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Robby"
+			"Robby",
+			"Volvox"
 		]
 	},
 	"ipinfo-extensionname": "IP Info",
@@ -14,6 +15,9 @@
 	"ipinfo-property-value-usertype-traveler": "Reesender",
 	"ipinfo-property-value-proxytype-isanonymousvpn": "Anonyme VPN",
 	"ipinfo-property-value-proxytype-ispublicproxy": "Ëffentleche Proxy",
+	"ipinfo-property-value-risk-tunnel": "Tunnel",
+	"ipinfo-property-value-risk-unknown": "Onbekannt",
+	"ipinfo-property-value-connectiontype-unknown": "Onbekannt",
 	"ipinfo-property-label-source": "Quell",
 	"ipinfo-property-label-active-blocks": "Aktiv Spären",
 	"ipinfo-active-blocks-url-text": "Logbicher",

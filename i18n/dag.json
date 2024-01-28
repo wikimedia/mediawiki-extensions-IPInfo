@@ -2,9 +2,18 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
+			"Kalakpagh",
 			"Musahfm",
 			"Sir Amugi"
 		]
 	},
-	"ipinfo-desc": "Tim lahabali zaŋ kpa IP ŋmahan gbana"
+	"ipinfo-desc": "Tim lahabali zaŋ kpa IP ŋmahan gbana",
+	"ipinfo-property-label-behaviors": "biɛhisi",
+	"ipinfo-property-label-risks": "barina nima",
+	"ipinfo-property-label-connectiontypes": "Laɣimbu ballibu",
+	"ipinfo-property-value-risk-tunnel": "Kosoli",
+	"ipinfo-property-value-risk-unknown": "hee",
+	"ipinfo-property-value-connectiontype-mobile": "Nuchee baŋa",
+	"ipinfo-property-value-connectiontype-unknown": "Din bi mi",
+	"ipinfo-property-tooltip-connectiontypes": "Nee'dara nima ballibu koŋkoba shɛŋa bɛ ni nya lala \"IP address\" ŋɔ ni."
 }

@@ -1,8 +1,16 @@
 {
 	"@metadata": {
 		"authors": [
+			"Killy95",
 			"Wangombe"
 		]
 	},
+	"ipinfo-property-label-behaviors": "Mwenendo",
+	"ipinfo-property-label-risks": "Hatari",
+	"ipinfo-property-label-connectiontypes": "Aina za uunganisho",
+	"ipinfo-property-value-risk-unknown": "Haijulikani",
+	"ipinfo-property-value-connectiontype-desktop": "Kompyuta ya mezani",
+	"ipinfo-property-value-connectiontype-mobile": "Rununu",
+	"ipinfo-property-value-connectiontype-unknown": "Haijulikani",
 	"ipinfo-blocklist-url-text": "Orodha ya kuzuia"
 }

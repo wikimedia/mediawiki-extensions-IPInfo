@@ -8,6 +8,8 @@
 	"ipinfo-property-label-location": "محل وقوع",
 	"ipinfo-property-label-asn": "اے ایس این",
 	"ipinfo-property-label-behaviors": "کردار",
+	"ipinfo-property-label-risks": "خدشے",
+	"ipinfo-property-value-risk-loginbruteforce": "بروٹ فورس وچ لاگ ان تھیوو",
 	"ipinfo-property-value-risk-tunnel": "سرنگ",
 	"ipinfo-property-value-risk-unknown": "نامعلوم",
 	"ipinfo-property-value-connectiontype-desktop": "ڈیسک ٹاپ",

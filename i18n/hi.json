@@ -11,6 +11,8 @@
 	"ipinfo-property-value-usertype-government": "सरकार",
 	"ipinfo-property-value-usertype-library": "पुस्तकालय",
 	"ipinfo-property-value-usertype-school": "विद्यालय",
+	"ipinfo-property-value-connectiontype-desktop": "डेस्कटॉप",
+	"ipinfo-property-value-connectiontype-unknown": "अज्ञात",
 	"ipinfo-active-blocks-url-text": "लॉग",
 	"ipinfo-property-label-edits": "योगदान",
 	"ipinfo-beta-feature-title": "IP जानकारी",

@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Edith Nwobu",
+			"Johnson milia55",
+			"PreshBliss"
+		]
+	},
+	"ipinfo-property-label-connectiontypes": "Ụdị njikọ",
+	"ipinfo-property-tooltip-behaviors": "Kpọtụrụ\n ụdị nke ọrụ ngwaọrụ na nke a IP adreesị nwere agbadoro aka n'ime ma ọ bụ nwere aburula mbụ mmekọ ya na",
+	"ipinfo-property-tooltip-connectiontypes": "Ụdị ngwaọrụ ndị ahịa dị iche iche ahụrụ na adreesị IP a.",
+	"ipinfo-property-tooltip-proxies": "Ndị nnọchiteanya a hụrụ na ndị ahịa na-eji adreesị IP a. Nke a apụtaghị na okporo ụzọ niile sitere na adreesị IP a bụ nke netwọk proxy a, kama na enwere proxy na adreesụ IP a.",
+	"group-no-ipinfo": "A machiri ndị ojiarụ pụọ na IPINFO"
+}

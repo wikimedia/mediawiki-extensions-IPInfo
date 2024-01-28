@@ -33,6 +33,8 @@
 	"ipinfo-property-value-proxytype-isanonymousvpn": "匿名VPN",
 	"ipinfo-property-value-proxytype-ispublicproxy": "公開プロキシ",
 	"ipinfo-property-value-proxytype-ishostingprovider": "ホスティングプロバイダー",
+	"ipinfo-property-value-connectiontype-mobile": "モバイル",
+	"ipinfo-property-value-connectiontype-unknown": "不明",
 	"ipinfo-property-label-active-blocks": "有効なブロック",
 	"ipinfo-property-tooltip-proxytypes": "プロキシはIPアドレスを隠します。家庭用や企業用のプロキシのように自動的に行われる場合もあれば、IPアドレスの出所を隠すために意図的に行われる場合もあります。",
 	"ipinfo-property-tooltip-connectiontype": "インターネットに接続するために使っている技術の種類。",
