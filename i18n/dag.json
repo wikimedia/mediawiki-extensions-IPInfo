@@ -11,9 +11,12 @@
 	"ipinfo-property-label-behaviors": "biɛhisi",
 	"ipinfo-property-label-risks": "barina nima",
 	"ipinfo-property-label-connectiontypes": "Laɣimbu ballibu",
+	"ipinfo-property-value-risk-geomismatch": "Geo bɛ doli taba",
 	"ipinfo-property-value-risk-tunnel": "Kosoli",
 	"ipinfo-property-value-risk-unknown": "hee",
+	"ipinfo-property-value-connectiontype-headless": "Lahabali zuɣu",
 	"ipinfo-property-value-connectiontype-mobile": "Nuchee baŋa",
 	"ipinfo-property-value-connectiontype-unknown": "Din bi mi",
-	"ipinfo-property-tooltip-connectiontypes": "Nee'dara nima ballibu koŋkoba shɛŋa bɛ ni nya lala \"IP address\" ŋɔ ni."
+	"ipinfo-property-tooltip-connectiontypes": "Nee'dara nima ballibu koŋkoba shɛŋa bɛ ni nya lala \"IP address\" ŋɔ ni.",
+	"ipinfo-property-tooltip-tunneloperators": "Ŋun tira bee ŋun niŋdi VPN tuma."
 }
