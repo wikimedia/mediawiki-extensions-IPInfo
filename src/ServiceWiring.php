@@ -6,6 +6,7 @@ use MediaWiki\IPInfo\InfoRetriever\BlockInfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\ContributionInfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\GeoIp2EnterpriseInfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\GeoLite2InfoRetriever;
+use MediaWiki\IPInfo\InfoRetriever\InfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\IPoidInfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\ReaderFactory;
 use MediaWiki\IPInfo\Logging\LoggerFactory as IPInfoLoggerFactory;
@@ -16,7 +17,7 @@ use MediaWiki\MediaWikiServices;
 // like service wiring files. see T310509
 // @codeCoverageIgnoreStart
 return [
-	'IPInfoGeoLite2InfoRetriever' => static function ( MediaWikiServices $services ) {
+	'IPInfoGeoLite2InfoRetriever' => static function ( MediaWikiServices $services ): InfoRetriever {
 		$config = $services->getMainConfig();
 		if ( $config->get( 'IPInfoGeoIP2EnterprisePath' ) ) {
 			return new GeoIp2EnterpriseInfoRetriever(
@@ -63,7 +64,7 @@ return [
 			$services->getDBLoadBalancerFactory()->getPrimaryDatabase()
 		);
 	},
-	'ReaderFactory' => static function () {
+	'ReaderFactory' => static function (): ReaderFactory {
 		return new ReaderFactory();
 	}
 ];
