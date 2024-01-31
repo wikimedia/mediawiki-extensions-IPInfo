@@ -4,17 +4,16 @@ namespace MediaWiki\IPInfo\InfoRetriever;
 
 use MediaWiki\IPInfo\Info\ContributionInfo;
 use Wikimedia\IPUtils;
-use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 class ContributionInfoRetriever implements InfoRetriever {
-	/** @var IReadableDatabase */
-	private $dbr;
+	private IConnectionProvider $dbProvider;
 
 	/**
-	 * @param IReadableDatabase $dbr
+	 * @param IConnectionProvider $dbProvider
 	 */
-	public function __construct( IReadableDatabase $dbr ) {
-		$this->dbr = $dbr;
+	public function __construct( IConnectionProvider $dbProvider ) {
+		$this->dbProvider = $dbProvider;
 	}
 
 	/**
@@ -30,7 +29,8 @@ class ContributionInfoRetriever implements InfoRetriever {
 	public function retrieveFromIP( string $ip ): ContributionInfo {
 		$hexIP = IPUtils::toHex( $ip );
 
-		$numLocalEdits = $this->dbr->newSelectQueryBuilder()
+		$dbr = $this->dbProvider->getReplicaDatabase();
+		$numLocalEdits = $dbr->newSelectQueryBuilder()
 			->from( 'ip_changes' )
 			->where( [
 					'ipc_hex' => $hexIP,
@@ -40,17 +40,17 @@ class ContributionInfoRetriever implements InfoRetriever {
 			->fetchRowCount();
 
 		$oneDayTS = (int)wfTimestamp( TS_UNIX ) - ( 24 * 60 * 60 );
-		$numRecentEdits = $this->dbr->newSelectQueryBuilder()
+		$numRecentEdits = $dbr->newSelectQueryBuilder()
 			->from( 'ip_changes' )
 			->where( [
 					'ipc_hex' => $hexIP,
-					'ipc_rev_timestamp > ' . $this->dbr->addQuotes( $this->dbr->timestamp( $oneDayTS ) ),
+					'ipc_rev_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( $oneDayTS ) ),
 				]
 			)
 			->caller( __METHOD__ )
 			->fetchRowCount();
 
-		$numDeletedEdits = $this->dbr->newSelectQueryBuilder()
+		$numDeletedEdits = $dbr->newSelectQueryBuilder()
 			->from( 'archive' )
 			->join( 'actor', null, 'actor_id=ar_actor' )
 			->where( [

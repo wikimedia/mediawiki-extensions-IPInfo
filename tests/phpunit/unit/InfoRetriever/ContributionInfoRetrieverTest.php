@@ -6,6 +6,7 @@ use MediaWiki\IPInfo\Info\ContributionInfo;
 use MediaWiki\IPInfo\InfoRetriever\ContributionInfoRetriever;
 use MediaWikiUnitTestCase;
 use Wikimedia\IPUtils;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
@@ -17,7 +18,9 @@ class ContributionInfoRetrieverTest extends MediaWikiUnitTestCase {
 	public function testRetrieveFromIP() {
 		$ip = '1.1.1.1';
 		$expectedIP = IPUtils::toHex( $ip );
+		$provider = $this->createMock( IConnectionProvider::class );
 		$database = $this->createMock( IDatabase::class );
+		$provider->method( 'getReplicaDatabase' )->willReturn( $database );
 		$numLocalEdits = 42;
 		$numRecentEdits = 24;
 		$numDeletedEdits = 10;
@@ -72,7 +75,7 @@ class ContributionInfoRetrieverTest extends MediaWikiUnitTestCase {
 		$database->method( 'selectRowCount' )
 			->will( $this->returnValueMap( $map ) );
 
-		$retriever = new ContributionInfoRetriever( $database );
+		$retriever = new ContributionInfoRetriever( $provider );
 		$this->assertSame( 'ipinfo-source-contributions', $retriever->getName() );
 		$info = $retriever->retrieveFromIP( $ip );
 

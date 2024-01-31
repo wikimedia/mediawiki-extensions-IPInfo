@@ -6,7 +6,7 @@ use MediaWiki\IPInfo\Logging\Logger;
 use MediaWiki\IPInfo\Logging\LoggerFactory;
 use MediaWiki\User\ActorStore;
 use MediaWikiUnitTestCase;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -16,7 +16,7 @@ class LoggerFactoryTest extends MediaWikiUnitTestCase {
 	private function getFactory(): LoggerFactory {
 		return new LoggerFactory(
 			$this->createMock( ActorStore::class ),
-			$this->createMock( IDatabase::class )
+			$this->createMock( IConnectionProvider::class )
 		);
 	}
 

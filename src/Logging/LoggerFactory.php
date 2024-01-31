@@ -3,7 +3,7 @@
 namespace MediaWiki\IPInfo\Logging;
 
 use MediaWiki\User\ActorStore;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 class LoggerFactory {
 
@@ -18,19 +18,18 @@ class LoggerFactory {
 	/** @var ActorStore */
 	private $actorStore;
 
-	/** @var IDatabase */
-	private $dbw;
+	private IConnectionProvider $dbProvider;
 
 	/**
 	 * @param ActorStore $actorStore
-	 * @param IDatabase $dbw
+	 * @param IConnectionProvider $dbProvider
 	 */
 	public function __construct(
 		ActorStore $actorStore,
-		IDatabase $dbw
+		IConnectionProvider $dbProvider
 	) {
 		$this->actorStore = $actorStore;
-		$this->dbw = $dbw;
+		$this->dbProvider = $dbProvider;
 	}
 
 	/**
@@ -42,7 +41,7 @@ class LoggerFactory {
 	) {
 		return new Logger(
 			$this->actorStore,
-			$this->dbw,
+			$this->dbProvider->getPrimaryDatabase(),
 			$delay
 		);
 	}
