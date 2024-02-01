@@ -58,10 +58,10 @@ class ArchivedRevisionHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
-			->will( $this->returnValueMap( [
+			->willReturnMap( [
 				[ $user, 'ipinfo', true ],
 				[ $user, 'deletedhistory', $options['deletedhistory'] ],
-			] ) );
+			] );
 
 		// Ensure other permissions checks pass...
 

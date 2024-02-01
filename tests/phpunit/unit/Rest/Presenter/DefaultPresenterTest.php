@@ -125,7 +125,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 		$user = new UserIdentityValue( 1, 'username' );
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'getUserPermissions' )
-		  ->with( $this->equalTo( $user ) )
+		  ->with( $user )
 		  ->willReturn( [ 'ipinfo-view-basic' ] );
 
 		$this->assertArrayEquals(
@@ -219,8 +219,8 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 		$user = new UserIdentityValue( 1, 'username' );
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'getUserPermissions' )
-		  ->with( $this->equalTo( $user ) )
-		  ->willReturn( [ 'ipinfo-view-full' ] );
+			->with( $user )
+			->willReturn( [ 'ipinfo-view-full' ] );
 
 		$this->assertArrayEquals(
 			$expected,

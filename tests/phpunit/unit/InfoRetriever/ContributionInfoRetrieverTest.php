@@ -73,7 +73,7 @@ class ContributionInfoRetrieverTest extends MediaWikiUnitTestCase {
 				new SelectQueryBuilder( $database )
 			);
 		$database->method( 'selectRowCount' )
-			->will( $this->returnValueMap( $map ) );
+			->willReturnMap( $map );
 
 		$retriever = new ContributionInfoRetriever( $provider );
 		$this->assertSame( 'ipinfo-source-contributions', $retriever->getName() );
