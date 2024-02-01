@@ -9,23 +9,16 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class ContributionInfoRetriever implements InfoRetriever {
 	private IConnectionProvider $dbProvider;
 
-	/**
-	 * @param IConnectionProvider $dbProvider
-	 */
 	public function __construct( IConnectionProvider $dbProvider ) {
 		$this->dbProvider = $dbProvider;
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function getName(): string {
 		return 'ipinfo-source-contributions';
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function retrieveFromIP( string $ip ): ContributionInfo {
 		$hexIP = IPUtils::toHex( $ip );
 

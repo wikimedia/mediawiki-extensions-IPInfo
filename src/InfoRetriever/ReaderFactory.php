@@ -7,7 +7,7 @@ use GeoIp2\Database\Reader;
 
 class ReaderFactory {
 
-	/** @var Reader[] Map of filename to Reader object */
+	/** @var Reader[] Map of filename to the Reader object */
 	private $readers = [];
 
 	/**

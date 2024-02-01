@@ -10,9 +10,9 @@ trait AccessLevelTrait {
 	 * @return ?string null if the user has no rights to see IP information
 	 */
 	public function highestAccessLevel( array $permissions ): ?string {
-		// An ordered list of the access levels for viewing IP infomation, ordered
+		// An ordered list of the access levels for viewing IP information, ordered
 		// from lowest to highest level.
-		// Should be kept up-to-date with DefaultPresenter::VIEWING_RIGHTS
+		// Should be kept up to date with DefaultPresenter::VIEWING_RIGHTS
 		$levels = [
 			'ipinfo-view-basic',
 			'ipinfo-view-full',

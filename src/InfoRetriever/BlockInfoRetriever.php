@@ -7,26 +7,18 @@ use MediaWiki\Block\BlockManager;
 use MediaWiki\IPInfo\Info\BlockInfo;
 
 class BlockInfoRetriever implements InfoRetriever {
-	/** @var BlockManager */
-	private $blockManager;
+	private BlockManager $blockManager;
 
-	/**
-	 * @param BlockManager $blockManager
-	 */
 	public function __construct( BlockManager $blockManager ) {
 		$this->blockManager = $blockManager;
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function getName(): string {
 		return 'ipinfo-source-block';
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function retrieveFromIP( string $ip ): BlockInfo {
 		// Active block(s)
 		$activeBlock = $this->blockManager->getIPBlock( $ip, true );

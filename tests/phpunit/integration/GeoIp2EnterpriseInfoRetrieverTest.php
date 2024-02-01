@@ -44,7 +44,7 @@ class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 			),
 			$readerFactory
 		);
-		$info = $infoRetriever->retrieveFromIP( '127.0.0.1' );
+		$infoRetriever->retrieveFromIP( '127.0.0.1' );
 	}
 
 	public function testNullRetrieveFromIP() {

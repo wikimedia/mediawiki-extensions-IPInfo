@@ -81,9 +81,6 @@ class IPoidInfo {
 		return $this->proxies;
 	}
 
-	/**
-	 * @return int|null
-	 */
 	public function getNumUsersOnThisIP(): ?int {
 		return $this->numUsersOnThisIP;
 	}

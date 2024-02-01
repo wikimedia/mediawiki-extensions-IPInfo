@@ -3,16 +3,10 @@
 namespace MediaWiki\IPInfo\Info;
 
 class Location {
-	/** @var int */
-	private $id;
+	private int $id;
 
-	/** @var string */
-	private $label;
+	private string $label;
 
-	/**
-	 * @param int $id
-	 * @param string $label
-	 */
 	public function __construct(
 		int $id,
 		string $label
@@ -21,16 +15,10 @@ class Location {
 		$this->label = $label;
 	}
 
-	/**
-	 * @return int
-	 */
 	public function getId(): int {
 		return $this->id;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getLabel(): string {
 		return $this->label;
 	}

@@ -3,22 +3,22 @@
 namespace MediaWiki\IPInfo\Info;
 
 class ProxyType {
-	/** @var bool */
+	/** @var bool|null */
 	private $isAnonymousVpn;
 
-	/** @var bool */
+	/** @var bool|null */
 	private $isPublicProxy;
 
-	/** @var bool */
+	/** @var bool|null */
 	private $isResidentialProxy;
 
-	/** @var bool */
+	/** @var bool|null */
 	private $isLegitimateProxy;
 
-	/** @var bool */
+	/** @var bool|null */
 	private $isTorExitNode;
 
-	/** @var bool */
+	/** @var bool|null */
 	private $isHostingProvider;
 
 	/**
@@ -61,11 +61,11 @@ class ProxyType {
 		return $this->isLegitimateProxy;
 	}
 
-	public function isTorExitNode(): bool {
+	public function isTorExitNode(): ?bool {
 		return $this->isTorExitNode;
 	}
 
-	public function isHostingProvider(): bool {
+	public function isHostingProvider(): ?bool {
 		return $this->isHostingProvider;
 	}
 }

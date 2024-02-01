@@ -6,12 +6,10 @@ use Job;
 use MediaWiki\MediaWikiServices;
 
 /**
- * Log when a user access information about an ip
+ * Log when a user accesses information about an ip
  */
 class LogIPInfoAccessJob extends Job {
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function __construct( $title, $params ) {
 		parent::__construct( 'ipinfoLogIPInfoAccess', $params );
 	}

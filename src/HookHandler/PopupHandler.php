@@ -9,16 +9,9 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\Options\UserOptionsLookup;
 
 class PopupHandler implements BeforePageDisplayHook {
-	/** @var PermissionManager */
-	private $permissionManager;
+	private PermissionManager $permissionManager;
+	private UserOptionsLookup $userOptionsLookup;
 
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
-
-	/**
-	 * @param PermissionManager $permissionManager
-	 * @param UserOptionsLookup $userOptionsLookup
-	 */
 	public function __construct(
 		PermissionManager $permissionManager,
 		UserOptionsLookup $userOptionsLookup
@@ -27,9 +20,7 @@ class PopupHandler implements BeforePageDisplayHook {
 		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function onBeforePageDisplay( $out, $skin ): void {
 		// T339861: Don't load on mobile until T268177 is resolved
 		$services = MediaWikiServices::getInstance();

@@ -16,19 +16,8 @@ use Wikimedia\Message\MessageValue;
 
 class ArchivedRevisionHandler extends AbstractRevisionHandler {
 
-	/** @var ArchivedRevisionLookup */
-	private $archivedRevisionLookup;
+	private ArchivedRevisionLookup $archivedRevisionLookup;
 
-	/**
-	 * @param InfoManager $infoManager
-	 * @param ArchivedRevisionLookup $archivedRevisionLookup
-	 * @param PermissionManager $permissionManager
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param UserFactory $userFactory
-	 * @param DefaultPresenter $presenter
-	 * @param JobQueueGroup $jobQueueGroup
-	 * @param LanguageFallback $languageFallback
-	 */
 	public function __construct(
 		InfoManager $infoManager,
 		ArchivedRevisionLookup $archivedRevisionLookup,
@@ -82,14 +71,13 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 		);
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	protected function getRevision( int $id ): ?RevisionRecord {
 		if ( !$this->permissionManager->userHasRight( $this->getAuthority()->getUser(), 'deletedhistory' ) ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'ipinfo-rest-access-denied' ),
-				$this->getAuthority()->getUser()->isRegistered() ? 403 : 401 );
+				$this->getAuthority()->getUser()->isRegistered() ? 403 : 401
+			);
 		}
 
 		return $this->archivedRevisionLookup->getArchivedRevisionRecord( null, $id );

@@ -3,16 +3,10 @@
 namespace MediaWiki\IPInfo\Info;
 
 class Coordinates {
-	/** @var float */
-	private $latitude;
+	private float $latitude;
 
-	/** @var float */
-	private $longitude;
+	private float $longitude;
 
-	/**
-	 * @param float $latitude
-	 * @param float $longitude
-	 */
 	public function __construct(
 		float $latitude,
 		float $longitude
@@ -21,16 +15,10 @@ class Coordinates {
 		$this->longitude = $longitude;
 	}
 
-	/**
-	 * @return float
-	 */
 	public function getLatitude(): float {
 		return $this->latitude;
 	}
 
-	/**
-	 * @return float
-	 */
 	public function getLongitude(): float {
 		return $this->longitude;
 	}

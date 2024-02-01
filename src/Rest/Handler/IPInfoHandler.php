@@ -62,36 +62,20 @@ abstract class IPInfoHandler extends SimpleHandler {
 		]
 	];
 
-	/** @var InfoManager */
-	protected $infoManager;
+	protected InfoManager $infoManager;
 
-	/** @var PermissionManager */
-	protected $permissionManager;
+	protected PermissionManager $permissionManager;
 
-	/** @var UserOptionsLookup */
-	protected $userOptionsLookup;
+	protected UserOptionsLookup $userOptionsLookup;
 
-	/** @var UserFactory */
-	protected $userFactory;
+	protected UserFactory $userFactory;
 
-	/** @var DefaultPresenter */
-	protected $presenter;
+	protected DefaultPresenter $presenter;
 
-	/** @var JobQueueGroup */
-	protected $jobQueueGroup;
+	protected JobQueueGroup $jobQueueGroup;
 
-	/** @var LanguageFallback */
-	protected $languageFallback;
+	protected LanguageFallback $languageFallback;
 
-	/**
-	 * @param InfoManager $infoManager
-	 * @param PermissionManager $permissionManager
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param UserFactory $userFactory
-	 * @param DefaultPresenter $presenter
-	 * @param JobQueueGroup $jobQueueGroup
-	 * @param LanguageFallback $languageFallback
-	 */
 	public function __construct(
 		InfoManager $infoManager,
 		PermissionManager $permissionManager,
@@ -140,7 +124,8 @@ abstract class IPInfoHandler extends SimpleHandler {
 			!$this->userOptionsLookup->getOption( $this->getAuthority()->getUser(), 'ipinfo-beta-feature-enable' ) ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'ipinfo-rest-access-denied' ),
-				$this->getAuthority()->getUser()->isRegistered() ? 403 : 401 );
+				$this->getAuthority()->getUser()->isRegistered() ? 403 : 401
+			);
 		}
 
 		if (
@@ -149,14 +134,17 @@ abstract class IPInfoHandler extends SimpleHandler {
 		) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'ipinfo-rest-access-denied' ),
-				$this->getAuthority()->getUser()->isRegistered() ? 403 : 401 );
+				$this->getAuthority()->getUser()->isRegistered() ? 403 : 401
+			);
 		}
 		$user = $this->userFactory->newFromUserIdentity( $this->getAuthority()->getUser() );
 
 		// Users with blocks on their accounts shouldn't be allowed to view ip info
 		if ( $user->getBlock() ) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'ipinfo-rest-access-denied-blocked-user' ), 403 );
+				new MessageValue( 'ipinfo-rest-access-denied-blocked-user' ),
+				403
+			);
 		}
 
 		$info = $this->getInfo( $id );
@@ -221,9 +209,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 		);
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function getParamSettings() {
 		return [
 			'id' => [

@@ -9,7 +9,7 @@ use Psr\Log\LoggerInterface;
 use Wikimedia\IPUtils;
 
 /**
- * Manager for getting information from the IPoid service.
+ * Manager for getting information from the iPoid service.
  */
 class IPoidInfoRetriever implements InfoRetriever {
 	/**
@@ -19,14 +19,11 @@ class IPoidInfoRetriever implements InfoRetriever {
 		'IPInfoIpoidUrl',
 	];
 
-	/** @var ServiceOptions */
-	private $options;
+	private ServiceOptions $options;
 
-	/** @var HttpRequestFactory */
-	private $httpRequestFactory;
+	private HttpRequestFactory $httpRequestFactory;
 
-	/** @var LoggerInterface */
-	private $logger;
+	private LoggerInterface $logger;
 
 	/**
 	 * @param ServiceOptions $options
@@ -44,9 +41,7 @@ class IPoidInfoRetriever implements InfoRetriever {
 		$this->logger = $logger;
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function getName(): string {
 		return 'ipinfo-source-ipoid';
 	}
@@ -90,10 +85,10 @@ class IPoidInfoRetriever implements InfoRetriever {
 	}
 
 	/**
-	 * Call the ipoid API to get data for an IP address.
+	 * Call the iPoid API to get data for an IP address.
 	 *
 	 * @param string $ip
-	 * @return mixed[] Data returned by ipoid
+	 * @return mixed[] Data returned by iPoid
 	 */
 	private function getData( string $ip ) {
 		$data = [];

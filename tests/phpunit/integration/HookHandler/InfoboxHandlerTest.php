@@ -143,7 +143,6 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 		$accessingUser = $this->createMock( User::class );
 
 		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
-		$map = [];
 		$map = array_map(
 			static function ( $preference ) use ( $accessingUser ) {
 				return [

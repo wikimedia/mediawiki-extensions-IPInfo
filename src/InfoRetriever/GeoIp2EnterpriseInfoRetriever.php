@@ -42,9 +42,7 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 		$this->readerFactory = $readerFactory;
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function getName(): string {
 		return 'ipinfo-source-geoip2';
 	}

@@ -14,19 +14,8 @@ use MediaWiki\User\UserFactory;
 
 class RevisionHandler extends AbstractRevisionHandler {
 
-	/** @var RevisionLookup */
-	private $revisionLookup;
+	private RevisionLookup $revisionLookup;
 
-	/**
-	 * @param InfoManager $infoManager
-	 * @param RevisionLookup $revisionLookup
-	 * @param PermissionManager $permissionManager
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param UserFactory $userFactory
-	 * @param DefaultPresenter $presenter
-	 * @param JobQueueGroup $jobQueueGroup
-	 * @param LanguageFallback $languageFallback
-	 */
 	public function __construct(
 		InfoManager $infoManager,
 		RevisionLookup $revisionLookup,
@@ -80,9 +69,7 @@ class RevisionHandler extends AbstractRevisionHandler {
 		);
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	protected function getRevision( int $id ): ?RevisionRecord {
 		return $this->revisionLookup->getRevisionById( $id );
 	}

@@ -35,7 +35,7 @@ class ContributionInfoRetrieverTest extends MediaWikiUnitTestCase {
 				[
 					'ipc_hex' => $expectedIP
 				],
-				'MediaWiki\IPInfo\InfoRetriever\ContributionInfoRetriever::retrieveFromIP',
+				ContributionInfoRetriever::class . '::retrieveFromIP',
 				[],
 				[],
 				$numLocalEdits,
@@ -47,7 +47,7 @@ class ContributionInfoRetrieverTest extends MediaWikiUnitTestCase {
 					'ipc_hex' => $expectedIP,
 					'ipc_rev_timestamp > 30',
 				],
-				'MediaWiki\IPInfo\InfoRetriever\ContributionInfoRetriever::retrieveFromIP',
+				ContributionInfoRetriever::class . '::retrieveFromIP',
 				[],
 				[],
 				$numRecentEdits,
@@ -56,7 +56,7 @@ class ContributionInfoRetrieverTest extends MediaWikiUnitTestCase {
 				[ 0 => 'archive', 'actor' => 'actor' ],
 				'*',
 				[ 'actor_name' => $ip ],
-				'MediaWiki\IPInfo\InfoRetriever\ContributionInfoRetriever::retrieveFromIP',
+				ContributionInfoRetriever::class . '::retrieveFromIP',
 				[],
 				[ 'actor' => [
 					'JOIN',

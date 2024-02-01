@@ -76,8 +76,7 @@ class LoggerTest extends MediaWikiUnitTestCase {
 					[],
 					[],
 					(int)$isDebounced
-				]
-				,
+				],
 				[
 					[ 'logging' ],
 					[ '*' ],
@@ -94,7 +93,7 @@ class LoggerTest extends MediaWikiUnitTestCase {
 					[],
 					[],
 					(int)$isDebounced
-				]
+				],
 		];
 
 		$database->method( 'selectRow' )

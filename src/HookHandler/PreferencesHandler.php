@@ -13,24 +13,14 @@ use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 
 class PreferencesHandler implements GetPreferencesHook {
-	/** @var PermissionManager */
-	private $permissionManager;
+	private PermissionManager $permissionManager;
 
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
+	private UserOptionsLookup $userOptionsLookup;
 
-	/** @var UserGroupManager */
-	private $userGroupManager;
+	private UserGroupManager $userGroupManager;
 
-	/** @var LoggerFactory */
-	private $loggerFactory;
+	private LoggerFactory $loggerFactory;
 
-	/**
-	 * @param PermissionManager $permissionManager
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param UserGroupManager $userGroupManager
-	 * @param LoggerFactory $loggerFactory
-	 */
 	public function __construct(
 		PermissionManager $permissionManager,
 		UserOptionsLookup $userOptionsLookup,
@@ -43,16 +33,14 @@ class PreferencesHandler implements GetPreferencesHook {
 		$this->loggerFactory = $loggerFactory;
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function onGetPreferences( $user, &$preferences ): void {
 		if ( !$this->permissionManager->userHasRight( $user, 'ipinfo' ) ) {
 			return;
 		}
 
 		$isBetaFeaturesLoaded = ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' );
-		// If the betafeature isn't enabled, do not show preferences checkboxes
+		// If the beta feature isn't enabled, do not show the preference checkbox
 		if ( $isBetaFeaturesLoaded &&
 			!$this->userOptionsLookup->getOption( $user, 'ipinfo-beta-feature-enable' )
 		) {
@@ -99,8 +87,7 @@ class PreferencesHandler implements GetPreferencesHook {
 	 * @param UserIdentity $user
 	 */
 	private function logEvent( $action, $context, $source, $user ) {
-		$eventLoggingLoaded = ExtensionRegistry::getInstance()->isLoaded( 'EventLogging' );
-		if ( !$eventLoggingLoaded ) {
+		if ( !ExtensionRegistry::getInstance()->isLoaded( 'EventLogging' ) ) {
 			return;
 		}
 		EventLogging::submit( 'mediawiki.ipinfo_interaction', [

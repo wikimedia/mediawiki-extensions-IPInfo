@@ -3,21 +3,11 @@
 namespace MediaWiki\IPInfo\Info;
 
 class ContributionInfo {
+	private int $numLocalEdits;
 
-	/** @var int */
-	private $numLocalEdits;
+	private int $numRecentEdits;
+	private int $numDeletedEdits;
 
-	/** @var int */
-	private $numRecentEdits;
-
-	/** @var int */
-	private $numDeletedEdits;
-
-	/**
-	 * @param int $numLocalEdits
-	 * @param int $numRecentEdits
-	 * @param int $numDeletedEdits
-	 */
 	public function __construct(
 		int $numLocalEdits = 0,
 		int $numRecentEdits = 0,
@@ -28,23 +18,14 @@ class ContributionInfo {
 		$this->numDeletedEdits = $numDeletedEdits;
 	}
 
-	/**
-	 * @return int
-	 */
-	public function getnumLocalEdits(): int {
+	public function getNumLocalEdits(): int {
 		return $this->numLocalEdits;
 	}
 
-	/**
-	 * @return int
-	 */
 	public function getNumRecentEdits(): int {
 		return $this->numRecentEdits;
 	}
 
-	/**
-	 * @return int
-	 */
 	public function getNumDeletedEdits(): int {
 		return $this->numDeletedEdits;
 	}

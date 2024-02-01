@@ -33,7 +33,7 @@ class IPoidInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 			$httpRequestFactory,
 			$this->createmock( LoggerInterface::class )
 		);
-		$info = $infoRetriever->retrieveFromIP( '127.0.0.1' );
+		$infoRetriever->retrieveFromIP( '127.0.0.1' );
 	}
 
 	public function testRetrievefromIpBadRequest() {
@@ -46,8 +46,8 @@ class IPoidInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 			),
 			$this->makeMockHttpRequestFactory(
 				$this->makeFakeHttpRequest(
-					$body = '',
-					$responseStatus = 500
+					'',
+					500
 				)
 			),
 			$this->createmock( LoggerInterface::class )
@@ -71,14 +71,14 @@ class IPoidInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 			),
 			$this->makeMockHttpRequestFactory(
 				$this->makeFakeHttpRequest(
-					$body = "{\"2001:db8::8a2e:370:7334\":{\"ip\":\"2001:db8::8a2e:370:7334\"," .
+					"{\"2001:db8::8a2e:370:7334\":{\"ip\":\"2001:db8::8a2e:370:7334\"," .
 						"\"org\":\"Organization 1\"," .
 						"\"client_count\":10,\"types\":[\"UNKNOWN\"],\"conc_city\":\"\"," .
 						"\"conc_state\":\"\",\"conc_country\":\"\",\"countries\":0," .
 						"\"location_country\":\"VN\",\"risks\":[]," .
 						"\"last_updated\":1704295688,\"proxies\":[\"3_PROXY\",\"1_PROXY\"]," .
 						"\"behaviors\":[],\"tunnels\":[]}}",
-					$responseStatus = 200
+					200
 				)
 			),
 			$this->createmock( LoggerInterface::class )

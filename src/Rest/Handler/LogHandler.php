@@ -19,19 +19,8 @@ use Wikimedia\Rdbms\IConnectionProvider;
 
 class LogHandler extends IPInfoHandler {
 
-	/** @var IConnectionProvider */
-	private $dbProvider;
+	private IConnectionProvider $dbProvider;
 
-	/**
-	 * @param InfoManager $infoManager
-	 * @param IConnectionProvider $dbProvider
-	 * @param PermissionManager $permissionManager
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param UserFactory $userFactory
-	 * @param DefaultPresenter $presenter
-	 * @param JobQueueGroup $jobQueueGroup
-	 * @param LanguageFallback $languageFallback
-	 */
 	public function __construct(
 		InfoManager $infoManager,
 		IConnectionProvider $dbProvider,
@@ -85,36 +74,40 @@ class LogHandler extends IPInfoHandler {
 		);
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	protected function getInfo( int $id ): array {
 		$dbr = $this->dbProvider->getReplicaDatabase();
 		$entry = DatabaseLogEntry::newFromId( $id, $dbr );
 
 		if ( !$entry ) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'ipinfo-rest-log-nonexistent' ), 404 );
+				new MessageValue( 'ipinfo-rest-log-nonexistent' ),
+				404
+			);
 		}
 
 		if ( !LogEventsList::userCanViewLogType( $entry->getType(), $this->getAuthority() ) ) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'ipinfo-rest-log-denied' ), 403 );
+				new MessageValue( 'ipinfo-rest-log-denied' ),
+				403
+			);
 		}
 
-		// A log entry logs an action performed by a performer, on a target. Either of the
-		// performer or target may be an IP address. This returns info about whichever is an
+		// A log entry logs an action performed by a performer, on a target. Either the
+		// performer, or the target may be an IP address. This returns info about whichever is an
 		// IP address, or both, if both are IP addresses.
 		$canAccessPerformer = LogEventsList::userCanBitfield( $entry->getDeleted(), LogPage::DELETED_USER,
 			$this->getAuthority() );
 		$canAccessTarget = LogEventsList::userCanBitfield( $entry->getDeleted(), LogPage::DELETED_ACTION,
 			$this->getAuthority() );
 
-		// If the user cannot access the performer, nor the target, throw an error since there wont
+		// If the user cannot access the performer, nor the target, throw an error since there won't
 		// be anything to respond with.
 		if ( !$canAccessPerformer && !$canAccessTarget ) {
 			throw new LocalizedHttpException(
-				new MessageValue( 'ipinfo-rest-log-denied' ), 403 );
+				new MessageValue( 'ipinfo-rest-log-denied' ),
+				403
+			);
 		}
 
 		$performer = $entry->getPerformerIdentity()->getName();
@@ -126,8 +119,10 @@ class LogHandler extends IPInfoHandler {
 		$showPerformer = IPUtils::isValid( $performer ) && $canAccessPerformer;
 		$showTarget = IPUtils::isValid( $target ) && $canAccessTarget;
 		if ( $showPerformer ) {
-			$info[] = $this->presenter->present( $this->infoManager->retrieveFromIP( $performer ),
-				$this->getAuthority()->getUser() );
+			$info[] = $this->presenter->present(
+				$this->infoManager->retrieveFromIP( $performer ),
+				$this->getAuthority()->getUser()
+			);
 		}
 		if ( $showTarget ) {
 			$info[] = $this->presenter->present( $this->infoManager->retrieveFromIP( $target ),
@@ -139,7 +134,9 @@ class LogHandler extends IPInfoHandler {
 			// @TODO Allow extensions (like CheckUser) to either pass without a value
 			//      (which would result in a 404) or throw a fatal (which could result in a 403).
 			throw new LocalizedHttpException(
-				new MessageValue( 'ipinfo-rest-log-registered' ), 404 );
+				new MessageValue( 'ipinfo-rest-log-registered' ),
+				404
+			);
 		}
 
 		return $info;

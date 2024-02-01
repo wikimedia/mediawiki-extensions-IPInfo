@@ -15,14 +15,14 @@ use Wikimedia\Assert\Assert;
 class DefaultPresenter {
 	use AccessLevelTrait;
 
-	/** @var PermissionManager */
-	private $permissionManager;
+	private PermissionManager $permissionManager;
 
 	/**
-	 * The viewing privileges of each level. Each describe themselves
-	 * independently of one another.
+	 * The viewing privileges of each level.
 	 *
-	 * Keys should be kept up-to-date with AccessLevelTrait
+	 * Each describes themselves independently of one another.
+	 *
+	 * Keys should be kept up to date with AccessLevelTrait
 	 *
 	 * @var array
 	 */
@@ -88,17 +88,17 @@ class DefaultPresenter {
 		$level = $this->highestAccessLevel( $this->permissionManager->getUserPermissions( $user ) );
 		$viewableProperties = $level ? self::VIEWING_RIGHTS[$level] : [];
 
-		foreach ( $info['data'] as $source => $info ) {
+		foreach ( $info['data'] as $source => $itemInfo ) {
 			$data = [];
 
-			if ( $info instanceof Info ) {
-				$data += $this->presentInfo( $info );
-			} elseif ( $info instanceof IPoidInfo ) {
-				$data += $this->presentIPoidInfo( $info );
-			} elseif ( $info instanceof BlockInfo ) {
-				$data += $this->presentBlockInfo( $info );
-			} elseif ( $info instanceof ContributionInfo ) {
-				$data += $this->presentContributionInfo( $info, $user );
+			if ( $itemInfo instanceof Info ) {
+				$data += $this->presentInfo( $itemInfo );
+			} elseif ( $itemInfo instanceof IPoidInfo ) {
+				$data += $this->presentIPoidInfo( $itemInfo );
+			} elseif ( $itemInfo instanceof BlockInfo ) {
+				$data += $this->presentBlockInfo( $itemInfo );
+			} elseif ( $itemInfo instanceof ContributionInfo ) {
+				$data += $this->presentContributionInfo( $itemInfo, $user );
 			}
 
 			// Unset all properties the user doesn't have access to before writing to $result

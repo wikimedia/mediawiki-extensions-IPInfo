@@ -8,13 +8,11 @@ use MediaWiki\MediaWikiServices;
 use Message;
 
 class IPInfoLogFormatter extends LogFormatter {
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
 
-		// Update the logline depending on if the user had their access enabled or disabled
+		// Update the log line depending on if the user had their access enabled or disabled
 		if ( $this->entry->getSubtype() === 'change_access' ) {
 			// Message keys used:
 			// - 'ipinfo-change-access-level-enable'
@@ -26,15 +24,15 @@ class IPInfoLogFormatter extends LogFormatter {
 			$this->entry->getSubtype() === 'view_infobox' ||
 			$this->entry->getSubtype() === 'view_popup'
 		) {
-			// Replace IP user page link to IP contributions page link.
-			// Don't use LogFormatter::makeUserLink, because that adds tools links.
+			// Replace an IP user page link with IP contributions page link.
+			// Don't use the LogFormatter::makeUserLink function, because that adds tools links.
 			$ip = $this->entry->getTarget()->getText();
 			$userFactory = MediaWikiServices::getInstance()->getUserFactory();
 			$params[2] = Message::rawParam(
 				Linker::userLink( 0, $userFactory->newAnonymous( $ip ) )
 			);
 
-			// Replace access level parameter with message
+			// Replace access level parameter with the message.
 			// Message keys used:
 			// - 'ipinfo-log-access-level-ipinfo-view-basic'
 			// - 'ipinfo-log-access-level-ipinfo-view-full'

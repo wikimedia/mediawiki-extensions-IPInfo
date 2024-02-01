@@ -15,15 +15,10 @@ class LoggerFactory {
 	 */
 	private const DEFAULT_DEBOUNCE_DELAY = 24 * 60 * 60;
 
-	/** @var ActorStore */
-	private $actorStore;
+	private ActorStore $actorStore;
 
 	private IConnectionProvider $dbProvider;
 
-	/**
-	 * @param ActorStore $actorStore
-	 * @param IConnectionProvider $dbProvider
-	 */
 	public function __construct(
 		ActorStore $actorStore,
 		IConnectionProvider $dbProvider

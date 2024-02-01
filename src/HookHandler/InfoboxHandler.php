@@ -18,16 +18,10 @@ class InfoboxHandler implements
 	SpecialContributionsBeforeMainOutputHook,
 	SpecialPageBeforeExecuteHook
 {
-	/** @var PermissionManager */
-	private $permissionManager;
+	private PermissionManager $permissionManager;
 
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
+	private UserOptionsLookup $userOptionsLookup;
 
-	/**
-	 * @param PermissionManager $permissionManager
-	 * @param UserOptionsLookup $userOptionsLookup
-	 */
 	public function __construct(
 		PermissionManager $permissionManager,
 		UserOptionsLookup $userOptionsLookup
@@ -37,11 +31,10 @@ class InfoboxHandler implements
 	}
 
 	/**
-	 * This fuction is used to add an info box on Special:Contributions and Special:DeletedContributions
+	 * This function is used to add an info box on Special:Contributions and Special:DeletedContributions
 	 *
 	 * @param string $username Username or IP Address
 	 * @param SpecialPage $sp
-	 * @return void
 	 */
 	private function addInfoBox( $username, $sp ) {
 		// T309363: hide the panel on mobile until T268177 is resolved
@@ -96,9 +89,7 @@ class InfoboxHandler implements
 		$out->addHTML( $panelLayout );
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function onSpecialContributionsBeforeMainOutput( $id, $user, $sp ) {
 		if ( $sp->getName() !== 'Contributions' ) {
 			return;
@@ -107,9 +98,7 @@ class InfoboxHandler implements
 		$this->addInfoBox( $user->getName(), $sp );
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function onSpecialPageBeforeExecute( $sp, $subPage ) {
 		if ( $sp->getName() !== 'DeletedContributions' ) {
 			return;

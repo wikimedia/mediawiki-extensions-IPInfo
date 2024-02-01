@@ -61,20 +61,11 @@ class Logger {
 	 */
 	public const LOG_TYPE = 'ipinfo';
 
-	/**
-	 * @var ActorStore
-	 */
-	private $actorStore;
+	private ActorStore $actorStore;
 
-	/**
-	 * @var IDatabase
-	 */
-	private $dbw;
+	private IDatabase $dbw;
 
-	/**
-	 * @var int
-	 */
-	private $delay;
+	private int $delay;
 
 	/**
 	 * @param ActorStore $actorStore
@@ -174,7 +165,7 @@ class Logger {
 			return;
 		}
 
-		$logline = $this->dbw->newSelectQueryBuilder()
+		$logLine = $this->dbw->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'logging' )
 			->where( [
@@ -192,7 +183,7 @@ class Logger {
 			] )
 			->fetchRow();
 
-		if ( !$logline ) {
+		if ( !$logLine ) {
 			$this->log( $performer, $ip, $action, $params, $timestamp );
 		}
 	}
@@ -225,7 +216,7 @@ class Logger {
 
 	/**
 	 * There is no `LogEntryFactory` (or `Logger::insert()` method) in MediaWiki Core to inject
-	 * via the constructor so use this method to isolate the creation of `LogEntry` objects during
+	 * via the constructor, so use this method to isolate the creation of `LogEntry` objects during
 	 * testing.
 	 *
 	 * @private

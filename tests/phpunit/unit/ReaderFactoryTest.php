@@ -4,7 +4,6 @@ namespace MediaWiki\IPInfo\Test\Unit;
 
 use GeoIp2\Database\Reader;
 use MediaWiki\IPInfo\InfoRetriever\ReaderFactory;
-use MediaWiki\Languages\LanguageFallback;
 use MediaWikiUnitTestCase;
 
 /**
@@ -13,7 +12,7 @@ use MediaWikiUnitTestCase;
  */
 class ReaderFactoryTest extends MediaWikiUnitTestCase {
 	private function getFactory() {
-		return new ReaderFactory( $this->createMock( LanguageFallback::class ) );
+		return new ReaderFactory();
 	}
 
 	public function testCreateFactory() {

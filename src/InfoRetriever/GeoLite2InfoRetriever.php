@@ -20,11 +20,9 @@ class GeoLite2InfoRetriever implements InfoRetriever {
 		'IPInfoGeoLite2Prefix',
 	];
 
-	/** @var ServiceOptions */
-	private $options;
+	private ServiceOptions $options;
 
-	/** @var ReaderFactory */
-	private $readerFactory;
+	private ReaderFactory $readerFactory;
 
 	/**
 	 * @param ServiceOptions $options
@@ -39,9 +37,7 @@ class GeoLite2InfoRetriever implements InfoRetriever {
 		$this->readerFactory = $readerFactory;
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function getName(): string {
 		return 'ipinfo-source-geoip2';
 	}
@@ -209,7 +205,7 @@ class GeoLite2InfoRetriever implements InfoRetriever {
 	}
 
 	/**
-	 * Connection type not available with GeoLite2
+	 * Connection type is not available with GeoLite2
 	 * See https://www.maxmind.com/en/solutions/geoip2-enterprise-product-suite/enterprise-database
 	 * @param string $ip
 	 * @return null
