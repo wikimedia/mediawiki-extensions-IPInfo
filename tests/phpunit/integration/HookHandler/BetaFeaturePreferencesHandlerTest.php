@@ -12,6 +12,7 @@ use MediaWikiIntegrationTestCase;
  */
 class BetaFeaturePreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 	public function testOnGetBetaFeaturePreferences() {
+		$this->markTestSkippedIfExtensionNotLoaded( 'BetaFeatures' );
 		$this->overrideMwServices(
 			null,
 			[
