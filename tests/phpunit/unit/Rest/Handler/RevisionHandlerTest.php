@@ -11,9 +11,11 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
+use MediaWiki\Rest\Validator\JsonBodyValidator;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Tests\Rest\Handler\HandlerTestTrait;
+use MediaWiki\Tests\Unit\MockServiceDependenciesTrait;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
@@ -28,25 +30,29 @@ use Wikimedia\Message\MessageValue;
 class RevisionHandlerTest extends MediaWikiUnitTestCase {
 
 	use HandlerTestTrait;
+	use MockServiceDependenciesTrait;
 
 	/**
 	 * @param array $options
 	 * @return RevisionHandler
 	 */
 	private function getRevisionHandler( array $options = [] ): RevisionHandler {
-		return new RevisionHandler( ...array_values( array_merge(
-			[
-				'infoManager' => $this->createMock( InfoManager::class ),
-				'revisionLookup' => $this->createMock( RevisionLookup::class ),
-				'permissionManager' => $this->createMock( PermissionManager::class ),
-				'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
-				'userFactory' => $this->createMock( UserFactory::class ),
-				'userIdentity' => $this->createMock( UserIdentity::class ),
-				'presenter' => $this->createMock( DefaultPresenter::class ),
-				'jobQueueGroup' => $this->createMock( JobQueueGroup::class )
-			],
-			$options
-		) ) );
+		return $this->getMockBuilder( RevisionHandler::class )
+			->setConstructorArgs( array_values( array_merge(
+				[
+					'infoManager' => $this->createMock( InfoManager::class ),
+					'revisionLookup' => $this->createMock( RevisionLookup::class ),
+					'permissionManager' => $this->createMock( PermissionManager::class ),
+					'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
+					'userFactory' => $this->createMock( UserFactory::class ),
+					'userIdentity' => $this->createMock( UserIdentity::class ),
+					'presenter' => $this->createMock( DefaultPresenter::class ),
+					'jobQueueGroup' => $this->createMock( JobQueueGroup::class )
+				],
+				$options
+			) ) )
+			->onlyMethods( [ 'validateToken' ] )
+			->getMock();
 	}
 
 	/**
@@ -345,5 +351,24 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 				$this->createMock( JobQueueGroup::class )
 			)
 		);
+	}
+
+	public function testBodyValidator() {
+		// We cannot contract a IPInfoHandler directly as the class is abstract, so use RevisionHandler
+		// which shouldn't override the body validator method.
+		/** @var RevisionHandler $handler */
+		$objectUnderTest = $this->newServiceInstance( RevisionHandler::class, [] );
+		$bodyValidator = $objectUnderTest->getBodyValidator( 'application/json' );
+		$this->assertInstanceOf(
+			JsonBodyValidator::class,
+			$bodyValidator
+		);
+	}
+
+	public function testBodyValidatorThrowsOnUnsupportedContentType() {
+		$this->expectException( LocalizedHttpException::class );
+		/** @var RevisionHandler $handler */
+		$objectUnderTest = $this->newServiceInstance( RevisionHandler::class, [] );
+		$objectUnderTest->getBodyValidator( 'application/xml' );
 	}
 }

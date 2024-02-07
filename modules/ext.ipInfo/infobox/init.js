@@ -6,7 +6,8 @@ var ip = mw.config.get( 'wgIPInfoTarget' ),
 	api = new mw.Api(),
 	viewedAgreement = false,
 	timerStart,
-	eventLogger = require( '../log.js' );
+	eventLogger = require( '../log.js' ),
+	postToRestApi = require( '../rest.js' );
 
 if ( ip ) {
 	eventLogger.logIpCopy();
@@ -60,10 +61,7 @@ if ( ip ) {
 		}
 
 		var ipPanelWidget = new IpInfoInfoboxWidget(
-			$.get(
-				mw.config.get( 'wgScriptPath' ) +
-					'/rest.php/ipinfo/v0/revision/' + revId + '?dataContext=infobox'
-			).then( function ( response ) {
+			postToRestApi( 'revision', revId, 'infobox' ).then( function ( response ) {
 				var i, data;
 				// Array.find is only available from ES6
 				for ( i = 0; i < response.info.length; i++ ) {

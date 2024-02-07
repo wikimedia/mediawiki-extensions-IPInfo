@@ -15,11 +15,14 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
+use MediaWiki\Rest\TokenAwareHandlerTrait;
+use MediaWiki\Rest\Validator\JsonBodyValidator;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 use RequestContext;
 use Wikimedia\IPUtils;
+use Wikimedia\Message\DataMessageValue;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -27,6 +30,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
 class LogHandler extends SimpleHandler {
 
 	use AccessLevelTrait;
+	use TokenAwareHandlerTrait;
 
 	/**
 	 * An array of contexts and the data
@@ -178,6 +182,9 @@ class LogHandler extends SimpleHandler {
 				new MessageValue( 'ipinfo-rest-access-denied-blocked-user' ), 403 );
 		}
 
+		// Validate the CSRF token.
+		$this->validateToken();
+
 		$db = $this->loadBalancer->getConnection( DB_REPLICA );
 		$entry = DatabaseLogEntry::newFromId( $id, $db );
 
@@ -275,6 +282,41 @@ class LogHandler extends SimpleHandler {
 		$response = $this->getResponseFactory()->createJson( [ 'info' => $info ] );
 		$response->setHeader( 'Cache-Control', 'private, max-age=86400' );
 		return $response;
+	}
+
+	/**
+	 * Validates the CSRF token for the request. Throws an exception if the
+	 * token is not valid.
+	 *
+	 * @return void
+	 * @throws LocalizedHttpException
+	 */
+	protected function validateToken() {
+		$submittedToken = $this->getToken();
+		$sessionToken = null;
+		if ( $this->getSession()->hasToken() ) {
+			$sessionToken = $this->getSession()->getToken();
+		}
+		if ( !( $sessionToken && $sessionToken->match( $submittedToken ) ) ) {
+			if ( !$submittedToken ) {
+				throw new LocalizedHttpException(
+					DataMessageValue::new( 'rest-badtoken-missing', [], 'rest-badtoken' ), 403
+				);
+			}
+			// The user submitted a token, the session had a token, but they didn't match.
+			throw new LocalizedHttpException( $this->getBadTokenMessage(), 403 );
+		}
+	}
+
+	/** @inheritDoc */
+	public function getBodyValidator( $contentType ) {
+		if ( $contentType !== 'application/json' ) {
+			throw new LocalizedHttpException(
+				new MessageValue( 'rest-unsupported-content-type', [ $contentType ] ),
+				415
+			);
+		}
+		return new JsonBodyValidator( $this->getTokenParamDefinition() );
 	}
 
 	/**

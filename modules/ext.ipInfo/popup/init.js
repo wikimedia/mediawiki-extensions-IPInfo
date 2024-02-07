@@ -1,5 +1,6 @@
 var IpInfoPopupWidget = require( './widget.js' );
 var eventLogger = require( '../log.js' );
+var postToRestApi = require( '../rest.js' );
 
 mw.hook( 'wikipage.content' ).add( function ( $content ) {
 	eventLogger.logIpCopy();
@@ -47,12 +48,7 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 		button.once( 'click', function () {
 			var popupIpInfoDelayStart = mw.now();
 			button.popup.$body.append( new IpInfoPopupWidget(
-
-				$.get(
-					mw.config.get( 'wgScriptPath' ) +
-						'/rest.php/ipinfo/v0/' +
-						type + '/' + id + '?dataContext=popup'
-				).then( function ( response ) {
+				postToRestApi( type, id, 'popup' ).then( function ( response ) {
 					var i, data;
 
 					// Array.find is only available from ES6

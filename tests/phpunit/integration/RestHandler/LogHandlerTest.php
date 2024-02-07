@@ -37,19 +37,22 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @return LogHandler
 	 */
 	private function getLogHandler( array $options = [] ): LogHandler {
-		return new LogHandler( ...array_values( array_merge(
-			[
-				'infoManager' => $this->createMock( InfoManager::class ),
-				'loadBalancer' => $this->createMock( ILoadBalancer::class ),
-				'permissionManager' => $this->createMock( PermissionManager::class ),
-				'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
-				'userFactory' => $this->createMock( UserFactory::class ),
-				'userIdentity' => $this->createMock( UserIdentity::class ),
-				'presenter' => $this->createMock( DefaultPresenter::class ),
-				'jobQueueGroup' => $this->createMock( JobQueueGroup::class ),
-			],
-			$options
-		) ) );
+		return $this->getMockBuilder( LogHandler::class )
+			->setConstructorArgs( array_values( array_merge(
+				[
+					'infoManager' => $this->createMock( InfoManager::class ),
+					'loadBalancer' => $this->createMock( ILoadBalancer::class ),
+					'permissionManager' => $this->createMock( PermissionManager::class ),
+					'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
+					'userFactory' => $this->createMock( UserFactory::class ),
+					'userIdentity' => $this->createMock( UserIdentity::class ),
+					'presenter' => $this->createMock( DefaultPresenter::class ),
+					'jobQueueGroup' => $this->createMock( JobQueueGroup::class ),
+				],
+				$options
+			) ) )
+			->onlyMethods( [ 'validateToken' ] )
+			->getMock();
 	}
 
 	/**
