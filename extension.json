@@ -45,7 +45,7 @@
 	"RestRoutes": [
 		{
 			"path": "/ipinfo/v0/revision/{id}",
-			"method": "GET",
+			"method": "POST",
 			"services": [
 				"IPInfoInfoManager",
 				"RevisionLookup",
@@ -59,7 +59,7 @@
 		},
 		{
 			"path": "/ipinfo/v0/archivedrevision/{id}",
-			"method": "GET",
+			"method": "POST",
 			"services": [
 				"IPInfoInfoManager",
 				"DBLoadBalancer",
@@ -74,7 +74,7 @@
 		},
 		{
 			"path": "/ipinfo/v0/log/{id}",
-			"method": "GET",
+			"method": "POST",
 			"services": [
 				"IPInfoInfoManager",
 				"DBLoadBalancer",
@@ -141,6 +141,7 @@
 			"packageFiles": [
 				"dispatcher.js",
 				"log.js",
+				"rest.js",
 				"infobox/init.js",
 				"infobox/widget.js",
 				"popup/init.js",

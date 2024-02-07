@@ -155,9 +155,14 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 		$permissionManager->method( 'userHasRight' )
 			->willReturn( true );
 
+		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
+		$userOptionsLookup->method( 'getOption' )
+			->willReturn( true );
+
 		$handler = $this->getPreferencesHandler( [
 			'loggerFactory' => $loggerFactory,
-			'permissionManager' => $permissionManager
+			'permissionManager' => $permissionManager,
+			'userOptionsLookup' => $userOptionsLookup,
 		] );
 
 		$preferences = [];
