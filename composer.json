@@ -21,5 +21,10 @@
 	},
 	"require": {
 		"geoip2/geoip2": "^2.11.0"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
 	}
 }
