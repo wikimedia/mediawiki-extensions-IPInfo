@@ -6,7 +6,8 @@ var ip = mw.util.prettifyIP( mw.config.get( 'wgRelevantUserName' ) ),
 	api = new mw.Api(),
 	viewedAgreement = false,
 	timerStart,
-	eventLogger = require( '../log.js' );
+	eventLogger = require( '../log.js' ),
+	postToRestApi = require( '../rest.js' );
 
 if ( ip ) {
 	eventLogger.logIpCopy();
@@ -64,13 +65,7 @@ if ( ip ) {
 			'revision' : 'archivedrevision';
 
 		var ipPanelWidget = new IpInfoInfoboxWidget(
-			$.get(
-				mw.config.get( 'wgScriptPath' ) +
-				'/rest.php/ipinfo/v0/' + endpoint +
-				'/' + revId +
-				'?dataContext=infobox' +
-				'&language=' + mw.config.values.wgUserLanguage
-			).then( function ( response ) {
+			postToRestApi( endpoint, revId, 'infobox' ).then( function ( response ) {
 				var i, data;
 				// Array.find is only available from ES6
 				for ( i = 0; i < response.info.length; i++ ) {

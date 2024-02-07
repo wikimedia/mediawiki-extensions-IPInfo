@@ -13,6 +13,9 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
+use MediaWiki\Rest\TokenAwareHandlerTrait;
+use MediaWiki\Rest\Validator\JsonBodyValidator;
+use MediaWiki\Rest\Validator\UnsupportedContentTypeBodyValidator;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
@@ -22,6 +25,7 @@ use Wikimedia\ParamValidator\ParamValidator;
 abstract class IPInfoHandler extends SimpleHandler {
 
 	use AccessLevelTrait;
+	use TokenAwareHandlerTrait;
 
 	/**
 	 * An array of contexts and the data
@@ -153,6 +157,9 @@ abstract class IPInfoHandler extends SimpleHandler {
 				new MessageValue( 'ipinfo-rest-access-denied-blocked-user' ), 403 );
 		}
 
+		// Validate the CSRF token. We shouldn't need to allow anon CSRF tokens.
+		$this->validateToken();
+
 		$info = $this->getInfo( $id );
 		$userLang = strtolower( $this->getValidatedParams()['language'] );
 		$langCodes = array_unique( array_merge(
@@ -215,9 +222,15 @@ abstract class IPInfoHandler extends SimpleHandler {
 		);
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
+	public function getBodyValidator( $contentType ) {
+		if ( $contentType !== 'application/json' ) {
+			return new UnsupportedContentTypeBodyValidator( $contentType );
+		}
+		return new JsonBodyValidator( $this->getTokenParamDefinition() );
+	}
+
+	/** @inheritDoc */
 	public function getParamSettings() {
 		return [
 			'id' => [
