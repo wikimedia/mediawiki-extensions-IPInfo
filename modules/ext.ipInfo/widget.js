@@ -140,7 +140,6 @@ ipInfoWidget.prototype.getLocation = function ( location, country ) {
 };
 
 /**
- *
  * @param {Array|null|undefined} countryNames
  * @param {Array|null|undefined} languageFallback
  * @return {string|undefined}
