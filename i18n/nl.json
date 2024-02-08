@@ -3,6 +3,7 @@
 		"authors": [
 			"Mainframe98",
 			"McDutchie",
+			"Mitsjol",
 			"Romaine",
 			"Sjoerddebruin"
 		]
@@ -17,6 +18,7 @@
 	"ipinfo-property-label-connectiontype": "Verbindingsmethode",
 	"ipinfo-property-label-usertype": "Verbindingseigenaar",
 	"ipinfo-property-label-proxytypes": "Echt IP/Proxy",
+	"ipinfo-property-label-risks": "Risico's",
 	"ipinfo-property-value-connectiontype-cableordsl": "Kabel/DSL",
 	"ipinfo-property-value-connectiontype-cellular": "Mobiel",
 	"ipinfo-property-value-connectiontype-corporate": "Zakelijk",
@@ -43,6 +45,7 @@
 	"ipinfo-property-value-proxytype-islegitimateproxy": "Legitieme proxy",
 	"ipinfo-property-value-proxytype-istorexitnode": "Tor-exitnode",
 	"ipinfo-property-value-proxytype-ishostingprovider": "Hostingprovider",
+	"ipinfo-property-value-connectiontype-unknown": "Onbekend",
 	"ipinfo-property-label-source": "Bron",
 	"ipinfo-property-label-active-blocks": "Actieve blokkades",
 	"ipinfo-property-tooltip-proxytypes": "Proxy’s verbergen IP-adressen. In sommige gevallen gebeurt dit automatisch, zoals bij particuliere of zakelijke proxy’s. In andere gevallen wordt het opzettelijk gedaan om de oorsprong van het IP-adres te maskeren.",
