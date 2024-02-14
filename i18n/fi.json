@@ -5,6 +5,7 @@
 			"MITO",
 			"Maantietäjä",
 			"Markus Mikkonen",
+			"Pyscowicz",
 			"SMAUG",
 			"Stryn"
 		]
@@ -45,6 +46,10 @@
 	"ipinfo-property-value-proxytype-islegitimateproxy": "Legitiimi proxy-palvelin",
 	"ipinfo-property-value-proxytype-istorexitnode": "Tor-verkon viimeinen solmu",
 	"ipinfo-property-value-proxytype-ishostingprovider": "Verkkoisännöinnin tarjoaja",
+	"ipinfo-property-value-risk-tunnel": "Tunneli",
+	"ipinfo-property-value-risk-unknown": "Tuntematon",
+	"ipinfo-property-value-connectiontype-mobile": "Mobiili",
+	"ipinfo-property-value-connectiontype-unknown": "Tuntematon",
 	"ipinfo-property-label-source": "Lähde",
 	"ipinfo-property-label-active-blocks": "Aktiiviset estot",
 	"ipinfo-property-tooltip-proxytypes": "Välityspalvelimet piilottavat IP-osoitteet. Välityspalvelimen käyttö voi tapahtua automaattisesti esimerkiksi asuinkohteen tai yrityksen välityspalvelimen takia tai tarkoituksella oman IP-osoitteen piilottamiseksi.",
@@ -56,6 +61,7 @@
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 paikallinen muokkaus|$1 paikallista muokkausta|0=Ei paikallisia muokkauksia}}",
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 viimeisten 24 tunnin aikana}})",
 	"ipinfo-property-no-data": "Ei saatavilla",
+	"ipinfo-property-no-access": "Ei pääsyä",
 	"ipinfo-widget-error-default": "IP-tietoja ei voitu hakea.",
 	"ipinfo-widget-error-no-data": "Tälle IP-osoitteelle ei ole tietoja lähteestä $1.",
 	"ipinfo-widget-error-wrong-ip": "Annettu IP-osoite ei vastannut lokia tai versiota.",
@@ -81,6 +87,7 @@
 	"action-ipinfo": "hakea tietoja IP-osoitteista, jotka on liitetty versioihin tai lokimerkintöihin",
 	"action-ipinfo-view-log": "nähdä lokia siitä, ketkä ovat katsoneet IP-tietoja",
 	"right-ipinfo-view-log": "Nähdä loki siitä, ketkä ovat katsoneet IP-tietoja",
+	"group-no-ipinfo": "IP-tietotyökalulla estetyt käyttäjät",
 	"ipinfo-log-name": "IP-tietoloki",
 	"ipinfo-log-access-level-ipinfo-view-basic": "Rajoitettu pääsy",
 	"ipinfo-log-access-level-ipinfo-view-full": "Täysi pääsy",
@@ -88,5 +95,6 @@
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|poisti käytöstä}}",
 	"logentry-ipinfo-change_access": "$1 $4 IP-tietoon pääsyn",
 	"ipinfo-property-tooltip-asn": "Yksilöllinen tunniste, joita osoitetaan alueille ja edelleen organisaatioille, kuten hallituksille ja internet-palveluntarjoajille.",
-	"ipinfo-blocklist-url-text": "Lista estoista"
+	"ipinfo-blocklist-url-text": "Lista estoista",
+	"ipinfo-deleted-edits-url-text": "Poistetut muokkaukset"
 }
