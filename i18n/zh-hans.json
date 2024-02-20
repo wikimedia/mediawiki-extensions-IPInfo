@@ -18,7 +18,8 @@
 			"Tr jason",
 			"Wuqianye",
 			"列维劳德",
-			"沈澄心"
+			"沈澄心",
+			"Anterdc99"
 		]
 	},
 	"ipinfo-extensionname": "IP信息",
@@ -119,6 +120,6 @@
 	"log-action-filter-ipinfo-view_popup": "在弹出框中查看的数据",
 	"ipinfo-property-tooltip-asn": "网络唯一标识，分配给一个地区或一个组织，例如政府或互联网服务提供商",
 	"ipinfo-blocklist-url-text": "封禁列表",
-	"ipinfo-value-deleted-edits": "$1笔已删除编辑",
+	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1笔已删除编辑|0=没有已删除编辑}}",
 	"ipinfo-deleted-edits-url-text": "删除的贡献"
 }
