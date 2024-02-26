@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Hijerovit",
 			"MaGa",
 			"Neptune, the Mystic",
 			"Ponor"
@@ -28,7 +29,7 @@
 	"ipinfo-property-value-usertype-cellular": "Mobilna mreža",
 	"ipinfo-property-value-usertype-dialup": "Dialup",
 	"ipinfo-property-value-usertype-government": "Državna uprava",
-	"ipinfo-property-value-usertype-hosting": "Hosting",
+	"ipinfo-property-value-usertype-hosting": "Poslužitelj",
 	"ipinfo-property-value-usertype-library": "Knjižnica",
 	"ipinfo-property-value-usertype-military": "Vojska",
 	"ipinfo-property-value-usertype-router": "Usmjerivač",
