@@ -2,10 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Snævar",
-			"Sveinn í Felli"
+			"Sveinn í Felli",
+			"Stefán Örvar Sigmundsson"
 		]
 	},
-	"ipinfo-infobox-title": "Upplýsingar um vistfang",
+	"ipinfo-infobox-title": "IP-upplýsingar",
 	"ipinfo-property-label-location": "Staðsetning",
 	"ipinfo-property-label-ipversion": "Útgáfa",
 	"ipinfo-property-label-organization": "Félagssamtök",
@@ -20,7 +21,7 @@
 	"ipinfo-property-value-proxytype-ishostingprovider": "Hýsingaraðili",
 	"ipinfo-property-label-source": "Uppruni",
 	"ipinfo-property-label-active-blocks": "Virk bönn",
-	"ipinfo-property-tooltip-proxytypes": "Proxy er milliliður sem felur vistföng. Í sumum tilfellum gerist þetta sjálfkrafa eins og með íbúa eða fyrirtækja proxy, í öðrum tilfellum er það gert viljandi til að fela uppruna vistfangsins.",
+	"ipinfo-property-tooltip-proxytypes": "Staðgenglar fela IP-staðföng. Í sumum tilfellum gerist þetta sjálfkrafa eins og fyrir heima- eða fyrirtækjastaðgengla, í öðrum tilfellum er þetta gert viljandi til að fela uppruna IP-staðfangsins.",
 	"ipinfo-property-tooltip-connectiontype": "Tæknin sem þau nota til að tengjast netinu.",
 	"ipinfo-property-tooltip-usertype": "Félagið sem á nettenginguna.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 virkt bann|$1 virk bönn|0=Engin virk bönn}}",
@@ -30,12 +31,12 @@
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 á síðustu 24 klukkutímunum}})",
 	"ipinfo-property-no-data": "Ekki tiltækt",
 	"ipinfo-property-no-access": "Enginn aðgangur",
-	"ipinfo-widget-error-default": "Vistfangið fannst ekki.",
-	"ipinfo-widget-error-no-data": "Engin gögn eru til fyrir þetta vistfang frá $1.",
-	"ipinfo-widget-error-wrong-ip": "Uppgefið vistfang passaði ekki við aðgerðarskrá eða breytingu.",
+	"ipinfo-widget-error-default": "Ekki var hægt að sækja IP-upplýsingarnar.",
+	"ipinfo-widget-error-no-data": "Það eru engin gögn fyrir þetta IP-staðfang frá $1.",
+	"ipinfo-widget-error-wrong-ip": "IP-staðfangið sem gefin var upp samsvaraði ekki atburðaskrá eða útgáfu.",
 	"ipinfo-preference-use-agreement": "Ég samþykki að nota þessar upplýsingar við vöktun og við vinnu gegn skemmdarverkum.",
-	"ipinfo-infobox-use-terms": "IP vistfangar tólið notar MaxMind gagnabankann til að sýna upplýsingar eins og staðsetningu, proxy og hversu mörg tæki eru að deila þessari IP tölu.",
-	"ipinfo-infobox-submit-agreement": "Virkja vistfanga upplýsinga tólið",
+	"ipinfo-infobox-use-terms": "IP-upplýsingaverkfærið notar MaxMind-gagnagrunninn til að sýna upplýsingar eins og staðsetningu, staðfengil og hversu mörg tæki deila þessu IP-staðfangi.",
+	"ipinfo-infobox-submit-agreement": "Virkja IP-upplýsingaverkfæri",
 	"ipinfo-change-access-level-enable": "{{GENDER:$1|virkjaði}}",
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|gerði óvirkt}}",
 	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|hans|hennar|þeirra}} eigin aðgang að IPInfo"

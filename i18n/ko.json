@@ -4,7 +4,8 @@
 			"Bluehill",
 			"Kwj2772",
 			"SeoJeongHo",
-			"Ykhwong"
+			"Ykhwong",
+			"Dr1t jg"
 		]
 	},
 	"ipinfo-extensionname": "IP 정보",
@@ -49,7 +50,7 @@
 	"ipinfo-property-tooltip-proxytypes": "프록시는 IP 주소를 숨깁니다. 일부는 가정 또는 기업 프록시에서 자동으로 발생하는 경우가 있고, 그 외에는 IP 주소의 근원을 의도적으로 숨기기 위해 수행된 경우가 있습니다.",
 	"ipinfo-property-tooltip-connectiontype": "인터넷에 연결된 기술입니다.",
 	"ipinfo-property-tooltip-usertype": "인터넷 연결을 소유하는 독립체의 유형입니다.",
-	"ipinfo-value-active-blocks": "{{PLURAL:$1|활성화된 차단 $1개|활성화된 차단 $1개|0=활성화된 차단 없음}}",
+	"ipinfo-value-active-blocks": "{{{{PLURAL:$1|$1 활성 차단|$1 활성 차단들|0=활성 차단 없음}}",
 	"ipinfo-active-blocks-url-text": "로그",
 	"ipinfo-property-label-edits": "기여",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|로컬 편집 $1회|0=로컬 편집 없음}}",
@@ -100,6 +101,7 @@
 	"logentry-ipinfo-view_popup": "$1님이 $3 문서의 IP 정보의 팝업을 {{GENDER:$2|보았습니다}}. $4.",
 	"ipinfo-change-access-level-enable": "{{GENDER:$1|활성화됨}}",
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|비활성화됨}}",
+	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|그|그녀|그들}} 자신의 IP 정보 접속 권리",
 	"log-action-filter-ipinfo": "IP 정보 운영 유형:",
 	"log-action-filter-ipinfo-change_access": "도구가 활성화 또는 비활성화됨",
 	"log-action-filter-ipinfo-view_infobox": "정보 상자에서 보이는 데이터",
