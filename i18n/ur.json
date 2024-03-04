@@ -44,7 +44,7 @@
 	"ipinfo-property-value-proxytype-istorexitnode": "ٹور ایگزٹ نوڈ",
 	"ipinfo-property-value-proxytype-ishostingprovider": "ہوسٹنگ فراہم کنندہ",
 	"ipinfo-property-label-source": "ماخذ",
-	"ipinfo-property-label-active-blocks": "فعال مسدود",
+	"ipinfo-property-label-active-blocks": "عائد کردہ پابندیاں",
 	"ipinfo-property-tooltip-proxytypes": "پراکسی آئی پی پتے چھپاتی ہیں۔ کچھ معاملات میں یہ خود بہ خود ہوتا ہے جیسا کہ رہائشی یا کارپوریٹ پراکسیوں کے لیے، دوسرے معاملات میں یہ جان بوجھ کر آئی پی پتے کی اصلیت کو چھپانے کے لیے کیا جاتا ہے۔",
 	"ipinfo-property-tooltip-connectiontype": "وہ ٹیکنالوجی جس کے ذریعے وہ انٹرنیٹ سے منسلک ہو رہے ہیں۔",
 	"ipinfo-property-tooltip-usertype": "اس ادارے کی نوعیت جو انٹرنیٹ کنکشن کا مالک ہے۔",
@@ -88,5 +88,5 @@
 	"log-action-filter-ipinfo-view_infobox": "معلومات کے خانے میں دیکھا گیا ڈیٹا",
 	"log-action-filter-ipinfo-view_popup": "پاپ اپ میں دیکھا گیا ڈیٹا",
 	"ipinfo-property-tooltip-asn": "کسی علاقے اور اس کے بعد حکومتوں اور آئی ایس پی ایس جیسی تنظیموں کو تفویض کردہ نیٹ ورکوں کے لیے ایک منفرد شناخت کنندہ",
-	"ipinfo-blocklist-url-text": "مسدود پتوں کی فہرست"
+	"ipinfo-blocklist-url-text": "فہرست پابندی"
 }
