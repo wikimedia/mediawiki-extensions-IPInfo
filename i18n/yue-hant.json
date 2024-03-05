@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Winston Sung"
+			"Winston Sung",
+			"H78c67c"
 		]
 	},
 	"ipinfo-desc": "提供關於IP地址嘅資訊。",
@@ -29,7 +30,7 @@
 	"prefs-ipinfo": "IP資訊",
 	"action-ipinfo": "攞有關附加喺修訂版本或日誌項目嘅IP地址資訊",
 	"right-ipinfo": "攞有關附加喺修訂版本或日誌項目嘅IP地址資訊",
-	"ipinfo-change-access-level-enable": "開咗",
-	"ipinfo-change-access-level-disable": "閂咗",
-	"logentry-ipinfo-change_access": "$1{{GENDER:$2|$4}}佢自己嘅IP資訊存取權"
+	"ipinfo-change-access-level-enable": "{{GENDER:$1|開咗}}",
+	"ipinfo-change-access-level-disable": "{{GENDER:$1|閂咗}}",
+	"logentry-ipinfo-change_access": "$1$4{{GENDER:$2|佢}}自己嘅IP資訊存取權"
 }
