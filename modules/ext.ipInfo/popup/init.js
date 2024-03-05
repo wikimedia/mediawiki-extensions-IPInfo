@@ -50,10 +50,11 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 			button.popup.$body.append( new IpInfoPopupWidget(
 				postToRestApi( type, id, 'popup' ).then( function ( response ) {
 					var i, data;
+					var sanitizedIp = mw.util.sanitizeIP( ip );
 
 					// Array.find is only available from ES6
 					for ( i = 0; i < response.info.length; i++ ) {
-						if ( response.info[ i ].subject === mw.util.prettifyIP( ip ) ) {
+						if ( mw.util.sanitizeIP( response.info[ i ].subject ) === sanitizedIp ) {
 							data = response.info[ i ];
 							break;
 						}

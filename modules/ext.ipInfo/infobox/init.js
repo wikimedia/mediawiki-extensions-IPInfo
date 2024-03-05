@@ -67,9 +67,10 @@ if ( ip ) {
 		var ipPanelWidget = new IpInfoInfoboxWidget(
 			postToRestApi( endpoint, revId, 'infobox' ).then( function ( response ) {
 				var i, data;
+				var sanitizedIp = mw.util.sanitizeIP( targetIp );
 				// Array.find is only available from ES6
 				for ( i = 0; i < response.info.length; i++ ) {
-					if ( response.info[ i ].subject === targetIp ) {
+					if ( mw.util.sanitizeIP( response.info[ i ].subject ) === sanitizedIp ) {
 						data = response.info[ i ];
 						break;
 					}

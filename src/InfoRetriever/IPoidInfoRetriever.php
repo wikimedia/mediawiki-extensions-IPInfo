@@ -100,9 +100,13 @@ class IPoidInfoRetriever implements InfoRetriever {
 
 		if ( $response->isOK() ) {
 			$content = json_decode( $request->getContent(), true );
-			$ipInIpoidFormat = IPUtils::prettifyIP( $ip );
-			if ( is_array( $content ) && is_array( $content[$ipInIpoidFormat] ) ) {
-				$data = $content[$ipInIpoidFormat];
+			if ( is_array( $content ) ) {
+				$sanitizedIp = IPUtils::sanitizeIP( $ip );
+				foreach ( $content as $key => $value ) {
+					if ( $sanitizedIp === IPUtils::sanitizeIP( $key ) ) {
+						$data = $value;
+					}
+				}
 			} else {
 				$this->logger->debug(
 					"ipoid results were not in the expected format: " . $request->getContent()
