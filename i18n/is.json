@@ -24,7 +24,7 @@
 	"ipinfo-property-tooltip-proxytypes": "Staðgenglar fela IP-staðföng. Í sumum tilfellum gerist þetta sjálfkrafa eins og fyrir heima- eða fyrirtækjastaðgengla, í öðrum tilfellum er þetta gert viljandi til að fela uppruna IP-staðfangsins.",
 	"ipinfo-property-tooltip-connectiontype": "Tæknin sem þau nota til að tengjast netinu.",
 	"ipinfo-property-tooltip-usertype": "Félagið sem á nettenginguna.",
-	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 virkt bann|$1 virk bönn|0=Engin virk bönn}}",
+	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 virk hindrun|$1 virkar hindranir|0=Engar virkar hindranir}}",
 	"ipinfo-active-blocks-url-text": "Aðgerðaskrá",
 	"ipinfo-property-label-edits": "Framlög",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 staðbundin breyting|$1 staðbundnar breytingar|0=engar staðbundnar breytingar}}",
