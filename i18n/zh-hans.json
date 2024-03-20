@@ -3,6 +3,7 @@
 		"authors": [
 			")8",
 			"Anterdc99",
+			"Cookai1205",
 			"Cwek",
 			"Diskdance",
 			"GuoPC",
@@ -82,7 +83,7 @@
 	"ipinfo-property-tooltip-connectiontype": "连接到互联网所采用的技术。",
 	"ipinfo-property-tooltip-usertype": "拥有互联网接入的实体。",
 	"ipinfo-property-tooltip-behaviors": "这个IP地址上之前或现在活跃中的的设备类型。",
-	"ipinfo-property-tooltip-risks": "Spur根据其收集的数据确定的风险。 根据Spur数据的具体用例，这些风险各不相同，而且影响也不同。",
+	"ipinfo-property-tooltip-risks": "Spur根据其收集的数据确定的风险。根据Spur数据的具体用例，这些风险各不相同，而且影响也不同。",
 	"ipinfo-property-tooltip-connectiontypes": "在此IP地址上观察到的客户端设备的不同类型。",
 	"ipinfo-property-tooltip-tunneloperators": "VPN服务的提供商或运营商。",
 	"ipinfo-property-tooltip-proxies": "在使用此IP地址的客户端上观察到的代理。这并不意味着来自该IP地址的所有流量都属于该代理网络，而是意味着该IP地址上有一个代理。",
