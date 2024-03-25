@@ -43,7 +43,7 @@
 	"ipinfo-property-value-proxytype-istorexitnode": "Tor çıxış qovşağı",
 	"ipinfo-property-value-proxytype-ishostingprovider": "Hostinq provayderi",
 	"ipinfo-property-label-source": "Mənbə",
-	"ipinfo-property-label-active-blocks": "Qüvvədə olan bloklamalar",
+	"ipinfo-property-label-active-blocks": "Aktiv bloklar",
 	"ipinfo-property-tooltip-proxytypes": "Proksilər IP ünvanlarını gizlədir. Bəzi hallarda bu, yaşayış və ya korporativ proksilər kimi avtomatik olaraq baş verir, digər hallarda isə IP ünvanının mənşəyini maskalamaq üçün qəsdən edilir.",
 	"ipinfo-property-tooltip-connectiontype": "Onların internetə qoşulduğu texnologiya.",
 	"ipinfo-property-tooltip-usertype": "İnternet bağlantısına sahib olan qurum növü.",
