@@ -37,7 +37,7 @@ class ContributionInfoRetriever implements InfoRetriever {
 			->from( 'ip_changes' )
 			->where( [
 					'ipc_hex' => $hexIP,
-					'ipc_rev_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( $oneDayTS ) ),
+					$dbr->expr( 'ipc_rev_timestamp', '>', $dbr->timestamp( $oneDayTS ) ),
 				]
 			)
 			->caller( __METHOD__ )

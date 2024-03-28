@@ -6,6 +6,7 @@ use MediaWiki\IPInfo\Info\ContributionInfo;
 use MediaWiki\IPInfo\InfoRetriever\ContributionInfoRetriever;
 use MediaWikiUnitTestCase;
 use Wikimedia\IPUtils;
+use Wikimedia\Rdbms\Expression;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -25,8 +26,10 @@ class ContributionInfoRetrieverTest extends MediaWikiUnitTestCase {
 		$numRecentEdits = 24;
 		$numDeletedEdits = 10;
 
-		$database->method( 'addQuotes' )
-			->willReturn( 30 );
+		$expr = $this->createMock( Expression::class );
+		$expr->method( 'toSql' )->willReturn( 'ipc_rev_timestamp > 30' );
+		$database->method( 'expr' )
+			->willReturn( $expr );
 
 		$map = [
 			[
@@ -45,7 +48,7 @@ class ContributionInfoRetrieverTest extends MediaWikiUnitTestCase {
 				'*',
 				[
 					'ipc_hex' => $expectedIP,
-					'ipc_rev_timestamp > 30',
+					$expr,
 				],
 				ContributionInfoRetriever::class . '::retrieveFromIP',
 				[],
