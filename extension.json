@@ -283,7 +283,12 @@
 		"ipinfo": "ipinfo-log-header"
 	},
 	"LogActionsHandlers": {
-		"ipinfo/*": "MediaWiki\\IPInfo\\Logging\\IPInfoLogFormatter"
+		"ipinfo/*": {
+			"class": "MediaWiki\\IPInfo\\Logging\\IPInfoLogFormatter",
+			"services": [
+				"UserFactory"
+			]
+		}
 	},
 	"LogRestrictions": {
 		"ipinfo": "ipinfo-view-log"
