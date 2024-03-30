@@ -10,6 +10,8 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\ParameterAssertionException;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * Defines the API for the component responsible for logging the following interactions:
@@ -174,12 +176,12 @@ class Logger {
 				'log_actor' => $actorId,
 				'log_namespace' => NS_USER,
 				'log_title' => $ip,
-				'log_timestamp > ' . $this->dbw->addQuotes( $this->dbw->timestamp( $timestampMinusDelay ) ),
-				'log_params' . $this->dbw->buildLike(
+				$this->dbw->expr( 'log_timestamp', '>', $this->dbw->timestamp( $timestampMinusDelay ) ),
+				$this->dbw->expr( 'log_params', IExpression::LIKE, new LikeValue(
 					$this->dbw->anyString(),
 					$params['4::level'],
 					$this->dbw->anyString()
-				),
+				) ),
 			] )
 			->fetchRow();
 

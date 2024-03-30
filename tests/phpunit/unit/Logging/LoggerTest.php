@@ -9,6 +9,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
+use Wikimedia\Rdbms\Expression;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
@@ -51,13 +52,13 @@ class LoggerTest extends MediaWikiUnitTestCase {
 		$database->method( 'newSelectQueryBuilder' )
 			->willReturn( $queryBuilder );
 
-		// We don't need to stub IDatabase::timestamp() since it is wrapped in
-		// a call to IDatabase::addQuotes().
-		$database->method( 'addQuotes' )
-			->willReturn( 42 );
-
-		$database->method( 'buildLike' )
-			->willReturn( ' LIKE \'%ipinfo-view-full%\'' );
+		$exprTimestamp = $this->createMock( Expression::class );
+		$exprTimestamp->method( 'toSql' )->willReturn( 'log_timestamp > 42' );
+		$exprParams = $this->createMock( Expression::class );
+		$exprParams->method( 'toSql' )->willReturn( "log_params LIKE '%ipinfo-view-full%'" );
+		$database->method( 'expr' )
+			->willReturnOnConsecutiveCalls( $exprTimestamp, $exprParams );
+		$database->method( 'anyString' )->willReturn( '%' );
 
 		$map = [
 				[
@@ -69,8 +70,8 @@ class LoggerTest extends MediaWikiUnitTestCase {
 						"log_actor" => 2,
 						"log_namespace" => 2,
 						"log_title" => "127.0.0.1",
-						0 => "log_timestamp > 42",
-						1 => "log_params LIKE '%ipinfo-view-full%'",
+						$exprTimestamp,
+						$exprParams,
 					],
 					SelectQueryBuilder::class,
 					[],
@@ -86,8 +87,8 @@ class LoggerTest extends MediaWikiUnitTestCase {
 						"log_actor" => 2,
 						"log_namespace" => 2,
 						"log_title" => "127.0.0.1",
-						0 => "log_timestamp > 42",
-						1 => "log_params LIKE '%ipinfo-view-full%'",
+						$exprTimestamp,
+						$exprParams,
 					],
 					SelectQueryBuilder::class,
 					[],
