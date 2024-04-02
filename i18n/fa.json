@@ -3,7 +3,8 @@
 		"authors": [
 			"Ajam",
 			"Beginneruser",
-			"Jeeputer"
+			"Jeeputer",
+			"Ebraminio"
 		]
 	},
 	"ipinfo-extensionname": "IP Info",
@@ -67,7 +68,7 @@
 	"ipinfo-infobox-disable-instructions": "اگر مایل به غیرفعال کردن این ویژگی هستید، می‌توانید این کار را در [[Special:Preferences#mw-prefsection-betafeatures|ترجیحات خود]] انجام دهید.",
 	"ipinfo-use-agreement-submit-error": "مشکلی وجود داشت. لطفاً دوباره تلاش کنید. پیام خطای دریافت شده چنین بود: $1",
 	"ipinfo-rest-access-denied": "شما دسترسی لازم برای انجام این کار را ندارید.",
-	"ipinfo-rest-access-denied-blocked-user": "شما دسترسی لازم برای انجام این کار را ندارید. زیرا حساب شما بسته شده‌است",
+	"ipinfo-rest-access-denied-blocked-user": "شما دسترسی لازم برای انجام این کار را ندارید. زیرا حساب شما بسته شده است",
 	"ipinfo-rest-revision-no-author": "حساب شما دسترسی لازم برای مشاهدهٔ نگارندهٔ نسخه را ندارد",
 	"ipinfo-rest-revision-invalid-ip": "ناتوان در واکشی اطلاعات آی‌پی برای نگارندهٔ غیر آی‌پی",
 	"ipinfo-rest-revision-registered": "ناتوان در واکشی اطلاعات آی‌پی برای نسخه‌های مرتبط با کاربران ثبت‌نام کرده",
