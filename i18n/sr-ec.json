@@ -84,6 +84,8 @@
 	"ipinfo-rest-log-nonexistent": "Унос у дневнику не постоји",
 	"ipinfo-beta-feature-title": "IP инфо",
 	"prefs-ipinfo": "Информација о IP адреси",
+	"right-ipinfo": "добављање информација о IP адресама повезаних са изменама или уносима у дневницима",
+	"right-ipinfo-view-basic": "приступ основним IP информацијама повезаних са изменама или уносима у дневницима",
 	"ipinfo-log-name": "Дневник информација о IP адресама",
 	"ipinfo-log-access-level-ipinfo-view-basic": "Ограничен приступ",
 	"ipinfo-log-access-level-ipinfo-view-full": "Пун приступ",
