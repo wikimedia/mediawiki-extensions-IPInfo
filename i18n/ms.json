@@ -14,5 +14,6 @@
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 sekatan aktif|0=Tiada sekatan aktif}}",
 	"ipinfo-rest-access-denied-blocked-user": "Anda tiada kebenaran untuk menjalankan tindakan kerana akaun anda disekat",
 	"ipinfo-beta-feature-title": "Maklumat IP",
+	"ipinfo-beta-feature-description": "Alat Maklumat IP bertujuan untuk melengkapkan peronda dengan maklumat penting tentang alamat IP untuk membantu tugasan mereka. Maklumat ini boleh diakses pada halaman Khas:Sumbangan untuk penyunting IP. Versi ringkas maklumat ini akan tersedia dalam pop timbul di sebelah alamat IP pada halaman [[Special:Log|Log]], [[Special:Contributions|Sumbangan]] dan [[Special:RecentChanges|Perubahan terkini]].",
 	"prefs-ipinfo": "Maklumat IP"
 }
