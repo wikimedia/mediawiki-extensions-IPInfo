@@ -23,7 +23,7 @@
 	"ipinfo-property-label-active-blocks": "Virk bönn",
 	"ipinfo-property-tooltip-proxytypes": "Staðgenglar fela IP-staðföng. Í sumum tilfellum gerist þetta sjálfkrafa eins og fyrir heima- eða fyrirtækjastaðgengla, í öðrum tilfellum er þetta gert viljandi til að fela uppruna IP-staðfangsins.",
 	"ipinfo-property-tooltip-connectiontype": "Tæknin sem þau nota til að tengjast netinu.",
-	"ipinfo-property-tooltip-usertype": "Félagið sem á nettenginguna.",
+	"ipinfo-property-tooltip-usertype": "Sú tegund aðila sem á nettenginguna.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 virkt bann|$1 virk bönn|0=Engin virk bönn}}.",
 	"ipinfo-active-blocks-url-text": "Aðgerðaskrá",
 	"ipinfo-property-label-edits": "Framlög",
