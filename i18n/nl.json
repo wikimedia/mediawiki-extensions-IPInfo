@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Jeroen N",
 			"Mainframe98",
 			"McDutchie",
 			"Mitsjol",
@@ -61,7 +62,7 @@
 	"ipinfo-widget-error-default": "De IP-informatie kon niet worden opgehaald.",
 	"ipinfo-widget-error-no-data": "Er zijn geen gegevens voor dit IP-adres vanaf $1.",
 	"ipinfo-widget-error-wrong-ip": "Het opgegeven IP-adres komt niet overeen met het logboek of de versie.",
-	"ipinfo-widget-error-ip-no-edits": "Voor dit adres kunnen geen IP-gegevens worden opgehaald omdat ervanaf geen bewerkingen aangebracht zijn.",
+	"ipinfo-widget-error-ip-no-edits": "Voor dit IP-adres kunnen geen gegevens worden opgehaald, omdat vanaf deze aansluiting geen bewerkingen zijn gedaan.",
 	"ipinfo-preference-enable": "Toon de tool IP-gegevens op de pagina Speciaal:Bijdragen voor niet-geregistreerde bijdragers.",
 	"ipinfo-preference-use-agreement": "Ik verklaar deze gegevens alleen te zullen gebruiken voor mijn patrouille- en anti-vandalismewerk.",
 	"ipinfo-preference-agreement-error": "U moet de tool IP-gegevens inschakelen voordat u akkoord gaat met de gebruiksvoorwaarden ervan.",
