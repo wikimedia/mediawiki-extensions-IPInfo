@@ -14,8 +14,6 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Rest\TokenAwareHandlerTrait;
-use MediaWiki\Rest\Validator\JsonBodyValidator;
-use MediaWiki\Rest\Validator\UnsupportedContentTypeBodyValidator;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
@@ -217,31 +215,23 @@ abstract class IPInfoHandler extends SimpleHandler {
 	}
 
 	/** @inheritDoc */
-	public function getBodyValidator( $contentType ) {
-		if ( $contentType !== 'application/json' ) {
-			return new UnsupportedContentTypeBodyValidator( $contentType );
-		}
-		return new JsonBodyValidator( $this->getTokenParamDefinition() );
-	}
-
-	/** @inheritDoc */
 	public function getParamSettings() {
 		return [
-			'id' => [
-				self::PARAM_SOURCE => 'path',
-				ParamValidator::PARAM_TYPE => 'integer',
-				ParamValidator::PARAM_REQUIRED => true,
-			],
-			'dataContext' => [
-				self::PARAM_SOURCE => 'query',
-				ParamValidator::PARAM_TYPE => 'string',
-				ParamValidator::PARAM_REQUIRED => true,
-			],
-			'language' => [
-				self::PARAM_SOURCE => 'query',
-				ParamValidator::PARAM_TYPE => 'string',
-				ParamValidator::PARAM_REQUIRED => true,
-			],
-		];
+				'id' => [
+					self::PARAM_SOURCE => 'path',
+					ParamValidator::PARAM_TYPE => 'integer',
+					ParamValidator::PARAM_REQUIRED => true,
+				],
+				'dataContext' => [
+					self::PARAM_SOURCE => 'query',
+					ParamValidator::PARAM_TYPE => 'string',
+					ParamValidator::PARAM_REQUIRED => true,
+				],
+				'language' => [
+					self::PARAM_SOURCE => 'query',
+					ParamValidator::PARAM_TYPE => 'string',
+					ParamValidator::PARAM_REQUIRED => true,
+				],
+			] + $this->getTokenParamDefinition();
 	}
 }
