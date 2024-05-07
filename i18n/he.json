@@ -36,7 +36,7 @@
 	"ipinfo-property-value-usertype-traveler": "תיירות",
 	"ipinfo-property-value-usertype-residential": "מגורים",
 	"ipinfo-property-value-usertype-searchenginespider": "עכביש מנוע חיפוש",
-	"ipinfo-property-value-usertype-contentdeliverynetwork": "רשת העברת תוכן",
+	"ipinfo-property-value-usertype-contentdeliverynetwork": "רשת מסירת תוכן",
 	"ipinfo-property-value-usertype-consumerprivacynetwork": "רשת פרטיות צרכן",
 	"ipinfo-property-value-proxytype-isanonymousvpn": "שירות VPN אלמוני",
 	"ipinfo-property-value-proxytype-ispublicproxy": "שרוול מתווך (פרוקסי) ציבורי",

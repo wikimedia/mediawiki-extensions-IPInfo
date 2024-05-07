@@ -7,7 +7,8 @@
 			"Shirayuki",
 			"Sou0012",
 			"Whym",
-			"Kokage si"
+			"Kokage si",
+			"Chqaz"
 		]
 	},
 	"ipinfo-extensionname": "IP情報",
@@ -89,14 +90,14 @@
 	"action-ipinfo-view-log": "IP 情報にアクセスした利用者の記録の閲覧",
 	"right-ipinfo-view-log": "IP 情報にアクセスした利用者の記録を閲覧",
 	"group-no-ipinfo": "IP情報ツールからブロックされた利用者",
-	"group-no-ipinfo-member": "{{GENDER:$1|IP情報の閲覧をブロック}}",
-	"grouppage-no-ipinfo": "{{ns:project}}:IP情報の閲覧をブロックされた利用者",
+	"group-no-ipinfo-member": "{{GENDER:$1|IP情報ツールからブロックされた利用者}}",
+	"grouppage-no-ipinfo": "{{ns:project}}:IP情報ツールからブロックされた利用者",
 	"ipinfo-log-name": "IP情報ログ",
 	"ipinfo-log-header": "ここには\n# IPの情報を閲覧するためにIP情報ツールを使用した記録\n# IP情報ツール用の利用者アクセスレベルの変更の記録\nがあります。",
 	"ipinfo-log-access-level-ipinfo-view-basic": "アクセスが制限されています",
 	"ipinfo-log-access-level-ipinfo-view-full": "完全なアクセス",
-	"ipinfo-change-access-level-enable": "有効",
-	"ipinfo-change-access-level-disable": "無効",
+	"ipinfo-change-access-level-enable": "{{GENDER:$1|有効}}",
+	"ipinfo-change-access-level-disable": "{{GENDER:$1|無効}}",
 	"ipinfo-blocklist-url-text": "ブロックリスト",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1件の削除された編集|0=削除された編集なし}}",
 	"ipinfo-deleted-edits-url-text": "削除された投稿"
