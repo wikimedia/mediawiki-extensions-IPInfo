@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Toghrul Rahimli",
-			"NMW03"
+			"NMW03",
+			"Nemoralis"
 		]
 	},
 	"ipinfo-extensionname": "IP məlumatı",
@@ -51,7 +52,7 @@
 	"ipinfo-active-blocks-url-text": "Jurnal",
 	"ipinfo-property-label-edits": "Töhfələr",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 lokal redaktə|0=Lokal redaktə yoxdur}}",
-	"ipinfo-value-recent-edits": "({{PLURAL:$1|Son 24 saatda $1 redaktə }})",
+	"ipinfo-value-recent-edits": "({{PLURAL:$1|Son 24 saatda $1 redaktə}})",
 	"ipinfo-property-no-data": "Mövcud deyil",
 	"ipinfo-property-no-access": "İcazə yoxdur",
 	"ipinfo-widget-error-default": "IP-ünvanı məlumatları əldə edilə bilmədi.",
