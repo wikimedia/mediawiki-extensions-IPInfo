@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo\Test\Unit\Info;
 
 use MediaWiki\IPInfo\Info\Location;
+use MediaWiki\Json\FormatJson;
 use MediaWikiUnitTestCase;
 
 /**
@@ -15,5 +16,12 @@ class LocationTest extends MediaWikiUnitTestCase {
 
 		$this->assertSame( 1, $info->getId() );
 		$this->assertSame( 'foo', $info->getLabel() );
+	}
+
+	public function testJsonSerialize() {
+		$this->assertJsonStringEqualsJsonString(
+			'{"id":1,"label":"foo"}',
+			FormatJson::encode( new Location( 1, 'foo' ) )
+		);
 	}
 }
