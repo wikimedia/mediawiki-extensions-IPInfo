@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo\Test\Integration\Jobs;
 
 use MediaWiki\IPInfo\Jobs\LogIPInfoAccessJob;
+use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -24,7 +25,7 @@ class LogIPInfoAccessJobTest extends MediaWikiIntegrationTestCase {
 			'ip' => '127.0.0.1',
 			'dataContext' => $dataContext,
 			'timestamp' => (int)wfTimestamp(),
-			'access_level' => 'ipinfo-view-basic',
+			'access_level' => DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT,
 		] );
 
 		$result = $job->run();
@@ -40,7 +41,7 @@ class LogIPInfoAccessJobTest extends MediaWikiIntegrationTestCase {
 			'ip' => '127.0.0.1',
 			'dataContext' => $dataContext,
 			'timestamp' => (int)wfTimestamp(),
-			'access_level' => 'ipinfo-view-basic',
+			'access_level' => DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT,
 		] );
 
 		$result = $job->run();
@@ -55,7 +56,7 @@ class LogIPInfoAccessJobTest extends MediaWikiIntegrationTestCase {
 			'ip' => '127.0.0.1',
 			'dataContext' => $dataContext,
 			'timestamp' => (int)wfTimestamp(),
-			'access_level' => 'ipinfo-view-basic',
+			'access_level' => DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT,
 		] );
 
 		$result = $job->run();

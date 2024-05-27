@@ -17,45 +17,48 @@ class DefaultPresenter {
 
 	private PermissionManager $permissionManager;
 
+	public const IPINFO_VIEW_BASIC_RIGHT = 'ipinfo-view-basic';
+	public const IPINFO_VIEW_FULL_RIGHT = 'ipinfo-view-full';
+
+	private const IPINFO_VIEW_BASIC = [
+		'connectionType',
+		'countryNames',
+		'numActiveBlocks',
+		'numLocalEdits',
+		'numRecentEdits',
+		'proxyType',
+		'userType',
+	];
+
+	private const IPINFO_VIEW_FULL = [
+		'asn',
+		'behaviors',
+		'connectionType',
+		'connectionTypes',
+		'countryNames',
+		'isp',
+		'location',
+		'numActiveBlocks',
+		'numDeletedEdits',
+		'numLocalEdits',
+		'numRecentEdits',
+		'numUsersOnThisIP',
+		'organization',
+		'proxies',
+		'proxyType',
+		'risks',
+		'tunnelOperators',
+		'userType',
+	];
+
 	/**
 	 * The viewing privileges of each level.
 	 *
 	 * Each describes themselves independently of one another.
-	 *
-	 * Keys should be kept up to date with AccessLevelTrait
-	 *
-	 * @var array
 	 */
 	private const VIEWING_RIGHTS = [
-		'ipinfo-view-basic' => [
-			'connectionType',
-			'countryNames',
-			'numActiveBlocks',
-			'numLocalEdits',
-			'numRecentEdits',
-			'proxyType',
-			'userType',
-		],
-		'ipinfo-view-full' => [
-			'asn',
-			'behaviors',
-			'connectionType',
-			'connectionTypes',
-			'countryNames',
-			'isp',
-			'location',
-			'numActiveBlocks',
-			'numDeletedEdits',
-			'numLocalEdits',
-			'numRecentEdits',
-			'numUsersOnThisIP',
-			'organization',
-			'proxies',
-			'proxyType',
-			'risks',
-			'tunnelOperators',
-			'userType',
-		]
+		self::IPINFO_VIEW_BASIC_RIGHT => self::IPINFO_VIEW_BASIC,
+		self::IPINFO_VIEW_FULL_RIGHT => self::IPINFO_VIEW_FULL,
 	];
 
 	/**

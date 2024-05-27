@@ -4,6 +4,7 @@ namespace MediaWiki\IPInfo\Test\Unit\Logging;
 
 use LogFormatterTestCase;
 use MediaWiki\IPInfo\Logging\Logger;
+use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 
 /**
  * @covers \MediaWiki\IPInfo\Logging\IPInfoLogFormatter
@@ -18,13 +19,13 @@ class IPInfoLogFormatterTest extends LogFormatterTestCase {
 					'user_text' => 'Sysop',
 					'title' => '127.0.0.1',
 					'params' => [
-						'4::level' => 'ipinfo-view-full',
+						'4::level' => DefaultPresenter::IPINFO_VIEW_FULL_RIGHT,
 					],
 				],
 				'extra' => [
 					'text' => 'Sysop viewed IP Information infobox for 127.0.0.1. Full access.',
 					'api' => [
-						'level' => 'ipinfo-view-full',
+						'level' => DefaultPresenter::IPINFO_VIEW_FULL_RIGHT,
 					],
 				],
 			],
@@ -35,13 +36,13 @@ class IPInfoLogFormatterTest extends LogFormatterTestCase {
 					'user_text' => 'Sysop',
 					'title' => '127.0.0.1',
 					'params' => [
-						'4::level' => 'ipinfo-view-basic',
+						'4::level' => DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT,
 					],
 				],
 				'extra' => [
 					'text' => 'Sysop viewed IP Information popup for 127.0.0.1. Limited access.',
 					'api' => [
-						'level' => 'ipinfo-view-basic',
+						'level' => DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT,
 					],
 				],
 			],

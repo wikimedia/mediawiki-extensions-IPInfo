@@ -126,7 +126,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'getUserPermissions' )
 		  ->with( $user )
-		  ->willReturn( [ 'ipinfo-view-basic' ] );
+		  ->willReturn( [ DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT ] );
 
 		$this->assertArrayEquals(
 			$expected,
@@ -220,7 +220,7 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'getUserPermissions' )
 			->with( $user )
-			->willReturn( [ 'ipinfo-view-full' ] );
+			->willReturn( [ DefaultPresenter::IPINFO_VIEW_FULL_RIGHT ] );
 
 		$this->assertArrayEquals(
 			$expected,
