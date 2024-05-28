@@ -24,7 +24,7 @@ class InfoManager extends Maintenance {
 	public function execute() {
 		$ip = $this->getOption( 'ip' );
 		if ( !IPUtils::isValid( $ip ) ) {
-			$this->fatalError( 'IPUtils says that IP "' . $ip . '" is not a valid IP address.' );
+			$this->fatalError( "$ip is not a valid IP address." );
 		}
 		/** @var \MediaWiki\IPInfo\InfoManager $ipInfoManager */
 		$ipInfoManager = $this->getServiceContainer()->getService( 'IPInfoInfoManager' );
