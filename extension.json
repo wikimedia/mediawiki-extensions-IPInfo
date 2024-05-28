@@ -18,6 +18,9 @@
 	"AutoloadNamespaces": {
 		"MediaWiki\\IPInfo\\": "src/"
 	},
+	"AutoloadClasses": {
+		"MediaWiki\\IPInfo\\Maintenance\\InfoManager": "maintenance/InfoManager.php"
+	},
 	"TestAutoloadNamespaces": {
 		"MediaWiki\\IPInfo\\Test\\Integration\\": "tests/phpunit/integration",
 		"MediaWiki\\IPInfo\\Test\\Unit\\": "tests/phpunit/unit"
