@@ -5,6 +5,7 @@ namespace MediaWiki\IPInfo\Test\Unit\Logging;
 use Generator;
 use ManualLogEntry;
 use MediaWiki\IPInfo\Logging\Logger;
+use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentityValue;
@@ -43,7 +44,7 @@ class LoggerTest extends MediaWikiUnitTestCase {
 		$target = '127.0.0.1';
 
 		$expectedTarget = Title::makeTitle( NS_USER, $target );
-		$expectedParams = [ '4::level' => 'ipinfo-view-full' ];
+		$expectedParams = [ '4::level' => DefaultPresenter::IPINFO_VIEW_FULL_RIGHT ];
 
 		$database = $this->createMock( IDatabase::class );
 

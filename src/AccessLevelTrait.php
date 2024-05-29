@@ -2,6 +2,8 @@
 
 namespace MediaWiki\IPInfo;
 
+use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
+
 trait AccessLevelTrait {
 	/**
 	 * Get the highest access level user has permissions for.
@@ -14,8 +16,8 @@ trait AccessLevelTrait {
 		// from lowest to highest level.
 		// Should be kept up to date with DefaultPresenter::VIEWING_RIGHTS
 		$levels = [
-			'ipinfo-view-basic',
-			'ipinfo-view-full',
+			DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT,
+			DefaultPresenter::IPINFO_VIEW_FULL_RIGHT,
 		];
 
 		$highestLevel = null;
