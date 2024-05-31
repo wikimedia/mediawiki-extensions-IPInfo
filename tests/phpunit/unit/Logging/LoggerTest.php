@@ -74,7 +74,7 @@ class LoggerTest extends MediaWikiUnitTestCase {
 						$exprTimestamp,
 						$exprParams,
 					],
-					SelectQueryBuilder::class,
+					'MediaWiki\\IPInfo\\Logging\\Logger::debouncedLog',
 					[],
 					[],
 					(int)$isDebounced
@@ -91,7 +91,7 @@ class LoggerTest extends MediaWikiUnitTestCase {
 						$exprTimestamp,
 						$exprParams,
 					],
-					SelectQueryBuilder::class,
+					'MediaWiki\\IPInfo\\Logging\\Logger::debouncedLog',
 					[],
 					[],
 					(int)$isDebounced

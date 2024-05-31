@@ -183,6 +183,7 @@ class Logger {
 					$this->dbw->anyString()
 				) ),
 			] )
+			->caller( __METHOD__ )
 			->fetchRow();
 
 		if ( !$logLine ) {
