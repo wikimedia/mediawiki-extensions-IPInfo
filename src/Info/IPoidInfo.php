@@ -2,7 +2,9 @@
 
 namespace MediaWiki\IPInfo\Info;
 
-class IPoidInfo {
+use JsonSerializable;
+
+class IPoidInfo implements JsonSerializable {
 
 	/** @var string[]|null */
 	private $behaviors;
@@ -83,5 +85,16 @@ class IPoidInfo {
 
 	public function getNumUsersOnThisIP(): ?int {
 		return $this->numUsersOnThisIP;
+	}
+
+	public function jsonSerialize(): array {
+		return [
+			'behaviors' => $this->getBehaviors(),
+			'risks' => $this->getRisks(),
+			'connectionTypes' => $this->getConnectionTypes(),
+			'tunnelOperators' => $this->getTunnelOperators(),
+			'proxies' => $this->getProxies(),
+			'numUsersOnThisIP' => $this->getNumUsersOnThisIP(),
+		];
 	}
 }

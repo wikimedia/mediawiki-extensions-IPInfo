@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo\Test\Unit\Info;
 
 use MediaWiki\IPInfo\Info\BlockInfo;
+use MediaWiki\Json\FormatJson;
 use MediaWikiUnitTestCase;
 
 /**
@@ -14,5 +15,12 @@ class BlockInfoTest extends MediaWikiUnitTestCase {
 		$info = new BlockInfo();
 
 		$this->assertSame( 0, $info->getNumActiveBlocks() );
+	}
+
+	public function testJsonSerialize() {
+		$this->assertJsonStringEqualsJsonString(
+			'{"numActiveBlocks":0}',
+			FormatJson::encode( new BlockInfo() )
+		);
 	}
 }

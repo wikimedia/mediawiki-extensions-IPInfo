@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo\Test\Unit\Info;
 
 use MediaWiki\IPInfo\Info\IPoidInfo;
+use MediaWiki\Json\FormatJson;
 use MediaWikiUnitTestCase;
 
 /**
@@ -19,5 +20,13 @@ class IPoidInfoTest extends MediaWikiUnitTestCase {
 		$this->assertNull( $info->getTunnelOperators() );
 		$this->assertNull( $info->getProxies() );
 		$this->assertNull( $info->getNumUsersOnThisIP() );
+	}
+
+	public function testJsonSerialize() {
+		$this->assertJsonStringEqualsJsonString(
+			'{"behaviors":null,"risks":null,"connectionTypes":null,"tunnelOperators":null,' .
+			'"proxies":null,"numUsersOnThisIP":null}',
+			FormatJson::encode( new IPoidInfo() )
+		);
 	}
 }

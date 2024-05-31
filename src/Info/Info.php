@@ -2,7 +2,9 @@
 
 namespace MediaWiki\IPInfo\Info;
 
-class Info {
+use JsonSerializable;
+
+class Info implements JsonSerializable {
 	/** @var Coordinates|null */
 	private $coordinates;
 
@@ -124,5 +126,19 @@ class Info {
 	 */
 	public function getProxyType(): ?ProxyType {
 		return $this->proxyType;
+	}
+
+	public function jsonSerialize(): array {
+		return [
+			'coordinates' => $this->getCoordinates(),
+			'asn' => $this->getAsn(),
+			'organization' => $this->getOrganization(),
+			'countryNames' => $this->getCountryNames(),
+			'location' => $this->getLocation(),
+			'isp' => $this->getIsp(),
+			'connectionType' => $this->getConnectionType(),
+			'userType' => $this->getUserType(),
+			'proxyType' => $this->getProxyType(),
+		];
 	}
 }

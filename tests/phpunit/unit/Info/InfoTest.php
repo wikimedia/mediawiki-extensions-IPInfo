@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo\Test\Unit\Info;
 
 use MediaWiki\IPInfo\Info\Info;
+use MediaWiki\Json\FormatJson;
 use MediaWikiUnitTestCase;
 
 /**
@@ -21,5 +22,13 @@ class InfoTest extends MediaWikiUnitTestCase {
 		$this->assertNull( $info->getIsp() );
 		$this->assertNull( $info->getConnectionType() );
 		$this->assertNull( $info->getProxyType() );
+	}
+
+	public function testJsonSerialize() {
+		$this->assertJsonStringEqualsJsonString(
+			'{"coordinates":null,"asn":null,"organization":null,"countryNames":null,' .
+			'"location":null,"isp":null,"connectionType":null,"userType":null,"proxyType":null}',
+			FormatJson::encode( new Info() )
+		);
 	}
 }

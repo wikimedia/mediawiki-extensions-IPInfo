@@ -2,7 +2,9 @@
 
 namespace MediaWiki\IPInfo\Info;
 
-class BlockInfo {
+use JsonSerializable;
+
+class BlockInfo implements JsonSerializable {
 
 	private int $numActiveBlocks;
 
@@ -12,5 +14,11 @@ class BlockInfo {
 
 	public function getNumActiveBlocks(): int {
 		return $this->numActiveBlocks;
+	}
+
+	public function jsonSerialize(): array {
+		return [
+			'numActiveBlocks' => $this->getNumActiveBlocks(),
+		];
 	}
 }
