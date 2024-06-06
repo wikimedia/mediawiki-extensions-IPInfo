@@ -7,7 +7,8 @@
 	],
 	"rules": {
 		"no-jquery/no-global-selector": "off",
-		"no-implicit-globals": "off"
+		"no-implicit-globals": "off",
+		"no-jquery/no-extend": "warn"
 	},
 	"settings": {
 		"polyfills": [
