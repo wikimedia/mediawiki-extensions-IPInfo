@@ -5,8 +5,8 @@ namespace MediaWiki\IPInfo\Logging;
 use LogEntry;
 use LogFormatter;
 use MediaWiki\Linker\Linker;
+use MediaWiki\Message\Message;
 use MediaWiki\User\UserFactory;
-use Message;
 
 class IPInfoLogFormatter extends LogFormatter {
 

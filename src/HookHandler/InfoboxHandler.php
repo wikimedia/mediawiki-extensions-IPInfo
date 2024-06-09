@@ -2,9 +2,9 @@
 
 namespace MediaWiki\IPInfo\HookHandler;
 
-use CollapsibleFieldsetLayout;
 use ExtensionRegistry;
 use MediaWiki\Hook\SpecialContributionsBeforeMainOutputHook;
+use MediaWiki\HTMLForm\CollapsibleFieldsetLayout;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\PermissionManager;
