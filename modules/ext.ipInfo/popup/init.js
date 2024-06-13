@@ -1,28 +1,28 @@
-var IpInfoPopupWidget = require( './widget.js' );
-var eventLogger = require( '../log.js' );
-var postToRestApi = require( '../rest.js' );
+const IpInfoPopupWidget = require( './widget.js' );
+const eventLogger = require( '../log.js' );
+const postToRestApi = require( '../rest.js' );
 
-mw.hook( 'wikipage.content' ).add( function ( $content ) {
+mw.hook( 'wikipage.content' ).add( ( $content ) => {
 	eventLogger.logIpCopy();
 
 	$content.find( '.mw-anonuserlink' ).after( function () {
-		var id, type;
+		let id, type;
 		$( this ).addClass( 'ext-ipinfo-anonuserlink-loaded' );
 
-		var ip = $( this ).text();
+		const ip = $( this ).text();
 		if ( !mw.util.isIPAddress( ip ) ) {
 			return '';
 		}
 
-		var $revIdAncestor = $( this ).closest( '[data-mw-revid]' );
-		var $changedby = $( this ).closest( '.changedby' );
+		const $revIdAncestor = $( this ).closest( '[data-mw-revid]' );
+		const $changedby = $( this ).closest( '.changedby' );
 		if ( $revIdAncestor.length > 0 ) {
 			id = $revIdAncestor.data( 'mwRevid' );
 			type = 'revision';
 		} else if ( $changedby.length > 0 ) {
-			var $revLines = $( this ).closest( 'table' ).find( '.mw-changeslist-line[data-mw-revid]' );
+			const $revLines = $( this ).closest( 'table' ).find( '.mw-changeslist-line[data-mw-revid]' );
 			$revLines.each( function () {
-				var $innerIP = $( this ).find( '.mw-anonuserlink' ).text();
+				const $innerIP = $( this ).find( '.mw-anonuserlink' ).text();
 				if ( ip === $innerIP ) {
 					id = $( this ).closest( '.mw-changeslist-line [data-mw-revid]' ).attr( 'data-mw-revid' );
 					return false;
@@ -30,7 +30,7 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 			} );
 			type = 'revision';
 		} else {
-			var $logIdAncestor = $( this ).closest( '[data-mw-logid]' );
+			const $logIdAncestor = $( this ).closest( '[data-mw-logid]' );
 			if ( $logIdAncestor.length > 0 ) {
 				id = $logIdAncestor.data( 'mwLogid' );
 				type = 'log';
@@ -40,17 +40,17 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 			return '';
 		}
 
-		var button = new OO.ui.PopupButtonWidget( {
+		const button = new OO.ui.PopupButtonWidget( {
 			icon: 'info',
 			framed: false,
 			classes: [ 'ext-ipinfo-button' ]
 		} );
-		button.once( 'click', function () {
-			var popupIpInfoDelayStart = mw.now();
+		button.once( 'click', () => {
+			const popupIpInfoDelayStart = mw.now();
 			button.popup.$body.append( new IpInfoPopupWidget(
-				postToRestApi( type, id, 'popup' ).then( function ( response ) {
-					var i, data;
-					var sanitizedIp = mw.util.sanitizeIP( ip );
+				postToRestApi( type, id, 'popup' ).then( ( response ) => {
+					let i, data;
+					const sanitizedIp = mw.util.sanitizeIP( ip );
 
 					// Array.find is only available from ES6
 					for ( i = 0; i < response.info.length; i++ ) {

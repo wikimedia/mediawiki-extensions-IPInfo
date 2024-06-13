@@ -1,5 +1,5 @@
-var ipInfoWidget = require( '../widget.js' );
-var eventLogger = require( '../log.js' );
+const ipInfoWidget = require( '../widget.js' );
+const eventLogger = require( '../log.js' );
 
 /**
  * Popup Widget
@@ -10,7 +10,7 @@ var eventLogger = require( '../log.js' );
  * @param {jQuery.Deferred} info Promise that resolves to an info object.
  * @param {Object} [config] Configuration options
  */
-var ipInfoPopupWidget = function ( info, config ) {
+const ipInfoPopupWidget = function ( info, config ) {
 	// Parent constructor
 	ipInfoPopupWidget.super.call( this, info, config );
 };
@@ -26,24 +26,24 @@ OO.inheritClass( ipInfoPopupWidget, ipInfoWidget );
  * @return {Object}
  */
 ipInfoPopupWidget.prototype.buildMarkup = function ( info ) {
-	var localizedCountryName = this.getLocalizedCountryName(
+	const localizedCountryName = this.getLocalizedCountryName(
 		info.data[ 'ipinfo-source-geoip2' ].countryNames,
 		info[ 'language-fallback' ]
 	);
 
-	var location = this.getLocation(
+	const location = this.getLocation(
 		info.data[ 'ipinfo-source-geoip2' ].location,
 		localizedCountryName
 	);
 
-	var activeBlocks = this.getActiveBlocks( info.data[ 'ipinfo-source-block' ].numActiveBlocks );
+	const activeBlocks = this.getActiveBlocks( info.data[ 'ipinfo-source-block' ].numActiveBlocks );
 
-	var $edits = this.getEdits(
+	const $edits = this.getEdits(
 		info.data[ 'ipinfo-source-contributions' ].numLocalEdits,
 		info.data[ 'ipinfo-source-contributions' ].numRecentEdits
 	);
 
-	var $info, $linkOutURL, $linkOut;
+	let $info, $linkOutURL, $linkOut;
 	$info = $( '<dl>' ).addClass( 'ext-ipinfo-widget-property-properties' ).append(
 		this.generatePropertyMarkup( 'location', location, mw.msg( 'ipinfo-property-label-location' ) ),
 		this.generatePropertyMarkup( 'organization', info.data[ 'ipinfo-source-geoip2' ].organization, mw.msg( 'ipinfo-property-label-organization' ) ),
@@ -57,7 +57,7 @@ ipInfoPopupWidget.prototype.buildMarkup = function ( info ) {
 		.addClass( 'ext-ipinfo-widget-popup-linkout' )
 		.attr( 'href', $linkOutURL )
 		.text( 'Special:Contributions/' + info.subject )
-		.on( 'click', function () {
+		.on( 'click', () => {
 			eventLogger.log( 'open_infobox', 'popup' );
 		} );
 

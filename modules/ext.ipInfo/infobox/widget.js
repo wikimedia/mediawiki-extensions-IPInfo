@@ -1,4 +1,4 @@
-var ipInfoWidget = require( '../widget.js' );
+const ipInfoWidget = require( '../widget.js' );
 
 /**
  * Infobox Widget
@@ -9,7 +9,7 @@ var ipInfoWidget = require( '../widget.js' );
  * @param {jQuery.Deferred} info Promise that resolves to an info object.
  * @param {Object} [config] Configuration options
  */
-var ipInfoInfoboxWidget = function ( info, config ) {
+const ipInfoInfoboxWidget = function ( info, config ) {
 	// Parent constructor
 	ipInfoInfoboxWidget.super.call( this, info, config );
 };
@@ -25,20 +25,20 @@ OO.inheritClass( ipInfoInfoboxWidget, ipInfoWidget );
  * @return {Object}
  */
 ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
-	var blockListUrl, $blockListLink, deletedEditsUrl, $deletedEditsLink;
-	var localizedCountryName = this.getLocalizedCountryName(
+	let blockListUrl, $blockListLink, deletedEditsUrl, $deletedEditsLink;
+	const localizedCountryName = this.getLocalizedCountryName(
 		info.data[ 'ipinfo-source-geoip2' ].countryNames,
 		info[ 'language-fallback' ]
 	);
 
-	var location = this.getLocation(
+	const location = this.getLocation(
 		info.data[ 'ipinfo-source-geoip2' ].location,
 		localizedCountryName
 	);
 
-	var activeBlocks = this.getActiveBlocks( info.data[ 'ipinfo-source-block' ].numActiveBlocks );
-	var blockLogUrl = mw.util.getUrl( 'Special:Log' ) + '?type=block&page=' + info.subject;
-	var $blockLogLink = $( '<div>' )
+	const activeBlocks = this.getActiveBlocks( info.data[ 'ipinfo-source-block' ].numActiveBlocks );
+	const blockLogUrl = mw.util.getUrl( 'Special:Log' ) + '?type=block&page=' + info.subject;
+	const $blockLogLink = $( '<div>' )
 		.addClass( 'ext-ipinfo-block-links' )
 		.append( $( '<a>' )
 			.attr( 'href', blockLogUrl )
@@ -53,7 +53,7 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 				.text( mw.msg( 'ipinfo-blocklist-url-text' ) ) );
 	}
 
-	var $edits = this.getEdits(
+	const $edits = this.getEdits(
 		info.data[ 'ipinfo-source-contributions' ].numLocalEdits,
 		info.data[ 'ipinfo-source-contributions' ].numRecentEdits,
 		info.data[ 'ipinfo-source-contributions' ].numDeletedEdits
@@ -69,7 +69,7 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 	}
 
 	// IPoid-provided data
-	var behaviors = info.data[ 'ipinfo-source-ipoid' ].behaviors;
+	let behaviors = info.data[ 'ipinfo-source-ipoid' ].behaviors;
 	if ( behaviors ) {
 		if ( behaviors.length ) {
 			behaviors = behaviors.join( '</br>' );
@@ -77,13 +77,13 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 			behaviors = null;
 		}
 	}
-	var risks = info.data[ 'ipinfo-source-ipoid' ].risks;
+	let risks = info.data[ 'ipinfo-source-ipoid' ].risks;
 	risks = risks ? this.getRisks( info.data[ 'ipinfo-source-ipoid' ].risks ) : risks;
 	risks = risks ? risks.join( '<br />' ) : risks;
-	var connectionTypes = info.data[ 'ipinfo-source-ipoid' ].connectionTypes;
+	let connectionTypes = info.data[ 'ipinfo-source-ipoid' ].connectionTypes;
 	connectionTypes = connectionTypes ? this.getConnectionTypes( info.data[ 'ipinfo-source-ipoid' ].connectionTypes ) : connectionTypes;
 	connectionTypes = connectionTypes ? connectionTypes.join( '<br />' ) : connectionTypes;
-	var tunnelOperators = info.data[ 'ipinfo-source-ipoid' ].tunnelOperators;
+	let tunnelOperators = info.data[ 'ipinfo-source-ipoid' ].tunnelOperators;
 	if ( tunnelOperators ) {
 		if ( tunnelOperators.length ) {
 			tunnelOperators = tunnelOperators.join( '</br>' );
@@ -91,7 +91,7 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 			tunnelOperators = null;
 		}
 	}
-	var proxies = info.data[ 'ipinfo-source-ipoid' ].proxies;
+	let proxies = info.data[ 'ipinfo-source-ipoid' ].proxies;
 	if ( proxies ) {
 		if ( proxies.length ) {
 			proxies = proxies.join( '</br>' );
@@ -100,11 +100,11 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 		}
 	}
 
-	var ipversion = mw.util.isIPv4Address( info.subject, true ) ?
+	const ipversion = mw.util.isIPv4Address( info.subject, true ) ?
 		mw.msg( 'ipinfo-value-ipversion-ipv4' ) :
 		mw.msg( 'ipinfo-value-ipversion-ipv6' );
 
-	var $info = $( '<dl>' ).addClass( 'ext-ipinfo-widget-properties' )
+	const $info = $( '<dl>' ).addClass( 'ext-ipinfo-widget-properties' )
 		.append(
 			$( '<div>' ).addClass( 'ext-ipinfo-widget-properties-col' ).append(
 				this.generatePropertyMarkup( 'location', location, mw.msg( 'ipinfo-property-label-location' ) ),

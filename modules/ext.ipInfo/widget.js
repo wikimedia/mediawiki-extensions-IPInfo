@@ -8,10 +8,10 @@
  * @param {Object} [config] Configuration options
  */
 
-var eventLogger = require( '../log.js' );
-var ipInfoWidget = function ( info, config ) {
+const eventLogger = require( '../log.js' );
+const ipInfoWidget = function ( info, config ) {
 	// Config initialization
-	config = $.extend( {
+	config = Object.assign( {
 		classes: [
 			'ext-ipinfo-widget'
 		]
@@ -132,10 +132,8 @@ ipInfoWidget.prototype.getLocation = function ( location, country ) {
 	if ( location === undefined && country === undefined ) {
 		return undefined;
 	}
-	var locationData = ( location || [] )
-		.map( function ( item ) {
-			return item.label;
-		} ).concat( country || [] ).join( mw.msg( 'comma-separator' ) );
+	const locationData = ( location || [] )
+		.map( ( item ) => item.label ).concat( country || [] ).join( mw.msg( 'comma-separator' ) );
 	return locationData.length ? locationData : null;
 };
 
@@ -149,8 +147,8 @@ ipInfoWidget.prototype.getLocalizedCountryName = function ( countryNames, langua
 		return undefined;
 	}
 
-	for ( var i = 0; i < languageFallback.length; i++ ) {
-		for ( var langCode in countryNames ) {
+	for ( let i = 0; i < languageFallback.length; i++ ) {
+		for ( const langCode in countryNames ) {
 			if ( langCode.toLowerCase() === languageFallback[ i ] ) {
 				return countryNames[ langCode ];
 			}
@@ -168,18 +166,16 @@ ipInfoWidget.prototype.getProxyTypes = function ( proxyType ) {
 		return proxyType;
 	}
 	// Filter for true values of proxyType
-	var proxyTypes = Object.keys( proxyType )
-		.filter( function ( proxyTypeKey ) {
-			return proxyType[ proxyTypeKey ];
-		} );
+	const proxyTypes = Object.keys( proxyType )
+		.filter( ( proxyTypeKey ) => proxyType[ proxyTypeKey ] );
 
 	// If there are any known proxy types, transform the array into a list of values
 	if ( proxyTypes.length === 0 ) {
 		return null;
 	}
 
-	var $proxyTypes = $( '<ul>' );
-	proxyTypes.forEach( function ( type ) {
+	const $proxyTypes = $( '<ul>' );
+	proxyTypes.forEach( ( type ) => {
 		// * ipinfo-property-value-proxytype-isanonymousvpn
 		// * ipinfo-property-value-proxytype-ispublicproxy
 		// * ipinfo-property-value-proxytype-isresidentialproxy
@@ -216,11 +212,11 @@ ipInfoWidget.prototype.getEdits = function ( numLocalEdits, numRecentEdits, numD
 	if ( numLocalEdits === undefined && numRecentEdits === undefined ) {
 		return undefined;
 	}
-	var localEdits = mw.msg( 'ipinfo-value-local-edits', numLocalEdits );
-	var $recentEdits = $( '<span>' ).addClass( 'ext-ipinfo-widget-value-recent-edits' )
+	const localEdits = mw.msg( 'ipinfo-value-local-edits', numLocalEdits );
+	const $recentEdits = $( '<span>' ).addClass( 'ext-ipinfo-widget-value-recent-edits' )
 		.append( mw.msg( 'ipinfo-value-recent-edits', numRecentEdits ) );
 
-	var $edits = $( '<span>' ).append(
+	const $edits = $( '<span>' ).append(
 		localEdits,
 		$( '<br>' ),
 		$recentEdits,
@@ -254,10 +250,10 @@ ipInfoWidget.prototype.generatePropertyMarkup = function (
 	propertyLabel,
 	propertyTooltip
 ) {
-	var $propertyContent = $( '<div>' ).addClass( 'ext-ipinfo-widget-property' ).attr( 'data-property', propertyKey );
-	var $propertyLabel = $( '<dt>' ).addClass( 'ext-ipinfo-widget-property-label' ).text( propertyLabel );
+	const $propertyContent = $( '<div>' ).addClass( 'ext-ipinfo-widget-property' ).attr( 'data-property', propertyKey );
+	const $propertyLabel = $( '<dt>' ).addClass( 'ext-ipinfo-widget-property-label' ).text( propertyLabel );
 	if ( propertyTooltip ) {
-		var $propertyTooltip = new OO.ui.PopupButtonWidget( {
+		const $propertyTooltip = new OO.ui.PopupButtonWidget( {
 			icon: 'info',
 			framed: false,
 			popup: {
@@ -272,7 +268,7 @@ ipInfoWidget.prototype.generatePropertyMarkup = function (
 
 		$propertyTooltip.on( 'click', function () {
 			if ( this.popup.isVisible() ) {
-				var eventAction;
+				let eventAction;
 				switch ( propertyKey ) {
 					case 'connectiontype':
 						eventAction = 'click_help_connection_method';
@@ -366,9 +362,7 @@ ipInfoWidget.prototype.getRisks = function ( risks ) {
 	// * ipinfo-property-value-risk-webscraping
 	// * ipinfo-property-value-risk-unknown
 	if ( risks.length ) {
-		return risks.map( function ( risk ) {
-			return mw.msg( 'ipinfo-property-value-risk-' + risk.replace( /_/g, '' ).toLowerCase() );
-		} );
+		return risks.map( ( risk ) => mw.msg( 'ipinfo-property-value-risk-' + risk.replace( /_/g, '' ).toLowerCase() ) );
 	}
 	return null;
 };
@@ -385,9 +379,7 @@ ipInfoWidget.prototype.getConnectionTypes = function ( connectionTypes ) {
 	// * ipinfo-property-value-connectiontype-mobile
 	// * ipinfo-property-value-connectiontype-unknown
 	if ( connectionTypes.length ) {
-		return connectionTypes.map( function ( connectionType ) {
-			return mw.msg( 'ipinfo-property-value-connectiontype-' + connectionType.toLowerCase() );
-		} );
+		return connectionTypes.map( ( connectionType ) => mw.msg( 'ipinfo-property-value-connectiontype-' + connectionType.toLowerCase() ) );
 	}
 	return null;
 };

@@ -1,8 +1,8 @@
 // Disable this rule because jQuery.makeCollapsible stores state in the class
 /* eslint-disable no-jquery/no-class-state */
 
-var IpInfoInfoboxWidget = require( './widget.js' );
-var ip = mw.util.prettifyIP( mw.config.get( 'wgRelevantUserName' ) ),
+const IpInfoInfoboxWidget = require( './widget.js' );
+let ip = mw.util.prettifyIP( mw.config.get( 'wgRelevantUserName' ) ),
 	api = new mw.Api(),
 	viewedAgreement = false,
 	timerStart,
@@ -12,7 +12,7 @@ var ip = mw.util.prettifyIP( mw.config.get( 'wgRelevantUserName' ) ),
 if ( ip ) {
 	eventLogger.logIpCopy();
 
-	var saveCollapsibleUserOption = function ( e ) {
+	const saveCollapsibleUserOption = function ( e ) {
 		// Only trigger on enter and space keypresses
 		if ( e.type === 'keypress' && e.which !== 13 && e.which !== 32 ) {
 			return;
@@ -48,8 +48,8 @@ if ( ip ) {
 	// Watch for collapse/expand events and save that state to a user option
 	$( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).on( 'click keypress', saveCollapsibleUserOption );
 
-	var loadIpInfo = function ( targetIp ) {
-		var revId = $( '.mw-contributions-list [data-mw-revid]' ).first().attr( 'data-mw-revid' );
+	const loadIpInfo = function ( targetIp ) {
+		const revId = $( '.mw-contributions-list [data-mw-revid]' ).first().attr( 'data-mw-revid' );
 		if ( !revId ) {
 			$( '.ext-ipinfo-collapsible-layout' ).addClass( 'ext-ipinfo-contains-error' );
 			$( '.ext-ipinfo-collapsible-layout .mw-collapsible-content' ).append(
@@ -61,13 +61,13 @@ if ( ip ) {
 			return;
 		}
 
-		var endpoint = mw.config.get( 'wgCanonicalSpecialPageName' ) === 'Contributions' ?
+		const endpoint = mw.config.get( 'wgCanonicalSpecialPageName' ) === 'Contributions' ?
 			'revision' : 'archivedrevision';
 
-		var ipPanelWidget = new IpInfoInfoboxWidget(
-			postToRestApi( endpoint, revId, 'infobox' ).then( function ( response ) {
-				var i, data;
-				var sanitizedIp = mw.util.sanitizeIP( targetIp );
+		const ipPanelWidget = new IpInfoInfoboxWidget(
+			postToRestApi( endpoint, revId, 'infobox' ).then( ( response ) => {
+				let i, data;
+				const sanitizedIp = mw.util.sanitizeIP( targetIp );
 				// Array.find is only available from ES6
 				for ( i = 0; i < response.info.length; i++ ) {
 					if ( mw.util.sanitizeIP( response.info[ i ].subject ) === sanitizedIp ) {
@@ -86,15 +86,15 @@ if ( ip ) {
 	// Logging event for navigating away from the agreement as a function so that
 	// it can be unbound in the case the user has accepted the agreement and we no longer
 	// need to listen for this event
-	var logUnloadPageWithoutAcceptingAgreement = function () {
+	const logUnloadPageWithoutAcceptingAgreement = function () {
 		if ( viewedAgreement ) {
 			eventLogger.log( 'close_disclaimer', 'infobox' );
 		}
 	};
 
-	var loadUseAgreement = function () {
+	const loadUseAgreement = function () {
 		// Show the form to agree to the terms of use instead of ip info
-		var agreementFormWidget = new OO.ui.FormLayout( {
+		const agreementFormWidget = new OO.ui.FormLayout( {
 			classes: [ 'ipinfo-use-agreement-form' ],
 			content: [
 				new OO.ui.Element( {
@@ -144,12 +144,12 @@ if ( ip ) {
 		viewedAgreement = true;
 		eventLogger.log( 'init_disclaimer', 'infobox' );
 
-		$( '.ipinfo-use-agreement-form' ).on( 'submit', function ( e ) {
+		$( '.ipinfo-use-agreement-form' ).on( 'submit', ( e ) => {
 			e.preventDefault();
 			api.saveOption( 'ipinfo-use-agreement', '1' )
-				.always( function () {
+				.always( () => {
 					$( '.ipinfo-use-agreement-form' ).remove();
-				} ).then( function () {
+				} ).then( () => {
 					// Log that the use agreement was accepted
 					eventLogger.log( 'accept_disclaimer', 'infobox' );
 
@@ -159,7 +159,7 @@ if ( ip ) {
 					// Success - show ip info
 					$( '.ipinfo-use-agreement-form' ).remove();
 					loadIpInfo( ip );
-				} ).catch( function ( error ) {
+				} ).catch( ( error ) => {
 					// Fail state - show an error
 					$( '.ext-ipinfo-collapsible-layout .mw-collapsible-content' ).append(
 						new OO.ui.MessageWidget( {
@@ -184,7 +184,7 @@ if ( ip ) {
 		}
 	} else {
 		// Watch for the first expand command, load content, and unbind listener
-		var onFirstInfoboxExpand = function ( e ) {
+		const onFirstInfoboxExpand = function ( e ) {
 			// Only trigger on enter and space keypresses
 			if ( e.type === 'keypress' && e.which !== 13 && e.which !== 32 ) {
 				return;

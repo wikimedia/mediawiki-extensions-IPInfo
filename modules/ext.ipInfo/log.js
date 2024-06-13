@@ -1,5 +1,5 @@
-var log = function ( action, context ) {
-	var specialPage = mw.config.get( 'wgCanonicalSpecialPageName' );
+const log = function ( action, context ) {
+	let specialPage = mw.config.get( 'wgCanonicalSpecialPageName' );
 	switch ( specialPage ) {
 		case 'Log':
 			specialPage = 'special_log';
@@ -18,7 +18,7 @@ var log = function ( action, context ) {
 			break;
 	}
 
-	var event = {
+	const event = {
 		/* eslint-disable camelcase */
 		$schema: '/analytics/mediawiki/ipinfo_interaction/1.3.0',
 		event_action: action,
@@ -30,8 +30,8 @@ var log = function ( action, context ) {
 	};
 
 	if ( action === 'open_popup' ) {
-		mw.user.getRights( function ( rights ) {
-			var highestAccessLevel;
+		mw.user.getRights( ( rights ) => {
+			let highestAccessLevel;
 
 			if ( rights.indexOf( 'ipinfo-view-full' ) !== -1 ) {
 				highestAccessLevel = 'full';
@@ -52,13 +52,13 @@ var log = function ( action, context ) {
 
 };
 
-var logIpCopy = function () {
+const logIpCopy = function () {
 	// Some IP addresses are text nodes in #firstHeading (see Special:Contributions) and others
 	// are a.mw-anonuserlink elements (see Special:RecentChanges, for example). In order to
 	// capture as many edge cases as possible, filter all copy events to see whether the user
 	// copied just an IP address.
-	document.addEventListener( 'copy', function () {
-		var selection = document.getSelection().toString();
+	document.addEventListener( 'copy', () => {
+		const selection = document.getSelection().toString();
 
 		// Filter out selections that are too long, since mw.util.isIPAddress() is costly. In
 		// theory the longest IP address validated by mw.util.isAddress() is 39 characters, but
@@ -74,7 +74,7 @@ var logIpCopy = function () {
 };
 
 // require only runs this the first time, so this won't be run on subsequent requires
-mw.trackSubscribe( 'ipinfo.event', function ( topic, eventData ) {
+mw.trackSubscribe( 'ipinfo.event', ( topic, eventData ) => {
 	if ( mw.eventLog ) {
 		mw.eventLog.submit( 'mediawiki.ipinfo_interaction', eventData );
 	}
