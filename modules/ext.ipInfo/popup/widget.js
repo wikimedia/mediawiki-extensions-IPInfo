@@ -43,8 +43,7 @@ ipInfoPopupWidget.prototype.buildMarkup = function ( info ) {
 		info.data[ 'ipinfo-source-contributions' ].numRecentEdits
 	);
 
-	let $info, $linkOutURL, $linkOut;
-	$info = $( '<dl>' ).addClass( 'ext-ipinfo-widget-property-properties' ).append(
+	const $info = $( '<dl>' ).addClass( 'ext-ipinfo-widget-property-properties' ).append(
 		this.generatePropertyMarkup( 'location', location, mw.msg( 'ipinfo-property-label-location' ) ),
 		this.generatePropertyMarkup( 'organization', info.data[ 'ipinfo-source-geoip2' ].organization, mw.msg( 'ipinfo-property-label-organization' ) ),
 		this.generatePropertyMarkup( 'active-blocks', activeBlocks, mw.msg( 'ipinfo-property-label-active-blocks' ) ),
@@ -52,8 +51,8 @@ ipInfoPopupWidget.prototype.buildMarkup = function ( info ) {
 	);
 
 	// Popup links out to the Special:Contributions page of the ip
-	$linkOutURL = mw.util.getUrl( 'Special:Contributions' ) + '/' + info.subject + '?openInfobox=true';
-	$linkOut = $( '<a>' )
+	const $linkOutURL = mw.util.getUrl( 'Special:Contributions' ) + '/' + info.subject + '?openInfobox=true';
+	const $linkOut = $( '<a>' )
 		.addClass( 'ext-ipinfo-widget-popup-linkout' )
 		.attr( 'href', $linkOutURL )
 		.text( 'Special:Contributions/' + info.subject )

@@ -2,12 +2,12 @@
 /* eslint-disable no-jquery/no-class-state */
 
 const IpInfoInfoboxWidget = require( './widget.js' );
-let ip = mw.util.prettifyIP( mw.config.get( 'wgRelevantUserName' ) ),
+const ip = mw.util.prettifyIP( mw.config.get( 'wgRelevantUserName' ) ),
 	api = new mw.Api(),
-	viewedAgreement = false,
-	timerStart,
 	eventLogger = require( '../log.js' ),
 	postToRestApi = require( '../rest.js' );
+let viewedAgreement = false,
+	timerStart;
 
 if ( ip ) {
 	eventLogger.logIpCopy();
