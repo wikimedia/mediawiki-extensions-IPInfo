@@ -5,9 +5,11 @@
 		"wikimedia/jquery",
 		"wikimedia/mediawiki"
 	],
+	"parserOptions": {
+		"sourceType": "commonjs"
+	},
 	"rules": {
 		"no-jquery/no-global-selector": "off",
-		"no-implicit-globals": "off",
 		"no-jquery/no-extend": "warn"
 	},
 	"settings": {
