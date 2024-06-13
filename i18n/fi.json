@@ -87,7 +87,7 @@
 	"action-ipinfo": "hakea tietoja IP-osoitteista, jotka on liitetty versioihin tai lokimerkintöihin",
 	"action-ipinfo-view-log": "nähdä lokia siitä, ketkä ovat katsoneet IP-tietoja",
 	"right-ipinfo-view-log": "Nähdä loki siitä, ketkä ovat katsoneet IP-tietoja",
-	"group-no-ipinfo": "IP-tietotyökalulla estetyt käyttäjät",
+	"group-no-ipinfo": "Käyttäjät, joita on estetty käyttämästä IP-tietotyökalua",
 	"ipinfo-log-name": "IP-tietoloki",
 	"ipinfo-log-access-level-ipinfo-view-basic": "Rajoitettu pääsy",
 	"ipinfo-log-access-level-ipinfo-view-full": "Täysi pääsy",
