@@ -14,7 +14,8 @@
 			"Thibaut120094",
 			"Vega",
 			"Verdy p",
-			"Wladek92"
+			"Wladek92",
+			"SleaY"
 		]
 	},
 	"ipinfo-extensionname": "IP Info",
@@ -76,6 +77,7 @@
 	"ipinfo-property-tooltip-proxytypes": "Les serveurs mandataires cachent les adresses IP. Dans certains cas cela se produit automatiquement, comme pour les serveurs mandataires résidentiels ou d’entreprises, dans d’autres cas, c’est fait intentionnellement afin de masquer l’origine de l’adresse IP.",
 	"ipinfo-property-tooltip-connectiontype": "La technologie via laquelle cette personne se connecte à l’internet.",
 	"ipinfo-property-tooltip-usertype": "Le type d’entité qui détient cette connexion internet.",
+	"ipinfo-property-tooltip-behaviors": "Cette adresse IP a été impliquée ou précédemment associée à ces types spécifiques d'activités.",
 	"ipinfo-property-tooltip-risks": "Risques que Spur a déterminés sur la base de sa collecte de données. Ces risques varient et auront une importance différente en fonction des cas d'utilisation spécifiques des données de Spur Context.",
 	"ipinfo-property-tooltip-tunneloperators": "Le fournisseur ou l’opérateur du service de VPN.",
 	"ipinfo-property-tooltip-usercount": "Le nombre moyen de clients qui ont été observés sur cette adresse IP par Spur. Il prend en compte toute l'activité de cette adresse IP. Il est calculé sur une période de 24 heures.",
