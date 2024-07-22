@@ -23,10 +23,7 @@ class IPInfoHandlerTest extends MediaWikiUnitTestCase {
 		/** @var IPInfoHandler $handler */
 		$objectUnderTest = $this->newServiceInstance( RevisionHandler::class, [] );
 		$paramSettings = $objectUnderTest->getParamSettings();
-		$tokenParam = $paramSettings['token'];
-		$this->assertArrayHasKey( 'token', $paramSettings );
-		$this->assertArrayHasKey( Handler::PARAM_SOURCE, $tokenParam );
-		$this->assertSame( 'body', $tokenParam[Handler::PARAM_SOURCE] );
+		$this->assertArrayNotHasKey( 'token', $paramSettings );
 
 		$this->assertArrayHasKey( 'id', $paramSettings );
 		$this->assertSame( 'path', $paramSettings['id'][Handler::PARAM_SOURCE] );
