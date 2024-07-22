@@ -232,6 +232,11 @@ abstract class IPInfoHandler extends SimpleHandler {
 					ParamValidator::PARAM_TYPE => 'string',
 					ParamValidator::PARAM_REQUIRED => true,
 				],
-			] + $this->getTokenParamDefinition();
+			];
 	}
+
+	public function getBodyParamSettings(): array {
+		return $this->getTokenParamDefinition();
+	}
+
 }
