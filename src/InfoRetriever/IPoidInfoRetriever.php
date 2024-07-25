@@ -5,6 +5,7 @@ namespace MediaWiki\IPInfo\InfoRetriever;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\IPInfo\Info\IPoidInfo;
+use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
 use Wikimedia\IPUtils;
 
@@ -50,7 +51,9 @@ class IPoidInfoRetriever implements InfoRetriever {
 	 * @inheritDoc
 	 * @return IPoidInfo
 	 */
-	public function retrieveFromIP( string $ip ): IPoidInfo {
+	public function retrieveFor( UserIdentity $user ): IPoidInfo {
+		$ip = $user->getName();
+
 		$info = array_fill_keys(
 			[
 				'behaviors',

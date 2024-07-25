@@ -8,6 +8,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\IPInfo\Info\Coordinates;
 use MediaWiki\IPInfo\Info\Info;
 use MediaWiki\IPInfo\Info\Location;
+use MediaWiki\User\UserIdentity;
 
 /**
  * Manager for getting information from the MaxMind GeoLite2 databases.
@@ -59,7 +60,9 @@ class GeoLite2InfoRetriever implements InfoRetriever {
 	 * @inheritDoc
 	 * @return Info
 	 */
-	public function retrieveFromIP( string $ip ): Info {
+	public function retrieveFor( UserIdentity $user ): Info {
+		$ip = $user->getName();
+
 		return new Info(
 			$this->getCoordinates( $ip ),
 			$this->getAsn( $ip ),
