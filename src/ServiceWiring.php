@@ -45,7 +45,10 @@ return [
 		);
 	},
 	'IPInfoBlockInfoRetriever' => static function ( MediaWikiServices $services ): BlockInfoRetriever {
-		return new BlockInfoRetriever( $services->getBlockManager() );
+		return new BlockInfoRetriever(
+			$services->getBlockManager(),
+			$services->getUserIdentityUtils()
+		);
 	},
 	'IPInfoContributionInfoRetriever' => static function ( MediaWikiServices $services ): ContributionInfoRetriever {
 		return new ContributionInfoRetriever(

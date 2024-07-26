@@ -6,12 +6,18 @@ use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\IPInfo\Info\BlockInfo;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityUtils;
 
 class BlockInfoRetriever implements InfoRetriever {
 	private BlockManager $blockManager;
+	private UserIdentityUtils $userIdentityUtils;
 
-	public function __construct( BlockManager $blockManager ) {
+	public function __construct(
+		BlockManager $blockManager,
+		UserIdentityUtils $userIdentityUtils
+	) {
 		$this->blockManager = $blockManager;
+		$this->userIdentityUtils = $userIdentityUtils;
 	}
 
 	/** @inheritDoc */
@@ -22,7 +28,11 @@ class BlockInfoRetriever implements InfoRetriever {
 	/** @inheritDoc */
 	public function retrieveFor( UserIdentity $user ): BlockInfo {
 		// Active block(s)
-		$activeBlock = $this->blockManager->getIPBlock( $user->getName(), true );
+		if ( $this->userIdentityUtils->isTemp( $user ) ) {
+			$activeBlock = $this->blockManager->getBlock( $user, null );
+		} else {
+			$activeBlock = $this->blockManager->getIPBlock( $user->getName(), true );
+		}
 
 		if ( $activeBlock ) {
 			// SECURITY: do not include autoblocks in the number of blocks shown to the user, T310763
