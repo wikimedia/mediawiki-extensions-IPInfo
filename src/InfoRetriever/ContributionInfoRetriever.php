@@ -3,15 +3,20 @@
 namespace MediaWiki\IPInfo\InfoRetriever;
 
 use MediaWiki\IPInfo\Info\ContributionInfo;
+use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserIdentity;
-use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 class ContributionInfoRetriever implements InfoRetriever {
 	private IConnectionProvider $dbProvider;
+	private ActorNormalization $actorNormalization;
 
-	public function __construct( IConnectionProvider $dbProvider ) {
+	public function __construct(
+		IConnectionProvider $dbProvider,
+		ActorNormalization $actorNormalization
+	) {
 		$this->dbProvider = $dbProvider;
+		$this->actorNormalization = $actorNormalization;
 	}
 
 	/** @inheritDoc */
@@ -21,37 +26,36 @@ class ContributionInfoRetriever implements InfoRetriever {
 
 	/** @inheritDoc */
 	public function retrieveFor( UserIdentity $user ): ContributionInfo {
-		$ip = $user->getName();
-		$hexIP = IPUtils::toHex( $ip );
-
 		$dbr = $this->dbProvider->getReplicaDatabase();
+		$actorId = $this->actorNormalization->findActorId( $user, $dbr );
+
+		if ( $actorId === null ) {
+			return new ContributionInfo();
+		}
+
 		$numLocalEdits = $dbr->newSelectQueryBuilder()
-			->from( 'ip_changes' )
+			->from( 'revision' )
 			->where( [
-					'ipc_hex' => $hexIP,
-				]
-			)
+				'rev_actor' => $actorId,
+			] )
 			->caller( __METHOD__ )
 			->fetchRowCount();
 
 		$oneDayTS = (int)wfTimestamp( TS_UNIX ) - ( 24 * 60 * 60 );
 		$numRecentEdits = $dbr->newSelectQueryBuilder()
-			->from( 'ip_changes' )
+			->from( 'revision' )
 			->where( [
-					'ipc_hex' => $hexIP,
-					$dbr->expr( 'ipc_rev_timestamp', '>', $dbr->timestamp( $oneDayTS ) ),
-				]
-			)
+				'rev_actor' => $actorId,
+				$dbr->expr( 'rev_timestamp', '>', $dbr->timestamp( $oneDayTS ) ),
+			] )
 			->caller( __METHOD__ )
 			->fetchRowCount();
 
 		$numDeletedEdits = $dbr->newSelectQueryBuilder()
 			->from( 'archive' )
-			->join( 'actor', null, 'actor_id=ar_actor' )
 			->where( [
-					'actor_name' => $ip,
-				]
-			)
+				'ar_actor' => $actorId,
+			] )
 			->caller( __METHOD__ )
 			->fetchRowCount();
 
