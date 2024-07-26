@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\IPInfo\Test\Integration;
+namespace MediaWiki\IPInfo\Test\Unit\InfoRetriever;
 
 use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
@@ -16,40 +16,49 @@ use MediaWiki\IPInfo\Info\Location;
 use MediaWiki\IPInfo\Info\ProxyType;
 use MediaWiki\IPInfo\InfoRetriever\GeoIp2EnterpriseInfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\ReaderFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentityValue;
-use MediaWikiIntegrationTestCase;
+use MediaWikiUnitTestCase;
 use TestAllServiceOptionsUsed;
 
 /**
  * @group IPInfo
  * @covers \MediaWiki\IPInfo\InfoRetriever\GeoIp2EnterpriseInfoRetriever
  */
-class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiIntegrationTestCase {
+class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiUnitTestCase {
 	use TestAllServiceOptionsUsed;
 
-	public function testNoGeoIP2EnterprisePath() {
-		$this->overrideConfigValue( 'IPInfoGeoIP2EnterprisePath', false );
-		$reader = $this->createMock( Reader::class );
-		$readerFactory = $this->createMock( ReaderFactory::class );
-		$readerFactory->method( 'get' )
-			->willReturn( $reader );
-		$readerFactory->expects( $this->never() )
-			->method( 'get' );
+	private ReaderFactory $readerFactory;
 
-		$infoRetriever = new GeoIp2EnterpriseInfoRetriever(
+	protected function setUp(): void {
+		parent::setUp();
+
+		$this->readerFactory = $this->createMock( ReaderFactory::class );
+	}
+
+	private function getInfoRetriever( array $configOverrides = [] ): GeoIp2EnterpriseInfoRetriever {
+		return new GeoIp2EnterpriseInfoRetriever(
 			new LoggedServiceOptions(
 				self::$serviceOptionsAccessLog,
 				GeoIp2EnterpriseInfoRetriever::CONSTRUCTOR_OPTIONS,
-				MediaWikiServices::getInstance()->getMainConfig()
+				$configOverrides + [ 'IPInfoGeoIP2EnterprisePath' => 'test' ]
 			),
-			$readerFactory
+			$this->readerFactory
 		);
-		$infoRetriever->retrieveFor( new UserIdentityValue( 0, '127.0.0.1' ) );
+	}
+
+	public function testNoGeoIP2EnterprisePath() {
+		$reader = $this->createMock( Reader::class );
+
+		$this->readerFactory->method( 'get' )
+			->willReturn( $reader );
+		$this->readerFactory->expects( $this->never() )
+			->method( 'get' );
+
+		$retrieverWithoutPrefix = $this->getInfoRetriever( [ 'IPInfoGeoIP2EnterprisePath' => false ] );
+		$retrieverWithoutPrefix->retrieveFor( new UserIdentityValue( 0, '127.0.0.1' ) );
 	}
 
 	public function testNullRetrieveFor() {
-		$this->overrideConfigValue( 'IPInfoGeoIP2EnterprisePath', 'test' );
 		$user = new UserIdentityValue( 0, '127.0.0.1' );
 
 		$reader = $this->createMock( Reader::class );
@@ -62,24 +71,16 @@ class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 				new AddressNotFoundException()
 			);
 
-		$readerFactory = $this->createMock( ReaderFactory::class );
-		$readerFactory->method( 'get' )
+		$this->readerFactory->method( 'get' )
 			->willReturn( $reader );
-		$readerFactory->expects( $this->atLeastOnce() )
+		$this->readerFactory->expects( $this->atLeastOnce() )
 			->method( 'get' );
 
-		$infoRetriever = new GeoIp2EnterpriseInfoRetriever(
-			new LoggedServiceOptions(
-				self::$serviceOptionsAccessLog,
-				GeoIp2EnterpriseInfoRetriever::CONSTRUCTOR_OPTIONS,
-				MediaWikiServices::getInstance()->getMainConfig()
-			),
-			$readerFactory
-		);
-		$info = $infoRetriever->retrieveFor( $user );
+		$retriever = $this->getInfoRetriever();
+		$info = $retriever->retrieveFor( $user );
 
 		$this->assertInstanceOf( Info::class, $info );
-		$this->assertSame( 'ipinfo-source-geoip2', $infoRetriever->getName() );
+		$this->assertSame( 'ipinfo-source-geoip2', $retriever->getName() );
 		$this->assertNull( $info->getCoordinates() );
 		$this->assertNull( $info->getAsn() );
 		$this->assertNull( $info->getOrganization() );
@@ -92,7 +93,6 @@ class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testRetrieveFor() {
-		$this->overrideConfigValue( 'IPInfoGeoIP2EnterprisePath', 'test' );
 		$user = new UserIdentityValue( 0, '127.0.0.1' );
 		$ip = $user->getName();
 
@@ -143,19 +143,11 @@ class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 		$reader->method( 'anonymousIp' )
 			->with( $ip )
 			->willReturn( $anonymousIp );
-		$readerFactory = $this->createMock( ReaderFactory::class );
-		$readerFactory->method( 'get' )
+
+		$this->readerFactory->method( 'get' )
 			->willReturn( $reader );
 
-		$infoRetriever = new GeoIp2EnterpriseInfoRetriever(
-			new LoggedServiceOptions(
-				self::$serviceOptionsAccessLog,
-				GeoIp2EnterpriseInfoRetriever::CONSTRUCTOR_OPTIONS,
-				MediaWikiServices::getInstance()->getMainConfig()
-			),
-			$readerFactory
-		);
-		$info = $infoRetriever->retrieveFor( $user );
+		$info = $this->getInfoRetriever()->retrieveFor( $user );
 
 		$this->assertEquals( new Coordinates( 1.0, 2.0 ), $info->getCoordinates() );
 		$this->assertSame( 123, $info->getAsn() );

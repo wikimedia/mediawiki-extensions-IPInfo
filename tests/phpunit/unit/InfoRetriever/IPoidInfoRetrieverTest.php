@@ -1,57 +1,58 @@
 <?php
 
-namespace MediaWiki\IPInfo\Test\Integration;
+namespace MediaWiki\IPInfo\Test\Unit\InfoRetriever;
 
 use LoggedServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\IPInfo\InfoRetriever\IPoidInfoRetriever;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentityValue;
-use MediaWikiIntegrationTestCase;
+use MediaWikiUnitTestCase;
 use MockHttpTrait;
-use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use TestAllServiceOptionsUsed;
 
 /**
  * @group IPInfo
  * @covers \MediaWiki\IPInfo\InfoRetriever\IPoidInfoRetriever
  */
-class IPoidInfoRetrieverTest extends MediaWikiIntegrationTestCase {
+class IPoidInfoRetrieverTest extends MediaWikiUnitTestCase {
 	use TestAllServiceOptionsUsed;
 	use MockHttpTrait;
 
-	public function testRetrieveForNoIpoidUrl() {
-		$this->overrideConfigValue( 'IPInfoIpoidUrl', false );
-		$httpRequestFactory = $this->createMock( HttpRequestFactory::class );
-		$httpRequestFactory->expects( $this->never() )
-			->method( 'create' );
-		$infoRetriever = new IPoidInfoRetriever(
+	private function createIPoidInfoRetriever(
+		HttpRequestFactory $httpRequestFactory,
+		array $configOverrides = []
+	): IPoidInfoRetriever {
+		return new IPoidInfoRetriever(
 			new LoggedServiceOptions(
 				self::$serviceOptionsAccessLog,
 				IPoidInfoRetriever::CONSTRUCTOR_OPTIONS,
-				MediaWikiServices::getInstance()->getMainConfig()
+				$configOverrides + [ 'IPInfoIpoidUrl' => 'test' ]
 			),
 			$httpRequestFactory,
-			$this->createmock( LoggerInterface::class )
+			new NullLogger()
+		);
+	}
+
+	public function testRetrieveForNoIpoidUrl() {
+		$httpRequestFactory = $this->createMock( HttpRequestFactory::class );
+		$httpRequestFactory->expects( $this->never() )
+			->method( 'create' );
+		$infoRetriever = $this->createIPoidInfoRetriever(
+			$httpRequestFactory,
+			[ 'IPInfoIpoidUrl' => false ]
 		);
 		$infoRetriever->retrieveFor( new UserIdentityValue( 0, '127.0.0.1' ) );
 	}
 
 	public function testRetrieveForBadRequest() {
-		$this->overrideConfigValue( 'IPInfoIpoidUrl', 'test' );
-		$infoRetriever = new IPoidInfoRetriever(
-			new LoggedServiceOptions(
-				self::$serviceOptionsAccessLog,
-				IPoidInfoRetriever::CONSTRUCTOR_OPTIONS,
-				MediaWikiServices::getInstance()->getMainConfig()
-			),
+		$infoRetriever = $this->createIPoidInfoRetriever(
 			$this->makeMockHttpRequestFactory(
 				$this->makeFakeHttpRequest(
 					'',
 					500
 				)
-			),
-			$this->createmock( LoggerInterface::class )
+			)
 		);
 		$info = $infoRetriever->retrieveFor( new UserIdentityValue( 0, '127.0.0.1' ) );
 		$this->assertNull( $info->getBehaviors() );
@@ -63,13 +64,7 @@ class IPoidInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testRetrieveFor() {
-		$this->overrideConfigValue( 'IPInfoIpoidUrl', 'test' );
-		$infoRetriever = new IPoidInfoRetriever(
-			new LoggedServiceOptions(
-				self::$serviceOptionsAccessLog,
-				IPoidInfoRetriever::CONSTRUCTOR_OPTIONS,
-				MediaWikiServices::getInstance()->getMainConfig()
-			),
+		$infoRetriever = $this->createIPoidInfoRetriever(
 			$this->makeMockHttpRequestFactory(
 				$this->makeFakeHttpRequest(
 					"{\"2001:db8::8a2e:370:7334\":{\"ip\":\"2001:db8::8a2e:370:7334\"," .
@@ -81,8 +76,7 @@ class IPoidInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 						"\"behaviors\":[],\"tunnels\":[]}}",
 					200
 				)
-			),
-			$this->createmock( LoggerInterface::class )
+			)
 		);
 		$user = new UserIdentityValue( 0, '2001:0db8:0000:0000:0000:8a2e:0370:7334' );
 		$info = $infoRetriever->retrieveFor( $user );
