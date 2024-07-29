@@ -6,6 +6,7 @@ use LoggedServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\IPInfo\InfoRetriever\IPoidInfoRetriever;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use MockHttpTrait;
 use Psr\Log\LoggerInterface;
@@ -19,7 +20,7 @@ class IPoidInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 	use TestAllServiceOptionsUsed;
 	use MockHttpTrait;
 
-	public function testRetrievefromIpNoIpoidUrl() {
+	public function testRetrieveForNoIpoidUrl() {
 		$this->overrideConfigValue( 'IPInfoIpoidUrl', false );
 		$httpRequestFactory = $this->createMock( HttpRequestFactory::class );
 		$httpRequestFactory->expects( $this->never() )
@@ -33,10 +34,10 @@ class IPoidInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 			$httpRequestFactory,
 			$this->createmock( LoggerInterface::class )
 		);
-		$infoRetriever->retrieveFromIP( '127.0.0.1' );
+		$infoRetriever->retrieveFor( new UserIdentityValue( 0, '127.0.0.1' ) );
 	}
 
-	public function testRetrievefromIpBadRequest() {
+	public function testRetrieveForBadRequest() {
 		$this->overrideConfigValue( 'IPInfoIpoidUrl', 'test' );
 		$infoRetriever = new IPoidInfoRetriever(
 			new LoggedServiceOptions(
@@ -52,7 +53,7 @@ class IPoidInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 			),
 			$this->createmock( LoggerInterface::class )
 		);
-		$info = $infoRetriever->retrieveFromIP( '127.0.0.1' );
+		$info = $infoRetriever->retrieveFor( new UserIdentityValue( 0, '127.0.0.1' ) );
 		$this->assertNull( $info->getBehaviors() );
 		$this->assertNull( $info->getRisks() );
 		$this->assertNull( $info->getConnectionTypes() );
@@ -61,7 +62,7 @@ class IPoidInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $info->getNumUsersOnThisIP() );
 	}
 
-	public function testRetrievefromIp() {
+	public function testRetrieveFor() {
 		$this->overrideConfigValue( 'IPInfoIpoidUrl', 'test' );
 		$infoRetriever = new IPoidInfoRetriever(
 			new LoggedServiceOptions(
@@ -83,7 +84,8 @@ class IPoidInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 			),
 			$this->createmock( LoggerInterface::class )
 		);
-		$info = $infoRetriever->retrieveFromIP( '2001:0db8:0000:0000:0000:8a2e:0370:7334' );
+		$user = new UserIdentityValue( 0, '2001:0db8:0000:0000:0000:8a2e:0370:7334' );
+		$info = $infoRetriever->retrieveFor( $user );
 		$this->assertArrayEquals( [], $info->getBehaviors() );
 		$this->assertArrayEquals( [], $info->getRisks() );
 		$this->assertSame( [ "UNKNOWN" ], $info->getConnectionTypes() );

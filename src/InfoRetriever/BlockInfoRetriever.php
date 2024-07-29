@@ -5,6 +5,7 @@ namespace MediaWiki\IPInfo\InfoRetriever;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\IPInfo\Info\BlockInfo;
+use MediaWiki\User\UserIdentity;
 
 class BlockInfoRetriever implements InfoRetriever {
 	private BlockManager $blockManager;
@@ -19,9 +20,9 @@ class BlockInfoRetriever implements InfoRetriever {
 	}
 
 	/** @inheritDoc */
-	public function retrieveFromIP( string $ip ): BlockInfo {
+	public function retrieveFor( UserIdentity $user ): BlockInfo {
 		// Active block(s)
-		$activeBlock = $this->blockManager->getIPBlock( $ip, true );
+		$activeBlock = $this->blockManager->getIPBlock( $user->getName(), true );
 
 		if ( $activeBlock ) {
 			// SECURITY: do not include autoblocks in the number of blocks shown to the user, T310763

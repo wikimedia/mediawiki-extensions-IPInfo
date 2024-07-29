@@ -17,6 +17,7 @@ use MediaWiki\IPInfo\Info\ProxyType;
 use MediaWiki\IPInfo\InfoRetriever\GeoIp2EnterpriseInfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\ReaderFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use TestAllServiceOptionsUsed;
 
@@ -44,12 +45,12 @@ class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 			),
 			$readerFactory
 		);
-		$infoRetriever->retrieveFromIP( '127.0.0.1' );
+		$infoRetriever->retrieveFor( new UserIdentityValue( 0, '127.0.0.1' ) );
 	}
 
-	public function testNullRetrieveFromIP() {
+	public function testNullRetrieveFor() {
 		$this->overrideConfigValue( 'IPInfoGeoIP2EnterprisePath', 'test' );
-		$ip = '127.0.0.1';
+		$user = new UserIdentityValue( 0, '127.0.0.1' );
 
 		$reader = $this->createMock( Reader::class );
 		$reader->method( 'enterprise' )
@@ -75,7 +76,7 @@ class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 			),
 			$readerFactory
 		);
-		$info = $infoRetriever->retrieveFromIP( '127.0.0.1' );
+		$info = $infoRetriever->retrieveFor( $user );
 
 		$this->assertInstanceOf( Info::class, $info );
 		$this->assertSame( 'ipinfo-source-geoip2', $infoRetriever->getName() );
@@ -90,9 +91,10 @@ class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $info->getProxyType() );
 	}
 
-	public function testRetrieveFromIP() {
+	public function testRetrieveFor() {
 		$this->overrideConfigValue( 'IPInfoGeoIP2EnterprisePath', 'test' );
-		$ip = '127.0.0.1';
+		$user = new UserIdentityValue( 0, '127.0.0.1' );
+		$ip = $user->getName();
 
 		$location = $this->createMock( LocationRecord::class );
 		$country = $this->createMock( Country::class );
@@ -153,7 +155,7 @@ class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiIntegrationTestCase {
 			),
 			$readerFactory
 		);
-		$info = $infoRetriever->retrieveFromIP( '127.0.0.1' );
+		$info = $infoRetriever->retrieveFor( $user );
 
 		$this->assertEquals( new Coordinates( 1.0, 2.0 ), $info->getCoordinates() );
 		$this->assertSame( 123, $info->getAsn() );

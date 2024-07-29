@@ -9,6 +9,7 @@ use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\IPInfo\Info\BlockInfo;
 use MediaWiki\IPInfo\InfoRetriever\BlockInfoRetriever;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -39,7 +40,7 @@ class BlockInfoRetrieverTest extends MediaWikiUnitTestCase {
 		$block,
 		$expectedNumActiveBlocks
 	) {
-		$ip = '127.0.0.1';
+		$user = new UserIdentityValue( 0, '127.0.0.1' );
 
 		$blockManager = $this->createMock( BlockManager::class );
 		$database = $this->createMock( IDatabase::class );
@@ -50,7 +51,7 @@ class BlockInfoRetrieverTest extends MediaWikiUnitTestCase {
 
 		$retriever = new BlockInfoRetriever( $blockManager, $database );
 		$this->assertSame( 'ipinfo-source-block', $retriever->getName() );
-		$info = $retriever->retrieveFromIP( $ip );
+		$info = $retriever->retrieveFor( $user );
 
 		$this->assertInstanceOf( BlockInfo::class, $info );
 		$this->assertEquals( $expectedNumActiveBlocks, $info->getNumActiveBlocks() );

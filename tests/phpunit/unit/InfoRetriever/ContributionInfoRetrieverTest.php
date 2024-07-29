@@ -4,6 +4,7 @@ namespace MediaWiki\IPInfo\Test\Unit\InfoRetriever;
 
 use MediaWiki\IPInfo\Info\ContributionInfo;
 use MediaWiki\IPInfo\InfoRetriever\ContributionInfoRetriever;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\Expression;
@@ -16,20 +17,38 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  * @covers \MediaWiki\IPInfo\InfoRetriever\ContributionInfoRetriever
  */
 class ContributionInfoRetrieverTest extends MediaWikiUnitTestCase {
-	public function testRetrieveFromIP() {
-		$ip = '1.1.1.1';
+	private IConnectionProvider $connectionProvider;
+
+	private ContributionInfoRetriever $contributionInfoRetriever;
+
+	protected function setUp(): void {
+		parent::setUp();
+
+		$this->connectionProvider = $this->createMock( IConnectionProvider::class );
+
+		$this->contributionInfoRetriever = new ContributionInfoRetriever(
+			$this->connectionProvider
+		);
+	}
+
+	public function testRetrieve() {
+		$user = new UserIdentityValue( 0, '127.0.0.1' );
+		$ip = $user->getName();
 		$expectedIP = IPUtils::toHex( $ip );
-		$provider = $this->createMock( IConnectionProvider::class );
+
 		$database = $this->createMock( IDatabase::class );
-		$provider->method( 'getReplicaDatabase' )->willReturn( $database );
+		$this->connectionProvider->method( 'getReplicaDatabase' )->willReturn( $database );
+
 		$numLocalEdits = 42;
 		$numRecentEdits = 24;
 		$numDeletedEdits = 10;
 
 		$expr = $this->createMock( Expression::class );
-		$expr->method( 'toSql' )->willReturn( 'ipc_rev_timestamp > 30' );
+		$expr->method( 'toSql' )->willReturn( 'rev_timestamp > 30' );
 		$database->method( 'expr' )
 			->willReturn( $expr );
+
+		$fname = ContributionInfoRetriever::class . '::retrieveFor';
 
 		$map = [
 			[
@@ -38,7 +57,7 @@ class ContributionInfoRetrieverTest extends MediaWikiUnitTestCase {
 				[
 					'ipc_hex' => $expectedIP
 				],
-				ContributionInfoRetriever::class . '::retrieveFromIP',
+				$fname,
 				[],
 				[],
 				$numLocalEdits,
@@ -50,7 +69,7 @@ class ContributionInfoRetrieverTest extends MediaWikiUnitTestCase {
 					'ipc_hex' => $expectedIP,
 					$expr,
 				],
-				ContributionInfoRetriever::class . '::retrieveFromIP',
+				$fname,
 				[],
 				[],
 				$numRecentEdits,
@@ -59,7 +78,7 @@ class ContributionInfoRetrieverTest extends MediaWikiUnitTestCase {
 				[ 0 => 'archive', 'actor' => 'actor' ],
 				'*',
 				[ 'actor_name' => $ip ],
-				ContributionInfoRetriever::class . '::retrieveFromIP',
+				$fname,
 				[],
 				[ 'actor' => [
 					'JOIN',
@@ -78,9 +97,8 @@ class ContributionInfoRetrieverTest extends MediaWikiUnitTestCase {
 		$database->method( 'selectRowCount' )
 			->willReturnMap( $map );
 
-		$retriever = new ContributionInfoRetriever( $provider );
-		$this->assertSame( 'ipinfo-source-contributions', $retriever->getName() );
-		$info = $retriever->retrieveFromIP( $ip );
+		$this->assertSame( 'ipinfo-source-contributions', $this->contributionInfoRetriever->getName() );
+		$info = $this->contributionInfoRetriever->retrieveFor( $user );
 
 		$this->assertInstanceOf( ContributionInfo::class, $info );
 		$this->assertEquals( $numLocalEdits, $info->getNumLocalEdits() );

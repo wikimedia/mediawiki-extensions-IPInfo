@@ -2,6 +2,8 @@
 
 namespace MediaWiki\IPInfo\InfoRetriever;
 
+use MediaWiki\User\UserIdentity;
+
 interface InfoRetriever {
 
 	/**
@@ -14,10 +16,11 @@ interface InfoRetriever {
 	public function getName(): string;
 
 	/**
-	 * Retrieve info about an IP address.
+	 * Retrieve info about an anonymous user or temporary user account.
+	 * TODO: Temporary user handling is yet to be implemented (T349716))
 	 *
-	 * @param string $ip
+	 * @param UserIdentity $user
 	 * @return mixed
 	 */
-	public function retrieveFromIP( string $ip );
+	public function retrieveFor( UserIdentity $user );
 }

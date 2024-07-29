@@ -11,6 +11,7 @@ use MediaWiki\IPInfo\Info\Coordinates;
 use MediaWiki\IPInfo\Info\Info;
 use MediaWiki\IPInfo\Info\Location;
 use MediaWiki\IPInfo\Info\ProxyType;
+use MediaWiki\User\UserIdentity;
 
 /**
  * Manager for getting information from the MaxMind GeoIp2 Enterprise database.
@@ -66,7 +67,9 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 	 * @inheritDoc
 	 * @return Info
 	 */
-	public function retrieveFromIP( string $ip ): Info {
+	public function retrieveFor( UserIdentity $user ): Info {
+		$ip = $user->getName();
+
 		$info = array_fill_keys(
 			[
 				'coordinates',

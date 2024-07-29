@@ -17,7 +17,7 @@ class InfoManagerTest extends MediaWikiUnitTestCase {
 		$retrieverName = 'foo';
 
 		$infoRetriever = $this->createMock( InfoRetriever::class );
-		$infoRetriever->method( 'retrieveFromIP' )
+		$infoRetriever->method( 'retrieveFor' )
 			->willReturn( $this->createMock( Info::class ) );
 		$infoRetriever->method( 'getName' )
 			->willReturn( $retrieverName );

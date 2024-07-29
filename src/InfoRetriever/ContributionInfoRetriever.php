@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo\InfoRetriever;
 
 use MediaWiki\IPInfo\Info\ContributionInfo;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -19,7 +20,8 @@ class ContributionInfoRetriever implements InfoRetriever {
 	}
 
 	/** @inheritDoc */
-	public function retrieveFromIP( string $ip ): ContributionInfo {
+	public function retrieveFor( UserIdentity $user ): ContributionInfo {
+		$ip = $user->getName();
 		$hexIP = IPUtils::toHex( $ip );
 
 		$dbr = $this->dbProvider->getReplicaDatabase();

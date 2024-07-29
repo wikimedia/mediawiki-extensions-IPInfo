@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo;
 
 use MediaWiki\IPInfo\InfoRetriever\InfoRetriever;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\IPUtils;
 
 class InfoManager {
@@ -28,9 +29,10 @@ class InfoManager {
 	 */
 	public function retrieveFromIP( string $ip ): array {
 		$data = [];
+		$user = new UserIdentityValue( 0, $ip );
 
 		foreach ( $this->retrievers as $retriever ) {
-			$data[$retriever->getName()] = $retriever->retrieveFromIP( $ip );
+			$data[$retriever->getName()] = $retriever->retrieveFor( $user );
 		}
 
 		return [
