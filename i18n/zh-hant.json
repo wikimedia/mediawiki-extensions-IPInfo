@@ -107,7 +107,7 @@
 	"ipinfo-source-geoip2": "顯示於此的資訊來自於 MaxMind 的 GeoIP2 資料庫。內容可能不完全準確。",
 	"ipinfo-beta-feature-title": "IP資訊",
 	"ipinfo-beta-feature-description": "IP資訊工具旨在為巡查員提供有關IP位址的重要資訊，以幫助其履行職責。此資訊可在IP編者的使用者貢獻特殊頁面上查看。[[Special:Log|日誌]]、[[Special:Contributions|貢獻]]和[[Special:RecentChanges|近期變更]]頁面上IP位址旁邊的彈出視窗中將提供此資訊的精簡版本。",
-	"prefs-ipinfo": "IP 資訊",
+	"prefs-ipinfo": "IP資訊",
 	"action-ipinfo": "檢索有關附加在修訂或日誌項目的 IP 位址資訊",
 	"right-ipinfo": "檢索有關附加在修訂或日誌項目的 IP 位址資訊",
 	"action-ipinfo-view-basic": "存取附加到修訂或日誌項目的 IP 資訊的基本資訊",
