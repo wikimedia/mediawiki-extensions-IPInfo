@@ -5,6 +5,8 @@ namespace MediaWiki\IPInfo\Test\Unit\InfoRetriever;
 use LoggedServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\IPInfo\InfoRetriever\IPoidInfoRetriever;
+use MediaWiki\IPInfo\TempUserIPLookup;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use MockHttpTrait;
@@ -19,6 +21,14 @@ class IPoidInfoRetrieverTest extends MediaWikiUnitTestCase {
 	use TestAllServiceOptionsUsed;
 	use MockHttpTrait;
 
+	private TempUserIPLookup $tempUserIPLookup;
+
+	protected function setUp(): void {
+		parent::setUp();
+
+		$this->tempUserIPLookup = $this->createMock( TempUserIPLookup::class );
+	}
+
 	private function createIPoidInfoRetriever(
 		HttpRequestFactory $httpRequestFactory,
 		array $configOverrides = []
@@ -30,6 +40,7 @@ class IPoidInfoRetrieverTest extends MediaWikiUnitTestCase {
 				$configOverrides + [ 'IPInfoIpoidUrl' => 'test' ]
 			),
 			$httpRequestFactory,
+			$this->tempUserIPLookup,
 			new NullLogger()
 		);
 	}
@@ -63,7 +74,32 @@ class IPoidInfoRetrieverTest extends MediaWikiUnitTestCase {
 		$this->assertNull( $info->getNumUsersOnThisIP() );
 	}
 
-	public function testRetrieveFor() {
+	public function testRetrieveForMissingTemporaryUserIPData() {
+		$httpRequestFactory = $this->createMock( HttpRequestFactory::class );
+		$httpRequestFactory->expects( $this->never() )
+			->method( $this->anything() );
+
+		$infoRetriever = $this->createIPoidInfoRetriever( $httpRequestFactory );
+		$user = new UserIdentityValue( 4, '~2024-8' );
+
+		$this->tempUserIPLookup->method( 'getMostRecentAddress' )
+			->with( $user )
+			->willReturn( null );
+
+		$info = $infoRetriever->retrieveFor( $user );
+
+		$this->assertNull( $info->getBehaviors() );
+		$this->assertNull( $info->getRisks() );
+		$this->assertNull( $info->getConnectionTypes() );
+		$this->assertNull( $info->getTunnelOperators() );
+		$this->assertNull( $info->getProxies() );
+		$this->assertNull( $info->getNumUsersOnThisIP() );
+	}
+
+	/**
+	 * @dataProvider provideUsers
+	 */
+	public function testRetrieveFor( UserIdentity $user, string $ip ) {
 		$infoRetriever = $this->createIPoidInfoRetriever(
 			$this->makeMockHttpRequestFactory(
 				$this->makeFakeHttpRequest(
@@ -78,7 +114,11 @@ class IPoidInfoRetrieverTest extends MediaWikiUnitTestCase {
 				)
 			)
 		);
-		$user = new UserIdentityValue( 0, '2001:0db8:0000:0000:0000:8a2e:0370:7334' );
+
+		$this->tempUserIPLookup->method( 'getMostRecentAddress' )
+			->with( $user )
+			->willReturn( $ip );
+
 		$info = $infoRetriever->retrieveFor( $user );
 		$this->assertArrayEquals( [], $info->getBehaviors() );
 		$this->assertArrayEquals( [], $info->getRisks() );
@@ -86,5 +126,17 @@ class IPoidInfoRetrieverTest extends MediaWikiUnitTestCase {
 		$this->assertArrayEquals( [], $info->getTunnelOperators() );
 		$this->assertArrayEquals( [ "3_PROXY", "1_PROXY" ], $info->getProxies() );
 		$this->assertSame( 10, $info->getNumUsersOnThisIP() );
+	}
+
+	public static function provideUsers(): iterable {
+		yield 'anonymous user' => [
+			new UserIdentityValue( 0, '2001:0db8:0000:0000:0000:8a2e:0370:7334' ),
+			'2001:0db8:0000:0000:0000:8a2e:0370:7334'
+		];
+
+		yield 'temporary user' => [
+			new UserIdentityValue( 4, '~2024-8' ),
+			'2001:0db8:0000:0000:0000:8a2e:0370:7334'
+		];
 	}
 }
