@@ -11,6 +11,7 @@ use MediaWiki\IPInfo\Info\Coordinates;
 use MediaWiki\IPInfo\Info\Info;
 use MediaWiki\IPInfo\Info\Location;
 use MediaWiki\IPInfo\Info\ProxyType;
+use MediaWiki\IPInfo\TempUserIPLookup;
 use MediaWiki\User\UserIdentity;
 
 /**
@@ -24,23 +25,21 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 		'IPInfoGeoIP2EnterprisePath',
 	];
 
-	/** @var ServiceOptions */
-	private $options;
+	private ServiceOptions $options;
 
-	/** @var ReaderFactory */
-	private $readerFactory;
+	private ReaderFactory $readerFactory;
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param ReaderFactory $readerFactory
-	 */
+	private TempUserIPLookup $tempUserIPLookup;
+
 	public function __construct(
 		ServiceOptions $options,
-		ReaderFactory $readerFactory
+		ReaderFactory $readerFactory,
+		TempUserIPLookup $tempUserIPLookup
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->readerFactory = $readerFactory;
+		$this->tempUserIPLookup = $tempUserIPLookup;
 	}
 
 	/** @inheritDoc */
@@ -68,7 +67,10 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 	 * @return Info
 	 */
 	public function retrieveFor( UserIdentity $user ): Info {
-		$ip = $user->getName();
+		$ip = $this->tempUserIPLookup->getMostRecentAddress( $user );
+		if ( $ip === null ) {
+			return new Info();
+		}
 
 		$info = array_fill_keys(
 			[

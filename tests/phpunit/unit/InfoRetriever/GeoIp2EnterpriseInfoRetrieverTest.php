@@ -16,6 +16,8 @@ use MediaWiki\IPInfo\Info\Location;
 use MediaWiki\IPInfo\Info\ProxyType;
 use MediaWiki\IPInfo\InfoRetriever\GeoIp2EnterpriseInfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\ReaderFactory;
+use MediaWiki\IPInfo\TempUserIPLookup;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use TestAllServiceOptionsUsed;
@@ -29,10 +31,13 @@ class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiUnitTestCase {
 
 	private ReaderFactory $readerFactory;
 
+	private TempUserIPLookup $tempUserIPLookup;
+
 	protected function setUp(): void {
 		parent::setUp();
 
 		$this->readerFactory = $this->createMock( ReaderFactory::class );
+		$this->tempUserIPLookup = $this->createMock( TempUserIPLookup::class );
 	}
 
 	private function getInfoRetriever( array $configOverrides = [] ): GeoIp2EnterpriseInfoRetriever {
@@ -42,24 +47,48 @@ class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiUnitTestCase {
 				GeoIp2EnterpriseInfoRetriever::CONSTRUCTOR_OPTIONS,
 				$configOverrides + [ 'IPInfoGeoIP2EnterprisePath' => 'test' ]
 			),
-			$this->readerFactory
+			$this->readerFactory,
+			$this->tempUserIPLookup
 		);
 	}
 
-	public function testNoGeoIP2EnterprisePath() {
-		$reader = $this->createMock( Reader::class );
+	/**
+	 * Convenience function to assert that the given Info holds no data.
+	 * @param Info $info
+	 * @return void
+	 */
+	private function assertEmptyInfo( Info $info ): void {
+		$this->assertNull( $info->getCoordinates() );
+		$this->assertNull( $info->getAsn() );
+		$this->assertNull( $info->getOrganization() );
+		$this->assertNull( $info->getCountryNames() );
+		$this->assertNull( $info->getLocation() );
+		$this->assertNull( $info->getIsp() );
+		$this->assertNull( $info->getConnectionType() );
+		$this->assertNull( $info->getUserType() );
+		$this->assertNull( $info->getProxyType() );
+	}
 
-		$this->readerFactory->method( 'get' )
-			->willReturn( $reader );
+	public function testNoGeoIP2EnterprisePath() {
+		$user = new UserIdentityValue( 0, '127.0.0.1' );
+		$this->tempUserIPLookup->method( 'getMostRecentAddress' )
+			->with( $user )
+			->willReturn( '127.0.0.1' );
+
 		$this->readerFactory->expects( $this->never() )
 			->method( 'get' );
 
 		$retrieverWithoutPrefix = $this->getInfoRetriever( [ 'IPInfoGeoIP2EnterprisePath' => false ] );
-		$retrieverWithoutPrefix->retrieveFor( new UserIdentityValue( 0, '127.0.0.1' ) );
+		$info = $retrieverWithoutPrefix->retrieveFor( $user );
+
+		$this->assertEmptyInfo( $info );
 	}
 
 	public function testNullRetrieveFor() {
 		$user = new UserIdentityValue( 0, '127.0.0.1' );
+		$this->tempUserIPLookup->method( 'getMostRecentAddress' )
+			->with( $user )
+			->willReturn( '127.0.0.1' );
 
 		$reader = $this->createMock( Reader::class );
 		$reader->method( 'enterprise' )
@@ -81,20 +110,34 @@ class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiUnitTestCase {
 
 		$this->assertInstanceOf( Info::class, $info );
 		$this->assertSame( 'ipinfo-source-geoip2', $retriever->getName() );
-		$this->assertNull( $info->getCoordinates() );
-		$this->assertNull( $info->getAsn() );
-		$this->assertNull( $info->getOrganization() );
-		$this->assertNull( $info->getCountryNames() );
-		$this->assertNull( $info->getLocation() );
-		$this->assertNull( $info->getIsp() );
-		$this->assertNull( $info->getConnectionType() );
-		$this->assertNull( $info->getUserType() );
-		$this->assertNull( $info->getProxyType() );
+		$this->assertEmptyInfo( $info );
 	}
 
-	public function testRetrieveFor() {
-		$user = new UserIdentityValue( 0, '127.0.0.1' );
-		$ip = $user->getName();
+	public function testRetrieveForTemporaryUserWithMissingIPData() {
+		$user = new UserIdentityValue( 4, '~2024-8' );
+
+		$this->tempUserIPLookup->method( 'getMostRecentAddress' )
+			->with( $user )
+			->willReturn( null );
+
+		$this->readerFactory->expects( $this->never() )
+			->method( 'get' );
+
+		$retriever = $this->getInfoRetriever();
+		$info = $retriever->retrieveFor( $user );
+
+		$this->assertInstanceOf( Info::class, $info );
+		$this->assertSame( 'ipinfo-source-geoip2', $retriever->getName() );
+		$this->assertEmptyInfo( $info );
+	}
+
+	/**
+	 * @dataProvider provideUsers
+	 */
+	public function testRetrieveFor( UserIdentity $user, string $ip ) {
+		$this->tempUserIPLookup->method( 'getMostRecentAddress' )
+			->with( $user )
+			->willReturn( $ip );
 
 		$location = $this->createMock( LocationRecord::class );
 		$country = $this->createMock( Country::class );
@@ -158,6 +201,11 @@ class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiUnitTestCase {
 		$this->assertNull( $info->getConnectionType() );
 		$this->assertNull( $info->getUserType() );
 		$this->assertEquals( new ProxyType( true, true, true, true, true, true ), $info->getProxyType() );
+	}
+
+	public static function provideUsers(): iterable {
+		yield 'anonymous user' => [ new UserIdentityValue( 0, '127.0.0.1' ), '127.0.0.1' ];
+		yield 'temporary user' => [ new UserIdentityValue( 4, '~2024-8' ), '127.0.0.1' ];
 	}
 
 }
