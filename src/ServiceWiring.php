@@ -10,6 +10,7 @@ use MediaWiki\IPInfo\InfoRetriever\InfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\IPoidInfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\ReaderFactory;
 use MediaWiki\IPInfo\Logging\LoggerFactory as IPInfoLoggerFactory;
+use MediaWiki\IPInfo\TempUserIPLookup;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
@@ -68,6 +69,13 @@ return [
 		return new IPInfoLoggerFactory(
 			$services->getActorStore(),
 			$services->getDBLoadBalancerFactory()
+		);
+	},
+	'IPInfoTempUserIPLookup' => static function ( MediaWikiServices $services ): TempUserIPLookup {
+		return new TempUserIPLookup(
+			$services->getConnectionProvider(),
+			$services->getUserIdentityUtils(),
+			ExtensionRegistry::getInstance()
 		);
 	},
 	'ReaderFactory' => static function (): ReaderFactory {
