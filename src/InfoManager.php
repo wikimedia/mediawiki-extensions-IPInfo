@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo;
 
 use MediaWiki\IPInfo\InfoRetriever\InfoRetriever;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\IPUtils;
 
@@ -24,19 +25,26 @@ class InfoManager {
 	 *
 	 * TODO: Make this return a domain object, e.g. InfoManagerResponse.
 	 *
-	 * @param string $ip
+	 * @param UserIdentity|string $user
 	 * @return array
 	 */
-	public function retrieveFromIP( string $ip ): array {
+	public function retrieveFor( $user ): array {
 		$data = [];
-		$user = new UserIdentityValue( 0, $ip );
+
+		if ( is_string( $user ) ) {
+			$user = new UserIdentityValue( 0, $user );
+		}
 
 		foreach ( $this->retrievers as $retriever ) {
 			$data[$retriever->getName()] = $retriever->retrieveFor( $user );
 		}
 
+		$subjectName = $user->getName();
+
 		return [
-			'subject' => IPUtils::prettifyIP( $ip ),
+			// Ensure we consistently format the subject name if it is an IP address
+			// belonging to an anonymous user.
+			'subject' => IPUtils::isIPAddress( $subjectName ) ? IPUtils::prettifyIP( $subjectName ) : $subjectName,
 			'data' => $data,
 		];
 	}

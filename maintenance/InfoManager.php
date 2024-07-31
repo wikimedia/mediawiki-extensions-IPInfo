@@ -28,7 +28,7 @@ class InfoManager extends Maintenance {
 		}
 		/** @var \MediaWiki\IPInfo\InfoManager $ipInfoManager */
 		$ipInfoManager = $this->getServiceContainer()->getService( 'IPInfoInfoManager' );
-		$result = $ipInfoManager->retrieveFromIP( $ip );
+		$result = $ipInfoManager->retrieveFor( $ip );
 		$this->output( FormatJson::encode( $result ) );
 	}
 }
