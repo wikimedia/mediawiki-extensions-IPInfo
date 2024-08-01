@@ -37,7 +37,7 @@ async function restartPhpFpmService() {
  */
 async function overrideLocalSettings() {
 	console.log( 'Setting up modified ' + localSettingsPath );
-	const extraSettingsPath = path.resolve( __dirname + '/fixtures/ExtraLocalSettings.php' );
+	const extraSettingsPath = path.resolve( __dirname + '/../fixtures/ExtraLocalSettings.php' );
 
 	fs.writeFileSync( localSettingsPath,
 		localSettingsContents + `

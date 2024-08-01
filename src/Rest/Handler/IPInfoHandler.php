@@ -78,6 +78,8 @@ abstract class IPInfoHandler extends SimpleHandler {
 
 	protected LanguageFallback $languageFallback;
 
+	private ExtensionRegistry $extensionRegistry;
+
 	public function __construct(
 		InfoManager $infoManager,
 		PermissionManager $permissionManager,
@@ -85,7 +87,8 @@ abstract class IPInfoHandler extends SimpleHandler {
 		UserFactory $userFactory,
 		DefaultPresenter $presenter,
 		JobQueueGroup $jobQueueGroup,
-		LanguageFallback $languageFallback
+		LanguageFallback $languageFallback,
+		?ExtensionRegistry $extensionRegistry = null
 	) {
 		$this->infoManager = $infoManager;
 		$this->permissionManager = $permissionManager;
@@ -94,6 +97,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 		$this->presenter = $presenter;
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->languageFallback = $languageFallback;
+		$this->extensionRegistry = $extensionRegistry ?? ExtensionRegistry::getInstance();
 	}
 
 	/**
@@ -120,7 +124,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 	 * @return Response
 	 */
 	public function run( int $id ): Response {
-		$isBetaFeaturesLoaded = ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' );
+		$isBetaFeaturesLoaded = $this->extensionRegistry->isLoaded( 'BetaFeatures' );
 		// Disallow access to API if BetaFeatures is enabled but the feature is not
 		if ( $isBetaFeaturesLoaded &&
 			!$this->userOptionsLookup->getOption( $this->getAuthority()->getUser(), 'ipinfo-beta-feature-enable' ) ) {
