@@ -65,7 +65,21 @@
 	"ipinfo-beta-feature-title": "IP лаьцна хаам",
 	"ipinfo-beta-feature-description": "IP информацин гӀирс лерина бу, таллархошна IP-адресех хаам шуьйра гайта, царна гӀо хилийта цуьнах. Иза информаци хира йу редакторан IP-ам къинхьегаман агӀонгахь. Оцу информацин йоца верси IP -адресашна цхьамза тӀе хьажийча гучу йолу [[Special:Log|Log]], [[Special:Contributions|къинхьегаман]], [[Special:RecentChanges|керла нисдарийн]] агӀонашкахь.",
 	"prefs-ipinfo": "IP лаьцна хаам",
-	"group-no-ipinfo": "IP хааман гӀирс блоктоьхна болу декъашхой",
+	"right-ipinfo-view-full": "IP-информацин йуьззина тӀекхача, хийцамашца йа журналан дӀайаздаршца уьйр йолуш",
+	"action-ipinfo-view-log": "IP-информацин тӀекхаьчначеран могӀаме хьажа",
+	"right-ipinfo-view-log": "IP-информацин тӀекхаьчначеран могӀаме хьажар",
+	"group-no-ipinfo": "IP-информацин гӀирс блоктоьхна болу декъашхой",
 	"group-no-ipinfo-member": "IP хаам гӀирс тӀехь {{GENDER:$1|блоктоьхнарг}}",
-	"grouppage-no-ipinfo": "{{ns:project}}:IP хааман гӀирс блоктоьхна болу декъашхой"
+	"grouppage-no-ipinfo": "{{ns:project}}:IP-информацин гӀирс блоктоьхна болу декъашхой",
+	"ipinfo-log-name": "IPInfo журнал",
+	"ipinfo-log-access-level-ipinfo-view-basic": "Дихкина тӀекхачар",
+	"ipinfo-log-access-level-ipinfo-view-full": "Дуьззина тӀекхачар",
+	"logentry-ipinfo-view_infobox": "$1 {{GENDER:$2|хьаьжира}} IP информацин карточке $3. $4.",
+	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|хьаьжира}} IP информацин гучудолу коре $3. $4.",
+	"ipinfo-change-access-level-enable": "{{GENDER:$1|латина}}",
+	"ipinfo-change-access-level-disable": "{{GENDER:$1|дӀайайина}}",
+	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|цуьнан|хьан}} IP-информацин тӀе кхача йиш йу",
+	"ipinfo-blocklist-url-text": "Блоктохарийн могӀам",
+	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 дӀадаьккхина нисдар|$1 дӀадаьхна нисдарш|0=дӀадаьхна нисдарш дац}}",
+	"ipinfo-deleted-edits-url-text": "ДӀабаьккхина къинхьегам"
 }
