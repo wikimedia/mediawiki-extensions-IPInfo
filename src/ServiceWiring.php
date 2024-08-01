@@ -25,7 +25,8 @@ return [
 				new ServiceOptions(
 					GeoIp2EnterpriseInfoRetriever::CONSTRUCTOR_OPTIONS, $config
 				),
-				$services->get( 'ReaderFactory' )
+				$services->get( 'ReaderFactory' ),
+				$services->get( 'IPInfoTempUserIPLookup' )
 			);
 		}
 		return new GeoLite2InfoRetriever(
