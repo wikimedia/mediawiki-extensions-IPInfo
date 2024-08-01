@@ -48,7 +48,10 @@ return [
 		return new BlockInfoRetriever( $services->getBlockManager() );
 	},
 	'IPInfoContributionInfoRetriever' => static function ( MediaWikiServices $services ): ContributionInfoRetriever {
-		return new ContributionInfoRetriever( $services->getDBLoadBalancerFactory() );
+		return new ContributionInfoRetriever(
+			$services->getDBLoadBalancerFactory(),
+			$services->getActorNormalization()
+		);
 	},
 	'IPInfoInfoManager' => static function ( MediaWikiServices $services ): InfoManager {
 		return new InfoManager( [
