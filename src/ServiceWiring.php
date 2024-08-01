@@ -32,7 +32,8 @@ return [
 			new ServiceOptions(
 				GeoLite2InfoRetriever::CONSTRUCTOR_OPTIONS, $config
 			),
-			$services->get( 'ReaderFactory' )
+			$services->get( 'ReaderFactory' ),
+			$services->get( 'IPInfoTempUserIPLookup' )
 		);
 	},
 	'IPInfoIPoidInfoRetriever' => static function ( MediaWikiServices $services ): IPoidInfoRetriever {
