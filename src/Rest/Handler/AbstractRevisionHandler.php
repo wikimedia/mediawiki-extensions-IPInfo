@@ -57,7 +57,7 @@ abstract class AbstractRevisionHandler extends IPInfoHandler {
 		}
 
 		return [
-			$this->presenter->present( $this->infoManager->retrieveFromIP( $author->getName() ),
+			$this->presenter->present( $this->infoManager->retrieveFor( $author->getName() ),
 			$this->getAuthority()->getUser() )
 		];
 	}

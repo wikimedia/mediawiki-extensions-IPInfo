@@ -71,7 +71,7 @@ class DefaultPresenter {
 	}
 
 	/**
-	 * @param array $info The output of MediaWiki\IPInfo\InfoManager::retrieveFromIP()
+	 * @param array $info The output of {@link MediaWiki\IPInfo\InfoManager::retrieveFor()}
 	 * @param UserIdentity $user User performing the request
 	 * @return array
 	 */

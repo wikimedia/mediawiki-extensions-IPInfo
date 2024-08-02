@@ -120,12 +120,12 @@ class LogHandler extends IPInfoHandler {
 		$showTarget = IPUtils::isValid( $target ) && $canAccessTarget;
 		if ( $showPerformer ) {
 			$info[] = $this->presenter->present(
-				$this->infoManager->retrieveFromIP( $performer ),
+				$this->infoManager->retrieveFor( $performer ),
 				$this->getAuthority()->getUser()
 			);
 		}
 		if ( $showTarget ) {
-			$info[] = $this->presenter->present( $this->infoManager->retrieveFromIP( $target ),
+			$info[] = $this->presenter->present( $this->infoManager->retrieveFor( $target ),
 			$this->getAuthority()->getUser() );
 		}
 

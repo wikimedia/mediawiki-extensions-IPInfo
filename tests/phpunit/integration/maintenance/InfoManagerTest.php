@@ -17,7 +17,7 @@ class InfoManagerTest extends MaintenanceBaseTestCase {
 	public function testExecute() {
 		// Mock the IPInfoInfoManager service to return some fake data
 		$ipInfoManager = $this->createMock( \MediaWiki\IPInfo\InfoManager::class );
-		$ipInfoManager->method( 'retrieveFromIP' )
+		$ipInfoManager->method( 'retrieveFor' )
 			->with( '1.2.3.4' )
 			->willReturn( [ 'subject' => '1.2.3.4', 'data' => [ 'test' ] ] );
 		$this->setService( 'IPInfoInfoManager', $ipInfoManager );
