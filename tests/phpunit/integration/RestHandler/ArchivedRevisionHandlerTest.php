@@ -29,10 +29,6 @@ class ArchivedRevisionHandlerTest extends MediaWikiIntegrationTestCase {
 
 	use HandlerTestTrait;
 
-	/**
-	 * @param int $id
-	 * @return RequestData
-	 */
 	private function getRequestData( int $id = 123 ): RequestData {
 		return new RequestData( [
 			'pathParams' => [ 'id' => $id ],
@@ -45,8 +41,6 @@ class ArchivedRevisionHandlerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideExecuteErrors
-	 * @param array $options
-	 * @param array $expected
 	 */
 	public function testExecuteErrors( array $options, array $expected ) {
 		$user = $this->createMock( UserIdentity::class );

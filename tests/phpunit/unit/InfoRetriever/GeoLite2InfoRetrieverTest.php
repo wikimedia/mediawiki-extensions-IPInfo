@@ -52,8 +52,6 @@ class GeoLite2InfoRetrieverTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * Convenience function to assert that the given Info holds no data.
-	 * @param Info $info
-	 * @return void
 	 */
 	private function assertEmptyInfo( Info $info ): void {
 		$this->assertNull( $info->getCoordinates() );
