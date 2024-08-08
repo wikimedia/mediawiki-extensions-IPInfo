@@ -6,6 +6,7 @@ use MediaWiki\IPInfo\AccessLevelTrait;
 use MediaWiki\IPInfo\Info\BlockInfo;
 use MediaWiki\IPInfo\Info\ContributionInfo;
 use MediaWiki\IPInfo\Info\Info;
+use MediaWiki\IPInfo\Info\IPCountInfo;
 use MediaWiki\IPInfo\Info\IPoidInfo;
 use MediaWiki\IPInfo\Info\Location;
 use MediaWiki\Permissions\PermissionManager;
@@ -77,7 +78,7 @@ class DefaultPresenter {
 	 */
 	public function present( array $info, UserIdentity $user ): array {
 		Assert::parameterElementType(
-			[ Info::class, IPoidInfo::class, BlockInfo::class, ContributionInfo::class ],
+			[ Info::class, IPCountInfo::class, IPoidInfo::class, BlockInfo::class, ContributionInfo::class ],
 			$info['data'],
 			"info['data']"
 		);
@@ -96,6 +97,9 @@ class DefaultPresenter {
 
 			if ( $itemInfo instanceof Info ) {
 				$data += $this->presentInfo( $itemInfo );
+			} elseif ( $itemInfo instanceof IPCountInfo ) {
+				// FIXME: This is just a temporary bandaid patch for T371966
+				continue;
 			} elseif ( $itemInfo instanceof IPoidInfo ) {
 				$data += $this->presentIPoidInfo( $itemInfo );
 			} elseif ( $itemInfo instanceof BlockInfo ) {
