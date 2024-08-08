@@ -38,9 +38,6 @@ class RevisionHandler extends AbstractRevisionHandler {
 		$this->revisionLookup = $revisionLookup;
 	}
 
-	/**
-	 * @return self
-	 */
 	public static function factory(
 		InfoManager $infoManager,
 		RevisionLookup $revisionLookup,
@@ -49,7 +46,7 @@ class RevisionHandler extends AbstractRevisionHandler {
 		UserFactory $userFactory,
 		JobQueueGroup $jobQueueGroup,
 		LanguageFallback $languageFallback
-	) {
+	): self {
 		return new self(
 			$infoManager,
 			$revisionLookup,

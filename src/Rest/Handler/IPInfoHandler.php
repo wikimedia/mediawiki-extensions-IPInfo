@@ -194,7 +194,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 	 * @param string $ip IP address whose information was accessed
 	 * @param string $dataContext 'infobox' or 'popup'
 	 */
-	protected function logAccess( $accessingUser, $ip, $dataContext ) {
+	protected function logAccess( $accessingUser, $ip, $dataContext ): void {
 		$level = $this->highestAccessLevel(
 			$this->permissionManager->getUserPermissions( $accessingUser )
 		);

@@ -36,7 +36,7 @@ class InfoboxHandler implements
 	 * @param string $username Username or IP Address
 	 * @param SpecialPage $sp
 	 */
-	private function addInfoBox( $username, $sp ) {
+	private function addInfoBox( $username, $sp ): void {
 		// T309363: hide the panel on mobile until T268177 is resolved
 		$services = MediaWikiServices::getInstance();
 		$extensionRegistry = ExtensionRegistry::getInstance();

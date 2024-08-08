@@ -35,7 +35,7 @@ class ReaderFactory {
 	 * @return Reader
 	 * @throws Exception
 	 */
-	protected function getReader( $filename ) {
+	protected function getReader( string $filename ): Reader {
 		return new Reader( $filename );
 	}
 }
