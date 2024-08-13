@@ -35,10 +35,6 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 
 	use HandlerTestTrait;
 
-	/**
-	 * @param array $options
-	 * @return LogHandler
-	 */
 	private function getLogHandler( array $options = [] ): LogHandler {
 		return new LogHandler( ...array_values( array_merge(
 			[
@@ -55,10 +51,6 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 		) ) );
 	}
 
-	/**
-	 * @param int $id
-	 * @return RequestData
-	 */
 	private function getRequestData( int $id = 123 ): RequestData {
 		return new RequestData( [
 			'pathParams' => [ 'id' => $id ],
@@ -151,8 +143,6 @@ class LogHandlerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideExecuteErrors
-	 * @param array $options
-	 * @param array $expected
 	 */
 	public function testExecuteErrors( array $options, array $expected ) {
 		$authority = $this->createMock( Authority::class );

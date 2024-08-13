@@ -62,9 +62,6 @@ class DefaultPresenter {
 		self::IPINFO_VIEW_FULL_RIGHT => self::IPINFO_VIEW_FULL,
 	];
 
-	/**
-	 * @param PermissionManager $permissionManager
-	 */
 	public function __construct(
 		PermissionManager $permissionManager
 	) {

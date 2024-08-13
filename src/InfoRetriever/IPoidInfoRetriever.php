@@ -26,11 +26,6 @@ class IPoidInfoRetriever implements InfoRetriever {
 
 	private LoggerInterface $logger;
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param HttpRequestFactory $httpRequestFactory
-	 * @param LoggerInterface $logger
-	 */
 	public function __construct(
 		ServiceOptions $options,
 		HttpRequestFactory $httpRequestFactory,

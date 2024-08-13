@@ -141,10 +141,6 @@ class GeoLite2InfoRetriever implements InfoRetriever {
 		}
 	}
 
-	/**
-	 * @param string $ip
-	 * @return array|null
-	 */
 	private function getCountryNames( string $ip ): ?array {
 		$reader = $this->getReader( 'City.mmdb' );
 		if ( !$reader ) {

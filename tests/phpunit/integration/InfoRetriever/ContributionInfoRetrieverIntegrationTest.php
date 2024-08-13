@@ -25,9 +25,6 @@ class ContributionInfoRetrieverIntegrationTest extends MediaWikiIntegrationTestC
 
 	/**
 	 * Convert the given UserIdentity into a full User, creating it if it's a temporary user.
-	 *
-	 * @param UserIdentity $user
-	 * @return User
 	 */
 	private function setupUser( UserIdentity $user ): User {
 		if ( !$user->isRegistered() ) {

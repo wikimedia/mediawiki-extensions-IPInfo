@@ -227,11 +227,6 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 		return $info->traits->userType;
 	}
 
-	/**
-	 * @param AnonymousIp $anonymousIpinfo
-	 * @param bool|null $isLegitimateProxy
-	 * @return ProxyType
-	 */
 	private function getProxyType( AnonymousIp $anonymousIpinfo, ?bool $isLegitimateProxy ): ProxyType {
 		return new ProxyType(
 			(bool)$anonymousIpinfo->isAnonymousVpn || null,

@@ -39,13 +39,6 @@ class RevisionHandler extends AbstractRevisionHandler {
 	}
 
 	/**
-	 * @param InfoManager $infoManager
-	 * @param RevisionLookup $revisionLookup
-	 * @param PermissionManager $permissionManager
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param UserFactory $userFactory
-	 * @param JobQueueGroup $jobQueueGroup
-	 * @param LanguageFallback $languageFallback
 	 * @return self
 	 */
 	public static function factory(

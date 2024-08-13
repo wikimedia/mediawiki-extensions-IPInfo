@@ -191,13 +191,6 @@ class Logger {
 		}
 	}
 
-	/**
-	 * @param UserIdentity $performer
-	 * @param string $ip
-	 * @param string $action
-	 * @param array $params
-	 * @param int|null $timestamp
-	 */
 	private function log(
 		UserIdentity $performer,
 		string $ip,

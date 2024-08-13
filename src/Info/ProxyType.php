@@ -23,14 +23,6 @@ class ProxyType implements JsonSerializable {
 	/** @var bool|null */
 	private $isHostingProvider;
 
-	/**
-	 * @param bool|null $isAnonymousVpn
-	 * @param bool|null $isPublicProxy
-	 * @param bool|null $isResidentialProxy
-	 * @param bool|null $isLegitimateProxy
-	 * @param bool|null $isTorExitNode
-	 * @param bool|null $isHostingProvider
-	 */
 	public function __construct(
 		?bool $isAnonymousVpn,
 		?bool $isPublicProxy,

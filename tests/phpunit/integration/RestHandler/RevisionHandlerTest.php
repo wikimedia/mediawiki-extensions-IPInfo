@@ -33,10 +33,6 @@ class RevisionHandlerTest extends MediaWikiIntegrationTestCase {
 
 	use HandlerTestTrait;
 
-	/**
-	 * @param array $options
-	 * @return RevisionHandler
-	 */
 	private function getRevisionHandler( array $options = [] ): RevisionHandler {
 		return new RevisionHandler( ...array_values( array_merge(
 			[
@@ -53,10 +49,6 @@ class RevisionHandlerTest extends MediaWikiIntegrationTestCase {
 		) ) );
 	}
 
-	/**
-	 * @param int $id
-	 * @return RequestData
-	 */
 	private function getRequestData( int $id = 123 ): RequestData {
 		return new RequestData( [
 			'pathParams' => [ 'id' => $id ],
@@ -152,8 +144,6 @@ class RevisionHandlerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideExecuteErrors
-	 * @param array $options
-	 * @param array $expected
 	 */
 	public function testExecuteErrors( array $options, array $expected ) {
 		$permissionManager = $this->createMock( PermissionManager::class );
