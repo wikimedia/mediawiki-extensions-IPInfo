@@ -45,6 +45,7 @@ return [
 				IPoidInfoRetriever::CONSTRUCTOR_OPTIONS, $config
 			),
 			$services->get( 'HttpRequestFactory' ),
+			$services->get( 'IPInfoTempUserIPLookup' ),
 			LoggerFactory::getInstance( 'IPInfo' )
 		);
 	},
