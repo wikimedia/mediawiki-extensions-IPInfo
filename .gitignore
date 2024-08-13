@@ -4,3 +4,5 @@ composer.lock
 vendor
 .eslintcache
 **/*.mmdb
+!tests/selenium/fixtures/maxmind/*.mmdb
+tests/selenium/log

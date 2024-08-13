@@ -2,14 +2,22 @@
 	"name": "IPInfo",
 	"private": true,
 	"scripts": {
+		"selenium-daily": "npm run selenium-test",
+		"selenium-test": "wdio tests/selenium/wdio.conf.js",
 		"test": "grunt test"
 	},
 	"devDependencies": {
+		"@wdio/cli": "7.36.0",
+		"@wdio/junit-reporter": "7.35.0",
+		"@wdio/local-runner": "7.36.0",
+		"@wdio/mocha-framework": "7.33.0",
+		"@wdio/spec-reporter": "7.33.0",
 		"eslint-config-wikimedia": "0.28.2",
 		"grunt": "1.6.1",
 		"grunt-banana-checker": "0.13.0",
 		"grunt-eslint": "24.3.0",
 		"grunt-stylelint": "0.20.1",
-		"stylelint-config-wikimedia": "0.17.2"
+		"stylelint-config-wikimedia": "0.17.2",
+		"wdio-mediawiki": "2.5.0"
 	}
 }
