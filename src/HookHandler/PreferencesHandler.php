@@ -86,7 +86,7 @@ class PreferencesHandler implements GetPreferencesHook {
 	 * @param string $source
 	 * @param UserIdentity $user
 	 */
-	private function logEvent( $action, $context, $source, $user ) {
+	private function logEvent( $action, $context, $source, $user ): void {
 		if ( !ExtensionRegistry::getInstance()->isLoaded( 'EventLogging' ) ) {
 			return;
 		}

@@ -19,28 +19,28 @@ use Skin;
  */
 class PopupHandlerTest extends MediaWikiIntegrationTestCase {
 
-	private function getPermissionManager() {
+	private function getPermissionManager(): PermissionManager {
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
 			->willReturn( true );
 		return $permissionManager;
 	}
 
-	private function getUserOptionsLookup() {
+	private function getUserOptionsLookup(): UserOptionsLookup {
 		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
 		$userOptionsLookup->method( 'getOption' )
 			->willReturn( true );
 		return $userOptionsLookup;
 	}
 
-	private function getPopupHandler( $overrides = null ) {
+	private function getPopupHandler( array $overrides = null ): PopupHandler {
 		return new PopupHandler(
 			$overrides[ 'PermissionManager' ] ?? $this->getPermissionManager(),
 			$overrides[ 'UserOptionsLookup' ] ?? $this->getUserOptionsLookup()
 		);
 	}
 
-	private function getOutputPage( $overrides = null ) {
+	private function getOutputPage( array $overrides = null ): OutputPage {
 		$out = $this->getMockBuilder( OutputPage::class )
 			->disableOriginalConstructor()
 			->setMethodsExcept( [

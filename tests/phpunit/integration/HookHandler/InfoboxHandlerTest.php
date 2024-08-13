@@ -22,28 +22,28 @@ use MediaWikiIntegrationTestCase;
  */
 class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 
-	private function getPermissionManager() {
+	private function getPermissionManager(): PermissionManager {
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
 			->willReturn( true );
 		return $permissionManager;
 	}
 
-	private function getUserOptionsLookup() {
+	private function getUserOptionsLookup(): UserOptionsLookup {
 		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
 		$userOptionsLookup->method( 'getOption' )
 			->willReturn( true );
 		return $userOptionsLookup;
 	}
 
-	private function getInfoboxHandler( $overrides = null ) {
+	private function getInfoboxHandler( array $overrides = null ): InfoboxHandler {
 		return new InfoboxHandler(
 			$overrides[ 'PermissionManager' ] ?? $this->getPermissionManager(),
 			$overrides[ 'UserOptionsLookup' ] ?? $this->getUserOptionsLookup()
 		);
 	}
 
-	private function getOutputPage( $overrides = null ) {
+	private function getOutputPage(): OutputPage {
 		return $this->getMockBuilder( OutputPage::class )
 			->disableOriginalConstructor()
 			->setMethodsExcept( [
@@ -53,7 +53,7 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 	}
 
-	private function getIpUser() {
+	private function getIpUser(): User {
 		$user = $this->createMock( User::class );
 		$user->method( 'getName' )
 			->willReturn( '127.0.0.1' );

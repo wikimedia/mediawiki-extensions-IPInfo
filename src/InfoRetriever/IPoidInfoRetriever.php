@@ -96,7 +96,7 @@ class IPoidInfoRetriever implements InfoRetriever {
 	 * @param string $ip
 	 * @return mixed[] Data returned by iPoid
 	 */
-	private function getData( string $ip ) {
+	private function getData( string $ip ): array {
 		$data = [];
 
 		$baseUrl = $this->options->get( 'IPInfoIpoidUrl' );

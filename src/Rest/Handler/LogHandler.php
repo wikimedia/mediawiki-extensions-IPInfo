@@ -43,9 +43,6 @@ class LogHandler extends IPInfoHandler {
 		$this->dbProvider = $dbProvider;
 	}
 
-	/**
-	 * @return self
-	 */
 	public static function factory(
 		InfoManager $infoManager,
 		IConnectionProvider $dbProvider,
@@ -54,7 +51,7 @@ class LogHandler extends IPInfoHandler {
 		UserFactory $userFactory,
 		JobQueueGroup $jobQueueGroup,
 		LanguageFallback $languageFallback
-	) {
+	): self {
 		return new self(
 			$infoManager,
 			$dbProvider,

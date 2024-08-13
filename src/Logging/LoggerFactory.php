@@ -27,13 +27,9 @@ class LoggerFactory {
 		$this->dbProvider = $dbProvider;
 	}
 
-	/**
-	 * @param int $delay
-	 * @return Logger
-	 */
 	public function getLogger(
 		int $delay = self::DEFAULT_DEBOUNCE_DELAY
-	) {
+	): Logger {
 		return new Logger(
 			$this->actorStore,
 			$this->dbProvider->getPrimaryDatabase(),
