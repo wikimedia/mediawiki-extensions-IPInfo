@@ -14,10 +14,10 @@ class Info implements JsonSerializable {
 	/** @var string|null */
 	private $organization;
 
-	/** @var array|null */
+	/** @var array<string,string>|null */
 	private $countryNames;
 
-	/** @var array|null */
+	/** @var Location[]|null */
 	private $location;
 
 	/** @var string|null */
@@ -36,7 +36,7 @@ class Info implements JsonSerializable {
 	 * @param Coordinates|null $coordinates
 	 * @param int|null $asn
 	 * @param string|null $organization
-	 * @param array|null $countryNames
+	 * @param array<string,string>|null $countryNames
 	 * @param Location[]|null $location
 	 * @param string|null $isp
 	 * @param string|null $connectionType
@@ -87,7 +87,7 @@ class Info implements JsonSerializable {
 	}
 
 	/**
-	 * @return array|null
+	 * @return array<string,string>|null
 	 */
 	public function getCountryNames(): ?array {
 		return $this->countryNames;

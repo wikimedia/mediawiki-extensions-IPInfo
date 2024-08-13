@@ -168,7 +168,7 @@ class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
 
 	/**
 	 * @param Enterprise $info
-	 * @return array|null null if this IP address does not return a country
+	 * @return array<string,string>|null null if this IP address does not return a country
 	 */
 	private function getCountryNames( Enterprise $info ): ?array {
 		return $info->country->names;
