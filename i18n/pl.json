@@ -59,6 +59,7 @@
 	"ipinfo-property-value-risk-webscraping": "Scraping strony",
 	"ipinfo-property-value-risk-unknown": "Nieznane",
 	"ipinfo-property-value-connectiontype-desktop": "Komputerowy",
+	"ipinfo-property-value-connectiontype-headless": "Bez ekranu",
 	"ipinfo-property-value-connectiontype-iot": "Internet Rzeczy",
 	"ipinfo-property-value-connectiontype-mobile": "Mobilny",
 	"ipinfo-property-value-connectiontype-unknown": "Nieznany",
