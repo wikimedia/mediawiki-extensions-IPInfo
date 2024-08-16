@@ -1,376 +1,456 @@
 <?php
 
-namespace MediaWiki\IPInfo\Test\Unit\Rest\Handler;
+namespace MediaWiki\IPInfo\Test\Integration\Rest\Handler;
 
-use JobQueueGroup;
-use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\IPInfo\Info\BlockInfo;
+use MediaWiki\IPInfo\Info\ContributionInfo;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Handler\RevisionHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
-use MediaWiki\Languages\LanguageFallback;
-use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
-use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Session\Token;
 use MediaWiki\Tests\Rest\Handler\HandlerTestTrait;
-use MediaWiki\User\Options\UserOptionsLookup;
-use MediaWiki\User\User;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\UserFactory;
-use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
+use MockHttpTrait;
 use Wikimedia\Message\MessageValue;
 
 /**
  * @group IPInfo
+ * @group Database
  * @covers \MediaWiki\IPInfo\Rest\Handler\RevisionHandler
  * @covers \MediaWiki\IPInfo\Rest\Handler\AbstractRevisionHandler
  * @covers \MediaWiki\IPInfo\Rest\Handler\IPInfoHandler
  */
 class RevisionHandlerTest extends MediaWikiIntegrationTestCase {
+	private const VALID_CSRF_TOKEN = 'valid-csrf-token';
+	private const NONEXISTENT_REV_ID = 123;
+	private const TEST_ANON_IP = '214.78.0.5';
 
-	use HandlerTestTrait;
+	use HandlerTestTrait {
+		getSession as getBaseSession;
+	}
+	use MockHttpTrait;
+	use TempUserTestTrait;
 
-	private function getRevisionHandler( array $options = [] ): RevisionHandler {
-		return new RevisionHandler( ...array_values( array_merge(
-			[
-				'infoManager' => $this->createMock( InfoManager::class ),
-				'revisionLookup' => $this->createMock( RevisionLookup::class ),
-				'permissionManager' => $this->createMock( PermissionManager::class ),
-				'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
-				'userFactory' => $this->createMock( UserFactory::class ),
-				'presenter' => $this->createMock( DefaultPresenter::class ),
-				'jobQueueGroup' => $this->createMock( JobQueueGroup::class ),
-				'languageFallback' => $this->createMock( LanguageFallback::class )
+	private static Authority $blockedSysop;
+	private static Authority $testSysop;
+	private static Authority $regularUser;
+	private static Authority $anonUser;
+
+	private static RevisionRecord $deletedRevRecord;
+
+	private static RevisionRecord $revRecordByNamedUser;
+
+	private static RevisionRecord $revRecordByAnonUser;
+
+	private static RevisionRecord $revRecordForRestrictedPage;
+
+	private static RevisionRecord $revRecordByImportedUser;
+
+	private InfoManager $infoManager;
+
+	protected function setUp(): void {
+		parent::setUp();
+
+		$this->setGroupPermissions( [
+			'sysop' => [
+				'ipinfo' => true,
+				DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT => true,
+				DefaultPresenter::IPINFO_VIEW_FULL_RIGHT => false,
 			],
-			$options
-		) ) );
+			'ipinfo-viewer' => [
+				'ipinfo' => true,
+				DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT => true,
+				DefaultPresenter::IPINFO_VIEW_FULL_RIGHT => true
+			],
+			'ipinfo-deleted-viewer' => [
+				'ipinfo' => true,
+				DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT => true,
+				DefaultPresenter::IPINFO_VIEW_FULL_RIGHT => true,
+				'deletedhistory' => true,
+			]
+		] );
+
+		$this->installMockHttp(
+			$this->makeFakeHttpRequest( '', 404 )
+		);
+
+		$this->overrideConfigValue(
+			'IPInfoGeoLite2Prefix',
+			realpath( __DIR__ . '/../../../fixtures/maxmind' ) . '/GeoLite2-'
+		);
 	}
 
-	private function getRequestData( int $id = 123 ): RequestData {
+	public function getSession() {
+		$token = $this->createMock( Token::class );
+		$token->method( 'match' )
+			->willReturnCallback( fn ( $token ) => $token === self::VALID_CSRF_TOKEN );
+		$session = $this->getBaseSession( false );
+		$session->method( 'hasToken' )
+			->willReturn( true );
+		$session->method( 'getToken' )
+			->willReturn( $token );
+
+		return $session;
+	}
+
+	private function setUserOptions( Authority $user, array $options ): void {
+		$userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
+		$user = $user->getUser();
+
+		foreach ( $options as $oname => $value ) {
+			$userOptionsManager->setOption( $user, $oname, $value );
+		}
+	}
+
+	private function executeWithUser( RequestData $requestData, Authority $user ): ResponseInterface {
+		$services = $this->getServiceContainer();
+		$handler = RevisionHandler::factory(
+			$services->getService( 'IPInfoInfoManager' ),
+			$services->getRevisionLookup(),
+			$services->getPermissionManager(),
+			$services->getUserOptionsLookup(),
+			$services->getUserFactory(),
+			$services->getJobQueueGroup(),
+			$services->getLanguageFallback()
+		);
+		return $this->executeHandler(
+			$handler,
+			$requestData,
+			[],
+			[],
+			[],
+			[],
+			$user
+		);
+	}
+
+	/**
+	 * Convenience function to create a test request.
+	 * @param int $revisionId ID of the revision to fetch
+	 * @param string|null $csrfToken CSRF token to pass in the request, or `null` for no token
+	 * @return RequestData
+	 */
+	private static function getRequestData(
+		int $revisionId = 123,
+		?string $csrfToken = self::VALID_CSRF_TOKEN
+	): RequestData {
+		$body = $csrfToken ? json_encode( [ 'token' => $csrfToken ] ) : '';
 		return new RequestData( [
-			'pathParams' => [ 'id' => $id ],
+			'method' => 'POST',
+			'pathParams' => [ 'id' => $revisionId ],
 			'queryParams' => [
 				'dataContext' => 'infobox',
 				'language' => 'en'
 			],
+			'headers' => [ 'Content-Type' => 'application/json' ],
+			'bodyContents' => $body
 		] );
 	}
 
-	/**
-	 * @dataProvider provideExecute
-	 */
-	public function testExecute( $expected, $dataProperty ) {
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'userHasRight' )
-			->willReturn( true );
-		$permissionManager->method( 'userCan' )
-			->willReturn( true );
-		$permissionManager->method( 'getUserPermissions' )
-			->willReturn( [] );
+	public function addDBDataOnce() {
+		self::$blockedSysop = $this->getTestUser( [ 'sysop' ] )->getAuthority();
+		self::$testSysop = $this->getTestSysop()->getAuthority();
+		self::$regularUser = $this->getTestUser()->getAuthority();
+		self::$anonUser = $this->getServiceContainer()->getUserFactory()->newAnonymous( self::TEST_ANON_IP );
 
-		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
-		$userOptionsLookup->method( 'getOption' )
-			->willReturn( true );
+		$blockStatus = $this->getServiceContainer()->getBlockUserFactory()
+			->newBlockUser(
+				self::$blockedSysop->getUser(),
+				self::$testSysop,
+				'infinity'
+			)
+			->placeBlock();
+		$this->assertStatusGood( $blockStatus, 'Block was not placed' );
 
-		$presenter = $this->createMock( DefaultPresenter::class );
-		$presenter->method( 'present' )
-			->willReturn( [
-				'subject' => '127.0.0.2',
-				'data' => [
-					'provider' => [
-						$dataProperty => 'testValue',
-					],
-				],
-			] );
-
-		$author = $this->createMock( UserIdentity::class );
-		$author->method( 'isRegistered' )
-			->willReturn( false );
-		$author->method( 'getName' )
-			->willReturn( '127.0.0.1' );
-
-		$linkTarget = $this->createMock( LinkTarget::class );
-
-		$revision = $this->createMock( RevisionRecord::class );
-		$revision->method( 'getPageAsLinkTarget' )
-			->willReturn( $linkTarget );
-		$revision->method( 'getUser' )
-			->willReturn( $author );
-
-		$revisionLookup = $this->createMock( RevisionLookup::class );
-		$revisionLookup->method( 'getRevisionById' )
-			->willReturn( $revision );
-
-		$jobQueueGroup = $this->createMock( JobQueueGroup::class );
-		$jobQueueGroup->expects( $this->atLeastOnce() )
-			->method( 'push' );
-
-		$languageFallback = $this->createMock( LanguageFallback::class );
-		$languageFallback->method( 'getAll' )
-			->willReturn( [ 'en' ] );
-
-		$handler = $this->getRevisionHandler( [
-			'revisionLookup' => $revisionLookup,
-			'permissionManager' => $permissionManager,
-			'userOptionsLookup' => $userOptionsLookup,
-			'presenter' => $presenter,
-			'jobQueueGroup' => $jobQueueGroup,
-			'languageFallback' => $languageFallback,
+		$pageUpdateStatus = $this->editPage( $this->getNonexistingTestPage(), 'test' );
+		self::$deletedRevRecord = $pageUpdateStatus->getNewRevision();
+		$this->revisionDelete( self::$deletedRevRecord, [
+			RevisionRecord::DELETED_USER => 1,
+			RevisionRecord::DELETED_RESTRICTED => 1
 		] );
 
-		$request = $this->getRequestData();
+		$this->disableAutoCreateTempUser();
 
-		$response = $this->executeHandler( $handler, $request );
+		$pageUpdateStatus = $this->editPage(
+			$this->getNonexistingTestPage(),
+			'test',
+			'',
+			NS_MAIN,
+			self::$anonUser
+		);
+		self::$revRecordByAnonUser = $pageUpdateStatus->getNewRevision();
 
-		$this->assertSame( 200, $response->getStatusCode() );
+		$pageUpdateStatus = $this->editPage( $this->getNonexistingTestPage(), 'test' );
+		self::$revRecordForRestrictedPage = $pageUpdateStatus->getNewRevision();
 
-		$body = json_decode( $response->getBody()->getContents(), true );
-		$this->assertArrayHasKey( 'info', $body );
-		$this->assertIsArray( $body['info'] );
-		$this->assertCount( 1, $body['info'] );
+		$pageUpdateStatus = $this->editPage( $this->getNonexistingTestPage(), 'test' );
+		self::$revRecordByNamedUser = $pageUpdateStatus->getNewRevision();
 
-		$this->assertCount( $expected, $body['info'][0]['data']['provider'] );
+		$importedUser = new UltimateAuthority( new UserIdentityValue( 0, 'Unknown user' ) );
+		$pageUpdateStatus = $this->editPage(
+			$this->getNonexistingTestPage(),
+			'test',
+			'',
+			NS_MAIN,
+			$importedUser
+		);
+		self::$revRecordByImportedUser = $pageUpdateStatus->getNewRevision();
 	}
 
-	public static function provideExecute() {
-		return [
-			'Allowed property is returned' => [ 1, 'country' ],
-			'Restricted property is not returned' => [ 0, 'testProperty' ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideExecuteErrors
-	 */
-	public function testExecuteErrors( array $options, array $expected ) {
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'userHasRight' )
-			->willReturn( $options['userHasRight'] ?? false );
-
-		$user = $this->createMock( UserIdentity::class );
-		$authority = $this->createMock( Authority::class );
-		$authority->method( 'getUser' )
-			->willReturn( $user );
-		$user->method( 'isRegistered' )
-			->willReturn( $options['userIsRegistered'] ?? false );
-		$permissionManager->method( 'userCan' )
-			->willReturn( $options['userCan'] ?? false );
-
-		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
-		$userOptionsLookup->method( 'getOption' )
-			->willReturn( $options['getOption'] ?? null );
-
-		$author = $this->createMock( UserIdentity::class );
-		$author->method( 'isRegistered' )
-			->willReturn( $options['authorIsRegistered'] ?? false );
-		$author->method( 'getName' )
-			->willReturn( $options['authorName'] ?? '' );
-
-		$linkTarget = $this->createMock( LinkTarget::class );
-
-		$revision = $this->createMock( RevisionRecord::class );
-		$revision->method( 'getPageAsLinkTarget' )
-			->willReturn( $options['getPageAsLinkTarget'] ?? $linkTarget );
-		$revision->method( 'getUser' )
-			->willReturn( !empty( $options['author'] ) ? $author : null );
-
-		$revisionLookup = $this->createMock( RevisionLookup::class );
-		$revisionLookup->method( 'getRevisionById' )
-			->willReturn( isset( $options['getRevisionById'] ) ? null : $revision );
-
-		$languageFallback = $this->createMock( LanguageFallback::class );
-		$languageFallback->method( 'getAll' )
-			->willReturn( [ 'en' ] );
-
-		$handler = $this->getRevisionHandler( [
-			'revisionLookup' => $revisionLookup,
-			'permissionManager' => $permissionManager,
-			'userOptionsLookup' => $userOptionsLookup,
-			'userIdentity' => $user,
-			'languageFallback' => $languageFallback,
-		] );
-
-		$request = $this->getRequestData( $options['id'] ?? 123 );
-
+	public function testShouldDenyAccessForAnonymousUserIfBetaFeatureDisabled(): void {
+		$this->markTestSkippedIfExtensionNotLoaded( 'BetaFeatures' );
 		$this->expectExceptionObject(
 			new LocalizedHttpException(
-				new MessageValue(
-					$expected['message'],
-					$expected['messageParams'] ?? []
-				),
-				$expected['status']
+				new MessageValue( 'ipinfo-rest-access-denied' ),
+				401
 			)
 		);
 
-		$this->executeHandler( $handler, $request, [],
-			[],
-			[],
-			[],
-			$authority );
+		$user = $this->getServiceContainer()->getUserFactory()->newAnonymous();
+
+		$request = self::getRequestData();
+		$this->executeWithUser( $request, $user );
 	}
 
-	public static function provideExecuteErrors() {
-		$id = 123;
-		return [
-			'Access denied, registered' => [
-				[
-					'userIsRegistered' => true,
-				],
-				[
-					'message' => 'ipinfo-rest-access-denied',
-					'status' => 403,
-				],
-			],
-			'Access denied, anon' => [
-				[
-					'userIsRegistered' => false,
-				],
-				[
-					'message' => 'ipinfo-rest-access-denied',
-					'status' => 401,
-				],
-			],
-			'Access denied, preference not set' => [
-				[
-					'userHasRight' => true,
-					'userCan' => true,
-					'getOption' => false,
-					'userIsRegistered' => false,
-				],
-				[
-					'message' => 'ipinfo-rest-access-denied',
-					'status' => 401,
-				],
-			],
-			'No revision' => [
-				[
-					'id' => $id,
-					'userHasRight' => true,
-					'userCan' => true,
-					'getOption' => true,
-					'getRevisionById' => false,
-				],
-				[
-					'message' => 'rest-nonexistent-revision',
-					'messageParams' => [ $id ],
-					'status' => 404,
-				],
-			],
-			'Access denied page' => [
-				[
-					'userHasRight' => true,
-					'userCan' => false,
-					'getOption' => true,
-				],
-				[
-					'id' => $id,
-					'message' => 'rest-revision-permission-denied-revision',
-					'messageParams' => [ $id ],
-					'status' => 403,
-				],
-			],
-			'No author' => [
-				[
-					'userHasRight' => true,
-					'userCan' => true,
-					'getOption' => true,
-				],
-				[
-					'message' => 'ipinfo-rest-revision-no-author',
-					'status' => 403,
-				],
-			],
-			'Unregistered author and not an ip' => [
-				[
-					'userHasRight' => true,
-					'userCan' => true,
-					'getOption' => true,
-					'authorIsRegistered' => false,
-					'author' => true,
-					'authorName' => 'foo'
-				],
-				[
-					'message' => 'ipinfo-rest-revision-invalid-ip',
-					'status' => 404,
-				],
-			],
-			'Registered author' => [
-				[
-					'userHasRight' => true,
-					'userCan' => true,
-					'getOption' => true,
-					'authorIsRegistered' => true,
-					'author' => true,
-				],
-				[
-					'message' => 'ipinfo-rest-revision-registered',
-					'status' => 404,
-				],
-			],
-		];
-	}
-
-	public function testPerformerBlocked() {
-		$user = $this->createMock( UserIdentity::class );
-		$authority = $this->createMock( Authority::class );
-		$authority->method( 'getUser' )
-			->willReturn( $user );
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'userHasRight' )
-			->willReturn( true );
-
-		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
-		$userOptionsLookup->method( 'getOption' )
-			->willReturn( true );
-
-		$userFactory = $this->createMock( UserFactory::class );
-		$userFactoryUser = $this->createMock( User::class );
-		$userFactoryUser->method( 'getBlock' )
-			->willReturn( $this->createMock( DatabaseBlock::class ) );
-		$userFactory->method( 'newFromUserIdentity' )
-			->willReturn( $userFactoryUser );
-		$languageFallback = $this->createMock( LanguageFallback::class );
-		$languageFallback->method( 'getAll' )
-			->willReturn( [ 'en' ] );
-
-		$handler = $this->getRevisionHandler( [
-			'permissionManager' => $permissionManager,
-			'userOptionsLookup' => $userOptionsLookup,
-			'userFactory' => $userFactory,
-			'languageFallback' => $languageFallback,
-		] );
-
-		$request = $this->getRequestData();
-
+	public function testShouldDenyAccessForAdminIfBetaFeatureDisabled(): void {
+		$this->markTestSkippedIfExtensionNotLoaded( 'BetaFeatures' );
 		$this->expectExceptionObject(
 			new LocalizedHttpException(
-				new MessageValue( 'ipinfo-rest-access-denied-blocked-user' ),
+				new MessageValue( 'ipinfo-rest-access-denied' ),
 				403
 			)
 		);
 
-		$this->executeHandler( $handler, $request, [],
-			[],
-			[],
-			[],
-			$authority );
+		$user = $this->getTestSysop()->getAuthority();
+		$this->setUserOptions( $user, [
+			'ipinfo-use-agreement' => 1
+		] );
+
+		$request = self::getRequestData();
+		$this->executeWithUser( $request, $user );
 	}
 
-	public function testFactory() {
-		$this->assertInstanceOf(
-			RevisionHandler::class,
-			RevisionHandler::factory(
-				$this->createMock( InfoManager::class ),
-				$this->createMock( RevisionLookup::class ),
-				$this->createMock( PermissionManager::class ),
-				$this->createMock( UserOptionsLookup::class ),
-				$this->createMock( UserFactory::class ),
-				$this->createMock( JobQueueGroup::class ),
-				$this->createMock( LanguageFallback::class )
+	/**
+	 * @dataProvider provideErrorCases
+	 *
+	 * @param callable $authorityProvider Callback to obtain the user to make the request with
+	 * @param callable $revRecordProvider Callback to provide the revision to fetch data for.
+	 * May return `null` to indicate that a nonexistent revision ID should be looked up.
+	 * @param string|null $csrfToken The CSRF token to send along with the request,
+	 * or `null` to send no token.
+	 * @param array $userOptions User options to set for the test user
+	 * @param string[] $expectedError 2-tuple of [ expected error message key, expected HTTP status code ]
+	 */
+	public function testShouldHandleErrorCases(
+		callable $authorityProvider,
+		callable $revRecordProvider,
+		?string $csrfToken,
+		array $userOptions,
+		array $expectedError
+	): void {
+		[ $key, $code ] = $expectedError;
+		$this->expectExceptionObject(
+			new LocalizedHttpException(
+				new MessageValue( $key ),
+				$code
 			)
 		);
+
+		$user = $authorityProvider();
+		$user = $this->getServiceContainer()->getUserFactory()->newFromName(
+			$user->getName(),
+			UserFactory::RIGOR_NONE
+		);
+		$revRecord = $revRecordProvider();
+		$revId = $revRecord ? $revRecord->getId() : self::NONEXISTENT_REV_ID;
+
+		$this->setTemporaryHook(
+			'getUserPermissionsErrors',
+			static function (
+				PageIdentity $checkedPage,
+				Authority $checkedUser,
+				string $action,
+				?bool &$result
+			) use ( $user ): bool {
+				if ( $action === 'read' &&
+					$checkedPage->isSamePageAs( self::$revRecordForRestrictedPage->getPage() ) &&
+					$checkedUser->getUser()->equals( $user->getUser() ) ) {
+					$result = false;
+					return false;
+				}
+				return true;
+			}
+		);
+
+		if ( count( $userOptions ) > 0 ) {
+			$this->setUserOptions( $user, $userOptions );
+		}
+
+		$request = self::getRequestData( $revId, $csrfToken );
+		$this->executeWithUser( $request, $user );
+	}
+
+	public static function provideErrorCases(): iterable {
+		yield 'anonymous user without permission' => [
+			fn () => self::$anonUser,
+			fn () => self::$revRecordByAnonUser,
+			self::VALID_CSRF_TOKEN,
+			[],
+			[ 'ipinfo-rest-access-denied', 401 ]
+		];
+
+		yield 'regular user without permission' => [
+			fn () => self::$regularUser,
+			fn () => self::$revRecordByAnonUser,
+			self::VALID_CSRF_TOKEN,
+			[],
+			[ 'ipinfo-rest-access-denied', 403 ]
+		];
+
+		yield 'user with correct permissions but without accepted agreement' => [
+			fn () => self::$testSysop,
+			fn () => self::$revRecordByAnonUser,
+			self::VALID_CSRF_TOKEN,
+			[ 'ipinfo-beta-feature-enable' => 1 ],
+			[ 'ipinfo-rest-access-denied', 403 ]
+		];
+
+		yield 'blocked user with correct permissions and accepted agreement' => [
+			fn () => self::$blockedSysop,
+			fn () => self::$revRecordByAnonUser,
+			self::VALID_CSRF_TOKEN,
+			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-rest-access-denied', 403 ]
+		];
+
+		yield 'missing CSRF token' => [
+			fn () => self::$testSysop,
+			fn () => self::$revRecordByAnonUser,
+			null,
+			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'rest-badtoken-missing', 403 ]
+		];
+
+		yield 'mismatched CSRF token' => [
+			fn () => self::$testSysop,
+			fn () => self::$revRecordByAnonUser,
+			'some-bad-token',
+			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'rest-badtoken', 403 ]
+		];
+
+		yield 'missing revision' => [
+			fn () => self::$testSysop,
+			fn () => null,
+			self::VALID_CSRF_TOKEN,
+			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'rest-nonexistent-revision', 404 ]
+		];
+
+		yield 'revision for restricted page' => [
+			fn () => self::$testSysop,
+			fn () => self::$revRecordForRestrictedPage,
+			self::VALID_CSRF_TOKEN,
+			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'rest-revision-permission-denied-revision', 403 ]
+		];
+
+		yield 'revision with deleted author' => [
+			fn () => self::$testSysop,
+			fn () => self::$deletedRevRecord,
+			self::VALID_CSRF_TOKEN,
+			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-rest-revision-no-author', 403 ]
+		];
+
+		yield 'revision with registered author' => [
+			fn () => self::$testSysop,
+			fn () => self::$revRecordByNamedUser,
+			self::VALID_CSRF_TOKEN,
+			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-rest-revision-registered', 404 ]
+		];
+
+		yield 'revision with imported author' => [
+			fn () => self::$testSysop,
+			fn () => self::$revRecordByImportedUser,
+			self::VALID_CSRF_TOKEN,
+			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-rest-revision-invalid-ip', 404 ]
+		];
+	}
+
+	/**
+	 * @dataProvider providePerformerUserGroups
+	 */
+	public function testShouldHandleRevisionByAnonymousUser( string $performerGroup ): void {
+		$this->disableAutoCreateTempUser();
+
+		$user = $this->getTestUser( [ $performerGroup ] )->getAuthority();
+		$this->setUserOptions( $user, [
+			'ipinfo-beta-feature-enable' => 1,
+			'ipinfo-use-agreement' => 1
+		] );
+
+		$blockInfo = new BlockInfo();
+
+		$contributionInfo = new ContributionInfo( 4, 2, 1 );
+
+		$request = self::getRequestData( self::$revRecordByAnonUser->getId() );
+		$response = $this->executeWithUser( $request, $user );
+		$body = json_decode( $response->getBody()->getContents(), true );
+
+		$geoData = $body['info'][0]['data']['ipinfo-source-geoip2'];
+
+		$this->assertSame( 200, $response->getStatusCode() );
+		$this->assertSame( self::TEST_ANON_IP, $body['info'][0]['subject'] );
+		$this->assertSame( 'United States', $geoData['countryNames']['en'] );
+		$this->assertArrayNotHasKey( 'coordinates', $geoData );
+
+		$this->assertSame( $blockInfo->jsonSerialize(), $body['info'][0]['data']['ipinfo-source-block'] );
+
+		$contribsInfo = $body['info'][0]['data']['ipinfo-source-contributions'];
+
+		$this->assertSame( 1, $contribsInfo['numLocalEdits'] );
+		$this->assertSame( 1, $contribsInfo['numRecentEdits'] );
+
+		if ( $user->isAllowed( DefaultPresenter::IPINFO_VIEW_FULL_RIGHT ) ) {
+			$this->assertSame(
+				[
+					[ 'id' => 5391811, 'label' => 'San Diego' ],
+					[ 'id' => 5332921, 'label' => 'California' ],
+				],
+				$geoData['location']
+			);
+			$this->assertSame( 721, $geoData['asn'] );
+			if ( $user->isAllowed( 'deletedhistory' ) ) {
+				$this->assertSame(
+					0,
+					$contribsInfo['numDeletedEdits']
+				);
+			} else {
+				$this->assertArrayNotHasKey( 'numDeletedEdits', $contribsInfo );
+			}
+		} else {
+			$this->assertArrayNotHasKey( 'asn', $geoData );
+			$this->assertArrayNotHasKey( 'location', $geoData );
+			$this->assertArrayNotHasKey( 'numDeletedEdits', $contribsInfo );
+		}
+	}
+
+	public static function providePerformerUserGroups(): iterable {
+		yield 'group with basic IPInfo access' => [ 'sysop' ];
+		yield 'group with full IPInfo access' => [ 'ipinfo-viewer' ];
+		yield 'group with full IPInfo and deleted history access' => [ 'ipinfo-deleted-viewer' ];
 	}
 }

@@ -21,7 +21,7 @@ exports.config = { ...config,
 		await LocalSettingsSetup.restartPhpFpmService();
 
 		// Import a test article that was edited by an anonymous user.
-		const ipEditFixturePath = path.resolve( __dirname + '/fixtures/ip-edit-fixture.xml' );
+		const ipEditFixturePath = path.resolve( __dirname + '/../fixtures/ip-edit-fixture.xml' );
 		console.log( 'Importing ' + ipEditFixturePath );
 		const importDumpResult = await childProcess.spawnSync(
 			'php',
