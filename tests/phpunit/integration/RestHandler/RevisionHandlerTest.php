@@ -4,23 +4,18 @@ namespace MediaWiki\IPInfo\Test\Integration\Rest\Handler;
 
 use MediaWiki\IPInfo\Info\BlockInfo;
 use MediaWiki\IPInfo\Info\ContributionInfo;
-use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Handler\RevisionHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
+use MediaWiki\IPInfo\Test\Integration\RestHandler\HandlerTestCase;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\UltimateAuthority;
+use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
-use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Session\Token;
-use MediaWiki\Tests\Rest\Handler\HandlerTestTrait;
-use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
-use MediaWikiIntegrationTestCase;
-use MockHttpTrait;
 use Wikimedia\Message\MessageValue;
 
 /**
@@ -30,16 +25,9 @@ use Wikimedia\Message\MessageValue;
  * @covers \MediaWiki\IPInfo\Rest\Handler\AbstractRevisionHandler
  * @covers \MediaWiki\IPInfo\Rest\Handler\IPInfoHandler
  */
-class RevisionHandlerTest extends MediaWikiIntegrationTestCase {
-	private const VALID_CSRF_TOKEN = 'valid-csrf-token';
+class RevisionHandlerTest extends HandlerTestCase {
 	private const NONEXISTENT_REV_ID = 123;
 	private const TEST_ANON_IP = '214.78.0.5';
-
-	use HandlerTestTrait {
-		getSession as getBaseSession;
-	}
-	use MockHttpTrait;
-	use TempUserTestTrait;
 
 	private static Authority $blockedSysop;
 	private static Authority $testSysop;
@@ -56,65 +44,9 @@ class RevisionHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private static RevisionRecord $revRecordByImportedUser;
 
-	private InfoManager $infoManager;
-
-	protected function setUp(): void {
-		parent::setUp();
-
-		$this->setGroupPermissions( [
-			'sysop' => [
-				'ipinfo' => true,
-				DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT => true,
-				DefaultPresenter::IPINFO_VIEW_FULL_RIGHT => false,
-			],
-			'ipinfo-viewer' => [
-				'ipinfo' => true,
-				DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT => true,
-				DefaultPresenter::IPINFO_VIEW_FULL_RIGHT => true
-			],
-			'ipinfo-deleted-viewer' => [
-				'ipinfo' => true,
-				DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT => true,
-				DefaultPresenter::IPINFO_VIEW_FULL_RIGHT => true,
-				'deletedhistory' => true,
-			]
-		] );
-
-		$this->installMockHttp(
-			$this->makeFakeHttpRequest( '', 404 )
-		);
-
-		$this->overrideConfigValue(
-			'IPInfoGeoLite2Prefix',
-			realpath( __DIR__ . '/../../../fixtures/maxmind' ) . '/GeoLite2-'
-		);
-	}
-
-	public function getSession() {
-		$token = $this->createMock( Token::class );
-		$token->method( 'match' )
-			->willReturnCallback( fn ( $token ) => $token === self::VALID_CSRF_TOKEN );
-		$session = $this->getBaseSession( false );
-		$session->method( 'hasToken' )
-			->willReturn( true );
-		$session->method( 'getToken' )
-			->willReturn( $token );
-
-		return $session;
-	}
-
-	private function setUserOptions( Authority $user, array $options ): void {
-		$userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
-		$user = $user->getUser();
-
-		foreach ( $options as $oname => $value ) {
-			$userOptionsManager->setOption( $user, $oname, $value );
-		}
-	}
-
-	private function executeWithUser( RequestData $requestData, Authority $user ): ResponseInterface {
+	protected function getHandler(): Handler {
 		$services = $this->getServiceContainer();
-		$handler = RevisionHandler::factory(
+		return RevisionHandler::factory(
 			$services->getService( 'IPInfoInfoManager' ),
 			$services->getRevisionLookup(),
 			$services->getPermissionManager(),
@@ -122,15 +54,6 @@ class RevisionHandlerTest extends MediaWikiIntegrationTestCase {
 			$services->getUserFactory(),
 			$services->getJobQueueGroup(),
 			$services->getLanguageFallback()
-		);
-		return $this->executeHandler(
-			$handler,
-			$requestData,
-			[],
-			[],
-			[],
-			[],
-			$user
 		);
 	}
 

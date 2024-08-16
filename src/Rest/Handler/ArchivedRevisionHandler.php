@@ -7,6 +7,7 @@ use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -26,7 +27,8 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 		UserFactory $userFactory,
 		DefaultPresenter $presenter,
 		JobQueueGroup $jobQueueGroup,
-		LanguageFallback $languageFallback
+		LanguageFallback $languageFallback,
+		ExtensionRegistry $extensionRegistry
 	) {
 		parent::__construct(
 			$infoManager,
@@ -35,7 +37,8 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 			$userFactory,
 			$presenter,
 			$jobQueueGroup,
-			$languageFallback
+			$languageFallback,
+			$extensionRegistry
 		);
 		$this->archivedRevisionLookup = $archivedRevisionLookup;
 	}
@@ -47,7 +50,8 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
 		JobQueueGroup $jobQueueGroup,
-		LanguageFallback $languageFallback
+		LanguageFallback $languageFallback,
+		?ExtensionRegistry $extensionRegistry = null
 	): self {
 		return new self(
 			$infoManager,
@@ -57,7 +61,8 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 			$userFactory,
 			new DefaultPresenter( $permissionManager ),
 			$jobQueueGroup,
-			$languageFallback
+			$languageFallback,
+			$extensionRegistry ?? ExtensionRegistry::getInstance()
 		);
 	}
 
