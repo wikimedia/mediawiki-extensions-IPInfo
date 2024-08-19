@@ -21,6 +21,7 @@ use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityUtils;
 use MediaWikiUnitTestCase;
 use Wikimedia\Message\MessageValue;
 
@@ -45,6 +46,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 				'presenter' => $this->createMock( DefaultPresenter::class ),
 				'jobQueueGroup' => $this->createMock( JobQueueGroup::class ),
 				'languageFallback' => $this->createMock( LanguageFallback::class ),
+				'userIdentityUtils' => $this->createMock( UserIdentityUtils::class ),
 				'extensionRegistry' => $this->createMock( ExtensionRegistry::class )
 			],
 			$options
@@ -64,7 +66,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideExecute
 	 */
-	public function testExecute( $expected, $dataProperty ) {
+	public function testExecute( array $options, int $expectedCount ) {
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
 			->willReturn( true );
@@ -83,16 +85,22 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 				'subject' => '127.0.0.2',
 				'data' => [
 					'provider' => [
-						$dataProperty => 'testValue',
+						$options['propertyName'] => 'testValue',
 					],
 				],
 			] );
 
 		$author = $this->createMock( UserIdentity::class );
-		$author->method( 'isRegistered' )
-			->willReturn( false );
 		$author->method( 'getName' )
-			->willReturn( '127.0.0.1' );
+			->willReturn( $options['authorName'] );
+
+		$userIdentityUtils = $this->createMock( UserIdentityUtils::class );
+		$userIdentityUtils->method( 'isNamed' )
+			->with( $author )
+			->willReturn( false );
+		$userIdentityUtils->method( 'isTemp' )
+			->with( $author )
+			->willReturn( $options['authorIsTemp'] );
 
 		$linkTarget = $this->createMock( LinkTarget::class );
 
@@ -121,6 +129,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 			'presenter' => $presenter,
 			'jobQueueGroup' => $jobQueueGroup,
 			'languageFallback' => $languageFallback,
+			'userIdentityUtils' => $userIdentityUtils
 		] );
 
 		$request = $this->getRequestData();
@@ -134,13 +143,42 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 		$this->assertIsArray( $body['info'] );
 		$this->assertCount( 1, $body['info'] );
 
-		$this->assertCount( $expected, $body['info'][0]['data']['provider'] );
+		$this->assertCount( $expectedCount, $body['info'][0]['data']['provider'] );
 	}
 
-	public static function provideExecute() {
-		return [
-			'Allowed property is returned' => [ 1, 'country' ],
-			'Restricted property is not returned' => [ 0, 'testProperty' ],
+	public static function provideExecute(): iterable {
+		yield 'allowed property for anonymous user' => [
+			[
+				'authorName' => '127.0.0.1',
+				'authorIsTemp' => false,
+				'propertyName' => 'country'
+			],
+			1
+		];
+		yield 'allowed property for temporary user' => [
+			[
+				'authorName' => '~2024-8',
+				'authorIsTemp' => true,
+				'propertyName' => 'country'
+			],
+			1
+		];
+
+		yield 'restricted property for anonymous user' => [
+			[
+				'authorName' => '127.0.0.1',
+				'authorIsTemp' => false,
+				'propertyName' => 'testProperty'
+			],
+			0
+		];
+		yield 'restricted property for temporary user' => [
+			[
+				'authorName' => '~2024-8',
+				'authorIsTemp' => true,
+				'propertyName' => 'testProperty'
+			],
+			0
 		];
 	}
 
@@ -166,10 +204,16 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 			->willReturn( $options['getOption'] ?? null );
 
 		$author = $this->createMock( UserIdentity::class );
-		$author->method( 'isRegistered' )
-			->willReturn( $options['authorIsRegistered'] ?? false );
 		$author->method( 'getName' )
 			->willReturn( $options['authorName'] ?? '' );
+
+		$userIdentityUtils = $this->createMock( UserIdentityUtils::class );
+		$userIdentityUtils->method( 'isNamed' )
+			->with( $author )
+			->willReturn( $options['authorIsRegistered'] ?? false );
+		$userIdentityUtils->method( 'isTemp' )
+			->with( $author )
+			->willReturn( false );
 
 		$linkTarget = $this->createMock( LinkTarget::class );
 
@@ -193,6 +237,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 			'userOptionsLookup' => $userOptionsLookup,
 			'userIdentity' => $user,
 			'languageFallback' => $languageFallback,
+			'userIdentityUtils' => $userIdentityUtils
 		] );
 
 		$request = $this->getRequestData( $options['id'] ?? 123 );
@@ -372,6 +417,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 				$this->createMock( UserFactory::class ),
 				$this->createMock( JobQueueGroup::class ),
 				$this->createMock( LanguageFallback::class ),
+				$this->createMock( UserIdentityUtils::class ),
 				$this->createMock( ExtensionRegistry::class )
 			)
 		);

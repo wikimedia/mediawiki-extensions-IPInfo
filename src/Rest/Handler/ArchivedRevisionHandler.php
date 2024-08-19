@@ -13,6 +13,7 @@ use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentityUtils;
 use Wikimedia\Message\MessageValue;
 
 class ArchivedRevisionHandler extends AbstractRevisionHandler {
@@ -28,6 +29,7 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 		DefaultPresenter $presenter,
 		JobQueueGroup $jobQueueGroup,
 		LanguageFallback $languageFallback,
+		UserIdentityUtils $userIdentityUtils,
 		ExtensionRegistry $extensionRegistry
 	) {
 		parent::__construct(
@@ -38,6 +40,7 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 			$presenter,
 			$jobQueueGroup,
 			$languageFallback,
+			$userIdentityUtils,
 			$extensionRegistry
 		);
 		$this->archivedRevisionLookup = $archivedRevisionLookup;
@@ -51,6 +54,7 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 		UserFactory $userFactory,
 		JobQueueGroup $jobQueueGroup,
 		LanguageFallback $languageFallback,
+		UserIdentityUtils $userIdentityUtils,
 		?ExtensionRegistry $extensionRegistry = null
 	): self {
 		return new self(
@@ -62,6 +66,7 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 			new DefaultPresenter( $permissionManager ),
 			$jobQueueGroup,
 			$languageFallback,
+			$userIdentityUtils,
 			$extensionRegistry ?? ExtensionRegistry::getInstance()
 		);
 	}

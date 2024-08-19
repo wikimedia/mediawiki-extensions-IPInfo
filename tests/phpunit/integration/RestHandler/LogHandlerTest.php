@@ -73,7 +73,8 @@ class LogHandlerTest extends HandlerTestCase {
 			$services->getUserOptionsLookup(),
 			$services->getUserFactory(),
 			$services->getJobQueueGroup(),
-			$services->getLanguageFallback()
+			$services->getLanguageFallback(),
+			$services->getUserIdentityUtils()
 		);
 	}
 

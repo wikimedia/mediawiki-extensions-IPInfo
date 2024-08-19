@@ -38,18 +38,16 @@ abstract class AbstractRevisionHandler extends IPInfoHandler {
 			);
 		}
 
-		if ( $author->isRegistered() ) {
-			// Since the IP address only exists in CheckUser, there is no way to access it.
-			// @TODO Allow extensions (like CheckUser) to either pass without a value
-			//      (which would result in a 404) or throw a fatal (which could result in a 403).
+		if ( $this->userIdentityUtils->isNamed( $author ) ) {
+			// By design, IPInfo currently only supports retrieving IP data for anonymous or temporary users.
 			throw new LocalizedHttpException(
 				new MessageValue( 'ipinfo-rest-revision-registered' ),
 				404
 			);
 		}
 
-		if ( !IPUtils::isValid( $author->getName() ) ) {
-			// Not a valid IP and probably an imported edit
+		if ( !( $this->userIdentityUtils->isTemp( $author ) || IPUtils::isValid( $author->getName() ) ) ) {
+			// Not a valid IP or temporary account; may be an imported edit
 			throw new LocalizedHttpException(
 				new MessageValue( 'ipinfo-rest-revision-invalid-ip' ),
 				404
@@ -57,8 +55,10 @@ abstract class AbstractRevisionHandler extends IPInfoHandler {
 		}
 
 		return [
-			$this->presenter->present( $this->infoManager->retrieveFor( $author->getName() ),
-			$this->getAuthority()->getUser() )
+			$this->presenter->present(
+				$this->infoManager->retrieveFor( $author ),
+				$this->getAuthority()->getUser()
+			)
 		];
 	}
 

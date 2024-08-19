@@ -13,6 +13,7 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentityUtils;
 use Wikimedia\IPUtils;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -29,7 +30,8 @@ class LogHandler extends IPInfoHandler {
 		UserFactory $userFactory,
 		DefaultPresenter $presenter,
 		JobQueueGroup $jobQueueGroup,
-		LanguageFallback $languageFallback
+		LanguageFallback $languageFallback,
+		UserIdentityUtils $userIdentityUtils
 	) {
 		parent::__construct(
 			$infoManager,
@@ -39,6 +41,7 @@ class LogHandler extends IPInfoHandler {
 			$presenter,
 			$jobQueueGroup,
 			$languageFallback,
+			$userIdentityUtils
 		);
 		$this->dbProvider = $dbProvider;
 	}
@@ -50,7 +53,8 @@ class LogHandler extends IPInfoHandler {
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
 		JobQueueGroup $jobQueueGroup,
-		LanguageFallback $languageFallback
+		LanguageFallback $languageFallback,
+		UserIdentityUtils $userIdentityUtils
 	): self {
 		return new self(
 			$infoManager,
@@ -60,7 +64,8 @@ class LogHandler extends IPInfoHandler {
 			$userFactory,
 			new DefaultPresenter( $permissionManager ),
 			$jobQueueGroup,
-			$languageFallback
+			$languageFallback,
+			$userIdentityUtils
 		);
 	}
 
