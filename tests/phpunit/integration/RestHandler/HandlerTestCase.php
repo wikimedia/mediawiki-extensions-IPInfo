@@ -42,6 +42,13 @@ abstract class HandlerTestCase extends MediaWikiIntegrationTestCase {
 				DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT => true,
 				DefaultPresenter::IPINFO_VIEW_FULL_RIGHT => true,
 				'deletedhistory' => true,
+			],
+			'ipinfo-suppressed-viewer' => [
+				'ipinfo' => true,
+				DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT => true,
+				DefaultPresenter::IPINFO_VIEW_FULL_RIGHT => true,
+				'deletedhistory' => true,
+				'viewsuppressed' => true,
 			]
 		] );
 

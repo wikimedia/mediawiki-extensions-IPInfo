@@ -2,26 +2,21 @@
 
 namespace MediaWiki\IPInfo\Test\Integration\RestHandler;
 
-use JobQueueGroup;
 use LogPage;
-use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\IPInfo\InfoManager;
+use ManualLogEntry;
+use MediaWiki\IPInfo\Info\BlockInfo;
 use MediaWiki\IPInfo\Rest\Handler\LogHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
-use MediaWiki\Languages\LanguageFallback;
+use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
-use MediaWiki\Tests\Rest\Handler\HandlerTestTrait;
-use MediaWiki\User\Options\UserOptionsLookup;
-use MediaWiki\User\User;
+use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
-use MediaWikiIntegrationTestCase;
 use Wikimedia\Message\MessageValue;
-use Wikimedia\Rdbms\IConnectionProvider;
-use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * @group IPInfo
@@ -31,615 +26,415 @@ use Wikimedia\Rdbms\IReadableDatabase;
  * The static methods in LogHandler require this test to be an integration test,
  * rather than a unit test.
  */
-class LogHandlerTest extends MediaWikiIntegrationTestCase {
+class LogHandlerTest extends HandlerTestCase {
+	private const TEST_LOG_TYPE = 'test-log';
+	private const TEST_RESTRICTED_LOG_TYPE = 'test-restricted-log';
 
-	use HandlerTestTrait;
+	private const TEST_ANON_IP = '214.78.0.5';
 
-	private function getLogHandler( array $options = [] ): LogHandler {
-		return new LogHandler( ...array_values( array_merge(
-			[
-				'infoManager' => $this->createMock( InfoManager::class ),
-				'dbProvider' => $this->createMock( IConnectionProvider::class ),
-				'permissionManager' => $this->createMock( PermissionManager::class ),
-				'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
-				'userFactory' => $this->createMock( UserFactory::class ),
-				'presenter' => $this->createMock( DefaultPresenter::class ),
-				'jobQueueGroup' => $this->createMock( JobQueueGroup::class ),
-				'languageFallback' => $this->createMock( LanguageFallback::class ),
+	private const TEST_MISSING_LOG_ID = 456;
+
+	private static Authority $blockedSysop;
+	private static Authority $testSysop;
+	private static Authority $ipInfoViewer;
+	private static Authority $suppressedIpInfoViewer;
+	private static Authority $regularUser;
+	private static Authority $anonUser;
+
+	private static int $logEntryByAnonId;
+	private static int $logEntryByAnonWithAnonTargetId;
+	private static int $deletedLogEntryByAnonId;
+	private static int $suppressedLogEntryByAnonId;
+	private static int $logEntryByNamedUserId;
+	private static int $fullyDeletedLogEntryByAnonId;
+	private static int $restrictedLogEntryByAnonId;
+	private static int $logEntryWithAnonTargetId;
+
+	protected function setUp(): void {
+		parent::setUp();
+
+		$this->overrideConfigValues( [
+			MainConfigNames::LogTypes => [
+				self::TEST_LOG_TYPE,
+				self::TEST_RESTRICTED_LOG_TYPE
 			],
-			$options
-		) ) );
+			MainConfigNames::LogRestrictions => [
+				self::TEST_RESTRICTED_LOG_TYPE => DefaultPresenter::IPINFO_VIEW_FULL_RIGHT
+			]
+		] );
 	}
 
-	private function getRequestData( int $id = 123 ): RequestData {
+	protected function getHandler(): Handler {
+		$services = $this->getServiceContainer();
+		return LogHandler::factory(
+			$services->getService( 'IPInfoInfoManager' ),
+			$services->getConnectionProvider(),
+			$services->getPermissionManager(),
+			$services->getUserOptionsLookup(),
+			$services->getUserFactory(),
+			$services->getJobQueueGroup(),
+			$services->getLanguageFallback()
+		);
+	}
+
+	/**
+	 * Convenience function to create a test request.
+	 * @param int $logId ID of the log entry to fetch
+	 * @param string|null $csrfToken CSRF token to pass in the request, or `null` for no token
+	 * @return RequestData
+	 */
+	private static function getRequestData(
+		int $logId = 123,
+		?string $csrfToken = self::VALID_CSRF_TOKEN
+	): RequestData {
+		$body = $csrfToken ? json_encode( [ 'token' => $csrfToken ] ) : '';
 		return new RequestData( [
-			'pathParams' => [ 'id' => $id ],
+			'method' => 'POST',
+			'pathParams' => [ 'id' => $logId ],
 			'queryParams' => [
 				'dataContext' => 'infobox',
 				'language' => 'en'
 			],
+			'headers' => [ 'Content-Type' => 'application/json' ],
+			'bodyContents' => $body
 		] );
 	}
 
 	/**
-	 * @dataProvider provideExecute
+	 * Create a log entry with the given type and parameters.
+	 *
+	 * @param string $type Log type
+	 * @param UserIdentity $performer User who performed this logged action
+	 * @param LinkTarget $target Target of the logged action
+	 * @param int|null $deleted Optional bitmask of LogPage::DELETED_* constants
+	 * @return int Log ID of the newly inserted entry
 	 */
-	public function testExecute( $expected, $dataProperty ) {
-		$id = 123;
+	private function makeLogEntry(
+		string $type,
+		UserIdentity $performer,
+		LinkTarget $target,
+		?int $deleted = null
+	): int {
+		$logEntry = new ManualLogEntry( $type, '' );
+		$logEntry->setPerformer( $performer );
+		$logEntry->setTarget( $target );
 
-		$dbr = $this->createMock( IReadableDatabase::class );
-		$dbr->method( 'selectRow' )
-			->willReturn( [
-				'logid' => $id,
-				'log_type' => 'block',
-				'log_deleted' => 0,
-				'log_namespace' => 0,
-				'log_title' => '127.0.0.2',
-				'log_user' => 0,
-				'log_user_text' => '127.0.0.1',
-				'log_actor' => 1,
-			] );
-
-		$dbProvider = $this->createMock( IConnectionProvider::class );
-		$dbProvider->method( 'getReplicaDatabase' )
-			->willReturn( $dbr );
-
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'userHasRight' )
-			->willReturn( true );
-
-		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
-		$userOptionsLookup->method( 'getOption' )
-			->willReturn( true );
-
-		$presenter = $this->createMock( DefaultPresenter::class );
-		$presenter->method( 'present' )
-			->willReturn( [
-				'subject' => '127.0.0.2',
-				'data' => [
-					'provider' => [
-						$dataProperty => 'testValue',
-					],
-				],
-			] );
-
-		$jobQueueGroup = $this->createMock( JobQueueGroup::class );
-		$jobQueueGroup->expects( $this->atLeastOnce() )
-			->method( 'push' );
-
-		$languageFallback = $this->createMock( LanguageFallback::class );
-		$languageFallback->method( 'getAll' )
-			->willReturn( [ 'en' ] );
-
-		$handler = $this->getLogHandler( [
-			'dbProvider' => $dbProvider,
-			'permissionManager' => $permissionManager,
-			'userOptionsLookup' => $userOptionsLookup,
-			'presenter' => $presenter,
-			'jobQueueGroup' => $jobQueueGroup,
-			'languageFallback' => $languageFallback,
-		] );
-
-		$request = $this->getRequestData( $id );
-
-		$response = $this->executeHandler( $handler, $request );
-
-		$this->assertSame( 200, $response->getStatusCode() );
-
-		$body = json_decode( $response->getBody()->getContents(), true );
-		$this->assertArrayHasKey( 'info', $body );
-		$this->assertIsArray( $body['info'] );
-		$this->assertCount( 2, $body['info'] );
-
-		$this->assertCount( $expected, $body['info'][0]['data']['provider'] );
-	}
-
-	public static function provideExecute() {
-		return [
-			'Allowed property is returned' => [ 1, 'country' ],
-			'Restricted property is not returned' => [ 0, 'testProperty' ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideExecuteErrors
-	 */
-	public function testExecuteErrors( array $options, array $expected ) {
-		$authority = $this->createMock( Authority::class );
-		$dbProvider = $this->createMock( IConnectionProvider::class );
-		$dbProvider->method( 'getReplicaDatabase' )
-			->willReturn( $this->createMock( IReadableDatabase::class ) );
-
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'userHasRight' )
-			->willReturn( $options['userHasRight'] ?? null );
-		$permissionManager->method( 'getUserPermissions' )
-			->willReturn( [] );
-
-		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
-		$userOptionsLookup->method( 'getOption' )
-			->willReturn( $options['getOption'] ?? null );
-
-		$user = $this->createMock( UserIdentity::class );
-		$authority->method( 'getUser' )
-			->willReturn( $user );
-		$user->method( 'isRegistered' )
-			->willReturn( $options['isRegistered'] ?? false );
-
-		$handler = $this->getLogHandler( [
-			'dbProvider' => $dbProvider,
-			'permissionManager' => $permissionManager,
-			'userOptionsLookup' => $userOptionsLookup,
-			'userIdentity' => $user,
-		] );
-
-		$request = $this->getRequestData();
-
-		$this->expectExceptionObject(
-			new LocalizedHttpException(
-				new MessageValue( $expected['message'] ),
-				$expected['status']
-			)
-		);
-
-		$this->executeHandler( $handler, $request, [],
-			[],
-			[],
-			[],
-			$authority );
-	}
-
-	public static function provideExecuteErrors() {
-		return [
-			'access denied, registered' => [
-				[
-					'userHasRight' => false,
-					'isRegistered' => true,
-				],
-				[
-					'message' => 'ipinfo-rest-access-denied',
-					'status' => 403,
-				],
-			],
-			'access denied, anon' => [
-				[
-					'userHasRight' => false,
-					'isRegistered' => false,
-				],
-				[
-					'message' => 'ipinfo-rest-access-denied',
-					'status' => 401,
-				],
-			],
-			'access denied, preference not set' => [
-				[
-					'userHasRight' => true,
-					'getOption' => false,
-					'isRegistered' => false,
-				],
-				[
-					'message' => 'ipinfo-rest-access-denied',
-					'status' => 401,
-				],
-			],
-			'missing log' => [
-				[
-					'userHasRight' => true,
-					'getOption' => true,
-				],
-				[
-					'message' => 'ipinfo-rest-log-nonexistent',
-					'status' => 404,
-				],
-			],
-		];
-	}
-
-	public function testAccessDeniedLogType() {
-		$id = 123;
-
-		$authority = $this->createMock( Authority::class );
-		$user = $this->createMock( UserIdentity::class );
-		$authority->method( 'getUser' )
-			->willReturn( $user );
-		$dbr = $this->createMock( IReadableDatabase::class );
-		$dbr->method( 'selectRow' )
-			->willReturn( [
-				'logid' => $id,
-				'log_type' => 'suppress',
-				'log_deleted' => LogPage::DELETED_USER,
-				'log_namespace' => NS_USER,
-				'log_title' => '127.0.0.2',
-				'log_user' => 0,
-				'log_user_text' => '127.0.0.1',
-				'log_actor' => 1,
-			] );
-
-		$dbProvider = $this->createMock( IConnectionProvider::class );
-		$dbProvider->method( 'getReplicaDatabase' )
-			->willReturn( $dbr );
-
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'userHasRight' )
-			->willReturn( true );
-
-		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
-		$userOptionsLookup->method( 'getOption' )
-			->willReturn( true );
-
-		$userFactory = $this->createMock( UserFactory::class );
-		$userFactory->method( 'newFromUserIdentity' )
-			->willReturn( $this->getTestUser()->getUser() );
-
-		$languageFallback = $this->createMock( LanguageFallback::class );
-		$languageFallback->method( 'getAll' )
-			->willReturn( [ 'en' ] );
-
-		$handler = $this->getLogHandler( [
-			'dbProvider' => $dbProvider,
-			'permissionManager' => $permissionManager,
-			'userOptionsLookup' => $userOptionsLookup,
-			'userFactory' => $userFactory,
-			'languageFallback' => $languageFallback,
-		] );
-
-		$request = $this->getRequestData( $id );
-
-		$this->expectExceptionObject(
-			new LocalizedHttpException( new MessageValue( 'ipinfo-rest-log-denied' ), 403 )
-		);
-
-		$this->executeHandler( $handler, $request, [],
-			[],
-			[],
-			[],
-			$authority );
-	}
-
-	/**
-	 * @dataProvider provideTestDeletedUser
-	 * @param string[] $rights
-	 * @param int $deleted
-	 * @param int $results
-	 */
-	public function testDeletedUser( array $rights, int $deleted, int $results ) {
-		$id = 123;
-
-		$this->setGroupPermissions( 'sysop', 'ipinfo', true );
-		foreach ( $rights as $right => $value ) {
-			$this->setGroupPermissions( 'sysop', $right, $value );
+		if ( $deleted !== null ) {
+			$logEntry->setDeleted( $deleted );
 		}
 
-		$dbr = $this->createMock( IReadableDatabase::class );
-		$dbr->method( 'selectRow' )
-			->willReturn( [
-				'logid' => $id,
-				'log_type' => 'block',
-				'log_deleted' => $deleted,
-				'log_namespace' => NS_USER,
-				'log_title' => '127.0.0.2',
-				'log_user' => 0,
-				'log_user_text' => '127.0.0.1',
-				'log_actor' => 1,
-			] );
+		$logEntry->setComment( 'test' );
 
-		$dbProvider = $this->createMock( IConnectionProvider::class );
-		$dbProvider->method( 'getReplicaDatabase' )
-			->willReturn( $dbr );
-
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'userHasRight' )
-			->willReturn( true );
-		$permissionManager->method( 'getUserPermissions' )
-			->willReturn( [] );
-
-		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
-		$userOptionsLookup->method( 'getOption' )
-			->willReturn( true );
-		$testSysop = $this->getTestUser( [ 'sysop' ] );
-		$userFactory = $this->createMock( UserFactory::class );
-		$userFactory->method( 'newFromUserIdentity' )
-			->willReturn( $this->getTestUser( [ 'testSysop' ] )->getUser() );
-
-		$languageFallback = $this->createMock( LanguageFallback::class );
-		$languageFallback->method( 'getAll' )
-			->willReturn( [ 'en' ] );
-
-		$handler = $this->getLogHandler( [
-			'dbProvider' => $dbProvider,
-			'permissionManager' => $permissionManager,
-			'userOptionsLookup' => $userOptionsLookup,
-			'userFactory' => $userFactory,
-			'languageFallback' => $languageFallback,
-		] );
-
-		$request = $this->getRequestData( $id );
-		$authority = $testSysop->getAuthority();
-
-		$response = $this->executeHandler( $handler, $request, [],
-			[],
-			[],
-			[],
-			$authority );
-		$this->assertSame( 200, $response->getStatusCode() );
-
-		$body = json_decode( $response->getBody()->getContents(), true );
-		$this->assertArrayHasKey( 'info', $body );
-		$this->assertIsArray( $body['info'] );
-		$this->assertCount( $results, $body['info'] );
+		return $logEntry->insert( $this->getDb() );
 	}
 
-	public static function provideTestDeletedUser() {
-		return [
-			'not allowed, only returns target' => [
-				[
-					'deletedhistory' => false,
-					'suppressrevision' => false,
-				],
-				LogPage::DELETED_USER,
-				1,
-			],
-			'allowed, returns both' => [
-				[
-					'deletedhistory' => true,
-					'suppressrevision' => false,
-				],
-				LogPage::DELETED_USER,
-				2,
-			],
-			'not allowed, only returns target (suppressed)' => [
-				[
-					'deletedhistory' => true,
-					'suppressrevision' => false,
-					'viewsuppressed' => false,
-				],
-				LogPage::DELETED_USER | LogPage::DELETED_RESTRICTED,
-				1,
-			],
-			'allowed, returns both (suppressed)' => [
-				[
-					'deletedhistory' => true,
-					'suppressrevision' => true,
-				],
-				LogPage::DELETED_USER | LogPage::DELETED_RESTRICTED,
-				2,
-			],
+	public function addDBDataOnce() {
+		self::$blockedSysop = $this->getTestUser( [ 'sysop' ] )->getAuthority();
+		self::$testSysop = $this->getTestSysop()->getAuthority();
+		self::$ipInfoViewer = $this->getTestUser( [ 'ipinfo-viewer' ] )->getAuthority();
+		self::$suppressedIpInfoViewer = $this->getTestUser( [ 'ipinfo-suppressed-viewer' ] )->getAuthority();
+		self::$regularUser = $this->getTestUser()->getAuthority();
+		self::$anonUser = $this->getServiceContainer()->getUserFactory()->newAnonymous( self::TEST_ANON_IP );
+
+		$blockStatus = $this->getServiceContainer()->getBlockUserFactory()
+			->newBlockUser(
+				self::$blockedSysop->getUser(),
+				self::$testSysop,
+				'infinity'
+			)
+			->placeBlock();
+		$this->assertStatusGood( $blockStatus, 'Block was not placed' );
+
+		$anonTarget = new TitleValue( NS_USER, self::$anonUser->getName() );
+		$otherTarget = new TitleValue( NS_MAIN, 'Test' );
+
+		$this->disableAutoCreateTempUser();
+
+		self::$logEntryByAnonId = $this->makeLogEntry(
+			self::TEST_LOG_TYPE,
+			self::$anonUser,
+			$otherTarget
+		);
+		self::$logEntryByNamedUserId = $this->makeLogEntry(
+			self::TEST_LOG_TYPE,
+			self::$regularUser->getUser(),
+			$otherTarget
+		);
+		self::$logEntryByAnonWithAnonTargetId = $this->makeLogEntry(
+			self::TEST_LOG_TYPE,
+			self::$anonUser,
+			$anonTarget
+		);
+		self::$deletedLogEntryByAnonId = $this->makeLogEntry(
+			self::TEST_LOG_TYPE,
+			self::$anonUser,
+			$otherTarget,
+			LogPage::DELETED_USER
+		);
+		self::$suppressedLogEntryByAnonId = $this->makeLogEntry(
+			self::TEST_LOG_TYPE,
+			self::$anonUser,
+			$otherTarget,
+			LogPage::DELETED_USER | LogPage::DELETED_RESTRICTED
+		);
+		self::$fullyDeletedLogEntryByAnonId = $this->makeLogEntry(
+			self::TEST_LOG_TYPE,
+			self::$anonUser,
+			$otherTarget,
+			LogPage::DELETED_USER | LogPage::DELETED_ACTION
+		);
+		self::$restrictedLogEntryByAnonId = $this->makeLogEntry(
+			self::TEST_RESTRICTED_LOG_TYPE,
+			self::$anonUser,
+			$otherTarget
+		);
+		self::$logEntryWithAnonTargetId = $this->makeLogEntry(
+			self::TEST_LOG_TYPE,
+			self::$regularUser->getUser(),
+			$anonTarget
+		);
+	}
+
+	/**
+	 * @dataProvider provideErrorCases
+	 *
+	 * @param callable $authorityProvider Callback to obtain the user to make the request with
+	 * @param callable $logIdProvider Callback to provide the revision to fetch data for.
+	 * @param string|null $csrfToken The CSRF token to send along with the request,
+	 * or `null` to send no token.
+	 * @param array $userOptions User options to set for the test user
+	 * @param string[] $expectedError 2-tuple of [ expected error message key, expected HTTP status code ]
+	 */
+	public function testShouldHandleErrorCases(
+		callable $authorityProvider,
+		callable $logIdProvider,
+		?string $csrfToken,
+		array $userOptions,
+		array $expectedError
+	): void {
+		[ $key, $code ] = $expectedError;
+		$this->expectExceptionObject(
+			new LocalizedHttpException(
+				new MessageValue( $key ),
+				$code
+			)
+		);
+
+		$user = $authorityProvider();
+		$user = $this->getServiceContainer()->getUserFactory()->newFromName(
+			$user->getName(),
+			UserFactory::RIGOR_NONE
+		);
+
+		if ( count( $userOptions ) > 0 ) {
+			$this->setUserOptions( $user, $userOptions );
+		}
+
+		$request = self::getRequestData( $logIdProvider(), $csrfToken );
+		$this->executeWithUser( $request, $user );
+	}
+
+	public static function provideErrorCases(): iterable {
+		yield 'anonymous user without permission' => [
+			fn () => self::$anonUser,
+			fn () => self::$logEntryByAnonId,
+			self::VALID_CSRF_TOKEN,
+			[],
+			[ 'ipinfo-rest-access-denied', 401 ]
+		];
+
+		yield 'regular user without permission' => [
+			fn () => self::$regularUser,
+			fn () => self::$logEntryByAnonId,
+			self::VALID_CSRF_TOKEN,
+			[],
+			[ 'ipinfo-rest-access-denied', 403 ]
+		];
+
+		yield 'user with correct permissions but without accepted agreement' => [
+			fn () => self::$testSysop,
+			fn () => self::$logEntryByAnonId,
+			self::VALID_CSRF_TOKEN,
+			[ 'ipinfo-beta-feature-enable' => 1 ],
+			[ 'ipinfo-rest-access-denied', 403 ]
+		];
+
+		yield 'blocked user with correct permissions and accepted agreement' => [
+			fn () => self::$blockedSysop,
+			fn () => self::$logEntryByAnonId,
+			self::VALID_CSRF_TOKEN,
+			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-rest-access-denied', 403 ]
+		];
+
+		yield 'missing CSRF token' => [
+			fn () => self::$testSysop,
+			fn () => self::$logEntryByAnonId,
+			null,
+			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'rest-badtoken-missing', 403 ]
+		];
+
+		yield 'mismatched CSRF token' => [
+			fn () => self::$testSysop,
+			fn () => self::$logEntryByAnonId,
+			'some-bad-token',
+			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'rest-badtoken', 403 ]
+		];
+
+		yield 'missing log entry' => [
+			fn () => self::$testSysop,
+			fn () => self::TEST_MISSING_LOG_ID,
+			self::VALID_CSRF_TOKEN,
+			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-rest-log-nonexistent', 404 ]
+		];
+
+		yield 'restricted log entry with user not authorized to view it' => [
+			fn () => self::$testSysop,
+			fn () => self::$restrictedLogEntryByAnonId,
+			self::VALID_CSRF_TOKEN,
+			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-rest-log-denied', 403 ]
+		];
+
+		yield 'fully deleted log entry with user not authorized to view it' => [
+			fn () => self::$ipInfoViewer,
+			fn () => self::$fullyDeletedLogEntryByAnonId,
+			self::VALID_CSRF_TOKEN,
+			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-rest-log-denied', 403 ]
+		];
+
+		yield 'partially deleted log entry with user not authorized to view it' => [
+			fn () => self::$ipInfoViewer,
+			fn () => self::$deletedLogEntryByAnonId,
+			self::VALID_CSRF_TOKEN,
+			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-rest-log-registered', 404 ]
+		];
+
+		yield 'suppressed log entry with user not authorized to view it' => [
+			fn () => self::$ipInfoViewer,
+			fn () => self::$suppressedLogEntryByAnonId,
+			self::VALID_CSRF_TOKEN,
+			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-rest-log-registered', 404 ]
+		];
+
+		yield 'log entry by named user' => [
+			fn () => self::$testSysop,
+			fn () => self::$logEntryByNamedUserId,
+			self::VALID_CSRF_TOKEN,
+			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-rest-log-registered', 404 ]
 		];
 	}
 
-	public function testPerformerBlocked() {
-		$user = $this->createMock( UserIdentity::class );
-		$authority = $this->createMock( Authority::class );
-		$authority->method( 'getUser' )
-			->willReturn( $user );
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'userHasRight' )
-			->willReturn( true );
-		$permissionManager->method( 'getUserPermissions' )
-			->willReturn( [] );
-
-		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
-		$userOptionsLookup->method( 'getOption' )
-			->willReturn( true );
-
-		$userFactory = $this->createMock( UserFactory::class );
-		$userFactoryUser = $this->createMock( User::class );
-		$userFactoryUser->method( 'getBlock' )
-			->willReturn( $this->createMock( DatabaseBlock::class ) );
-		$userFactory->method( 'newFromUserIdentity' )
-			->willReturn( $userFactoryUser );
-
-		$languageFallback = $this->createMock( LanguageFallback::class );
-		$languageFallback->method( 'getAll' )
-			->willReturn( [ 'en' ] );
-
-		$handler = $this->getLogHandler( [
-			'permissionManager' => $permissionManager,
-			'userOptionsLookup' => $userOptionsLookup,
-			'userFactory' => $userFactory,
-			'languageFallback' => $languageFallback,
+	/**
+	 * @dataProvider provideLogEntryCases
+	 */
+	public function testShouldHandleLogEntryWherePerformerOrTargetIsAnonymous(
+		callable $authorityProvider,
+		callable $logIdProvider,
+		int $expectedInfoCount
+	): void {
+		$user = $authorityProvider();
+		$this->setUserOptions( $user, [
+			'ipinfo-beta-feature-enable' => 1,
+			'ipinfo-use-agreement' => 1
 		] );
 
-		$request = $this->getRequestData();
+		$blockInfo = new BlockInfo();
 
-		$this->expectExceptionObject(
-			new LocalizedHttpException(
-				new MessageValue( 'ipinfo-rest-access-denied-blocked-user' ),
-				403
-			)
-		);
-
-		$this->executeHandler( $handler, $request, [],
-			[],
-			[],
-			[],
-			$authority );
-	}
-
-	public function testPerformerRegistered() {
-		$id = 123;
-		$performer = $this->getTestUser()->getUser();
-
-		$dbr = $this->createMock( IReadableDatabase::class );
-		$dbr->method( 'selectRow' )
-			->willReturn( [
-				'logid' => $id,
-				'log_type' => 'block',
-				'log_deleted' => 0,
-				'log_namespace' => NS_USER,
-				'log_title' => 'Test',
-				'log_user' => $performer->getId(),
-				'log_user_text' => $performer->getName(),
-				'log_actor' => $performer->getActorId(),
-			] );
-
-		$dbProvider = $this->createMock( IConnectionProvider::class );
-		$dbProvider->method( 'getReplicaDatabase' )
-			->willReturn( $dbr );
-
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'userHasRight' )
-			->willReturn( true );
-
-		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
-		$userOptionsLookup->method( 'getOption' )
-			->willReturn( true );
-
-		$languageFallback = $this->createMock( LanguageFallback::class );
-		$languageFallback->method( 'getAll' )
-			->willReturn( [ 'en' ] );
-
-		$handler = $this->getLogHandler( [
-			'dbProvider' => $dbProvider,
-			'permissionManager' => $permissionManager,
-			'userOptionsLookup' => $userOptionsLookup,
-			'languageFallback' => $languageFallback,
-		] );
-
-		$request = $this->getRequestData();
-
-		$this->expectExceptionObject(
-			new LocalizedHttpException( new MessageValue( 'ipinfo-rest-log-registered' ), 404 )
-		);
-
-		$this->executeHandler( $handler, $request );
-	}
-
-	public function testDeletedTarget() {
-		$id = 123;
-
-		$performer = $this->getTestUser()->getUser();
-		$authority = $this->createMock( Authority::class );
-		$user = $this->createMock( UserIdentity::class );
-		$authority->method( 'getUser' )
-			->willReturn( $user );
-
-		$dbr = $this->createMock( IReadableDatabase::class );
-		$dbr->method( 'selectRow' )
-			->willReturn( [
-				'logid' => $id,
-				'log_type' => 'block',
-				'log_deleted' => LogPage::DELETED_ACTION,
-				'log_namespace' => NS_USER,
-				'log_title' => '127.0.0.2',
-				'log_user' => $performer->getId(),
-				'log_user_text' => $performer->getName(),
-				'log_actor' => $performer->getActorId(),
-			] );
-
-		$dbProvider = $this->createMock( IConnectionProvider::class );
-		$dbProvider->method( 'getReplicaDatabase' )
-			->willReturn( $dbr );
-
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'userHasRight' )
-			->willReturn( true );
-
-		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
-		$userOptionsLookup->method( 'getOption' )
-			->willReturn( true );
-
-		$userFactory = $this->createMock( UserFactory::class );
-		$userFactory->method( 'newFromUserIdentity' )
-			->willReturn( $this->getTestUser()->getUser() );
-
-		$languageFallback = $this->createMock( LanguageFallback::class );
-		$languageFallback->method( 'getAll' )
-			->willReturn( [ 'en' ] );
-
-		$handler = $this->getLogHandler( [
-			'dbProvider' => $dbProvider,
-			'permissionManager' => $permissionManager,
-			'userOptionsLookup' => $userOptionsLookup,
-			'userFactory' => $userFactory,
-			'languageFallback' => $languageFallback,
-		] );
-
-		$request = $this->getRequestData( $id );
-
-		$this->expectExceptionObject(
-			new LocalizedHttpException( new MessageValue( 'ipinfo-rest-log-registered' ), 404 )
-		);
-
-		$this->executeHandler( $handler, $request, [],
-			[],
-			[],
-			[],
-			$authority );
-	}
-
-	public function testDeletedTargetAllowed() {
-		$id = 123;
-
-		$performer = $this->getTestUser()->getUser();
-
-		$dbr = $this->createMock( IReadableDatabase::class );
-		$dbr->method( 'selectRow' )
-			->willReturn( [
-				'logid' => $id,
-				'log_type' => 'block',
-				'log_deleted' => LogPage::DELETED_ACTION,
-				'log_namespace' => NS_USER,
-				'log_title' => '127.0.0.2',
-				'log_user' => $performer->getId(),
-				'log_user_text' => $performer->getName(),
-				'log_actor' => $performer->getActorId(),
-			] );
-
-		$dbProvider = $this->createMock( IConnectionProvider::class );
-		$dbProvider->method( 'getReplicaDatabase' )
-			->willReturn( $dbr );
-
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'userHasRight' )
-			->willReturn( true );
-		$permissionManager->method( 'getUserPermissions' )
-			->willReturn( [] );
-
-		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
-		$userOptionsLookup->method( 'getOption' )
-			->willReturn( true );
-
-		$userFactory = $this->createMock( UserFactory::class );
-		$userFactory->method( 'newFromUserIdentity' )
-			->willReturn( $this->getTestSysop()->getUser() );
-
-		$languageFallback = $this->createMock( LanguageFallback::class );
-		$languageFallback->method( 'getAll' )
-			->willReturn( [ 'en' ] );
-
-		$handler = $this->getLogHandler( [
-			'dbProvider' => $dbProvider,
-			'permissionManager' => $permissionManager,
-			'userOptionsLookup' => $userOptionsLookup,
-			'userFactory' => $userFactory,
-			'languageFallback' => $languageFallback,
-		] );
-
-		$request = $this->getRequestData( $id );
-
-		$response = $this->executeHandler( $handler, $request );
-
-		$this->assertSame( 200, $response->getStatusCode() );
-
+		$request = self::getRequestData( $logIdProvider() );
+		$response = $this->executeWithUser( $request, $user );
 		$body = json_decode( $response->getBody()->getContents(), true );
-		$this->assertArrayHasKey( 'info', $body );
-		$this->assertIsArray( $body['info'] );
-		$this->assertCount( 1, $body['info'] );
+
+		$this->assertCount( $expectedInfoCount, $body['info'] );
+
+		foreach ( $body['info'] as $item ) {
+			$geoData = $item['data']['ipinfo-source-geoip2'];
+
+			$this->assertSame( 200, $response->getStatusCode() );
+			$this->assertSame( self::TEST_ANON_IP, $item['subject'] );
+			$this->assertSame( 'United States', $geoData['countryNames']['en'] );
+			$this->assertArrayNotHasKey( 'coordinates', $geoData );
+
+			$this->assertSame( $blockInfo->jsonSerialize(), $item['data']['ipinfo-source-block'] );
+
+			$contribsInfo = $item['data']['ipinfo-source-contributions'];
+
+			$this->assertSame( 0, $contribsInfo['numLocalEdits'] );
+			$this->assertSame( 0, $contribsInfo['numRecentEdits'] );
+
+			if ( $user->isAllowed( DefaultPresenter::IPINFO_VIEW_FULL_RIGHT ) ) {
+				$this->assertSame(
+					[
+						[ 'id' => 5391811, 'label' => 'San Diego' ],
+						[ 'id' => 5332921, 'label' => 'California' ],
+					],
+					$geoData['location']
+				);
+				$this->assertSame( 721, $geoData['asn'] );
+				if ( $user->isAllowed( 'deletedhistory' ) ) {
+					$this->assertSame(
+						0,
+						$contribsInfo['numDeletedEdits']
+					);
+				} else {
+					$this->assertArrayNotHasKey( 'numDeletedEdits', $contribsInfo );
+				}
+			} else {
+				$this->assertArrayNotHasKey( 'asn', $geoData );
+				$this->assertArrayNotHasKey( 'location', $geoData );
+				$this->assertArrayNotHasKey( 'numDeletedEdits', $contribsInfo );
+			}
+		}
 	}
 
-	public function testFactory() {
-		$this->assertInstanceOf(
-			LogHandler::class,
-			LogHandler::factory(
-				$this->createMock( InfoManager::class ),
-				$this->createMock( IConnectionProvider::class ),
-				$this->createMock( PermissionManager::class ),
-				$this->createMock( UserOptionsLookup::class ),
-				$this->createMock( UserFactory::class ),
-				$this->createMock( JobQueueGroup::class ),
-				$this->createMock( LanguageFallback::class )
-			)
-		);
+	public static function provideLogEntryCases(): iterable {
+		yield 'log entry by anonymous user' => [
+			fn () => self::$ipInfoViewer,
+			fn () => self::$logEntryByAnonId,
+			1
+		];
+
+		yield 'log entry with anonymous target' => [
+			fn () => self::$ipInfoViewer,
+			fn () => self::$logEntryWithAnonTargetId,
+			1
+		];
+
+		yield 'log entry by anonymous user with anonymous target' => [
+			fn () => self::$ipInfoViewer,
+			fn () => self::$logEntryByAnonWithAnonTargetId,
+			2
+		];
+
+		yield 'fully deleted log entry with user authorized to view it' => [
+			fn () => self::$testSysop,
+			fn () => self::$fullyDeletedLogEntryByAnonId,
+			1
+		];
+
+		yield 'partially deleted log entry with user authorized to view it' => [
+			fn () => self::$testSysop,
+			fn () => self::$deletedLogEntryByAnonId,
+			1
+		];
+
+		yield 'restricted log entry with user authorized to view it' => [
+			fn () => self::$ipInfoViewer,
+			fn () => self::$restrictedLogEntryByAnonId,
+			1
+		];
+
+		yield 'suppressed log entry with user authorized to view it' => [
+			fn () => self::$suppressedIpInfoViewer,
+			fn () => self::$suppressedLogEntryByAnonId,
+			1
+		];
 	}
 }
