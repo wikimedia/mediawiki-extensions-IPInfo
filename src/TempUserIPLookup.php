@@ -63,8 +63,8 @@ class TempUserIPLookup {
 		}
 
 		$dbr = $this->connectionProvider->getReplicaDatabase();
-		$address = $dbr->newSelectQueryBuilder()
-			->select( 'cuc_ip' )
+		$latestChange = $dbr->newSelectQueryBuilder()
+			->select( [ 'cuc_ip', 'cuc_timestamp' ] )
 			->from( 'cu_changes' )
 			// T338276
 			->useIndex( 'cuc_actor_ip_time' )
@@ -75,9 +75,34 @@ class TempUserIPLookup {
 			->orderBy( 'cuc_timestamp', SelectQueryBuilder::SORT_DESC )
 			->limit( 1 )
 			->caller( __METHOD__ )
-			->fetchField();
+			->fetchRow();
 
-		$address = $address ?: null;
+		$latestLogEvent = $dbr->newSelectQueryBuilder()
+			->select( [ 'cule_ip', 'cule_timestamp' ] )
+			->from( 'cu_log_event' )
+			// T338276
+			->useIndex( 'cule_actor_ip_time' )
+			->join( 'actor', null, 'cule_actor=actor_id' )
+			->where( [
+				'actor_name' => $user->getName(),
+			] )
+			->orderBy( 'cule_timestamp', SelectQueryBuilder::SORT_DESC )
+			->limit( 1 )
+			->caller( __METHOD__ )
+			->fetchRow();
+
+		// Pick the most recent of the cu_changes and the cu_log_event event, if any.
+		if ( $latestChange !== false ) {
+			$latestLogTimestamp = $latestLogEvent ? $latestLogEvent->cule_timestamp : '0';
+			if ( $latestLogTimestamp > $latestChange->cuc_timestamp ) {
+				$address = $latestLogEvent->cule_ip;
+			} else {
+				$address = $latestChange->cuc_ip;
+			}
+		} else {
+			$address = $latestLogEvent ? $latestLogEvent->cule_ip : null;
+		}
+
 		$this->recentAddressCache->set( $user->getName(), $address );
 
 		return $address;
@@ -102,16 +127,31 @@ class TempUserIPLookup {
 
 		$dbr = $this->connectionProvider->getReplicaDatabase();
 
-		$count = $dbr->newSelectQueryBuilder()
-			->select( 'COUNT(DISTINCT cuc_ip)' )
+		$distinctCuChangesIPs = $dbr->newSelectQueryBuilder()
+			->select( 'DISTINCT cuc_ip' )
 			->from( 'cu_changes' )
 			->join( 'actor', null, 'cuc_actor=actor_id' )
 			->where( [
 				'actor_name' => $user->getName(),
 			] )
 			->caller( __METHOD__ )
-			->fetchField();
+			->fetchFieldValues();
 
-		return $count ?: 0;
+		$cuLogQuery = $dbr->newSelectQueryBuilder()
+			->select( 'DISTINCT cule_ip' )
+			->from( 'cu_log_event' )
+			->join( 'actor', null, 'cule_actor=actor_id' )
+			->where( [
+				'actor_name' => $user->getName()
+			] )
+			->caller( __METHOD__ );
+
+		if ( count( $distinctCuChangesIPs ) > 0 ) {
+			$cuLogQuery->andWhere( $dbr->expr( 'cule_ip', '!=', $distinctCuChangesIPs ) );
+		}
+
+		$distinctCuLogEventIPs = $cuLogQuery->fetchFieldValues();
+
+		return count( $distinctCuChangesIPs ) + count( $distinctCuLogEventIPs );
 	}
 }

@@ -115,11 +115,18 @@ class TempUserIPLookupTest extends MediaWikiUnitTestCase {
 			->willReturn( true );
 
 		$selectQueryBuilder = $this->createMock( SelectQueryBuilder::class );
-		$selectQueryBuilder->method( $this->logicalNot( $this->equalTo( 'fetchField' ) ) )
+		$selectQueryBuilder->method( $this->logicalNot( $this->equalTo( 'fetchRow' ) ) )
 			->willReturnSelf();
-		$selectQueryBuilder->expects( $this->once() )
-			->method( 'fetchField' )
-			->willReturn( $result );
+
+		$queryResults = [
+			$result ? (object)[ 'cuc_timestamp' => wfTimestampNow(), 'cuc_ip' => $result ] : false,
+			false
+		];
+		$selectQueryBuilder->expects( $this->exactly( 2 ) )
+			->method( 'fetchRow' )
+			->willReturnCallback( static function () use ( &$queryResults ) {
+				return array_shift( $queryResults );
+			} );
 
 		$dbr = $this->createMock( IReadableDatabase::class );
 		$dbr->method( 'newSelectQueryBuilder' )
@@ -163,15 +170,20 @@ class TempUserIPLookupTest extends MediaWikiUnitTestCase {
 			->with( 'CheckUser' )
 			->willReturn( true );
 
-		$ips = [ '192.0.2.7', '192.0.2.85' ];
-
 		$selectQueryBuilder = $this->createMock( SelectQueryBuilder::class );
-		$selectQueryBuilder->method( $this->logicalNot( $this->equalTo( 'fetchField' ) ) )
+		$selectQueryBuilder->method( $this->logicalNot( $this->equalTo( 'fetchRow' ) ) )
 			->willReturnSelf();
-		$selectQueryBuilder->expects( $this->exactly( 2 ) )
-			->method( 'fetchField' )
-			->willReturnCallback( static function () use ( &$ips ) {
-				return array_shift( $ips );
+
+		$queryResults = [
+			(object)[ 'cuc_timestamp' => wfTimestampNow(), 'cuc_ip' => '192.0.2.7' ],
+			false,
+			(object)[ 'cuc_timestamp' => wfTimestampNow(), 'cuc_ip' => '192.0.2.85' ],
+			false
+		];
+		$selectQueryBuilder->expects( $this->exactly( 4 ) )
+			->method( 'fetchRow' )
+			->willReturnCallback( static function () use ( &$queryResults ) {
+				return array_shift( $queryResults );
 			} );
 
 		$dbr = $this->createMock( IReadableDatabase::class );
@@ -187,6 +199,69 @@ class TempUserIPLookupTest extends MediaWikiUnitTestCase {
 
 		$this->assertSame( '192.0.2.7', $firstUserAddress );
 		$this->assertSame( '192.0.2.85', $otherUserAddress );
+	}
+
+	/**
+	 * @dataProvider provideEvents
+	 */
+	public function testShouldPreferMoreRecentEvent( array $queryResults ): void {
+		$user = new UserIdentityValue( 5, '~2024-8' );
+
+		$this->userIdentityUtils->method( 'isNamed' )
+			->with( $user )
+			->willReturn( false );
+		$this->userIdentityUtils->method( 'isTemp' )
+			->with( $user )
+			->willReturn( true );
+
+		$this->extensionRegistry->method( 'isLoaded' )
+			->with( 'CheckUser' )
+			->willReturn( true );
+
+		$selectQueryBuilder = $this->createMock( SelectQueryBuilder::class );
+		$selectQueryBuilder->method( $this->logicalNot( $this->equalTo( 'fetchRow' ) ) )
+			->willReturnSelf();
+
+		$selectQueryBuilder->expects( $this->exactly( 2 ) )
+			->method( 'fetchRow' )
+			->willReturnCallback( static function () use ( &$queryResults ) {
+				return array_shift( $queryResults );
+			} );
+
+		$dbr = $this->createMock( IReadableDatabase::class );
+		$dbr->method( 'newSelectQueryBuilder' )
+			->willReturn( $selectQueryBuilder );
+
+		$this->connectionProvider->expects( $this->once() )
+			->method( 'getReplicaDatabase' )
+			->willReturn( $dbr );
+
+		$address = $this->tempUserIPLookup->getMostRecentAddress( $user );
+
+		$this->assertSame( '192.0.2.85', $address );
+	}
+
+	public static function provideEvents(): iterable {
+		yield 'no data in cu_changes' => [
+			[
+				false,
+				(object)[ 'cule_timestamp' => wfTimestampNow(), 'cule_ip' => '192.0.2.85' ],
+			]
+		];
+
+		yield 'more recent data in cu_changes' => [
+			[
+				(object)[ 'cuc_timestamp' => wfTimestampNow(), 'cuc_ip' => '192.0.2.85' ],
+				(object)[ 'cule_timestamp' => wfTimestamp( TS_MW, wfTimestamp() - 1_000 ), 'cule_ip' => '192.0.2.7' ],
+			]
+		];
+
+		yield 'more recent data in cu_log_events' => [
+			[
+				(object)[ 'cuc_timestamp' => wfTimestamp( TS_MW, wfTimestamp() - 1_000 ), 'cuc_ip' => '192.0.2.7' ],
+				(object)[ 'cule_timestamp' => wfTimestampNow(), 'cule_ip' => '192.0.2.85' ],
+			]
+		];
 	}
 
 	public function testGetDistinctAddressCountShouldRejectNonTempUser(): void {
