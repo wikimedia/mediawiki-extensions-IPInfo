@@ -2,14 +2,18 @@
 
 namespace MediaWiki\IPInfo\Test\Integration\RestHandler;
 
+use ArrayUtils;
+use DatabaseLogEntry;
 use LogPage;
 use ManualLogEntry;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\IPInfo\Info\BlockInfo;
 use MediaWiki\IPInfo\Rest\Handler\LogHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -41,6 +45,7 @@ class LogHandlerTest extends HandlerTestCase {
 	private static Authority $regularUser;
 	private static Authority $anonUser;
 
+	private static int $logEntryByTempUserId;
 	private static int $logEntryByAnonId;
 	private static int $logEntryByAnonWithAnonTargetId;
 	private static int $deletedLogEntryByAnonId;
@@ -74,7 +79,8 @@ class LogHandlerTest extends HandlerTestCase {
 			$services->getUserFactory(),
 			$services->getJobQueueGroup(),
 			$services->getLanguageFallback(),
-			$services->getUserIdentityUtils()
+			$services->getUserIdentityUtils(),
+			$services->getUserIdentityLookup()
 		);
 	}
 
@@ -126,7 +132,11 @@ class LogHandlerTest extends HandlerTestCase {
 
 		$logEntry->setComment( 'test' );
 
-		return $logEntry->insert( $this->getDb() );
+		$logId = $logEntry->insert( $this->getDb() );
+
+		$logEntry->getRecentChange( $logId )->save();
+
+		return $logId;
 	}
 
 	public function addDBDataOnce() {
@@ -146,8 +156,23 @@ class LogHandlerTest extends HandlerTestCase {
 			->placeBlock();
 		$this->assertStatusGood( $blockStatus, 'Block was not placed' );
 
+		$request = new FauxRequest();
+		$request->setIP( self::TEST_ANON_IP );
+
+		RequestContext::getMain()->setRequest( $request );
+
+		$tempUser = $this->getServiceContainer()->getTempUserCreator()
+			->create( null, $request )
+			->getUser();
+
 		$anonTarget = new TitleValue( NS_USER, self::$anonUser->getName() );
 		$otherTarget = new TitleValue( NS_MAIN, 'Test' );
+
+		self::$logEntryByTempUserId = $this->makeLogEntry(
+			self::TEST_LOG_TYPE,
+			$tempUser,
+			$otherTarget
+		);
 
 		$this->disableAutoCreateTempUser();
 
@@ -339,8 +364,24 @@ class LogHandlerTest extends HandlerTestCase {
 	public function testShouldHandleLogEntryWherePerformerOrTargetIsAnonymous(
 		callable $authorityProvider,
 		callable $logIdProvider,
+		bool $tempUsersEnabled,
 		int $expectedInfoCount
 	): void {
+		if ( !$tempUsersEnabled ) {
+			$this->disableAutoCreateTempUser( [ 'known' => true ] );
+		} else {
+			$this->enableAutoCreateTempUser();
+		}
+
+		$logId = $logIdProvider();
+		$logEntry = DatabaseLogEntry::newFromId( $logId, $this->getDb() );
+		$performer = $logEntry->getPerformerIdentity();
+
+		// Retrieving IP information for temporary users requires CheckUser to be installed
+		if ( $this->getServiceContainer()->getUserIdentityUtils()->isTemp( $performer ) ) {
+			$this->markTestSkippedIfExtensionNotLoaded( 'CheckUser' );
+		}
+
 		$user = $authorityProvider();
 		$this->setUserOptions( $user, [
 			'ipinfo-beta-feature-enable' => 1,
@@ -349,17 +390,28 @@ class LogHandlerTest extends HandlerTestCase {
 
 		$blockInfo = new BlockInfo();
 
-		$request = self::getRequestData( $logIdProvider() );
+		$request = self::getRequestData( $logId );
 		$response = $this->executeWithUser( $request, $user );
 		$body = json_decode( $response->getBody()->getContents(), true );
 
 		$this->assertCount( $expectedInfoCount, $body['info'] );
 
-		foreach ( $body['info'] as $item ) {
+		if ( count( $body['info'] ) === 2 ) {
+			$expectedSubjects = [
+				$performer->getName(),
+				$logEntry->getTarget()->getText()
+			];
+		} elseif ( $this->getServiceContainer()->getUserIdentityUtils()->isNamed( $performer ) ) {
+			$expectedSubjects = [ $logEntry->getTarget()->getText() ];
+		} else {
+			$expectedSubjects = [ $performer->getName() ];
+		}
+
+		foreach ( $body['info'] as $i => $item ) {
 			$geoData = $item['data']['ipinfo-source-geoip2'];
 
 			$this->assertSame( 200, $response->getStatusCode() );
-			$this->assertSame( self::TEST_ANON_IP, $item['subject'] );
+			$this->assertSame( $expectedSubjects[$i], $item['subject'] );
 			$this->assertSame( 'United States', $geoData['countryNames']['en'] );
 			$this->assertArrayNotHasKey( 'coordinates', $geoData );
 
@@ -396,46 +448,61 @@ class LogHandlerTest extends HandlerTestCase {
 	}
 
 	public static function provideLogEntryCases(): iterable {
-		yield 'log entry by anonymous user' => [
-			fn () => self::$ipInfoViewer,
-			fn () => self::$logEntryByAnonId,
-			1
+		$allUsers = [
+			'user with basic IPInfo access' => fn () => self::$ipInfoViewer,
+			'user with IPInfo and deleted history access' => fn () => self::$testSysop
 		];
 
-		yield 'log entry with anonymous target' => [
-			fn () => self::$ipInfoViewer,
-			fn () => self::$logEntryWithAnonTargetId,
-			1
+		$singleResultLogEntries = [
+			'log entry by temporary user' => fn () => self::$logEntryByTempUserId,
+			'log entry by anonymous user' => fn () => self::$logEntryByAnonId,
+			'log entry with anonymous target' => fn () => self::$logEntryWithAnonTargetId,
 		];
 
-		yield 'log entry by anonymous user with anonymous target' => [
-			fn () => self::$ipInfoViewer,
-			fn () => self::$logEntryByAnonWithAnonTargetId,
-			2
+		$logEntriesWithTwoResults = [
+			'log entry by anonymous user with anonymous target' => fn () => self::$logEntryByAnonWithAnonTargetId,
 		];
 
-		yield 'fully deleted log entry with user authorized to view it' => [
-			fn () => self::$testSysop,
-			fn () => self::$fullyDeletedLogEntryByAnonId,
-			1
+		$tempUserConfig = [
+			'enabled' => true,
+			'disabled but known' => false
 		];
 
-		yield 'partially deleted log entry with user authorized to view it' => [
-			fn () => self::$testSysop,
-			fn () => self::$deletedLogEntryByAnonId,
-			1
+		yield from ArrayUtils::cartesianProduct( $allUsers, $singleResultLogEntries, $tempUserConfig, [ 1 ] );
+		yield from ArrayUtils::cartesianProduct( $allUsers, $logEntriesWithTwoResults, $tempUserConfig, [ 2 ] );
+
+		$deletedLogEntries = [
+			'fully deleted log entry' => fn () => self::$fullyDeletedLogEntryByAnonId,
+			'partially deleted log entry' => fn () => self::$deletedLogEntryByAnonId,
 		];
 
-		yield 'restricted log entry with user authorized to view it' => [
-			fn () => self::$ipInfoViewer,
-			fn () => self::$restrictedLogEntryByAnonId,
-			1
+		yield from ArrayUtils::cartesianProduct(
+			[ fn () => self::$testSysop ],
+			$deletedLogEntries,
+			$tempUserConfig,
+			[ 1 ]
+		);
+
+		$restrictedLogEntries = [
+			'log entry with restricted log type' => fn () => self::$restrictedLogEntryByAnonId
 		];
 
-		yield 'suppressed log entry with user authorized to view it' => [
-			fn () => self::$suppressedIpInfoViewer,
-			fn () => self::$suppressedLogEntryByAnonId,
-			1
+		yield from ArrayUtils::cartesianProduct(
+			[ fn () => self::$ipInfoViewer ],
+			$restrictedLogEntries,
+			$tempUserConfig,
+			[ 1 ]
+		);
+
+		$suppressedLogEntries = [
+			'suppressed log entry with user authorized to view it' => fn () => self::$suppressedLogEntryByAnonId,
 		];
+
+		yield from ArrayUtils::cartesianProduct(
+			[ fn () => self::$suppressedIpInfoViewer ],
+			$suppressedLogEntries,
+			$tempUserConfig,
+			[ 1 ]
+		);
 	}
 }

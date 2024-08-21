@@ -87,7 +87,8 @@
 				"UserFactory",
 				"JobQueueGroup",
 				"LanguageFallback",
-				"UserIdentityUtils"
+				"UserIdentityUtils",
+				"UserIdentityLookup"
 			],
 			"factory": "MediaWiki\\IPInfo\\Rest\\Handler\\LogHandler::factory"
 		}

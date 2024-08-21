@@ -13,6 +13,8 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityUtils;
 use Wikimedia\IPUtils;
 use Wikimedia\Message\MessageValue;
@@ -21,6 +23,8 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class LogHandler extends IPInfoHandler {
 
 	private IConnectionProvider $dbProvider;
+
+	private UserIdentityLookup $userIdentityLookup;
 
 	public function __construct(
 		InfoManager $infoManager,
@@ -31,7 +35,8 @@ class LogHandler extends IPInfoHandler {
 		DefaultPresenter $presenter,
 		JobQueueGroup $jobQueueGroup,
 		LanguageFallback $languageFallback,
-		UserIdentityUtils $userIdentityUtils
+		UserIdentityUtils $userIdentityUtils,
+		UserIdentityLookup $userIdentityLookup
 	) {
 		parent::__construct(
 			$infoManager,
@@ -44,6 +49,7 @@ class LogHandler extends IPInfoHandler {
 			$userIdentityUtils
 		);
 		$this->dbProvider = $dbProvider;
+		$this->userIdentityLookup = $userIdentityLookup;
 	}
 
 	public static function factory(
@@ -54,7 +60,8 @@ class LogHandler extends IPInfoHandler {
 		UserFactory $userFactory,
 		JobQueueGroup $jobQueueGroup,
 		LanguageFallback $languageFallback,
-		UserIdentityUtils $userIdentityUtils
+		UserIdentityUtils $userIdentityUtils,
+		UserIdentityLookup $userIdentityLookup
 	): self {
 		return new self(
 			$infoManager,
@@ -65,7 +72,8 @@ class LogHandler extends IPInfoHandler {
 			new DefaultPresenter( $permissionManager ),
 			$jobQueueGroup,
 			$languageFallback,
-			$userIdentityUtils
+			$userIdentityUtils,
+			$userIdentityLookup
 		);
 	}
 
@@ -105,14 +113,12 @@ class LogHandler extends IPInfoHandler {
 			);
 		}
 
-		$performer = $entry->getPerformerIdentity()->getName();
-
-		// The target of a log entry may be an IP address. Targets are stored as titles.
-		$target = $entry->getTarget()->getText();
+		$performer = $entry->getPerformerIdentity();
+		$target = $this->userIdentityLookup->getUserIdentityByName( $entry->getTarget()->getText() );
 
 		$info = [];
-		$showPerformer = IPUtils::isValid( $performer ) && $canAccessPerformer;
-		$showTarget = IPUtils::isValid( $target ) && $canAccessTarget;
+		$showPerformer = $canAccessPerformer && $this->isAnonymousOrTempUser( $performer );
+		$showTarget = $canAccessTarget && $this->isAnonymousOrTempUser( $target );
 		if ( $showPerformer ) {
 			$info[] = $this->presenter->present(
 				$this->infoManager->retrieveFor( $performer ),
@@ -120,6 +126,8 @@ class LogHandler extends IPInfoHandler {
 			);
 		}
 		if ( $showTarget ) {
+			// $target is implicitly null-checked via isAnonymousOrTempUser()
+			'@phan-var UserIdentity $target';
 			$info[] = $this->presenter->present( $this->infoManager->retrieveFor( $target ),
 			$this->getAuthority()->getUser() );
 		}
@@ -135,5 +143,19 @@ class LogHandler extends IPInfoHandler {
 		}
 
 		return $info;
+	}
+
+	/**
+	 * Determine whether the given user is an anonymous or temporary user account.
+	 *
+	 * @param UserIdentity|null $user The user to check. May be `null`.
+	 * @return bool Whether the given user is an anonymous or temporary user.
+	 */
+	private function isAnonymousOrTempUser( ?UserIdentity $user ): bool {
+		if ( $user === null ) {
+			return false;
+		}
+
+		return $this->userIdentityUtils->isTemp( $user ) || IPUtils::isValid( $user->getName() );
 	}
 }
