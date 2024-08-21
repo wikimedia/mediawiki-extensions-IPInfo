@@ -39,7 +39,7 @@
 	"ipinfo-property-tooltip-usertype": "ประเภทของนิติบุคคลที่เป็นเจ้าของการเชื่อมต่ออินเตอร์เน็ต",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|บล็อกที่ใช้งานอยู่ $1|$1 บล็อกที่ใช้งานอยู่|0=ไม่มีการบล็อกที่ใช้งานอยู่}}",
 	"ipinfo-active-blocks-url-text": "ปูม",
-	"ipinfo-property-label-edits": "การมีส่วนร่วม",
+	"ipinfo-property-label-edits": "ส่วนร่วม",
 	"ipinfo-value-local-edits": "{{PLURAL:$1|$1&#32;|0=ไม่มี}}การแก้ไขในวิกินี้",
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 การแก้ไขในช่วง 24 ชั่วโมงที่ผ่านมา}})",
 	"ipinfo-property-no-data": "ไม่พร้อมใช้งาน",
