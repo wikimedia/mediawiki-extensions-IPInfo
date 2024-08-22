@@ -7,7 +7,6 @@ use MediaWiki\Hook\SpecialContributionsBeforeMainOutputHook;
 use MediaWiki\HTMLForm\CollapsibleFieldsetLayout;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\SpecialPage\Hook\SpecialPageBeforeExecuteHook;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\Options\UserOptionsLookup;
@@ -18,15 +17,12 @@ class InfoboxHandler implements
 	SpecialContributionsBeforeMainOutputHook,
 	SpecialPageBeforeExecuteHook
 {
-	private PermissionManager $permissionManager;
 
 	private UserOptionsLookup $userOptionsLookup;
 
 	public function __construct(
-		PermissionManager $permissionManager,
 		UserOptionsLookup $userOptionsLookup
 	) {
-		$this->permissionManager = $permissionManager;
 		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
@@ -47,12 +43,12 @@ class InfoboxHandler implements
 			return;
 		}
 
-		$accessingUser = $sp->getUser();
+		$accessingUser = $sp->getAuthority();
 		$isBetaFeaturesLoaded = $extensionRegistry->isLoaded( 'BetaFeatures' );
 		if (
-			!$this->permissionManager->userHasRight( $accessingUser, 'ipinfo' ) ||
+			!$accessingUser->isAllowed( 'ipinfo' ) ||
 			( $isBetaFeaturesLoaded &&
-				!$this->userOptionsLookup->getOption( $accessingUser, 'ipinfo-beta-feature-enable' )
+				!$this->userOptionsLookup->getOption( $accessingUser->getUser(), 'ipinfo-beta-feature-enable' )
 			)
 		) {
 			return;

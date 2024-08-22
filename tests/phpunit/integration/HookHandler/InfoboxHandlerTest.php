@@ -2,13 +2,14 @@
 
 namespace MediaWiki\IPInfo\Test\Integration\HookHandler;
 
-use IDBAccessObject;
 use MediaWiki\IPInfo\HookHandler\InfoboxHandler;
 use MediaWiki\Output\OutputPage;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -22,171 +23,192 @@ use MediaWikiIntegrationTestCase;
  */
 class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 
-	private function getPermissionManager(): PermissionManager {
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'userHasRight' )
-			->willReturn( true );
-		return $permissionManager;
-	}
+	private UserOptionsLookup $userOptionsLookup;
 
-	private function getUserOptionsLookup(): UserOptionsLookup {
-		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
-		$userOptionsLookup->method( 'getOption' )
-			->willReturn( true );
-		return $userOptionsLookup;
-	}
+	private InfoboxHandler $handler;
 
-	private function getInfoboxHandler( array $overrides = null ): InfoboxHandler {
-		return new InfoboxHandler(
-			$overrides[ 'PermissionManager' ] ?? $this->getPermissionManager(),
-			$overrides[ 'UserOptionsLookup' ] ?? $this->getUserOptionsLookup()
+	protected function setUp(): void {
+		parent::setUp();
+
+		$this->userOptionsLookup = $this->createMock( UserOptionsLookup::class );
+
+		$this->handler = new InfoboxHandler(
+			$this->userOptionsLookup
 		);
 	}
 
-	private function getOutputPage(): OutputPage {
-		return $this->getMockBuilder( OutputPage::class )
-			->disableOriginalConstructor()
-			->setMethodsExcept( [
-				'addModules',
-				'getModules',
-			] )
-			->getMock();
+	private static function getValidAccessingAuthority(): Authority {
+		return new SimpleAuthority(
+			new UserIdentityValue( 1, 'TestUser' ),
+			[ 'ipinfo' ]
+		);
 	}
 
-	private function getIpUser(): User {
-		$user = $this->createMock( User::class );
-		$user->method( 'getName' )
+	public function testShouldDisplayOnContributionsPageIfUserHasIpinfoRight() {
+		$accessingAuthority = self::getValidAccessingAuthority();
+
+		$out = $this->createMock( OutputPage::class );
+		$out->expects( $this->once() )
+			->method( 'addModules' )
+			->with( 'ext.ipInfo' );
+
+		$specialPage = $this->createMock( SpecialPage::class );
+		$specialPage->method( 'getName' )
+			->willReturn( 'Contributions' );
+		$specialPage->method( 'getAuthority' )
+			->willReturn( $accessingAuthority );
+		$specialPage->method( 'getOutput' )
+			->willReturn( $out );
+
+		$this->userOptionsLookup->method( 'getOption' )
+			->with( $accessingAuthority->getUser(), 'ipinfo-beta-feature-enable' )
+			->willReturn( '1' );
+
+		$targetUser = $this->createMock( User::class );
+		$targetUser->method( 'getName' )
 			->willReturn( '127.0.0.1' );
-		return $user;
+
+		$this->handler->onSpecialContributionsBeforeMainOutput(
+			1,
+			$targetUser,
+			$specialPage
+		);
 	}
 
-	/**
-	 * @dataProvider provideOnSpecialContributionsBeforeMainOutputTitles
-	 */
-	public function testOnSpecialContributionsBeforeMainOutputTitles( $name, $expected ) {
-		$out = $this->getOutputPage();
+	public function testShouldDisplayOnDeletedContributionsPageIfUserHasIpinfoRight() {
+		$accessingAuthority = self::getValidAccessingAuthority();
+
+		$out = $this->createMock( OutputPage::class );
+		$out->expects( $this->once() )
+			->method( 'addModules' )
+			->with( 'ext.ipInfo' );
 
 		$specialPage = $this->createMock( SpecialPage::class );
 		$specialPage->method( 'getName' )
-			->willReturn( $name );
-		$specialPage->method( 'getUser' )
-			->willReturn( $this->createMock( User::class ) );
+			->willReturn( 'DeletedContributions' );
+		$specialPage->method( 'getAuthority' )
+			->willReturn( $accessingAuthority );
 		$specialPage->method( 'getOutput' )
 			->willReturn( $out );
 
-		$handler = $this->getInfoboxHandler();
-		$handler->onSpecialContributionsBeforeMainOutput(
-			1,
-			$this->getIpUser(),
-			$specialPage
+		$this->userOptionsLookup->method( 'getOption' )
+			->with( $accessingAuthority->getUser(), 'ipinfo-beta-feature-enable' )
+			->willReturn( '1' );
+
+		$this->handler->onSpecialPageBeforeExecute(
+			$specialPage,
+			'127.0.0.1'
 		);
-		$this->assertSame( $expected, in_array( 'ext.ipInfo', $out->getModules() ) );
 	}
 
-	public static function provideOnSpecialContributionsBeforeMainOutputTitles() {
-		return [
-			'displays on Special:Contributions' => [ 'Contributions', true ],
-			'doesn\'t display on Special:AllPages' => [ 'AllPages', false ],
+	/**
+	 * @dataProvider provideContributionsErrorCases
+	 */
+	public function testShouldNotDisplayOnNonContributionsPageOrIfPermissionsAreMissing(
+		string $specialPageName,
+		Authority $accessingAuthority,
+		string $targetUserName
+	) {
+		$out = $this->createMock( OutputPage::class );
+		$out->expects( $this->never() )
+			->method( 'addModules' );
+
+		$specialPage = $this->createMock( SpecialPage::class );
+		$specialPage->method( 'getName' )
+			->willReturn( $specialPageName );
+		$specialPage->method( 'getAuthority' )
+			->willReturn( $accessingAuthority );
+		$specialPage->method( 'getOutput' )
+			->willReturn( $out );
+
+		$targetUser = $this->createMock( User::class );
+		$targetUser->method( 'getName' )
+			->willReturn( $targetUserName );
+
+		$this->userOptionsLookup->method( 'getOption' )
+			->with( $accessingAuthority->getUser(), 'ipinfo-beta-feature-enable' )
+			->willReturn( '1' );
+
+		$this->handler->onSpecialContributionsBeforeMainOutput(
+			1,
+			$targetUser,
+			$specialPage
+		);
+	}
+
+	public static function provideContributionsErrorCases(): iterable {
+		yield 'incorrect special page' => [
+			'AllPages',
+			self::getValidAccessingAuthority(),
+			'127.0.0.1'
+		];
+		yield 'special page handled by other hook' => [
+			'DeletedContributions',
+			self::getValidAccessingAuthority(),
+			'127.0.0.1'
+		];
+		yield 'named target user' => [
+			'DeletedContributions',
+			self::getValidAccessingAuthority(),
+			'TestUser'
+		];
+		yield 'missing user rights' => [
+			'Contributions',
+			new SimpleAuthority( new UserIdentityValue( 2, 'TestUser2' ), [] ),
+			'127.0.0.1'
 		];
 	}
 
 	/**
-	 * @dataProvider provideOnSpecialContributionsBeforeMainOutputPermissions
+	 * @dataProvider provideDeletedContributionsErrorCases
 	 */
-	public function testOnSpecialContributionsBeforeMainOutputPermissions(
-		$permission,
-		$expected
+	public function testShouldNotDisplayOnNonDeletedContributionsPageOrIfPermissionsAreMissing(
+		string $specialPageName,
+		Authority $accessingAuthority,
+		string $targetUserName
 	) {
-		$accessingUser = $this->createMock( User::class );
-
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'userHasRight' )
-			->willReturnMap( [
-				[ $accessingUser, 'ipinfo', $permission ]
-			] );
-
-		$out = $this->getOutputPage();
+		$out = $this->createMock( OutputPage::class );
+		$out->expects( $this->never() )
+			->method( 'addModules' );
 
 		$specialPage = $this->createMock( SpecialPage::class );
 		$specialPage->method( 'getName' )
-			->willReturn( 'Contributions' );
-		$specialPage->method( 'getUser' )
-			->willReturn( $accessingUser );
+			->willReturn( $specialPageName );
+		$specialPage->method( 'getAuthority' )
+			->willReturn( $accessingAuthority );
 		$specialPage->method( 'getOutput' )
 			->willReturn( $out );
 
-		$handler = $this->getInfoboxHandler( [
-			'PermissionManager' => $permissionManager,
-		] );
-		$handler->onSpecialContributionsBeforeMainOutput(
-			1,
-			$this->getIpUser(),
-			$specialPage
+		$this->userOptionsLookup->method( 'getOption' )
+			->with( $accessingAuthority->getUser(), 'ipinfo-beta-feature-enable' )
+			->willReturn( '1' );
+
+		$this->handler->onSpecialPageBeforeExecute(
+			$specialPage,
+			$targetUserName
 		);
-		$this->assertSame( $expected, in_array( 'ext.ipInfo', $out->getModules() ) );
 	}
 
-	public static function provideOnSpecialContributionsBeforeMainOutputPermissions() {
-		return [
-			'displays with ipinfo right' => [ true, true ],
-			'doesn\'t display with no ipinfo right' => [ false, false ],
+	public static function provideDeletedContributionsErrorCases(): iterable {
+		yield 'incorrect special page' => [
+			'AllPages',
+			self::getValidAccessingAuthority(),
+			'127.0.0.1'
 		];
-	}
-
-	/**
-	 * @dataProvider provideOnSpecialContributionsBeforeMainOutputPreferences
-	 */
-	public function testOnSpecialContributionsBeforeMainOutputPreferences(
-		$preferences,
-		$expected
-	) {
-		$accessingUser = $this->createMock( User::class );
-
-		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
-		$map = array_map(
-			static function ( $preference ) use ( $accessingUser ) {
-				return [
-					$accessingUser,
-					$preference,
-					null,
-					false,
-					IDBAccessObject::READ_NORMAL,
-					true
-				];
-			},
-			// In case BetaFeatures is loaded
-			array_merge( $preferences, [ 'ipinfo-beta-feature-enable' ] )
-		);
-		$userOptionsLookup->method( 'getOption' )
-			->willReturnMap( $map );
-
-		$out = $this->getOutputPage();
-
-		$specialPage = $this->createMock( SpecialPage::class );
-		$specialPage->method( 'getName' )
-			->willReturn( 'Contributions' );
-		$specialPage->method( 'getUser' )
-			->willReturn( $accessingUser );
-		$specialPage->method( 'getOutput' )
-			->willReturn( $out );
-
-		$handler = $this->getInfoboxHandler( [
-			'UserOptionsLookup' => $userOptionsLookup,
-		] );
-		$handler->onSpecialContributionsBeforeMainOutput(
-			1,
-			$this->getIpUser(),
-			$specialPage
-		);
-		$this->assertSame( $expected, in_array( 'ext.ipInfo', $out->getModules() ) );
-	}
-
-	public static function provideOnSpecialContributionsBeforeMainOutputPreferences() {
-		return [
-			'Display with no preferences set' => [
-				[],
-				true
-			],
+		yield 'special page handled by other hook' => [
+			'Contributions',
+			self::getValidAccessingAuthority(),
+			'127.0.0.1'
+		];
+		yield 'named target user' => [
+			'DeletedContributions',
+			self::getValidAccessingAuthority(),
+			'TestUser'
+		];
+		yield 'missing user rights' => [
+			'Contributions',
+			new SimpleAuthority( new UserIdentityValue( 2, 'TestUser2' ), [] ),
+			'127.0.0.1'
 		];
 	}
 
