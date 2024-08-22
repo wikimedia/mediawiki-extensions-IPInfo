@@ -113,7 +113,8 @@
 		"infobox": {
 			"class": "MediaWiki\\IPInfo\\HookHandler\\InfoboxHandler",
 			"services": [
-				"UserOptionsLookup"
+				"UserOptionsLookup",
+				"TempUserConfig"
 			]
 		},
 		"preferences": {
@@ -231,6 +232,7 @@
 				"ipinfo-property-label-usertype",
 				"ipinfo-property-label-source",
 				"ipinfo-property-label-active-blocks",
+				"ipinfo-property-label-number-of-ips",
 				"ipinfo-property-tooltip-connectiontype",
 				"ipinfo-property-tooltip-usertype",
 				"ipinfo-value-active-blocks",

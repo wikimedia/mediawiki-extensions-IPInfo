@@ -4,6 +4,7 @@ const { config } = require( 'wdio-mediawiki/wdio-defaults.conf.js' ),
 	childProcess = require( 'child_process' ),
 	path = require( 'path' ),
 	ip = path.resolve( __dirname + '/../../../../' ),
+	utils = require( './utils' ),
 	LocalSettingsSetup = require( './LocalSettingsSetup' );
 
 const { SevereServiceError } = require( 'webdriverio' );
@@ -20,17 +21,22 @@ exports.config = { ...config,
 		await LocalSettingsSetup.overrideLocalSettings();
 		await LocalSettingsSetup.restartPhpFpmService();
 
-		// Import a test article that was edited by an anonymous user.
-		const ipEditFixturePath = path.resolve( __dirname + '/../fixtures/ip-edit-fixture.xml' );
-		console.log( 'Importing ' + ipEditFixturePath );
-		const importDumpResult = await childProcess.spawnSync(
+		// Setup required content and data.
+		const populateTestDataResult = childProcess.spawnSync(
 			'php',
-			[ 'maintenance/run.php', 'importDump', ipEditFixturePath ],
+			[
+				'maintenance/run.php',
+				'IPInfo:PopulateTestData',
+				'--ip',
+				utils.IP_WITH_EDITS,
+				'--temp-name',
+				utils.TEMP_USER_NAME
+			],
 			{ cwd: ip }
 		);
-		if ( importDumpResult.status === 1 ) {
-			console.log( String( importDumpResult.stderr ) );
-			throw new SevereServiceError( 'Unable to import ' + ipEditFixturePath );
+		if ( populateTestDataResult.status === 1 ) {
+			console.log( String( populateTestDataResult.stderr ) );
+			throw new SevereServiceError( 'Unable to populate test data' );
 		}
 	},
 

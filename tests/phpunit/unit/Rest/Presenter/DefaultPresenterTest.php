@@ -7,6 +7,7 @@ use MediaWiki\IPInfo\Info\BlockInfo;
 use MediaWiki\IPInfo\Info\ContributionInfo;
 use MediaWiki\IPInfo\Info\Coordinates;
 use MediaWiki\IPInfo\Info\Info;
+use MediaWiki\IPInfo\Info\IPCountInfo;
 use MediaWiki\IPInfo\Info\IPoidInfo;
 use MediaWiki\IPInfo\Info\Location;
 use MediaWiki\IPInfo\Info\ProxyType;
@@ -107,6 +108,18 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 				]
 
 		];
+		yield [
+			[ 'quuz' => [] ],
+			[ 'quuz' => new IPCountInfo( null ) ]
+		];
+		yield [
+			[ 'quuz' => [] ],
+			[ 'quuz' => new IPCountInfo( 0 ) ]
+		];
+		yield [
+			[ 'quuz' => [] ],
+			[ 'quuz' => new IPCountInfo( 2 ) ]
+		];
 	}
 
 	/**
@@ -200,6 +213,18 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 					)
 				),
 			],
+		];
+		yield [
+			[ 'quuz' => [ 'numIPAddresses' => null ] ],
+			[ 'quuz' => new IPCountInfo( null ) ]
+		];
+		yield [
+			[ 'quuz' => [ 'numIPAddresses' => 0 ] ],
+			[ 'quuz' => new IPCountInfo( 0 ) ]
+		];
+		yield [
+			[ 'quuz' => [ 'numIPAddresses' => 2 ] ],
+			[ 'quuz' => new IPCountInfo( 2 ) ]
 		];
 	}
 

@@ -63,6 +63,7 @@
 	"ipinfo-property-value-connectiontype-unknown": "Unknown",
 	"ipinfo-property-label-source": "Source",
 	"ipinfo-property-label-active-blocks": "Active blocks",
+	"ipinfo-property-label-number-of-ips": "Number of IPs",
 	"ipinfo-property-tooltip-proxytypes": "Proxies hide IP addresses. In some cases this happens automatically like for residential or corporate proxies, in other cases it's done intentionally to mask the origin of the IP address.",
 	"ipinfo-property-tooltip-connectiontype": "The technology through which they’re connecting to the internet.",
 	"ipinfo-property-tooltip-usertype": "The kind of entity that owns the internet connection.",

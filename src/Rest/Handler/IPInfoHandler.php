@@ -58,6 +58,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 			'tunnelOperators',
 			'proxies',
 			'numUsersOnThisIP',
+			'numIPAddresses',
 			'numActiveBlocks',
 			'numLocalEdits',
 			'numRecentEdits',

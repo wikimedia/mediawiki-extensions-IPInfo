@@ -47,6 +47,16 @@ class ContributionsWithIPInfoPage extends Page {
 	}
 
 	/**
+	 * Check whether the given property exists in the IPInfo data table.
+	 *
+	 * @param {string} propName
+	 * @return {Promise<boolean>}
+	 */
+	async hasProperty( propName ) {
+		return $( `[data-property=${ propName }]` ).isExisting();
+	}
+
+	/**
 	 * Get the value of the given property from the IPInfo data table.
 	 *
 	 * @param {string} propName

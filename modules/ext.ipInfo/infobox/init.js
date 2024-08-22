@@ -2,14 +2,18 @@
 /* eslint-disable no-jquery/no-class-state */
 
 const IpInfoInfoboxWidget = require( './widget.js' );
-const ip = mw.util.prettifyIP( mw.config.get( 'wgRelevantUserName' ) ),
+const relevantUserName = mw.util.prettifyIP( mw.config.get( 'wgRelevantUserName' ) ),
 	api = new mw.Api(),
 	eventLogger = require( '../log.js' ),
 	postToRestApi = require( '../rest.js' );
 let viewedAgreement = false,
 	timerStart;
 
-if ( ip ) {
+function initInfoboxWidget() {
+	if ( !relevantUserName ) {
+		return;
+	}
+
 	eventLogger.logIpCopy();
 
 	const saveCollapsibleUserOption = function ( e ) {
@@ -48,7 +52,7 @@ if ( ip ) {
 	// Watch for collapse/expand events and save that state to a user option
 	$( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).on( 'click keypress', saveCollapsibleUserOption );
 
-	const loadIpInfo = function ( targetIp ) {
+	const loadIpInfo = function ( targetName ) {
 		const revId = $( '.mw-contributions-list [data-mw-revid]' ).first().attr( 'data-mw-revid' );
 		if ( !revId ) {
 			$( '.ext-ipinfo-collapsible-layout' ).addClass( 'ext-ipinfo-contains-error' );
@@ -67,10 +71,10 @@ if ( ip ) {
 		const ipPanelWidget = new IpInfoInfoboxWidget(
 			postToRestApi( endpoint, revId, 'infobox' ).then( ( response ) => {
 				let i, data;
-				const sanitizedIp = mw.util.sanitizeIP( targetIp );
+				const sanitizedTargetName = mw.util.sanitizeIP( targetName );
 				// Array.find is only available from ES6
 				for ( i = 0; i < response.info.length; i++ ) {
-					if ( mw.util.sanitizeIP( response.info[ i ].subject ) === sanitizedIp ) {
+					if ( mw.util.sanitizeIP( response.info[ i ].subject ) === sanitizedTargetName ) {
 						data = response.info[ i ];
 						break;
 					}
@@ -158,7 +162,7 @@ if ( ip ) {
 
 					// Success - show ip info
 					$( '.ipinfo-use-agreement-form' ).remove();
-					loadIpInfo( ip );
+					loadIpInfo( relevantUserName );
 				} ).catch( ( error ) => {
 					// Fail state - show an error
 					$( '.ext-ipinfo-collapsible-layout .mw-collapsible-content' ).append(
@@ -180,7 +184,7 @@ if ( ip ) {
 			loadUseAgreement();
 		} else {
 			timerStart = mw.now();
-			loadIpInfo( ip );
+			loadIpInfo( relevantUserName );
 		}
 	} else {
 		// Watch for the first expand command, load content, and unbind listener
@@ -195,7 +199,7 @@ if ( ip ) {
 					loadUseAgreement();
 				} else {
 					timerStart = mw.now();
-					loadIpInfo( ip );
+					loadIpInfo( relevantUserName );
 				}
 			}
 
@@ -204,3 +208,5 @@ if ( ip ) {
 		$( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).on( 'click keypress', onFirstInfoboxExpand );
 	}
 }
+
+$( initInfoboxWidget );

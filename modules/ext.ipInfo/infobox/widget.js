@@ -104,6 +104,15 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 		mw.msg( 'ipinfo-value-ipversion-ipv4' ) :
 		mw.msg( 'ipinfo-value-ipversion-ipv6' );
 
+	let $numIPAddresses = $( '' );
+	if ( info.data[ 'ipinfo-source-ip-count' ].numIPAddresses ) {
+		$numIPAddresses = this.generatePropertyMarkup(
+			'num-ip-addresses',
+			info.data[ 'ipinfo-source-ip-count' ].numIPAddresses,
+			mw.msg( 'ipinfo-property-label-number-of-ips' )
+		);
+	}
+
 	const $info = $( '<dl>' ).addClass( 'ext-ipinfo-widget-properties' )
 		.append(
 			$( '<div>' ).addClass( 'ext-ipinfo-widget-properties-col' ).append(
@@ -152,6 +161,7 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 			)
 		).append(
 			$( '<div>' ).addClass( 'ext-ipinfo-widget-properties-col' ).append(
+				$numIPAddresses,
 				this.generatePropertyMarkup(
 					'active-blocks',
 					activeBlocks,

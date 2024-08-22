@@ -1,14 +1,12 @@
 'use strict';
 
 const assert = require( 'assert' ),
+	utils = require( '../utils' ),
 	Api = require( 'wdio-mediawiki/Api' ),
 	LoginPage = require( 'wdio-mediawiki/LoginPage' ),
 	ContributionsWithIPInfoPage = require( '../pageobjects/ContributionsWithIPInfoPage' );
 
 describe( 'IPInfo on Special:Contributions', () => {
-	const ipWithoutEdits = '81.2.69.144';
-	const ipWithEdits = '214.78.120.5';
-
 	async function optOutOfAgreement() {
 		const bot = await Api.bot();
 
@@ -34,7 +32,7 @@ describe( 'IPInfo on Special:Contributions', () => {
 	}
 
 	it( 'should not be shown to users without necessary permissions', async () => {
-		await ContributionsWithIPInfoPage.open( ipWithoutEdits );
+		await ContributionsWithIPInfoPage.open( utils.IP_WITHOUT_EDITS );
 		assert.ok( !await ContributionsWithIPInfoPage.ipInfoPanel.isExisting() );
 	} );
 
@@ -42,7 +40,7 @@ describe( 'IPInfo on Special:Contributions', () => {
 		await optOutOfAgreement();
 
 		await LoginPage.loginAdmin();
-		await ContributionsWithIPInfoPage.open( ipWithoutEdits );
+		await ContributionsWithIPInfoPage.open( utils.IP_WITHOUT_EDITS );
 		await ContributionsWithIPInfoPage.expandPanel();
 		await ContributionsWithIPInfoPage.acceptAgreement();
 
@@ -57,7 +55,7 @@ describe( 'IPInfo on Special:Contributions', () => {
 		await acceptAgreement();
 
 		await LoginPage.loginAdmin();
-		await ContributionsWithIPInfoPage.open( ipWithoutEdits );
+		await ContributionsWithIPInfoPage.open( utils.IP_WITHOUT_EDITS );
 		await ContributionsWithIPInfoPage.expandPanel();
 
 		assert.ok( !await ContributionsWithIPInfoPage.propertiesTable.isExisting() );
@@ -71,12 +69,14 @@ describe( 'IPInfo on Special:Contributions', () => {
 		await optOutOfAgreement();
 
 		await LoginPage.loginAdmin();
-		await ContributionsWithIPInfoPage.open( ipWithEdits );
+		await ContributionsWithIPInfoPage.open( utils.IP_WITH_EDITS );
 		await ContributionsWithIPInfoPage.expandPanel();
 		await ContributionsWithIPInfoPage.acceptAgreement();
 		await ContributionsWithIPInfoPage.propertiesTable.waitForDisplayed();
 
 		assert.ok( !await ContributionsWithIPInfoPage.errorMessage.isExisting() );
+
+		assert.ok( !await ContributionsWithIPInfoPage.hasProperty( 'number-of-ips' ) );
 		assert.strictEqual(
 			await ContributionsWithIPInfoPage.getPropertyValue( 'asn' ),
 			'721'
@@ -91,7 +91,52 @@ describe( 'IPInfo on Special:Contributions', () => {
 		await acceptAgreement();
 
 		await LoginPage.loginAdmin();
-		await ContributionsWithIPInfoPage.open( ipWithEdits );
+		await ContributionsWithIPInfoPage.open( utils.IP_WITH_EDITS );
+		await ContributionsWithIPInfoPage.expandPanel();
+		await ContributionsWithIPInfoPage.propertiesTable.waitForDisplayed();
+
+		assert.ok( !await ContributionsWithIPInfoPage.errorMessage.isExisting() );
+
+		assert.ok( !await ContributionsWithIPInfoPage.hasProperty( 'number-of-ips' ) );
+		assert.strictEqual(
+			await ContributionsWithIPInfoPage.getPropertyValue( 'asn' ),
+			'721'
+		);
+		assert.strictEqual(
+			await ContributionsWithIPInfoPage.getPropertyValue( 'organization' ),
+			'DoD Network Information Center'
+		);
+	} );
+
+	it( 'should show geo data for temp user with edits after accepting agreement', async () => {
+		await optOutOfAgreement();
+
+		await LoginPage.loginAdmin();
+		await ContributionsWithIPInfoPage.open( utils.TEMP_USER_NAME );
+		await ContributionsWithIPInfoPage.expandPanel();
+		await ContributionsWithIPInfoPage.acceptAgreement();
+		await ContributionsWithIPInfoPage.propertiesTable.waitForDisplayed();
+
+		assert.ok( !await ContributionsWithIPInfoPage.errorMessage.isExisting() );
+		assert.strictEqual(
+			await ContributionsWithIPInfoPage.getPropertyValue( 'asn' ),
+			'721'
+		);
+		assert.strictEqual(
+			await ContributionsWithIPInfoPage.getPropertyValue( 'organization' ),
+			'DoD Network Information Center'
+		);
+		assert.strictEqual(
+			await ContributionsWithIPInfoPage.getPropertyValue( 'num-ip-addresses' ),
+			'1'
+		);
+	} );
+
+	it( 'should show geo data for temp user with edits if agreement was already accepted', async () => {
+		await acceptAgreement();
+
+		await LoginPage.loginAdmin();
+		await ContributionsWithIPInfoPage.open( utils.TEMP_USER_NAME );
 		await ContributionsWithIPInfoPage.expandPanel();
 		await ContributionsWithIPInfoPage.propertiesTable.waitForDisplayed();
 
@@ -103,6 +148,10 @@ describe( 'IPInfo on Special:Contributions', () => {
 		assert.strictEqual(
 			await ContributionsWithIPInfoPage.getPropertyValue( 'organization' ),
 			'DoD Network Information Center'
+		);
+		assert.strictEqual(
+			await ContributionsWithIPInfoPage.getPropertyValue( 'num-ip-addresses' ),
+			'1'
 		);
 	} );
 } );

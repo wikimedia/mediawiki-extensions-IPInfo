@@ -10,6 +10,7 @@ use MediaWiki\Output\OutputPage;
 use MediaWiki\SpecialPage\Hook\SpecialPageBeforeExecuteHook;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\User\TempUser\TempUserConfig;
 use OOUI\PanelLayout;
 use Wikimedia\IPUtils;
 
@@ -20,10 +21,14 @@ class InfoboxHandler implements
 
 	private UserOptionsLookup $userOptionsLookup;
 
+	private TempUserConfig $tempUserConfig;
+
 	public function __construct(
-		UserOptionsLookup $userOptionsLookup
+		UserOptionsLookup $userOptionsLookup,
+		TempUserConfig $tempUserConfig
 	) {
 		$this->userOptionsLookup = $userOptionsLookup;
+		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	/**
@@ -53,14 +58,9 @@ class InfoboxHandler implements
 		) {
 			return;
 		}
-		// Check if the target is an IP address
-		if ( IPUtils::isValid( $username ) ) {
-			$username = IPUtils::prettifyIP( $username );
-		} else {
-			$username = null;
-		}
 
-		if ( !$username ) {
+		// Check if the target is an anonymous or temporary user.
+		if ( !( IPUtils::isValid( $username ) || $this->tempUserConfig->isTempName( $username ) ) ) {
 			return;
 		}
 

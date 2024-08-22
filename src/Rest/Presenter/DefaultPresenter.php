@@ -44,6 +44,7 @@ class DefaultPresenter {
 		'numLocalEdits',
 		'numRecentEdits',
 		'numUsersOnThisIP',
+		'numIPAddresses',
 		'organization',
 		'proxies',
 		'proxyType',
@@ -95,8 +96,7 @@ class DefaultPresenter {
 			if ( $itemInfo instanceof Info ) {
 				$data += $this->presentInfo( $itemInfo );
 			} elseif ( $itemInfo instanceof IPCountInfo ) {
-				// FIXME: This is just a temporary bandaid patch for T371966
-				continue;
+				$data += [ 'numIPAddresses' => $itemInfo->getCount() ];
 			} elseif ( $itemInfo instanceof IPoidInfo ) {
 				$data += $this->presentIPoidInfo( $itemInfo );
 			} elseif ( $itemInfo instanceof BlockInfo ) {
