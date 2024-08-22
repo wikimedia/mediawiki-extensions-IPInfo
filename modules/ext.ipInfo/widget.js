@@ -8,7 +8,7 @@
  * @param {Object} [config] Configuration options
  */
 
-const eventLogger = require( '../log.js' );
+const eventLogger = require( './log.js' );
 const ipInfoWidget = function ( info, config ) {
 	// Config initialization
 	config = Object.assign( {
