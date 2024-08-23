@@ -18,6 +18,7 @@ use MediaWiki\Tests\Rest\Handler\HandlerTestTrait;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityUtils;
 use MediaWikiUnitTestCase;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\TestingAccessWrapper;
@@ -83,6 +84,7 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 				'presenter' => $this->createMock( DefaultPresenter::class ),
 				'jobQueueGroup' => $this->createMock( JobQueueGroup::class ),
 				'languageFallback' => $this->createMock( LanguageFallback::class ),
+				'userIdentityUtils' => $this->createMock( UserIdentityUtils::class ),
 				'extensionRegistry' => $this->createMock( ExtensionRegistry::class )
 			] )
 			->onlyMethods( [] )
@@ -160,6 +162,7 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 				'presenter' => $this->createMock( DefaultPresenter::class ),
 				'jobQueueGroup' => $this->createMock( JobQueueGroup::class ),
 				'languageFallback' => $this->createMock( LanguageFallback::class ),
+				'userIdentityUtils' => $this->createMock( UserIdentityUtils::class ),
 				'extensionRegistry' => $this->createMock( ExtensionRegistry::class )
 			] )
 			->onlyMethods( [ 'getAuthority' ] )
@@ -186,6 +189,7 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 				$this->createMock( UserFactory::class ),
 				$this->createMock( JobQueueGroup::class ),
 				$this->createMock( LanguageFallback::class ),
+				$this->createMock( UserIdentityUtils::class ),
 				$this->createMock( ExtensionRegistry::class )
 			)
 		);

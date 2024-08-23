@@ -17,6 +17,7 @@ use MediaWiki\Rest\TokenAwareHandlerTrait;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityUtils;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -78,6 +79,8 @@ abstract class IPInfoHandler extends SimpleHandler {
 
 	protected LanguageFallback $languageFallback;
 
+	protected UserIdentityUtils $userIdentityUtils;
+
 	private ExtensionRegistry $extensionRegistry;
 
 	public function __construct(
@@ -88,6 +91,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 		DefaultPresenter $presenter,
 		JobQueueGroup $jobQueueGroup,
 		LanguageFallback $languageFallback,
+		UserIdentityUtils $userIdentityUtils,
 		?ExtensionRegistry $extensionRegistry = null
 	) {
 		$this->infoManager = $infoManager;
@@ -97,6 +101,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 		$this->presenter = $presenter;
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->languageFallback = $languageFallback;
+		$this->userIdentityUtils = $userIdentityUtils;
 		$this->extensionRegistry = $extensionRegistry ?? ExtensionRegistry::getInstance();
 	}
 

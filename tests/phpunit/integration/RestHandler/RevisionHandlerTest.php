@@ -2,14 +2,16 @@
 
 namespace MediaWiki\IPInfo\Test\Integration\Rest\Handler;
 
+use ArrayUtils;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\IPInfo\Info\BlockInfo;
-use MediaWiki\IPInfo\Info\ContributionInfo;
 use MediaWiki\IPInfo\Rest\Handler\RevisionHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\IPInfo\Test\Integration\RestHandler\HandlerTestCase;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\UltimateAuthority;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -33,12 +35,15 @@ class RevisionHandlerTest extends HandlerTestCase {
 	private static Authority $testSysop;
 	private static Authority $regularUser;
 	private static Authority $anonUser;
+	private static Authority $tempUser;
 
 	private static RevisionRecord $deletedRevRecord;
 
 	private static RevisionRecord $revRecordByNamedUser;
 
 	private static RevisionRecord $revRecordByAnonUser;
+
+	private static RevisionRecord $revRecordByTempUser;
 
 	private static RevisionRecord $revRecordForRestrictedPage;
 
@@ -53,7 +58,8 @@ class RevisionHandlerTest extends HandlerTestCase {
 			$services->getUserOptionsLookup(),
 			$services->getUserFactory(),
 			$services->getJobQueueGroup(),
-			$services->getLanguageFallback()
+			$services->getLanguageFallback(),
+			$services->getUserIdentityUtils()
 		);
 	}
 
@@ -81,10 +87,18 @@ class RevisionHandlerTest extends HandlerTestCase {
 	}
 
 	public function addDBDataOnce() {
+		$request = new FauxRequest();
+		$request->setIP( self::TEST_ANON_IP );
+
+		RequestContext::getMain()->setRequest( $request );
+
 		self::$blockedSysop = $this->getTestUser( [ 'sysop' ] )->getAuthority();
 		self::$testSysop = $this->getTestSysop()->getAuthority();
 		self::$regularUser = $this->getTestUser()->getAuthority();
 		self::$anonUser = $this->getServiceContainer()->getUserFactory()->newAnonymous( self::TEST_ANON_IP );
+		self::$tempUser = $this->getServiceContainer()->getTempUserCreator()
+			->create( null, $request )
+			->getUser();
 
 		$blockStatus = $this->getServiceContainer()->getBlockUserFactory()
 			->newBlockUser(
@@ -101,6 +115,15 @@ class RevisionHandlerTest extends HandlerTestCase {
 			RevisionRecord::DELETED_USER => 1,
 			RevisionRecord::DELETED_RESTRICTED => 1
 		] );
+
+		$pageUpdateStatus = $this->editPage(
+			$this->getNonexistingTestPage(),
+			'test',
+			'',
+			NS_MAIN,
+			self::$tempUser
+		);
+		self::$revRecordByTempUser = $pageUpdateStatus->getNewRevision();
 
 		$this->disableAutoCreateTempUser();
 
@@ -314,12 +337,26 @@ class RevisionHandlerTest extends HandlerTestCase {
 	}
 
 	/**
-	 * @dataProvider providePerformerUserGroups
+	 * @dataProvider provideUserGroupsAndRevisions
 	 */
-	public function testShouldHandleRevisionByAnonymousUser( string $performerGroup ): void {
-		$this->disableAutoCreateTempUser();
+	public function testShouldHandleRevisionByAnonymousOrTempUser(
+		array $groups,
+		callable $revRecordProvider,
+		bool $tempUsersEnabled
+	): void {
+		if ( !$tempUsersEnabled ) {
+			$this->disableAutoCreateTempUser( [ 'known' => true ] );
+		}
 
-		$user = $this->getTestUser( [ $performerGroup ] )->getAuthority();
+		/** @var RevisionRecord $revRecord */
+		$revRecord = $revRecordProvider();
+
+		// Retrieving IP information for temporary users requires CheckUser to be installed
+		if ( $this->getServiceContainer()->getUserIdentityUtils()->isTemp( $revRecord->getUser() ) ) {
+			$this->markTestSkippedIfExtensionNotLoaded( 'CheckUser' );
+		}
+
+		$user = $this->getMutableTestUser( $groups )->getAuthority();
 		$this->setUserOptions( $user, [
 			'ipinfo-beta-feature-enable' => 1,
 			'ipinfo-use-agreement' => 1
@@ -327,16 +364,14 @@ class RevisionHandlerTest extends HandlerTestCase {
 
 		$blockInfo = new BlockInfo();
 
-		$contributionInfo = new ContributionInfo( 4, 2, 1 );
-
-		$request = self::getRequestData( self::$revRecordByAnonUser->getId() );
+		$request = self::getRequestData( $revRecord->getId() );
 		$response = $this->executeWithUser( $request, $user );
 		$body = json_decode( $response->getBody()->getContents(), true );
 
 		$geoData = $body['info'][0]['data']['ipinfo-source-geoip2'];
 
 		$this->assertSame( 200, $response->getStatusCode() );
-		$this->assertSame( self::TEST_ANON_IP, $body['info'][0]['subject'] );
+		$this->assertSame( $revRecord->getUser()->getName(), $body['info'][0]['subject'] );
 		$this->assertSame( 'United States', $geoData['countryNames']['en'] );
 		$this->assertArrayNotHasKey( 'coordinates', $geoData );
 
@@ -371,9 +406,23 @@ class RevisionHandlerTest extends HandlerTestCase {
 		}
 	}
 
-	public static function providePerformerUserGroups(): iterable {
-		yield 'group with basic IPInfo access' => [ 'sysop' ];
-		yield 'group with full IPInfo access' => [ 'ipinfo-viewer' ];
-		yield 'group with full IPInfo and deleted history access' => [ 'ipinfo-deleted-viewer' ];
+	public static function provideUserGroupsAndRevisions(): iterable {
+		$groups = [
+			'group with basic IPInfo access' => [ 'sysop' ],
+			'group with full IPInfo access' => [ 'ipinfo-viewer' ],
+			'group with full IPInfo and deleted history access' => [ 'ipinfo-deleted-viewer' ]
+		];
+
+		$revisions = [
+			'revision by anonymous user' => fn () => self::$revRecordByAnonUser,
+			'revision by temporary user' => fn () => self::$revRecordByTempUser
+		];
+
+		$tempUserConfig = [
+			'enabled' => true,
+			'disabled but known' => false
+		];
+
+		return ArrayUtils::cartesianProduct( $groups, $revisions, $tempUserConfig );
 	}
 }

@@ -56,7 +56,8 @@
 				"UserOptionsLookup",
 				"UserFactory",
 				"JobQueueGroup",
-				"LanguageFallback"
+				"LanguageFallback",
+				"UserIdentityUtils"
 			],
 			"factory": "MediaWiki\\IPInfo\\Rest\\Handler\\RevisionHandler::factory"
 		},
@@ -70,7 +71,8 @@
 				"UserOptionsLookup",
 				"UserFactory",
 				"JobQueueGroup",
-				"LanguageFallback"
+				"LanguageFallback",
+				"UserIdentityUtils"
 			],
 			"factory": "MediaWiki\\IPInfo\\Rest\\Handler\\ArchivedRevisionHandler::factory"
 		},
@@ -84,7 +86,8 @@
 				"UserOptionsLookup",
 				"UserFactory",
 				"JobQueueGroup",
-				"LanguageFallback"
+				"LanguageFallback",
+				"UserIdentityUtils"
 			],
 			"factory": "MediaWiki\\IPInfo\\Rest\\Handler\\LogHandler::factory"
 		}
