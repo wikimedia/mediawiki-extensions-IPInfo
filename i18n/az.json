@@ -86,7 +86,7 @@
 	"action-ipinfo-view-full": "redaktə və ya jurnal qeydi yaratmış IP ünvanları haqqında tam məlumat əldə etmək",
 	"right-ipinfo-view-full": "Redaktə və ya jurnal qeydi yaratmış IP ünvanları haqqında tam məlumat əldə etmək",
 	"action-ipinfo-view-log": "IP məlumatlarına baxılma jurnalına giriş",
-	"right-ipinfo-view-log": "IP məlumatlarına baxılma jurnalına giriş",
+	"right-ipinfo-view-log": "IP məlumatlarına baxılma jurnalına giriş etmək",
 	"group-no-ipinfo": "IP Məlumat alətindən bloklanan istifadəçilər",
 	"group-no-ipinfo-member": "{{GENDER:$1|IP Məlumat alətindən bloklanıb}}",
 	"grouppage-no-ipinfo": "{{ns:project}}:IP Məlumat alətindən bloklanmış istifadəçilər",
