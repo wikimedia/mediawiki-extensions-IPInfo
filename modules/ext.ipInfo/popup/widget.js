@@ -50,7 +50,7 @@ ipInfoPopupWidget.prototype.buildMarkup = function ( info ) {
 		this.generatePropertyMarkup( 'edits', $edits, mw.msg( 'ipinfo-property-label-edits' ) )
 	);
 
-	// Popup links out to the Special:Contributions page of the ip
+	// Popup links out to the Special:Contributions page of the target user.
 	const $linkOutURL = mw.util.getUrl( 'Special:Contributions' ) + '/' + info.subject + '?openInfobox=true';
 	const $linkOut = $( '<a>' )
 		.addClass( 'ext-ipinfo-widget-popup-linkout' )

@@ -5,12 +5,15 @@ const postToRestApi = require( '../rest.js' );
 mw.hook( 'wikipage.content' ).add( ( $content ) => {
 	eventLogger.logIpCopy();
 
-	$content.find( '.mw-anonuserlink' ).after( function () {
+	$content.find( '.mw-anonuserlink, .mw-tempuserlink' ).after( function () {
 		let id, type;
 		$( this ).addClass( 'ext-ipinfo-anonuserlink-loaded' );
 
-		const ip = $( this ).text();
-		if ( !mw.util.isIPAddress( ip ) ) {
+		const targetUserName = $( this ).text();
+		if ( !(
+			mw.util.isIPAddress( targetUserName ) ||
+			mw.util.isTemporaryUser( targetUserName )
+		) ) {
 			return '';
 		}
 
@@ -22,8 +25,8 @@ mw.hook( 'wikipage.content' ).add( ( $content ) => {
 		} else if ( $changedby.length > 0 ) {
 			const $revLines = $( this ).closest( 'table' ).find( '.mw-changeslist-line[data-mw-revid]' );
 			$revLines.each( function () {
-				const $innerIP = $( this ).find( '.mw-anonuserlink' ).text();
-				if ( ip === $innerIP ) {
+				const $innerTarget = $( this ).find( '.mw-anonuserlink, .mw-tempuserlink' ).text();
+				if ( targetUserName === $innerTarget ) {
 					id = $( this ).closest( '.mw-changeslist-line [data-mw-revid]' ).attr( 'data-mw-revid' );
 					return false;
 				}
@@ -50,11 +53,13 @@ mw.hook( 'wikipage.content' ).add( ( $content ) => {
 			button.popup.$body.append( new IpInfoPopupWidget(
 				postToRestApi( type, id, 'popup' ).then( ( response ) => {
 					let i, data;
-					const sanitizedIp = mw.util.sanitizeIP( ip );
+					const sanitizedTargetName = mw.util.sanitizeIP( targetUserName );
 
 					// Array.find is only available from ES6
 					for ( i = 0; i < response.info.length; i++ ) {
-						if ( mw.util.sanitizeIP( response.info[ i ].subject ) === sanitizedIp ) {
+						if (
+							mw.util.sanitizeIP( response.info[ i ].subject ) === sanitizedTargetName
+						) {
 							data = response.info[ i ];
 							break;
 						}
