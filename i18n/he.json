@@ -63,6 +63,7 @@
 	"ipinfo-property-value-connectiontype-unknown": "לא ידוע",
 	"ipinfo-property-label-source": "מקור",
 	"ipinfo-property-label-active-blocks": "חסימות פעילות",
+	"ipinfo-property-label-number-of-ips": "מספר כתובות ה־IP",
 	"ipinfo-property-tooltip-proxytypes": "שרתים מתווכים (פרוקסי) מסתירים כתובות IP. במקרים מסוימים זה קורה אוטומטית, למשל בשביל שרתים מתווכים ביתיים (Residential proxy) או תאגידיים (Corporate proxy), במקרים אחרים זה נעשה כדי להסתיר בכוונה את המקור של כתובת ה־IP",
 	"ipinfo-property-tooltip-connectiontype": "הטכנולוגיה שהם מתחברים לאינטרנט באמצעותה.",
 	"ipinfo-property-tooltip-usertype": "סוג הישות שמחזיקה בבעלות על חיבור האינטרנט.",
