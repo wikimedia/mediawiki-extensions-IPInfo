@@ -61,6 +61,7 @@
 	"ipinfo-property-value-connectiontype-unknown": "Непознато",
 	"ipinfo-property-label-source": "Извор",
 	"ipinfo-property-label-active-blocks": "Активни блокови",
+	"ipinfo-property-label-number-of-ips": "Број на IP-адреси",
 	"ipinfo-property-tooltip-proxytypes": "Застапниците ги скриваат IP-адресите. Во некои случаи ова се случува автоматски, како кај домашните или претпријатиските застапници, додека пак во други случаи ова се прави намерно за да се прикрие потеклото на IP-адресата.",
 	"ipinfo-property-tooltip-connectiontype": "Технологијата преку која се поврзуваат на семрежјето.",
 	"ipinfo-property-tooltip-usertype": "Видот на единица што ја поседува семрежната врска.",

@@ -64,6 +64,7 @@
 	"ipinfo-property-value-connectiontype-unknown": "ناشناخته",
 	"ipinfo-property-label-source": "منبع",
 	"ipinfo-property-label-active-blocks": "قطع دسترسی‌های فعال",
+	"ipinfo-property-label-number-of-ips": "تعداد آی‌پی‌ها",
 	"ipinfo-property-tooltip-proxytypes": "پروکسی‌ها، نشانی‌های آی‌پی را پنهان می‌کنند. در برخی موارد، مانند پروکسی‌های مسکونی یا شرکتی، این اتفاق به‌صورت خودکار رخ می‌دهد؛ در سایر موارد، این کار به‌طور عمدی و برای پوشاندن مبدأ نشانی آی‌پی انجام می‌شود.",
 	"ipinfo-property-tooltip-connectiontype": "فناوری مورد استفاده برای اتصال به اینترنت.",
 	"ipinfo-property-tooltip-usertype": "نوع موجودیت مالک اتصال اینترنت.",
