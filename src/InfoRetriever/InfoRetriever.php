@@ -19,7 +19,9 @@ interface InfoRetriever {
 	 * Retrieve info about an anonymous user or temporary user account.
 	 *
 	 * @param UserIdentity $user
+	 * @param string|null $ip The IP address used by the user being looked up,
+	 * or `null` if this data was not available.
 	 * @return mixed
 	 */
-	public function retrieveFor( UserIdentity $user );
+	public function retrieveFor( UserIdentity $user, ?string $ip );
 }

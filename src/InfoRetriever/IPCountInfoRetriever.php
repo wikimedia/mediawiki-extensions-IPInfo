@@ -20,7 +20,7 @@ class IPCountInfoRetriever implements InfoRetriever {
 		return 'ipinfo-source-ip-count';
 	}
 
-	public function retrieveFor( UserIdentity $user ): IPCountInfo {
+	public function retrieveFor( UserIdentity $user, ?string $ip ): IPCountInfo {
 		// Showing the count of unique IP addresses only makes sense for temporary users,
 		// since anonymous users are identified by their IP address and therefore by definition
 		// have a unique IP address count of 1.

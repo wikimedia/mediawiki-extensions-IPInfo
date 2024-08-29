@@ -29,8 +29,13 @@ class InfoManagerTest extends MediaWikiUnitTestCase {
 		$infoRetriever->method( 'getName' )
 			->willReturn( $retrieverName );
 
+		$ip = $user;
+		if ( $user instanceof UserIdentity ) {
+			$ip = $user->isRegistered() ? '127.0.0.1' : $user->getName();
+		}
+
 		$infoManager = new InfoManager( [ $infoRetriever ] );
-		$info = $infoManager->retrieveFor( $user );
+		$info = $infoManager->retrieveFor( $user, $ip );
 
 		$this->assertSame( $expectedSubject, $info['subject'] );
 		$this->assertArrayHasKey( 'data', $info );

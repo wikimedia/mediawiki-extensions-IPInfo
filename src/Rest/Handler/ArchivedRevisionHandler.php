@@ -5,6 +5,7 @@ namespace MediaWiki\IPInfo\Rest\Handler;
 use JobQueueGroup;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
+use MediaWiki\IPInfo\TempUserIPLookup;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Registration\ExtensionRegistry;
@@ -30,6 +31,7 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 		JobQueueGroup $jobQueueGroup,
 		LanguageFallback $languageFallback,
 		UserIdentityUtils $userIdentityUtils,
+		TempUserIPLookup $tempUserIPLookup,
 		ExtensionRegistry $extensionRegistry
 	) {
 		parent::__construct(
@@ -41,6 +43,7 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 			$jobQueueGroup,
 			$languageFallback,
 			$userIdentityUtils,
+			$tempUserIPLookup,
 			$extensionRegistry
 		);
 		$this->archivedRevisionLookup = $archivedRevisionLookup;
@@ -55,6 +58,7 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 		JobQueueGroup $jobQueueGroup,
 		LanguageFallback $languageFallback,
 		UserIdentityUtils $userIdentityUtils,
+		TempUserIPLookup $tempUserIPLookup,
 		?ExtensionRegistry $extensionRegistry = null
 	): self {
 		return new self(
@@ -67,6 +71,7 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 			$jobQueueGroup,
 			$languageFallback,
 			$userIdentityUtils,
+			$tempUserIPLookup,
 			$extensionRegistry ?? ExtensionRegistry::getInstance()
 		);
 	}

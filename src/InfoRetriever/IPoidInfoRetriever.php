@@ -5,7 +5,6 @@ namespace MediaWiki\IPInfo\InfoRetriever;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\IPInfo\Info\IPoidInfo;
-use MediaWiki\IPInfo\TempUserIPLookup;
 use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
 use Wikimedia\IPUtils;
@@ -25,20 +24,16 @@ class IPoidInfoRetriever implements InfoRetriever {
 
 	private HttpRequestFactory $httpRequestFactory;
 
-	private TempUserIPLookup $tempUserIPLookup;
-
 	private LoggerInterface $logger;
 
 	public function __construct(
 		ServiceOptions $options,
 		HttpRequestFactory $httpRequestFactory,
-		TempUserIPLookup $tempUserIPLookup,
 		LoggerInterface $logger
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->httpRequestFactory = $httpRequestFactory;
-		$this->tempUserIPLookup = $tempUserIPLookup;
 		$this->logger = $logger;
 	}
 
@@ -51,8 +46,7 @@ class IPoidInfoRetriever implements InfoRetriever {
 	 * @inheritDoc
 	 * @return IPoidInfo
 	 */
-	public function retrieveFor( UserIdentity $user ): IPoidInfo {
-		$ip = $this->tempUserIPLookup->getMostRecentAddress( $user );
+	public function retrieveFor( UserIdentity $user, ?string $ip ): IPoidInfo {
 		if ( $ip === null ) {
 			return new IPoidInfo();
 		}

@@ -6,6 +6,7 @@ use JobQueueGroup;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Handler\ArchivedRevisionHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
+use MediaWiki\IPInfo\TempUserIPLookup;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
@@ -85,6 +86,7 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 				'jobQueueGroup' => $this->createMock( JobQueueGroup::class ),
 				'languageFallback' => $this->createMock( LanguageFallback::class ),
 				'userIdentityUtils' => $this->createMock( UserIdentityUtils::class ),
+				'tempUserIPLookup' => $this->createMock( TempUserIPLookup::class ),
 				'extensionRegistry' => $this->createMock( ExtensionRegistry::class )
 			] )
 			->onlyMethods( [] )
@@ -163,6 +165,7 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 				'jobQueueGroup' => $this->createMock( JobQueueGroup::class ),
 				'languageFallback' => $this->createMock( LanguageFallback::class ),
 				'userIdentityUtils' => $this->createMock( UserIdentityUtils::class ),
+				'tempUserIPLookup' => $this->createMock( TempUserIPLookup::class ),
 				'extensionRegistry' => $this->createMock( ExtensionRegistry::class )
 			] )
 			->onlyMethods( [ 'getAuthority' ] )
@@ -190,6 +193,7 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 				$this->createMock( JobQueueGroup::class ),
 				$this->createMock( LanguageFallback::class ),
 				$this->createMock( UserIdentityUtils::class ),
+				$this->createMock( TempUserIPLookup::class ),
 				$this->createMock( ExtensionRegistry::class )
 			)
 		);

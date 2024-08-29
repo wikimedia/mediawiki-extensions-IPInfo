@@ -45,7 +45,7 @@ class ContributionInfoRetrieverIntegrationTest extends MediaWikiIntegrationTestC
 			->acquireAndStashName( $req->getSession() );
 		$user = $this->getServiceContainer()->getUserFactory()->newFromName( $name );
 
-		$info = $this->getContributionInfoRetriever()->retrieveFor( $user );
+		$info = $this->getContributionInfoRetriever()->retrieveFor( $user, '127.0.0.3' );
 
 		$this->assertSame( 0, $info->getNumLocalEdits() );
 		$this->assertSame( 0, $info->getNumRecentEdits() );
@@ -57,7 +57,7 @@ class ContributionInfoRetrieverIntegrationTest extends MediaWikiIntegrationTestC
 	 */
 	public function testAllValuesShouldBeZeroForUserWithoutContributions( UserIdentity $user ): void {
 		$user = $this->setupUser( $user );
-		$info = $this->getContributionInfoRetriever()->retrieveFor( $user );
+		$info = $this->getContributionInfoRetriever()->retrieveFor( $user, '127.0.0.3' );
 
 		$this->assertSame( 0, $info->getNumLocalEdits() );
 		$this->assertSame( 0, $info->getNumRecentEdits() );
@@ -79,7 +79,7 @@ class ContributionInfoRetrieverIntegrationTest extends MediaWikiIntegrationTestC
 
 		$this->deletePage( $otherPage );
 
-		$info = $this->getContributionInfoRetriever()->retrieveFor( $user );
+		$info = $this->getContributionInfoRetriever()->retrieveFor( $user, '127.0.0.3' );
 
 		$this->assertSame( 2, $info->getNumLocalEdits() );
 		$this->assertSame( 2, $info->getNumRecentEdits() );
@@ -105,7 +105,7 @@ class ContributionInfoRetrieverIntegrationTest extends MediaWikiIntegrationTestC
 
 		$this->editPage( $page, 'test3', '', NS_MAIN, $user );
 
-		$info = $this->getContributionInfoRetriever()->retrieveFor( $user );
+		$info = $this->getContributionInfoRetriever()->retrieveFor( $user, '127.0.0.3' );
 
 		$this->assertSame( 3, $info->getNumLocalEdits() );
 		$this->assertSame( 1, $info->getNumRecentEdits() );

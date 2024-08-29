@@ -26,7 +26,7 @@ class BlockInfoRetriever implements InfoRetriever {
 	}
 
 	/** @inheritDoc */
-	public function retrieveFor( UserIdentity $user ): BlockInfo {
+	public function retrieveFor( UserIdentity $user, ?string $ip ): BlockInfo {
 		// Active block(s)
 		if ( $this->userIdentityUtils->isTemp( $user ) ) {
 			$activeBlock = $this->blockManager->getBlock( $user, null );

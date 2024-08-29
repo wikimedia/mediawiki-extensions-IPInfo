@@ -52,7 +52,7 @@ class BlockInfoRetrieverTest extends MediaWikiUnitTestCase {
 				->willReturn( new SystemBlock() );
 		}
 
-		$info = $this->retriever->retrieveFor( $user );
+		$info = $this->retriever->retrieveFor( $user, '127.0.0.1' );
 
 		$this->assertInstanceOf( BlockInfo::class, $info );
 		$this->assertSame( 1, $info->getNumActiveBlocks() );
@@ -80,7 +80,7 @@ class BlockInfoRetrieverTest extends MediaWikiUnitTestCase {
 				->willReturn( $block );
 		}
 
-		$info = $this->retriever->retrieveFor( $user );
+		$info = $this->retriever->retrieveFor( $user, '127.0.0.1' );
 
 		$this->assertInstanceOf( BlockInfo::class, $info );
 		$this->assertSame( 2, $info->getNumActiveBlocks() );
@@ -103,7 +103,7 @@ class BlockInfoRetrieverTest extends MediaWikiUnitTestCase {
 			->with( $user, true )
 			->willReturn( $autoBlock );
 
-		$info = $this->retriever->retrieveFor( $user );
+		$info = $this->retriever->retrieveFor( $user, '127.0.0.1' );
 
 		$this->assertInstanceOf( BlockInfo::class, $info );
 		$this->assertSame( 0, $info->getNumActiveBlocks() );
@@ -126,7 +126,7 @@ class BlockInfoRetrieverTest extends MediaWikiUnitTestCase {
 			->with( $user, true )
 			->willReturn( $block );
 
-		$info = $this->retriever->retrieveFor( $user );
+		$info = $this->retriever->retrieveFor( $user, '127.0.0.1' );
 
 		$this->assertInstanceOf( BlockInfo::class, $info );
 		$this->assertSame( 1, $info->getNumActiveBlocks() );

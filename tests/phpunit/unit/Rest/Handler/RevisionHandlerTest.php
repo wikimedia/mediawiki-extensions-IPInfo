@@ -7,6 +7,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Handler\RevisionHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
+use MediaWiki\IPInfo\TempUserIPLookup;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
@@ -47,6 +48,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 				'jobQueueGroup' => $this->createMock( JobQueueGroup::class ),
 				'languageFallback' => $this->createMock( LanguageFallback::class ),
 				'userIdentityUtils' => $this->createMock( UserIdentityUtils::class ),
+				'tempUserIPLookup' => $this->createMock( TempUserIPLookup::class ),
 				'extensionRegistry' => $this->createMock( ExtensionRegistry::class )
 			],
 			$options
@@ -418,6 +420,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 				$this->createMock( JobQueueGroup::class ),
 				$this->createMock( LanguageFallback::class ),
 				$this->createMock( UserIdentityUtils::class ),
+				$this->createMock( TempUserIPLookup::class ),
 				$this->createMock( ExtensionRegistry::class )
 			)
 		);

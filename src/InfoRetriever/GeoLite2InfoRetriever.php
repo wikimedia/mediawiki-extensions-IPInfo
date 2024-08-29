@@ -8,7 +8,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\IPInfo\Info\Coordinates;
 use MediaWiki\IPInfo\Info\Info;
 use MediaWiki\IPInfo\Info\Location;
-use MediaWiki\IPInfo\TempUserIPLookup;
 use MediaWiki\User\UserIdentity;
 
 /**
@@ -26,17 +25,13 @@ class GeoLite2InfoRetriever implements InfoRetriever {
 
 	private ReaderFactory $readerFactory;
 
-	private TempUserIPLookup $tempUserIPLookup;
-
 	public function __construct(
 		ServiceOptions $options,
-		ReaderFactory $readerFactory,
-		TempUserIPLookup $tempUserIPLookup
+		ReaderFactory $readerFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->readerFactory = $readerFactory;
-		$this->tempUserIPLookup = $tempUserIPLookup;
 	}
 
 	/** @inheritDoc */
@@ -61,8 +56,7 @@ class GeoLite2InfoRetriever implements InfoRetriever {
 	 * @inheritDoc
 	 * @return Info
 	 */
-	public function retrieveFor( UserIdentity $user ): Info {
-		$ip = $this->tempUserIPLookup->getMostRecentAddress( $user );
+	public function retrieveFor( UserIdentity $user, ?string $ip ): Info {
 		if ( $ip === null ) {
 			return new Info();
 		}

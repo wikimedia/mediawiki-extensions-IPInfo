@@ -8,6 +8,7 @@ use LogEventsList;
 use LogPage;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
+use MediaWiki\IPInfo\TempUserIPLookup;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -36,7 +37,8 @@ class LogHandler extends IPInfoHandler {
 		JobQueueGroup $jobQueueGroup,
 		LanguageFallback $languageFallback,
 		UserIdentityUtils $userIdentityUtils,
-		UserIdentityLookup $userIdentityLookup
+		UserIdentityLookup $userIdentityLookup,
+		TempUserIPLookup $tempUserIPLookup
 	) {
 		parent::__construct(
 			$infoManager,
@@ -46,7 +48,8 @@ class LogHandler extends IPInfoHandler {
 			$presenter,
 			$jobQueueGroup,
 			$languageFallback,
-			$userIdentityUtils
+			$userIdentityUtils,
+			$tempUserIPLookup
 		);
 		$this->dbProvider = $dbProvider;
 		$this->userIdentityLookup = $userIdentityLookup;
@@ -61,7 +64,8 @@ class LogHandler extends IPInfoHandler {
 		JobQueueGroup $jobQueueGroup,
 		LanguageFallback $languageFallback,
 		UserIdentityUtils $userIdentityUtils,
-		UserIdentityLookup $userIdentityLookup
+		UserIdentityLookup $userIdentityLookup,
+		TempUserIPLookup $tempUserIPLookup
 	): self {
 		return new self(
 			$infoManager,
@@ -73,7 +77,8 @@ class LogHandler extends IPInfoHandler {
 			$jobQueueGroup,
 			$languageFallback,
 			$userIdentityUtils,
-			$userIdentityLookup
+			$userIdentityLookup,
+			$tempUserIPLookup
 		);
 	}
 
@@ -120,15 +125,19 @@ class LogHandler extends IPInfoHandler {
 		$showPerformer = $canAccessPerformer && $this->isAnonymousOrTempUser( $performer );
 		$showTarget = $canAccessTarget && $this->isAnonymousOrTempUser( $target );
 		if ( $showPerformer ) {
+			$performerAddress = $this->tempUserIPLookup->getAddressForLogEntry( $entry );
 			$info[] = $this->presenter->present(
-				$this->infoManager->retrieveFor( $performer ),
+				$this->infoManager->retrieveFor( $performer, $performerAddress ),
 				$this->getAuthority()->getUser()
 			);
 		}
 		if ( $showTarget ) {
 			// $target is implicitly null-checked via isAnonymousOrTempUser()
 			'@phan-var UserIdentity $target';
-			$info[] = $this->presenter->present( $this->infoManager->retrieveFor( $target ),
+
+			$targetAddress = $this->tempUserIPLookup->getMostRecentAddress( $target );
+
+			$info[] = $this->presenter->present( $this->infoManager->retrieveFor( $target, $targetAddress ),
 			$this->getAuthority()->getUser() );
 		}
 

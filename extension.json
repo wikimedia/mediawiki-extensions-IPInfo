@@ -57,7 +57,8 @@
 				"UserFactory",
 				"JobQueueGroup",
 				"LanguageFallback",
-				"UserIdentityUtils"
+				"UserIdentityUtils",
+				"IPInfoTempUserIPLookup"
 			],
 			"factory": "MediaWiki\\IPInfo\\Rest\\Handler\\RevisionHandler::factory"
 		},
@@ -72,7 +73,8 @@
 				"UserFactory",
 				"JobQueueGroup",
 				"LanguageFallback",
-				"UserIdentityUtils"
+				"UserIdentityUtils",
+				"IPInfoTempUserIPLookup"
 			],
 			"factory": "MediaWiki\\IPInfo\\Rest\\Handler\\ArchivedRevisionHandler::factory"
 		},
@@ -88,7 +90,8 @@
 				"JobQueueGroup",
 				"LanguageFallback",
 				"UserIdentityUtils",
-				"UserIdentityLookup"
+				"UserIdentityLookup",
+				"IPInfoTempUserIPLookup"
 			],
 			"factory": "MediaWiki\\IPInfo\\Rest\\Handler\\LogHandler::factory"
 		}

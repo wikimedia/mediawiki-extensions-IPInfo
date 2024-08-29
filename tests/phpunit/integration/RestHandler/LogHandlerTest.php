@@ -80,7 +80,8 @@ class LogHandlerTest extends HandlerTestCase {
 			$services->getJobQueueGroup(),
 			$services->getLanguageFallback(),
 			$services->getUserIdentityUtils(),
-			$services->getUserIdentityLookup()
+			$services->getUserIdentityLookup(),
+			$services->get( 'IPInfoTempUserIPLookup' )
 		);
 	}
 

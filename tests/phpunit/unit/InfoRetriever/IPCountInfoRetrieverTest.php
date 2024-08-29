@@ -29,7 +29,7 @@ class IPCountInfoRetrieverTest extends MediaWikiUnitTestCase {
 		$this->tempUserIPLookup->expects( $this->never() )
 			->method( 'getDistinctAddressCount' );
 
-		$info = $this->retriever->retrieveFor( $user );
+		$info = $this->retriever->retrieveFor( $user, '127.0.0.1' );
 
 		$this->assertNull( $info->getCount() );
 	}
@@ -40,7 +40,7 @@ class IPCountInfoRetrieverTest extends MediaWikiUnitTestCase {
 		$this->tempUserIPLookup->method( 'getDistinctAddressCount' )
 			->willReturn( 3 );
 
-		$info = $this->retriever->retrieveFor( $user );
+		$info = $this->retriever->retrieveFor( $user, '127.0.0.1' );
 
 		$this->assertSame( 3, $info->getCount() );
 	}

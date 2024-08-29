@@ -26,16 +26,14 @@ return [
 				new ServiceOptions(
 					GeoIp2EnterpriseInfoRetriever::CONSTRUCTOR_OPTIONS, $config
 				),
-				$services->get( 'ReaderFactory' ),
-				$services->get( 'IPInfoTempUserIPLookup' )
+				$services->get( 'ReaderFactory' )
 			);
 		}
 		return new GeoLite2InfoRetriever(
 			new ServiceOptions(
 				GeoLite2InfoRetriever::CONSTRUCTOR_OPTIONS, $config
 			),
-			$services->get( 'ReaderFactory' ),
-			$services->get( 'IPInfoTempUserIPLookup' )
+			$services->get( 'ReaderFactory' )
 		);
 	},
 	'IPInfoIPoidInfoRetriever' => static function ( MediaWikiServices $services ): IPoidInfoRetriever {
@@ -45,7 +43,6 @@ return [
 				IPoidInfoRetriever::CONSTRUCTOR_OPTIONS, $config
 			),
 			$services->get( 'HttpRequestFactory' ),
-			$services->get( 'IPInfoTempUserIPLookup' ),
 			LoggerFactory::getInstance( 'IPInfo' )
 		);
 	},

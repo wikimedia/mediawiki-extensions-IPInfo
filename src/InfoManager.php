@@ -26,9 +26,11 @@ class InfoManager {
 	 * TODO: Make this return a domain object, e.g. InfoManagerResponse.
 	 *
 	 * @param UserIdentity|string $user
+	 * @param string|null $ip The IP address used by the user being looked up,
+	 * or `null` if this data was not available.
 	 * @return array
 	 */
-	public function retrieveFor( $user ): array {
+	public function retrieveFor( $user, ?string $ip ): array {
 		$data = [];
 
 		if ( is_string( $user ) ) {
@@ -36,7 +38,7 @@ class InfoManager {
 		}
 
 		foreach ( $this->retrievers as $retriever ) {
-			$data[$retriever->getName()] = $retriever->retrieveFor( $user );
+			$data[$retriever->getName()] = $retriever->retrieveFor( $user, $ip );
 		}
 
 		$subjectName = $user->getName();

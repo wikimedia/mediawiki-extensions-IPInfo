@@ -25,7 +25,7 @@ class ContributionInfoRetriever implements InfoRetriever {
 	}
 
 	/** @inheritDoc */
-	public function retrieveFor( UserIdentity $user ): ContributionInfo {
+	public function retrieveFor( UserIdentity $user, ?string $ip ): ContributionInfo {
 		$dbr = $this->dbProvider->getReplicaDatabase();
 		$actorId = $this->actorNormalization->findActorId( $user, $dbr );
 

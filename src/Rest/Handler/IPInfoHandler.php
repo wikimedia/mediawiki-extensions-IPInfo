@@ -8,6 +8,7 @@ use JobSpecification;
 use MediaWiki\IPInfo\AccessLevelTrait;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
+use MediaWiki\IPInfo\TempUserIPLookup;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -82,6 +83,8 @@ abstract class IPInfoHandler extends SimpleHandler {
 
 	protected UserIdentityUtils $userIdentityUtils;
 
+	protected TempUserIPLookup $tempUserIPLookup;
+
 	private ExtensionRegistry $extensionRegistry;
 
 	public function __construct(
@@ -93,6 +96,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 		JobQueueGroup $jobQueueGroup,
 		LanguageFallback $languageFallback,
 		UserIdentityUtils $userIdentityUtils,
+		TempUserIPLookup $tempUserIPLookup,
 		?ExtensionRegistry $extensionRegistry = null
 	) {
 		$this->infoManager = $infoManager;
@@ -103,6 +107,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->languageFallback = $languageFallback;
 		$this->userIdentityUtils = $userIdentityUtils;
+		$this->tempUserIPLookup = $tempUserIPLookup;
 		$this->extensionRegistry = $extensionRegistry ?? ExtensionRegistry::getInstance();
 	}
 

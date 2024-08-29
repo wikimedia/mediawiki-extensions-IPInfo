@@ -54,9 +54,11 @@ abstract class AbstractRevisionHandler extends IPInfoHandler {
 			);
 		}
 
+		$address = $this->tempUserIPLookup->getAddressForRevision( $revision );
+
 		return [
 			$this->presenter->present(
-				$this->infoManager->retrieveFor( $author ),
+				$this->infoManager->retrieveFor( $author, $address ),
 				$this->getAuthority()->getUser()
 			)
 		];

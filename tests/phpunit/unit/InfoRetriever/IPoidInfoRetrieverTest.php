@@ -5,7 +5,6 @@ namespace MediaWiki\IPInfo\Test\Unit\InfoRetriever;
 use LoggedServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\IPInfo\InfoRetriever\IPoidInfoRetriever;
-use MediaWiki\IPInfo\TempUserIPLookup;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
@@ -21,14 +20,6 @@ class IPoidInfoRetrieverTest extends MediaWikiUnitTestCase {
 	use TestAllServiceOptionsUsed;
 	use MockHttpTrait;
 
-	private TempUserIPLookup $tempUserIPLookup;
-
-	protected function setUp(): void {
-		parent::setUp();
-
-		$this->tempUserIPLookup = $this->createMock( TempUserIPLookup::class );
-	}
-
 	private function createIPoidInfoRetriever(
 		HttpRequestFactory $httpRequestFactory,
 		array $configOverrides = []
@@ -40,7 +31,6 @@ class IPoidInfoRetrieverTest extends MediaWikiUnitTestCase {
 				$configOverrides + [ 'IPInfoIpoidUrl' => 'test' ]
 			),
 			$httpRequestFactory,
-			$this->tempUserIPLookup,
 			new NullLogger()
 		);
 	}
@@ -53,7 +43,7 @@ class IPoidInfoRetrieverTest extends MediaWikiUnitTestCase {
 			$httpRequestFactory,
 			[ 'IPInfoIpoidUrl' => false ]
 		);
-		$infoRetriever->retrieveFor( new UserIdentityValue( 0, '127.0.0.1' ) );
+		$infoRetriever->retrieveFor( new UserIdentityValue( 0, '127.0.0.1' ), '127.0.0.1' );
 	}
 
 	public function testRetrieveForBadRequest() {
@@ -65,7 +55,7 @@ class IPoidInfoRetrieverTest extends MediaWikiUnitTestCase {
 				)
 			)
 		);
-		$info = $infoRetriever->retrieveFor( new UserIdentityValue( 0, '127.0.0.1' ) );
+		$info = $infoRetriever->retrieveFor( new UserIdentityValue( 0, '127.0.0.1' ), '127.0.0.1' );
 		$this->assertNull( $info->getBehaviors() );
 		$this->assertNull( $info->getRisks() );
 		$this->assertNull( $info->getConnectionTypes() );
@@ -82,11 +72,7 @@ class IPoidInfoRetrieverTest extends MediaWikiUnitTestCase {
 		$infoRetriever = $this->createIPoidInfoRetriever( $httpRequestFactory );
 		$user = new UserIdentityValue( 4, '~2024-8' );
 
-		$this->tempUserIPLookup->method( 'getMostRecentAddress' )
-			->with( $user )
-			->willReturn( null );
-
-		$info = $infoRetriever->retrieveFor( $user );
+		$info = $infoRetriever->retrieveFor( $user, null );
 
 		$this->assertNull( $info->getBehaviors() );
 		$this->assertNull( $info->getRisks() );
@@ -115,11 +101,7 @@ class IPoidInfoRetrieverTest extends MediaWikiUnitTestCase {
 			)
 		);
 
-		$this->tempUserIPLookup->method( 'getMostRecentAddress' )
-			->with( $user )
-			->willReturn( $ip );
-
-		$info = $infoRetriever->retrieveFor( $user );
+		$info = $infoRetriever->retrieveFor( $user, $ip );
 		$this->assertArrayEquals( [], $info->getBehaviors() );
 		$this->assertArrayEquals( [], $info->getRisks() );
 		$this->assertSame( [ "UNKNOWN" ], $info->getConnectionTypes() );
