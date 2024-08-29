@@ -2,6 +2,7 @@
 
 namespace MediaWiki\IPInfo\Test\Integration;
 
+use DatabaseLogEntry;
 use ManualLogEntry;
 use MediaWiki\IPInfo\TempUserIPLookup;
 use MediaWiki\MainConfigNames;
@@ -75,7 +76,8 @@ class TempUserIPLookupTest extends MediaWikiIntegrationTestCase {
 			->create( null, $req )
 			->getUser();
 
-		$this->editPage( $page, 'test', '', NS_MAIN, $user );
+		$status = $this->editPage( $page, 'test', '', NS_MAIN, $user );
+		$firstRev = $status->getNewRevision();
 		$req->setIP( '192.0.2.75' );
 		$this->editPage( $page, 'test2', '', NS_MAIN, $user );
 
@@ -83,9 +85,11 @@ class TempUserIPLookupTest extends MediaWikiIntegrationTestCase {
 
 		$latestIP = $this->getTempUserIPLookup()->getMostRecentAddress( $user );
 		$addressCount = $this->getTempUserIPLookup()->getDistinctAddressCount( $user );
+		$firstRevIP = $this->getTempUserIPLookup()->getAddressForRevision( $firstRev );
 
 		$this->assertSame( '192.0.2.75', $latestIP );
 		$this->assertSame( 2, $addressCount );
+		$this->assertSame( '192.0.2.64', $firstRevIP );
 	}
 
 	public function testShouldReturnIPAddressDataFromLogDataOnly(): void {
@@ -123,7 +127,8 @@ class TempUserIPLookupTest extends MediaWikiIntegrationTestCase {
 			->create( null, $req )
 			->getUser();
 
-		$this->makeLogEntry( 'test', $user );
+		$logId = $this->makeLogEntry( 'test', $user );
+		$logEntry = DatabaseLogEntry::newFromId( $logId, $this->getDb() );
 
 		$page = $this->getNonexistingTestPage();
 
@@ -139,8 +144,10 @@ class TempUserIPLookupTest extends MediaWikiIntegrationTestCase {
 
 		$latestIP = $this->getTempUserIPLookup()->getMostRecentAddress( $user );
 		$addressCount = $this->getTempUserIPLookup()->getDistinctAddressCount( $user );
+		$logIP = $this->getTempUserIPLookup()->getAddressForLogEntry( $logEntry );
 
 		$this->assertSame( '192.0.2.75', $latestIP );
 		$this->assertSame( 2, $addressCount );
+		$this->assertSame( '192.0.2.64', $logIP );
 	}
 }

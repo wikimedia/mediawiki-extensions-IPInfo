@@ -1,8 +1,10 @@
 <?php
 namespace MediaWiki\IPInfo\Test\Unit;
 
+use DatabaseLogEntry;
 use ExtensionRegistry;
 use MediaWiki\IPInfo\TempUserIPLookup;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
@@ -300,5 +302,160 @@ class TempUserIPLookupTest extends MediaWikiUnitTestCase {
 		$count = $this->tempUserIPLookup->getDistinctAddressCount( $user );
 
 		$this->assertNull( $count );
+	}
+
+	public function testGetAddressForRevisionShouldRejectNamedUser(): void {
+		$this->expectException( ParameterAssertionException::class );
+		$this->expectExceptionMessage(
+			'Bad value for parameter $revision: must be authored by an anonymous or temporary user'
+		);
+
+		$user = new UserIdentityValue( 1, 'TestUser' );
+
+		$revision = $this->createMock( RevisionRecord::class );
+		$revision->method( 'getUser' )
+			->with( $revision::RAW )
+			->willReturn( $user );
+
+		$this->userIdentityUtils->method( 'isNamed' )
+			->with( $user )
+			->willReturn( true );
+
+		$this->extensionRegistry->expects( $this->never() )
+			->method( 'isLoaded' );
+
+		$this->connectionProvider->expects( $this->never() )
+			->method( 'getReplicaDatabase' );
+
+		$this->tempUserIPLookup->getAddressForRevision( $revision );
+	}
+
+	public function testGetAddressForRevisionShouldHandleAnonymousUser(): void {
+		$user = new UserIdentityValue( 0, '127.0.0.1' );
+
+		$revision = $this->createMock( RevisionRecord::class );
+		$revision->method( 'getUser' )
+			->with( $revision::RAW )
+			->willReturn( $user );
+
+		$this->userIdentityUtils->method( 'isNamed' )
+			->with( $user )
+			->willReturn( false );
+		$this->userIdentityUtils->method( 'isTemp' )
+			->with( $user )
+			->willReturn( false );
+
+		$this->extensionRegistry->expects( $this->never() )
+			->method( 'isLoaded' );
+
+		$this->connectionProvider->expects( $this->never() )
+			->method( 'getReplicaDatabase' );
+
+		$address = $this->tempUserIPLookup->getAddressForRevision( $revision );
+
+		$this->assertSame( $user->getName(), $address );
+	}
+
+	public function testGetAddressForRevisionShouldHandleTemporaryUserIfCheckUserDisabled(): void {
+		$user = new UserIdentityValue( 1, '~2024-8' );
+
+		$revision = $this->createMock( RevisionRecord::class );
+		$revision->method( 'getUser' )
+			->with( $revision::RAW )
+			->willReturn( $user );
+
+		$this->userIdentityUtils->method( 'isNamed' )
+			->with( $user )
+			->willReturn( false );
+		$this->userIdentityUtils->method( 'isTemp' )
+			->with( $user )
+			->willReturn( true );
+
+		$this->extensionRegistry->method( 'isLoaded' )
+			->with( 'CheckUser' )
+			->willReturn( false );
+
+		$this->connectionProvider->expects( $this->never() )
+			->method( 'getReplicaDatabase' );
+
+		$address = $this->tempUserIPLookup->getAddressForRevision( $revision );
+
+		$this->assertNull( $address );
+	}
+
+	public function testGetAddressForLogEntryShouldRejectNamedUser(): void {
+		$this->expectException( ParameterAssertionException::class );
+		$this->expectExceptionMessage(
+			'Bad value for parameter $logEntry: performer must be an anonymous or temporary user'
+		);
+
+		$user = new UserIdentityValue( 1, 'TestUser' );
+
+		$logEntry = $this->createMock( DatabaseLogEntry::class );
+		$logEntry->method( 'getPerformerIdentity' )
+			->willReturn( $user );
+
+		$this->userIdentityUtils->method( 'isNamed' )
+			->with( $user )
+			->willReturn( true );
+
+		$this->extensionRegistry->expects( $this->never() )
+			->method( 'isLoaded' );
+
+		$this->connectionProvider->expects( $this->never() )
+			->method( 'getReplicaDatabase' );
+
+		$this->tempUserIPLookup->getAddressForLogEntry( $logEntry );
+	}
+
+	public function testGetAddressForLogEntryShouldHandleAnonymousUser(): void {
+		$user = new UserIdentityValue( 0, '127.0.0.1' );
+
+		$logEntry = $this->createMock( DatabaseLogEntry::class );
+		$logEntry->method( 'getPerformerIdentity' )
+			->willReturn( $user );
+
+		$this->userIdentityUtils->method( 'isNamed' )
+			->with( $user )
+			->willReturn( false );
+		$this->userIdentityUtils->method( 'isTemp' )
+			->with( $user )
+			->willReturn( false );
+
+		$this->extensionRegistry->expects( $this->never() )
+			->method( 'isLoaded' );
+
+		$this->connectionProvider->expects( $this->never() )
+			->method( 'getReplicaDatabase' );
+
+		$address = $this->tempUserIPLookup->getAddressForLogEntry( $logEntry );
+
+		$this->assertSame( $user->getName(), $address );
+	}
+
+	public function testGetAddressForLogEntryShouldHandleTemporaryUserIfCheckUserDisabled(): void {
+		$user = new UserIdentityValue( 1, '~2024-8' );
+
+		$logEntry = $this->createMock( DatabaseLogEntry::class );
+		$logEntry->method( 'getPerformerIdentity' )
+			->willReturn( $user );
+
+		$this->userIdentityUtils->method( 'isNamed' )
+			->with( $user )
+			->willReturn( false );
+		$this->userIdentityUtils->method( 'isTemp' )
+			->with( $user )
+			->willReturn( true );
+
+		$this->extensionRegistry->method( 'isLoaded' )
+			->with( 'CheckUser' )
+			->willReturn( false );
+
+		$this->connectionProvider->expects( $this->never() )
+			->method( 'getReplicaDatabase' );
+
+		$address = $this->tempUserIPLookup->getAddressForLogEntry( $logEntry );
+
+		$this->assertNull( $address );
 	}
 }

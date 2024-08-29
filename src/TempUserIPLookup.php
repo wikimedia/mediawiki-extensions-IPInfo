@@ -1,11 +1,14 @@
 <?php
 namespace MediaWiki\IPInfo;
 
+use DatabaseLogEntry;
 use ExtensionRegistry;
 use MapCacheLRU;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
 use Wikimedia\Assert\Assert;
+use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
@@ -106,6 +109,84 @@ class TempUserIPLookup {
 		$this->recentAddressCache->set( $user->getName(), $address );
 
 		return $address;
+	}
+
+	/**
+	 * Get the IP address used by the author of the given revision while creating the revision.
+	 *
+	 * @param RevisionRecord $revision
+	 * @return string|null The IP address used by the author in human-readable form,
+	 *  or `null` if this data is not available.
+	 */
+	public function getAddressForRevision( RevisionRecord $revision ): ?string {
+		$performer = $revision->getUser( $revision::RAW );
+		Assert::parameter(
+			!$this->userIdentityUtils->isNamed( $performer ),
+			'$revision',
+			'must be authored by an anonymous or temporary user'
+		);
+
+		// Anonymous users are identified by their own IP address, so simply return that.
+		if ( !$this->userIdentityUtils->isTemp( $performer ) ) {
+			return $performer->getName();
+		}
+
+		if ( !$this->extensionRegistry->isLoaded( 'CheckUser' ) ) {
+			return null;
+		}
+
+		$dbr = $this->connectionProvider->getReplicaDatabase();
+		$ip = $dbr->newSelectQueryBuilder()
+			->select( 'cuc_ip_hex' )
+			->from( 'cu_changes' )
+			->join( 'actor', null, 'cuc_actor=actor_id' )
+			->where( [
+				'actor_name' => $performer->getName(),
+				'cuc_this_oldid' => $revision->getId(),
+			] )
+			->caller( __METHOD__ )
+			->fetchField();
+
+		return $ip ? IPUtils::formatHex( $ip ) : null;
+	}
+
+	/**
+	 * Get the IP address used by the performer of the given log entry when the log entry was created.
+	 *
+	 * @param DatabaseLogEntry $logEntry
+	 * @return string|null The IP address used by the performer in human-readable form,
+	 * or `null` if this data is not available.
+	 */
+	public function getAddressForLogEntry( DatabaseLogEntry $logEntry ): ?string {
+		$performer = $logEntry->getPerformerIdentity();
+		Assert::parameter(
+			!$this->userIdentityUtils->isNamed( $performer ),
+			'$logEntry',
+			'performer must be an anonymous or temporary user'
+		);
+
+		// Anonymous users are identified by their own IP address, so simply return that.
+		if ( !$this->userIdentityUtils->isTemp( $performer ) ) {
+			return $performer->getName();
+		}
+
+		if ( !$this->extensionRegistry->isLoaded( 'CheckUser' ) ) {
+			return null;
+		}
+
+		$dbr = $this->connectionProvider->getReplicaDatabase();
+		$ip = $dbr->newSelectQueryBuilder()
+			->select( 'cule_ip_hex' )
+			->from( 'cu_log_event' )
+			->join( 'actor', null, 'cule_actor=actor_id' )
+			->where( [
+				'actor_name' => $performer->getName(),
+				'cule_log_id' => $logEntry->getId(),
+			] )
+			->caller( __METHOD__ )
+			->fetchField();
+
+		return $ip ? IPUtils::formatHex( $ip ) : null;
 	}
 
 	/**
