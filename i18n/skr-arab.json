@@ -16,6 +16,7 @@
 	"ipinfo-property-value-connectiontype-mobile": "موبائل",
 	"ipinfo-property-value-connectiontype-unknown": "نامعلوم",
 	"ipinfo-property-label-source": "ماخذ",
+	"ipinfo-property-label-number-of-ips": "آئی پی آں دی تعداد",
 	"ipinfo-active-blocks-url-text": "لاگز",
 	"ipinfo-property-no-data": "دستیاب کائنی",
 	"prefs-ipinfo": "آئی پی معلومات"

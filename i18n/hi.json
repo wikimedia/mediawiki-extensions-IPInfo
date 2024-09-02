@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Abijeet Patro",
+			"AnupamM",
 			"Roovinn",
 			"Saurmandal"
 		]
@@ -13,6 +14,7 @@
 	"ipinfo-property-value-usertype-school": "विद्यालय",
 	"ipinfo-property-value-connectiontype-desktop": "डेस्कटॉप",
 	"ipinfo-property-value-connectiontype-unknown": "अज्ञात",
+	"ipinfo-property-label-number-of-ips": "आईपी की संख्या",
 	"ipinfo-active-blocks-url-text": "लॉग",
 	"ipinfo-property-label-edits": "योगदान",
 	"ipinfo-beta-feature-title": "IP जानकारी",

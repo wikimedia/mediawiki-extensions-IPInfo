@@ -55,6 +55,7 @@
 	"ipinfo-property-value-connectiontype-unknown": "Непознато",
 	"ipinfo-property-label-source": "Извор",
 	"ipinfo-property-label-active-blocks": "Активне блокаде:",
+	"ipinfo-property-label-number-of-ips": "Број IP адреса",
 	"ipinfo-property-tooltip-proxytypes": "Посредници (проксији) сакривају IP адресе. У неким случајевима се то аутоматски догађа, као код стамбених или корпоративних проксија, док се у другим случајевима то намерно чини ради прикривања порекла IP адресе.",
 	"ipinfo-property-tooltip-connectiontype": "Технологија помоћу које се корисник повезује на интернет.",
 	"ipinfo-property-tooltip-usertype": "Врста ентитета који поседује интернет везу.",
