@@ -2,10 +2,10 @@
 
 namespace MediaWiki\IPInfo\Test\Integration;
 
-use FauxRequest;
 use ManualLogEntry;
 use MediaWiki\IPInfo\TempUserIPLookup;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentity;
