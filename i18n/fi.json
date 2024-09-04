@@ -74,6 +74,7 @@
 	"ipinfo-rest-access-denied": "Sinulla ei ole oikeutta suorittaa toimintoa",
 	"ipinfo-rest-access-denied-blocked-user": "Sinulla ei ole lupaa suorittaa toimintoa, koska tilisi on estetty.",
 	"ipinfo-rest-revision-no-author": "Käyttäjätililläsi ei ole oikeutta tarkastella version kirjoittajaa",
+	"ipinfo-rest-revision-invalid-ip": "Ei-IP-käyttäjästä ei voi hakea IP-tietoja",
 	"ipinfo-rest-revision-registered": "Rekisteröityjen käyttäjien tekemistä versioista ei voida hakea IP-tietoja",
 	"ipinfo-rest-log-nonexistent": "Lokimerkintää ei ole olemassa",
 	"ipinfo-rest-log-registered": "Rekisteröityjen käyttäjien logeista ei voida hakea IP-tietoja",
@@ -97,10 +98,13 @@
 	"ipinfo-log-header": "Tämä on loki:\n# IP-tietotyökalun käytöstä IP-tietojen katsomiseen; ja\n# Muutoksista käyttäjien käyttöoikeustasoihin kyseiseen työkaluun.",
 	"ipinfo-log-access-level-ipinfo-view-basic": "Rajoitettu pääsy",
 	"ipinfo-log-access-level-ipinfo-view-full": "Täysi pääsy",
+	"logentry-ipinfo-view_infobox": "$1 {{GENDER:$2|katsoi}} IP-tietolaatikon käyttäjästä $3. $4.",
+	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|katsoi}} IP-tietoponnahdusikkunan käyttäjästä $3. $4.",
 	"ipinfo-change-access-level-enable": "{{GENDER:$1|otti käyttöön}}",
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|poisti käytöstä}}",
-	"logentry-ipinfo-change_access": "$1 $4 IP-tietoon pääsyn",
+	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|IP-tietoihin pääsyn}}",
 	"ipinfo-property-tooltip-asn": "Yksilöllinen tunniste, joita osoitetaan alueille ja edelleen organisaatioille, kuten hallituksille ja internet-palveluntarjoajille.",
 	"ipinfo-blocklist-url-text": "Lista estoista",
+	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 poistettu muokkaus|$1 poistettua muokkausta|0=Ei poistettuja muokkauksia}}",
 	"ipinfo-deleted-edits-url-text": "Poistetut muokkaukset"
 }
