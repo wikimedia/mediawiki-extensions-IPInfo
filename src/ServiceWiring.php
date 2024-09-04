@@ -80,7 +80,8 @@ return [
 		return new TempUserIPLookup(
 			$services->getConnectionProvider(),
 			$services->getUserIdentityUtils(),
-			ExtensionRegistry::getInstance()
+			ExtensionRegistry::getInstance(),
+			LoggerFactory::getInstance( 'IPInfo' )
 		);
 	},
 	'ReaderFactory' => static function (): ReaderFactory {
