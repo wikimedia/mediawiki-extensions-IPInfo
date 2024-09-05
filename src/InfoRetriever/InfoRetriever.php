@@ -17,7 +17,6 @@ interface InfoRetriever {
 
 	/**
 	 * Retrieve info about an anonymous user or temporary user account.
-	 * TODO: Temporary user handling is yet to be implemented (T349716))
 	 *
 	 * @param UserIdentity $user
 	 * @return mixed
