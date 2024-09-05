@@ -8,7 +8,7 @@ use MediaWiki\User\UserIdentity;
 /**
  * Retrieves the number of unique IP addresses used by a temporary user account.
  */
-class IPCountInfoRetriever implements InfoRetriever {
+class IPCountInfoRetriever extends BaseInfoRetriever {
 
 	private TempUserIPLookup $tempUserIPLookup;
 

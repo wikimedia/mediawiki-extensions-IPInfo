@@ -7,7 +7,7 @@ use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IConnectionProvider;
 
-class ContributionInfoRetriever implements InfoRetriever {
+class ContributionInfoRetriever extends BaseInfoRetriever {
 	private IConnectionProvider $dbProvider;
 	private ActorNormalization $actorNormalization;
 

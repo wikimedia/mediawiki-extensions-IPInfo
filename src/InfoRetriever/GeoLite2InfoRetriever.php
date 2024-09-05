@@ -13,7 +13,7 @@ use MediaWiki\User\UserIdentity;
 /**
  * Manager for getting information from the MaxMind GeoLite2 databases.
  */
-class GeoLite2InfoRetriever implements InfoRetriever {
+class GeoLite2InfoRetriever extends BaseInfoRetriever {
 	/**
 	 * @internal For use by ServiceWiring
 	 */

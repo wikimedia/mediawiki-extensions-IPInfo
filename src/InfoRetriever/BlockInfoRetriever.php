@@ -8,7 +8,7 @@ use MediaWiki\IPInfo\Info\BlockInfo;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
 
-class BlockInfoRetriever implements InfoRetriever {
+class BlockInfoRetriever extends BaseInfoRetriever {
 	private BlockManager $blockManager;
 	private UserIdentityUtils $userIdentityUtils;
 

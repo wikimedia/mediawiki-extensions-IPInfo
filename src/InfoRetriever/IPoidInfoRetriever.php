@@ -12,7 +12,7 @@ use Wikimedia\IPUtils;
 /**
  * Manager for getting information from the iPoid service.
  */
-class IPoidInfoRetriever implements InfoRetriever {
+class IPoidInfoRetriever extends BaseInfoRetriever {
 	/**
 	 * @internal For use by ServiceWiring
 	 */

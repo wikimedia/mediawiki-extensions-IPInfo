@@ -16,7 +16,7 @@ use MediaWiki\User\UserIdentity;
 /**
  * Manager for getting information from the MaxMind GeoIp2 Enterprise database.
  */
-class GeoIp2EnterpriseInfoRetriever implements InfoRetriever {
+class GeoIp2EnterpriseInfoRetriever extends BaseInfoRetriever {
 	/**
 	 * @internal For use by ServiceWiring
 	 */
