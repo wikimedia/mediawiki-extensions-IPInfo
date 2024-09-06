@@ -20,6 +20,8 @@ class IPoidInfoRetriever extends BaseInfoRetriever {
 		'IPInfoIpoidUrl',
 	];
 
+	public const NAME = 'ipinfo-source-ipoid';
+
 	private ServiceOptions $options;
 
 	private HttpRequestFactory $httpRequestFactory;
@@ -39,7 +41,7 @@ class IPoidInfoRetriever extends BaseInfoRetriever {
 
 	/** @inheritDoc */
 	public function getName(): string {
-		return 'ipinfo-source-ipoid';
+		return self::NAME;
 	}
 
 	/**

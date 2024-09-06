@@ -10,6 +10,8 @@ use MediaWiki\User\UserIdentity;
  */
 class IPCountInfoRetriever extends BaseInfoRetriever {
 
+	public const NAME = 'ipinfo-source-ip-count';
+
 	private TempUserIPLookup $tempUserIPLookup;
 
 	public function __construct( TempUserIPLookup $tempUserIPLookup ) {
@@ -17,7 +19,7 @@ class IPCountInfoRetriever extends BaseInfoRetriever {
 	}
 
 	public function getName(): string {
-		return 'ipinfo-source-ip-count';
+		return self::NAME;
 	}
 
 	public function retrieveFor( UserIdentity $user, ?string $ip ): IPCountInfo {

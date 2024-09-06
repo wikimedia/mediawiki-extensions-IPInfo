@@ -20,6 +20,7 @@ class GeoLite2InfoRetriever extends BaseInfoRetriever {
 	public const CONSTRUCTOR_OPTIONS = [
 		'IPInfoGeoLite2Prefix',
 	];
+	public const NAME = 'ipinfo-source-geoip2';
 
 	private ServiceOptions $options;
 
@@ -36,7 +37,7 @@ class GeoLite2InfoRetriever extends BaseInfoRetriever {
 
 	/** @inheritDoc */
 	public function getName(): string {
-		return 'ipinfo-source-geoip2';
+		return self::NAME;
 	}
 
 	/**
