@@ -58,6 +58,7 @@
 	"ipinfo-property-value-connectiontype-unknown": "অজানা",
 	"ipinfo-property-label-source": "উৎস",
 	"ipinfo-property-label-active-blocks": "সক্রিয় বাধা",
+	"ipinfo-property-label-number-of-ips": "আইপির সংখ্যা",
 	"ipinfo-property-tooltip-proxytypes": "প্রক্সি আইপি ঠিকানাকে লুকিয়ে রাখে। কিছু ক্ষেত্রে, যেমন আবাসিক বা কর্পোরেট প্রক্সির ক্ষেত্রে এটি স্বয়ংক্রিয়ভাবে ঘটে, অন্য ক্ষেত্রে এটি আইপি ঠিকানার উৎস লুকিয়ে রাখার জন্য ইচ্ছাকৃতভাবে করা হয়।",
 	"ipinfo-property-tooltip-connectiontype": "যে প্রযুক্তির মাধ্যমে তারা ইন্টারনেটের সঙ্গে যুক্ত হচ্ছে।",
 	"ipinfo-property-tooltip-usertype": "যে ধরনের সত্তা ইন্টারনেট সংযোগের মালিক।",
