@@ -29,6 +29,23 @@ class IPInfoLogFormatterTest extends LogFormatterTestCase {
 					],
 				],
 			],
+			'View infobox for temp user, full access' => [
+				'row' => [
+					'type' => 'ipinfo',
+					'action' => Logger::ACTION_VIEW_INFOBOX,
+					'user_text' => 'Sysop',
+					'title' => '~2024-8',
+					'params' => [
+						'4::level' => DefaultPresenter::IPINFO_VIEW_FULL_RIGHT,
+					],
+				],
+				'extra' => [
+					'text' => 'Sysop viewed IP Information infobox for ~2024-8. Full access.',
+					'api' => [
+						'level' => DefaultPresenter::IPINFO_VIEW_FULL_RIGHT,
+					],
+				],
+			],
 			'View popup, basic access' => [
 				'row' => [
 					'type' => 'ipinfo',
