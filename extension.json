@@ -292,10 +292,7 @@
 	},
 	"LogActionsHandlers": {
 		"ipinfo/*": {
-			"class": "MediaWiki\\IPInfo\\Logging\\IPInfoLogFormatter",
-			"services": [
-				"UserFactory"
-			]
+			"class": "MediaWiki\\IPInfo\\Logging\\IPInfoLogFormatter"
 		}
 	},
 	"LogRestrictions": {

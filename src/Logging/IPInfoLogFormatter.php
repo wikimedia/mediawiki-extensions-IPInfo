@@ -2,23 +2,11 @@
 
 namespace MediaWiki\IPInfo\Logging;
 
-use LogEntry;
 use LogFormatter;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Message\Message;
-use MediaWiki\User\UserFactory;
 
 class IPInfoLogFormatter extends LogFormatter {
-
-	private UserFactory $userFactory;
-
-	public function __construct(
-		LogEntry $entry,
-		UserFactory $userFactory
-	) {
-		parent::__construct( $entry );
-		$this->userFactory = $userFactory;
-	}
 
 	/** @inheritDoc */
 	protected function getMessageParameters() {
@@ -36,11 +24,11 @@ class IPInfoLogFormatter extends LogFormatter {
 			$this->entry->getSubtype() === 'view_infobox' ||
 			$this->entry->getSubtype() === 'view_popup'
 		) {
-			// Replace an IP user page link with IP contributions page link.
+			// Generate an appropriate user page or contributions page link.
 			// Don't use the LogFormatter::makeUserLink function, because that adds tools links.
-			$ip = $this->entry->getTarget()->getText();
+			$targetName = $this->entry->getTarget()->getText();
 			$params[2] = Message::rawParam(
-				Linker::userLink( 0, $this->userFactory->newAnonymous( $ip ) )
+				Linker::userLink( 0, $targetName )
 			);
 
 			// Replace access level parameter with the message.
