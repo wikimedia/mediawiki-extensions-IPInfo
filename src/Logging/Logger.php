@@ -16,12 +16,12 @@ use Wikimedia\Rdbms\LikeValue;
 /**
  * Defines the API for the component responsible for logging the following interactions:
  *
- * 1. A user views information about an IP via the infobox
- * 2. A user views information about an IP via the popup
+ * 1. A user views information about a target user via the infobox
+ * 2. A user views information about a target user via the popup
  * 3. A user enables IP Info (via Special:Preferences)
  * 4. A user disables IP Info
  *
- * 1 and 2 are debounced. By default, if the same user views information about the same IP via the
+ * 1 and 2 are debounced. By default, if the same user views information about the same target via the
  * same treatment within 24 hours, then only one such action should be logged.
  *
  * All the above interactions will be logged to the `logging` table with a log type `ipinfo`.
@@ -89,35 +89,40 @@ class Logger {
 	}
 
 	/**
-	 * Logs the user (the performer) viewing information about an IP via the infobox.
+	 * Logs the user (the performer) viewing information about a target user via the infobox.
 	 *
 	 * @param UserIdentity $performer
-	 * @param string $ip
+	 * @param string $targetName
 	 * @param int $timestamp
 	 * @param string|null $level
 	 */
-	public function logViewInfobox( UserIdentity $performer, string $ip, int $timestamp, ?string $level ): void {
+	public function logViewInfobox(
+		UserIdentity $performer,
+		string $targetName,
+		int $timestamp,
+		?string $level
+	): void {
 		if ( !$level ) {
 			return;
 		}
 		$params = [ '4::level' => $level ];
-		$this->debouncedLog( $performer, $ip, self::ACTION_VIEW_INFOBOX, $timestamp, $params );
+		$this->debouncedLog( $performer, $targetName, self::ACTION_VIEW_INFOBOX, $timestamp, $params );
 	}
 
 	/**
-	 * Logs the user (the performer) viewing information about an IP via the popup.
+	 * Logs the user (the performer) viewing information about a target user via the popup.
 	 *
 	 * @param UserIdentity $performer
-	 * @param string $ip
+	 * @param string $targetName
 	 * @param int $timestamp
 	 * @param string|null $level
 	 */
-	public function logViewPopup( UserIdentity $performer, string $ip, int $timestamp, ?string $level ): void {
+	public function logViewPopup( UserIdentity $performer, string $targetName, int $timestamp, ?string $level ): void {
 		if ( !$level ) {
 			return;
 		}
 		$params = [ '4::level' => $level ];
-		$this->debouncedLog( $performer, $ip, self::ACTION_VIEW_POPUP, $timestamp, $params );
+		$this->debouncedLog( $performer, $targetName, self::ACTION_VIEW_POPUP, $timestamp, $params );
 	}
 
 	/**
@@ -146,7 +151,7 @@ class Logger {
 
 	/**
 	 * @param UserIdentity $performer
-	 * @param string $ip
+	 * @param string $targetName
 	 * @param string $action Either `Logger::ACTION_VIEW_INFOBOX` or
 	 *  `Logger::ACTION_VIEW_POPUP`
 	 * @param int $timestamp
@@ -154,16 +159,19 @@ class Logger {
 	 */
 	private function debouncedLog(
 		UserIdentity $performer,
-		string $ip,
+		string $targetName,
 		string $action,
 		int $timestamp,
 		array $params
 	): void {
 		$timestampMinusDelay = $timestamp - $this->delay;
-		$ip = IPUtils::sanitizeIP( $ip );
+
+		// Normalize the target name for display in case it is an anonymous IP address.
+		// This is a no-op if the target is not an IP address.
+		$targetName = IPUtils::sanitizeIP( $targetName );
 		$actorId = $this->actorStore->findActorId( $performer, $this->dbw );
 		if ( !$actorId ) {
-			$this->log( $performer, $ip, $action, $params );
+			$this->log( $performer, $targetName, $action, $params );
 			return;
 		}
 
@@ -175,7 +183,7 @@ class Logger {
 				'log_action' => $action,
 				'log_actor' => $actorId,
 				'log_namespace' => NS_USER,
-				'log_title' => $ip,
+				'log_title' => $targetName,
 				$this->dbw->expr( 'log_timestamp', '>', $this->dbw->timestamp( $timestampMinusDelay ) ),
 				$this->dbw->expr( 'log_params', IExpression::LIKE, new LikeValue(
 					$this->dbw->anyString(),
@@ -187,20 +195,20 @@ class Logger {
 			->fetchRow();
 
 		if ( !$logLine ) {
-			$this->log( $performer, $ip, $action, $params, $timestamp );
+			$this->log( $performer, $targetName, $action, $params, $timestamp );
 		}
 	}
 
 	private function log(
 		UserIdentity $performer,
-		string $ip,
+		string $targetName,
 		string $action,
 		array $params,
 		?int $timestamp = null
 	): void {
 		$logEntry = $this->createManualLogEntry( $action );
 		$logEntry->setPerformer( $performer );
-		$logEntry->setTarget( Title::makeTitle( NS_USER, $ip ) );
+		$logEntry->setTarget( Title::makeTitle( NS_USER, $targetName ) );
 		$logEntry->setParameters( $params );
 
 		if ( $timestamp ) {

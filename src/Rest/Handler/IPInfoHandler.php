@@ -4,9 +4,9 @@ namespace MediaWiki\IPInfo\Rest\Handler;
 
 use ExtensionRegistry;
 use JobQueueGroup;
-use JobSpecification;
 use MediaWiki\IPInfo\AccessLevelTrait;
 use MediaWiki\IPInfo\InfoManager;
+use MediaWiki\IPInfo\Jobs\LogIPInfoAccessJob;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\IPInfo\TempUserIPLookup;
 use MediaWiki\Languages\LanguageFallback;
@@ -206,26 +206,15 @@ abstract class IPInfoHandler extends SimpleHandler {
 	 * Log that the IP information was accessed. See also LogIPInfoAccessJob.
 	 *
 	 * @param UserIdentity $accessingUser
-	 * @param string $ip IP address whose information was accessed
+	 * @param string $targetName Name of the user whose information was accessed
 	 * @param string $dataContext 'infobox' or 'popup'
 	 */
-	protected function logAccess( $accessingUser, $ip, $dataContext ): void {
+	protected function logAccess( $accessingUser, $targetName, $dataContext ): void {
 		$level = $this->highestAccessLevel(
 			$this->permissionManager->getUserPermissions( $accessingUser )
 		);
 		$this->jobQueueGroup->push(
-			new JobSpecification(
-				'ipinfoLogIPInfoAccess',
-				[
-					'performer' => $accessingUser->getName(),
-					'ip' => $ip,
-					'dataContext' => $dataContext,
-					'timestamp' => (int)wfTimestamp(),
-					'access_level' => $level,
-				],
-				[],
-				null
-			)
+			LogIPInfoAccessJob::newSpecification( $accessingUser, $targetName, $dataContext, $level )
 		);
 	}
 

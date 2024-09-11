@@ -4,7 +4,9 @@ namespace MediaWiki\IPInfo\Test\Integration\Jobs;
 
 use MediaWiki\IPInfo\Jobs\LogIPInfoAccessJob;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @group IPInfo
@@ -14,6 +16,32 @@ use MediaWikiIntegrationTestCase;
 class LogIPInfoAccessJobTest extends MediaWikiIntegrationTestCase {
 	public static function provideDataContext() {
 		return [ [ 'infobox' ], [ 'popup' ] ];
+	}
+
+	public function testNewSpecification(): void {
+		$mockTs = (int)wfTimestamp();
+		ConvertibleTimestamp::setFakeTime( $mockTs );
+
+		$accessingUser = new UserIdentityValue( 1, 'TestUser' );
+		$spec = LogIPInfoAccessJob::newSpecification(
+			$accessingUser,
+			'~2024-8',
+			'popup',
+			DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT
+		);
+
+		$this->assertSame( LogIPInfoAccessJob::JOB_TYPE, $spec->getType() );
+		$this->assertSame(
+			[
+				'requestId' => '',
+				'performer' => $accessingUser->getName(),
+				'targetName' => '~2024-8',
+				'dataContext' => 'popup',
+				'timestamp' => $mockTs,
+				'access_level' => DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT
+			],
+			[ 'requestId' => '' ] + $spec->getParams()
+		);
 	}
 
 	/**
