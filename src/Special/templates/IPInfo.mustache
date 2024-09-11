@@ -1,0 +1,90 @@
+<div class="cdx-table ext-ipinfo-special-ipinfo__wrapper">
+	<div class="cdx-table__header">
+		<div class="cdx-table__header__caption" aria-hidden="true">
+			{{caption}}
+		</div>
+	</div>
+	<div class="cdx-table__table-wrapper">
+		<table class="cdx-table__table cdx-table__table--borders-vertical ext-ipinfo-special-ipinfo__table">
+			<caption>
+				{{caption}}
+				{{sortExplainerCaption}}
+			</caption>
+			<thead>
+				<tr>
+					{{#headers}}
+						{{#sortable}}
+							<th class="cdx-table__table__cell--has-sort"{{#ariaSort}} aria-sort="{{.}}"{{/ariaSort}} scope="col">
+								<form action="" method="get">
+									<input type="hidden" name="wpTarget" value="{{target}}" />
+									<input type="hidden" name="wpSortDirection" value="{{nextSortDirection}}" />
+									<input type="hidden" name="wpSortField" value="{{name}}" />
+									<button aria-selected="false" class="cdx-table__table__sort-button">
+										<span class="cdx-table__table__sort-label">{{title}}</span>
+										<span class="{{sortIconClass}}" aria-hidden="true"></span>
+									</button>
+								</form>
+							</th>
+						{{/sortable}}
+						{{^sortable}}
+							<th scope="col">
+								<span class="cdx-table__th-content">{{title}}</span>
+							</th>
+						{{/sortable}}
+					{{/headers}}
+				</tr>
+			</thead>
+			<tbody>
+			{{#rows}}
+				<tr>
+					<td {{#revId}} data-mw-revid="{{.}}"{{/revId}}{{#logId}} data-mw-logid="{{.}}"{{/logId}}>
+						{{! Use an invisible user link to trigger CheckUser's IP reveal functionality. }}
+						<a class="mw-tempuserlink" aria-hidden="true">{{target}}</a>
+					</td>
+					<td>{{location}}</td>
+					<td>{{isp}}</td>
+					<td>{{asn}}</td>
+					<td>{{organization}}</td>
+					<td>{{ipversion}}</td>
+					<td>
+						<ul class="ext-ipinfo-special-ipinfo__value-list">
+						{{#behaviors}}
+							<li>{{.}}</li>
+						{{/behaviors}}
+						</ul>
+					</td>
+					<td>
+						<ul class="ext-ipinfo-special-ipinfo__value-list">
+							{{#risks}}
+								<li>{{.}}</li>
+							{{/risks}}
+						</ul>
+					</td>
+					<td>
+						<ul class="ext-ipinfo-special-ipinfo__value-list">
+							{{#connectiontypes}}
+								<li>{{.}}</li>
+							{{/connectiontypes}}
+						</ul>
+					</td>
+					<td>
+						<ul class="ext-ipinfo-special-ipinfo__value-list">
+							{{#tunneloperators}}
+								<li>{{.}}</li>
+							{{/tunneloperators}}
+						</ul>
+					</td>
+					<td>
+						<ul class="ext-ipinfo-special-ipinfo__value-list">
+							{{#proxies}}
+								<li>{{.}}</li>
+							{{/proxies}}
+						</ul>
+					</td>
+					<td>{{usercount}}</td>
+				</tr>
+			{{/rows}}
+			</tbody>
+		</table>
+	</div>
+</div>

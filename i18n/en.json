@@ -132,6 +132,12 @@
 	"ipinfo-property-tooltip-asn": "A unique identifier for networks assigned to a region and further to organizations like governments and ISPs",
 	"ipinfo-blocklist-url-text": "Block list",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 deleted edit|$1 deleted edits|0=No deleted edits}}",
-	"ipinfo-deleted-edits-url-text": "Deleted contributions"
-
+	"ipinfo-special-ipinfo": "IP information",
+	"ipinfo-special-ipinfo-form-text": "Look up IP information about all IP addresses used by a temporary user.",
+	"ipinfo-deleted-edits-url-text": "Deleted contributions",
+	"ipinfo-special-ipinfo-table-caption": "IP information for $1",
+	"ipinfo-special-ipinfo-target": "Target username:",
+	"ipinfo-special-ipinfo-user-tool-links": "For $1",
+	"ipinfo-special-ipinfo-sort-explainer": "The buttons in the table headers can be used to sort the table by that column's value.",
+	"ipinfo-special-ipinfo-column-ip": "IP"
 }

@@ -14,6 +14,9 @@
 			"i18n"
 		]
 	},
+	"ExtensionMessagesFiles": {
+		"IPInfoAliases": "IPInfo.alias.php"
+	},
 	"type": "other",
 	"AutoloadNamespaces": {
 		"MediaWiki\\IPInfo\\": "src/"
@@ -103,7 +106,8 @@
 		"GetBetaFeaturePreferences": "betaFeature",
 		"SaveUserOptions": "preferences",
 		"LoadExtensionSchemaUpdates": "schema",
-		"SpecialPageBeforeExecute": "infobox"
+		"SpecialPageBeforeExecute": "infobox",
+		"SpecialPage_initList": "special-page"
 	},
 	"HookHandlers": {
 		"popup": {
@@ -138,6 +142,12 @@
 		},
 		"schema": {
 			"class": "MediaWiki\\IPInfo\\HookHandler\\SchemaHandler"
+		},
+		"special-page": {
+			"class": "MediaWiki\\IPInfo\\HookHandler\\SpecialPageInitListHandler",
+			"services": [
+				"TempUserConfig"
+			]
 		}
 	},
 	"JobClasses": {
@@ -267,6 +277,11 @@
 			"localBasePath": "modules/ext.ipInfo.styles",
 			"remoteExtPath": "IPInfo/modules/ext.ipInfo.styles",
 			"styles": "init.less"
+		},
+		"ext.ipInfo.specialIpInfo": {
+			"localBasePath": "modules/ext.ipInfo.specialIpInfo",
+			"remoteExtPath": "IPInfo/modules/ext.ipInfo.specialIpInfo",
+			"styles": "SpecialIPInfo.less"
 		}
 	},
 	"config": {
