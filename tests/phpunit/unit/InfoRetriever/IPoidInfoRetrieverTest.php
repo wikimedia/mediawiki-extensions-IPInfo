@@ -4,6 +4,7 @@ namespace MediaWiki\IPInfo\Test\Unit\InfoRetriever;
 
 use LoggedServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\IPInfo\Info\IPoidInfo;
 use MediaWiki\IPInfo\InfoRetriever\IPoidInfoRetriever;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
@@ -120,5 +121,51 @@ class IPoidInfoRetrieverTest extends MediaWikiUnitTestCase {
 			new UserIdentityValue( 4, '~2024-8' ),
 			'2001:0db8:0000:0000:0000:8a2e:0370:7334'
 		];
+	}
+
+	public function testRetrieveBatch(): void {
+		$user = new UserIdentityValue( 4, '~2024-8' );
+		$ips = [ '1.1.1.1', '2.2.2.2', '3.3.3.3', '4.4.4.4' ];
+
+		$infoRetriever = $this->createIPoidInfoRetriever(
+			$this->makeMockHttpRequestFactory(
+				$this->makeFakeHttpMultiClient( [
+					"{\"1.1.1.1\":{\"ip\":\"1.1.1.1\"," .
+					"\"org\":\"Organization 1\"," .
+					"\"client_count\":10,\"types\":[\"UNKNOWN\"],\"conc_city\":\"\"," .
+					"\"conc_state\":\"\",\"conc_country\":\"\",\"countries\":0," .
+					"\"location_country\":\"VN\",\"risks\":[]," .
+					"\"last_updated\":1704295688,\"proxies\":[\"3_PROXY\",\"1_PROXY\"]," .
+					"\"behaviors\":[],\"tunnels\":[]}}",
+					// no data
+					[ 'code' => 404 ],
+					// mismatched data
+					"{\"5.5.5.5\":{\"ip\":\"5.5.5.5\"," .
+					"\"org\":\"Organization 1\"," .
+					"\"client_count\":10,\"types\":[\"UNKNOWN\"],\"conc_city\":\"\"," .
+					"\"conc_state\":\"\",\"conc_country\":\"\",\"countries\":0," .
+					"\"location_country\":\"VN\",\"risks\":[]," .
+					"\"last_updated\":1704295688,\"proxies\":[\"2_PROXY\",\"5_PROXY\"]," .
+					"\"behaviors\":[],\"tunnels\":[]}}",
+					"{\"4.4.4.4\":{\"ip\":\"4.4.4.4\"," .
+					"\"org\":\"Organization 2\"," .
+					"\"client_count\":10,\"types\":[\"UNKNOWN\"],\"conc_city\":\"\"," .
+					"\"conc_state\":\"\",\"conc_country\":\"\",\"countries\":0," .
+					"\"location_country\":\"US\",\"risks\":[]," .
+					"\"last_updated\":1704295688,\"proxies\":[\"4_PROXY\",\"3_PROXY\"]," .
+					"\"behaviors\":[],\"tunnels\":[]}}",
+				] )
+			)
+		);
+
+		$infosByIp = $infoRetriever->retrieveBatch( $user, $ips );
+
+		$this->assertSame( $ips, array_keys( $infosByIp ) );
+		$this->assertContainsOnlyInstancesOf( IPoidInfo::class, $infosByIp );
+
+		$this->assertSame( [ '3_PROXY', '1_PROXY' ], $infosByIp['1.1.1.1']->getProxies() );
+		$this->assertNull( $infosByIp['2.2.2.2']->getProxies() );
+		$this->assertNull( $infosByIp['3.3.3.3']->getProxies() );
+		$this->assertSame( [ '4_PROXY', '3_PROXY' ], $infosByIp['4.4.4.4']->getProxies() );
 	}
 }
