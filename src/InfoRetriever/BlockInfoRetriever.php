@@ -9,6 +9,8 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
 
 class BlockInfoRetriever extends BaseInfoRetriever {
+	public const NAME = 'ipinfo-source-block';
+
 	private BlockManager $blockManager;
 	private UserIdentityUtils $userIdentityUtils;
 
@@ -22,7 +24,7 @@ class BlockInfoRetriever extends BaseInfoRetriever {
 
 	/** @inheritDoc */
 	public function getName(): string {
-		return 'ipinfo-source-block';
+		return self::NAME;
 	}
 
 	/** @inheritDoc */

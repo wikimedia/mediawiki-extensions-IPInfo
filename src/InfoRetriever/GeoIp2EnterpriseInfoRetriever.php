@@ -24,6 +24,8 @@ class GeoIp2EnterpriseInfoRetriever extends BaseInfoRetriever {
 		'IPInfoGeoIP2EnterprisePath',
 	];
 
+	public const NAME = 'ipinfo-source-geoip2';
+
 	private ServiceOptions $options;
 
 	private ReaderFactory $readerFactory;
@@ -39,7 +41,7 @@ class GeoIp2EnterpriseInfoRetriever extends BaseInfoRetriever {
 
 	/** @inheritDoc */
 	public function getName(): string {
-		return 'ipinfo-source-geoip2';
+		return self::NAME;
 	}
 
 	/**

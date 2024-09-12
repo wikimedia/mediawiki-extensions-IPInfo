@@ -73,53 +73,66 @@ class InfoManagerTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	public function testRetrieveBatch(): void {
+	/**
+	 * @dataProvider provideRetrieveBatch
+	 * @param string[]|null $retrieverNames
+	 * @param array $expectedData
+	 */
+	public function testRetrieveBatch(
+		?array $retrieverNames,
+		array $expectedData
+	): void {
 		$user = new UserIdentityValue( 1, '~2024-8' );
 		$ips = [ '1.1.1.1', '2.2.2.2', '3.3.3.3' ];
 
-		$firstRetriever = $this->createMock( InfoRetriever::class );
-		$firstRetriever->method( 'retrieveBatch' )
-			->with( $user, $ips )
-			->willReturn( [
+		$retrieverSetup = [
+			'first-retriever' => [
 				'1.1.1.1' => null,
 				'2.2.2.2' => 'some-data',
 				'3.3.3.3' => 'other-data'
-			] );
-		$firstRetriever->method( 'getName' )
-			->willReturn( 'first-retriever' );
-
-		$secondRetriever = $this->createMock( InfoRetriever::class );
-		$secondRetriever->method( 'retrieveBatch' )
-			->with( $user, $ips )
-			->willReturn( [
+			],
+			'second-retriever' => [
 				'1.1.1.1' => 'second-retriever-data',
 				'2.2.2.2' => null,
 				'3.3.3.3' => 'more-second-retriever-data'
-			] );
-		$secondRetriever->method( 'getName' )
-			->willReturn( 'second-retriever' );
-
-		$thirdRetriever = $this->createMock( InfoRetriever::class );
-		$thirdRetriever->method( 'retrieveBatch' )
-			->with( $user, $ips )
-			->willReturn( [
+			],
+			'third-retriever' => [
 				'1.1.1.1' => 'third-retriever-data',
 				'2.2.2.2' => 'more-third-retriever-data',
 				'3.3.3.3' => 'other-third-retriever-data'
-			] );
+			],
+		];
 
-		$thirdRetriever->method( 'getName' )
-			->willReturn( 'third-retriever' );
+		$retrievers = [];
 
-		$infoManager = new InfoManager( [
-			$firstRetriever,
-			$secondRetriever,
-			$thirdRetriever
-		] );
+		foreach ( $retrieverSetup as $name => $returnValue ) {
+			$retriever = $this->createMock( InfoRetriever::class );
+			$retriever->method( 'getName' )
+				->willReturn( $name );
+
+			if ( $retrieverNames !== null && !in_array( $name, $retrieverNames ) ) {
+				$retriever->expects( $this->never() )
+					->method( 'retrieveBatch' );
+				continue;
+			}
+
+			$retriever->method( 'retrieveBatch' )
+				->with( $user, $ips )
+				->willReturn( $returnValue );
+
+			$retrievers[] = $retriever;
+		}
+
+		$infoManager = new InfoManager( $retrievers );
 
 		$info = $infoManager->retrieveBatch( $user, $ips );
 
-		$this->assertSame(
+		$this->assertSame( $expectedData, $info );
+	}
+
+	public static function provideRetrieveBatch(): iterable {
+		yield 'all supported retrievers included' => [
+			null,
 			[
 				'1.1.1.1' => [
 					'subject' => '~2024-8',
@@ -146,8 +159,34 @@ class InfoManagerTest extends MediaWikiUnitTestCase {
 					]
 				],
 			],
-			$info
-		);
+		];
+
+		yield 'one retriever excluded' => [
+			[ 'first-retriever', 'third-retriever' ],
+			[
+				'1.1.1.1' => [
+					'subject' => '~2024-8',
+					'data' => [
+						'first-retriever' => null,
+						'third-retriever' => 'third-retriever-data',
+					]
+				],
+				'2.2.2.2' => [
+					'subject' => '~2024-8',
+					'data' => [
+						'first-retriever' => 'some-data',
+						'third-retriever' => 'more-third-retriever-data',
+					]
+				],
+				'3.3.3.3' => [
+					'subject' => '~2024-8',
+					'data' => [
+						'first-retriever' => 'other-data',
+						'third-retriever' => 'other-third-retriever-data',
+					]
+				],
+			],
+		];
 	}
 
 }

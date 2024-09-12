@@ -8,6 +8,8 @@ use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 class ContributionInfoRetriever extends BaseInfoRetriever {
+	public const NAME = 'ipinfo-source-contributions';
+
 	private IConnectionProvider $dbProvider;
 	private ActorNormalization $actorNormalization;
 
@@ -21,7 +23,7 @@ class ContributionInfoRetriever extends BaseInfoRetriever {
 
 	/** @inheritDoc */
 	public function getName(): string {
-		return 'ipinfo-source-contributions';
+		return self::NAME;
 	}
 
 	/** @inheritDoc */
