@@ -73,4 +73,81 @@ class InfoManagerTest extends MediaWikiUnitTestCase {
 		];
 	}
 
+	public function testRetrieveBatch(): void {
+		$user = new UserIdentityValue( 1, '~2024-8' );
+		$ips = [ '1.1.1.1', '2.2.2.2', '3.3.3.3' ];
+
+		$firstRetriever = $this->createMock( InfoRetriever::class );
+		$firstRetriever->method( 'retrieveBatch' )
+			->with( $user, $ips )
+			->willReturn( [
+				'1.1.1.1' => null,
+				'2.2.2.2' => 'some-data',
+				'3.3.3.3' => 'other-data'
+			] );
+		$firstRetriever->method( 'getName' )
+			->willReturn( 'first-retriever' );
+
+		$secondRetriever = $this->createMock( InfoRetriever::class );
+		$secondRetriever->method( 'retrieveBatch' )
+			->with( $user, $ips )
+			->willReturn( [
+				'1.1.1.1' => 'second-retriever-data',
+				'2.2.2.2' => null,
+				'3.3.3.3' => 'more-second-retriever-data'
+			] );
+		$secondRetriever->method( 'getName' )
+			->willReturn( 'second-retriever' );
+
+		$thirdRetriever = $this->createMock( InfoRetriever::class );
+		$thirdRetriever->method( 'retrieveBatch' )
+			->with( $user, $ips )
+			->willReturn( [
+				'1.1.1.1' => 'third-retriever-data',
+				'2.2.2.2' => 'more-third-retriever-data',
+				'3.3.3.3' => 'other-third-retriever-data'
+			] );
+
+		$thirdRetriever->method( 'getName' )
+			->willReturn( 'third-retriever' );
+
+		$infoManager = new InfoManager( [
+			$firstRetriever,
+			$secondRetriever,
+			$thirdRetriever
+		] );
+
+		$info = $infoManager->retrieveBatch( $user, $ips );
+
+		$this->assertSame(
+			[
+				'1.1.1.1' => [
+					'subject' => '~2024-8',
+					'data' => [
+						'first-retriever' => null,
+						'second-retriever' => 'second-retriever-data',
+						'third-retriever' => 'third-retriever-data',
+					]
+				],
+				'2.2.2.2' => [
+					'subject' => '~2024-8',
+					'data' => [
+						'first-retriever' => 'some-data',
+						'second-retriever' => null,
+						'third-retriever' => 'more-third-retriever-data',
+					]
+				],
+				'3.3.3.3' => [
+					'subject' => '~2024-8',
+					'data' => [
+						'first-retriever' => 'other-data',
+						'second-retriever' => 'more-second-retriever-data',
+						'third-retriever' => 'other-third-retriever-data',
+					]
+				],
+			],
+			$info
+		);
+	}
+
 }

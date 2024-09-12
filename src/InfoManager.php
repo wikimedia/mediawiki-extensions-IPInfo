@@ -50,4 +50,31 @@ class InfoManager {
 			'data' => $data,
 		];
 	}
+
+	/**
+	 * Retrieve IP information for a set of IPs associated with a temporary user.
+	 *
+	 * @param UserIdentity $user
+	 * @param string[] $ips The IP addresses to retrieve information for, in human-readable form.
+	 * @return array[] IP information in the format returned by {@link InfoManager::retrieveFor()},
+	 * keyed by IP address.
+	 */
+	public function retrieveBatch( UserIdentity $user, array $ips ): array {
+		$subjectName = IPUtils::isIPAddress( $user->getName() ) ? IPUtils::prettifyIP( $user->getName() ) :
+			$user->getName();
+
+		$infoByIp = array_fill_keys( $ips, [
+			'subject' => $subjectName,
+			'data' => []
+		] );
+
+		foreach ( $this->retrievers as $retriever ) {
+			$batch = $retriever->retrieveBatch( $user, $ips );
+			foreach ( $batch as $ip => $data ) {
+				$infoByIp[$ip]['data'][$retriever->getName()] = $data;
+			}
+		}
+
+		return $infoByIp;
+	}
 }
