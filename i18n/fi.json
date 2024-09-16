@@ -79,9 +79,9 @@
 	"ipinfo-rest-log-nonexistent": "Lokimerkintää ei ole olemassa",
 	"ipinfo-rest-log-registered": "Rekisteröityjen käyttäjien logeista ei voida hakea IP-tietoja",
 	"ipinfo-rest-log-denied": "Käyttäjälläsi ei ole oikeutta tarkastella lokimerkinnän suorittajaa tai itse lokimerkintää",
-	"ipinfo-source-geoip2": "Tämä informaatio on saatu MaxMindin GeoIP-2 tietokannoista. Tiedoissa saattaa olla epätarkkuuksia.",
+	"ipinfo-source-geoip2": "Nämä tiedot on saatu MaxMindin GeoIP-2-tietokannoista. Tiedoissa saattaa olla epätarkkuuksia.",
 	"ipinfo-beta-feature-title": "IP-tiedot",
-	"ipinfo-beta-feature-description": "IP-informaatio-työkalun tarkoituksena on tarjota muutosten tarkastajille tärkeää tietoa IP-osoitteista. Tiedot voi katsoa IP-muokkaajaan liittyvällä sivulla Toiminnot:Muokkaukset. Tiivistetyt tiedot on saatavilla popup-ikkunassa IP-osoitteen vieressä sivuilla [[Special:Log|Loki]], [[Special:Contributions|Muokkaukset]] ja [[Special:RecentChanges|Tuoreet muutokset]].",
+	"ipinfo-beta-feature-description": "IP-tietotyökalun tarkoituksena on tarjota muutosten tarkastajille tärkeää tietoa IP-osoitteista. Tiedot voi katsoa IP-muokkaajaan liittyvällä Toiminnot:Muokkaukset-sivulla. Tiivistetyt tiedot ovat saatavilla ponnahdusikkunassa IP-osoitteen vieressä sivuilla [[Special:Log|Loki]], [[Special:Contributions|Muokkaukset]] ja [[Special:RecentChanges|Tuoreet muutokset]].",
 	"prefs-ipinfo": "IP-tiedot",
 	"action-ipinfo": "hakea tietoja IP-osoitteista, jotka on liitetty versioihin tai lokimerkintöihin",
 	"right-ipinfo": "Hakea tietoja IP-osoitteista, jotka on liitetty versioihin tai lokimerkintöihin",
@@ -103,6 +103,10 @@
 	"ipinfo-change-access-level-enable": "{{GENDER:$1|otti käyttöön}}",
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|poisti käytöstä}}",
 	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|IP-tietoihin pääsyn}}",
+	"log-action-filter-ipinfo": "IP-tieto-operaation tyyppi:",
+	"log-action-filter-ipinfo-change_access": "Työkalu otettu käyttöön tai poistettu käytöstä",
+	"log-action-filter-ipinfo-view_infobox": "Tietoja katsottu tietolaatikossa",
+	"log-action-filter-ipinfo-view_popup": "Tietoja katsottu ponnahdusikkunassa",
 	"ipinfo-property-tooltip-asn": "Yksilöllinen tunniste, joita osoitetaan alueille ja edelleen organisaatioille, kuten hallituksille ja internet-palveluntarjoajille.",
 	"ipinfo-blocklist-url-text": "Lista estoista"
 }
