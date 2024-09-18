@@ -2,8 +2,8 @@
 namespace MediaWiki\IPInfo;
 
 use DatabaseLogEntry;
-use ExtensionRegistry;
 use MapCacheLRU;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;

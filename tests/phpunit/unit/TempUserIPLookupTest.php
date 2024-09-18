@@ -2,8 +2,8 @@
 namespace MediaWiki\IPInfo\Test\Unit;
 
 use DatabaseLogEntry;
-use ExtensionRegistry;
 use MediaWiki\IPInfo\TempUserIPLookup;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\User\UserIdentityValue;
