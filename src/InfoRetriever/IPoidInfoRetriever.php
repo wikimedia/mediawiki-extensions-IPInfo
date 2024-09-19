@@ -128,7 +128,7 @@ class IPoidInfoRetriever extends BaseInfoRetriever {
 	 */
 	private function getData( string $ip ): array {
 		$url = $this->getFeedEndpointUrl( $ip );
-		$request = $this->httpRequestFactory->create( $url, [ 'method' => 'GET' ] );
+		$request = $this->httpRequestFactory->create( $url, [ 'method' => 'GET' ], __METHOD__ );
 		$response = $request->execute();
 
 		if ( $response->isOK() ) {
