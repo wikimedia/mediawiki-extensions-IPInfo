@@ -168,4 +168,19 @@ class IPoidInfoRetrieverTest extends MediaWikiUnitTestCase {
 		$this->assertNull( $infosByIp['3.3.3.3']->getProxies() );
 		$this->assertSame( [ '4_PROXY', '3_PROXY' ], $infosByIp['4.4.4.4']->getProxies() );
 	}
+
+	public function testRetrieveBatchWhenServiceDisabled(): void {
+		$user = new UserIdentityValue( 4, '~2024-8' );
+		$ips = [ '1.1.1.1', '2.2.2.2', '3.3.3.3', '4.4.4.4' ];
+
+		$infoRetriever = $this->createIPoidInfoRetriever(
+			$this->makeMockHttpRequestFactory(),
+			[ 'IPInfoIpoidUrl' => false ]
+		);
+
+		$infosByIp = $infoRetriever->retrieveBatch( $user, $ips );
+
+		$this->assertSame( $ips, array_keys( $infosByIp ) );
+		$this->assertContainsOnlyInstancesOf( IPoidInfo::class, $infosByIp );
+	}
 }
