@@ -94,6 +94,10 @@ class IPoidInfoRetriever extends BaseInfoRetriever {
 	 * @return IPoidInfo[] Map of IPoidInfo instances keyed by IP address
 	 */
 	public function retrieveBatch( UserIdentity $user, array $ips ): array {
+		if ( !$this->options->get( 'IPInfoIpoidUrl' ) ) {
+			return array_fill_keys( $ips, new IPoidInfo() );
+		}
+
 		$reqs = [];
 
 		foreach ( $ips as $ip ) {
