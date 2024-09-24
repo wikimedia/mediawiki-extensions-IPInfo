@@ -5,6 +5,7 @@ namespace MediaWiki\IPInfo\Test\Integration;
 use DatabaseLogEntry;
 use ManualLogEntry;
 use MediaWiki\IPInfo\TempUserIPLookup;
+use MediaWiki\IPInfo\TempUserIPRecord;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
@@ -140,14 +141,22 @@ class TempUserIPLookupTest extends MediaWikiIntegrationTestCase {
 		ConvertibleTimestamp::setFakeTime( wfTimestamp() + 1_000 );
 
 		$req->setIP( '192.0.2.75' );
-		$this->editPage( $page, 'test3', '', NS_MAIN, $user );
+		$secondEdit = $this->editPage( $page, 'test3', '', NS_MAIN, $user );
 
 		$latestIP = $this->getTempUserIPLookup()->getMostRecentAddress( $user );
 		$addressCount = $this->getTempUserIPLookup()->getDistinctAddressCount( $user );
 		$logIP = $this->getTempUserIPLookup()->getAddressForLogEntry( $logEntry );
+		$distinctAddressRecords = $this->getTempUserIPLookup()->getDistinctIPInfo( $user );
 
 		$this->assertSame( '192.0.2.75', $latestIP );
 		$this->assertSame( 2, $addressCount );
 		$this->assertSame( '192.0.2.64', $logIP );
+		$this->assertEquals(
+			[
+				'192.0.2.64' => new TempUserIPRecord( '192.0.2.64', null, $logId ),
+				'192.0.2.75' => new TempUserIPRecord( '192.0.2.75', $secondEdit->getNewRevision()->getId(), null ),
+			],
+			$distinctAddressRecords
+		);
 	}
 }

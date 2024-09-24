@@ -8,6 +8,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
+use Psr\Log\NullLogger;
 use Wikimedia\Assert\ParameterAssertionException;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -31,7 +32,8 @@ class TempUserIPLookupTest extends MediaWikiUnitTestCase {
 		$this->tempUserIPLookup = new TempUserIPLookup(
 			$this->connectionProvider,
 			$this->userIdentityUtils,
-			$this->extensionRegistry
+			$this->extensionRegistry,
+			new NullLogger()
 		);
 	}
 
@@ -341,6 +343,7 @@ class TempUserIPLookupTest extends MediaWikiUnitTestCase {
 		$this->userIdentityUtils->method( 'isNamed' )
 			->with( $user )
 			->willReturn( false );
+
 		$this->userIdentityUtils->method( 'isTemp' )
 			->with( $user )
 			->willReturn( false );
@@ -367,6 +370,38 @@ class TempUserIPLookupTest extends MediaWikiUnitTestCase {
 		$this->userIdentityUtils->method( 'isNamed' )
 			->with( $user )
 			->willReturn( false );
+
+		$this->userIdentityUtils->method( 'isTemp' )
+			->with( $user )
+			->willReturn( true );
+
+		$address = $this->tempUserIPLookup->getAddressForRevision( $revision );
+
+		$this->assertNull( $address );
+	}
+
+	public function testGetDistinctIPInfoShouldRejectNonTempUser(): void {
+		$this->expectException( ParameterAssertionException::class );
+		$this->expectExceptionMessage( 'Bad value for parameter $user: must be a temporary user' );
+
+		$user = new UserIdentityValue( 1, 'TestUser' );
+
+		$this->userIdentityUtils->method( 'isTemp' )
+			->with( $user )
+			->willReturn( false );
+
+		$this->extensionRegistry->expects( $this->never() )
+			->method( 'isLoaded' );
+
+		$this->connectionProvider->expects( $this->never() )
+			->method( 'getReplicaDatabase' );
+
+		$this->tempUserIPLookup->getDistinctIPInfo( $user );
+	}
+
+	public function testGetDistinctIPInfoShouldHandleTemporaryUserIfCheckUserDisabled(): void {
+		$user = new UserIdentityValue( 5, '~2024-8' );
+
 		$this->userIdentityUtils->method( 'isTemp' )
 			->with( $user )
 			->willReturn( true );
@@ -378,9 +413,9 @@ class TempUserIPLookupTest extends MediaWikiUnitTestCase {
 		$this->connectionProvider->expects( $this->never() )
 			->method( 'getReplicaDatabase' );
 
-		$address = $this->tempUserIPLookup->getAddressForRevision( $revision );
+		$records = $this->tempUserIPLookup->getDistinctIPInfo( $user );
 
-		$this->assertNull( $address );
+		$this->assertSame( [], $records );
 	}
 
 	public function testGetAddressForLogEntryShouldRejectNamedUser(): void {

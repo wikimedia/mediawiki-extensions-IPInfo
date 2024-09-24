@@ -7,10 +7,12 @@ use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
+use Psr\Log\LoggerInterface;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Rdbms\Subquery;
 
 /**
  * Provides access to IP addresses associated with anonymous or temporary user accounts.
@@ -24,16 +26,19 @@ class TempUserIPLookup {
 	private ExtensionRegistry $extensionRegistry;
 	private MapCacheLRU $recentAddressCache;
 	private UserIdentityUtils $userIdentityUtils;
+	private LoggerInterface $logger;
 
 	public function __construct(
 		IConnectionProvider $connectionProvider,
 		UserIdentityUtils $userIdentityUtils,
-		ExtensionRegistry $extensionRegistry
+		ExtensionRegistry $extensionRegistry,
+		LoggerInterface $logger
 	) {
 		$this->connectionProvider = $connectionProvider;
 		$this->userIdentityUtils = $userIdentityUtils;
 		$this->extensionRegistry = $extensionRegistry;
 		$this->recentAddressCache = new MapCacheLRU( 8 );
+		$this->logger = $logger;
 	}
 
 	/**
@@ -234,5 +239,108 @@ class TempUserIPLookup {
 		$distinctCuLogEventIPs = $cuLogQuery->fetchFieldValues();
 
 		return count( $distinctCuChangesIPs ) + count( $distinctCuLogEventIPs );
+	}
+
+	/**
+	 * Get information about all distinct IP addresses used by a temporary user
+	 * in the last $wgCUDMaxAge seconds.
+	 *
+	 * This currently does not include IP addresses only associated with private CU events,
+	 * since no mechanism exists yet to reveal such IP addresses.
+	 *
+	 * @param UserIdentity $user The temporary user to fetch IP usage for.
+	 * @return TempUserIPRecord[] Map of IP usage information keyed by IP address
+	 */
+	public function getDistinctIPInfo( UserIdentity $user ): array {
+		Assert::parameter(
+			$this->userIdentityUtils->isTemp( $user ),
+			'$user',
+			'must be a temporary user'
+		);
+
+		if ( !$this->extensionRegistry->isLoaded( 'CheckUser' ) ) {
+			return [];
+		}
+
+		$dbr = $this->connectionProvider->getReplicaDatabase();
+
+		// Fetch a revision or log ID for each distinct IP so that they can be used to reveal the IP.
+		// These need to be subqueries, since we want each query to return one row per used IP
+		// and therefore cannot GROUP BY these columns.
+		// Note that these IDs are only intended to be used to support IP reveal functionality, so the
+		// queries need not be deterministic across multiple invocations with the same actor ID and IP
+		// combination -- it is sufficient for them to return *any* revision or log ID matching that actor
+		// ID and IP combination.
+		$oldIdQuery = $dbr->newSelectQueryBuilder()
+			->select( 'cuc_this_oldid' )
+			->from( 'cu_changes', 'cuc' )
+			->where( [
+				'cuc.cuc_actor=actor',
+				'cuc.cuc_ip=ip'
+			] )
+			->limit( 1 );
+
+		$logIdQuery = $dbr->newSelectQueryBuilder()
+			->select( 'cule_log_id' )
+			->from( 'cu_log_event', 'cule' )
+			->where( [
+				'cule.cule_actor=actor',
+				'cule.cule_ip=ip'
+			] )
+			->limit( 1 );
+
+		// Set a limit for both the cu_changes and cu_log_event queries to avoid unbounded reads
+		// while still being higher than the likely maximum distinct IP count of temporary users.
+		// Provide a separate, lower, warning threshold that triggers logging to allow gauging
+		// whether this query may need to be reimplemented as a paginated query.
+		$constituentQueryLimit = 1_000;
+		$warnThreshold = 500;
+
+		$res = $dbr->newUnionQueryBuilder()
+			->add(
+				$dbr->newSelectQueryBuilder()
+					->select( [
+						'ip' => 'cuc_ip',
+						'actor' => 'cuc_actor',
+						'rev_id' => new Subquery( $oldIdQuery->getSQL() ),
+						'NULL as log_id',
+					] )
+					->from( 'cu_changes' )
+					->join( 'actor', null, 'cuc_actor = actor_id' )
+					->where( [ 'actor_name' => $user->getName() ] )
+					->groupBy( [ 'cuc_actor', 'cuc_ip' ] )
+					->limit( $constituentQueryLimit )
+			)
+			->add(
+				$dbr->newSelectQueryBuilder()
+					->select( [
+						'ip' => 'cule_ip',
+						'actor' => 'cule_actor',
+						'NULL as rev_id',
+						'log_id' => new Subquery( $logIdQuery->getSQL() )
+					] )
+					->from( 'cu_log_event' )
+					->join( 'actor', null, 'cule_actor = actor_id' )
+					->where( [ 'actor_name' => $user->getName() ] )
+					->groupBy( [ 'cule_actor', 'cule_ip' ] )
+					->limit( $constituentQueryLimit )
+			)
+			->caller( __METHOD__ )
+			->fetchResultSet();
+
+		if ( $res->numRows() >= $warnThreshold ) {
+			$this->logger->warning( __METHOD__ . ': high number of results returned.' );
+		}
+
+		$recordsByIp = [];
+		foreach ( $res as $row ) {
+			$recordsByIp[$row->ip] = new TempUserIPRecord(
+				$row->ip,
+				$row->rev_id ?? null,
+				$row->log_id ?? null
+			);
+		}
+
+		return $recordsByIp;
 	}
 }
