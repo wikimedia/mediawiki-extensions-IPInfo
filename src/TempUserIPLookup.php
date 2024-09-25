@@ -3,6 +3,7 @@ namespace MediaWiki\IPInfo;
 
 use DatabaseLogEntry;
 use MapCacheLRU;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
@@ -22,23 +23,38 @@ use Wikimedia\Rdbms\Subquery;
  * to CheckUser database tables, returning no data if CheckUser is unavailable.
  */
 class TempUserIPLookup {
+	public const CONSTRUCTOR_OPTIONS = [
+		'IPInfoMaxDistinctIPResults'
+	];
+
 	private IConnectionProvider $connectionProvider;
 	private ExtensionRegistry $extensionRegistry;
 	private MapCacheLRU $recentAddressCache;
 	private UserIdentityUtils $userIdentityUtils;
 	private LoggerInterface $logger;
+	private ServiceOptions $serviceOptions;
 
 	public function __construct(
 		IConnectionProvider $connectionProvider,
 		UserIdentityUtils $userIdentityUtils,
 		ExtensionRegistry $extensionRegistry,
-		LoggerInterface $logger
+		LoggerInterface $logger,
+		ServiceOptions $serviceOptions
 	) {
+		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		Assert::parameter(
+			is_int( $serviceOptions->get( 'IPInfoMaxDistinctIPResults' ) ) &&
+			$serviceOptions->get( 'IPInfoMaxDistinctIPResults' ) > 0,
+			'$serviceOptions',
+			'IPInfoMaxDistinctIPResults must be a positive integer'
+		);
+
 		$this->connectionProvider = $connectionProvider;
 		$this->userIdentityUtils = $userIdentityUtils;
 		$this->extensionRegistry = $extensionRegistry;
 		$this->recentAddressCache = new MapCacheLRU( 8 );
 		$this->logger = $logger;
+		$this->serviceOptions = $serviceOptions;
 	}
 
 	/**
@@ -242,8 +258,8 @@ class TempUserIPLookup {
 	}
 
 	/**
-	 * Get information about all distinct IP addresses used by a temporary user
-	 * in the last $wgCUDMaxAge seconds.
+	 * Get information about distinct IP addresses used by a temporary user
+	 * in the last $wgCUDMaxAge seconds. At most $wgIPInfoMaxDistinctIPResults IPs will be returned.
 	 *
 	 * This currently does not include IP addresses only associated with private CU events,
 	 * since no mechanism exists yet to reveal such IP addresses.
@@ -293,8 +309,8 @@ class TempUserIPLookup {
 		// while still being higher than the likely maximum distinct IP count of temporary users.
 		// Provide a separate, lower, warning threshold that triggers logging to allow gauging
 		// whether this query may need to be reimplemented as a paginated query.
-		$constituentQueryLimit = 1_000;
-		$warnThreshold = 500;
+		$queryLimit = $this->serviceOptions->get( 'IPInfoMaxDistinctIPResults' );
+		$warnThreshold = (int)( $queryLimit / 2 );
 
 		$res = $dbr->newUnionQueryBuilder()
 			->add(
@@ -309,7 +325,7 @@ class TempUserIPLookup {
 					->join( 'actor', null, 'cuc_actor = actor_id' )
 					->where( [ 'actor_name' => $user->getName() ] )
 					->groupBy( [ 'cuc_actor', 'cuc_ip' ] )
-					->limit( $constituentQueryLimit )
+					->limit( $queryLimit )
 			)
 			->add(
 				$dbr->newSelectQueryBuilder()
@@ -323,7 +339,7 @@ class TempUserIPLookup {
 					->join( 'actor', null, 'cule_actor = actor_id' )
 					->where( [ 'actor_name' => $user->getName() ] )
 					->groupBy( [ 'cule_actor', 'cule_ip' ] )
-					->limit( $constituentQueryLimit )
+					->limit( $queryLimit )
 			)
 			->caller( __METHOD__ )
 			->fetchResultSet();
@@ -334,6 +350,10 @@ class TempUserIPLookup {
 
 		$recordsByIp = [];
 		foreach ( $res as $row ) {
+			if ( count( $recordsByIp ) >= $queryLimit ) {
+				break;
+			}
+
 			$recordsByIp[$row->ip] = new TempUserIPRecord(
 				$row->ip,
 				$row->rev_id ?? null,

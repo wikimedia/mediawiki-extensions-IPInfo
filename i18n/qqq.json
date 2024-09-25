@@ -141,10 +141,11 @@
 	"ipinfo-value-deleted-edits": "Message for displaying the local deleted edits count. \n\nParameters:\n* $1 - Number of deleted edits.",
 	"ipinfo-deleted-edits-url-text": "Link text to a relevant deleted edits list",
 	"ipinfo-special-ipinfo": "Special page title for Special:IPInfo",
-	"ipinfo-special-ipinfo-form-text": "Special page description shown on Special:IPInfo",
+	"ipinfo-special-ipinfo-legend": "Special page description shown on Special:IPInfo.\n\nParameters:\n* $1 - the maximum number of results that will be shown.",
 	"ipinfo-special-ipinfo-table-caption": "Caption for the results table with IP information shown on Special:IPInfo",
 	"ipinfo-special-ipinfo-target": "Label for the username input on Special:IPInfo",
-	"ipinfo-special-ipinfo-user-tool-links": "Special page subtitle shown on Special:IPInfo\n$1 - user name of the temporary user whose information is shown.",
+	"ipinfo-special-ipinfo-user-tool-links": "Special page subtitle shown on Special:IPInfo.\n\nParameters:\n* $1 - user name of the temporary user whose information is shown.",
 	"ipinfo-special-ipinfo-sort-explainer": "Hidden message displayed to assistive tools such as screen readers",
-	"ipinfo-special-ipinfo-column-ip": "Column header on Special:IPInfo for the column holding IP addresses"
+	"ipinfo-special-ipinfo-column-ip": "Column header on Special:IPInfo for the column holding IP addresses",
+	"ipinfo-special-ipinfo-no-results": "Message shown on Special:IPInfo when no IP information is available for the temporary user being looked up.\n\nParameters:\n* $1 - user name of the temporary user whose information is shown."
 }

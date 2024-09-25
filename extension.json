@@ -296,6 +296,10 @@
 		"IPInfoIpoidUrl": {
 			"description": "Base URL for calling the ipoid API to retrieve data about an IP address",
 			"value": false
+		},
+		"IPInfoMaxDistinctIPResults": {
+			"description": "The maximum number of distinct IP addresses to show on Special:IPInfo",
+			"value": 1000
 		}
 	},
 	"load_composer_autoloader": true,

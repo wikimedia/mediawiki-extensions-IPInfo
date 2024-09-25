@@ -81,7 +81,8 @@ return [
 			$services->getConnectionProvider(),
 			$services->getUserIdentityUtils(),
 			ExtensionRegistry::getInstance(),
-			LoggerFactory::getInstance( 'IPInfo' )
+			LoggerFactory::getInstance( 'IPInfo' ),
+			new ServiceOptions( TempUserIPLookup::CONSTRUCTOR_OPTIONS, $services->getMainConfig() )
 		);
 	},
 	'ReaderFactory' => static function (): ReaderFactory {
