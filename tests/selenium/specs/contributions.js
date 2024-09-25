@@ -1,7 +1,6 @@
 'use strict';
 
-const assert = require( 'assert' ),
-	utils = require( '../utils' ),
+const utils = require( '../utils' ),
 	Api = require( 'wdio-mediawiki/Api' ),
 	LoginPage = require( 'wdio-mediawiki/LoginPage' ),
 	ContributionsWithIPInfoPage = require( '../pageobjects/ContributionsWithIPInfoPage' );
@@ -33,7 +32,7 @@ describe( 'IPInfo on Special:Contributions', () => {
 
 	it( 'should not be shown to users without necessary permissions', async () => {
 		await ContributionsWithIPInfoPage.open( utils.IP_WITHOUT_EDITS );
-		assert.ok( !await ContributionsWithIPInfoPage.ipInfoPanel.isExisting() );
+		await expect( ContributionsWithIPInfoPage.ipInfoPanel ).not.toExist();
 	} );
 
 	it( 'should display error message for IPs without edits after accepting agreement', async () => {
@@ -44,9 +43,8 @@ describe( 'IPInfo on Special:Contributions', () => {
 		await ContributionsWithIPInfoPage.expandPanel();
 		await ContributionsWithIPInfoPage.acceptAgreement();
 
-		assert.ok( !await ContributionsWithIPInfoPage.propertiesTable.isExisting() );
-		assert.strictEqual(
-			await ContributionsWithIPInfoPage.errorMessage.getText(),
+		await expect( ContributionsWithIPInfoPage.propertiesTable ).not.toExist();
+		await expect( ContributionsWithIPInfoPage.errorMessage ).toHaveText(
 			'IP information for this address cannot be retrieved since no edits have been made from it.'
 		);
 	} );
@@ -58,9 +56,8 @@ describe( 'IPInfo on Special:Contributions', () => {
 		await ContributionsWithIPInfoPage.open( utils.IP_WITHOUT_EDITS );
 		await ContributionsWithIPInfoPage.expandPanel();
 
-		assert.ok( !await ContributionsWithIPInfoPage.propertiesTable.isExisting() );
-		assert.strictEqual(
-			await ContributionsWithIPInfoPage.errorMessage.getText(),
+		await expect( ContributionsWithIPInfoPage.propertiesTable ).not.toExist();
+		await expect( ContributionsWithIPInfoPage.errorMessage ).toHaveText(
 			'IP information for this address cannot be retrieved since no edits have been made from it.'
 		);
 	} );
@@ -74,17 +71,12 @@ describe( 'IPInfo on Special:Contributions', () => {
 		await ContributionsWithIPInfoPage.acceptAgreement();
 		await ContributionsWithIPInfoPage.propertiesTable.waitForDisplayed();
 
-		assert.ok( !await ContributionsWithIPInfoPage.errorMessage.isExisting() );
+		await expect( ContributionsWithIPInfoPage.errorMessage ).not.toExist();
 
-		assert.ok( !await ContributionsWithIPInfoPage.hasProperty( 'number-of-ips' ) );
-		assert.strictEqual(
-			await ContributionsWithIPInfoPage.getPropertyValue( 'asn' ),
-			'721'
-		);
-		assert.strictEqual(
-			await ContributionsWithIPInfoPage.getPropertyValue( 'organization' ),
-			'DoD Network Information Center'
-		);
+		await expect( await ContributionsWithIPInfoPage.hasProperty( 'number-of-ips' ) ).toBe( false );
+		await expect( await ContributionsWithIPInfoPage.getPropertyValue( 'asn' ) ).toBe( '721' );
+		await expect( await ContributionsWithIPInfoPage.getPropertyValue( 'organization' ) )
+			.toBe( 'DoD Network Information Center' );
 	} );
 
 	it( 'should show geo data for IP with edits if agreement was already accepted', async () => {
@@ -95,17 +87,12 @@ describe( 'IPInfo on Special:Contributions', () => {
 		await ContributionsWithIPInfoPage.expandPanel();
 		await ContributionsWithIPInfoPage.propertiesTable.waitForDisplayed();
 
-		assert.ok( !await ContributionsWithIPInfoPage.errorMessage.isExisting() );
+		await expect( ContributionsWithIPInfoPage.errorMessage ).not.toExist();
 
-		assert.ok( !await ContributionsWithIPInfoPage.hasProperty( 'number-of-ips' ) );
-		assert.strictEqual(
-			await ContributionsWithIPInfoPage.getPropertyValue( 'asn' ),
-			'721'
-		);
-		assert.strictEqual(
-			await ContributionsWithIPInfoPage.getPropertyValue( 'organization' ),
-			'DoD Network Information Center'
-		);
+		await expect( await ContributionsWithIPInfoPage.hasProperty( 'num-ip-addresses' ) ).toBe( false );
+		await expect( await ContributionsWithIPInfoPage.getPropertyValue( 'asn' ) ).toBe( '721' );
+		await expect( await ContributionsWithIPInfoPage.getPropertyValue( 'organization' ) )
+			.toBe( 'DoD Network Information Center' );
 	} );
 
 	it( 'should show geo data for temp user with edits after accepting agreement', async () => {
@@ -117,19 +104,13 @@ describe( 'IPInfo on Special:Contributions', () => {
 		await ContributionsWithIPInfoPage.acceptAgreement();
 		await ContributionsWithIPInfoPage.propertiesTable.waitForDisplayed();
 
-		assert.ok( !await ContributionsWithIPInfoPage.errorMessage.isExisting() );
-		assert.strictEqual(
-			await ContributionsWithIPInfoPage.getPropertyValue( 'asn' ),
-			'721'
-		);
-		assert.strictEqual(
-			await ContributionsWithIPInfoPage.getPropertyValue( 'organization' ),
-			'DoD Network Information Center'
-		);
-		assert.strictEqual(
-			await ContributionsWithIPInfoPage.getPropertyValue( 'num-ip-addresses' ),
-			'1'
-		);
+		await expect( ContributionsWithIPInfoPage.errorMessage ).not.toExist();
+
+		await expect( await ContributionsWithIPInfoPage.getPropertyValue( 'asn' ) ).toBe( '721' );
+		await expect( await ContributionsWithIPInfoPage.getPropertyValue( 'organization' ) )
+			.toBe( 'DoD Network Information Center' );
+		await expect( await ContributionsWithIPInfoPage.getPropertyValue( 'num-ip-addresses' ) )
+			.toBe( '1' );
 	} );
 
 	it( 'should show geo data for temp user with edits if agreement was already accepted', async () => {
@@ -140,18 +121,12 @@ describe( 'IPInfo on Special:Contributions', () => {
 		await ContributionsWithIPInfoPage.expandPanel();
 		await ContributionsWithIPInfoPage.propertiesTable.waitForDisplayed();
 
-		assert.ok( !await ContributionsWithIPInfoPage.errorMessage.isExisting() );
-		assert.strictEqual(
-			await ContributionsWithIPInfoPage.getPropertyValue( 'asn' ),
-			'721'
-		);
-		assert.strictEqual(
-			await ContributionsWithIPInfoPage.getPropertyValue( 'organization' ),
-			'DoD Network Information Center'
-		);
-		assert.strictEqual(
-			await ContributionsWithIPInfoPage.getPropertyValue( 'num-ip-addresses' ),
-			'1'
-		);
+		await expect( ContributionsWithIPInfoPage.errorMessage ).not.toExist();
+
+		await expect( await ContributionsWithIPInfoPage.getPropertyValue( 'asn' ) ).toBe( '721' );
+		await expect( await ContributionsWithIPInfoPage.getPropertyValue( 'organization' ) )
+			.toBe( 'DoD Network Information Center' );
+		await expect( await ContributionsWithIPInfoPage.getPropertyValue( 'num-ip-addresses' ) )
+			.toBe( '1' );
 	} );
 } );
