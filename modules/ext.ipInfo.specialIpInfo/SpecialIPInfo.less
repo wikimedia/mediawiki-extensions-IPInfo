@@ -1,0 +1,41 @@
+@import 'mediawiki.skin.variables.less';
+
+.ext-ipinfo-special-ipinfo {
+	&__wrapper {
+		margin-top: @spacing-75;
+	}
+
+	&__table {
+		min-width: 90rem;
+
+		.mw-tempuserlink {
+			display: none;
+		}
+
+		/* stylelint-disable-next-line selector-class-pattern */
+		.ext-checkuser-tempaccount-reveal-ip {
+			&::before,
+			&::after {
+				content: '';
+			}
+		}
+	}
+
+	&__column {
+		&--unsorted {
+			.cdx-mixin-css-icon( @cdx-icon-sort-vertical, @color-base, @size-icon-medium );
+		}
+
+		&--asc {
+			.cdx-mixin-css-icon( @cdx-icon-up-triangle, @color-base, @size-icon-medium );
+		}
+
+		&--desc {
+			.cdx-mixin-css-icon( @cdx-icon-down-triangle, @color-base, @size-icon-medium );
+		}
+	}
+
+	&__value-list {
+		list-style: none outside none;
+	}
+}
