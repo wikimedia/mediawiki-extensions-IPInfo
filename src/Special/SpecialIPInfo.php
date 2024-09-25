@@ -1,7 +1,11 @@
 <?php
 namespace MediaWiki\IPInfo\Special;
 
+use MediaWiki\Config\Config;
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Html\Html;
 use MediaWiki\Html\TemplateParser;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\InfoRetriever\GeoLite2InfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\IPoidInfoRetriever;
@@ -25,6 +29,10 @@ use Wikimedia\ObjectCache\BagOStuff;
  * A special page that displays IP information for all IP addresses used by a temporary user.
  */
 class SpecialIPInfo extends FormSpecialPage {
+	private const CONSTRUCTOR_OPTIONS = [
+		'IPInfoMaxDistinctIPResults'
+	];
+
 	private const TARGET_FIELD = 'Target';
 	private const IP_INFO_AGREEMENT_FIELD = 'AcceptAgreement';
 
@@ -38,6 +46,7 @@ class SpecialIPInfo extends FormSpecialPage {
 	private UserIdentityLookup $userIdentityLookup;
 	private InfoManager $infoManager;
 	private DefaultPresenter $defaultPresenter;
+	private ServiceOptions $serviceOptions;
 
 	private UserIdentity $targetUser;
 
@@ -48,9 +57,13 @@ class SpecialIPInfo extends FormSpecialPage {
 		TempUserIPLookup $tempUserIPLookup,
 		UserIdentityLookup $userIdentityLookup,
 		InfoManager $infoManager,
-		PermissionManager $permissionManager
+		PermissionManager $permissionManager,
+		Config $config
 	) {
 		parent::__construct( 'IPInfo', 'ipinfo' );
+		$serviceOptions = new ServiceOptions( self::CONSTRUCTOR_OPTIONS, $config );
+		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+
 		$this->userOptionsManager = $userOptionsManager;
 		$this->userNameUtils = $userNameUtils;
 		$this->templateParser = new TemplateParser( __DIR__ . '/templates', $srvCache );
@@ -58,6 +71,7 @@ class SpecialIPInfo extends FormSpecialPage {
 		$this->userIdentityLookup = $userIdentityLookup;
 		$this->infoManager = $infoManager;
 		$this->defaultPresenter = new DefaultPresenter( $permissionManager );
+		$this->serviceOptions = $serviceOptions;
 	}
 
 	/** @inheritDoc */
@@ -125,6 +139,14 @@ class SpecialIPInfo extends FormSpecialPage {
 		return $fields;
 	}
 
+	protected function alterForm( HTMLForm $form ): void {
+		$legend = $this->msg( 'ipinfo-special-ipinfo-legend' )
+			->numParams( $this->serviceOptions->get( 'IPInfoMaxDistinctIPResults' ) )
+			->parseAsBlock();
+
+		$form->addHeaderHtml( $legend );
+	}
+
 	/** @inheritDoc */
 	public function getDescription(): Message {
 		return $this->msg( 'ipinfo-special-ipinfo' );
@@ -180,12 +202,21 @@ class SpecialIPInfo extends FormSpecialPage {
 
 	/** @inheritDoc */
 	public function onSuccess(): void {
-		$this->getOutput()->addSubtitle(
+		$out = $this->getOutput();
+		$out->addModuleStyles( [ 'codex-styles', 'ext.ipInfo.specialIpInfo' ] );
+
+		$out->addSubtitle(
 			$this->msg( 'ipinfo-special-ipinfo-user-tool-links', $this->targetUser->getName() )->escaped() .
 			Linker::userToolLinks( $this->targetUser->getId(), $this->targetUser->getName() )
 		);
 
 		$records = $this->tempUserIPLookup->getDistinctIPInfo( $this->targetUser );
+
+		if ( count( $records ) === 0 ) {
+			$zeroStateMsg = $this->msg( 'ipinfo-special-ipinfo-no-results', $this->targetUser->getName() )->escaped();
+			$out->addHTML( Html::noticeBox( $zeroStateMsg, 'ext-ipinfo-special-ipinfo__zero-state' ) );
+			return;
+		}
 
 		$tableHeaders = [
 			[
@@ -324,9 +355,6 @@ class SpecialIPInfo extends FormSpecialPage {
 				'usercount' => $userCount !== null ? $this->getLanguage()->formatNum( $userCount ) : ''
 			];
 		}
-
-		$out = $this->getOutput();
-		$out->addModuleStyles( [ 'codex-styles', 'ext.ipInfo.specialIpInfo' ] );
 
 		$sortField = $this->getRequest()->getRawVal( 'wpSortField' );
 		$sortDirection = $this->getRequest()->getRawVal( 'wpSortDirection' );

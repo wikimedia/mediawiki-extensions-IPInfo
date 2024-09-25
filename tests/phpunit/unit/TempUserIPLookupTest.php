@@ -2,6 +2,7 @@
 namespace MediaWiki\IPInfo\Test\Unit;
 
 use DatabaseLogEntry;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\IPInfo\TempUserIPLookup;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Revision\RevisionRecord;
@@ -21,6 +22,7 @@ class TempUserIPLookupTest extends MediaWikiUnitTestCase {
 	private IConnectionProvider $connectionProvider;
 	private UserIdentityUtils $userIdentityUtils;
 	private ExtensionRegistry $extensionRegistry;
+
 	private TempUserIPLookup $tempUserIPLookup;
 
 	protected function setUp(): void {
@@ -33,8 +35,38 @@ class TempUserIPLookupTest extends MediaWikiUnitTestCase {
 			$this->connectionProvider,
 			$this->userIdentityUtils,
 			$this->extensionRegistry,
-			new NullLogger()
+			new NullLogger(),
+			new ServiceOptions( TempUserIPLookup::CONSTRUCTOR_OPTIONS, [
+				'IPInfoMaxDistinctIPResults' => 1_000
+			] )
 		);
+	}
+
+	/**
+	 * @dataProvider provideBadConfigValues
+	 */
+	public function testShouldValidateConfig( $badValue ): void {
+		$this->expectException( ParameterAssertionException::class );
+		$this->expectExceptionMessage(
+			'Bad value for parameter $serviceOptions: IPInfoMaxDistinctIPResults must be a positive integer'
+		);
+
+		new TempUserIPLookup(
+			$this->connectionProvider,
+			$this->userIdentityUtils,
+			$this->extensionRegistry,
+			new NullLogger(),
+			new ServiceOptions( TempUserIPLookup::CONSTRUCTOR_OPTIONS, [
+				'IPInfoMaxDistinctIPResults' => $badValue
+			] )
+		);
+	}
+
+	public static function provideBadConfigValues(): iterable {
+		yield 'negative value' => [ -1 ];
+		yield 'zero value' => [ 0 ];
+		yield 'non-integer number' => [ 1.5 ];
+		yield 'string' => [ 'test' ];
 	}
 
 	public function testGetMostRecentAddressShouldRejectNamedUser(): void {

@@ -34,7 +34,8 @@ class SpecialPageInitListHandler implements SpecialPage_initListHook {
 					'IPInfoTempUserIPLookup',
 					'UserIdentityLookup',
 					'IPInfoInfoManager',
-					'PermissionManager'
+					'PermissionManager',
+					'MainConfig'
 				]
 			];
 		}

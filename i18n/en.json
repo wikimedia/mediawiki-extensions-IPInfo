@@ -133,11 +133,12 @@
 	"ipinfo-blocklist-url-text": "Block list",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 deleted edit|$1 deleted edits|0=No deleted edits}}",
 	"ipinfo-special-ipinfo": "IP information",
-	"ipinfo-special-ipinfo-form-text": "Look up IP information about all IP addresses used by a temporary user.",
+	"ipinfo-special-ipinfo-legend": "Look up IP information about all IP addresses used by a temporary user. A maximum of $1 {{PLURAL:$1|result|results}} are displayed.",
 	"ipinfo-deleted-edits-url-text": "Deleted contributions",
 	"ipinfo-special-ipinfo-table-caption": "IP information for $1",
 	"ipinfo-special-ipinfo-target": "Target username:",
 	"ipinfo-special-ipinfo-user-tool-links": "For $1",
 	"ipinfo-special-ipinfo-sort-explainer": "The buttons in the table headers can be used to sort the table by that column's value.",
-	"ipinfo-special-ipinfo-column-ip": "IP"
+	"ipinfo-special-ipinfo-column-ip": "IP",
+	"ipinfo-special-ipinfo-no-results": "No IP information is available for $1."
 }

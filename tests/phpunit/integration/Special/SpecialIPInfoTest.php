@@ -129,10 +129,14 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 
 		$doc = self::parseHtml( $html );
 
-		$this->assertNotNull( DOMCompat::querySelector( $doc, '.ext-ipinfo-special-ipinfo__table' ) );
+		$this->assertNull( DOMCompat::querySelector( $doc, '.ext-ipinfo-special-ipinfo__table' ) );
 		$this->assertCount(
 			0,
 			DOMCompat::querySelectorAll( $doc, '.ext-ipinfo-special-ipinfo__table > tbody > tr' )
+		);
+		$this->assertSame(
+			"(ipinfo-special-ipinfo-no-results: {$tempUser->getName()})",
+			DOMCompat::querySelector( $doc, '.ext-ipinfo-special-ipinfo__zero-state' )->textContent
 		);
 	}
 
