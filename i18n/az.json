@@ -131,5 +131,10 @@
 	"ipinfo-property-tooltip-asn": "Bölgəyə və daha sonra hökumətlər və ISP-lər kimi təşkilatlara təyin edilmiş şəbəkələr üçün unikal identifikator",
 	"ipinfo-blocklist-url-text": "Blok siyahısı",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 silinmiş redaktə|0=Silinmiş redaktə yoxdur}}",
-	"ipinfo-deleted-edits-url-text": "Silinmiş töhfələr"
+	"ipinfo-special-ipinfo": "IP məlumatı",
+	"ipinfo-deleted-edits-url-text": "Silinmiş töhfələr",
+	"ipinfo-special-ipinfo-table-caption": "$1 üçün IP məlumatı",
+	"ipinfo-special-ipinfo-target": "İstifadəçi adı:",
+	"ipinfo-special-ipinfo-user-tool-links": "$1 üçün",
+	"ipinfo-special-ipinfo-sort-explainer": "Cədvəl başlıqlarındakı düymələr cədvəli həmin sütunun dəyərinə görə çeşidləmək üçün istifadə edilə bilər."
 }

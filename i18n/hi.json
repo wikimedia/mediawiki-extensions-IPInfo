@@ -19,5 +19,7 @@
 	"ipinfo-property-label-edits": "योगदान",
 	"ipinfo-beta-feature-title": "IP जानकारी",
 	"ipinfo-beta-feature-description": "IP जानकारी उपकरण का लक्ष्य है परीक्षकों को IP पतों के बारे में ज़रूरी जानकारी देना और उनका काम आसान करना। यह जानकारी IP संपादक के Special:Contributions पृष्ठ पर उपलब्ध होगी इसका एक छोटा संस्करण [[Special:Log|लॉग]], [[Special:Contributions|योगदान]], और [[Special:RecentChanges|हाल में हुए बदलावों]] के पृष्ठों पर IP पतों के पास एक पॉप-अप में मौजूद होगा।",
-	"prefs-ipinfo": "IP जानकारी"
+	"prefs-ipinfo": "IP जानकारी",
+	"ipinfo-special-ipinfo": "IP जानकारी",
+	"ipinfo-special-ipinfo-user-tool-links": "$1 के लिए"
 }

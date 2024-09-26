@@ -129,5 +129,13 @@
 	"ipinfo-property-tooltip-asn": "Eine eindeutige Kennung für Netze, die einer Region und darüber hinaus Organisationen wie Regierungen und Internetanbietern zugewiesen wird",
 	"ipinfo-blocklist-url-text": "Liste der Sperren",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 gelöschte Bearbeitung|$1 gelöschte Bearbeitungen|0=keine gelöschten Bearbeitungen}}",
-	"ipinfo-deleted-edits-url-text": "Gelöschte Beiträge"
+	"ipinfo-special-ipinfo": "IP-Information",
+	"ipinfo-special-ipinfo-legend": "Suche nach IP-Informationen zu allen IP-Adressen, die von einem temporären Benutzer verwendet werden. Es  {{PLURAL:$1|wird maximal $1 Ergebnis|werden maximal $1 Ergebnisse}} angezeigt.",
+	"ipinfo-deleted-edits-url-text": "Gelöschte Beiträge",
+	"ipinfo-special-ipinfo-table-caption": "IP-Informationen für $1",
+	"ipinfo-special-ipinfo-target": "Zielbenutzername:",
+	"ipinfo-special-ipinfo-user-tool-links": "Für $1",
+	"ipinfo-special-ipinfo-sort-explainer": "Mit den Schaltflächen in den Tabellenüberschriften kann die Tabelle nach dem Wert der jeweiligen Spalte sortiert werden.",
+	"ipinfo-special-ipinfo-column-ip": "IP-Adresse",
+	"ipinfo-special-ipinfo-no-results": "Für $1 sind keine IP-Informationen verfügbar."
 }

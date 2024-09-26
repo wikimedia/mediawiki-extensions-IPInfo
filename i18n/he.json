@@ -130,5 +130,11 @@
 	"ipinfo-property-tooltip-asn": "מזהה ייחודי לרשתות שהוקצה לאזור ולאחר מכן לארגונים כמו ממשלות וספקי אינטרנט",
 	"ipinfo-blocklist-url-text": "רשימת חסימות",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|עריכה מחוקה אחת|$1 עריכות מחוקות|0=אין עריכות מחוקות}}",
-	"ipinfo-deleted-edits-url-text": "עריכות מחוקות"
+	"ipinfo-special-ipinfo": "מידע על IP",
+	"ipinfo-deleted-edits-url-text": "עריכות מחוקות",
+	"ipinfo-special-ipinfo-table-caption": "מידע IP עבור $1",
+	"ipinfo-special-ipinfo-target": "שם המשתמש המיועד:",
+	"ipinfo-special-ipinfo-user-tool-links": "עבור $1",
+	"ipinfo-special-ipinfo-sort-explainer": "ניתן להשתמש בלחצנים בכותרות הטבלה כדי למיין את הטבלה לפי הערך של אותה עמודה.",
+	"ipinfo-special-ipinfo-column-ip": "כתובת IP"
 }
