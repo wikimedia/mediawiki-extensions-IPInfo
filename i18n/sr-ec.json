@@ -102,5 +102,10 @@
 	"ipinfo-property-tooltip-asn": "Јединствени идентификатор за мреже додељене региону и даље организацијама као што су владе и провајдери",
 	"ipinfo-blocklist-url-text": "Списак блокада",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 обрисана измене|$1 обрисане измене|0=Нема обрисаних измена}}",
-	"ipinfo-deleted-edits-url-text": "Избрисани доприноси"
+	"ipinfo-special-ipinfo": "IP информације",
+	"ipinfo-deleted-edits-url-text": "Избрисани доприноси",
+	"ipinfo-special-ipinfo-table-caption": "IP информације за $1",
+	"ipinfo-special-ipinfo-target": "Циљано корисничко име:",
+	"ipinfo-special-ipinfo-user-tool-links": "За $1",
+	"ipinfo-special-ipinfo-no-results": "Нема IP информација за $1."
 }

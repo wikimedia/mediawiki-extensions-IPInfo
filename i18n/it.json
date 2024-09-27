@@ -28,5 +28,11 @@
 	"prefs-ipinfo": "Informazioni su IP",
 	"log-action-filter-ipinfo-change_access": "Strumento abilitato o disabilitato",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 modifica cancellata|$1 modifiche cancellate|0=Nessuna modifica cancellata}}",
-	"ipinfo-deleted-edits-url-text": "Contributi cancellati"
+	"ipinfo-special-ipinfo": "Informazioni IP",
+	"ipinfo-deleted-edits-url-text": "Contributi cancellati",
+	"ipinfo-special-ipinfo-table-caption": "Informazioni IP per $1",
+	"ipinfo-special-ipinfo-target": "Nome utente di destinazione:",
+	"ipinfo-special-ipinfo-user-tool-links": "Per $1",
+	"ipinfo-special-ipinfo-column-ip": "IP",
+	"ipinfo-special-ipinfo-no-results": "Non sono disponibili informazioni IP per $1."
 }

@@ -5,9 +5,11 @@
 		]
 	},
 	"ipinfo-special-ipinfo": "ಐಪಿ ಮಾಹಿತಿ",
+	"ipinfo-special-ipinfo-legend": "ಒಂಜಿ ತಾತ್ಕಾಲಿಕ ಬಳಕೆದಾರೆರ್ ಬಳಕೆ ಮಲ್ಪುನ ಮಾತಾ ಐಪಿ ವಿಳಾಸೊಲೆನ ಬಗ್ಗೆ ಐಪಿ ಮಾಹಿತಿನ್ ತೂಲೆ. ಗರಿಷ್ಠ $1 {{PLURAL:$1| ಫಲಿತಾಂಶ|ಫಲಿತಾಂಶೊಲು}} ತೋಜುಂಡು.",
 	"ipinfo-special-ipinfo-table-caption": "$1 ಗ್ ಐಪಿ ಮಾಹಿತಿ",
 	"ipinfo-special-ipinfo-target": "ಗುರಿ ಬಳಕೆದಾರ ಪುದರ್:",
 	"ipinfo-special-ipinfo-user-tool-links": "$1 ಗ್",
 	"ipinfo-special-ipinfo-sort-explainer": "ಟೇಬಲ್ ಹೆಡರ್ ಲೆಡ್ ಉಪ್ಪುನ ಬಟನ್ ಲೆನ್ ಆ ಕಾಲಮ್ ದ ಮೌಲ್ಯೊಡು ಟೇಬಲ್ ನ್ ವಿಂಗಡಿಸರೆ ಉಪಯೋಗ ಮಲ್ಪೊಲಿ.",
-	"ipinfo-special-ipinfo-column-ip": "ಐಪಿ"
+	"ipinfo-special-ipinfo-column-ip": "ಐಪಿ",
+	"ipinfo-special-ipinfo-no-results": "$1 ಗ್ ಐಪಿ ಮಾಹಿತಿ ಲಭ್ಯ ಇಜ್ಜಿ."
 }

@@ -136,5 +136,13 @@
 	"ipinfo-property-tooltip-asn": "網路唯一標誌符，分配給一個地區或組織，例如政府和網際網路服務供應商。",
 	"ipinfo-blocklist-url-text": "黑名單",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1筆被刪除的編輯|0=沒有被刪除的編輯}}",
-	"ipinfo-deleted-edits-url-text": "已刪除的貢獻"
+	"ipinfo-special-ipinfo": "IP 資訊",
+	"ipinfo-special-ipinfo-legend": "尋找有關臨時使用者所用的全部 IP 位址資訊。最多顯示 $1 個{{PLURAL:$1|結果}}。",
+	"ipinfo-deleted-edits-url-text": "已刪除的貢獻",
+	"ipinfo-special-ipinfo-table-caption": "$1的 IP 資訊",
+	"ipinfo-special-ipinfo-target": "目標使用者名稱：",
+	"ipinfo-special-ipinfo-user-tool-links": "關於$1",
+	"ipinfo-special-ipinfo-sort-explainer": "在表格標頭的按鈕可用來依照表格欄位的值進行排序。",
+	"ipinfo-special-ipinfo-column-ip": "IP",
+	"ipinfo-special-ipinfo-no-results": "$1沒有可用的 IP 資訊。"
 }

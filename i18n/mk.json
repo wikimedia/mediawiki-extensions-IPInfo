@@ -128,5 +128,13 @@
 	"ipinfo-property-tooltip-asn": "Единствена назнака за мрежи доделена на регион и потоа на организации како влади и семрежни услужници",
 	"ipinfo-blocklist-url-text": "Список на блокирани",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 избришано уредување|$1 избришани уредувања|0=Нема избришани уредувања}}",
-	"ipinfo-deleted-edits-url-text": "Избришани придонеси"
+	"ipinfo-special-ipinfo": "IP-информации",
+	"ipinfo-special-ipinfo-legend": "Побарајте IP-информации за сите IP-адреси на даден привремен корисник. {{PLURAL:$1|Се прикажува највеќе $1 ставка|Се прикажуваат највеќе $1 ставки}}.",
+	"ipinfo-deleted-edits-url-text": "Избришани придонеси",
+	"ipinfo-special-ipinfo-table-caption": "IP-информации за $1",
+	"ipinfo-special-ipinfo-target": "Целно корисничко име:",
+	"ipinfo-special-ipinfo-user-tool-links": "За $1",
+	"ipinfo-special-ipinfo-sort-explainer": "Копчињата во заглавието на табелата служат за нејзино подредување по вредноста на тој столб.",
+	"ipinfo-special-ipinfo-column-ip": "IP-адреса",
+	"ipinfo-special-ipinfo-no-results": "Нема IP-информации за $1."
 }
