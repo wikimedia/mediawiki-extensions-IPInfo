@@ -18,5 +18,11 @@
 	"prefs-ipinfo": "Maklumat IP",
 	"group-no-ipinfo": "Pengguna yang disekat dari alat Maklumat IP",
 	"group-no-ipinfo-member": "{{GENDER:$1|disekat daripada alat Maklumat IP}}",
-	"grouppage-no-ipinfo": "{{ns:project}}:Pengguna yang disekat daripada alat Maklumat IP"
+	"grouppage-no-ipinfo": "{{ns:project}}:Pengguna yang disekat daripada alat Maklumat IP",
+	"ipinfo-special-ipinfo": "Maklumat IP",
+	"ipinfo-special-ipinfo-table-caption": "Maklumat IP bagi $1",
+	"ipinfo-special-ipinfo-target": "Nama pengguna sasaran:",
+	"ipinfo-special-ipinfo-user-tool-links": "Untuk $1",
+	"ipinfo-special-ipinfo-column-ip": "IP",
+	"ipinfo-special-ipinfo-no-results": "Tiada maklumat IP tersedia bagi $1."
 }

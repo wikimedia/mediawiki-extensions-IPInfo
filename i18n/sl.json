@@ -129,5 +129,13 @@
 	"ipinfo-property-tooltip-asn": "Enolični identifikator za omrežja, dodeljena regiji in nadalje organizacijam, kot so vlade in ponudniki internetnih storitev",
 	"ipinfo-blocklist-url-text": "Seznam blokiranja",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 izbrisano urejanje|$1 izbrisani urejanji|$1 izbrisana urejanja|$1 izbrisanih urejanj|0=Nobenega izbrisanega urejanja}}",
-	"ipinfo-deleted-edits-url-text": "Izbrisani prispevki"
+	"ipinfo-special-ipinfo": "Informacije IP",
+	"ipinfo-special-ipinfo-legend": "Vpogled v informacije IP o vseh IP-naslovih, ki jih uporablja začasni uporabnik. {{PLURAL:$1|Prikazan je največ $1 zadetek|Prikazana sta največ $1 zadetka|Prikazani so največ $1 zadetki|Prikazanih je največ $1 zadetkov}}.",
+	"ipinfo-deleted-edits-url-text": "Izbrisani prispevki",
+	"ipinfo-special-ipinfo-table-caption": "Informacije IP za $1",
+	"ipinfo-special-ipinfo-target": "Ciljno uporabniško ime:",
+	"ipinfo-special-ipinfo-user-tool-links": "Za $1",
+	"ipinfo-special-ipinfo-sort-explainer": "Gumbe v glavah tabel lahko uporabite za razvrščanje tabel po vrednosti tega stolpca.",
+	"ipinfo-special-ipinfo-column-ip": "IP",
+	"ipinfo-special-ipinfo-no-results": "Za $1 ni na voljo nobena informacija o IP-ju."
 }

@@ -59,6 +59,7 @@
 	"ipinfo-property-value-connectiontype-unknown": "Incognite",
 	"ipinfo-property-label-source": "Fonte",
 	"ipinfo-property-label-active-blocks": "Blocadas active",
+	"ipinfo-property-label-number-of-ips": "Numero de adresses IP",
 	"ipinfo-property-tooltip-proxytypes": "Le proxies cela adresses IP. In alcun casos isto occurre automaticamente, p.ex. pro proxies residential o corporative, in altere casos isto es facite intentionalmente pro mascar le origine del adresse IP.",
 	"ipinfo-property-tooltip-connectiontype": "Le technologia que usa pro connecter a internet.",
 	"ipinfo-property-tooltip-usertype": "Le typo de entitate que possede le connexion a internet.",
@@ -125,5 +126,13 @@
 	"ipinfo-property-tooltip-asn": "Un identificator unic pro retes assignate a un region e ulteriormente a organisationes como governamentos e fornitores de accesso a internet",
 	"ipinfo-blocklist-url-text": "Lista de blocage",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|Un|$1|0=Necun}} modification{{PLURAL:$1||es|0=}} delite",
-	"ipinfo-deleted-edits-url-text": "Contributiones delite"
+	"ipinfo-special-ipinfo": "Information IP",
+	"ipinfo-special-ipinfo-legend": "Consultar information sur tote le adresses IP usate per un usator temporari. Un maximo de $1 resultato{{PLURAL:$1||s}} apparera.",
+	"ipinfo-deleted-edits-url-text": "Contributiones delite",
+	"ipinfo-special-ipinfo-table-caption": "Information IP pro $1",
+	"ipinfo-special-ipinfo-target": "Nomine de usator de destination:",
+	"ipinfo-special-ipinfo-user-tool-links": "Pro $1",
+	"ipinfo-special-ipinfo-sort-explainer": "Le buttones in le capites del tabella pote esser usate pro ordinar le tabella per le valor de ille columna.",
+	"ipinfo-special-ipinfo-column-ip": "IP",
+	"ipinfo-special-ipinfo-no-results": "Nulle information IP es disponibile pro $1."
 }

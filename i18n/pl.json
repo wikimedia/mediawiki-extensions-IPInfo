@@ -132,5 +132,12 @@
 	"ipinfo-property-tooltip-asn": "Unikalny identyfikator przypisywany sieciom powiązanym z konkretnym regionem lub organizacjami jak rządy państw oraz dostawcy internetu",
 	"ipinfo-blocklist-url-text": "Lista zablokowanych",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 usunięta edycja|$1 usunięte edycje|$1 usuniętych edycji|0=Brak usuniętych edycji}}",
-	"ipinfo-deleted-edits-url-text": "Usunięty wkład"
+	"ipinfo-special-ipinfo": "Informacje o IP",
+	"ipinfo-special-ipinfo-legend": "Wyszukaj informacje o wszystkich adresach IP wykorzystywanych przez konto tymczasowe. Wyświetlono maksymalnie $1 {{PLURAL:$1|wynik|wyniki|wyników}}.",
+	"ipinfo-deleted-edits-url-text": "Usunięty wkład",
+	"ipinfo-special-ipinfo-table-caption": "Informacje o IP $1",
+	"ipinfo-special-ipinfo-target": "Nazwa użytkownika:",
+	"ipinfo-special-ipinfo-user-tool-links": "Dla $1",
+	"ipinfo-special-ipinfo-sort-explainer": "Przyciski w nagłówkach tabeli mogą zostać wykorzystanie to sortowania danych według wartości w kolumnie.",
+	"ipinfo-special-ipinfo-no-results": "Brak informacji o adresie IP $1."
 }
