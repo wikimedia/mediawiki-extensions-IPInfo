@@ -131,5 +131,10 @@
 	"ipinfo-property-tooltip-asn": "지역, 더 나아가 정부, ISP와 같은 단체에 할당된 네트워크의 고유 식별자입니다",
 	"ipinfo-blocklist-url-text": "차단 목록",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|삭제된 편집 $1개|삭제된 편집 $1개|0=삭제된 편집 없음}}",
-	"ipinfo-deleted-edits-url-text": "삭제된 기여"
+	"ipinfo-special-ipinfo": "IP 정보",
+	"ipinfo-deleted-edits-url-text": "삭제된 기여",
+	"ipinfo-special-ipinfo-table-caption": "$1의 IP 정보",
+	"ipinfo-special-ipinfo-target": "대상 사용자 이름:",
+	"ipinfo-special-ipinfo-column-ip": "IP",
+	"ipinfo-special-ipinfo-no-results": "$1에 대한 IP 정보가 없습니다."
 }

@@ -40,5 +40,9 @@
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|desaktivéiert}}",
 	"log-action-filter-ipinfo-change_access": "Geschier aktivéiert oder desaktivéiert",
 	"ipinfo-blocklist-url-text": "Lëscht vun de Spären",
-	"ipinfo-deleted-edits-url-text": "Geläscht Kontributiounen"
+	"ipinfo-special-ipinfo": "IP-Informatiounen",
+	"ipinfo-deleted-edits-url-text": "Geläscht Kontributiounen",
+	"ipinfo-special-ipinfo-table-caption": "IP-Informatioune fir $1",
+	"ipinfo-special-ipinfo-user-tool-links": "Fir $1",
+	"ipinfo-special-ipinfo-column-ip": "IP"
 }

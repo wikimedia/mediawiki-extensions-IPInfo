@@ -12,6 +12,7 @@
 			"GrandEscogriffe",
 			"McDutchie",
 			"SleaY",
+			"Terio legale",
 			"Thibaut120094",
 			"Vega",
 			"Verdy p",
@@ -140,5 +141,6 @@
 	"ipinfo-property-tooltip-asn": "Un identifiant unique pour les réseaux affectés à une région et de façon plus avancée aux organisations telles comme des gouvernements et des FAI.",
 	"ipinfo-blocklist-url-text": "Liste de blocage",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|Une|$1|0=Aucune}} modification{{PLURAL:$1||s}} supprimée{{PLURAL:$1||s}}",
-	"ipinfo-deleted-edits-url-text": "Contributions supprimées"
+	"ipinfo-deleted-edits-url-text": "Contributions supprimées",
+	"ipinfo-special-ipinfo-no-results": "Aucune information IP n'est disponible pour $1 ."
 }

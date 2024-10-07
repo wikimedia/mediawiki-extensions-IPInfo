@@ -91,5 +91,6 @@
 	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|его|её|свой}} доступ к информации об IP",
 	"ipinfo-blocklist-url-text": "Список блокировок",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 удалённая правка|$1 удалённые правки|$1 удалённых правок|0=Нет удалённых правок}}",
-	"ipinfo-deleted-edits-url-text": "Удалённый вклад"
+	"ipinfo-deleted-edits-url-text": "Удалённый вклад",
+	"ipinfo-special-ipinfo-user-tool-links": "Для $1"
 }
