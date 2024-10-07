@@ -1,4 +1,11 @@
-const log = function ( action, context ) {
+/**
+ * Track a click action on an IPInfo features.
+ *
+ * @param {string} action Identifies the click action (e.g. open_popup)
+ * @param {string} context Identifies the IPInfo feature being clicked (e.g. infobox)
+ * @param {Object} [data] Optional map of additional values to attach to the event
+ */
+const log = function ( action, context, data = {} ) {
 	let specialPage = mw.config.get( 'wgCanonicalSpecialPageName' );
 	switch ( specialPage ) {
 		case 'Log':
@@ -18,16 +25,16 @@ const log = function ( action, context ) {
 			break;
 	}
 
-	const event = {
+	const event = Object.assign( {
 		/* eslint-disable camelcase */
-		$schema: '/analytics/mediawiki/ipinfo_interaction/1.3.0',
+		$schema: '/analytics/mediawiki/ipinfo_interaction/1.4.0',
 		event_action: action,
 		event_context: context,
 		event_source: specialPage,
 		user_edit_bucket: mw.config.get( 'wgUserEditCountBucket' ),
 		user_groups: mw.config.get( 'wgUserGroups', [] ).join( '|' )
 		/* eslint-enable camelcase */
-	};
+	}, data );
 
 	if ( action === 'open_popup' ) {
 		mw.user.getRights( ( rights ) => {

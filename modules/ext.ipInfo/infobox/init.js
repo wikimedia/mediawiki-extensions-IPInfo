@@ -43,8 +43,9 @@ function initInfoboxWidget() {
 	// Determine if infobox should be expanded on load
 	// Do this before we attach the click handler so we can use click() to expand
 	// the infobox without setting the user preference
+	const hasOpenInfoboxQueryParam = new URLSearchParams( window.location.search ).get( 'openInfobox' ) === 'true';
 	if ( $( '.ext-ipinfo-collapsible-layout' ).hasClass( 'mw-collapsed' ) &&
-		( new URLSearchParams( window.location.search ).get( 'openInfobox' ) === 'true' ||
+		( hasOpenInfoboxQueryParam ||
 		!!Number( mw.storage.get( 'mw-ipinfo-infobox-expanded' ) ) ) ) {
 		$( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).trigger( 'click' );
 	}
@@ -79,6 +80,34 @@ function initInfoboxWidget() {
 						break;
 					}
 				}
+
+				if ( data ) {
+					const context = hasOpenInfoboxQueryParam ? 'popup' : 'infobox';
+
+					const hasGeoData = Object.keys( data.data[ 'ipinfo-source-geoip2' ] )
+						.some( ( k ) => data.data[ 'ipinfo-source-geoip2' ][ k ] !== null );
+					const hasIpoidData = Object.keys( data.data[ 'ipinfo-source-ipoid' ] )
+						.some( ( k ) => data.data[ 'ipinfo-source-ipoid' ][ k ] !== null );
+
+					const dataSources = [];
+					if ( hasGeoData ) {
+						dataSources.push( 'maxmind' );
+					}
+
+					if ( hasIpoidData ) {
+						dataSources.push( 'spur' );
+					}
+
+					// Track what data sources provided data for this lookup (T356105).
+					// Refer to the IPInfo EventLogging schema for allowed values.
+					const params = {
+						// eslint-disable-next-line camelcase
+						event_ip_data_sources: dataSources
+					};
+
+					eventLogger.log( 'open_infobox', context, params );
+				}
+
 				mw.track( 'timing.MediaWiki.ipinfo_infobox_delay', mw.now() - timerStart );
 				return data;
 			} )
