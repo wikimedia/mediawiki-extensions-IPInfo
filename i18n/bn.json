@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Al Riaz Uddin Ripon",
+			"San1joy23",
 			"Yahya",
 			"আজিজ",
 			"আফতাবুজ্জামান"
@@ -111,7 +112,12 @@
 	"ipinfo-blocklist-url-text": "বধাদান তালিকা",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1টি অপসারিত অবদান|0=কোনও অপসারিত অবদান নেই}}",
 	"ipinfo-special-ipinfo": "আইপির তথ্য",
+	"ipinfo-special-ipinfo-legend": "একটি অস্থায়ী ব্যবহারকারী দ্বারা ব্যবহৃত সমস্ত আইপি ঠিকানা সম্পর্কে আইপি তথ্য সন্ধান করুন। সর্বাধিক $1 {{PLURAL:$1| ফলাফল|ফলাফল}}প্রদর্শিত হয়",
 	"ipinfo-deleted-edits-url-text": "অপসারিত অবদান",
+	"ipinfo-special-ipinfo-table-caption": "$1 এর জন্য আইপি তথ্য",
+	"ipinfo-special-ipinfo-target": "লক্ষ্য ব্যবহারকারীর নাম (T):",
 	"ipinfo-special-ipinfo-user-tool-links": "$1-এর জন্য",
-	"ipinfo-special-ipinfo-column-ip": "আইপি"
+	"ipinfo-special-ipinfo-sort-explainer": "টেবিলের শিরোনামের বোতামগুলি সেই কলামের মান অনুসারে টেবিল সাজানোর জন্য ব্যবহার করা যেতে পারে।",
+	"ipinfo-special-ipinfo-column-ip": "আইপি",
+	"ipinfo-special-ipinfo-no-results": "$1 এর জন্য কোন আইপি তথ্য পাওয়া যায় না।"
 }
