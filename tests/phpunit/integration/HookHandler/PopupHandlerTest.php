@@ -2,7 +2,6 @@
 
 namespace MediaWiki\IPInfo\Test\Integration\HookHandler;
 
-use IDBAccessObject;
 use MediaWiki\IPInfo\HookHandler\PopupHandler;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\PermissionManager;
@@ -12,6 +11,7 @@ use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 use Skin;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * @group IPInfo

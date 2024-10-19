@@ -5,10 +5,10 @@ namespace MediaWiki\IPInfo\Test\Integration\InfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\ContributionInfoRetriever;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
-use User;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**

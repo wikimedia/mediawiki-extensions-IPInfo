@@ -14,6 +14,7 @@ use MediaWiki\IPInfo\Logging\LoggerFactory as IPInfoLoggerFactory;
 use MediaWiki\IPInfo\TempUserIPLookup;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Registration\ExtensionRegistry;
 
 // PHPUnit doesn't understand code coverage for code outside of classes/functions,
 // like service wiring files. see T310509

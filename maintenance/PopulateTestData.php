@@ -3,9 +3,9 @@
 namespace MediaWiki\IPInfo\Maintenance;
 
 use BackupReader;
-use Maintenance;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
