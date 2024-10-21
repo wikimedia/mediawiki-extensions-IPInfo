@@ -131,5 +131,13 @@
 	"ipinfo-property-tooltip-asn": "Een unieke identificatiecode voor netwerken die zijn toegewezen aan een regio en verder aan organisaties zoals overheden en internetaanbieders",
 	"ipinfo-blocklist-url-text": "Blokkadelijst",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 verwijderde bewerking|$1 verwijderde bewerkingen|0=Geen verwijderde bewerkingen}}",
-	"ipinfo-deleted-edits-url-text": "Verwijderde bijdragen"
+	"ipinfo-special-ipinfo": "IP-gegevens",
+	"ipinfo-special-ipinfo-legend": "Zoek IP-gegevens op over alle IP-adressen die door een tijdelijke gebruiker worden gebruikt. Er {{PLURAL:$1|wordt maximaal één resultaat|worden maximaal $1 resultaten}} weergegeven.",
+	"ipinfo-deleted-edits-url-text": "Verwijderde bijdragen",
+	"ipinfo-special-ipinfo-table-caption": "IP-gegevens voor $1",
+	"ipinfo-special-ipinfo-target": "Doelgebruikersnaam:",
+	"ipinfo-special-ipinfo-user-tool-links": "Voor $1",
+	"ipinfo-special-ipinfo-sort-explainer": "Met de knoppen in de tabelkoppen kunt u de tabel sorteren op de waarde van die kolom.",
+	"ipinfo-special-ipinfo-column-ip": "IP",
+	"ipinfo-special-ipinfo-no-results": "Voor $1 is geen IP-informatie beschikbaar."
 }
