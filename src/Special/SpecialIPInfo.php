@@ -102,6 +102,11 @@ class SpecialIPInfo extends FormSpecialPage {
 		return $this->didNotAcceptIPInfoAgreement();
 	}
 
+	/** @inheritDoc */
+	public function doesWrites(): bool {
+		return $this->didNotAcceptIPInfoAgreement();
+	}
+
 	protected function getSubpageField(): string {
 		return self::TARGET_FIELD;
 	}
