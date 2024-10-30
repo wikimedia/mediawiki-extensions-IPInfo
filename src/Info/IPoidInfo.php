@@ -38,7 +38,7 @@ class IPoidInfo implements JsonSerializable {
 		?array $connectionTypes = null,
 		?array $tunnelOperators = null,
 		?array $proxies = null,
-		int $numUsersOnThisIP = null
+		?int $numUsersOnThisIP = null
 	) {
 		$this->behaviors = $behaviors;
 		$this->risks = $risks;
