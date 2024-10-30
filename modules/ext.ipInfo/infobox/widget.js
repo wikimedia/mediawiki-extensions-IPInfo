@@ -113,6 +113,13 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 		);
 	}
 
+	let $specialIpInfoLink = $( '' );
+	if ( mw.util.isTemporaryUser( info.subject ) ) {
+		$specialIpInfoLink = $( '<div>' )
+			.addClass( 'ext-ipinfo-widget-property' )
+			.html( mw.message( 'ipinfo-widget-special-ipinfo-link', info.subject ).parse() );
+	}
+
 	const $info = $( '<dl>' ).addClass( 'ext-ipinfo-widget-properties' )
 		.append(
 			$( '<div>' ).addClass( 'ext-ipinfo-widget-properties-col' ).append(
@@ -170,6 +177,7 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 					'edits',
 					$edits,
 					mw.msg( 'ipinfo-property-label-edits' ) ).append( $deletedEditsLink ),
+				$specialIpInfoLink,
 				$( '<div>' ).addClass( 'ext-ipinfo-widget-property-source' ).html(
 					mw.message( 'ipinfo-source-geoip2' ).parse()
 				)

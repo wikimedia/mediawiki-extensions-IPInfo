@@ -84,6 +84,7 @@
 	"ipinfo-widget-error-no-data": "There is no data for this IP address from $1.",
 	"ipinfo-widget-error-wrong-ip": "The IP address provided did not match the log or revision.",
 	"ipinfo-widget-error-ip-no-edits": "IP information for this address cannot be retrieved since no edits have been made from it.",
+	"ipinfo-widget-special-ipinfo-link": "[[Special:IPInfo/$1|View IP information for all IP addresses associated with this temporary account]]",
 	"ipinfo-preference-enable": "Show the IP Information tool on Special:Contributions page for unregistered contributors.",
 	"ipinfo-preference-use-agreement": "I agree to use this information for my patrolling and anti-vandalism work.",
 	"ipinfo-preference-agreement-error": "You must enable the IP Information tool before agreeing to its use conditions.",

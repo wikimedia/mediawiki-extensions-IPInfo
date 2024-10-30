@@ -175,6 +175,7 @@
 			"dependencies": [
 				"mediawiki.api",
 				"mediawiki.htmlform",
+				"mediawiki.jqueryMsg",
 				"oojs-ui-core",
 				"oojs-ui-widgets",
 				"oojs-ui.styles.icons-content",
@@ -258,6 +259,7 @@
 				"ipinfo-widget-error-no-data",
 				"ipinfo-widget-error-wrong-ip",
 				"ipinfo-widget-error-ip-no-edits",
+				"ipinfo-widget-special-ipinfo-link",
 				"ipinfo-infobox-use-terms",
 				"ipinfo-preference-use-agreement",
 				"ipinfo-infobox-submit-agreement",
