@@ -101,7 +101,6 @@
 	"logentry-ipinfo-view_popup": "$1님이 $3 문서의 IP 정보의 팝업을 {{GENDER:$2|보았습니다}}. $4.",
 	"ipinfo-change-access-level-enable": "{{GENDER:$1|활성화됨}}",
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|비활성화됨}}",
-	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|그|그녀|그들}} 자신의 IP 정보 접속 권리",
 	"log-action-filter-ipinfo": "IP 정보 운영 유형:",
 	"log-action-filter-ipinfo-change_access": "도구가 활성화 또는 비활성화됨",
 	"log-action-filter-ipinfo-view_infobox": "정보 상자에서 보이는 데이터",
