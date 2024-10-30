@@ -33,14 +33,14 @@ class PopupHandlerTest extends MediaWikiIntegrationTestCase {
 		return $userOptionsLookup;
 	}
 
-	private function getPopupHandler( array $overrides = null ): PopupHandler {
+	private function getPopupHandler( ?array $overrides = null ): PopupHandler {
 		return new PopupHandler(
 			$overrides[ 'PermissionManager' ] ?? $this->getPermissionManager(),
 			$overrides[ 'UserOptionsLookup' ] ?? $this->getUserOptionsLookup()
 		);
 	}
 
-	private function getOutputPage( array $overrides = null ): OutputPage {
+	private function getOutputPage( ?array $overrides = null ): OutputPage {
 		$out = $this->getMockBuilder( OutputPage::class )
 			->disableOriginalConstructor()
 			->setMethodsExcept( [
