@@ -184,7 +184,8 @@
 				"mediawiki.user"
 			],
 			"messages": [
-				"ipinfo-source-geoip2",
+				"ipinfo-help-text",
+				"ipinfo-learn-more-link",
 				"ipinfo-infobox-title",
 				"ipinfo-property-label-location",
 				"ipinfo-property-label-isp",
