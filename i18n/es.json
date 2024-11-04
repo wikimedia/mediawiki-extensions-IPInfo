@@ -16,8 +16,6 @@
 	"ipinfo-infobox-title": "Información de la IP",
 	"ipinfo-property-label-location": "Ubicación",
 	"ipinfo-property-label-ipversion": "Versión",
-	"ipinfo-property-label-isp": "ISP",
-	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Organización",
 	"ipinfo-property-label-connectiontype": "Método de conexión",
 	"ipinfo-property-label-usertype": "Propietario de la conexión",
