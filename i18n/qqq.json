@@ -148,5 +148,6 @@
 	"ipinfo-special-ipinfo-user-tool-links": "Special page subtitle shown on Special:IPInfo.\n\nParameters:\n* $1 - user name of the temporary user whose information is shown.",
 	"ipinfo-special-ipinfo-sort-explainer": "Hidden message displayed to assistive tools such as screen readers",
 	"ipinfo-special-ipinfo-column-ip": "Column header on Special:IPInfo for the column holding IP addresses",
-	"ipinfo-special-ipinfo-no-results": "Message shown on Special:IPInfo when no IP information is available for the temporary user being looked up.\n\nParameters:\n* $1 - user name of the temporary user whose information is shown."
+	"ipinfo-special-ipinfo-no-results": "Message shown on Special:IPInfo when no IP information is available for the temporary user being looked up.\n\nParameters:\n* $1 - user name of the temporary user whose information is shown.",
+	"ipinfo-popup-link-text": "Link text used for the Special:IPInfo link in the IPInfo popup"
 }

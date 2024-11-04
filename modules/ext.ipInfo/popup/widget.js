@@ -54,11 +54,11 @@ ipInfoPopupWidget.prototype.buildMarkup = function ( info ) {
 	const $linkOut = $( '<a>' )
 		.addClass( 'ext-ipinfo-widget-popup-linkout' )
 		.attr( 'href', $linkOutURL )
-		.text( 'Special:Contributions/' + info.subject );
+		.html( mw.message( 'ipinfo-popup-link-text' ).escaped() );
 
 	return $( '<div>' )
-		.append( $linkOut )
-		.append( $info );
+		.append( $info )
+		.append( $linkOut );
 };
 
 module.exports = ipInfoPopupWidget;

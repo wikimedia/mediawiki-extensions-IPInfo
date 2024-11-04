@@ -141,5 +141,6 @@
 	"ipinfo-special-ipinfo-user-tool-links": "For $1",
 	"ipinfo-special-ipinfo-sort-explainer": "The buttons in the table headers can be used to sort the table by that column's value.",
 	"ipinfo-special-ipinfo-column-ip": "IP",
-	"ipinfo-special-ipinfo-no-results": "No IP information is available for $1."
+	"ipinfo-special-ipinfo-no-results": "No IP information is available for $1.",
+	"ipinfo-popup-link-text": "View all IP information"
 }

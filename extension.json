@@ -272,7 +272,8 @@
 				"ipinfo-active-blocks-url-text",
 				"ipinfo-blocklist-url-text",
 				"ipinfo-value-deleted-edits",
-				"ipinfo-deleted-edits-url-text"
+				"ipinfo-deleted-edits-url-text",
+				"ipinfo-popup-link-text"
 			]
 		},
 		"ext.ipInfo.styles": {
