@@ -83,6 +83,7 @@
 	"ipinfo-widget-error-no-data": "Es gibt keine Daten für diese IP-Adresse von $1.",
 	"ipinfo-widget-error-wrong-ip": "Die angegebene IP-Adresse stimmte nicht mit dem Logbuch oder der Version überein.",
 	"ipinfo-widget-error-ip-no-edits": "IP-Informationen für diese Adresse können nicht abgerufen werden, da keine Änderungen mit ihr vorgenommen wurden.",
+	"ipinfo-widget-special-ipinfo-link": "[[Special:IPInfo/$1|IP-Informationen für alle IP-Adressen anzeigen, die mit diesem temporären Konto verknüpft sind]]",
 	"ipinfo-preference-enable": "Zeige das IP-Informationstool auf Spezial:Beiträge für nicht angemeldete Benutzer an.",
 	"ipinfo-preference-use-agreement": "Ich erkläre mich damit einverstanden, diese Informationen für meine Kontrolltätigkeit und die Bekämpfung von Vandalismus zu verwenden.",
 	"ipinfo-preference-agreement-error": "Du musst das IP-Informationstool aktivieren, bevor du den Nutzungsbedingungen zustimmst.",
