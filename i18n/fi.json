@@ -142,5 +142,6 @@
 	"ipinfo-special-ipinfo-user-tool-links": "Käyttäjästä $1",
 	"ipinfo-special-ipinfo-sort-explainer": "Sarakeotsikoiden painikkeilla voidaan lajitella taulukko kyseisen sarakkeen arvon mukaan.",
 	"ipinfo-special-ipinfo-column-ip": "IP",
-	"ipinfo-special-ipinfo-no-results": "Ei IP-tietoja saatavilla käyttäjästä $1."
+	"ipinfo-special-ipinfo-no-results": "Ei IP-tietoja saatavilla käyttäjästä $1.",
+	"ipinfo-popup-link-text": "Näytä kaikki IP-tiedot"
 }

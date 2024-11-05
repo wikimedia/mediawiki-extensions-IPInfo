@@ -138,5 +138,6 @@
 	"ipinfo-special-ipinfo-user-tool-links": "Für $1",
 	"ipinfo-special-ipinfo-sort-explainer": "Mit den Schaltflächen in den Tabellenüberschriften kann die Tabelle nach dem Wert der jeweiligen Spalte sortiert werden.",
 	"ipinfo-special-ipinfo-column-ip": "IP-Adresse",
-	"ipinfo-special-ipinfo-no-results": "Für $1 sind keine IP-Informationen verfügbar."
+	"ipinfo-special-ipinfo-no-results": "Für $1 sind keine IP-Informationen verfügbar.",
+	"ipinfo-popup-link-text": "Alle IP-Informationen anzeigen"
 }

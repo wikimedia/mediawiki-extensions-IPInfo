@@ -140,5 +140,6 @@
 	"ipinfo-special-ipinfo-user-tool-links": "Voor $1",
 	"ipinfo-special-ipinfo-sort-explainer": "Met de knoppen in de tabelkoppen kunt u de tabel sorteren op de waarde van die kolom.",
 	"ipinfo-special-ipinfo-column-ip": "IP",
-	"ipinfo-special-ipinfo-no-results": "Voor $1 is geen IP-informatie beschikbaar."
+	"ipinfo-special-ipinfo-no-results": "Voor $1 is geen IP-informatie beschikbaar.",
+	"ipinfo-popup-link-text": "Alle IP-informatie bekijken"
 }
