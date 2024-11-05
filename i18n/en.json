@@ -100,7 +100,6 @@
 	"ipinfo-rest-log-nonexistent": "Log entry does not exist",
 	"ipinfo-rest-log-registered": "Cannot retrieve IP information for logs of registered users",
 	"ipinfo-rest-log-denied": "Your account does not have access to view the performer of the log entry or the log entry itself",
-	"ipinfo-source-geoip2": "The information shown here comes from the GeoIP2 databases from MaxMind. It might not be fully accurate.",
 	"ipinfo-beta-feature-title": "IP Information",
 	"ipinfo-beta-feature-description": "IP Information tool aims to equip patrollers with vital information about IP addresses to assist them in their roles. This information will be accessible on the Special:Contributions page for the IP editor. An abridged version of this information will be available in a popup next to IP addresses on [[Special:Log|Log]], [[Special:Contributions|Contributions]], and [[Special:RecentChanges|Recent changes]] pages.",
 	"ipinfo-value-ipversion-ipv4": "IPv4",
@@ -142,5 +141,7 @@
 	"ipinfo-special-ipinfo-sort-explainer": "The buttons in the table headers can be used to sort the table by that column's value.",
 	"ipinfo-special-ipinfo-column-ip": "IP",
 	"ipinfo-special-ipinfo-no-results": "No IP information is available for $1.",
-	"ipinfo-popup-link-text": "View all IP information"
+	"ipinfo-popup-link-text": "View all IP information",
+	"ipinfo-help-text": "The information displayed comes from MaxMind and [https://docs.spur.us/data-types Spur]. It might not be fully accurate.",
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Learn more about this feature]"
 }

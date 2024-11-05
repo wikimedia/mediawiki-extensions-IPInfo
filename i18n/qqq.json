@@ -107,7 +107,6 @@
 	"ipinfo-rest-log-nonexistent": "Error message for REST API debugging, shown when a log entry does not exist.",
 	"ipinfo-rest-log-registered": "Error message for REST API debugging, shown when a log entry belongs to a registered user.",
 	"ipinfo-rest-log-denied": "Error message for REST API debugging, shown when a user does not have permission to read the performer of a log entry.",
-	"ipinfo-source-geoip2": "Disclaimer about the accuracy of the data, MaxMind is the provider name, GeoIP2 is the collection of their databases.",
 	"ipinfo-beta-feature-title": "Label for BetaFeatures listing",
 	"ipinfo-beta-feature-description": "Description for BetaFeatures listing. \"Log\" is {{msg-mw|all-logs-page}}; \"Contributions\" is {{msg-mw|contributions}}; \"Recent changes\" is {{msg-mw|recentchanges}}.",
 	"ipinfo-value-ipversion-ipv4": "{{optional}}\nIP address version 4",
@@ -149,5 +148,7 @@
 	"ipinfo-special-ipinfo-sort-explainer": "Hidden message displayed to assistive tools such as screen readers",
 	"ipinfo-special-ipinfo-column-ip": "Column header on Special:IPInfo for the column holding IP addresses",
 	"ipinfo-special-ipinfo-no-results": "Message shown on Special:IPInfo when no IP information is available for the temporary user being looked up.\n\nParameters:\n* $1 - user name of the temporary user whose information is shown.",
-	"ipinfo-popup-link-text": "Link text used for the Special:IPInfo link in the IPInfo popup"
+	"ipinfo-popup-link-text": "Link text used for the Special:IPInfo link in the IPInfo popup",
+	"ipinfo-help-text": "Disclaimer about the accuracy of the data, shown in the IP information table on Special:Contributions. MaxMind and Spur are the names of the vendors that provide the data.",
+	"ipinfo-learn-more-link": "Help link shown in the IP information table on Special:Contributions"
 }

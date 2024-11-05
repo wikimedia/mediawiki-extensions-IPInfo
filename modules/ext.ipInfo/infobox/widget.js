@@ -178,9 +178,14 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 					$edits,
 					mw.msg( 'ipinfo-property-label-edits' ) ).append( $deletedEditsLink ),
 				$specialIpInfoLink,
-				$( '<div>' ).addClass( 'ext-ipinfo-widget-property-source' ).html(
-					mw.message( 'ipinfo-source-geoip2' ).parse()
-				)
+				$( '<div>' )
+					.addClass( 'ext-ipinfo-widget-property-source' )
+					.append(
+						$( '<p>' )
+							.addClass( 'ext-ipinfo-widget-property-source__help' )
+							.html( mw.message( 'ipinfo-help-text' ).parse() )
+					)
+					.append( $( '<p>' ).html( mw.message( 'ipinfo-learn-more-link' ).parse() ) )
 			)
 		);
 
