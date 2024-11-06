@@ -100,7 +100,6 @@
 	"ipinfo-rest-log-nonexistent": "רשומת היומן אינה קיימת",
 	"ipinfo-rest-log-registered": "לא ניתן לאחר ipinfo על יומנים של משתמשים רשומים",
 	"ipinfo-rest-log-denied": "לחשבון שלך אין גישה להצגה של המבצע של רשומת היומן או של רשומת היומן עצמה",
-	"ipinfo-source-geoip2": "המידע שמוצג כאן מגיע ממסדי הנתוני GeoIP2 של MaxMind. ייתכן שהוא לא מדויק לגמרי.",
 	"ipinfo-beta-feature-title": "מידע על IP",
 	"ipinfo-beta-feature-description": "כלי המידע על IP שואף לתת למנטרים דרך להשיג מידע חיוני על כתובות IP שיעזור להם בתפקיד שלהם. המידע הזה יהיה נגיש דרך הדף מיוחד:תרומות (Special:Contributions) עבור העורך מכתובת IP. גרסה מקוצרת של המידע הזה תהיה זמינה בחלון קופץ ליד כתובות ה־IP בדפי [[Special:Log|יומנים]], [[Special:Contributions|תרומות]], ו[[Special:RecentChanges|שינויים אחרונים]].",
 	"prefs-ipinfo": "מידע על כתובת IP",
@@ -139,5 +138,6 @@
 	"ipinfo-special-ipinfo-user-tool-links": "עבור $1",
 	"ipinfo-special-ipinfo-sort-explainer": "ניתן להשתמש בלחצנים בכותרות הטבלה כדי למיין את הטבלה לפי הערך של אותה עמודה.",
 	"ipinfo-special-ipinfo-column-ip": "כתובת IP",
-	"ipinfo-special-ipinfo-no-results": "אין מידע IP זמין עבור $1."
+	"ipinfo-special-ipinfo-no-results": "אין מידע IP זמין עבור $1.",
+	"ipinfo-popup-link-text": "הצגת כל מידע ה־IP"
 }

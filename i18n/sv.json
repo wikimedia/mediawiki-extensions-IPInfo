@@ -51,7 +51,6 @@
 	"ipinfo-rest-log-nonexistent": "Det finns ingen rad i loggen",
 	"ipinfo-rest-log-registered": "Kan inte hämta ip-info för loggar av registrerade användare",
 	"ipinfo-rest-log-denied": "Ditt konto har inte rätt att se vem som utfört en logghändelse eller själva logghändelsen",
-	"ipinfo-source-geoip2": "Informationen här kommer från GeoIP2 databaserna från MaxMind. De är kanske inte helt korrekta.",
 	"ipinfo-beta-feature-title": "IP-info",
 	"ipinfo-beta-feature-description": "IP-informationsverktyget syftar till att utrusta patrullerare med viktig information om IP-adresser som hjälper dem i deras roller. Denna information blir tillgänglig från sidan Special:Bidrag för IP-redigerare. En förkortad version av denna information blir tillgänglig i en popup bredvid IP-adresser i sidor för loggar, bidrag och Senaste ändringar.",
 	"prefs-ipinfo": "IP-information",

@@ -96,7 +96,6 @@
 	"ipinfo-rest-log-nonexistent": "Dnevniški vnos ne obstaja",
 	"ipinfo-rest-log-registered": "Za dnevniške vnose registriranih uporabnikov podatkov o IP-ju ni mogoče pridobiti",
 	"ipinfo-rest-log-denied": "Vaš račun nima dostopa za ogled izvajalca dnevniškega vnosa ali samega dnevniškega vnosa",
-	"ipinfo-source-geoip2": "Tukaj prikazani podatki izvirajo iz podatkovnih zbirk GeoIP2 podjetja MaxMind. Morda niso popolnoma natančni.",
 	"ipinfo-beta-feature-title": "Podatki o IP-ju",
 	"ipinfo-beta-feature-description": "Orodje Podatki o IP-ju poskuša pregledovalcem urejanj zagotoviti bistvene podatke o IP-naslovih, koristne za njihovo delo. Ti podatki so za posameznega IP-urejevalca dostopni na strani Posebno:Contributions. Skrajšana različica teh podatkov bo na voljo v pojavnem oknu ob IP-naslovih na straneh [[Special:Log|Dnevnik]], [[Special:Contributions|Prispevki]] in [[Special:RecentChanges|Zadnje spremembe]].",
 	"ipinfo-value-ipversion-ipv4": "IPv4",

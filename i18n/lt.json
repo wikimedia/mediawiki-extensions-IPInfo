@@ -42,7 +42,6 @@
 	"ipinfo-rest-access-denied": "Neturite leidimo atlikti veiksmo",
 	"ipinfo-rest-access-denied-blocked-user": "Neturite leidimo atlikti veiksmo, nes jūsų paskyra užblokuota",
 	"ipinfo-rest-log-nonexistent": "Žurnalo įrašo nėra",
-	"ipinfo-source-geoip2": "Čia rodoma informacija gaunama iš MaxMind GeoIP2 duomenų bazių. Ji gali būti ne visiškai tiksli.",
 	"ipinfo-beta-feature-title": "IP informacija",
 	"prefs-ipinfo": "IP informacija",
 	"group-no-ipinfo-member": "{{GENDER:$1|užblokuotas iš IP informacijos įrankio|užblokuota iš IP informacijos įrankio}}",

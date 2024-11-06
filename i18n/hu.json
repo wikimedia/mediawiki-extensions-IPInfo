@@ -48,7 +48,6 @@
 	"ipinfo-rest-revision-registered": "Regisztrált felhasználók szerkesztéseihez nem lehet lekérni az IP-információkat",
 	"ipinfo-rest-log-nonexistent": "A naplóbejegyzés nem létezik",
 	"ipinfo-rest-log-registered": "A regisztrált felhasználók naplóbejegyzéseihez nem lehet lekérni az IP-információkat",
-	"ipinfo-source-geoip2": "Az itt megjelenített információk a MaxMind GeoIP2 adatbázisaiból származik, és nem feltétlenül teljesen pontosak.",
 	"ipinfo-beta-feature-title": "IP-információk",
 	"prefs-ipinfo": "IP-információk",
 	"ipinfo-log-name": "IPInfo-napló",

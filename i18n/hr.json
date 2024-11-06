@@ -67,7 +67,6 @@
 	"ipinfo-rest-log-nonexistent": "Zapis ne postoji u evidenciji",
 	"ipinfo-rest-log-registered": "Nije moguće pribaviti informacije o IP adresama za evidencije registriranih suradnika",
 	"ipinfo-rest-log-denied": "Vaš suradnički račun nema pristup pregledu izvođača unosa u evidenciju ili samog unosa u evidenciju",
-	"ipinfo-source-geoip2": "Ovdje prikazane informacije potječu iz MaxMindovih baza podataka GeoIP2. Moguće je da nisu u potpunosti točne.",
 	"ipinfo-beta-feature-title": "Informacije o IP adresi",
 	"ipinfo-beta-feature-description": "Cilj alata je pribaviti ophoditeljima važne informacije o IP adresama kako bi im pomogao u njihovu radu. Ove će informacije biti dostupne na stranicama doprinosa (Posebno:Doprinosi). Skraćena verzija ovih informacija bit će dostupna u skočnom prozoru pored IP adresa na stranicama [[Special:Log|evidencija]], [[Special:Contributions|doprinosa]], i [[Special:RecentChanges|nedavnih promjena]].",
 	"ipinfo-value-ipversion-ipv4": "IPv4",

@@ -103,7 +103,6 @@
 	"ipinfo-rest-log-nonexistent": "記録項目が存在しません",
 	"ipinfo-rest-log-registered": "登録利用者の記録についてIP情報を取得できません",
 	"ipinfo-rest-log-denied": "あなたのアカウントは記録項目の実施者または記録項目自体を閲覧するアクセス権を持っていません",
-	"ipinfo-source-geoip2": "ここに表示される情報はMaxMindのGeoIP2データベースに由来します。完全に正確とは限りません。",
 	"ipinfo-beta-feature-title": "IP情報",
 	"ipinfo-beta-feature-description": "IP情報ツールは巡回を行う利用者を支援し、IPアドレスに関する情報を得やすくするために提供されます。この情報はSpecial:ContributionsのページでIPアドレスを表示したときに利用できます。この情報の要約版は[[Special:Log|ログ]]、[[Special:Contributions|投稿記録]]、[[Special:RecentChanges|最近の更新]]上のIPアドレスの隣のポップアップで閲覧できるようになる予定です。",
 	"ipinfo-value-ipversion-ipv4": "IPv4",

@@ -77,7 +77,6 @@
 	"ipinfo-rest-log-nonexistent": "Günlük girdisi mevcut değil",
 	"ipinfo-rest-log-registered": "Kayıtlı kullanıcıların günlükleri için ipinfo alınamıyor",
 	"ipinfo-rest-log-denied": "Hesabınız, günlük girişinin gerçekleştiricisini veya günlük girişinin kendisini görüntüleme erişimine sahip değil",
-	"ipinfo-source-geoip2": "Burada gösterilen bilgiler MaxMind'in GeoIP2 veritabanlarından gelmektedir. Tam olarak doğru olmayabilir.",
 	"ipinfo-beta-feature-title": "IP Bilgisi",
 	"ipinfo-beta-feature-description": "IP Bilgisi aracı, devriyelere yardımcı olmak için IP adresleri hakkında önemli bilgiler sağlamayı amaçlar. Bu bilgilere IP kullanıcısının katkılar sayfasından erişilebilir. Bu bilgilerin kısaltılmış bir versiyonu; [[Special:Log|Günlük]], [[Special:Contributions|Katkılar]] ve [[Special:RecentChanges|Son Değişiklikler]] sayfalarındaki IP adreslerinin yanında bir açılır pencerede bulunabilir.",
 	"ipinfo-value-ipversion-ipv4": "IPv4",

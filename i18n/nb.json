@@ -94,7 +94,6 @@
 	"ipinfo-rest-log-nonexistent": "Loggoppføring finnes ikke",
 	"ipinfo-rest-log-registered": "Kan ikke hente ipinfo for logger av registrerte brukere",
 	"ipinfo-rest-log-denied": "Kontoen din har ikke tilgang til å vise utøveren av loggoppføringen eller selve loggoppføringen",
-	"ipinfo-source-geoip2": "Informasjonen som vises her kommer fra GeoIP2-databasene fra MaxMind. Det kan være unøyaktigheter.",
 	"ipinfo-beta-feature-title": "IP-informasjon",
 	"ipinfo-beta-feature-description": "IP-informasjonsverktøyet har som mål å gi patruljører viktig informasjon om IP-adresser for å hjelpe til med patruljeringen. Denne informasjonen vil være tilgjengelig på bidragssidene til IP-brukere. En kortfattet versjon av denne informasjonen vil være tilgjengelig som sprettoppvinduer ved siden av IP-adresser i [[Special:Log|logger]], [[Special:Contributions|bidragssider]] og [[Special:RecentChanges|siste endringer]].",
 	"prefs-ipinfo": "IP-informasjon",

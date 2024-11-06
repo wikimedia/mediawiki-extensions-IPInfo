@@ -95,7 +95,6 @@
 	"ipinfo-rest-log-nonexistent": "Le entrata de registro non existe",
 	"ipinfo-rest-log-registered": "Non pote recuperar information IP pro le registros de usatores registrate",
 	"ipinfo-rest-log-denied": "Tu conto non ha le accesso pro vider le autor del entrata de registro o le entrata mesme",
-	"ipinfo-source-geoip2": "Le information monstrate hic proveni del bases de datos GeoIP2 de MaxMind e pote non esser toto exacte.",
 	"ipinfo-beta-feature-title": "Information IP",
 	"ipinfo-beta-feature-description": "Le utensile Information IP visa a equipar le patruliatores con informationes vital sur le adresses IP pro assister les in lor rolos. Iste informationes es accessibile a partir del pagina Special:Contributiones del redactor anonyme. Un version abbreviate de iste informationes essera disponibile in un fenestra emergente al latere de \"Adresses IP\" sur le paginas \"[[Special:Log|Registro]]\", \"[[Special:Contributions|Contributiones]]\" e \"[[Special:RecentChanges|Modificationes recente]]\".",
 	"prefs-ipinfo": "Information IP",

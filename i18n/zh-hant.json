@@ -106,7 +106,6 @@
 	"ipinfo-rest-log-nonexistent": "日誌項目不存在",
 	"ipinfo-rest-log-registered": "無法檢索已註冊使用者日誌的 IP 資訊",
 	"ipinfo-rest-log-denied": "您的帳號沒有來查看日誌項目操作者或是日誌項目本身的權限",
-	"ipinfo-source-geoip2": "顯示於此的資訊來自於 MaxMind 的 GeoIP2 資料庫。內容可能不完全準確。",
 	"ipinfo-beta-feature-title": "IP資訊",
 	"ipinfo-beta-feature-description": "IP資訊工具旨在為巡查員提供有關IP位址的重要資訊，以幫助其履行職責。此資訊可在IP編者的使用者貢獻特殊頁面上查看。[[Special:Log|日誌]]、[[Special:Contributions|貢獻]]和[[Special:RecentChanges|近期變更]]頁面上IP位址旁邊的彈出視窗中將提供此資訊的精簡版本。",
 	"prefs-ipinfo": "IP資訊",
@@ -145,5 +144,8 @@
 	"ipinfo-special-ipinfo-user-tool-links": "關於$1",
 	"ipinfo-special-ipinfo-sort-explainer": "在表格標頭的按鈕可用來依照表格欄位的值進行排序。",
 	"ipinfo-special-ipinfo-column-ip": "IP",
-	"ipinfo-special-ipinfo-no-results": "$1沒有可用的 IP 資訊。"
+	"ipinfo-special-ipinfo-no-results": "$1沒有可用的 IP 資訊。",
+	"ipinfo-popup-link-text": "檢視所有IP資訊",
+	"ipinfo-help-text": "顯示的資訊來自MaxMind和[https://docs.spur.us/data-types Spur]，可能不完全準確。",
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info 進一步了解此功能]"
 }

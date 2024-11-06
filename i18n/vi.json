@@ -53,7 +53,6 @@
 	"ipinfo-rest-log-nonexistent": "Mục nhật trình không tồn tại",
 	"ipinfo-rest-log-registered": "Không thể truy xuất thông tin IP từ nhật trình của người dùng đã đăng nhập",
 	"ipinfo-rest-log-denied": "Tài khoản của bạn không có quyền xem thông tin về người thực hiện tác vụ được ghi lại hoặc nhật trình này.",
-	"ipinfo-source-geoip2": "Thông tin hiển thị ở đây được lấy từ cơ sở dữ liệu GeoIP2 của MaxMind. Nó có thể không hoàn toàn chính xác.",
 	"ipinfo-beta-feature-title": "Thông tin IP",
 	"ipinfo-beta-feature-description": "Công cụ Thông tin IP có mục đích cung cấp cho tuần tra viên các thông tin quan trọng về các địa chỉ IP nhằm hỗ trợ cho họ trong quá trình hoạt động. Thông tin sẽ được hiển thị trên trang {{#special:Contributions}} của các địa chỉ IP. Ngoài ra, những thông tin này cũng sẽ được thêm vào một bóng thoại bên cạnh các địa chỉ IP trong [[Special:Log|Nhật trình]], [[Special:Contributions|Đóng góp]] và [[Special:RecentChanges|Thay đổi gần đây]].",
 	"prefs-ipinfo": "Thông tin IP",

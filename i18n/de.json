@@ -99,7 +99,6 @@
 	"ipinfo-rest-log-nonexistent": "Logbucheintrag existiert nicht",
 	"ipinfo-rest-log-registered": "Kann IP-Informationen für Logbücher registrierter Benutzer nicht abrufen",
 	"ipinfo-rest-log-denied": "Dein Benutzerkonto hat keinen Zugriff auf den ausführenden Benutzer des Logbucheintrags oder den Protokolleintrag selbst.",
-	"ipinfo-source-geoip2": "Die hier gezeigten Informationen stammen aus den GeoIP2-Datenbanken von MaxMind. Sie sind möglicherweise nicht ganz genau.",
 	"ipinfo-beta-feature-title": "IP-Information",
 	"ipinfo-beta-feature-description": "Das IP-Info-Tool zielt darauf ab, berechtigte Benutzer mit wichtigen Informationen über IP-Adressen auszustatten, um sie bei ihren Aufgaben zu unterstützen. Diese Informationen werden auf der Seite Spezial:Beiträge für berechtigte Benutzer zugänglich sein. Eine verkürzte Version dieser Informationen wird in einem Pop-up neben den IP-Adressen auf den Seiten [[Special:Log|Logbuch]], [[Special:Contributions|Beiträge]] und [[Special:RecentChanges|Letzte Änderungen]] verfügbar sein.",
 	"prefs-ipinfo": "IP-Information",
@@ -139,5 +138,7 @@
 	"ipinfo-special-ipinfo-sort-explainer": "Mit den Schaltflächen in den Tabellenüberschriften kann die Tabelle nach dem Wert der jeweiligen Spalte sortiert werden.",
 	"ipinfo-special-ipinfo-column-ip": "IP-Adresse",
 	"ipinfo-special-ipinfo-no-results": "Für $1 sind keine IP-Informationen verfügbar.",
-	"ipinfo-popup-link-text": "Alle IP-Informationen anzeigen"
+	"ipinfo-popup-link-text": "Alle IP-Informationen anzeigen",
+	"ipinfo-help-text": "Die angezeigten Informationen stammen von MaxMind und [https://docs.spur.us/data-types Spur]. Es könnte sein, dass sie nicht ganz korrekt ist.",
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Weitere Informationen über diese Funktion]"
 }

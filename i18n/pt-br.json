@@ -61,7 +61,6 @@
 	"ipinfo-rest-log-nonexistent": "A entrada de registro não existe",
 	"ipinfo-rest-log-registered": "Não é possível recuperar ipinfo para registros de usuários registrados",
 	"ipinfo-rest-log-denied": "Sua conta não tem acesso para visualizar o executor da entrada de registro ou a própria entrada de registro",
-	"ipinfo-source-geoip2": "As informações mostradas aqui vêm dos bancos de dados GeoIP2 da MaxMind. Pode não ser totalmente preciso.",
 	"ipinfo-beta-feature-title": "Informação de IP",
 	"ipinfo-beta-feature-description": "A ferramenta de informações de IP visa equipar os patrulheiros com informações vitais sobre endereços IP para auxiliá-los em suas funções. Essas informações estarão acessíveis na página Especial:Contribuições do editor de IP. Uma versão resumida dessas informações estará disponível em um pop-up próximo aos endereços IP nas páginas [[Special:Log|Registros]], [[Special:Contributions|Contribuições]] e [[Special:RecentChanges|Mudanças recentes]].",
 	"prefs-ipinfo": "Informação de IP",

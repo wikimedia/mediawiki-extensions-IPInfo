@@ -66,7 +66,6 @@
 	"ipinfo-infobox-disable-instructions": "اگر آپ اس آلہ کو غیر فعال کرنا چاہتے ہیں، تو آپ ایسا[[Special:Preferences|ترجیحات]] میں جا کر، کر سکتے ہیں۔",
 	"ipinfo-rest-access-denied": "آپ کو کارروائی کرنے کی اجازت نہیں ہے",
 	"ipinfo-rest-log-nonexistent": "نوشتہ کا اندراج موجود نہیں ہے۔",
-	"ipinfo-source-geoip2": "یہاں دکھائی جانے والی معلومات میکس مائنڈ کے GeoIP2 کے ڈیٹابیس سے حاصل کی گئی ہے۔ ضروری نہیں کہ یہ معلومات سو فیصد درست ہوں۔",
 	"ipinfo-beta-feature-title": "آئی پی کی معلومات",
 	"ipinfo-value-ipversion-ipv4": "آئی پی نسخہ 4",
 	"ipinfo-value-ipversion-ipv6": "آئی پی نسخہ 6",

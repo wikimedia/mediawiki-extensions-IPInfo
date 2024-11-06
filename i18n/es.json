@@ -86,7 +86,6 @@
 	"ipinfo-rest-log-nonexistent": "No existe la entrada del registro",
 	"ipinfo-rest-log-registered": "No se puede obtener información sobre la IP de entradas de registro generadas por usuarios registrados",
 	"ipinfo-rest-log-denied": "Tu cuenta no tiene permisos suficientes para ver quien creó esa entrada de registro, o el propio registro en sí mismo",
-	"ipinfo-source-geoip2": "La información aquí mostrada procede de la base de datos GeoIP2 de MaxMind. Puede no ser del todo precisa.",
 	"ipinfo-beta-feature-title": "Información de la IP",
 	"ipinfo-beta-feature-description": "La herramienta de información sobre las direcciones IP ofrece a los patrulleros información relevante sobre las direcciones IP para ayudarles en sus tareas. Esta información se mostrará en la página de contribuciones de la dirección IP (Especial:Contribuciones) mientras que en las entradas del [[Special:Log|registro]], las páginas de [[Special:Contributions|contribuciones]] y en los [[Special:RecentChanges|cambios recientes]] solo se ofrecerá una versión resumida de la misma a través de una ventana emergente.",
 	"prefs-ipinfo": "Información sobre la IP",
