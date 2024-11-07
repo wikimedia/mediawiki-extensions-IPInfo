@@ -139,5 +139,7 @@
 	"ipinfo-special-ipinfo-user-tool-links": "$1 üçün",
 	"ipinfo-special-ipinfo-sort-explainer": "Cədvəl başlıqlarındakı düymələr cədvəli həmin sütunun dəyərinə görə çeşidləmək üçün istifadə edilə bilər.",
 	"ipinfo-special-ipinfo-no-results": "$1 üçün heç bir IP məlumatı yoxdur.",
-	"ipinfo-popup-link-text": "Tam IP məlumatına bax"
+	"ipinfo-popup-link-text": "Tam IP məlumatına bax",
+	"ipinfo-help-text": "Göstərilən məlumat MaxMind və [https://docs.spur.us/data-types Spur]-dan gəlir. Tam dəqiq olmaya bilər.",
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Bu funksiya haqqında ətraflı öyrənin]"
 }

@@ -139,5 +139,7 @@
 	"ipinfo-special-ipinfo-sort-explainer": "ניתן להשתמש בלחצנים בכותרות הטבלה כדי למיין את הטבלה לפי הערך של אותה עמודה.",
 	"ipinfo-special-ipinfo-column-ip": "כתובת IP",
 	"ipinfo-special-ipinfo-no-results": "אין מידע IP זמין עבור $1.",
-	"ipinfo-popup-link-text": "הצגת כל מידע ה־IP"
+	"ipinfo-popup-link-text": "הצגת כל מידע ה־IP",
+	"ipinfo-help-text": "המידע המוצג מגיע מ־MaxMind ומ־[https://docs.spur.us/data-types Spur]. יכול להיות שהוא לא לגמרי מדויק.",
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info מידע נוסף על האפשרות הזאת]"
 }

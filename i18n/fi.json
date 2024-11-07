@@ -142,5 +142,7 @@
 	"ipinfo-special-ipinfo-sort-explainer": "Sarakeotsikoiden painikkeilla voidaan lajitella taulukko kyseisen sarakkeen arvon mukaan.",
 	"ipinfo-special-ipinfo-column-ip": "IP",
 	"ipinfo-special-ipinfo-no-results": "Ei IP-tietoja saatavilla käyttäjästä $1.",
-	"ipinfo-popup-link-text": "Näytä kaikki IP-tiedot"
+	"ipinfo-popup-link-text": "Näytä kaikki IP-tiedot",
+	"ipinfo-help-text": "Näytettävät tiedot ovat peräisin MaxMind- ja [https://docs.spur.us/data-types Spur]-tietokannoista. Ne eivät välttämättä ole täysin tarkkoja.",
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Lisätietoja tästä ominaisuudesta]"
 }

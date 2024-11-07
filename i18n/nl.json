@@ -140,5 +140,7 @@
 	"ipinfo-special-ipinfo-sort-explainer": "Met de knoppen in de tabelkoppen kunt u de tabel sorteren op de waarde van die kolom.",
 	"ipinfo-special-ipinfo-column-ip": "IP",
 	"ipinfo-special-ipinfo-no-results": "Voor $1 is geen IP-informatie beschikbaar.",
-	"ipinfo-popup-link-text": "Alle IP-informatie bekijken"
+	"ipinfo-popup-link-text": "Alle IP-informatie bekijken",
+	"ipinfo-help-text": "De weergegeven informatie komt van MaxMind en [https://docs.spur.us/data-types Spur]. Het is mogelijk dat de informatie niet helemaal nauwkeurig is.",
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Meer informatie over deze functie]"
 }

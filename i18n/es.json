@@ -96,7 +96,7 @@
 	"action-ipinfo-view-full": "obtener información completa de las direcciones IP asociadas a ediciones o entradas del registro",
 	"right-ipinfo-view-full": "Obtener información completa de las direcciones IP asociadas a ediciones o entradas del registro",
 	"action-ipinfo-view-log": "ver un registro de quién ha accedido a la información sobre direcciones IP",
-	"right-ipinfo-view-log": "Ver un registro de quién ha accedido a la información sobre direcciones IP",
+	"right-ipinfo-view-log": "Ver el registro de quién ha accedido a la información sobre direcciones IP",
 	"group-no-ipinfo": "Usuarios bloqueados en IPInfo",
 	"group-no-ipinfo-member": "{{GENDER:$1|bloqueado|bloqueada}} en IPInfo",
 	"grouppage-no-ipinfo": "{{ns:project}}:Usuarios bloqueados en IPInfo",
