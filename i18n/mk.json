@@ -138,5 +138,8 @@
 	"ipinfo-special-ipinfo-user-tool-links": "За $1",
 	"ipinfo-special-ipinfo-sort-explainer": "Копчињата во заглавието на табелата служат за нејзино подредување по вредноста на тој столб.",
 	"ipinfo-special-ipinfo-column-ip": "IP-адреса",
-	"ipinfo-special-ipinfo-no-results": "Нема IP-информации за $1."
+	"ipinfo-special-ipinfo-no-results": "Нема IP-информации за $1.",
+	"ipinfo-popup-link-text": "Погл. сите IP-информации",
+	"ipinfo-help-text": "Прикажаните информации доаѓаат од MaxMind и [https://docs.spur.us/data-types Spur]. Може да не се наполно точни.",
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Дознаје повеќе за оваа функција]"
 }

@@ -135,5 +135,6 @@
 	"ipinfo-special-ipinfo-table-caption": "$1의 IP 정보",
 	"ipinfo-special-ipinfo-target": "대상 사용자 이름:",
 	"ipinfo-special-ipinfo-column-ip": "IP",
-	"ipinfo-special-ipinfo-no-results": "$1에 대한 IP 정보가 없습니다."
+	"ipinfo-special-ipinfo-no-results": "$1에 대한 IP 정보가 없습니다.",
+	"ipinfo-popup-link-text": "모든 IP 정보 표시"
 }
