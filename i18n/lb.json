@@ -44,5 +44,6 @@
 	"ipinfo-deleted-edits-url-text": "Geläscht Kontributiounen",
 	"ipinfo-special-ipinfo-table-caption": "IP-Informatioune fir $1",
 	"ipinfo-special-ipinfo-user-tool-links": "Fir $1",
-	"ipinfo-special-ipinfo-column-ip": "IP"
+	"ipinfo-special-ipinfo-column-ip": "IP",
+	"ipinfo-popup-link-text": "All IP-Informatioune weisen"
 }
