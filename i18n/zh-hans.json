@@ -150,5 +150,8 @@
 	"ipinfo-special-ipinfo-target": "目标用户名：",
 	"ipinfo-special-ipinfo-user-tool-links": "关于$1",
 	"ipinfo-special-ipinfo-column-ip": "IP",
-	"ipinfo-special-ipinfo-no-results": "$1没有可用的IP信息。"
+	"ipinfo-special-ipinfo-no-results": "$1没有可用的IP信息。",
+	"ipinfo-popup-link-text": "查看所有IP信息",
+	"ipinfo-help-text": "显示的信息来自MaxMind和[https://docs.spur.us/data-types Spur]。可能不完全准确。",
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info 了解有关此功能的更多信息]"
 }

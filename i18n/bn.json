@@ -119,5 +119,6 @@
 	"ipinfo-special-ipinfo-sort-explainer": "ছকের শিরোনামের বোতাম কলামের মান অনুসারে ছক সাজানোর জন্য ব্যবহার করা যেতে পারে।",
 	"ipinfo-special-ipinfo-column-ip": "আইপি",
 	"ipinfo-special-ipinfo-no-results": "$1-এর জন্য কোনও আইপি তথ্য পাওয়া যায়নি।",
-	"ipinfo-popup-link-text": "সকল আইপি তথ্য দেখুন"
+	"ipinfo-popup-link-text": "সকল আইপি তথ্য দেখুন",
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info এই বৈশিষ্ট্য সম্পর্কে আরও জানুন]"
 }
