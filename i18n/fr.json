@@ -16,7 +16,8 @@
 			"Thibaut120094",
 			"Vega",
 			"Verdy p",
-			"Wladek92"
+			"Wladek92",
+			"Mahabarata"
 		]
 	},
 	"ipinfo-extensionname": "IP Info",
@@ -75,12 +76,15 @@
 	"ipinfo-property-value-connectiontype-unknown": "Inconnu",
 	"ipinfo-property-label-source": "Source",
 	"ipinfo-property-label-active-blocks": "Blocages actifs",
+	"ipinfo-property-label-number-of-ips": "Nombre d'adresses IP",
 	"ipinfo-property-tooltip-proxytypes": "Les serveurs mandataires cachent les adresses IP. Dans certains cas cela se produit automatiquement, comme pour les serveurs mandataires résidentiels ou d’entreprises, dans d’autres cas, c’est fait intentionnellement afin de masquer l’origine de l’adresse IP.",
 	"ipinfo-property-tooltip-connectiontype": "La technologie via laquelle cette personne se connecte à l’internet.",
 	"ipinfo-property-tooltip-usertype": "Le type d’entité qui détient cette connexion internet.",
 	"ipinfo-property-tooltip-behaviors": "Cette adresse IP a été impliquée ou précédemment associée à ces types spécifiques d'activités.",
 	"ipinfo-property-tooltip-risks": "Risques que Spur a déterminés sur la base de sa collecte de données. Ces risques varient et auront une importance différente en fonction des cas d'utilisation spécifiques des données de Spur Context.",
+	"ipinfo-property-tooltip-connectiontypes": "Les différents types de périphériques clients qui ont été observés sur cette adresse IP.",
 	"ipinfo-property-tooltip-tunneloperators": "Le fournisseur ou l’opérateur du service de VPN.",
+	"ipinfo-property-tooltip-proxies": "Proxies qui ont été observés sur les clients utilisant cette adresse IP. Cela ne signifie pas que tout le trafic provenant de cette adresse IP appartient à ce réseau proxy, mais plutôt qu'il existe un proxy sur cette adresse IP.",
 	"ipinfo-property-tooltip-usercount": "Le nombre moyen de clients qui ont été observés sur cette adresse IP par Spur. Il prend en compte toute l'activité de cette adresse IP. Il est calculé sur une période de 24 heures.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1|0=Aucun}} blocage{{PLURAL:$1||s}} actif{{PLURAL:$1||s}}",
 	"ipinfo-active-blocks-url-text": "Journaux",
@@ -141,6 +145,13 @@
 	"ipinfo-property-tooltip-asn": "Un identifiant unique pour les réseaux affectés à une région et de façon plus avancée aux organisations telles comme des gouvernements et des FAI.",
 	"ipinfo-blocklist-url-text": "Liste de blocage",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|Une|$1|0=Aucune}} modification{{PLURAL:$1||s}} supprimée{{PLURAL:$1||s}}",
+	"ipinfo-special-ipinfo": "Informations sur les IP",
+	"ipinfo-special-ipinfo-legend": "Rechercher des informations sur toutes les adresses IP utilisées par un utilisateur temporaire. Un maximum de $1 {{PLURAL:$1|résultat|résultats}} sont affichés.",
 	"ipinfo-deleted-edits-url-text": "Contributions supprimées",
+	"ipinfo-special-ipinfo-table-caption": "Informations sur les IP pour $1",
+	"ipinfo-special-ipinfo-target": "Nom d'utilisateur cible :",
+	"ipinfo-special-ipinfo-user-tool-links": "Pour $1",
+	"ipinfo-special-ipinfo-sort-explainer": "Les boutons dans les en-têtes du tableau peuvent être utilisés pour trier le tableau en fonction de la valeur de cette colonne.",
+	"ipinfo-special-ipinfo-column-ip": "IP",
 	"ipinfo-special-ipinfo-no-results": "Aucune information IP n'est disponible pour $1 ."
 }
