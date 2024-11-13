@@ -110,6 +110,7 @@
 	"log-action-filter-ipinfo-change_access": "ツールの有効化または無効化",
 	"log-action-filter-ipinfo-view_infobox": "インフォボックスのデータの閲覧",
 	"log-action-filter-ipinfo-view_popup": "ポップアップのデータの閲覧",
+	"ipinfo-property-tooltip-asn": "地域、さらには政府やISPなどの組織に割り当てられたネットワークの一意の識別子",
 	"ipinfo-blocklist-url-text": "ブロックリスト",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1件の削除された編集|0=削除された編集なし}}",
 	"ipinfo-deleted-edits-url-text": "削除された投稿"
