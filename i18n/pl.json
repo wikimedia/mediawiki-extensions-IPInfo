@@ -86,6 +86,7 @@
 	"ipinfo-widget-error-no-data": "Brak danych z $1 dla tego adresu IP.",
 	"ipinfo-widget-error-wrong-ip": "Podany adres IP nie pasuje do rejestrów lub rewizji.",
 	"ipinfo-widget-error-ip-no-edits": "Nie można pobrać informacji o tym IP, ponieważ nie została z niego wykonana żadna edycja.",
+	"ipinfo-widget-special-ipinfo-link": "[[Specjalna:IPInfo/$1|Wyświetl informacje o wszystkich IP powiązanymi z tym kontem tymczasowym]]",
 	"ipinfo-preference-enable": "Pokazuj narzędzie Informacje o IP na stronie Specjalna:Wkład podczas przeglądania wkładu niezalogowanych.",
 	"ipinfo-preference-use-agreement": "Zgadzam się wykorzystywać te informacje tylko w celach moich działań związanych z patrolowaniem i zwalczaniem wandalizmów.",
 	"ipinfo-preference-agreement-error": "Musisz najpierw włączyć narzędzie Informacje o IP, aby zatwierdzić jego warunki użytkowania.",
@@ -138,5 +139,8 @@
 	"ipinfo-special-ipinfo-target": "Nazwa użytkownika:",
 	"ipinfo-special-ipinfo-user-tool-links": "Dla $1",
 	"ipinfo-special-ipinfo-sort-explainer": "Przyciski w nagłówkach tabeli mogą zostać wykorzystanie to sortowania danych według wartości w kolumnie.",
-	"ipinfo-special-ipinfo-no-results": "Brak informacji o adresie IP $1."
+	"ipinfo-special-ipinfo-no-results": "Brak informacji o adresie IP $1.",
+	"ipinfo-popup-link-text": "Wyświetl wszystkie informacje o IP",
+	"ipinfo-help-text": "Wyświetlane informacje pochodzą z MaxMind i [https://docs.spur.us/data-types Spur]. Mogą nie być w pełni dokładne.",
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Dowiedz się więcej o tej funkcji]"
 }
