@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"NGC 54",
-			"Paloi Sciurala"
+			"Paloi Sciurala",
+			"Trotinel Iftode"
 		]
 	},
 	"ipinfo-desc": "Furnizează informații despre o adresă IP.",
@@ -31,6 +32,7 @@
 	"ipinfo-widget-error-no-data": "Nu există nicio dată pentru această adresă IP din partea $1.",
 	"ipinfo-widget-error-wrong-ip": "Adresa IP furnizată nu s-a potrivit cu jurnalul sau versiunea.",
 	"ipinfo-widget-error-ip-no-edits": "Informațiile despre IP pentru această adresă nu pot fi redate din moment ce nu a efectuat nicio modificare pe acest wiki.",
+	"ipinfo-widget-special-ipinfo-link": "[[Special:IPInfo/ $1 |Vizualizați informațiile IP pentru toate adresele IP asociate cu acest cont temporar]]",
 	"ipinfo-preference-enable": "Arată unealta de informații despre IP pe pagina Special:Contribuții pentru contribuitorii neînregistrați.",
 	"ipinfo-preference-use-agreement": "Sunt de acord să utilizezi aceste informații pentru activitatea mea de patrulare și anti-vandalism.",
 	"ipinfo-preference-agreement-error": "Trebuie să activați unealta de informații despre IP înainte de a agrea să îi utilizați condițiile.",
@@ -56,5 +58,6 @@
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|a vizualizat}} previzualizarea cu informații despre IP pentru $3. $4.",
 	"ipinfo-change-access-level-enable": "activat",
 	"ipinfo-change-access-level-disable": "dezactivat",
-	"logentry-ipinfo-change_access": "$1 a {{GENDER:$2|$4}} propriul acces la IPInfo"
+	"logentry-ipinfo-change_access": "$1 a {{GENDER:$2|$4}} propriul acces la IPInfo",
+	"ipinfo-popup-link-text": "Vizualizați toate informațiile IP"
 }
