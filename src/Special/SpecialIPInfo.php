@@ -339,7 +339,7 @@ class SpecialIPInfo extends FormSpecialPage {
 					// * ipinfo-property-value-connectiontype-unknown
 					return $this->msg( "ipinfo-property-value-connectionType-$connectionType" )->text();
 				},
-				$info['data']['ipinfo-source-ipoid']['risks'] ?? []
+				$info['data']['ipinfo-source-ipoid']['connectionTypes'] ?? []
 			);
 
 			$userCount = $info['data']['ipinfo-source-ipoid']['numUsersOnThisIP'] ?? null;
