@@ -1,6 +1,5 @@
 @import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins.less';
-@import 'variables.less';
 
 // Use slightly increased specificity to override the rule defined in MediaWiki Core (see
 // https://gerrit.wikimedia.org/g/mediawiki/core/+/aebc1fdc8a2692584ab09691e2cbace5597ba386/resources/src/mediawiki.special/contributions.less#16).
@@ -22,16 +21,16 @@
 }
 
 .ext-ipinfo-widget-property {
-	padding: @ipinfo-padding @ipinfo-padding 0;
+	padding: @spacing-100 @spacing-100 0;
 }
 
 .ext-ipinfo-widget-property:last-child {
-	padding-bottom: @ipinfo-padding;
+	padding-bottom: @spacing-100;
 }
 
 .ext-ipinfo-widget-property-label {
 	margin-bottom: 4px;
-	font-size: @ipinfo-property-font-size;
+	font-size: @font-size-small;
 	color: @color-subtle;
 }
 

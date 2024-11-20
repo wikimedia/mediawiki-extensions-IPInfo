@@ -1,8 +1,7 @@
 @import 'mediawiki.skin.variables.less';
-@import '../variables.less';
 
 .ext-ipinfo-widget-property-source__help {
-	font-size: @ipinfo-property-source-font-size;
+	font-size: @font-size-x-small;
 	color: @color-subtle;
 	font-weight: normal;
 }
@@ -12,7 +11,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		// Offset padding of children elements at edges of container
-		margin: 0 -@ipinfo-widget-properties-left-right-margin -@ipinfo-padding -@ipinfo-widget-properties-left-right-margin;
+		margin: 0 -@spacing-75 -@spacing-100 -@spacing-75;
 	}
 
 	.ext-ipinfo-widget-properties-col {
@@ -20,13 +19,13 @@
 		flex-direction: column;
 		// A somewhat arbitrary min-width set to ~30cpm
 		flex: 1 12em;
-		padding: 0 @ipinfo-widget-properties-left-right-margin;
+		padding: 0 @spacing-75;
 	}
 
 	// The disclaimer is always at the bottom of the column
 	.ext-ipinfo-widget-property-source {
 		margin-top: auto;
-		padding: 0 0 @ipinfo-padding @ipinfo-padding;
+		padding: 0 0 @spacing-100 @spacing-100;
 	}
 }
 
