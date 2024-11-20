@@ -412,9 +412,9 @@ class ArchivedRevisionHandlerTest extends HandlerTestCase {
 
 		$this->assertSame( $blockInfo->jsonSerialize(), $body['info'][0]['data']['ipinfo-source-block'] );
 
-		$contribsInfo = $body['info'][0]['data']['ipinfo-source-contributions'];
+		$this->assertSame( 'ipv4', $body['info'][0]['data']['ipinfo-source-ipversion']['version'] );
 
-		$expectedEditCount = $user->isAllowed( 'deletedhistory' ) ? 1 : 0;
+		$contribsInfo = $body['info'][0]['data']['ipinfo-source-contributions'];
 
 		$this->assertSame( 0, $contribsInfo['numLocalEdits'] );
 		$this->assertSame( 0, $contribsInfo['numRecentEdits'] );

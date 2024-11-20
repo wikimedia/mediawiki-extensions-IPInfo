@@ -100,9 +100,11 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 		}
 	}
 
-	const ipversion = mw.util.isIPv4Address( info.subject, true ) ?
-		mw.msg( 'ipinfo-value-ipversion-ipv4' ) :
-		mw.msg( 'ipinfo-value-ipversion-ipv6' );
+	const ipversion = info.data[ 'ipinfo-source-ipversion' ].version;
+	// Possible message keys used here:
+	// * ipinfo-value-ipversion-ipv4
+	// * ipinfo-value-ipversion-ipv6
+	const ipVersionText = ipversion ? mw.msg( `ipinfo-value-ipversion-${ ipversion }` ) : '';
 
 	let $numIPAddresses = $( '' );
 	if ( info.data[ 'ipinfo-source-ip-count' ].numIPAddresses ) {
@@ -130,7 +132,7 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 					mw.msg( 'ipinfo-property-label-asn' ),
 					mw.msg( 'ipinfo-property-tooltip-asn' ) ),
 				this.generatePropertyMarkup( 'organization', info.data[ 'ipinfo-source-geoip2' ].organization, mw.msg( 'ipinfo-property-label-organization' ) ),
-				this.generatePropertyMarkup( 'version', ipversion, mw.msg( 'ipinfo-property-label-ipversion' ) )
+				this.generatePropertyMarkup( 'version', ipVersionText, mw.msg( 'ipinfo-property-label-ipversion' ) )
 			)
 		).append(
 			$( '<div>' ).addClass( 'ext-ipinfo-widget-properties-col' ).append(

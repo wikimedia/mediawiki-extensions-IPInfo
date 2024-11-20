@@ -9,6 +9,7 @@ use MediaWiki\IPInfo\InfoRetriever\GeoLite2InfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\InfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\IPCountInfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\IPoidInfoRetriever;
+use MediaWiki\IPInfo\InfoRetriever\IPVersionInfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\ReaderFactory;
 use MediaWiki\IPInfo\Logging\LoggerFactory as IPInfoLoggerFactory;
 use MediaWiki\IPInfo\TempUserIPLookup;
@@ -68,7 +69,8 @@ return [
 			$services->get( 'IPInfoIPoidInfoRetriever' ),
 			$services->get( 'IPInfoBlockInfoRetriever' ),
 			$services->get( 'IPInfoContributionInfoRetriever' ),
-			$services->get( 'IPInfoIPCountRetriever' )
+			$services->get( 'IPInfoIPCountRetriever' ),
+			new IPVersionInfoRetriever()
 		] );
 	},
 	'IPInfoLoggerFactory' => static function ( MediaWikiServices $services ): IPInfoLoggerFactory {
