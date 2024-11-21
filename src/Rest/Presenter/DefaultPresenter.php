@@ -8,6 +8,7 @@ use MediaWiki\IPInfo\Info\ContributionInfo;
 use MediaWiki\IPInfo\Info\Info;
 use MediaWiki\IPInfo\Info\IPCountInfo;
 use MediaWiki\IPInfo\Info\IPoidInfo;
+use MediaWiki\IPInfo\Info\IPVersionInfo;
 use MediaWiki\IPInfo\Info\Location;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserIdentity;
@@ -29,6 +30,7 @@ class DefaultPresenter {
 		'numRecentEdits',
 		'proxyType',
 		'userType',
+		'version',
 	];
 
 	private const IPINFO_VIEW_FULL = [
@@ -51,6 +53,7 @@ class DefaultPresenter {
 		'risks',
 		'tunnelOperators',
 		'userType',
+		'version',
 	];
 
 	/**
@@ -76,7 +79,14 @@ class DefaultPresenter {
 	 */
 	public function present( array $info, UserIdentity $user ): array {
 		Assert::parameterElementType(
-			[ Info::class, IPCountInfo::class, IPoidInfo::class, BlockInfo::class, ContributionInfo::class ],
+			[
+				Info::class,
+				IPCountInfo::class,
+				IPoidInfo::class,
+				BlockInfo::class,
+				ContributionInfo::class,
+				IPVersionInfo::class,
+			],
 			$info['data'],
 			"info['data']"
 		);
@@ -103,6 +113,8 @@ class DefaultPresenter {
 				$data += $this->presentBlockInfo( $itemInfo );
 			} elseif ( $itemInfo instanceof ContributionInfo ) {
 				$data += $this->presentContributionInfo( $itemInfo, $user );
+			} elseif ( $itemInfo instanceof IPVersionInfo ) {
+				$data += [ 'version' => $itemInfo->getVersion() ];
 			}
 
 			// Unset all properties the user doesn't have access to before writing to $result

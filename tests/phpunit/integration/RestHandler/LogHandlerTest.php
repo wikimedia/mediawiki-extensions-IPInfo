@@ -408,15 +408,18 @@ class LogHandlerTest extends HandlerTestCase {
 			$expectedSubjects = [ $performer->getName() ];
 		}
 
+		$this->assertSame( 200, $response->getStatusCode() );
+
 		foreach ( $body['info'] as $i => $item ) {
 			$geoData = $item['data']['ipinfo-source-geoip2'];
 
-			$this->assertSame( 200, $response->getStatusCode() );
 			$this->assertSame( $expectedSubjects[$i], $item['subject'] );
 			$this->assertSame( 'United States', $geoData['countryNames']['en'] );
 			$this->assertArrayNotHasKey( 'coordinates', $geoData );
 
 			$this->assertSame( $blockInfo->jsonSerialize(), $item['data']['ipinfo-source-block'] );
+
+			$this->assertSame( 'ipv4', $item['data']['ipinfo-source-ipversion']['version'] );
 
 			$contribsInfo = $item['data']['ipinfo-source-contributions'];
 

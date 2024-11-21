@@ -9,6 +9,7 @@ use MediaWiki\IPInfo\Info\Coordinates;
 use MediaWiki\IPInfo\Info\Info;
 use MediaWiki\IPInfo\Info\IPCountInfo;
 use MediaWiki\IPInfo\Info\IPoidInfo;
+use MediaWiki\IPInfo\Info\IPVersionInfo;
 use MediaWiki\IPInfo\Info\Location;
 use MediaWiki\IPInfo\Info\ProxyType;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
@@ -120,6 +121,10 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 			[ 'quuz' => [] ],
 			[ 'quuz' => new IPCountInfo( 2 ) ]
 		];
+		yield [
+			[ 'quuz' => [ 'version' => 'ipv6' ] ],
+			[ 'quuz' => new IPVersionInfo( 'ipv6' ) ]
+		];
 	}
 
 	/**
@@ -225,6 +230,10 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 		yield [
 			[ 'quuz' => [ 'numIPAddresses' => 2 ] ],
 			[ 'quuz' => new IPCountInfo( 2 ) ]
+		];
+		yield [
+			[ 'quuz' => [ 'version' => 'ipv6' ] ],
+			[ 'quuz' => new IPVersionInfo( 'ipv6' ) ]
 		];
 	}
 

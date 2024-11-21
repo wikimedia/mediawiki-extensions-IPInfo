@@ -371,6 +371,7 @@ class RevisionHandlerTest extends HandlerTestCase {
 
 		$geoData = $body['info'][0]['data']['ipinfo-source-geoip2'];
 
+		$this->assertSame( 'ipv4', $body['info'][0]['data']['ipinfo-source-ipversion']['version'] );
 		$this->assertSame( 200, $response->getStatusCode() );
 		$this->assertSame( $revRecord->getUser()->getName(), $body['info'][0]['subject'] );
 		$this->assertSame( 'United States', $geoData['countryNames']['en'] );

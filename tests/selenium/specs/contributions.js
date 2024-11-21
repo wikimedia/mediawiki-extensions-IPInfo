@@ -73,6 +73,7 @@ describe( 'IPInfo on Special:Contributions', () => {
 
 		await expect( ContributionsWithIPInfoPage.errorMessage ).not.toExist();
 
+		await expect( await ContributionsWithIPInfoPage.getPropertyValue( 'version' ) ).toBe( 'IPv4' );
 		await expect( await ContributionsWithIPInfoPage.hasProperty( 'number-of-ips' ) ).toBe( false );
 		await expect( await ContributionsWithIPInfoPage.getPropertyValue( 'asn' ) ).toBe( '721' );
 		await expect( await ContributionsWithIPInfoPage.getPropertyValue( 'organization' ) )
@@ -89,6 +90,7 @@ describe( 'IPInfo on Special:Contributions', () => {
 
 		await expect( ContributionsWithIPInfoPage.errorMessage ).not.toExist();
 
+		await expect( await ContributionsWithIPInfoPage.getPropertyValue( 'version' ) ).toBe( 'IPv4' );
 		await expect( await ContributionsWithIPInfoPage.hasProperty( 'num-ip-addresses' ) ).toBe( false );
 		await expect( await ContributionsWithIPInfoPage.getPropertyValue( 'asn' ) ).toBe( '721' );
 		await expect( await ContributionsWithIPInfoPage.getPropertyValue( 'organization' ) )
@@ -106,6 +108,7 @@ describe( 'IPInfo on Special:Contributions', () => {
 
 		await expect( ContributionsWithIPInfoPage.errorMessage ).not.toExist();
 
+		await expect( await ContributionsWithIPInfoPage.getPropertyValue( 'version' ) ).toBe( 'IPv4' );
 		await expect( await ContributionsWithIPInfoPage.getPropertyValue( 'asn' ) ).toBe( '721' );
 		await expect( await ContributionsWithIPInfoPage.getPropertyValue( 'organization' ) )
 			.toBe( 'DoD Network Information Center' );
@@ -123,6 +126,7 @@ describe( 'IPInfo on Special:Contributions', () => {
 
 		await expect( ContributionsWithIPInfoPage.errorMessage ).not.toExist();
 
+		await expect( await ContributionsWithIPInfoPage.getPropertyValue( 'version' ) ).toBe( 'IPv4' );
 		await expect( await ContributionsWithIPInfoPage.getPropertyValue( 'asn' ) ).toBe( '721' );
 		await expect( await ContributionsWithIPInfoPage.getPropertyValue( 'organization' ) )
 			.toBe( 'DoD Network Information Center' );
