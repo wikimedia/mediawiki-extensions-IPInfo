@@ -130,6 +130,15 @@
 	"ipinfo-property-tooltip-asn": "Un identificador único para las redes asignadas a una región así como a otras organizaciones tales como gobiernos o proveedores de servicios de Internet (ISP)",
 	"ipinfo-blocklist-url-text": "Lista de bloqueos",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 edición borrada|$1 ediciones borradas|0=Sin ediciones borradas}}",
-	"ipinfo-special-ipinfo": "Información de la IP",
-	"ipinfo-deleted-edits-url-text": "Contribuciones borradas"
+	"ipinfo-special-ipinfo": "Información de IP",
+	"ipinfo-special-ipinfo-legend": "Consulta la información sobre todas las direcciones IP utilizadas por un usuario temporal. Se muestra un máximo de $1 {{PLURAL:$1|resultado|resultados}}.",
+	"ipinfo-deleted-edits-url-text": "Contribuciones borradas",
+	"ipinfo-special-ipinfo-table-caption": "Información de IP para $1",
+	"ipinfo-special-ipinfo-target": "Nombre de usuario de destino:",
+	"ipinfo-special-ipinfo-user-tool-links": "Para $1",
+	"ipinfo-special-ipinfo-sort-explainer": "Se pueden usar los botones en los encabezados de la tabla para ordenar la tabla por los valores de esa columna.",
+	"ipinfo-special-ipinfo-no-results": "No hay información de IP disponible para $1.",
+	"ipinfo-popup-link-text": "Ver toda la información de IP",
+	"ipinfo-help-text": "La información mostrada proviene de MaxMind y [https://docs.spur.us/data-types Spur]. Es posible que no sea completamente precisa.",
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Aprende más sobre esta funcionalidad]"
 }
