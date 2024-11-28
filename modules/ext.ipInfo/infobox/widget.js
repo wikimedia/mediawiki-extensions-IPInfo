@@ -115,13 +115,6 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 		);
 	}
 
-	let $specialIpInfoLink = $( '' );
-	if ( mw.util.isTemporaryUser( info.subject ) ) {
-		$specialIpInfoLink = $( '<div>' )
-			.addClass( 'ext-ipinfo-widget-property' )
-			.html( mw.message( 'ipinfo-widget-special-ipinfo-link', info.subject ).parse() );
-	}
-
 	const $info = $( '<dl>' ).addClass( 'ext-ipinfo-widget-properties' )
 		.append(
 			$( '<div>' ).addClass( 'ext-ipinfo-widget-properties-col' ).append(
@@ -179,7 +172,6 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 					'edits',
 					$edits,
 					mw.msg( 'ipinfo-property-label-edits' ) ).append( $deletedEditsLink ),
-				$specialIpInfoLink,
 				$( '<div>' )
 					.addClass( 'ext-ipinfo-widget-property-source' )
 					.append(
@@ -194,6 +186,25 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 	mw.hook( 'ext.ipinfo.infobox.widget' ).fire( $info );
 
 	return $info;
+};
+
+/**
+ * Success callback for the info promise.
+ *
+ * @param {Object} info
+ */
+ipInfoInfoboxWidget.prototype.success = function ( info ) {
+	const ipCount = info.data[ 'ipinfo-source-ip-count' ].numIPAddresses;
+	if ( ipCount && ipCount > 1 && mw.util.isTemporaryUser( info.subject ) ) {
+		const ipCountMsg = new OO.ui.MessageWidget( {
+			type: 'notice',
+			label: new OO.ui.HtmlSnippet( mw.message( 'ipinfo-infobox-temporary-account-help', info.subject ).parse() )
+		} );
+
+		this.$element.append( ipCountMsg.$element );
+	}
+
+	ipInfoInfoboxWidget.super.prototype.success.call( this, info );
 };
 
 module.exports = ipInfoInfoboxWidget;
