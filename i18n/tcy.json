@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"ChiK",
 			"Pragathi. BH",
 			"Vinoda mamatharai"
 		]
@@ -13,5 +14,5 @@
 	"ipinfo-special-ipinfo-sort-explainer": "ಟೇಬಲ್ ಹೆಡರ್ ಲೆಡ್ ಉಪ್ಪುನ ಬಟನ್ ಲೆನ್ ಆ ಕಾಲಮ್ ದ ಮೌಲ್ಯೊಡು ಟೇಬಲ್ ನ್ ವಿಂಗಡಿಸರೆ ಉಪಯೋಗ ಮಲ್ಪೊಲಿ.",
 	"ipinfo-special-ipinfo-column-ip": "ಐಪಿ",
 	"ipinfo-special-ipinfo-no-results": "$1 ಗ್ ಐಪಿ ಮಾಹಿತಿ ಲಭ್ಯ ಇಜ್ಜಿ.",
-	"ipinfo-popup-link-text": "ಮಾತ ಐ ಪಿ ಮಾಹಿತಿ ಗಮನಿಸಲೆ"
+	"ipinfo-popup-link-text": "ಮಾತಾ ಐಪಿ ಮಾಹಿತಿನ್ ತೂಲೆ"
 }
