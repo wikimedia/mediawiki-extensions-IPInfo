@@ -86,7 +86,6 @@
 	"ipinfo-widget-error-no-data": "Brak danych z $1 dla tego adresu IP.",
 	"ipinfo-widget-error-wrong-ip": "Podany adres IP nie pasuje do rejestrów lub rewizji.",
 	"ipinfo-widget-error-ip-no-edits": "Nie można pobrać informacji o tym IP, ponieważ nie została z niego wykonana żadna edycja.",
-	"ipinfo-widget-special-ipinfo-link": "[[Specjalna:IPInfo/$1|Wyświetl informacje o wszystkich IP powiązanymi z tym kontem tymczasowym]]",
 	"ipinfo-preference-enable": "Pokazuj narzędzie Informacje o IP na stronie Specjalna:Wkład podczas przeglądania wkładu niezalogowanych.",
 	"ipinfo-preference-use-agreement": "Zgadzam się wykorzystywać te informacje tylko w celach moich działań związanych z patrolowaniem i zwalczaniem wandalizmów.",
 	"ipinfo-preference-agreement-error": "Musisz najpierw włączyć narzędzie Informacje o IP, aby zatwierdzić jego warunki użytkowania.",

@@ -76,7 +76,6 @@
 	"ipinfo-widget-error-no-data": "У извору $1 нема података за наведену IP адресу.",
 	"ipinfo-widget-error-wrong-ip": "Наведена IP адреса се не подудара с дневничком ставком или изменом.",
 	"ipinfo-widget-error-ip-no-edits": "Не могу да преузмем податке о наведеној IP адреси јер она нема измена на овом пројекту.",
-	"ipinfo-widget-special-ipinfo-link": "[[Special:IPInfo/$1|Види IP информације за све IP адресе повезаних са овим привременим налогом]]",
 	"ipinfo-preference-enable": "Прикажи IP инфо алатку на страници доприноса нерегистрованог уредника.",
 	"ipinfo-preference-use-agreement": "Податке ћу користити само за потребе патролирања и антивандализама.",
 	"ipinfo-preference-agreement-error": "Морате прво омогућити IP инфо пре пристанка на услове коришћења.",

@@ -84,7 +84,6 @@
 	"ipinfo-widget-error-no-data": "No hay datos para esta dirección IP desde $1.",
 	"ipinfo-widget-error-wrong-ip": "La dirección IP proporcionada no coincide con el registro o la revisión.",
 	"ipinfo-widget-error-ip-no-edits": "No se puede proporcionar información sobre esta dirección IP porque no ha realizado edición alguna en esta wiki.",
-	"ipinfo-widget-special-ipinfo-link": "[[Special:IPInfo/$1|Ver información IP para todas las direcciones IP asociadas con esta cuenta temporal]]",
 	"ipinfo-preference-enable": "Muestra la herramienta de información de IP en la página Especial:Contribuciones para usuarios no registrados.",
 	"ipinfo-preference-use-agreement": "Acepto usar esta información para mis labores de patrullaje y contra el vandalismo.",
 	"ipinfo-preference-agreement-error": "Debes habilitar la herramienta de información de IP antes de aceptar sus condiciones de uso.",

@@ -90,7 +90,6 @@
 	"ipinfo-widget-error-no-data": "$1沒有此IP位址的資料。",
 	"ipinfo-widget-error-wrong-ip": "所提供的IP位址不符合日誌或修訂。",
 	"ipinfo-widget-error-ip-no-edits": "無法檢索此位址的IP資訊，因為沒有做出任何編輯。",
-	"ipinfo-widget-special-ipinfo-link": "[[Special:IPInfo/$1|檢視與此臨時帳號關聯的所有IP位址的資訊]]",
 	"ipinfo-preference-enable": "在未註冊使用者的使用者貢獻特殊頁面頁上顯示IP資訊工具。",
 	"ipinfo-preference-use-agreement": "我同意使用此資訊來用於我的巡查和反破壞工作上。",
 	"ipinfo-preference-agreement-error": "在同意其使用條件前，您必須啟用 IP 資訊工具。",
