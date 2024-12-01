@@ -86,7 +86,7 @@
 	"ipinfo-widget-error-wrong-ip": "The IP address provided did not match the log or revision.",
 	"ipinfo-widget-error-ip-no-edits": "IP information for this address cannot be retrieved since no edits have been made from it.",
 	"ipinfo-preference-enable": "Show the IP Information tool on Special:Contributions page for unregistered contributors.",
-	"ipinfo-preference-use-agreement": "I agree to use this information for my patrolling and anti-vandalism work.",
+	"ipinfo-preference-use-agreement": "I agree to use this information for my patrolling and anti-vandalism work",
 	"ipinfo-preference-agreement-error": "You must enable the IP Information tool before agreeing to its use conditions.",
 	"ipinfo-infobox-use-terms": "The IP Information tool uses the MaxMind database to show details like location, proxy, and how many devices are sharing this IP address.",
 	"ipinfo-infobox-submit-agreement": "Enable IP Information tool",
