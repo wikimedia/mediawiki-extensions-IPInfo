@@ -10,6 +10,7 @@
 	},
 	"ipinfo-desc": "מספקת מידע על כתובות IP.",
 	"ipinfo-infobox-title": "מידע על IP",
+	"ipinfo-infobox-temporary-account-help": "יש כמה כתובות IP שקשורות לחשבון החולף הזה. מוצג לך מידע IP עבור כתובת ה־IP האחרונה ששימשה. [[Special:IPInfo/$1|הצגת מידע IP עבור כל כתובות ה־IP]].",
 	"ipinfo-property-label-location": "מיקום",
 	"ipinfo-property-label-ipversion": "גרסה",
 	"ipinfo-property-label-isp": "ספק אינטרנט",
