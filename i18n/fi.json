@@ -89,7 +89,7 @@
 	"ipinfo-widget-error-wrong-ip": "Annettu IP-osoite ei vastannut lokia tai versiota.",
 	"ipinfo-widget-error-ip-no-edits": "Tämän IP-osoitteen tietoja ei voitu hakea, koska sillä ei ole tehty muokkauksia.",
 	"ipinfo-preference-enable": "Näytä IP-tietotyökalu Toiminnot:Muokkaukset-sivulla rekisteröitymättömille muokkaajille.",
-	"ipinfo-preference-use-agreement": "Vakuutan käyttäväni näitä tietoja vain seulonta- ja vandalismintorjuntatyössäni.",
+	"ipinfo-preference-use-agreement": "Vakuutan käyttäväni näitä tietoja vain seulonta- ja vandalismintorjuntatyössäni",
 	"ipinfo-preference-agreement-error": "Sinun on otettava IP-tietotyökalu käyttöön ennen kuin hyväksyt sen käyttöehdot.",
 	"ipinfo-infobox-use-terms": "Työkalu käyttää MaxMind-tietokantaa näyttääkseen IP-osoitteiden tiedot, kuten sijainnin, välityspalvelimen ja kuinka monella laitteella on sama IP-osoite.",
 	"ipinfo-infobox-submit-agreement": "Ota IP-tietotyökalu käyttöön",

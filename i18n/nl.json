@@ -87,7 +87,7 @@
 	"ipinfo-widget-error-wrong-ip": "Het opgegeven IP-adres komt niet overeen met het logboek of de versie.",
 	"ipinfo-widget-error-ip-no-edits": "Voor dit IP-adres kunnen geen gegevens worden opgehaald, omdat vanaf deze aansluiting geen bewerkingen zijn gedaan.",
 	"ipinfo-preference-enable": "Toon de tool IP-gegevens op de pagina Speciaal:Bijdragen voor niet-geregistreerde bijdragers.",
-	"ipinfo-preference-use-agreement": "Ik verklaar deze gegevens alleen te zullen gebruiken voor mijn patrouille- en anti-vandalismewerk.",
+	"ipinfo-preference-use-agreement": "Ik verklaar deze gegevens alleen te zullen gebruiken voor mijn controle- en anti-vandalismewerk.",
 	"ipinfo-preference-agreement-error": "U moet de tool IP-gegevens inschakelen voordat u akkoord gaat met de gebruiksvoorwaarden ervan.",
 	"ipinfo-infobox-use-terms": "De tool IP-gegevens gebruikt de MaxMind-database om details weer te geven zoals locatie, proxy en hoeveel apparaten dit IP-adres delen.",
 	"ipinfo-infobox-submit-agreement": "De tool IP-gegevens inschakelen",
