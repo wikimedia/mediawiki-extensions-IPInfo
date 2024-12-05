@@ -113,7 +113,7 @@
 	"right-ipinfo-view-full": "Nähdä täysi näkymä IP-tiedoista, jotka on liitetty versioihin tai lokimerkintöihin",
 	"action-ipinfo-view-log": "nähdä lokia siitä, ketkä ovat katsoneet IP-tietoja",
 	"right-ipinfo-view-log": "Nähdä loki siitä, ketkä ovat katsoneet IP-tietoja",
-	"group-no-ipinfo": "Käyttäjät, joita on estetty käyttämästä IP-tietotyökalua",
+	"group-no-ipinfo": "käyttäjät, joita on estetty käyttämästä IP-tietotyökalua",
 	"group-no-ipinfo-member": "{{GENDER:$1|estetty käyttämästä IP-tietotyökalua}}",
 	"grouppage-no-ipinfo": "{{ns:project}}:Käyttäjät, joita on estetty käyttämästä IP-tietotyökalua",
 	"ipinfo-log-name": "IP-tietoloki",
