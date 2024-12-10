@@ -138,5 +138,6 @@
 	"ipinfo-special-ipinfo-target": "İstifadəçi adı:",
 	"ipinfo-special-ipinfo-user-tool-links": "$1 üçün",
 	"ipinfo-special-ipinfo-sort-explainer": "Cədvəl başlıqlarındakı düymələr cədvəli həmin sütunun dəyərinə görə çeşidləmək üçün istifadə edilə bilər.",
+	"ipinfo-special-ipinfo-column-ip": "IP",
 	"ipinfo-special-ipinfo-no-results": "$1 üçün heç bir IP məlumatı yoxdur."
 }
