@@ -93,6 +93,47 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideValidTargets
 	 */
+	public function testShouldDisplayOnIPContributionsPageIfUserHasIpinfoRight(
+		string $targetName,
+		bool $targetIsTemp
+	) {
+		$accessingAuthority = self::getValidAccessingAuthority();
+
+		$out = $this->createMock( OutputPage::class );
+		$out->expects( $this->once() )
+			->method( 'addModules' )
+			->with( 'ext.ipInfo' );
+
+		$specialPage = $this->createMock( SpecialPage::class );
+		$specialPage->method( 'getName' )
+			->willReturn( 'IPContributions' );
+		$specialPage->method( 'getAuthority' )
+			->willReturn( $accessingAuthority );
+		$specialPage->method( 'getOutput' )
+			->willReturn( $out );
+
+		$this->userOptionsLookup->method( 'getOption' )
+			->with( $accessingAuthority->getUser(), 'ipinfo-beta-feature-enable' )
+			->willReturn( '1' );
+
+		$this->tempUserConfig->method( 'isTempName' )
+			->with( $targetName )
+			->willReturn( $targetIsTemp );
+
+		$targetUser = $this->createMock( User::class );
+		$targetUser->method( 'getName' )
+			->willReturn( $targetName );
+
+		$this->handler->onSpecialContributionsBeforeMainOutput(
+			1,
+			$targetUser,
+			$specialPage
+		);
+	}
+
+	/**
+	 * @dataProvider provideValidTargets
+	 */
 	public function testShouldDisplayOnDeletedContributionsPageIfUserHasIpinfoRight(
 		string $targetName,
 		bool $targetIsTemp
@@ -249,5 +290,4 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 			'127.0.0.1'
 		];
 	}
-
 }

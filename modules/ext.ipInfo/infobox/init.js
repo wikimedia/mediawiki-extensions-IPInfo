@@ -2,15 +2,34 @@
 /* eslint-disable no-jquery/no-class-state */
 
 const IpInfoInfoboxWidget = require( './widget.js' );
-const relevantUserName = mw.util.prettifyIP( mw.config.get( 'wgRelevantUserName' ) ),
-	api = new mw.Api(),
+const api = new mw.Api(),
 	eventLogger = require( '../log.js' ),
 	postToRestApi = require( '../rest.js' );
 let viewedAgreement = false,
 	timerStart;
 
 function initInfoboxWidget() {
-	if ( !relevantUserName ) {
+	const showNoEditsError = function () {
+		$( '.ext-ipinfo-collapsible-layout' ).addClass( 'ext-ipinfo-contains-error' );
+		$( '.ext-ipinfo-collapsible-layout .mw-collapsible-content' ).append(
+			new OO.ui.MessageWidget( {
+				type: 'error',
+				label: mw.msg( 'ipinfo-widget-error-ip-no-edits' )
+			} ).$element
+		);
+	};
+
+	let target = mw.config.get( 'wgRelevantUserName' );
+	if ( target === null ) {
+		target = '';
+	}
+
+	if ( mw.util.isIPAddress( target ) ) {
+		target = mw.util.prettifyIP( target );
+	}
+
+	if ( !target ) {
+		showNoEditsError();
 		return;
 	}
 
@@ -56,18 +75,12 @@ function initInfoboxWidget() {
 	const loadIpInfo = function ( targetName ) {
 		const revId = $( '.mw-contributions-list [data-mw-revid]' ).first().attr( 'data-mw-revid' );
 		if ( !revId ) {
-			$( '.ext-ipinfo-collapsible-layout' ).addClass( 'ext-ipinfo-contains-error' );
-			$( '.ext-ipinfo-collapsible-layout .mw-collapsible-content' ).append(
-				new OO.ui.MessageWidget( {
-					type: 'error',
-					label: mw.msg( 'ipinfo-widget-error-ip-no-edits' )
-				} ).$element
-			);
+			showNoEditsError();
 			return;
 		}
 
-		const endpoint = mw.config.get( 'wgCanonicalSpecialPageName' ) === 'Contributions' ?
-			'revision' : 'archivedrevision';
+		const endpoint = mw.config.get( 'wgCanonicalSpecialPageName' ) === 'DeletedContributions' ?
+			'archivedrevision' : 'revision';
 
 		const ipPanelWidget = new IpInfoInfoboxWidget(
 			postToRestApi( endpoint, revId, 'infobox' ).then( ( response ) => {
@@ -75,7 +88,16 @@ function initInfoboxWidget() {
 				const sanitizedTargetName = mw.util.sanitizeIP( targetName );
 				// Array.find is only available from ES6
 				for ( i = 0; i < response.info.length; i++ ) {
-					if ( mw.util.sanitizeIP( response.info[ i ].subject ) === sanitizedTargetName ) {
+					// T380466: For IPContributions, info.data holds at most one
+					// entry whose subject is a temp username, but here we don't
+					// know that username in advance.
+					//
+					// Therefore, if the expected target is an IP, we just use
+					// the first item. Otherwise, we compare the subject against
+					// sanitizedTargetName, which will hold a (temp) username.
+					//
+					if ( mw.util.isIPAddress( sanitizedTargetName ) ||
+						mw.util.sanitizeIP( response.info[ i ].subject ) === sanitizedTargetName ) {
 						data = response.info[ i ];
 						break;
 					}
@@ -191,7 +213,7 @@ function initInfoboxWidget() {
 
 					// Success - show ip info
 					$( '.ipinfo-use-agreement-form' ).remove();
-					loadIpInfo( relevantUserName );
+					loadIpInfo( target );
 				} ).catch( ( error ) => {
 					// Fail state - show an error
 					$( '.ext-ipinfo-collapsible-layout .mw-collapsible-content' ).append(
@@ -213,7 +235,7 @@ function initInfoboxWidget() {
 			loadUseAgreement();
 		} else {
 			timerStart = mw.now();
-			loadIpInfo( relevantUserName );
+			loadIpInfo( target );
 		}
 	} else {
 		// Watch for the first expand command, load content, and unbind listener
@@ -228,7 +250,7 @@ function initInfoboxWidget() {
 					loadUseAgreement();
 				} else {
 					timerStart = mw.now();
-					loadIpInfo( relevantUserName );
+					loadIpInfo( target );
 				}
 			}
 
