@@ -81,7 +81,7 @@
 	"ipinfo-widget-error-wrong-ip": "Le adresse IP fornite non correspondeva al registro o al version.",
 	"ipinfo-widget-error-ip-no-edits": "Le information sur iste adresse IP non es disponibile perque nulle modification es attribuite a illo.",
 	"ipinfo-preference-enable": "Monstrar le utensile de information IP sur le pagina Special:Contributiones pro usatores non registrate.",
-	"ipinfo-preference-use-agreement": "Io promitte de usar iste information solo pro mi labor anti-vandalismo e de patrulia.",
+	"ipinfo-preference-use-agreement": "Io promitte de usar iste information solo pro mi labor anti-vandalismo e de patrulia",
 	"ipinfo-preference-agreement-error": "Tu debe activar le utensile de information IP ante de acceptar su conditiones de uso.",
 	"ipinfo-infobox-use-terms": "Le utensile de information IP usa le base de datos MaxMind pro monstrar detalios como position geographic, uso de proxy, e le numero de apparatos que condivide iste adresse IP.",
 	"ipinfo-infobox-submit-agreement": "Activar le utensile de information IP",
