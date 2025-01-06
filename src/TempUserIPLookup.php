@@ -76,7 +76,11 @@ class TempUserIPLookup {
 			return $user->getName();
 		}
 
-		if ( !$this->extensionRegistry->isLoaded( 'CheckUser' ) ) {
+		// Return early if neither extensions to look data up in are loaded
+		if (
+			!$this->extensionRegistry->isLoaded( 'CheckUser' ) &&
+			!$this->extensionRegistry->isLoaded( 'Abuse Filter' )
+		) {
 			return null;
 		}
 
@@ -87,49 +91,91 @@ class TempUserIPLookup {
 		}
 
 		$dbr = $this->connectionProvider->getReplicaDatabase();
-		$latestChange = $dbr->newSelectQueryBuilder()
-			->select( [ 'cuc_ip', 'cuc_timestamp' ] )
-			->from( 'cu_changes' )
-			// T338276
-			->useIndex( 'cuc_actor_ip_time' )
-			->join( 'actor', null, 'cuc_actor=actor_id' )
-			->where( [
-				'actor_name' => $user->getName(),
-			] )
-			->orderBy( 'cuc_timestamp', SelectQueryBuilder::SORT_DESC )
-			->limit( 1 )
-			->caller( __METHOD__ )
-			->fetchRow();
 
-		$latestLogEvent = $dbr->newSelectQueryBuilder()
-			->select( [ 'cule_ip', 'cule_timestamp' ] )
-			->from( 'cu_log_event' )
-			// T338276
-			->useIndex( 'cule_actor_ip_time' )
-			->join( 'actor', null, 'cule_actor=actor_id' )
-			->where( [
-				'actor_name' => $user->getName(),
-			] )
-			->orderBy( 'cule_timestamp', SelectQueryBuilder::SORT_DESC )
-			->limit( 1 )
-			->caller( __METHOD__ )
-			->fetchRow();
+		// Array to capture IPs found in CU/AF. The most recent entry found will be used.
+		$ips = [];
 
-		// Pick the most recent of the cu_changes and the cu_log_event event, if any.
-		if ( $latestChange !== false ) {
-			$latestLogTimestamp = $latestLogEvent ? $latestLogEvent->cule_timestamp : '0';
-			if ( $latestLogTimestamp > $latestChange->cuc_timestamp ) {
-				$address = $latestLogEvent->cule_ip;
-			} else {
-				$address = $latestChange->cuc_ip;
+		if ( $this->extensionRegistry->isLoaded( 'CheckUser' ) ) {
+			$latestChange = $dbr->newSelectQueryBuilder()
+				->select( [ 'cuc_ip', 'cuc_timestamp' ] )
+				->from( 'cu_changes' )
+				// T338276
+				->useIndex( 'cuc_actor_ip_time' )
+				->join( 'actor', null, 'cuc_actor=actor_id' )
+				->where( [
+					'actor_name' => $user->getName(),
+				] )
+				->orderBy( 'cuc_timestamp', SelectQueryBuilder::SORT_DESC )
+				->limit( 1 )
+				->caller( __METHOD__ )
+				->fetchRow();
+			if ( $latestChange ) {
+				$ips[ $latestChange->cuc_timestamp ] = $latestChange->cuc_ip;
 			}
-		} else {
-			$address = $latestLogEvent ? $latestLogEvent->cule_ip : null;
+
+			$latestLogEvent = $dbr->newSelectQueryBuilder()
+				->select( [ 'cule_ip', 'cule_timestamp' ] )
+				->from( 'cu_log_event' )
+				// T338276
+				->useIndex( 'cule_actor_ip_time' )
+				->join( 'actor', null, 'cule_actor=actor_id' )
+				->where( [
+					'actor_name' => $user->getName(),
+				] )
+				->orderBy( 'cule_timestamp', SelectQueryBuilder::SORT_DESC )
+				->limit( 1 )
+				->caller( __METHOD__ )
+				->fetchRow();
+			if ( $latestLogEvent ) {
+				$ips[ $latestLogEvent->cule_timestamp ] = $latestLogEvent->cule_ip;
+			}
+
+			$latestPrivateEvent = $dbr->newSelectQueryBuilder()
+				->select( [ 'cupe_ip', 'cupe_timestamp' ] )
+				->from( 'cu_private_event' )
+				// T338276
+				->useIndex( 'cupe_actor_ip_time' )
+				->join( 'actor', null, 'cupe_actor=actor_id' )
+				->where( [
+					'actor_name' => $user->getName()
+				] )
+				->orderBy( 'cupe_timestamp', SelectQueryBuilder::SORT_DESC )
+				->limit( 1 )
+				->caller( __METHOD__ )
+				->fetchRow();
+			if ( $latestPrivateEvent ) {
+				$ips[ $latestPrivateEvent->cupe_timestamp ] = $latestPrivateEvent->cupe_ip;
+			}
 		}
 
-		$this->recentAddressCache->set( $user->getName(), $address );
+		if ( $this->extensionRegistry->isLoaded( 'Abuse Filter' ) ) {
+			$latestAbuseFilterHit = $dbr->newSelectQueryBuilder()
+				->select( [ 'afl_ip', 'afl_timestamp' ] )
+				->from( 'abuse_filter_log' )
+				->where( [
+					'afl_user_text' => $user->getName(),
+					$dbr->expr( 'afl_ip', '!=', '\'\'' )
+				] )
+				->useIndex( 'afl_ip_timestamp' )
+				->orderBy( 'afl_timestamp', SelectQueryBuilder::SORT_DESC )
+				->limit( 1 )
+				->caller( __METHOD__ )
+				->fetchRow();
+			if ( $latestAbuseFilterHit ) {
+				$ips[ $latestAbuseFilterHit->afl_timestamp ] = $latestAbuseFilterHit->afl_ip;
+			}
+		}
 
-		return $address;
+		if ( count( $ips ) ) {
+			// Sort IPs found by descending timestamp (key) and pick the first one which will be the last used IP
+			krsort( $ips );
+			$ip = $ips[ array_key_first( $ips ) ];
+			$this->recentAddressCache->set( $user->getName(), $ip );
+			return $ip;
+		}
+
+		$this->recentAddressCache->set( $user->getName(), null );
+		return null;
 	}
 
 	/**

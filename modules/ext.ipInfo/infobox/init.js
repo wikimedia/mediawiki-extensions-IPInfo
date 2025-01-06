@@ -14,7 +14,7 @@ function initInfoboxWidget() {
 		$( '.ext-ipinfo-collapsible-layout .mw-collapsible-content' ).append(
 			new OO.ui.MessageWidget( {
 				type: 'error',
-				label: mw.msg( 'ipinfo-widget-error-ip-no-edits' )
+				label: mw.msg( 'ipinfo-widget-error-ip-no-contributions' )
 			} ).$element
 		);
 	};
@@ -73,17 +73,26 @@ function initInfoboxWidget() {
 	$( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).on( 'click keypress', saveCollapsibleUserOption );
 
 	const loadIpInfo = function ( targetName ) {
-		const revId = $( '.mw-contributions-list [data-mw-revid]' ).first().attr( 'data-mw-revid' );
-		if ( !revId ) {
-			showNoEditsError();
-			return;
-		}
-
-		const endpoint = mw.config.get( 'wgCanonicalSpecialPageName' ) === 'DeletedContributions' ?
+		let id = $( '.mw-contributions-list [data-mw-revid]' ).first().attr( 'data-mw-revid' );
+		let endpoint = mw.config.get( 'wgCanonicalSpecialPageName' ) === 'DeletedContributions' ?
 			'archivedrevision' : 'revision';
 
+		if ( !id ) {
+			// If no revision was found and the target is a temp account,
+			// fall back to the no-revision endpoint instead to check for the IP in CU/AF tables
+			if ( mw.util.isTemporaryUser( target ) ) {
+				endpoint = 'norevision';
+				id = target;
+			} else {
+				// Otherwise, return early as the target is either
+				// an IP or a registered account with no contributions and cannot be looked up
+				showNoEditsError();
+				return;
+			}
+		}
+
 		const ipPanelWidget = new IpInfoInfoboxWidget(
-			postToRestApi( endpoint, revId, 'infobox' ).then( ( response ) => {
+			postToRestApi( endpoint, id, 'infobox' ).then( ( response ) => {
 				let i, data;
 				const sanitizedTargetName = mw.util.sanitizeIP( targetName );
 				// Array.find is only available from ES6
@@ -128,6 +137,15 @@ function initInfoboxWidget() {
 					};
 
 					eventLogger.log( 'open_infobox', context, params );
+				} else {
+					// Other calls should return valid arrays even if they don't have data
+					// but the CU/AF lookup can return an invalid array indicating that no
+					// results were found for the user.
+					// As this call is asynchronous, the widget will have loaded before we
+					// know if we should show it. Show an error and remove the widget at this
+					// point, as there is no data to show.
+					showNoEditsError();
+					$( ipPanelWidget.$element ).remove();
 				}
 
 				mw.track( 'timing.MediaWiki.ipinfo_infobox_delay', mw.now() - timerStart );

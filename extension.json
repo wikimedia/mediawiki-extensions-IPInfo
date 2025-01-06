@@ -84,6 +84,22 @@
 			"factory": "MediaWiki\\IPInfo\\Rest\\Handler\\ArchivedRevisionHandler::factory"
 		},
 		{
+			"path": "/ipinfo/v0/norevision/{username}",
+			"method": "POST",
+			"services": [
+				"IPInfoInfoManager",
+				"PermissionManager",
+				"UserOptionsLookup",
+				"UserFactory",
+				"JobQueueGroup",
+				"LanguageFallback",
+				"UserIdentityUtils",
+				"IPInfoTempUserIPLookup",
+				"ExtensionRegistry"
+			],
+			"factory": "MediaWiki\\IPInfo\\Rest\\Handler\\NoRevisionHandler::factory"
+		},
+		{
 			"path": "/ipinfo/v0/log/{id}",
 			"method": "POST",
 			"services": [
@@ -262,7 +278,7 @@
 				"ipinfo-widget-error-default",
 				"ipinfo-widget-error-no-data",
 				"ipinfo-widget-error-wrong-ip",
-				"ipinfo-widget-error-ip-no-edits",
+				"ipinfo-widget-error-ip-no-contributions",
 				"ipinfo-infobox-temporary-account-help",
 				"ipinfo-infobox-use-terms",
 				"ipinfo-preference-use-agreement",

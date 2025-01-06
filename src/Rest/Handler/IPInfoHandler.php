@@ -114,11 +114,13 @@ abstract class IPInfoHandler extends SimpleHandler {
 
 	/**
 	 * Get information about an IP address (or IP addresses) associated with some entity,
-	 * given an ID for the entity.
+	 * given an ID for the entity. An ID can either be:
+	 * - an integer, representing an entity (log entry, revision) id (consumed by (*)Revision/LogHandler)
+	 * - a string, representing a username or IP (consumed by NoRevisionHandler)
 	 *
 	 * Concrete subclasses handle for specific entity types, e.g. revision, log entry, etc.
 	 *
-	 * @param int $id
+	 * @param int|string $id
 	 * @return array[]
 	 *  Each array in this array has the following structure:
 	 *  - 'subject': IP address
@@ -126,16 +128,17 @@ abstract class IPInfoHandler extends SimpleHandler {
 	 *    - data source as a string => data array
 	 *  TODO: Task to codify this better
 	 */
-	abstract protected function getInfo( int $id ): array;
+	abstract protected function getInfo( $id ): array;
 
 	/**
-	 * Get information about an IP address, based on the ID of some related entity
-	 * (e.g. a revision, log entry, etc.)
+	 * Return information about an IP address given one of the following identifiers:
+	 * - an integer, representing an entity (log entry, revision) id (consumed by (*)Revision/LogHandler)
+	 * - a string, representing a username or IP (consumed by NoRevisionHandler)
 	 *
-	 * @param int $id
+	 * @param string|int $id
 	 * @return Response
 	 */
-	public function run( int $id ): Response {
+	public function run( $id ): Response {
 		$isBetaFeaturesLoaded = $this->extensionRegistry->isLoaded( 'BetaFeatures' );
 		// Disallow access to API if BetaFeatures is enabled but the feature is not
 		if ( $isBetaFeaturesLoaded &&
@@ -224,11 +227,6 @@ abstract class IPInfoHandler extends SimpleHandler {
 	/** @inheritDoc */
 	public function getParamSettings() {
 		return [
-				'id' => [
-					self::PARAM_SOURCE => 'path',
-					ParamValidator::PARAM_TYPE => 'integer',
-					ParamValidator::PARAM_REQUIRED => true,
-				],
 				'dataContext' => [
 					self::PARAM_SOURCE => 'query',
 					ParamValidator::PARAM_TYPE => 'string',
