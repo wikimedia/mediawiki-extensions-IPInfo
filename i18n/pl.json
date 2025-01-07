@@ -139,5 +139,6 @@
 	"ipinfo-special-ipinfo-target": "Nazwa użytkownika:",
 	"ipinfo-special-ipinfo-user-tool-links": "Dla $1",
 	"ipinfo-special-ipinfo-sort-explainer": "Przyciski w nagłówkach tabeli mogą zostać wykorzystanie to sortowania danych według wartości w kolumnie.",
+	"ipinfo-special-ipinfo-column-ip": "IP",
 	"ipinfo-special-ipinfo-no-results": "Brak informacji o adresie IP $1."
 }

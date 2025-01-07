@@ -11,7 +11,8 @@
 			"Shbib Al-Subaie",
 			"أَحمد",
 			"علاء",
-			"محمد أحمد عبد الفتاح"
+			"محمد أحمد عبد الفتاح",
+			"Cigaryno"
 		]
 	},
 	"ipinfo-extensionname": "معلومات بروتوكول الإنترنت",
@@ -55,6 +56,7 @@
 	"ipinfo-property-value-proxytype-islegitimateproxy": "وكيل قانوني",
 	"ipinfo-property-value-proxytype-istorexitnode": "عقدة خروج تور (Tor)",
 	"ipinfo-property-value-proxytype-ishostingprovider": "مزوِّد الاستضافة",
+	"ipinfo-property-value-risk-tunnel": "نفق",
 	"ipinfo-property-value-risk-unknown": "غير معروف",
 	"ipinfo-property-value-connectiontype-desktop": "سطح المكتب",
 	"ipinfo-property-value-connectiontype-iot": "إنترنت الأشياء",
@@ -125,5 +127,6 @@
 	"ipinfo-property-tooltip-asn": "مُعرِّف فريد للشبكات يُخصص لإقليم ما وكذلك لمنظمات مثل الحكومات ومزودي خدمة الإنترنت.",
 	"ipinfo-blocklist-url-text": "قائمة المنع",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 تعديل محذوف|$1 تعديلات محذوفة|0=لا تعديلات محذوفة}}",
-	"ipinfo-deleted-edits-url-text": "مساهمات محذوفة"
+	"ipinfo-deleted-edits-url-text": "مساهمات محذوفة",
+	"ipinfo-special-ipinfo-user-tool-links": "ل$1"
 }

@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Praveenp"
+		]
+	},
+	"ipinfo-desc": "ഒരു ഐ.പി. വിലാസത്തെക്കുറിച്ചുള്ള വിവരങ്ങൾ നൽകുന്നു.",
+	"ipinfo-infobox-title": "ഐ.പി. വിവരം",
+	"ipinfo-property-label-location": "സ്ഥലം",
+	"ipinfo-property-label-ipversion": "പതിപ്പ്",
+	"ipinfo-property-label-organization": "സ്ഥാപനം",
+	"ipinfo-property-label-connectiontype": "ബന്ധപ്പെടൽ രീതി",
+	"ipinfo-property-label-usertype": "കണക്ഷൻ ഉടമ",
+	"ipinfo-property-label-proxytypes": "യഥാർത്ഥ ഐ.പി./പ്രോക്സി",
+	"ipinfo-property-label-behaviors": "പെരുമാറ്റരീതി",
+	"ipinfo-property-label-risks": "അപകടസാധ്യത",
+	"ipinfo-property-label-connectiontypes": "ബന്ധപ്പെടൽ തരങ്ങൾ"
+}
