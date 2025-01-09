@@ -11,7 +11,8 @@
 			"أَحمد",
 			"علاء",
 			"محمد أحمد عبد الفتاح",
-			"Mohanad"
+			"Mohanad",
+			"Cigaryno"
 		]
 	},
 	"ipinfo-extensionname": "معلومات بروتوكول الإنترنت",
@@ -55,6 +56,7 @@
 	"ipinfo-property-value-proxytype-islegitimateproxy": "وكيل قانوني",
 	"ipinfo-property-value-proxytype-istorexitnode": "عقدة خروج تور (Tor)",
 	"ipinfo-property-value-proxytype-ishostingprovider": "مزوِّد الاستضافة",
+	"ipinfo-property-value-risk-tunnel": "نفق",
 	"ipinfo-property-value-risk-unknown": "غير معروف",
 	"ipinfo-property-value-connectiontype-desktop": "سطح المكتب",
 	"ipinfo-property-value-connectiontype-iot": "إنترنت الأشياء",
