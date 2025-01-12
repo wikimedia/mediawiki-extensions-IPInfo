@@ -6,3 +6,4 @@ vendor
 **/*.mmdb
 !tests/fixtures/maxmind/*.mmdb
 tests/selenium/log
+/.stylelintcache
