@@ -6,6 +6,7 @@
 	},
 	"ipinfo-desc": "Forni information sur un adresse IP.",
 	"ipinfo-infobox-title": "Information IP",
+	"ipinfo-infobox-temporary-account-help": "A iste conto temporari es associate plure adresses IP. Ora appare le information IP pro le adresse IP usate le plus recentemente. [[Special:IPInfo/$1|Vider le information IP pro tote le adresses IP]]",
 	"ipinfo-property-label-location": "Loco",
 	"ipinfo-property-label-ipversion": "VERSION",
 	"ipinfo-property-label-isp": "Fornitor Internet",
@@ -133,5 +134,8 @@
 	"ipinfo-special-ipinfo-user-tool-links": "Pro $1",
 	"ipinfo-special-ipinfo-sort-explainer": "Le buttones in le capites del tabella pote esser usate pro ordinar le tabella per le valor de ille columna.",
 	"ipinfo-special-ipinfo-column-ip": "IP",
-	"ipinfo-special-ipinfo-no-results": "Nulle information IP es disponibile pro $1."
+	"ipinfo-special-ipinfo-no-results": "Nulle information IP es disponibile pro $1.",
+	"ipinfo-popup-link-text": "Vider tote le information IP",
+	"ipinfo-help-text": "Le information monstrate proveni de MaxMind e de [https://docs.spur.us/data-types Spur]. Illo pote non esser totalmente precise.",
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Leger plus sur iste function]"
 }
