@@ -95,7 +95,17 @@ class InfoboxHandler implements
 			return;
 		}
 
-		$this->addInfoBox( $user->getName(), $sp );
+		// T379049 As all log entries in Special:IPContributions refer to the
+		// same IP, it always shows the infobox. However, log entries for a
+		// given user in Special:Contributions may originate from different IPs,
+		// so the infobox is only shown on the first page of the results.
+		if ( $sp->getName() === 'Contributions' ) {
+			if ( $this->isFirstPage( $sp ) ) {
+				$this->addInfoBox( $user->getName(), $sp );
+			}
+		} else {
+			$this->addInfoBox( $user->getName(), $sp );
+		}
 	}
 
 	/** @inheritDoc */
@@ -104,10 +114,20 @@ class InfoboxHandler implements
 			return;
 		}
 
-		if ( $subPage === null ) {
-			$subPage = $sp->getRequest()->getText( 'target' );
-		}
+		// T379049 Log entries for a given user in Special:DeletedContributions
+		// may originate from different IPs, so the infobox is only shown on
+		// the first page or results.
+		if ( $this->isFirstPage( $sp ) ) {
+			if ( $subPage === null ) {
+				$subPage = $sp->getRequest()->getText( 'target' );
+			}
 
-		$this->addInfoBox( $subPage, $sp );
+			$this->addInfoBox( $subPage, $sp );
+		}
+	}
+
+	private function isFirstPage( SpecialPage $sp ): bool {
+		return ( !( $sp->getRequest()->getIntOrNull( 'offset' ) > 0 ) ) &&
+			( $sp->getRequest()->getText( 'dir' ) !== 'prev' );
 	}
 }

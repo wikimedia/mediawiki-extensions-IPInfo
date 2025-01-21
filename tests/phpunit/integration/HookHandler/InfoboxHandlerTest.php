@@ -2,10 +2,12 @@
 
 namespace MediaWiki\IPInfo\Test\Integration\HookHandler;
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\IPInfo\HookHandler\InfoboxHandler;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\SimpleAuthority;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
@@ -28,6 +30,10 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private TempUserConfig $tempUserConfig;
 
+	private SpecialPage $specialPage;
+
+	private FauxRequest $request;
+
 	private InfoboxHandler $handler;
 
 	protected function setUp(): void {
@@ -35,6 +41,11 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$this->userOptionsLookup = $this->createMock( UserOptionsLookup::class );
 		$this->tempUserConfig = $this->createMock( TempUserConfig::class );
+		$this->request = RequestContext::getMain()->getRequest();
+		$this->specialPage = $this->createMock( SpecialPage::class );
+		$this->specialPage
+			->method( 'getRequest' )
+			->willReturn( $this->request );
 
 		$this->handler = new InfoboxHandler(
 			$this->userOptionsLookup,
@@ -63,12 +74,11 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 			->method( 'addModules' )
 			->with( 'ext.ipInfo' );
 
-		$specialPage = $this->createMock( SpecialPage::class );
-		$specialPage->method( 'getName' )
+		$this->specialPage->method( 'getName' )
 			->willReturn( 'Contributions' );
-		$specialPage->method( 'getAuthority' )
+		$this->specialPage->method( 'getAuthority' )
 			->willReturn( $accessingAuthority );
-		$specialPage->method( 'getOutput' )
+		$this->specialPage->method( 'getOutput' )
 			->willReturn( $out );
 
 		$this->userOptionsLookup->method( 'getOption' )
@@ -86,7 +96,7 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->handler->onSpecialContributionsBeforeMainOutput(
 			1,
 			$targetUser,
-			$specialPage
+			$this->specialPage
 		);
 	}
 
@@ -145,12 +155,11 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 			->method( 'addModules' )
 			->with( 'ext.ipInfo' );
 
-		$specialPage = $this->createMock( SpecialPage::class );
-		$specialPage->method( 'getName' )
+		$this->specialPage->method( 'getName' )
 			->willReturn( 'DeletedContributions' );
-		$specialPage->method( 'getAuthority' )
+		$this->specialPage->method( 'getAuthority' )
 			->willReturn( $accessingAuthority );
-		$specialPage->method( 'getOutput' )
+		$this->specialPage->method( 'getOutput' )
 			->willReturn( $out );
 
 		$this->userOptionsLookup->method( 'getOption' )
@@ -162,7 +171,7 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 			->willReturn( $targetIsTemp );
 
 		$this->handler->onSpecialPageBeforeExecute(
-			$specialPage,
+			$this->specialPage,
 			$targetName
 		);
 	}
@@ -184,12 +193,11 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 		$out->expects( $this->never() )
 			->method( 'addModules' );
 
-		$specialPage = $this->createMock( SpecialPage::class );
-		$specialPage->method( 'getName' )
+		$this->specialPage->method( 'getName' )
 			->willReturn( $specialPageName );
-		$specialPage->method( 'getAuthority' )
+		$this->specialPage->method( 'getAuthority' )
 			->willReturn( $accessingAuthority );
-		$specialPage->method( 'getOutput' )
+		$this->specialPage->method( 'getOutput' )
 			->willReturn( $out );
 
 		$targetUser = $this->createMock( User::class );
@@ -207,7 +215,7 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->handler->onSpecialContributionsBeforeMainOutput(
 			1,
 			$targetUser,
-			$specialPage
+			$this->specialPage
 		);
 	}
 
@@ -246,12 +254,11 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 		$out->expects( $this->never() )
 			->method( 'addModules' );
 
-		$specialPage = $this->createMock( SpecialPage::class );
-		$specialPage->method( 'getName' )
+		$this->specialPage->method( 'getName' )
 			->willReturn( $specialPageName );
-		$specialPage->method( 'getAuthority' )
+		$this->specialPage->method( 'getAuthority' )
 			->willReturn( $accessingAuthority );
-		$specialPage->method( 'getOutput' )
+		$this->specialPage->method( 'getOutput' )
 			->willReturn( $out );
 
 		$this->userOptionsLookup->method( 'getOption' )
@@ -263,7 +270,7 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 			->willReturn( false );
 
 		$this->handler->onSpecialPageBeforeExecute(
-			$specialPage,
+			$this->specialPage,
 			$targetUserName
 		);
 	}
@@ -288,6 +295,111 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 			'Contributions',
 			new SimpleAuthority( new UserIdentityValue( 2, 'TestUser2' ), [] ),
 			'127.0.0.1'
+		];
+	}
+
+	/**
+	 * @dataProvider provideValidTargetsWithPaginationParams
+	 */
+	public function testIsDisplayedOnContributionsPageOnFirstPageOnly(
+		bool $isDisplayed,
+		string $targetName,
+		bool $targetIsTemp,
+		?int $offset,
+		?string $direction
+	) {
+		$accessingAuthority = self::getValidAccessingAuthority();
+
+		$out = $this->createMock( OutputPage::class );
+		$out->expects( $isDisplayed ? $this->once() : $this->never() )
+			->method( 'addModules' )
+			->with( 'ext.ipInfo' );
+
+		$this->specialPage->method( 'getName' )
+			->willReturn( 'Contributions' );
+		$this->specialPage->method( 'getAuthority' )
+			->willReturn( $accessingAuthority );
+		$this->specialPage->method( 'getOutput' )
+			->willReturn( $out );
+
+		$this->userOptionsLookup->method( 'getOption' )
+			->with( $accessingAuthority->getUser(), 'ipinfo-beta-feature-enable' )
+			->willReturn( '1' );
+
+		$this->tempUserConfig->method( 'isTempName' )
+			->with( $targetName )
+			->willReturn( $targetIsTemp );
+
+		$targetUser = $this->createMock( User::class );
+		$targetUser->method( 'getName' )
+			->willReturn( $targetName );
+
+		$this->request->setVal( 'offset', $offset );
+		$this->request->setVal( 'dir', $direction );
+
+		$this->handler->onSpecialContributionsBeforeMainOutput(
+			1,
+			$targetUser,
+			$this->specialPage
+		);
+	}
+
+	public static function provideValidTargetsWithPaginationParams(): iterable {
+		yield 'IP user, on the first page, newer first' => [
+			'isDisplayed' => true,
+			'targetName' => '127.0.0.1',
+			'targetIsTemp' => false,
+			'offset' => 0,
+			'direction' => null
+		];
+		yield 'IP user, not on the first page, newer first' => [
+			'isDisplayed' => false,
+			'targetName' => '127.0.0.1',
+			'targetIsTemp' => false,
+			'offset' => 100,
+			'direction' => null
+		];
+		yield 'IP user, on the first page, older first' => [
+			'isDisplayed' => false,
+			'targetName' => '127.0.0.1',
+			'targetIsTemp' => false,
+			'offset' => 0,
+			'direction' => 'prev'
+		];
+		yield 'IP user, not on the first page, older first' => [
+			'isDisplayed' => false,
+			'targetName' => '127.0.0.1',
+			'targetIsTemp' => false,
+			'offset' => 100,
+			'direction' => 'prev'
+		];
+		yield 'temporary user, on the first page, newer first' => [
+			'isDisplayed' => true,
+			'targetName' => '~2024-8',
+			'targetIsTemp' => true,
+			'offset' => 0,
+			'direction' => null
+		];
+		yield 'temporary user, not on the first page, newer first' => [
+			'isDisplayed' => false,
+			'targetName' => '~2024-8',
+			'targetIsTemp' => true,
+			'offset' => 100,
+			'direction' => null
+		];
+		yield 'temporary user, on the first page, older first' => [
+			'isDisplayed' => false,
+			'targetName' => '~2024-8',
+			'targetIsTemp' => true,
+			'offset' => 0,
+			'direction' => 'prev'
+		];
+		yield 'temporary user, not on the first page, older first' => [
+			'isDisplayed' => false,
+			'targetName' => '~2024-8',
+			'targetIsTemp' => true,
+			'offset' => 100,
+			'direction' => 'prev'
 		];
 	}
 }
