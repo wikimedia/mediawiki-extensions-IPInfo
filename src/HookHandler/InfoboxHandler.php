@@ -32,7 +32,10 @@ class InfoboxHandler implements
 	}
 
 	/**
-	 * This function is used to add an info box on Special:Contributions and Special:DeletedContributions
+	 * This function is used to add an info box on special pages.
+	 *
+	 * Please refer to dispatcher.js in modules/ext.ipInfo for a list of special
+	 * pages the infobox is added to.
 	 *
 	 * @param string $username Username or IP Address
 	 * @param SpecialPage $sp
@@ -87,7 +90,8 @@ class InfoboxHandler implements
 
 	/** @inheritDoc */
 	public function onSpecialContributionsBeforeMainOutput( $id, $user, $sp ) {
-		if ( $sp->getName() !== 'Contributions' ) {
+		if ( $sp->getName() !== 'Contributions' &&
+			$sp->getName() !== 'IPContributions' ) {
 			return;
 		}
 
