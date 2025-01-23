@@ -173,6 +173,10 @@ class SpecialIPInfo extends FormSpecialPage {
 		return true;
 	}
 
+	/**
+	 * @codeCoverageIgnore Merely declarative
+	 * @return string
+	 */
 	protected function getGroupName(): string {
 		return 'users';
 	}
