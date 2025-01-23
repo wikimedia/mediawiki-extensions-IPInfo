@@ -173,6 +173,10 @@ class SpecialIPInfo extends FormSpecialPage {
 		return true;
 	}
 
+	protected function getGroupName(): string {
+		return 'users';
+	}
+
 	/**
 	 * Process form data on submission.
 	 * @param array $data Map of form data keyed by unprefixed field name
