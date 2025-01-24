@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\IPInfo\AnonymousUserIPLookup;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\InfoRetriever\BlockInfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\ContributionInfoRetriever;
@@ -86,6 +87,14 @@ return [
 			ExtensionRegistry::getInstance(),
 			LoggerFactory::getInstance( 'IPInfo' ),
 			new ServiceOptions( TempUserIPLookup::CONSTRUCTOR_OPTIONS, $services->getMainConfig() )
+		);
+	},
+	'IPInfoAnonymousUserIPLookup' => static function ( MediaWikiServices $services ): AnonymousUserIPLookup {
+		return new AnonymousUserIPLookup(
+			$services->getConnectionProvider(),
+			$services->getUserIdentityUtils(),
+			ExtensionRegistry::getInstance(),
+			LoggerFactory::getInstance( 'IPInfo' )
 		);
 	},
 	'ReaderFactory' => static function (): ReaderFactory {

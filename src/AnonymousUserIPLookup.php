@@ -1,0 +1,130 @@
+<?php
+namespace MediaWiki\IPInfo;
+
+use MapCacheLRU;
+use MediaWiki\Registration\ExtensionRegistry;
+use MediaWiki\User\UserIdentityUtils;
+use Psr\Log\LoggerInterface;
+use Wikimedia\Assert\Assert;
+use Wikimedia\IPUtils;
+use Wikimedia\Rdbms\IConnectionProvider;
+
+/**
+ * Check if an IP is known to the wiki by checking if it has an entry
+ * in either CheckUser or AbuseFilter. IPs with revisions are guaranteed
+ * to be known/logged and CU/AF log checks will cover IPs that attempted to
+ * act but whose actions were either reverted or blocked.
+ */
+class AnonymousUserIPLookup {
+	private IConnectionProvider $connectionProvider;
+	private ExtensionRegistry $extensionRegistry;
+	private MapCacheLRU $recentAddressCache;
+	private UserIdentityUtils $userIdentityUtils;
+	private LoggerInterface $logger;
+
+	public function __construct(
+		IConnectionProvider $connectionProvider,
+		UserIdentityUtils $userIdentityUtils,
+		ExtensionRegistry $extensionRegistry,
+		LoggerInterface $logger
+	) {
+		$this->connectionProvider = $connectionProvider;
+		$this->userIdentityUtils = $userIdentityUtils;
+		$this->extensionRegistry = $extensionRegistry;
+		$this->recentAddressCache = new MapCacheLRU( 8 );
+		$this->logger = $logger;
+	}
+
+	public function checkIPIsKnown( string $ip ): bool {
+		Assert::parameter(
+			IPUtils::isValid( $ip ),
+			'$ip',
+			'must be a valid IP and cannot be a range'
+		);
+		$ip = IPUtils::sanitizeIP( $ip );
+
+		// Return early false if neither extensions to be looked up are loaded
+		// as by definition the IP cannot be known
+		if (
+			!$this->extensionRegistry->isLoaded( 'CheckUser' ) &&
+			!$this->extensionRegistry->isLoaded( 'Abuse Filter' )
+		) {
+			return false;
+		}
+
+		$dbr = $this->connectionProvider->getReplicaDatabase();
+
+		// Return true if any results are found - an entry assures the IP is known
+		if ( $this->extensionRegistry->isLoaded( 'CheckUser' ) ) {
+			$latestChange = $dbr->newSelectQueryBuilder()
+				->select( '1' )
+				->from( 'cu_changes' )
+				// T338276
+				->useIndex( 'cuc_actor_ip_time' )
+				->join( 'actor', null, 'cuc_actor=actor_id' )
+				->where( [
+					'actor_name' => $ip,
+				] )
+				->limit( 1 )
+				->caller( __METHOD__ )
+				->fetchRow();
+			if ( $latestChange ) {
+				return true;
+			}
+
+			$latestLogEvent = $dbr->newSelectQueryBuilder()
+				->select( '1' )
+				->from( 'cu_log_event' )
+				// T338276
+				->useIndex( 'cule_actor_ip_time' )
+				->join( 'actor', null, 'cule_actor=actor_id' )
+				->where( [
+					'actor_name' => $ip,
+				] )
+				->limit( 1 )
+				->caller( __METHOD__ )
+				->fetchRow();
+			if ( $latestLogEvent ) {
+				return true;
+			}
+
+			$latestPrivateEvent = $dbr->newSelectQueryBuilder()
+				->select( '1' )
+				->from( 'cu_private_event' )
+				// T338276
+				->useIndex( 'cupe_actor_ip_time' )
+				// T359962
+				->leftJoin( 'actor', null, 'cupe_actor=actor_id' )
+				->where(
+					$dbr
+						->expr( 'actor_name', '=', $ip )
+						->orExpr( $dbr->expr( 'cupe_actor', '=', null )->and( 'cupe_ip', '=', $ip ) )
+				)
+				->limit( 1 )
+				->caller( __METHOD__ )
+				->fetchRow();
+			if ( $latestPrivateEvent ) {
+				return true;
+			}
+		}
+
+		if ( $this->extensionRegistry->isLoaded( 'Abuse Filter' ) ) {
+			$latestAbuseFilterHit = $dbr->newSelectQueryBuilder()
+				->select( '1' )
+				->from( 'abuse_filter_log' )
+				->where( [
+					'afl_user_text' => $ip,
+				] )
+				->useIndex( 'afl_ip_timestamp' )
+				->limit( 1 )
+				->caller( __METHOD__ )
+				->fetchRow();
+			if ( $latestAbuseFilterHit ) {
+				return true;
+			}
+		}
+
+		// If no entries were found, IP is not known
+		return false;
+	}
+}

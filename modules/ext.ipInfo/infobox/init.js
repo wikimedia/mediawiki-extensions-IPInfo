@@ -78,14 +78,14 @@ function initInfoboxWidget() {
 			'archivedrevision' : 'revision';
 
 		if ( !id ) {
-			// If no revision was found and the target is a temp account,
+			// If no revision was found and the target is a temp account or IP address,
 			// fall back to the no-revision endpoint instead to check for the IP in CU/AF tables
-			if ( mw.util.isTemporaryUser( target ) ) {
+			if ( mw.util.isTemporaryUser( target ) || mw.util.isIPAddress( target, true ) ) {
 				endpoint = 'norevision';
 				id = target;
 			} else {
-				// Otherwise, return early as the target is either
-				// an IP or a registered account with no contributions and cannot be looked up
+				// Otherwise, return early as the target is
+				// a registered account with no contributions and cannot be looked up
 				showNoEditsError();
 				return;
 			}

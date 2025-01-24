@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo\Rest\Handler;
 
 use JobQueueGroup;
+use MediaWiki\IPInfo\AnonymousUserIPLookup;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\IPInfo\TempUserIPLookup;
@@ -13,11 +14,44 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityUtils;
+use Wikimedia\IPUtils;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 class NoRevisionHandler extends IPInfoHandler {
+
+	private AnonymousUserIPLookup $anonymousUserIPLookup;
+
+	public function __construct(
+		InfoManager $infoManager,
+		PermissionManager $permissionManager,
+		UserOptionsLookup $userOptionsLookup,
+		UserFactory $userFactory,
+		DefaultPresenter $presenter,
+		JobQueueGroup $jobQueueGroup,
+		LanguageFallback $languageFallback,
+		UserIdentityUtils $userIdentityUtils,
+		TempUserIPLookup $tempUserIPLookup,
+		ExtensionRegistry $extensionRegistry,
+		AnonymousUserIPLookup $anonymousUserIPLookup,
+		ReadOnlyMode $readOnlyMode
+	) {
+		parent::__construct(
+			$infoManager,
+			$permissionManager,
+			$userOptionsLookup,
+			$userFactory,
+			$presenter,
+			$jobQueueGroup,
+			$languageFallback,
+			$userIdentityUtils,
+			$tempUserIPLookup,
+			$extensionRegistry,
+			$readOnlyMode
+		);
+		$this->anonymousUserIPLookup = $anonymousUserIPLookup;
+	}
 
 	public static function factory(
 		InfoManager $infoManager,
@@ -29,7 +63,8 @@ class NoRevisionHandler extends IPInfoHandler {
 		UserIdentityUtils $userIdentityUtils,
 		TempUserIPLookup $tempUserIPLookup,
 		ExtensionRegistry $extensionRegistry,
-		ReadOnlyMode $readOnlyMode
+		ReadOnlyMode $readOnlyMode,
+		AnonymousUserIPLookup $anonymousUserIPLookup
 	): self {
 		return new self(
 			$infoManager,
@@ -42,12 +77,28 @@ class NoRevisionHandler extends IPInfoHandler {
 			$userIdentityUtils,
 			$tempUserIPLookup,
 			$extensionRegistry,
+			$anonymousUserIPLookup,
 			$readOnlyMode
 		);
 	}
 
 	/** @inheritDoc */
 	protected function getInfo( $id ): array {
+		// Check if the user is an IP and if so, only retrieve information for it
+		// if it's known to the wiki (CU/AF logs)
+		if ( IPUtils::isValid( $id ) ) {
+			if ( $this->anonymousUserIPLookup->checkIPIsKnown( $id ) ) {
+				return [
+					$this->presenter->present(
+						$this->infoManager->retrieveFor( $id, $id ),
+						$this->getAuthority()->getUser()
+					)
+				];
+			} else {
+				return [];
+			}
+		}
+
 		$user = $this->userFactory->newFromName( $id );
 		if ( !$user ) {
 			throw new LocalizedHttpException(

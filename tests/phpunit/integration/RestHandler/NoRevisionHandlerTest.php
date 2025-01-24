@@ -22,8 +22,10 @@ class NoRevisionHandlerTest extends HandlerTestCase {
 
 	private static Authority $sysopSuppress;
 	private static Authority $ipInfoViewer;
+	private static Authority $anonUser;
 	private static Authority $tempUser;
 	private static Authority $hiddenTempUser;
+	private static Authority $tempUserNoLogs;
 
 	protected function getHandler(): Handler {
 		$services = $this->getServiceContainer();
@@ -37,7 +39,8 @@ class NoRevisionHandlerTest extends HandlerTestCase {
 			$services->getUserIdentityUtils(),
 			$services->get( 'IPInfoTempUserIPLookup' ),
 			$services->getExtensionRegistry(),
-			$services->getReadOnlyMode()
+			$services->getReadOnlyMode(),
+			$services->get( 'IPInfoAnonymousUserIPLookup' )
 		);
 	}
 
@@ -73,6 +76,7 @@ class NoRevisionHandlerTest extends HandlerTestCase {
 
 		self::$sysopSuppress = $this->getTestUser( [ 'sysop', 'suppress' ] )->getAuthority();
 		self::$ipInfoViewer = $this->getTestUser( [ 'ipinfo-viewer' ] )->getAuthority();
+		self::$anonUser = $this->getServiceContainer()->getUserFactory()->newAnonymous( self::TEST_ANON_IP );
 
 		self::$tempUser = $this->getServiceContainer()->getTempUserCreator()
 			->create( null, $request )
@@ -85,6 +89,7 @@ class NoRevisionHandlerTest extends HandlerTestCase {
 			NS_MAIN,
 			self::$tempUser
 		);
+		$this->assertStatusGood( $pageUpdateStatus );
 		$this->deletePage( $page );
 
 		self::$hiddenTempUser = $this->getServiceContainer()->getTempUserCreator()
@@ -97,6 +102,7 @@ class NoRevisionHandlerTest extends HandlerTestCase {
 			NS_MAIN,
 			self::$hiddenTempUser
 		);
+		$this->assertStatusGood( $pageUpdateStatus );
 		$this->deletePage( $page );
 
 		$blockStatus = $this->getServiceContainer()->getBlockUserFactory()
@@ -111,6 +117,31 @@ class NoRevisionHandlerTest extends HandlerTestCase {
 			)
 			->placeBlock();
 		$this->assertStatusGood( $blockStatus, 'Block was not placed' );
+
+		self::$tempUserNoLogs = $this->getServiceContainer()->getTempUserCreator()
+			->create( null, $request )
+			->getUser();
+
+		// Delete creation log so that the account will be considered unknown
+		$this->getDb()->newDeleteQueryBuilder()
+			->deleteFrom( 'cu_private_event' )
+			->where( [
+				'cupe_title' => self::$tempUserNoLogs->getName(),
+			] )
+			->caller( __METHOD__ )
+			->execute();
+
+		$this->disableAutoCreateTempUser();
+		$page = $this->getNonexistingTestPage();
+		$pageUpdateStatus = $this->editPage(
+			$page,
+			'test',
+			'',
+			NS_MAIN,
+			self::$anonUser
+		);
+		$this->assertStatusGood( $pageUpdateStatus );
+		$this->deletePage( $page );
 	}
 
 	/**
@@ -147,9 +178,9 @@ class NoRevisionHandlerTest extends HandlerTestCase {
 	}
 
 	public static function provideErrorCases(): iterable {
-		yield 'anonymous user as target' => [
+		yield 'invalid username as target' => [
 			static fn () => self::$ipInfoViewer,
-			fn () => self::TEST_ANON_IP,
+			static fn () => 'InvalidUser#',
 			self::VALID_CSRF_TOKEN,
 			[ 'rest-nonexistent-user', 404 ]
 		];
@@ -199,6 +230,39 @@ class NoRevisionHandlerTest extends HandlerTestCase {
 		yield 'hidden target with hideuser rights' => [
 			static fn () => self::$sysopSuppress,
 			static fn () => self::$hiddenTempUser->getName(),
+		];
+
+		yield 'anonymous target with default view rights' => [
+			static fn () => self::$ipInfoViewer,
+			static fn () => self::TEST_ANON_IP,
+		];
+	}
+
+	/**
+	 * @dataProvider provideTestExecuteUnnamedUserNoLogsCases
+	 *
+	 * @param callable $targetProvider Callback to obtain the username to target in the request
+	 */
+	public function testExecuteUnnamedUserNoLogs( $targetProvider ) {
+		// User is assumed to have access to IPInfo. Access gated by these options are tested by IPInfoHandler
+		$authority = self::$sysopSuppress;
+		$this->setUserOptions( $authority, [ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ] );
+
+		$request = self::getRequestData( $targetProvider(), self::VALID_CSRF_TOKEN );
+		$response = $this->executeWithUser( $request, $authority );
+		$body = json_decode( $response->getBody()->getContents(), true );
+
+		$this->assertSame( 200, $response->getStatusCode() );
+		$this->assertSame( [], $body['info'] );
+	}
+
+	public static function provideTestExecuteUnnamedUserNoLogsCases(): iterable {
+		yield 'temporary account with no known revisions or logs' => [
+			static fn () => self::$tempUserNoLogs->getName(),
+		];
+
+		yield 'anonymous user with no known revisions or logs' => [
+			static fn () => '1.2.3.4',
 		];
 	}
 }

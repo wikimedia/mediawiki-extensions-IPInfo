@@ -120,7 +120,8 @@
 				"UserIdentityUtils",
 				"IPInfoTempUserIPLookup",
 				"ExtensionRegistry",
-				"ReadOnlyMode"
+				"ReadOnlyMode",
+				"IPInfoAnonymousUserIPLookup"
 			],
 			"factory": "MediaWiki\\IPInfo\\Rest\\Handler\\NoRevisionHandler::factory"
 		},
