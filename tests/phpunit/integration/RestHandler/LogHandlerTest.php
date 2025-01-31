@@ -263,55 +263,55 @@ class LogHandlerTest extends HandlerTestCase {
 
 	public static function provideErrorCases(): iterable {
 		yield 'anonymous user without permission' => [
-			fn () => self::$anonUser,
-			fn () => self::$logEntryByAnonId,
+			static fn () => self::$anonUser,
+			static fn () => self::$logEntryByAnonId,
 			self::VALID_CSRF_TOKEN,
 			[],
 			[ 'ipinfo-rest-access-denied', 401 ]
 		];
 
 		yield 'regular user without permission' => [
-			fn () => self::$regularUser,
-			fn () => self::$logEntryByAnonId,
+			static fn () => self::$regularUser,
+			static fn () => self::$logEntryByAnonId,
 			self::VALID_CSRF_TOKEN,
 			[],
 			[ 'ipinfo-rest-access-denied', 403 ]
 		];
 
 		yield 'user with correct permissions but without accepted agreement' => [
-			fn () => self::$testSysop,
-			fn () => self::$logEntryByAnonId,
+			static fn () => self::$testSysop,
+			static fn () => self::$logEntryByAnonId,
 			self::VALID_CSRF_TOKEN,
 			[ 'ipinfo-beta-feature-enable' => 1 ],
 			[ 'ipinfo-rest-access-denied', 403 ]
 		];
 
 		yield 'blocked user with correct permissions and accepted agreement' => [
-			fn () => self::$blockedSysop,
-			fn () => self::$logEntryByAnonId,
+			static fn () => self::$blockedSysop,
+			static fn () => self::$logEntryByAnonId,
 			self::VALID_CSRF_TOKEN,
 			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
 			[ 'ipinfo-rest-access-denied', 403 ]
 		];
 
 		yield 'missing CSRF token' => [
-			fn () => self::$testSysop,
-			fn () => self::$logEntryByAnonId,
+			static fn () => self::$testSysop,
+			static fn () => self::$logEntryByAnonId,
 			null,
 			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
 			[ 'rest-badtoken-missing', 403 ]
 		];
 
 		yield 'mismatched CSRF token' => [
-			fn () => self::$testSysop,
-			fn () => self::$logEntryByAnonId,
+			static fn () => self::$testSysop,
+			static fn () => self::$logEntryByAnonId,
 			'some-bad-token',
 			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
 			[ 'rest-badtoken', 403 ]
 		];
 
 		yield 'missing log entry' => [
-			fn () => self::$testSysop,
+			static fn () => self::$testSysop,
 			fn () => self::TEST_MISSING_LOG_ID,
 			self::VALID_CSRF_TOKEN,
 			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
@@ -319,40 +319,40 @@ class LogHandlerTest extends HandlerTestCase {
 		];
 
 		yield 'restricted log entry with user not authorized to view it' => [
-			fn () => self::$testSysop,
-			fn () => self::$restrictedLogEntryByAnonId,
+			static fn () => self::$testSysop,
+			static fn () => self::$restrictedLogEntryByAnonId,
 			self::VALID_CSRF_TOKEN,
 			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
 			[ 'ipinfo-rest-log-denied', 403 ]
 		];
 
 		yield 'fully deleted log entry with user not authorized to view it' => [
-			fn () => self::$ipInfoViewer,
-			fn () => self::$fullyDeletedLogEntryByAnonId,
+			static fn () => self::$ipInfoViewer,
+			static fn () => self::$fullyDeletedLogEntryByAnonId,
 			self::VALID_CSRF_TOKEN,
 			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
 			[ 'ipinfo-rest-log-denied', 403 ]
 		];
 
 		yield 'partially deleted log entry with user not authorized to view it' => [
-			fn () => self::$ipInfoViewer,
-			fn () => self::$deletedLogEntryByAnonId,
+			static fn () => self::$ipInfoViewer,
+			static fn () => self::$deletedLogEntryByAnonId,
 			self::VALID_CSRF_TOKEN,
 			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
 			[ 'ipinfo-rest-log-registered', 404 ]
 		];
 
 		yield 'suppressed log entry with user not authorized to view it' => [
-			fn () => self::$ipInfoViewer,
-			fn () => self::$suppressedLogEntryByAnonId,
+			static fn () => self::$ipInfoViewer,
+			static fn () => self::$suppressedLogEntryByAnonId,
 			self::VALID_CSRF_TOKEN,
 			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
 			[ 'ipinfo-rest-log-registered', 404 ]
 		];
 
 		yield 'log entry by named user' => [
-			fn () => self::$testSysop,
-			fn () => self::$logEntryByNamedUserId,
+			static fn () => self::$testSysop,
+			static fn () => self::$logEntryByNamedUserId,
 			self::VALID_CSRF_TOKEN,
 			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
 			[ 'ipinfo-rest-log-registered', 404 ]
@@ -453,18 +453,18 @@ class LogHandlerTest extends HandlerTestCase {
 
 	public static function provideLogEntryCases(): iterable {
 		$allUsers = [
-			'user with basic IPInfo access' => fn () => self::$ipInfoViewer,
-			'user with IPInfo and deleted history access' => fn () => self::$testSysop
+			'user with basic IPInfo access' => static fn () => self::$ipInfoViewer,
+			'user with IPInfo and deleted history access' => static fn () => self::$testSysop
 		];
 
 		$singleResultLogEntries = [
-			'log entry by temporary user' => fn () => self::$logEntryByTempUserId,
-			'log entry by anonymous user' => fn () => self::$logEntryByAnonId,
-			'log entry with anonymous target' => fn () => self::$logEntryWithAnonTargetId,
+			'log entry by temporary user' => static fn () => self::$logEntryByTempUserId,
+			'log entry by anonymous user' => static fn () => self::$logEntryByAnonId,
+			'log entry with anonymous target' => static fn () => self::$logEntryWithAnonTargetId,
 		];
 
 		$logEntriesWithTwoResults = [
-			'log entry by anonymous user with anonymous target' => fn () => self::$logEntryByAnonWithAnonTargetId,
+			'log entry by anonymous user with anonymous target' => static fn () => self::$logEntryByAnonWithAnonTargetId,
 		];
 
 		$tempUserConfig = [
@@ -476,34 +476,34 @@ class LogHandlerTest extends HandlerTestCase {
 		yield from ArrayUtils::cartesianProduct( $allUsers, $logEntriesWithTwoResults, $tempUserConfig, [ 2 ] );
 
 		$deletedLogEntries = [
-			'fully deleted log entry' => fn () => self::$fullyDeletedLogEntryByAnonId,
-			'partially deleted log entry' => fn () => self::$deletedLogEntryByAnonId,
+			'fully deleted log entry' => static fn () => self::$fullyDeletedLogEntryByAnonId,
+			'partially deleted log entry' => static fn () => self::$deletedLogEntryByAnonId,
 		];
 
 		yield from ArrayUtils::cartesianProduct(
-			[ fn () => self::$testSysop ],
+			[ static fn () => self::$testSysop ],
 			$deletedLogEntries,
 			$tempUserConfig,
 			[ 1 ]
 		);
 
 		$restrictedLogEntries = [
-			'log entry with restricted log type' => fn () => self::$restrictedLogEntryByAnonId
+			'log entry with restricted log type' => static fn () => self::$restrictedLogEntryByAnonId
 		];
 
 		yield from ArrayUtils::cartesianProduct(
-			[ fn () => self::$ipInfoViewer ],
+			[ static fn () => self::$ipInfoViewer ],
 			$restrictedLogEntries,
 			$tempUserConfig,
 			[ 1 ]
 		);
 
 		$suppressedLogEntries = [
-			'suppressed log entry with user authorized to view it' => fn () => self::$suppressedLogEntryByAnonId,
+			'suppressed log entry with user authorized to view it' => static fn () => self::$suppressedLogEntryByAnonId,
 		];
 
 		yield from ArrayUtils::cartesianProduct(
-			[ fn () => self::$suppressedIpInfoViewer ],
+			[ static fn () => self::$suppressedIpInfoViewer ],
 			$suppressedLogEntries,
 			$tempUserConfig,
 			[ 1 ]

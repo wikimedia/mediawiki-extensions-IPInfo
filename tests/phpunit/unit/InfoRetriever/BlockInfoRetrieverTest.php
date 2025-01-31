@@ -28,7 +28,7 @@ class BlockInfoRetrieverTest extends MediaWikiUnitTestCase {
 		$this->blockManager = $this->createMock( BlockManager::class );
 		$userIdentityUtils = $this->createMock( UserIdentityUtils::class );
 		$userIdentityUtils->method( 'isTemp' )
-			->willReturnCallback( fn ( UserIdentity $user ) => $user->isRegistered() );
+			->willReturnCallback( static fn ( UserIdentity $user ) => $user->isRegistered() );
 
 		$this->retriever = new BlockInfoRetriever( $this->blockManager, $userIdentityUtils );
 	}

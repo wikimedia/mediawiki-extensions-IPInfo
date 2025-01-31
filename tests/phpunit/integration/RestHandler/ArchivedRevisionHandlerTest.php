@@ -267,104 +267,104 @@ class ArchivedRevisionHandlerTest extends HandlerTestCase {
 
 	public static function provideErrorCases(): iterable {
 		yield 'anonymous user without permission' => [
-			fn () => self::$anonUser,
-			fn () => self::$revRecordByAnonUser,
+			static fn () => self::$anonUser,
+			static fn () => self::$revRecordByAnonUser,
 			self::VALID_CSRF_TOKEN,
 			[],
 			[ 'ipinfo-rest-access-denied', 401 ]
 		];
 
 		yield 'regular user without permission' => [
-			fn () => self::$regularUser,
-			fn () => self::$revRecordByAnonUser,
+			static fn () => self::$regularUser,
+			static fn () => self::$revRecordByAnonUser,
 			self::VALID_CSRF_TOKEN,
 			[],
 			[ 'ipinfo-rest-access-denied', 403 ]
 		];
 
 		yield 'user with correct permissions but without accepted agreement' => [
-			fn () => self::$testSysop,
-			fn () => self::$revRecordByAnonUser,
+			static fn () => self::$testSysop,
+			static fn () => self::$revRecordByAnonUser,
 			self::VALID_CSRF_TOKEN,
 			[ 'ipinfo-beta-feature-enable' => 1 ],
 			[ 'ipinfo-rest-access-denied', 403 ]
 		];
 
 		yield 'blocked user with correct permissions and accepted agreement' => [
-			fn () => self::$blockedSysop,
-			fn () => self::$revRecordByAnonUser,
+			static fn () => self::$blockedSysop,
+			static fn () => self::$revRecordByAnonUser,
 			self::VALID_CSRF_TOKEN,
 			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
 			[ 'ipinfo-rest-access-denied', 403 ]
 		];
 
 		yield 'user with IPInfo access and accepted agreement but no deletedhistory permission' => [
-			fn () => self::$ipInfoViewer,
-			fn () => self::$revRecordByAnonUser,
+			static fn () => self::$ipInfoViewer,
+			static fn () => self::$revRecordByAnonUser,
 			self::VALID_CSRF_TOKEN,
 			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
 			[ 'ipinfo-rest-access-denied', 403 ]
 		];
 
 		yield 'missing CSRF token' => [
-			fn () => self::$testSysop,
-			fn () => self::$revRecordByAnonUser,
+			static fn () => self::$testSysop,
+			static fn () => self::$revRecordByAnonUser,
 			null,
 			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
 			[ 'rest-badtoken-missing', 403 ]
 		];
 
 		yield 'mismatched CSRF token' => [
-			fn () => self::$testSysop,
-			fn () => self::$revRecordByAnonUser,
+			static fn () => self::$testSysop,
+			static fn () => self::$revRecordByAnonUser,
 			'some-bad-token',
 			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
 			[ 'rest-badtoken', 403 ]
 		];
 
 		yield 'missing revision' => [
-			fn () => self::$testSysop,
-			fn () => null,
+			static fn () => self::$testSysop,
+			static fn () => null,
 			self::VALID_CSRF_TOKEN,
 			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
 			[ 'rest-nonexistent-revision', 404 ]
 		];
 
 		yield 'revision for existing page' => [
-			fn () => self::$testSysop,
-			fn () => self::$revRecordForExistingPage,
+			static fn () => self::$testSysop,
+			static fn () => self::$revRecordForExistingPage,
 			self::VALID_CSRF_TOKEN,
 			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
 			[ 'rest-nonexistent-revision', 404 ]
 		];
 
 		yield 'revision for restricted page' => [
-			fn () => self::$testSysop,
-			fn () => self::$revRecordForRestrictedPage,
+			static fn () => self::$testSysop,
+			static fn () => self::$revRecordForRestrictedPage,
 			self::VALID_CSRF_TOKEN,
 			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
 			[ 'rest-revision-permission-denied-revision', 403 ]
 		];
 
 		yield 'revision with deleted author' => [
-			fn () => self::$testSysop,
-			fn () => self::$deletedRevRecord,
+			static fn () => self::$testSysop,
+			static fn () => self::$deletedRevRecord,
 			self::VALID_CSRF_TOKEN,
 			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
 			[ 'ipinfo-rest-revision-no-author', 403 ]
 		];
 
 		yield 'revision with registered author' => [
-			fn () => self::$testSysop,
-			fn () => self::$revRecordByNamedUser,
+			static fn () => self::$testSysop,
+			static fn () => self::$revRecordByNamedUser,
 			self::VALID_CSRF_TOKEN,
 			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
 			[ 'ipinfo-rest-revision-registered', 404 ]
 		];
 
 		yield 'revision with imported author' => [
-			fn () => self::$testSysop,
-			fn () => self::$revRecordByImportedUser,
+			static fn () => self::$testSysop,
+			static fn () => self::$revRecordByImportedUser,
 			self::VALID_CSRF_TOKEN,
 			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
 			[ 'ipinfo-rest-revision-invalid-ip', 404 ]
@@ -450,8 +450,8 @@ class ArchivedRevisionHandlerTest extends HandlerTestCase {
 		];
 
 		$revisions = [
-			'revision by anonymous user' => fn () => self::$revRecordByAnonUser,
-			'revision by temporary user' => fn () => self::$revRecordByTempUser
+			'revision by anonymous user' => static fn () => self::$revRecordByAnonUser,
+			'revision by temporary user' => static fn () => self::$revRecordByTempUser
 		];
 
 		$tempUserConfig = [

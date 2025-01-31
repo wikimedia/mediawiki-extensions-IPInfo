@@ -314,7 +314,7 @@ class SpecialIPInfo extends FormSpecialPage {
 			$info = $this->defaultPresenter->present( $info, $this->getContext()->getUser() );
 
 			$locations = array_map(
-				fn ( array $loc ): string => $loc['label'],
+				static fn ( array $loc ): string => $loc['label'],
 				$info['data']['ipinfo-source-geoip2']['location'] ?? []
 			);
 

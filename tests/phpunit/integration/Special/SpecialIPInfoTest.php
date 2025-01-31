@@ -279,7 +279,7 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 			".ext-ipinfo-special-ipinfo__table > tbody > tr > td:nth-of-type(4)"
 		);
 
-		return array_map( fn ( DOMNode $node ) => $node->textContent, $nodes );
+		return array_map( static fn ( DOMNode $node ) => $node->textContent, $nodes );
 	}
 
 	/**
@@ -293,7 +293,7 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 			".ext-ipinfo-special-ipinfo__table > tbody > tr > td:nth-of-type(5)"
 		);
 
-		return array_map( fn ( DOMNode $node ) => $node->textContent, $nodes );
+		return array_map( static fn ( DOMNode $node ) => $node->textContent, $nodes );
 	}
 
 	/**
@@ -326,7 +326,7 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 	}
 
 	public static function provideInvalidUsers(): iterable {
-		// phpcs:disable Squiz.Scope.StaticThisUsage.Found
+		// phpcs:disable Squiz.Scope.StaticThisUsage.Found,MediaWiki.Usage.StaticClosure.StaticClosure
 		yield 'named user' => [
 			fn (): string => $this->getTestUser()->getUserIdentity()->getName(),
 			'htmlform-user-not-valid'
