@@ -98,7 +98,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 		LanguageFallback $languageFallback,
 		UserIdentityUtils $userIdentityUtils,
 		TempUserIPLookup $tempUserIPLookup,
-		?ExtensionRegistry $extensionRegistry = null
+		ExtensionRegistry $extensionRegistry
 	) {
 		$this->infoManager = $infoManager;
 		$this->permissionManager = $permissionManager;
@@ -109,7 +109,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 		$this->languageFallback = $languageFallback;
 		$this->userIdentityUtils = $userIdentityUtils;
 		$this->tempUserIPLookup = $tempUserIPLookup;
-		$this->extensionRegistry = $extensionRegistry ?? ExtensionRegistry::getInstance();
+		$this->extensionRegistry = $extensionRegistry;
 	}
 
 	/**

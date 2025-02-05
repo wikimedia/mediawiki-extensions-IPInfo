@@ -57,7 +57,7 @@ class RevisionHandler extends AbstractRevisionHandler {
 		LanguageFallback $languageFallback,
 		UserIdentityUtils $userIdentityUtils,
 		TempUserIPLookup $tempUserIPLookup,
-		?ExtensionRegistry $extensionRegistry = null
+		ExtensionRegistry $extensionRegistry
 	): self {
 		return new self(
 			$infoManager,
@@ -70,7 +70,7 @@ class RevisionHandler extends AbstractRevisionHandler {
 			$languageFallback,
 			$userIdentityUtils,
 			$tempUserIPLookup,
-			$extensionRegistry ?? ExtensionRegistry::getInstance()
+			$extensionRegistry
 		);
 	}
 

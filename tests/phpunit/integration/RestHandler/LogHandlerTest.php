@@ -81,7 +81,8 @@ class LogHandlerTest extends HandlerTestCase {
 			$services->getLanguageFallback(),
 			$services->getUserIdentityUtils(),
 			$services->getUserIdentityLookup(),
-			$services->get( 'IPInfoTempUserIPLookup' )
+			$services->get( 'IPInfoTempUserIPLookup' ),
+			$services->getExtensionRegistry()
 		);
 	}
 

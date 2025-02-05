@@ -60,7 +60,8 @@ class RevisionHandlerTest extends HandlerTestCase {
 			$services->getJobQueueGroup(),
 			$services->getLanguageFallback(),
 			$services->getUserIdentityUtils(),
-			$services->get( 'IPInfoTempUserIPLookup' )
+			$services->get( 'IPInfoTempUserIPLookup' ),
+			$services->getExtensionRegistry()
 		);
 	}
 

@@ -11,6 +11,7 @@ use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\IPInfo\TempUserIPLookup;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserFactory;
@@ -38,7 +39,8 @@ class LogHandler extends IPInfoHandler {
 		LanguageFallback $languageFallback,
 		UserIdentityUtils $userIdentityUtils,
 		UserIdentityLookup $userIdentityLookup,
-		TempUserIPLookup $tempUserIPLookup
+		TempUserIPLookup $tempUserIPLookup,
+		ExtensionRegistry $extensionRegistry
 	) {
 		parent::__construct(
 			$infoManager,
@@ -49,7 +51,8 @@ class LogHandler extends IPInfoHandler {
 			$jobQueueGroup,
 			$languageFallback,
 			$userIdentityUtils,
-			$tempUserIPLookup
+			$tempUserIPLookup,
+			$extensionRegistry
 		);
 		$this->dbProvider = $dbProvider;
 		$this->userIdentityLookup = $userIdentityLookup;
@@ -65,7 +68,8 @@ class LogHandler extends IPInfoHandler {
 		LanguageFallback $languageFallback,
 		UserIdentityUtils $userIdentityUtils,
 		UserIdentityLookup $userIdentityLookup,
-		TempUserIPLookup $tempUserIPLookup
+		TempUserIPLookup $tempUserIPLookup,
+		ExtensionRegistry $extensionRegistry
 	): self {
 		return new self(
 			$infoManager,
@@ -78,7 +82,8 @@ class LogHandler extends IPInfoHandler {
 			$languageFallback,
 			$userIdentityUtils,
 			$userIdentityLookup,
-			$tempUserIPLookup
+			$tempUserIPLookup,
+			$extensionRegistry
 		);
 	}
 
