@@ -152,7 +152,8 @@
 		"SpecialContributionsBeforeMainOutput": "infobox",
 		"GetPreferences": "preferences",
 		"GetBetaFeaturePreferences": "betaFeature",
-		"SaveUserOptions": "preferences",
+		"GlobalPreferencesSetGlobalPreferences": "globalpreferences",
+		"LocalUserOptionsStoreSave": "preferences",
 		"LoadExtensionSchemaUpdates": "schema",
 		"SpecialPageBeforeExecute": "infobox",
 		"SpecialPage_initList": "special-page"
@@ -175,7 +176,17 @@
 			"services": [
 				"IPInfoPermissionManager",
 				"UserGroupManager",
+				"UserOptionsManager",
 				"ExtensionRegistry",
+				"IPInfoLoggerFactory"
+			]
+		},
+		"globalpreferences": {
+			"class": "MediaWiki\\IPInfo\\HookHandler\\GlobalPreferencesHandler",
+			"services": [
+				"ExtensionRegistry",
+				"UserGroupManager",
+				"UserOptionsManager",
 				"IPInfoLoggerFactory"
 			]
 		},

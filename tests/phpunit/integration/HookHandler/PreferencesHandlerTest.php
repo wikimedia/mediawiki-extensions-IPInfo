@@ -10,6 +10,7 @@ use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\User\User;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserOptionsManager;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -21,6 +22,7 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private IPInfoPermissionManager $ipInfoPermissionManager;
 	private UserGroupManager $userGroupManager;
+	private UserOptionsManager $userOptionsManager;
 	private ExtensionRegistry $extensionRegistry;
 	private LoggerFactory $loggerFactory;
 
@@ -33,6 +35,7 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$this->ipInfoPermissionManager = $this->createMock( IPInfoPermissionManager::class );
 		$this->userGroupManager = $this->createMock( UserGroupManager::class );
+		$this->userOptionsManager = $this->createMock( UserOptionsManager::class );
 		$this->extensionRegistry = $this->createMock( ExtensionRegistry::class );
 		$this->loggerFactory = $this->createMock( LoggerFactory::class );
 
@@ -44,41 +47,36 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->handler = new PreferencesHandler(
 			$this->ipInfoPermissionManager,
 			$this->userGroupManager,
+			$this->userOptionsManager,
 			$this->extensionRegistry,
 			$this->loggerFactory
 		);
 	}
 
 	/**
-	 * @dataProvider provideOnSaveUserOptionsNoAccessChange
+	 * @dataProvider provideOnLocalUserOptionsStoreSave
 	 */
-	public function testOnSaveUserOptionsNoAccessChange(
-		array $originalOptions,
-		array $modifiedOptions,
+	public function testOnLocalUserOptionsStoreSaveNoAccessChange(
+		array $oldOptions,
+		array $newOptions,
 		bool $isBetaFeatureOptInRequired
 	) {
 		$user = $this->createMock( UserIdentity::class );
 
 		$this->ipInfoPermissionManager->method( 'requiresBetaFeatureToggle' )
 			->willReturn( $isBetaFeatureOptInRequired );
+		$this->userOptionsManager->method( 'getDefaultOption' )->willReturn( '0' );
 
 		$this->logger->expects( $this->never() )
 			->method( 'logAccessDisabled' );
 		$this->logger->expects( $this->never() )
 			->method( 'logAccessEnabled' );
 
-		$this->handler->onSaveUserOptions( $user, $modifiedOptions, $originalOptions );
+		$this->handler->onLocalUserOptionsStoreSave( $user, $oldOptions, $newOptions );
 	}
 
-	public static function provideOnSaveUserOptionsNoAccessChange() {
+	public static function provideOnLocalUserOptionsStoreSave() {
 		return [
-			'Enabled to begin with, then not set' => [
-				[
-					PreferencesHandler::IPINFO_USE_AGREEMENT => true,
-				],
-				[],
-				false,
-			],
 			'Enabled to begin with, then both option set to truthy' => [
 				[
 					PreferencesHandler::IPINFO_USE_AGREEMENT => true,
@@ -135,11 +133,11 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideOnSaveUserOptionsAccessChange
+	 * @dataProvider provideOnLocalUserOptionsStoreSaveAccessChange
 	 */
-	public function testOnSaveUserOptionsAccessChange(
-		array $originalOptions,
-		array $modifiedOptions,
+	public function testOnLocalUserOptionsStoreSaveAccessChange(
+		array $oldOptions,
+		array $newOptions,
 		bool $isBetaFeatureOptInRequired,
 		bool $willBeEnabled
 	) {
@@ -147,14 +145,15 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$this->ipInfoPermissionManager->method( 'requiresBetaFeatureToggle' )
 			->willReturn( $isBetaFeatureOptInRequired );
+		$this->userOptionsManager->method( 'getDefaultOption' )->willReturn( '0' );
 
 		$this->logger->expects( $this->once() )
 			->method( $willBeEnabled ? 'logAccessEnabled' : 'logAccessDisabled' );
 
-		$this->handler->onSaveUserOptions( $user, $modifiedOptions, $originalOptions );
+		$this->handler->onLocalUserOptionsStoreSave( $user, $oldOptions, $newOptions );
 	}
 
-	public static function provideOnSaveUserOptionsAccessChange(): iterable {
+	public static function provideOnLocalUserOptionsStoreSaveAccessChange(): iterable {
 		yield 'accepting agreement without BetaFeatures' => [
 			'originalOptions' => [ PreferencesHandler::IPINFO_USE_AGREEMENT => false ],
 			'modifiedOptions' => [ PreferencesHandler::IPINFO_USE_AGREEMENT => true ],

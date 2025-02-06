@@ -220,7 +220,7 @@ function initInfoboxWidget() {
 
 		$( '.ipinfo-use-agreement-form' ).on( 'submit', ( e ) => {
 			e.preventDefault();
-			api.saveOption( 'ipinfo-use-agreement', '1' )
+			api.saveOption( 'ipinfo-use-agreement', '1', { global: 'create' } )
 				.always( () => {
 					$( '.ipinfo-use-agreement-form' ).remove();
 				} ).then( () => {

@@ -184,6 +184,14 @@ class LoggerTest extends MediaWikiUnitTestCase {
 			'logMethod' => 'logAccessDisabled',
 			'changeType' => Logger::ACTION_ACCESS_DISABLED
 		];
+		yield [
+			'logMethod' => 'logGlobalAccessEnabled',
+			'changeType' => Logger::ACTION_GLOBAL_ACCESS_ENABLED,
+		];
+		yield [
+			'logMethod' => 'logGlobalAccessDisabled',
+			'changeType' => Logger::ACTION_GLOBAL_ACCESS_DISABLED,
+		];
 	}
 
 	/**

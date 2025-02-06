@@ -207,7 +207,9 @@ class SpecialIPInfo extends FormSpecialPage {
 			}
 
 			$user = $this->getUser()->getInstanceForUpdate();
-			$this->userOptionsManager->setOption( $user, PreferencesHandler::IPINFO_USE_AGREEMENT, '1' );
+			$this->userOptionsManager->setOption(
+				$user, PreferencesHandler::IPINFO_USE_AGREEMENT, '1', UserOptionsManager::GLOBAL_CREATE
+			);
 			$user->saveSettings();
 		}
 

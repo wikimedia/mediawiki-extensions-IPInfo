@@ -124,6 +124,8 @@
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|viewed}} IP Information popup for $3. $4.",
 	"ipinfo-change-access-level-enable": "{{GENDER:$1|enabled}}",
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|disabled}}",
+	"ipinfo-change-access-level-enable-globally": "{{GENDER:$1|globally enabled}}",
+	"ipinfo-change-access-level-disable-globally": "{{GENDER:$1|globally disabled}}",
 	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|his|her|their}} own access to IP Information",
 	"log-action-filter-ipinfo": "Type of IP Information operation:",
 	"log-action-filter-ipinfo-change_access": "Tool enabled or disabled",

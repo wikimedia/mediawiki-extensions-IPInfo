@@ -61,6 +61,16 @@ class Logger {
 	/**
 	 * @var string
 	 */
+	public const ACTION_GLOBAL_ACCESS_ENABLED = 'enable-globally';
+
+	/**
+	 * @var string
+	 */
+	public const ACTION_GLOBAL_ACCESS_DISABLED = 'disable-globally';
+
+	/**
+	 * @var string
+	 */
 	public const LOG_TYPE = 'ipinfo';
 
 	private ActorStore $actorStore;
@@ -145,6 +155,30 @@ class Logger {
 	public function logAccessDisabled( UserIdentity $performer ): void {
 		$params = [
 			'4::changeType' => self::ACTION_ACCESS_DISABLED,
+		];
+		$this->log( $performer, $performer->getName(), self::ACTION_CHANGE_ACCESS, $params );
+	}
+
+	/**
+	 * Log when the user enables their own access globally.
+	 *
+	 * @param UserIdentity $performer
+	 */
+	public function logGlobalAccessEnabled( UserIdentity $performer ): void {
+		$params = [
+			'4::changeType' => self::ACTION_GLOBAL_ACCESS_ENABLED,
+		];
+		$this->log( $performer, $performer->getName(), self::ACTION_CHANGE_ACCESS, $params );
+	}
+
+	/**
+	 * Log when the user disables their own access globally.
+	 *
+	 * @param UserIdentity $performer
+	 */
+	public function logGlobalAccessDisabled( UserIdentity $performer ): void {
+		$params = [
+			'4::changeType' => self::ACTION_GLOBAL_ACCESS_DISABLED,
 		];
 		$this->log( $performer, $performer->getName(), self::ACTION_CHANGE_ACCESS, $params );
 	}

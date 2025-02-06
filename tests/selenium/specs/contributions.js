@@ -13,6 +13,7 @@ describe( 'IPInfo on Special:Contributions', () => {
 			action: 'options',
 			change: 'ipinfo-use-agreement=0|ipinfo-beta-feature-enable=1',
 			format: 'json',
+			global: 'create',
 			formatversion: '2',
 			token: bot.editToken
 		} );
@@ -25,6 +26,7 @@ describe( 'IPInfo on Special:Contributions', () => {
 			action: 'options',
 			change: 'ipinfo-use-agreement=1|ipinfo-beta-feature-enable=1',
 			format: 'json',
+			global: 'create',
 			formatversion: '2',
 			token: bot.editToken
 		} );

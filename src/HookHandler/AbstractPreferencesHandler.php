@@ -7,6 +7,7 @@ use MediaWiki\Extension\EventLogging\Libs\UserBucketProvider\UserBucketProvider;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserOptionsManager;
 
 /**
  * Class that {@link PreferencesHandler} is based on to support de-duplicating common code
@@ -19,10 +20,16 @@ abstract class AbstractPreferencesHandler {
 
 	private UserGroupManager $userGroupManager;
 	private ExtensionRegistry $extensionRegistry;
+	private UserOptionsManager $userOptionsManager;
 
-	public function __construct( ExtensionRegistry $extensionRegistry, UserGroupManager $userGroupManager ) {
+	public function __construct(
+		ExtensionRegistry $extensionRegistry,
+		UserGroupManager $userGroupManager,
+		UserOptionsManager $userOptionsManager
+	) {
 		$this->extensionRegistry = $extensionRegistry;
 		$this->userGroupManager = $userGroupManager;
+		$this->userOptionsManager = $userOptionsManager;
 	}
 
 	/**
@@ -46,6 +53,25 @@ abstract class AbstractPreferencesHandler {
 	 */
 	protected function isFalsey( array $options, string $option ): bool {
 		return isset( $options[$option] ) && !$options[$option];
+	}
+
+	/**
+	 * Applies the default value for the 'ipinfo-use-agreement' preference based on the value
+	 * provided by {@link UserOptionsManager::getOption}.
+	 *
+	 * @param UserIdentity $userIdentity
+	 * @param array &$oldPreferences
+	 * @param array &$newPreferences
+	 * @return void
+	 */
+	protected function applyDefaultsToPreferenceArrays(
+		UserIdentity $userIdentity, array &$oldPreferences, array &$newPreferences
+	) {
+		$ipInfoUseAgreementDefault = $this->userOptionsManager->getDefaultOption(
+			self::IPINFO_USE_AGREEMENT, $userIdentity
+		);
+		$oldPreferences[self::IPINFO_USE_AGREEMENT] ??= $ipInfoUseAgreementDefault;
+		$newPreferences[self::IPINFO_USE_AGREEMENT] ??= $ipInfoUseAgreementDefault;
 	}
 
 	/**
