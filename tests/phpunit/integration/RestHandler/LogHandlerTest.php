@@ -6,6 +6,7 @@ use ArrayUtils;
 use DatabaseLogEntry;
 use LogPage;
 use ManualLogEntry;
+use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\IPInfo\Info\BlockInfo;
 use MediaWiki\IPInfo\Rest\Handler\LogHandler;
@@ -509,5 +510,34 @@ class LogHandlerTest extends HandlerTestCase {
 			$tempUserConfig,
 			[ 1 ]
 		);
+	}
+
+	public function testAccessAllowedForPartiallyBlockedUser(): void {
+		$performer = $this->getTestUser( [ 'sysop' ] )->getAuthority();
+		$this->setUserOptions( $performer, [
+			'ipinfo-beta-feature-enable' => 1,
+			'ipinfo-use-agreement' => 1
+		] );
+
+		$blockStatus = $this->getServiceContainer()
+			->getBlockUserFactory()
+			->newBlockUser(
+				$performer->getUser(),
+				$this->getTestSysop()->getAuthority(),
+				'infinity',
+				'',
+				[],
+				[ new ActionRestriction( 0, 'move' ) ]
+			)
+			->placeBlock();
+		$this->assertStatusGood( $blockStatus, 'Block was not placed' );
+
+		$request = self::getRequestData( self::$logEntryByAnonId );
+		$response = $this->executeWithUser( $request, $performer );
+		$body = json_decode( $response->getBody()->getContents(), true );
+
+		$this->assertSame( 200, $response->getStatusCode() );
+		$this->assertSame( 200, $response->getStatusCode() );
+		$this->assertCount( 1, $body['info'] );
 	}
 }

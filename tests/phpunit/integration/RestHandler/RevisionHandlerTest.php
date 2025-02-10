@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo\Test\Integration\Rest\Handler;
 
 use ArrayUtils;
+use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\IPInfo\Info\BlockInfo;
 use MediaWiki\IPInfo\Rest\Handler\RevisionHandler;
@@ -427,5 +428,35 @@ class RevisionHandlerTest extends HandlerTestCase {
 		];
 
 		return ArrayUtils::cartesianProduct( $groups, $revisions, $tempUserConfig );
+	}
+
+	public function testAccessAllowedForPartiallyBlockedUser(): void {
+		$performer = $this->getTestUser( [ 'sysop' ] )->getAuthority();
+		$this->setUserOptions( $performer, [
+			'ipinfo-beta-feature-enable' => 1,
+			'ipinfo-use-agreement' => 1
+		] );
+
+		$blockStatus = $this->getServiceContainer()
+			->getBlockUserFactory()
+			->newBlockUser(
+				$performer->getUser(),
+				$this->getTestSysop()->getAuthority(),
+				'infinity',
+				'',
+				[],
+				[ new ActionRestriction( 0, 'move' ) ]
+			)
+			->placeBlock();
+		$this->assertStatusGood( $blockStatus, 'Block was not placed' );
+
+		$revRecord = self::$revRecordByAnonUser;
+
+		$request = self::getRequestData( $revRecord->getId() );
+		$response = $this->executeWithUser( $request, $performer );
+		$body = json_decode( $response->getBody()->getContents(), true );
+
+		$this->assertSame( 200, $response->getStatusCode() );
+		$this->assertSame( $revRecord->getUser()->getName(), $body['info'][0]['subject'] );
 	}
 }

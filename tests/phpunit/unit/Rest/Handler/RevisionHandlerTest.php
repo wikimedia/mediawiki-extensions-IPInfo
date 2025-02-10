@@ -3,7 +3,7 @@
 namespace MediaWiki\IPInfo\Test\Unit\Rest\Handler;
 
 use JobQueueGroup;
-use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\AbstractBlock;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Handler\RevisionHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
@@ -362,7 +362,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	public function testPerformerBlocked() {
+	public function testPerformerBlockedSitewide() {
 		$user = $this->createMock( UserIdentity::class );
 		$authority = $this->createMock( Authority::class );
 		$authority->method( 'getUser' )
@@ -375,10 +375,14 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 		$userOptionsLookup->method( 'getOption' )
 			->willReturn( true );
 
+		$block = $this->createMock( AbstractBlock::class );
+		$block->method( 'isSitewide' )
+			->willReturn( true );
+
 		$userFactory = $this->createMock( UserFactory::class );
 		$userFactoryUser = $this->createMock( User::class );
 		$userFactoryUser->method( 'getBlock' )
-			->willReturn( $this->createMock( DatabaseBlock::class ) );
+			->willReturn( $block );
 		$userFactory->method( 'newFromUserIdentity' )
 			->willReturn( $userFactoryUser );
 		$languageFallback = $this->createMock( LanguageFallback::class );

@@ -157,8 +157,10 @@ abstract class IPInfoHandler extends SimpleHandler {
 		}
 		$user = $this->userFactory->newFromUserIdentity( $this->getAuthority()->getUser() );
 
-		// Users with blocks on their accounts shouldn't be allowed to view ip info
-		if ( $user->getBlock() ) {
+		$block = $user->getBlock();
+
+		// Users with sitewide blocks on their accounts shouldn't be allowed to view ip info
+		if ( $block && $block->isSitewide() ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'ipinfo-rest-access-denied-blocked-user' ),
 				403
