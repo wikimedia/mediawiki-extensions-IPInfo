@@ -16,7 +16,7 @@ function postToRestApi( type, id, dataContext, retryOnTokenMismatch ) {
 			( data ) => {
 				deferred.resolve( data );
 			},
-			( err, errObject ) => {
+			( _err, errObject ) => {
 				if (
 					retryOnTokenMismatch &&
 					errObject.xhr &&
@@ -35,12 +35,12 @@ function postToRestApi( type, id, dataContext, retryOnTokenMismatch ) {
 						}
 					);
 				} else {
-					deferred.reject( err, errObject );
+					deferred.reject( errObject );
 				}
 			}
 		);
-	} ).fail( ( err, errObject ) => {
-		deferred.reject( err, errObject );
+	} ).fail( ( errObject ) => {
+		deferred.reject( errObject );
 	} );
 	return deferred.promise();
 }
