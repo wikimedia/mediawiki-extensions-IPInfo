@@ -1,8 +1,26 @@
 {
 	"@metadata": {
 		"authors": [
-			"Eraldkerciku"
+			"Eraldkerciku",
+			"INNERLMNT"
 		]
 	},
-	"ipinfo-property-label-organization": "Organizatë"
+	"ipinfo-extensionname": "Informata të IP-së",
+	"ipinfo-desc": "Jep informata rreth një adrese IP.",
+	"ipinfo-infobox-title": "Informata të IP-së",
+	"ipinfo-infobox-temporary-account-help": "Me këtë llogari të përkohshme janë të lidhura disa adresa IP. Ju po shihni informata të IP-së për adresën IP të përdorur më së fundmi. [[Special:IPInfo/$1|Shini informatat e IP-së për të gjitha adresat e IP-së]]",
+	"ipinfo-property-label-location": "Vendndodhja",
+	"ipinfo-property-label-ipversion": "Versioni",
+	"ipinfo-property-label-isp": "Operatori i internetit",
+	"ipinfo-property-label-asn": "ASN",
+	"ipinfo-property-label-organization": "Organizata",
+	"ipinfo-property-label-connectiontype": "Mënyra e lidhjes",
+	"ipinfo-property-label-usertype": "Pronari i lidhjes",
+	"ipinfo-property-label-proxytypes": "IP/Proxy e vërtetë",
+	"ipinfo-property-label-behaviors": "Sjelljet",
+	"ipinfo-property-label-risks": "Rreziqet",
+	"ipinfo-property-label-connectiontypes": "Llojet e lidhjeve",
+	"ipinfo-property-label-tunneloperators": "Operatori i tunelit",
+	"ipinfo-property-label-proxies": "Përfaqësuesit",
+	"ipinfo-property-tooltip-asn": "Një identifikues unik për rrjetet e caktuara ndaj një rajoni dhe më tepër ndaj organizatave si qeverive dhe operatorëve të internetit"
 }

@@ -97,7 +97,7 @@
 	"ipinfo-infobox-use-terms": "IP 資訊工具使用 MaxMind 資料庫來顯示像是位置、代理方面的詳情，以及有多少個設備分享此 IP 位址。",
 	"ipinfo-infobox-submit-agreement": "啟用 IP 資訊工具",
 	"ipinfo-infobox-disable-instructions": "若您想停用此功能，您可以在[[Special:Preferences#mw-prefsection-betafeatures|您的偏好設定]]來進行。",
-	"ipinfo-use-agreement-submit-error": "發生一些問題，請再重試。皆受到的錯誤訊息為：$1",
+	"ipinfo-use-agreement-submit-error": "發生一些問題，請再重試。錯誤訊息為：$1",
 	"ipinfo-rest-access-denied": "您無權這樣做",
 	"ipinfo-rest-access-denied-blocked-user": "因您的帳號已被封鎖，您無權執行該操作",
 	"ipinfo-rest-revision-no-author": "您的帳號沒有權限來查看修訂作者",
