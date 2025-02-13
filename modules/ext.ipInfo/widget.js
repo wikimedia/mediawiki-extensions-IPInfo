@@ -84,8 +84,12 @@ ipInfoWidget.prototype.setPending = function () {
  * @param {Object} error
  */
 ipInfoWidget.prototype.failure = function ( error ) {
-	if ( error.responseJSON && error.responseJSON.messageTranslations ) {
-		this.displayError( error.responseJSON.messageTranslations[
+	if (
+		error.xhr &&
+		error.xhr.responseJSON &&
+		error.xhr.responseJSON.messageTranslations
+	) {
+		this.displayError( error.xhr.responseJSON.messageTranslations[
 			mw.config.get( 'wgContentLanguage' )
 		] );
 	} else {
