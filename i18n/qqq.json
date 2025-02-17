@@ -11,7 +11,8 @@
 			"Umherirrender",
 			"Verdy p",
 			"Wnme",
-			"Robby"
+			"Robby",
+			"Matma Rex"
 		]
 	},
 	"ipinfo-extensionname": "{{name}}\nThe name of the extension",
@@ -103,11 +104,11 @@
 	"ipinfo-log-header": "Appears on top of [[Special:Log/ipinfo]].",
 	"ipinfo-log-access-level-ipinfo-view-basic": "Used in {{msg-mw|logentry-ipinfo-view_infobox}} and {{msg-mw|logentry-ipinfo-view_popup}} to log the level of information a user was able to view.",
 	"ipinfo-log-access-level-ipinfo-view-full": "Used in {{msg-mw|logentry-ipinfo-view_infobox}} and {{msg-mw|logentry-ipinfo-view_popup}} to log the level of information a user was able to view.",
-	"logentry-ipinfo-view_infobox": "{{Logentry|[[Special:Log/ipinfo]]}}\n* $4 - the level of information the user was able to view. See also: {{msg-mw|ipinfo-log-access-level-ipinfo-view-basic}}, {{msg-mw|ipinfo-log-access-level-ipinfo-view-full}}\n\nUsed if the infobox was viewed.",
-	"logentry-ipinfo-view_popup": "{{Logentry|[[Special:Log/ipinfo]]}}\n* $4 - the level of information the user was able to view. See also: {{msg-mw|ipinfo-log-access-level-ipinfo-view-basic}}, {{msg-mw|ipinfo-log-access-level-ipinfo-view-full}}\n\nUsed if the popup was viewed.",
+	"logentry-ipinfo-view_infobox": "Used when the info box was viewed.\n\n{{Logentry|[[Special:Log/ipinfo]]}}\nAdditional parameters:\n* $4 - the level of information the user was able to view. See also: {{msg-mw|ipinfo-log-access-level-ipinfo-view-basic}}, {{msg-mw|ipinfo-log-access-level-ipinfo-view-full}}",
+	"logentry-ipinfo-view_popup": "Used if the popup was viewed.\n\n{{Logentry|[[Special:Log/ipinfo]]}}\nAdditional parameters:\n* $4 - the level of information the user was able to view. See also: {{msg-mw|ipinfo-log-access-level-ipinfo-view-basic}}, {{msg-mw|ipinfo-log-access-level-ipinfo-view-full}}",
 	"ipinfo-change-access-level-enable": "Used in {{msg-mw|Logentry-ipinfo-change access}} to log that a user enabled access to ip information.\n\nParameters:\n* $1 - Name of the user, for use in GENDER",
 	"ipinfo-change-access-level-disable": "Used in {{msg-mw|Logentry-ipinfo-change access}} to log that a user disabled access to ip information.\n\nParameters:\n* $1 - Name of the user, for use in GENDER\n{{Identical|Disabled}}",
-	"logentry-ipinfo-change_access": "{{Logentry|[[Special:Log/ipinfo]]}}\n* $4 - whether the access was enabled or disabled. See also: {{msg-mw|Ipinfo-change-access-level-enable}}, {{msg-mw|Ipinfo-change-access-level-disable}}\n\nUsed if a user's state of access was changed.",
+	"logentry-ipinfo-change_access": "Used when a user's state of access was changed.\n\n{{Logentry|[[Special:Log/ipinfo]]}}\nAdditional parameters:\n* $4 - whether the access was enabled or disabled. See also: {{msg-mw|Ipinfo-change-access-level-enable}}, {{msg-mw|Ipinfo-change-access-level-disable}}",
 	"log-action-filter-ipinfo": "{{doc-log-action-filter-type|ipinfo}}\n{{related|Log-action-filter}}",
 	"log-action-filter-ipinfo-change_access": "{{doc-log-action-filter-action|ipinfo|change_access}}",
 	"log-action-filter-ipinfo-view_infobox": "{{doc-log-action-filter-action|ipinfo|view_infobox}}",
