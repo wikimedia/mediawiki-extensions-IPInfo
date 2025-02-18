@@ -300,7 +300,7 @@ class TempUserIPLookupTest extends MediaWikiUnitTestCase {
 		yield 'more recent data in cu_changes' => [
 			[
 				(object)[ 'cuc_timestamp' => wfTimestampNow(), 'cuc_ip' => '192.0.2.85' ],
-				(object)[ 'cule_timestamp' => wfTimestamp( TS_MW, wfTimestamp() - 1_000 ), 'cule_ip' => '192.0.2.7' ],
+				false,
 				false,
 			]
 		];

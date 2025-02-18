@@ -92,8 +92,12 @@ class TempUserIPLookup {
 
 		$dbr = $this->connectionProvider->getReplicaDatabase();
 
-		// Array to capture IPs found in CU/AF. The most recent entry found will be used.
-		$ips = [];
+		// Capture the latest found log entry. Subsequent queries will use this
+		// timestamp to look for more recent entries than the previous query.
+		$latestHit = [
+			'ip' => null,
+			'timestamp' => 0,
+		];
 
 		if ( $this->extensionRegistry->isLoaded( 'CheckUser' ) ) {
 			$latestChange = $dbr->newSelectQueryBuilder()
@@ -110,7 +114,8 @@ class TempUserIPLookup {
 				->caller( __METHOD__ )
 				->fetchRow();
 			if ( $latestChange ) {
-				$ips[ $latestChange->cuc_timestamp ] = $latestChange->cuc_ip;
+				$latestHit['ip'] = $latestChange->cuc_ip;
+				$latestHit['timestamp'] = $latestChange->cuc_timestamp;
 			}
 
 			$latestLogEvent = $dbr->newSelectQueryBuilder()
@@ -121,13 +126,15 @@ class TempUserIPLookup {
 				->join( 'actor', null, 'cule_actor=actor_id' )
 				->where( [
 					'actor_name' => $user->getName(),
+					$dbr->expr( 'cule_timestamp', '>', $latestHit['timestamp'] ),
 				] )
 				->orderBy( 'cule_timestamp', SelectQueryBuilder::SORT_DESC )
 				->limit( 1 )
 				->caller( __METHOD__ )
 				->fetchRow();
 			if ( $latestLogEvent ) {
-				$ips[ $latestLogEvent->cule_timestamp ] = $latestLogEvent->cule_ip;
+				$latestHit['ip'] = $latestLogEvent->cule_ip;
+				$latestHit['timestamp'] = $latestLogEvent->cule_timestamp;
 			}
 
 			$latestPrivateEvent = $dbr->newSelectQueryBuilder()
@@ -137,14 +144,16 @@ class TempUserIPLookup {
 				->useIndex( 'cupe_actor_ip_time' )
 				->join( 'actor', null, 'cupe_actor=actor_id' )
 				->where( [
-					'actor_name' => $user->getName()
+					'actor_name' => $user->getName(),
+					$dbr->expr( 'cupe_timestamp', '>', $latestHit['timestamp'] ),
 				] )
 				->orderBy( 'cupe_timestamp', SelectQueryBuilder::SORT_DESC )
 				->limit( 1 )
 				->caller( __METHOD__ )
 				->fetchRow();
 			if ( $latestPrivateEvent ) {
-				$ips[ $latestPrivateEvent->cupe_timestamp ] = $latestPrivateEvent->cupe_ip;
+				$latestHit['ip'] = $latestPrivateEvent->cupe_ip;
+				$latestHit['timestamp'] = $latestPrivateEvent->cupe_timestamp;
 			}
 		}
 
@@ -154,7 +163,8 @@ class TempUserIPLookup {
 				->from( 'abuse_filter_log' )
 				->where( [
 					'afl_user_text' => $user->getName(),
-					$dbr->expr( 'afl_ip', '!=', '\'\'' )
+					$dbr->expr( 'afl_ip', '!=', '\'\'' ),
+					$dbr->expr( 'afl_timestamp', '>', $latestHit['timestamp'] ),
 				] )
 				->useIndex( 'afl_ip_timestamp' )
 				->orderBy( 'afl_timestamp', SelectQueryBuilder::SORT_DESC )
@@ -162,20 +172,13 @@ class TempUserIPLookup {
 				->caller( __METHOD__ )
 				->fetchRow();
 			if ( $latestAbuseFilterHit ) {
-				$ips[ $latestAbuseFilterHit->afl_timestamp ] = $latestAbuseFilterHit->afl_ip;
+				$latestHit['ip'] = $latestAbuseFilterHit->afl_ip;
+				$latestHit['timestamp'] = $latestAbuseFilterHit->afl_timestamp;
 			}
 		}
 
-		if ( count( $ips ) ) {
-			// Sort IPs found by descending timestamp (key) and pick the first one which will be the last used IP
-			krsort( $ips );
-			$ip = $ips[ array_key_first( $ips ) ];
-			$this->recentAddressCache->set( $user->getName(), $ip );
-			return $ip;
-		}
-
-		$this->recentAddressCache->set( $user->getName(), null );
-		return null;
+		$this->recentAddressCache->set( $user->getName(), $latestHit['ip'] );
+		return $latestHit['ip'];
 	}
 
 	/**
