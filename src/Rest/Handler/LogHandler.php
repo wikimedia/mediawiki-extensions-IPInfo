@@ -20,6 +20,7 @@ use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityUtils;
 use Wikimedia\IPUtils;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 class LogHandler extends IPInfoHandler {
@@ -88,7 +89,7 @@ class LogHandler extends IPInfoHandler {
 	}
 
 	/** @inheritDoc */
-	protected function getInfo( int $id ): array {
+	protected function getInfo( $id ): array {
 		$dbr = $this->dbProvider->getReplicaDatabase();
 		$entry = DatabaseLogEntry::newFromId( $id, $dbr );
 
@@ -171,5 +172,16 @@ class LogHandler extends IPInfoHandler {
 		}
 
 		return $this->userIdentityUtils->isTemp( $user ) || IPUtils::isValid( $user->getName() );
+	}
+
+	/** @inheritDoc */
+	public function getParamSettings() {
+		$params = parent::getParamSettings();
+		$params[ 'id' ] = [
+			self::PARAM_SOURCE => 'path',
+			ParamValidator::PARAM_TYPE => 'integer',
+			ParamValidator::PARAM_REQUIRED => true,
+		];
+		return $params;
 	}
 }

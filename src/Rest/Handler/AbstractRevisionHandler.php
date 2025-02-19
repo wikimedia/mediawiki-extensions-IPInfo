@@ -6,11 +6,12 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\IPUtils;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\ParamValidator\ParamValidator;
 
 abstract class AbstractRevisionHandler extends IPInfoHandler {
 
 	/** @inheritDoc */
-	protected function getInfo( int $id ): array {
+	protected function getInfo( $id ): array {
 		$revision = $this->getRevision( $id );
 
 		if ( !$revision ) {
@@ -69,4 +70,15 @@ abstract class AbstractRevisionHandler extends IPInfoHandler {
 	 * @return RevisionRecord|null if the revision does not exist
 	 */
 	abstract protected function getRevision( int $id ): ?RevisionRecord;
+
+	/** @inheritDoc */
+	public function getParamSettings() {
+		$params = parent::getParamSettings();
+		$params[ 'id' ] = [
+			self::PARAM_SOURCE => 'path',
+			ParamValidator::PARAM_TYPE => 'integer',
+			ParamValidator::PARAM_REQUIRED => true,
+		];
+		return $params;
+	}
 }

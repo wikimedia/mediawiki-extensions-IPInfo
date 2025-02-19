@@ -84,9 +84,9 @@ class IPInfoHandlerTest extends MediaWikiUnitTestCase {
 				'pathParams' => [ 'id' => 123 ],
 			] ),
 			[
-				'id' => 123,
 				'dataContext' => 'context',
 				'language' => 'en',
+				'id' => 123,
 			]
 		];
 	}

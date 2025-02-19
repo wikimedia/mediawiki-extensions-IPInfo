@@ -120,8 +120,10 @@ class TempUserIPLookupTest extends MediaWikiUnitTestCase {
 			->willReturn( true );
 
 		$this->extensionRegistry->method( 'isLoaded' )
-			->with( 'CheckUser' )
-			->willReturn( false );
+			->willReturnMap( [
+				[ 'CheckUser', '*', false ],
+				[ 'AbuseFilter', '*', false ]
+			] );
 
 		$this->connectionProvider->expects( $this->never() )
 			->method( 'getReplicaDatabase' );
@@ -147,8 +149,10 @@ class TempUserIPLookupTest extends MediaWikiUnitTestCase {
 			->willReturn( true );
 
 		$this->extensionRegistry->method( 'isLoaded' )
-			->with( 'CheckUser' )
-			->willReturn( true );
+			->willReturnMap( [
+				[ 'CheckUser', '*', true ],
+				[ 'AbuseFilter', '*', false ]
+			] );
 
 		$selectQueryBuilder = $this->createMock( SelectQueryBuilder::class );
 		$selectQueryBuilder->method( $this->logicalNot( $this->equalTo( 'fetchRow' ) ) )
@@ -158,7 +162,7 @@ class TempUserIPLookupTest extends MediaWikiUnitTestCase {
 			$result ? (object)[ 'cuc_timestamp' => wfTimestampNow(), 'cuc_ip' => $result ] : false,
 			false
 		];
-		$selectQueryBuilder->expects( $this->exactly( 2 ) )
+		$selectQueryBuilder->expects( $this->exactly( 3 ) )
 			->method( 'fetchRow' )
 			->willReturnCallback( static function () use ( &$queryResults ) {
 				return array_shift( $queryResults );
@@ -203,20 +207,25 @@ class TempUserIPLookupTest extends MediaWikiUnitTestCase {
 			->willReturn( true );
 
 		$this->extensionRegistry->method( 'isLoaded' )
-			->with( 'CheckUser' )
-			->willReturn( true );
+			->willReturnMap( [
+				[ 'CheckUser', '*', true ],
+				[ 'AbuseFilter', '*', false ]
+			] );
 
 		$selectQueryBuilder = $this->createMock( SelectQueryBuilder::class );
 		$selectQueryBuilder->method( $this->logicalNot( $this->equalTo( 'fetchRow' ) ) )
 			->willReturnSelf();
 
+		// Mock queries to cu_changes, cu_log_event, cu_private_event in that order x2
 		$queryResults = [
 			(object)[ 'cuc_timestamp' => wfTimestampNow(), 'cuc_ip' => '192.0.2.7' ],
 			false,
+			false,
 			(object)[ 'cuc_timestamp' => wfTimestampNow(), 'cuc_ip' => '192.0.2.85' ],
-			false
+			false,
+			false,
 		];
-		$selectQueryBuilder->expects( $this->exactly( 4 ) )
+		$selectQueryBuilder->expects( $this->exactly( 6 ) )
 			->method( 'fetchRow' )
 			->willReturnCallback( static function () use ( &$queryResults ) {
 				return array_shift( $queryResults );
@@ -251,14 +260,16 @@ class TempUserIPLookupTest extends MediaWikiUnitTestCase {
 			->willReturn( true );
 
 		$this->extensionRegistry->method( 'isLoaded' )
-			->with( 'CheckUser' )
-			->willReturn( true );
+			->willReturnMap( [
+				[ 'CheckUser', '*', true ],
+				[ 'AbuseFilter', '*', false ]
+			] );
 
 		$selectQueryBuilder = $this->createMock( SelectQueryBuilder::class );
 		$selectQueryBuilder->method( $this->logicalNot( $this->equalTo( 'fetchRow' ) ) )
 			->willReturnSelf();
 
-		$selectQueryBuilder->expects( $this->exactly( 2 ) )
+		$selectQueryBuilder->expects( $this->exactly( 3 ) )
 			->method( 'fetchRow' )
 			->willReturnCallback( static function () use ( &$queryResults ) {
 				return array_shift( $queryResults );
@@ -282,6 +293,7 @@ class TempUserIPLookupTest extends MediaWikiUnitTestCase {
 			[
 				false,
 				(object)[ 'cule_timestamp' => wfTimestampNow(), 'cule_ip' => '192.0.2.85' ],
+				false,
 			]
 		];
 
@@ -289,6 +301,7 @@ class TempUserIPLookupTest extends MediaWikiUnitTestCase {
 			[
 				(object)[ 'cuc_timestamp' => wfTimestampNow(), 'cuc_ip' => '192.0.2.85' ],
 				(object)[ 'cule_timestamp' => wfTimestamp( TS_MW, wfTimestamp() - 1_000 ), 'cule_ip' => '192.0.2.7' ],
+				false,
 			]
 		];
 
@@ -296,6 +309,15 @@ class TempUserIPLookupTest extends MediaWikiUnitTestCase {
 			[
 				(object)[ 'cuc_timestamp' => wfTimestamp( TS_MW, wfTimestamp() - 1_000 ), 'cuc_ip' => '192.0.2.7' ],
 				(object)[ 'cule_timestamp' => wfTimestampNow(), 'cule_ip' => '192.0.2.85' ],
+				false,
+			]
+		];
+
+		yield 'more recent data in cu_private_event' => [
+			[
+				(object)[ 'cuc_timestamp' => wfTimestamp( TS_MW, wfTimestamp() - 1_000 ), 'cuc_ip' => '192.0.2.7' ],
+				(object)[ 'cule_timestamp' => wfTimestamp( TS_MW, wfTimestamp() - 1_000 ), 'cule_ip' => '192.0.2.7' ],
+				(object)[ 'cupe_timestamp' => wfTimestampNow(), 'cupe_ip' => '192.0.2.85' ],
 			]
 		];
 	}

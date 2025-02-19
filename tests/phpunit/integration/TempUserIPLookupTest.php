@@ -72,10 +72,14 @@ class TempUserIPLookupTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getNonexistingTestPage();
 		$otherPage = $this->getNonexistingTestPage();
 
+		// Set a timestamp in the past for account creation so that
+		// the timestamps for this and the revision later don't conflict
+		ConvertibleTimestamp::setFakeTime( '20240101000000' );
 		$user = $this->getServiceContainer()
 			->getTempUserCreator()
 			->create( null, $req )
 			->getUser();
+		ConvertibleTimestamp::setFakeTime( false );
 
 		$status = $this->editPage( $page, 'test', '', NS_MAIN, $user );
 		$firstRev = $status->getNewRevision();
@@ -158,5 +162,113 @@ class TempUserIPLookupTest extends MediaWikiIntegrationTestCase {
 			],
 			$distinctAddressRecords
 		);
+	}
+
+	public function testShouldReturnCheckUserLookupIP() {
+		$this->markTestSkippedIfExtensionNotLoaded( 'CheckUser' );
+		$this->enableAutoCreateTempUser();
+
+		$request = new FauxRequest();
+		$request->setIP( '1.2.3.4' );
+		RequestContext::getMain()->setRequest( $request );
+		$tempUserWithDeletedRevisions = $this->getServiceContainer()->getTempUserCreator()
+			->create( '~2025-01', $request )
+			->getUser();
+		$page = $this->getNonexistingTestPage();
+		$pageUpdateStatus = $this->editPage(
+			$page,
+			'test',
+			'',
+			NS_MAIN,
+			$tempUserWithDeletedRevisions
+		);
+		$this->deletePage( $page );
+		$latestIP = $this->getTempUserIPLookup()->getMostRecentAddress( $tempUserWithDeletedRevisions );
+		$this->assertSame( '1.2.3.4', $latestIP );
+	}
+
+	public function testShouldReturnAbuseFilterLookupIP() {
+		$this->markTestSkippedIfExtensionNotLoaded( 'Abuse Filter' );
+		$this->enableAutoCreateTempUser();
+
+		$actorIP = '5.6.7.8';
+		$request = new FauxRequest();
+		$request->setIP( $actorIP );
+		RequestContext::getMain()->setRequest( $request );
+		$tempUserWithBlockedActions = $this->getServiceContainer()->getTempUserCreator()
+			->create( '~2025-02', $request )
+			->getUser();
+
+		// Stub out an abuse filter hit to represent a blocked action associated with the temp account
+		$this->getDb()->newInsertQueryBuilder()
+			->insertInto( 'abuse_filter_log' )
+			->row( [
+				'afl_global' => 0,
+				'afl_filter_id' => 1,
+				'afl_user' => 1,
+				'afl_user_text' => $tempUserWithBlockedActions->getName(),
+				'afl_ip' => $actorIP,
+				'afl_action' => 'edit',
+				'afl_actions' => 'disallow',
+				'afl_var_dump' => 'tt:1',
+				'afl_timestamp' => $this->getDb()->timestamp(),
+				'afl_namespace' => 0,
+				'afl_title' => 'Main Page'
+			] )
+			->caller( __METHOD__ )
+			->execute();
+
+		$latestIP = $this->getTempUserIPLookup()->getMostRecentAddress( $tempUserWithBlockedActions );
+		$this->assertSame( $actorIP, $latestIP );
+	}
+
+	public function testShouldReturnLatestCheckUserAbuseFilterLookupIP() {
+		$this->markTestSkippedIfExtensionNotLoaded( 'CheckUser' );
+		$this->markTestSkippedIfExtensionNotLoaded( 'Abuse Filter' );
+		$this->enableAutoCreateTempUser();
+
+		$actorIP = '10.11.12.13';
+		$request = new FauxRequest();
+		$request->setIP( $actorIP );
+		RequestContext::getMain()->setRequest( $request );
+		$tempUserWithMultipleBlockedActions = $this->getServiceContainer()->getTempUserCreator()
+			->create( '~2025-03', $request )
+			->getUser();
+
+		ConvertibleTimestamp::setFakeTime( '20240101000000' );
+		$page = $this->getNonexistingTestPage();
+		$pageUpdateStatus = $this->editPage(
+			$page,
+			'test',
+			'',
+			NS_MAIN,
+			$tempUserWithMultipleBlockedActions
+		);
+		$this->deletePage( $page );
+		ConvertibleTimestamp::setFakeTime( false );
+
+		// Stub out an abuse filter hit to represent a blocked action associated with the temp account
+		// Set the timestamp for this action in the past and use a different IP than the other action
+		$this->getDb()->newInsertQueryBuilder()
+			->insertInto( 'abuse_filter_log' )
+			->row( [
+				'afl_global' => 0,
+				'afl_filter_id' => 1,
+				'afl_user' => 1,
+				'afl_user_text' => $tempUserWithMultipleBlockedActions->getName(),
+				'afl_ip' => '1.2.3.4',
+				'afl_action' => 'edit',
+				'afl_actions' => 'disallow',
+				'afl_var_dump' => 'tt:1',
+				'afl_timestamp' => $this->getDb()->timestamp( '20000101000000' ),
+				'afl_namespace' => 0,
+				'afl_title' => 'Main Page'
+			] )
+			->caller( __METHOD__ )
+			->execute();
+
+		// Assert that the timestamp from the CU log takes priority over the AF log and returns the later IP
+		$latestIP = $this->getTempUserIPLookup()->getMostRecentAddress( $tempUserWithMultipleBlockedActions );
+		$this->assertSame( $actorIP, $latestIP );
 	}
 }

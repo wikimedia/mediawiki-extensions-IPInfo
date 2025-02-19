@@ -77,7 +77,7 @@ describe( 'IPInfo on Special:IPContributions', () => {
 
 		await expect( ipContributionsWithIPInfoPage.propertiesTable ).not.toExist();
 		await expect( ipContributionsWithIPInfoPage.errorMessage ).toHaveText(
-			'IP information for this address cannot be retrieved since no edits have been made from it.'
+			'IP information for this address cannot be retrieved since no contributions have been made from it.'
 		);
 	} );
 

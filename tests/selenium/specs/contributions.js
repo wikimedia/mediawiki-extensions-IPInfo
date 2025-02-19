@@ -45,7 +45,7 @@ describe( 'IPInfo on Special:Contributions', () => {
 
 		await expect( ContributionsWithIPInfoPage.propertiesTable ).not.toExist();
 		await expect( ContributionsWithIPInfoPage.errorMessage ).toHaveText(
-			'IP information for this address cannot be retrieved since no edits have been made from it.'
+			'IP information for this address cannot be retrieved since no contributions have been made from it.'
 		);
 	} );
 
@@ -58,7 +58,7 @@ describe( 'IPInfo on Special:Contributions', () => {
 
 		await expect( ContributionsWithIPInfoPage.propertiesTable ).not.toExist();
 		await expect( ContributionsWithIPInfoPage.errorMessage ).toHaveText(
-			'IP information for this address cannot be retrieved since no edits have been made from it.'
+			'IP information for this address cannot be retrieved since no contributions have been made from it.'
 		);
 	} );
 

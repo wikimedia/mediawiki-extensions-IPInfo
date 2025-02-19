@@ -194,6 +194,10 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
  * @param {Object} info
  */
 ipInfoInfoboxWidget.prototype.success = function ( info ) {
+	if ( !info ) {
+		return;
+	}
+
 	const ipCount = info.data[ 'ipinfo-source-ip-count' ].numIPAddresses;
 	if ( ipCount && ipCount > 1 && mw.util.isTemporaryUser( info.subject ) ) {
 		const ipCountMsg = new OO.ui.MessageWidget( {
