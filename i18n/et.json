@@ -41,7 +41,7 @@
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 viimase 24 tunni jooksul}})",
 	"ipinfo-property-no-data": "Pole saadaval",
 	"ipinfo-property-no-access": "Juurdepääs puudub",
-	"ipinfo-widget-error-ip-no-edits": "Teavet selle IP-aadressi kohta ei saa hankida, sest selle alt pole muudatusi tehtud.",
+	"ipinfo-widget-error-ip-no-contributions": "Teavet selle IP-aadressi kohta ei saa hankida, sest selle alt pole muudatusi tehtud.",
 	"ipinfo-preference-enable": "Näita IP-aadressi teabe vahendit registreerimata kasutaja kaastöö loendi juures.",
 	"ipinfo-infobox-submit-agreement": "Luba IP-aadressi teabe vahend",
 	"ipinfo-infobox-disable-instructions": "Kui soovid selle funktsiooni keelata, saad seda teha  [[Special:Preferences#mw-prefsection-betafeatures|eelistuste leheküljel]].",

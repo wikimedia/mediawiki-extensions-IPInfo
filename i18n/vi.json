@@ -37,7 +37,7 @@
 	"ipinfo-widget-error-default": "Không thể truy xuất thông tin về địa chỉ IP.",
 	"ipinfo-widget-error-no-data": "$1 không có dữ liệu về địa chỉ IP này.",
 	"ipinfo-widget-error-wrong-ip": "Địa chỉ IP đã định không khớp với nhật trình hoặc phiên bản.",
-	"ipinfo-widget-error-ip-no-edits": "Không thể truy xuất thông tin về địa chỉ IP này vì không có sửa đổi nào.",
+	"ipinfo-widget-error-ip-no-contributions": "Không thể truy xuất thông tin về địa chỉ IP này vì không có sửa đổi nào.",
 	"ipinfo-preference-enable": "Hiển thị công cụ Thông tin IP trên trang {{#special:Contributions}} của người dùng không đăng nhập.",
 	"ipinfo-preference-use-agreement": "Tôi đồng ý sử dụng thông tin này để hỗ trợ cho việc tuần tra và chống phá hoại.",
 	"ipinfo-preference-agreement-error": "Bạn phải kích hoạt công cụ Thông tin IP trước khi đồng ý với điều kiện sử dụng.",

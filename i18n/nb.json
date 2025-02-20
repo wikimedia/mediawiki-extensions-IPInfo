@@ -80,7 +80,7 @@
 	"ipinfo-widget-error-default": "IP-informasjonen kunne ikke hentes.",
 	"ipinfo-widget-error-no-data": "Det er ingen data for denne IP-adressa fra $1.",
 	"ipinfo-widget-error-wrong-ip": "Den angitte IP-adressen matchet ikke loggen eller sideversjonen.",
-	"ipinfo-widget-error-ip-no-edits": "IP-informasjonen for denne adressa kan ikke hentes, siden det ikke har blitt gjort noen redigeringer fra den.",
+	"ipinfo-widget-error-ip-no-contributions": "IP-informasjonen for denne adressa kan ikke hentes, siden det ikke har blitt gjort noen redigeringer fra den.",
 	"ipinfo-preference-enable": "Vis IP-informasjonsverktøyet på bidragssiden for uregistrerte bidragsytere.",
 	"ipinfo-preference-use-agreement": "Jeg samtykker i å bruke denne informasjonen til mitt arbeid med patruljering og bekjempelse av vandalisme",
 	"ipinfo-preference-agreement-error": "Du må aktivere IP-informasjonsverktøyet før du samtykker i bruksvilkårene dets.",

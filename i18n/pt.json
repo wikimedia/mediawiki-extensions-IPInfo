@@ -78,7 +78,7 @@
 	"ipinfo-widget-error-default": "Não foi possível obter as informações do IP.",
 	"ipinfo-widget-error-no-data": "Não há dados de $1 para este endereço IP.",
 	"ipinfo-widget-error-wrong-ip": "O endereço IP fornecido não coincidiu com o registo nem com a revisão.",
-	"ipinfo-widget-error-ip-no-edits": "Não é possível obter informações de IP para este endereço porque não foi feita nenhuma edição dele.",
+	"ipinfo-widget-error-ip-no-contributions": "Não é possível obter informações de IP para este endereço porque não foi feita nenhuma edição dele.",
 	"ipinfo-preference-enable": "Mostrar a ferramenta de informações de IP na página Special:Contributions de utilizadores não registados.",
 	"ipinfo-preference-use-agreement": "Concordo usar esta informação para o meu trabalho de patrulhamento e anti-vandalismo.",
 	"ipinfo-preference-agreement-error": "Tem de ativar a ferramenta de informações de IP antes de concordar com as respetivas condições de utilização.",

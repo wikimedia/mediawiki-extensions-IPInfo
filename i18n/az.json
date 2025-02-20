@@ -83,7 +83,7 @@
 	"ipinfo-widget-error-default": "IP-ünvanı məlumatları əldə edilə bilmədi.",
 	"ipinfo-widget-error-no-data": "$1 mənbəsindən IP-ünvanı haqqında heç bir məlumat yoxdur.",
 	"ipinfo-widget-error-wrong-ip": "Təqdim olunan IP ünvanı ilə əlaqəli jurnal və ya redaktə tapılmadı.",
-	"ipinfo-widget-error-ip-no-edits": "Bu ünvandan heç bir redaktə edilmədiyi üçün IP məlumatı əldə edilə bilməz.",
+	"ipinfo-widget-error-ip-no-contributions": "Bu ünvandan heç bir redaktə edilmədiyi üçün IP məlumatı əldə edilə bilməz.",
 	"ipinfo-preference-enable": "Anonim istifadəçilər üçün Xüsusi:Fəaliyyətlər səhifəsində IP Məlumat alətini göstər.",
 	"ipinfo-preference-use-agreement": "Mən bu məlumatı patrul və anti-vandalizm işim üçün istifadə etməyə razıyam",
 	"ipinfo-preference-agreement-error": "İstifadə şərtləri ilə razılaşmadan əvvəl IP Məlumat alətini aktivləşdirməlisiniz.",

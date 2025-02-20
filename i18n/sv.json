@@ -36,7 +36,7 @@
 	"ipinfo-widget-error-default": "IP-informationen kunde inte hämtas.",
 	"ipinfo-widget-error-no-data": "Det finns ingen data för denna IP-adress från $1.",
 	"ipinfo-widget-error-wrong-ip": "Den angivna IP-adressen matchade inte loggen eller versionen.",
-	"ipinfo-widget-error-ip-no-edits": "IP-informationen för denna adress kan inte hämtas då den inte har gjort några redigeringar på denna wiki.",
+	"ipinfo-widget-error-ip-no-contributions": "IP-informationen för denna adress kan inte hämtas då den inte har gjort några redigeringar på denna wiki.",
 	"ipinfo-preference-enable": "Visa IP-informationsverktyget på sidan Special:Bidrag för oregistrerade användare.",
 	"ipinfo-preference-use-agreement": "Jag accepterar att använda denna information för mitt patrullerings- och antivandaliseringsarbete.",
 	"ipinfo-preference-agreement-error": "Du måste aktivera IP-informationsverkyget innan du kan acceptera dess villkor.",

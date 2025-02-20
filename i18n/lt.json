@@ -35,7 +35,7 @@
 	"ipinfo-property-no-access": "Nėra prieigos",
 	"ipinfo-widget-error-default": "Nepavyko gauti IP informacijos.",
 	"ipinfo-widget-error-no-data": "Nėra duomenų apie šį IP adresą $1.",
-	"ipinfo-widget-error-ip-no-edits": "Šio IP informacijos gauti negalima, nes nebuvo atlikti jokie keitimai iš šio IP adreso.",
+	"ipinfo-widget-error-ip-no-contributions": "Šio IP informacijos gauti negalima, nes nebuvo atlikti jokie keitimai iš šio IP adreso.",
 	"ipinfo-infobox-submit-agreement": "Įgalinti IP informacijos įrankį",
 	"ipinfo-infobox-disable-instructions": "Jei norėtumėte išjungti šią funkciją, galite tai padaryti [[Special:Preferences#mw-prefsection-betafeatures|savo nuostatose]].",
 	"ipinfo-use-agreement-submit-error": "Kažkas nutiko ne taip. Pabandykite dar kartą. Gautas klaidos pranešimas: $1",

@@ -68,7 +68,7 @@
 	"ipinfo-property-no-data": "Nije dostupno",
 	"ipinfo-property-no-access": "Nema pristupa",
 	"ipinfo-widget-error-default": "Ne mogu dobiti informacije o IP-adresi.",
-	"ipinfo-widget-error-ip-no-edits": "Ne mogu dobiti informacije o IP-adresi jer nema izmjena.",
+	"ipinfo-widget-error-ip-no-contributions": "Ne mogu dobiti informacije o IP-adresi jer nema izmjena.",
 	"prefs-ipinfo": "Informacije o IP-adresi",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 izbrisana izmjena|$1 izbrisane izmjene|$1 izbrisanih izmjena|0=Nema izbrisanih izmjena}}",
 	"ipinfo-deleted-edits-url-text": "Izbrisani doprinosi"

@@ -84,7 +84,7 @@
 	"ipinfo-widget-error-default": "לא היה אפשר לאחזר מידע על IP.",
 	"ipinfo-widget-error-no-data": "אין נתונים לכתובת ה־IP הזאת מ{{GRAMMAR:תחילית|$1}}.",
 	"ipinfo-widget-error-wrong-ip": "כתובת ה־IP שסופקה אינה תואמת ליומן או לגרסה.",
-	"ipinfo-widget-error-ip-no-edits": "לא ניתן לאחזר את המידע על IP עבור הכתובת הזאת כי לא נעשו ממנה עריכות.",
+	"ipinfo-widget-error-ip-no-contributions": "לא ניתן לאחזר את המידע על IP עבור הכתובת הזאת כי לא נעשו ממנה עריכות.",
 	"ipinfo-preference-enable": "להציג את כלי המידע על כתובת IP בדף Special:Contributions (מיוחד:תרומות) עבור תורמים שאינם רשומים.",
 	"ipinfo-preference-use-agreement": "אני {{GENDER:|מסכים|מסכימה}} להשתמש במידע הזה לעבודת הניטור ומניעת ההשחתה שלי",
 	"ipinfo-preference-agreement-error": "יש להפעיל את כלי המידע על כתובות IP לפני הסכמה לתנאי השימוש שלו.",

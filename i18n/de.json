@@ -83,7 +83,7 @@
 	"ipinfo-widget-error-default": "Die Informationen zur IP-Adresse konnten nicht abgerufen werden.",
 	"ipinfo-widget-error-no-data": "Es gibt keine Daten für diese IP-Adresse von $1.",
 	"ipinfo-widget-error-wrong-ip": "Die angegebene IP-Adresse stimmte nicht mit dem Logbuch oder der Version überein.",
-	"ipinfo-widget-error-ip-no-edits": "IP-Informationen für diese Adresse können nicht abgerufen werden, da keine Änderungen mit ihr vorgenommen wurden.",
+	"ipinfo-widget-error-ip-no-contributions": "IP-Informationen für diese Adresse können nicht abgerufen werden, da keine Beiträge mit ihr vorgenommen wurden.",
 	"ipinfo-preference-enable": "Zeige das IP-Informationstool auf Spezial:Beiträge für nicht angemeldete Benutzer an.",
 	"ipinfo-preference-use-agreement": "Ich erkläre mich damit einverstanden, diese Informationen für meine Kontrolltätigkeit und die Bekämpfung von Vandalismus zu verwenden",
 	"ipinfo-preference-agreement-error": "Du musst das IP-Informationstool aktivieren, bevor du den Nutzungsbedingungen zustimmst.",

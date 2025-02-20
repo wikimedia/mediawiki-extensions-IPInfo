@@ -34,7 +34,7 @@
 	"ipinfo-property-no-access": "Ingen adgang",
 	"ipinfo-widget-error-default": "IP-informationerne kunne ikke hentes.",
 	"ipinfo-widget-error-wrong-ip": "Den angivne IP-adresse matchede ikke loggen eller sideversionen.",
-	"ipinfo-widget-error-ip-no-edits": "IP-information for denne adresse kan ikke hentes, fordi der ikke er redigeret fra den.",
+	"ipinfo-widget-error-ip-no-contributions": "IP-information for denne adresse kan ikke hentes, fordi der ikke er redigeret fra den.",
 	"ipinfo-preference-enable": "Vis IP-informationsværktøjet på Special:Contributions-siden for uregistrede bidragsydere.",
 	"ipinfo-preference-use-agreement": "Jeg accepterer at bruge denne information til mit patruljerings- og anti-hærværksarbejde.",
 	"ipinfo-preference-agreement-error": "Du skal aktivere IP-informationsværktøjet før du accepterer dets brugsbetingelser.",

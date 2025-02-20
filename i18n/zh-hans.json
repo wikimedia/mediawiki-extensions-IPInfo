@@ -99,7 +99,7 @@
 	"ipinfo-widget-error-default": "无法检索此IP的信息。",
 	"ipinfo-widget-error-no-data": "$1中没有此IP地址的数据。",
 	"ipinfo-widget-error-wrong-ip": "提供的IP地址与日志或修订版本不匹配。",
-	"ipinfo-widget-error-ip-no-edits": "无法检索此地址的IP信息，因为其没有做出任何编辑。",
+	"ipinfo-widget-error-ip-no-contributions": "无法检索此地址的IP信息，因为其没有做出任何编辑。",
 	"ipinfo-preference-enable": "在未注册用户的用户贡献特殊页面页上显示IP信息工具。",
 	"ipinfo-preference-use-agreement": "我同意将此信息用于我的巡查和反破坏工作",
 	"ipinfo-preference-agreement-error": "您必须先启用IP信息工具，然后才能同意其使用条款。",

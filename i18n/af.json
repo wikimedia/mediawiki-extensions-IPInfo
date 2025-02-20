@@ -65,7 +65,7 @@
 	"ipinfo-property-no-access": "Geen toegang",
 	"ipinfo-widget-error-default": "Die IP-inligting kon nie verkry word nie.",
 	"ipinfo-widget-error-no-data": "Daar is geen data vir hierdie IP-adres vanaf $1 nie.",
-	"ipinfo-widget-error-ip-no-edits": "IP-inligting vir hierdie adres kan nie verkry word nie, aangesien daar geen wysigings daarvan gemaak is nie.",
+	"ipinfo-widget-error-ip-no-contributions": "IP-inligting vir hierdie adres kan nie verkry word nie, aangesien daar geen wysigings daarvan gemaak is nie.",
 	"ipinfo-preference-enable": "Wys die IP-inligting-nutsding op Spesiale:bydraes-bladsy vir ongeregistreerde bydraers.",
 	"ipinfo-preference-use-agreement": "Ek stem in om hierdie inligting te gebruik vir my patrollie- en anti-vandalisme werk.",
 	"ipinfo-preference-agreement-error": "U moet die IP-inligting-nutsding aktiveer voordat u tot die gebruiksvoorwaardes daarvan instem.",

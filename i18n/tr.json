@@ -61,7 +61,7 @@
 	"ipinfo-widget-error-default": "IP bilgileri alınamadı.",
 	"ipinfo-widget-error-no-data": "$1 üzerinden bu IP adresi için veri yok.",
 	"ipinfo-widget-error-wrong-ip": "Sağlanan IP adresi, günlük veya revizyon ile eşleşmedi.",
-	"ipinfo-widget-error-ip-no-edits": "Bu IP adresi ile herhangi bir düzenleme yapılmadığı için IP bilgisi alınamıyor.",
+	"ipinfo-widget-error-ip-no-contributions": "Bu IP adresi ile herhangi bir düzenleme yapılmadığı için IP bilgisi alınamıyor.",
 	"ipinfo-preference-enable": "Giriş yapmadan katkıda bulunan kullanıcılar için Özel:Katkılar sayfasında IP Bilgileri aracını göster.",
 	"ipinfo-preference-use-agreement": "Bu bilgileri yalnızca projede devriyelik yaparken ve vandalizm karşıtı çalışmalarım için kullanacağımı beyan ederim.",
 	"ipinfo-preference-agreement-error": "Kullanım koşullarını kabul etmeden önce IP Bilgileri aracını etkinleştirmelisiniz.",

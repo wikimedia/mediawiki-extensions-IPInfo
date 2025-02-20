@@ -34,7 +34,7 @@
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1}} az elmúlt 24 órában)",
 	"ipinfo-property-no-data": "Nem érhető el",
 	"ipinfo-widget-error-default": "Nem sikerült lehívni az IP-információt.",
-	"ipinfo-widget-error-ip-no-edits": "Nem kérhető le IP-információ erről a címről, mert nem történt róla szerkesztés ezen a wikin.",
+	"ipinfo-widget-error-ip-no-contributions": "Nem kérhető le IP-információ erről a címről, mert nem történt róla szerkesztés ezen a wikin.",
 	"ipinfo-preference-enable": "Az IP-információ eszköz megjelenítése a bejelentkezetlen felhasználók közreműködéseinek listáján.",
 	"ipinfo-preference-use-agreement": "Kijelentem, hogy ezt az információt a járőrözési és vandalizmusellenes munkámhoz használom.",
 	"ipinfo-preference-agreement-error": "Engedélyezned kell az IP-információs eszközt, mielőtt elfogadhatnád a felhasználási feltételeit.",

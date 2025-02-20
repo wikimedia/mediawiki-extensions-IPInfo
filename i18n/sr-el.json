@@ -54,7 +54,7 @@
 	"ipinfo-widget-error-default": "Ne mogu da preuzmem podatke o IP adresi.",
 	"ipinfo-widget-error-no-data": "U izvoru $1 nema podataka za navedenu IP adresu.",
 	"ipinfo-widget-error-wrong-ip": "Navedena IP adresa se ne podudara s dnevničkom stavkom ili izmenom.",
-	"ipinfo-widget-error-ip-no-edits": "Ne mogu da preuzmem podatke o navedenoj IP adresi jer ona nema izmena na ovom projektu.",
+	"ipinfo-widget-error-ip-no-contributions": "Ne mogu da preuzmem podatke o navedenoj IP adresi jer ona nema izmena na ovom projektu.",
 	"ipinfo-rest-access-denied": "Nemate dozvolu da izvršite ovu radnju",
 	"ipinfo-rest-access-denied-blocked-user": "Nemate dozvolu da izvršite ovu radnju zato što vam je nalog blokiran",
 	"ipinfo-rest-log-nonexistent": "Unos dnevnika ne postoji",

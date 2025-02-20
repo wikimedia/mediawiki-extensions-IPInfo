@@ -87,7 +87,7 @@
 	"ipinfo-widget-error-default": "IP-tietoja ei voitu hakea.",
 	"ipinfo-widget-error-no-data": "Tälle IP-osoitteelle ei ole tietoja lähteestä $1.",
 	"ipinfo-widget-error-wrong-ip": "Annettu IP-osoite ei vastannut lokia tai versiota.",
-	"ipinfo-widget-error-ip-no-edits": "Tämän IP-osoitteen tietoja ei voitu hakea, koska sillä ei ole tehty muokkauksia.",
+	"ipinfo-widget-error-ip-no-contributions": "Tämän IP-osoitteen tietoja ei voitu hakea, koska sillä ei ole tehty muokkauksia.",
 	"ipinfo-preference-enable": "Näytä IP-tietotyökalu Toiminnot:Muokkaukset-sivulla rekisteröitymättömille muokkaajille.",
 	"ipinfo-preference-use-agreement": "Vakuutan käyttäväni näitä tietoja vain seulonta- ja vandalismintorjuntatyössäni",
 	"ipinfo-preference-agreement-error": "Sinun on otettava IP-tietotyökalu käyttöön ennen kuin hyväksyt sen käyttöehdot.",

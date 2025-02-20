@@ -52,7 +52,7 @@
 	"ipinfo-widget-error-default": "Informacije o IP adresi ne mogu biti dohvaćene.",
 	"ipinfo-widget-error-no-data": "Za ovu IP adresu nema podataka iz $1.",
 	"ipinfo-widget-error-wrong-ip": "Navedena IP adresa ne odgovara evidenciji ili izmjeni.",
-	"ipinfo-widget-error-ip-no-edits": "Informacije o ovoj IP adresi ne mogu biti dohvaćene jer s nje nema uređivanja na ovom wikiju.",
+	"ipinfo-widget-error-ip-no-contributions": "Informacije o ovoj IP adresi ne mogu biti dohvaćene jer s nje nema uređivanja na ovom wikiju.",
 	"ipinfo-preference-enable": "Prikaži alat za informacije o IP adresi za neregistrirane suradnike na stranici Posebno: Doprinosi.",
 	"ipinfo-preference-use-agreement": "Slažem se s uporabom ovih informacija za ophođenje i antivandalizam",
 	"ipinfo-preference-agreement-error": "Prije slaganja s uvjetima morate omogućiti alat za informacije o IP adresa.",

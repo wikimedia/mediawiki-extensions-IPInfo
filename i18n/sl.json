@@ -80,7 +80,7 @@
 	"ipinfo-widget-error-default": "Podatkov o IP-ju ni bilo mogoče pridobiti.",
 	"ipinfo-widget-error-no-data": "Za ta IP-naslov od $1 ni podatkov.",
 	"ipinfo-widget-error-wrong-ip": "Navedeni IP-naslov se ne ujema z dnevnikom ali revizijo.",
-	"ipinfo-widget-error-ip-no-edits": "Podatkov o IP-ju za ta naslov ni bilo mogoče pridobiti, ker na njem ni bilo nobenih sprememb.",
+	"ipinfo-widget-error-ip-no-contributions": "Podatkov o IP-ju za ta naslov ni bilo mogoče pridobiti, ker na njem ni bilo nobenih sprememb.",
 	"ipinfo-preference-enable": "Prikaži orodje Podatki o IP-ju na strani Posebno:Prispevki za neregistrirane sodelavce.",
 	"ipinfo-preference-use-agreement": "Strinjam se z uporabo teh informacij za pregledovanje strani in boj proti vandalizmu.",
 	"ipinfo-preference-agreement-error": "Preden se strinjate s pogoji uporabe, morate orodje Podatki o IP-ju omogočiti.",

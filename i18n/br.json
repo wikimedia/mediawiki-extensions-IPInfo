@@ -72,7 +72,7 @@
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|$1 e-pad ar 24 eur tremenet}})",
 	"ipinfo-property-no-data": "Dianav",
 	"ipinfo-property-no-access": "Aksed ebet",
-	"ipinfo-widget-error-ip-no-edits": "Ne c’heller ket kaout an titouroù evit an IP-mañ peogwir n’eo bet graet degasadenn ebet gantañ.",
+	"ipinfo-widget-error-ip-no-contributions": "Ne c’heller ket kaout an titouroù evit an IP-mañ peogwir n’eo bet graet degasadenn ebet gantañ.",
 	"ipinfo-preference-enable": "Diskwel an benveg Titouroù IP e pajenn Special:Contributions evit an aozerien dienskriv.",
 	"ipinfo-infobox-submit-agreement": "Gweredekaat ar benveg a bourvez titouroù diwar-benn ar chomlec’hioù IP",
 	"ipinfo-rest-log-nonexistent": "N’eus ket eus an enmont marilh-mañ",
