@@ -63,7 +63,7 @@ class InfoboxHandler implements
 		}
 
 		// Check if the target is an anonymous or temporary user.
-		if ( !( IPUtils::isValid( $username ) || $this->tempUserConfig->isTempName( $username ) ) ) {
+		if ( !IPUtils::isValid( $username ) && !$this->tempUserConfig->isTempName( $username ) ) {
 			return;
 		}
 
@@ -90,21 +90,32 @@ class InfoboxHandler implements
 
 	/** @inheritDoc */
 	public function onSpecialContributionsBeforeMainOutput( $id, $user, $sp ) {
-		if ( $sp->getName() !== 'Contributions' &&
-			$sp->getName() !== 'IPContributions' ) {
-			return;
-		}
+		switch ( $sp->getName() ) {
+			case 'Contributions':
+				// T379049 For Special:Contributions, unless the request targets
+				// an actual IP (i.e. an anonymous user), log entries for a
+				// given user may originate from different IPs; therefore, the
+				// infobox is only shown on the first page.
+				if ( $this->isFirstPage( $sp ) || $user->isAnon() ) {
+					$this->addInfoBox( $user->getName(), $sp );
+				}
 
-		// T379049 As all log entries in Special:IPContributions refer to the
-		// same IP, it always shows the infobox. However, log entries for a
-		// given user in Special:Contributions may originate from different IPs,
-		// so the infobox is only shown on the first page of the results.
-		if ( $sp->getName() === 'Contributions' ) {
-			if ( $this->isFirstPage( $sp ) ) {
-				$this->addInfoBox( $user->getName(), $sp );
-			}
-		} else {
-			$this->addInfoBox( $user->getName(), $sp );
+				break;
+
+			case 'IPContributions':
+				// T379049 As all log entries in Special:IPContributions refer
+				// to the same IP, it always shows the infobox. However, we
+				// first ensure the target provided in the URL is really an IP,
+				// so we don't show an empty infobox in a page that just shows
+				// an error.
+				if ( $user->isAnon() ) {
+					$this->addInfoBox( $user->getName(), $sp );
+				}
+
+				break;
+
+			default:
+				// Do nothing
 		}
 	}
 
@@ -114,14 +125,14 @@ class InfoboxHandler implements
 			return;
 		}
 
-		// T379049 Log entries for a given user in Special:DeletedContributions
-		// may originate from different IPs, so the infobox is only shown on
-		// the first page or results.
-		if ( $this->isFirstPage( $sp ) ) {
-			if ( $subPage === null ) {
-				$subPage = $sp->getRequest()->getText( 'target' );
-			}
+		if ( $subPage === null ) {
+			$subPage = $sp->getRequest()->getText( 'target' );
+		}
 
+		// T379049 Unless the request targets an actual IP, log entries for a
+		// given user in Special:DeletedContributions may originate from
+		// different IPs, so the infobox is only shown on the first page.
+		if ( $this->isFirstPage( $sp ) || IPUtils::isIPAddress( $subPage ) ) {
 			$this->addInfoBox( $subPage, $sp );
 		}
 	}
