@@ -10,7 +10,7 @@ function postToRestApi( type, id, dataContext, retryOnTokenMismatch ) {
 			'/ipinfo/v0/' +
 			type + '/' + id +
 			'?dataContext=' + dataContext +
-			'&language=' + mw.config.values.wgUserLanguage,
+			'&language=' + mw.config.get( 'wgUserLanguage' ),
 			{ token: token }
 		).then(
 			( data ) => {
