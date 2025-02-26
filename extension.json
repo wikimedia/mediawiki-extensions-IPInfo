@@ -62,7 +62,8 @@
 				"LanguageFallback",
 				"UserIdentityUtils",
 				"IPInfoTempUserIPLookup",
-				"ExtensionRegistry"
+				"ExtensionRegistry",
+				"ReadOnlyMode"
 			],
 			"factory": "MediaWiki\\IPInfo\\Rest\\Handler\\RevisionHandler::factory"
 		},
@@ -79,7 +80,8 @@
 				"LanguageFallback",
 				"UserIdentityUtils",
 				"IPInfoTempUserIPLookup",
-				"ExtensionRegistry"
+				"ExtensionRegistry",
+				"ReadOnlyMode"
 			],
 			"factory": "MediaWiki\\IPInfo\\Rest\\Handler\\ArchivedRevisionHandler::factory"
 		},
@@ -95,7 +97,8 @@
 				"LanguageFallback",
 				"UserIdentityUtils",
 				"IPInfoTempUserIPLookup",
-				"ExtensionRegistry"
+				"ExtensionRegistry",
+				"ReadOnlyMode"
 			],
 			"factory": "MediaWiki\\IPInfo\\Rest\\Handler\\NoRevisionHandler::factory"
 		},
@@ -113,7 +116,8 @@
 				"UserIdentityUtils",
 				"UserIdentityLookup",
 				"IPInfoTempUserIPLookup",
-				"ExtensionRegistry"
+				"ExtensionRegistry",
+				"ReadOnlyMode"
 			],
 			"factory": "MediaWiki\\IPInfo\\Rest\\Handler\\LogHandler::factory"
 		}

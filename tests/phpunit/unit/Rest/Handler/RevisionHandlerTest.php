@@ -25,6 +25,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
 use MediaWikiUnitTestCase;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
  * @group IPInfo
@@ -49,7 +50,8 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 				'languageFallback' => $this->createMock( LanguageFallback::class ),
 				'userIdentityUtils' => $this->createMock( UserIdentityUtils::class ),
 				'tempUserIPLookup' => $this->createMock( TempUserIPLookup::class ),
-				'extensionRegistry' => $this->createMock( ExtensionRegistry::class )
+				'extensionRegistry' => $this->createMock( ExtensionRegistry::class ),
+				'readOnlyMode' => $this->createMock( ReadOnlyMode::class ),
 			],
 			$options
 		) ) );
@@ -425,7 +427,8 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 				$this->createMock( LanguageFallback::class ),
 				$this->createMock( UserIdentityUtils::class ),
 				$this->createMock( TempUserIPLookup::class ),
-				$this->createMock( ExtensionRegistry::class )
+				$this->createMock( ExtensionRegistry::class ),
+				$this->createMock( ReadOnlyMode::class )
 			)
 		);
 	}

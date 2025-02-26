@@ -22,6 +22,7 @@ use Wikimedia\IPUtils;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\ReadOnlyMode;
 
 class LogHandler extends IPInfoHandler {
 
@@ -41,7 +42,8 @@ class LogHandler extends IPInfoHandler {
 		UserIdentityUtils $userIdentityUtils,
 		UserIdentityLookup $userIdentityLookup,
 		TempUserIPLookup $tempUserIPLookup,
-		ExtensionRegistry $extensionRegistry
+		ExtensionRegistry $extensionRegistry,
+		ReadOnlyMode $readOnlyMode
 	) {
 		parent::__construct(
 			$infoManager,
@@ -53,7 +55,8 @@ class LogHandler extends IPInfoHandler {
 			$languageFallback,
 			$userIdentityUtils,
 			$tempUserIPLookup,
-			$extensionRegistry
+			$extensionRegistry,
+			$readOnlyMode
 		);
 		$this->dbProvider = $dbProvider;
 		$this->userIdentityLookup = $userIdentityLookup;
@@ -70,7 +73,8 @@ class LogHandler extends IPInfoHandler {
 		UserIdentityUtils $userIdentityUtils,
 		UserIdentityLookup $userIdentityLookup,
 		TempUserIPLookup $tempUserIPLookup,
-		ExtensionRegistry $extensionRegistry
+		ExtensionRegistry $extensionRegistry,
+		ReadOnlyMode $readOnlyMode
 	): self {
 		return new self(
 			$infoManager,
@@ -84,7 +88,8 @@ class LogHandler extends IPInfoHandler {
 			$userIdentityUtils,
 			$userIdentityLookup,
 			$tempUserIPLookup,
-			$extensionRegistry
+			$extensionRegistry,
+			$readOnlyMode
 		);
 	}
 

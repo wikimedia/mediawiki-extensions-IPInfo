@@ -83,7 +83,8 @@ class LogHandlerTest extends HandlerTestCase {
 			$services->getUserIdentityUtils(),
 			$services->getUserIdentityLookup(),
 			$services->get( 'IPInfoTempUserIPLookup' ),
-			$services->getExtensionRegistry()
+			$services->getExtensionRegistry(),
+			$services->getReadOnlyMode()
 		);
 	}
 

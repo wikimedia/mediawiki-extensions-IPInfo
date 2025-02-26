@@ -65,7 +65,8 @@ class ArchivedRevisionHandlerTest extends HandlerTestCase {
 			$services->getLanguageFallback(),
 			$services->getUserIdentityUtils(),
 			$services->get( 'IPInfoTempUserIPLookup' ),
-			$services->getExtensionRegistry()
+			$services->getExtensionRegistry(),
+			$services->getReadOnlyMode()
 		);
 	}
 

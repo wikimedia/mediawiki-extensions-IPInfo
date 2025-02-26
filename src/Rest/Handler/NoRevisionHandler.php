@@ -15,6 +15,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityUtils;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\Rdbms\ReadOnlyMode;
 
 class NoRevisionHandler extends IPInfoHandler {
 
@@ -27,7 +28,8 @@ class NoRevisionHandler extends IPInfoHandler {
 		LanguageFallback $languageFallback,
 		UserIdentityUtils $userIdentityUtils,
 		TempUserIPLookup $tempUserIPLookup,
-		ExtensionRegistry $extensionRegistry
+		ExtensionRegistry $extensionRegistry,
+		ReadOnlyMode $readOnlyMode
 	): self {
 		return new self(
 			$infoManager,
@@ -39,7 +41,8 @@ class NoRevisionHandler extends IPInfoHandler {
 			$languageFallback,
 			$userIdentityUtils,
 			$tempUserIPLookup,
-			$extensionRegistry
+			$extensionRegistry,
+			$readOnlyMode
 		);
 	}
 

@@ -21,6 +21,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\Rdbms\ReadOnlyMode;
 
 abstract class IPInfoHandler extends SimpleHandler {
 
@@ -87,6 +88,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 	protected TempUserIPLookup $tempUserIPLookup;
 
 	private ExtensionRegistry $extensionRegistry;
+	private ReadOnlyMode $readOnlyMode;
 
 	public function __construct(
 		InfoManager $infoManager,
@@ -98,7 +100,8 @@ abstract class IPInfoHandler extends SimpleHandler {
 		LanguageFallback $languageFallback,
 		UserIdentityUtils $userIdentityUtils,
 		TempUserIPLookup $tempUserIPLookup,
-		ExtensionRegistry $extensionRegistry
+		ExtensionRegistry $extensionRegistry,
+		ReadOnlyMode $readOnlyMode
 	) {
 		$this->infoManager = $infoManager;
 		$this->permissionManager = $permissionManager;
@@ -110,6 +113,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 		$this->userIdentityUtils = $userIdentityUtils;
 		$this->tempUserIPLookup = $tempUserIPLookup;
 		$this->extensionRegistry = $extensionRegistry;
+		$this->readOnlyMode = $readOnlyMode;
 	}
 
 	/**
@@ -172,6 +176,16 @@ abstract class IPInfoHandler extends SimpleHandler {
 
 		// Validate the CSRF token. We shouldn't need to allow anon CSRF tokens.
 		$this->validateToken();
+
+		// If the site is in read only mode, we should return an error because we need to log accessing which creates
+		// a database row.
+		$readOnlyReason = $this->readOnlyMode->getReason();
+		if ( $readOnlyReason ) {
+			throw new LocalizedHttpException(
+				new MessageValue( 'readonlytext', [ $readOnlyReason ] ),
+				503
+			);
+		}
 
 		$info = $this->getInfo( $id );
 		$userLang = strtolower( $this->getValidatedParams()['language'] );

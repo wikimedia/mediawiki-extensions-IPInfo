@@ -16,6 +16,7 @@ use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityUtils;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\Rdbms\ReadOnlyMode;
 
 class ArchivedRevisionHandler extends AbstractRevisionHandler {
 
@@ -32,7 +33,8 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 		LanguageFallback $languageFallback,
 		UserIdentityUtils $userIdentityUtils,
 		TempUserIPLookup $tempUserIPLookup,
-		ExtensionRegistry $extensionRegistry
+		ExtensionRegistry $extensionRegistry,
+		ReadOnlyMode $readOnlyMode
 	) {
 		parent::__construct(
 			$infoManager,
@@ -44,7 +46,8 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 			$languageFallback,
 			$userIdentityUtils,
 			$tempUserIPLookup,
-			$extensionRegistry
+			$extensionRegistry,
+			$readOnlyMode
 		);
 		$this->archivedRevisionLookup = $archivedRevisionLookup;
 	}
@@ -59,7 +62,8 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 		LanguageFallback $languageFallback,
 		UserIdentityUtils $userIdentityUtils,
 		TempUserIPLookup $tempUserIPLookup,
-		?ExtensionRegistry $extensionRegistry = null
+		ExtensionRegistry $extensionRegistry,
+		ReadOnlyMode $readOnlyMode
 	): self {
 		return new self(
 			$infoManager,
@@ -72,7 +76,8 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 			$languageFallback,
 			$userIdentityUtils,
 			$tempUserIPLookup,
-			$extensionRegistry ?? ExtensionRegistry::getInstance()
+			$extensionRegistry,
+			$readOnlyMode
 		);
 	}
 
