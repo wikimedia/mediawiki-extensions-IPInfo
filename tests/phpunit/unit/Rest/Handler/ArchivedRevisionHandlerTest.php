@@ -22,6 +22,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
 use MediaWikiUnitTestCase;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -87,7 +88,8 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 				'languageFallback' => $this->createMock( LanguageFallback::class ),
 				'userIdentityUtils' => $this->createMock( UserIdentityUtils::class ),
 				'tempUserIPLookup' => $this->createMock( TempUserIPLookup::class ),
-				'extensionRegistry' => $this->createMock( ExtensionRegistry::class )
+				'extensionRegistry' => $this->createMock( ExtensionRegistry::class ),
+				'readOnlyMode' => $this->createMock( ReadOnlyMode::class ),
 			] )
 			->onlyMethods( [] )
 			->getMock();
@@ -166,7 +168,8 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 				'languageFallback' => $this->createMock( LanguageFallback::class ),
 				'userIdentityUtils' => $this->createMock( UserIdentityUtils::class ),
 				'tempUserIPLookup' => $this->createMock( TempUserIPLookup::class ),
-				'extensionRegistry' => $this->createMock( ExtensionRegistry::class )
+				'extensionRegistry' => $this->createMock( ExtensionRegistry::class ),
+				'readOnlyMode' => $this->createMock( \Wikimedia\Rdbms\ReadOnlyMode::class ),
 			] )
 			->onlyMethods( [ 'getAuthority' ] )
 			->getMock();
@@ -194,7 +197,8 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 				$this->createMock( LanguageFallback::class ),
 				$this->createMock( UserIdentityUtils::class ),
 				$this->createMock( TempUserIPLookup::class ),
-				$this->createMock( ExtensionRegistry::class )
+				$this->createMock( ExtensionRegistry::class ),
+				$this->createMock( ReadOnlyMode::class )
 			)
 		);
 	}

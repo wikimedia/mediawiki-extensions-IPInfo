@@ -9,6 +9,7 @@ use MediaWiki\IPInfo\Info\BlockInfo;
 use MediaWiki\IPInfo\Rest\Handler\RevisionHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\IPInfo\Test\Integration\RestHandler\HandlerTestCase;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\UltimateAuthority;
@@ -17,6 +18,7 @@ use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\User\StaticUserOptionsLookup;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Message\MessageValue;
@@ -62,7 +64,8 @@ class RevisionHandlerTest extends HandlerTestCase {
 			$services->getLanguageFallback(),
 			$services->getUserIdentityUtils(),
 			$services->get( 'IPInfoTempUserIPLookup' ),
-			$services->getExtensionRegistry()
+			$services->getExtensionRegistry(),
+			$services->getReadOnlyMode()
 		);
 	}
 
@@ -337,6 +340,28 @@ class RevisionHandlerTest extends HandlerTestCase {
 			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
 			[ 'ipinfo-rest-revision-invalid-ip', 404 ]
 		];
+	}
+
+	public function testShouldHandleSiteInReadOnlyMode() {
+		$this->setService( 'UserOptionsLookup', new StaticUserOptionsLookup(
+			[
+				self::$testSysop->getUser()->getName() => [
+					'ipinfo-beta-feature-enable' => 1,
+					'ipinfo-use-agreement' => 1
+				]
+			]
+		) );
+
+		$request = self::getRequestData( self::$revRecordByAnonUser->getId() );
+
+		$this->expectExceptionObject(
+			new LocalizedHttpException(
+				new MessageValue( 'readonlytext', [ 'Maintenance' ] ),
+				503
+			)
+		);
+		$this->overrideConfigValue( MainConfigNames::ReadOnly, 'Maintenance' );
+		$this->executeWithUser( $request, self::$testSysop );
 	}
 
 	/**

@@ -14,6 +14,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityUtils;
+use Wikimedia\Rdbms\ReadOnlyMode;
 
 class RevisionHandler extends AbstractRevisionHandler {
 
@@ -30,7 +31,8 @@ class RevisionHandler extends AbstractRevisionHandler {
 		LanguageFallback $languageFallback,
 		UserIdentityUtils $userIdentityUtils,
 		TempUserIPLookup $tempUserIPLookup,
-		ExtensionRegistry $extensionRegistry
+		ExtensionRegistry $extensionRegistry,
+		ReadOnlyMode $readOnlyMode
 	) {
 		parent::__construct(
 			$infoManager,
@@ -42,7 +44,8 @@ class RevisionHandler extends AbstractRevisionHandler {
 			$languageFallback,
 			$userIdentityUtils,
 			$tempUserIPLookup,
-			$extensionRegistry
+			$extensionRegistry,
+			$readOnlyMode
 		);
 		$this->revisionLookup = $revisionLookup;
 	}
@@ -57,7 +60,8 @@ class RevisionHandler extends AbstractRevisionHandler {
 		LanguageFallback $languageFallback,
 		UserIdentityUtils $userIdentityUtils,
 		TempUserIPLookup $tempUserIPLookup,
-		ExtensionRegistry $extensionRegistry
+		ExtensionRegistry $extensionRegistry,
+		ReadOnlyMode $readOnlyMode
 	): self {
 		return new self(
 			$infoManager,
@@ -70,7 +74,8 @@ class RevisionHandler extends AbstractRevisionHandler {
 			$languageFallback,
 			$userIdentityUtils,
 			$tempUserIPLookup,
-			$extensionRegistry
+			$extensionRegistry,
+			$readOnlyMode
 		);
 	}
 
