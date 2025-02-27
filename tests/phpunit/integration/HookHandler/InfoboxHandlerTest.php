@@ -101,16 +101,18 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideValidTargets
+	 * @dataProvider provideValidTargetsForIPContributions
 	 */
 	public function testShouldDisplayOnIPContributionsPageIfUserHasIpinfoRight(
+		bool $shouldDisplayInfobox,
 		string $targetName,
-		bool $targetIsTemp
+		bool $targetIsTemp,
+		bool $targetIsAnon
 	) {
 		$accessingAuthority = self::getValidAccessingAuthority();
 
 		$out = $this->createMock( OutputPage::class );
-		$out->expects( $this->once() )
+		$out->expects( $shouldDisplayInfobox ? $this->once() : $this->never() )
 			->method( 'addModules' )
 			->with( 'ext.ipInfo' );
 
@@ -133,6 +135,8 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 		$targetUser = $this->createMock( User::class );
 		$targetUser->method( 'getName' )
 			->willReturn( $targetName );
+		$targetUser->method( 'isAnon' )
+			->willReturn( $targetIsAnon );
 
 		$this->handler->onSpecialContributionsBeforeMainOutput(
 			1,
@@ -179,6 +183,21 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 	public static function provideValidTargets(): iterable {
 		yield 'anonymous user' => [ '127.0.0.1', false ];
 		yield 'temporary user' => [ '~2024-8', true ];
+	}
+
+	public static function provideValidTargetsForIPContributions(): iterable {
+		yield 'IPContributions show data for anonymous ("IP") users' => [
+			'shouldDisplayInfobox' => true,
+			'targetName' => '127.0.0.1',
+			'targetIsTemp' => false,
+			'targetIsAnon' => true,
+		];
+		yield 'IPContributions does not show data for temp users' => [
+			'shouldDisplayInfobox' => false,
+			'targetName' => '~2024-8',
+			'targetIsTemp' => true,
+			'targetIsAnon' => false,
+		];
 	}
 
 	/**
@@ -243,15 +262,19 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideDeletedContributionsErrorCases
+	 * @dataProvider provideDisplayConditionsForDeletedContributions
 	 */
-	public function testShouldNotDisplayOnNonDeletedContributionsPageOrIfPermissionsAreMissing(
+	public function testDisplayConditionsForDeletedContributions(
+		bool $expected,
 		string $specialPageName,
 		Authority $accessingAuthority,
-		string $targetUserName
+		string $targetUserName,
+		bool $isTempName,
+		int $offset,
+		?string $direction
 	) {
 		$out = $this->createMock( OutputPage::class );
-		$out->expects( $this->never() )
+		$out->expects( $expected ? $this->once() : $this->never() )
 			->method( 'addModules' );
 
 		$this->specialPage->method( 'getName' )
@@ -265,9 +288,13 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 			->with( $accessingAuthority->getUser(), 'ipinfo-beta-feature-enable' )
 			->willReturn( '1' );
 
-		$this->tempUserConfig->method( 'isTempName' )
+		$this->tempUserConfig
+			->method( 'isTempName' )
 			->with( $targetUserName )
-			->willReturn( false );
+			->willReturn( $isTempName );
+
+		$this->request->setVal( 'offset', $offset );
+		$this->request->setVal( 'dir', $direction );
 
 		$this->handler->onSpecialPageBeforeExecute(
 			$this->specialPage,
@@ -275,26 +302,78 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public static function provideDeletedContributionsErrorCases(): iterable {
+	public static function provideDisplayConditionsForDeletedContributions(): iterable {
 		yield 'incorrect special page' => [
-			'AllPages',
-			self::getValidAccessingAuthority(),
-			'127.0.0.1'
+			'expected' => false,
+			'specialPageName' => 'AllPages',
+			'accessingAuthority' => self::getValidAccessingAuthority(),
+			'targetUserName' => '127.0.0.1',
+			'isTempName' => false,
+			'offset' => 0,
+			'direction' => null
 		];
 		yield 'special page handled by other hook' => [
-			'Contributions',
-			self::getValidAccessingAuthority(),
-			'127.0.0.1'
+			'expected' => false,
+			'specialPageName' => 'Contributions',
+			'accessingAuthority' => self::getValidAccessingAuthority(),
+			'targetUserName' => '127.0.0.1',
+			'isTempName' => false,
+			'offset' => 0,
+			'direction' => null
 		];
 		yield 'named target user' => [
-			'DeletedContributions',
-			self::getValidAccessingAuthority(),
-			'TestUser'
+			'expected' => false,
+			'specialPageName' => 'DeletedContributions',
+			'accessingAuthority' => self::getValidAccessingAuthority(),
+			'targetUserName' => 'TestUser',
+			'isTempName' => false,
+			'offset' => 0,
+			'direction' => null
 		];
 		yield 'missing user rights' => [
-			'Contributions',
-			new SimpleAuthority( new UserIdentityValue( 2, 'TestUser2' ), [] ),
-			'127.0.0.1'
+			'expected' => false,
+			'specialPageName' => 'DeletedContributions',
+			'accessingAuthority' => new SimpleAuthority( new UserIdentityValue( 2, 'TestUser2' ), [] ),
+			'targetUserName' => '127.0.0.1',
+			'isTempName' => false,
+			'offset' => 0,
+			'direction' => null
+		];
+		yield 'IP address, first page' => [
+			'expected' => true,
+			'specialPageName' => 'DeletedContributions',
+			'accessingAuthority' => self::getValidAccessingAuthority(),
+			'targetUserName' => '127.0.0.1',
+			'isTempName' => false,
+			'offset' => 0,
+			'direction' => null
+		];
+		yield 'IP address, non-first page' => [
+			'expected' => true,
+			'specialPageName' => 'DeletedContributions',
+			'accessingAuthority' => self::getValidAccessingAuthority(),
+			'targetUserName' => '127.0.0.1',
+			'isTempName' => false,
+			'offset' => 10,
+			'direction' => null
+		];
+		yield 'IP address, first page, older first' => [
+			'expected' => true,
+			'specialPageName' => 'DeletedContributions',
+			'accessingAuthority' => self::getValidAccessingAuthority(),
+			'targetUserName' => '127.0.0.1',
+			'isTempName' => false,
+			'offset' => 0,
+			'direction' => 'prev'
+		];
+		yield 'IP address, non-first page, older first' => [
+			'expected' => true,
+			'specialPageName' => 'DeletedContributions',
+			'accessingAuthority' => self::getValidAccessingAuthority(),
+			'targetUserName' => '127.0.0.1',
+			'isTempName' => false,
+			'offset' => 0,
+			'direction' => 'prev'
 		];
 	}
 
@@ -303,11 +382,17 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testIsDisplayedOnContributionsPageOnFirstPageOnly(
 		bool $isDisplayed,
+		string $pageName,
 		string $targetName,
 		bool $targetIsTemp,
+		bool $targetIsAnon,
 		?int $offset,
 		?string $direction
 	) {
+		if ( $targetIsTemp && $targetIsAnon ) {
+			$this->fail( 'Bad test case: A user cannot be both temp and anon' );
+		}
+
 		$accessingAuthority = self::getValidAccessingAuthority();
 
 		$out = $this->createMock( OutputPage::class );
@@ -316,7 +401,7 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 			->with( 'ext.ipInfo' );
 
 		$this->specialPage->method( 'getName' )
-			->willReturn( 'Contributions' );
+			->willReturn( $pageName );
 		$this->specialPage->method( 'getAuthority' )
 			->willReturn( $accessingAuthority );
 		$this->specialPage->method( 'getOutput' )
@@ -333,6 +418,8 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 		$targetUser = $this->createMock( User::class );
 		$targetUser->method( 'getName' )
 			->willReturn( $targetName );
+		$targetUser->method( 'isAnon' )
+			->willReturn( $targetIsAnon );
 
 		$this->request->setVal( 'offset', $offset );
 		$this->request->setVal( 'dir', $direction );
@@ -345,60 +432,143 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideValidTargetsWithPaginationParams(): iterable {
-		yield 'IP user, on the first page, newer first' => [
+		// IP users (i.e. anonymous) should show the infobox in all pages (their
+		// name itself is an IP, therefore does not change across pages)
+		yield 'Contributions: IP user, on the first page, newer first' => [
 			'isDisplayed' => true,
+			'pageName' => 'Contributions',
 			'targetName' => '127.0.0.1',
 			'targetIsTemp' => false,
+			'targetIsAnon' => true,
 			'offset' => 0,
 			'direction' => null
 		];
-		yield 'IP user, not on the first page, newer first' => [
-			'isDisplayed' => false,
-			'targetName' => '127.0.0.1',
-			'targetIsTemp' => false,
-			'offset' => 100,
-			'direction' => null
-		];
-		yield 'IP user, on the first page, older first' => [
-			'isDisplayed' => false,
-			'targetName' => '127.0.0.1',
-			'targetIsTemp' => false,
-			'offset' => 0,
-			'direction' => 'prev'
-		];
-		yield 'IP user, not on the first page, older first' => [
-			'isDisplayed' => false,
-			'targetName' => '127.0.0.1',
-			'targetIsTemp' => false,
-			'offset' => 100,
-			'direction' => 'prev'
-		];
-		yield 'temporary user, on the first page, newer first' => [
+		yield 'Contributions: IP user, not on the first page, newer first' => [
 			'isDisplayed' => true,
-			'targetName' => '~2024-8',
-			'targetIsTemp' => true,
-			'offset' => 0,
-			'direction' => null
-		];
-		yield 'temporary user, not on the first page, newer first' => [
-			'isDisplayed' => false,
-			'targetName' => '~2024-8',
-			'targetIsTemp' => true,
+			'pageName' => 'Contributions',
+			'targetName' => '127.0.0.1',
+			'targetIsTemp' => false,
+			'targetIsAnon' => true,
 			'offset' => 100,
 			'direction' => null
 		];
-		yield 'temporary user, on the first page, older first' => [
-			'isDisplayed' => false,
-			'targetName' => '~2024-8',
-			'targetIsTemp' => true,
+		yield 'Contributions: IP user, on the first page, older first' => [
+			'isDisplayed' => true,
+			'pageName' => 'Contributions',
+			'targetName' => '127.0.0.1',
+			'targetIsTemp' => false,
+			'targetIsAnon' => true,
 			'offset' => 0,
 			'direction' => 'prev'
 		];
-		yield 'temporary user, not on the first page, older first' => [
-			'isDisplayed' => false,
+		yield 'Contributions: IP user, not on the first page, older first' => [
+			'isDisplayed' => true,
+			'pageName' => 'Contributions',
+			'targetName' => '127.0.0.1',
+			'targetIsTemp' => false,
+			'targetIsAnon' => true,
+			'offset' => 100,
+			'direction' => 'prev'
+		];
+		// Temp users may change IP by reconnecting (switching Wi-Fi networks
+		// etc. without logging out explicitly): We can't guarantee their IP is
+		// consistent across contributions, therefore the info is shown only in
+		// the first page.
+		yield 'Contributions: Temp user, on the first page, newer first' => [
+			'isDisplayed' => true,
+			'pageName' => 'Contributions',
 			'targetName' => '~2024-8',
 			'targetIsTemp' => true,
+			'targetIsAnon' => false,
+			'offset' => 0,
+			'direction' => null
+		];
+		yield 'Contributions: Temp user, not on the first page, newer first' => [
+			'isDisplayed' => false,
+			'pageName' => 'Contributions',
+			'targetName' => '~2024-8',
+			'targetIsTemp' => true,
+			'targetIsAnon' => false,
 			'offset' => 100,
+			'direction' => null
+		];
+		yield 'Contributions: Temp user, on the first page, older first' => [
+			'isDisplayed' => false,
+			'pageName' => 'Contributions',
+			'targetName' => '~2024-8',
+			'targetIsTemp' => true,
+			'targetIsAnon' => false,
+			'offset' => 0,
+			'direction' => 'prev'
+		];
+		yield 'Contributions: Temp user, not on the first page, older first' => [
+			'isDisplayed' => false,
+			'pageName' => 'Contributions',
+			'targetName' => '~2024-8',
+			'targetIsTemp' => true,
+			'targetIsAnon' => false,
+			'offset' => 100,
+			'direction' => 'prev'
+		];
+		// IPContributions is meant to always take an IP as its parameter, so
+		// the infobox is always shown regardless of the requested page number
+		// and direction.
+		yield 'IPContributions: Valid IP, first page' => [
+			'isDisplayed' => true,
+			'pageName' => 'IPContributions',
+			'targetName' => '127.0.0.1',
+			'targetIsTemp' => false,
+			'targetIsAnon' => true,
+			'offset' => 0,
+			'direction' => null
+		];
+		yield 'IPContributions: Valid IP, not first page' => [
+			'isDisplayed' => true,
+			'pageName' => 'IPContributions',
+			'targetName' => '127.0.0.1',
+			'targetIsTemp' => false,
+			'targetIsAnon' => true,
+			'offset' => 100,
+			'direction' => null
+		];
+		yield 'IPContributions: Valid IP, first page, older first' => [
+			'isDisplayed' => true,
+			'pageName' => 'IPContributions',
+			'targetName' => '127.0.0.1',
+			'targetIsTemp' => false,
+			'targetIsAnon' => true,
+			'offset' => 0,
+			'direction' => 'prev'
+		];
+		yield 'IPContributions: Valid IP, non-first page, older first' => [
+			'isDisplayed' => true,
+			'pageName' => 'IPContributions',
+			'targetName' => '127.0.0.1',
+			'targetIsTemp' => false,
+			'targetIsAnon' => true,
+			'offset' => 100,
+			'direction' => 'prev'
+		];
+		// The URL may carry a wrong, non-IP parameter (bad IPs, TempUser
+		// names...), and we should not try to load the IP info in that case
+		// (the page already shows an error message in those cases). This means
+		// we need to check if the user is anonymous (i.e. an "IP user").
+		yield 'IPContributions: Invalid IP, non-temp user' => [
+			'isDisplayed' => false,
+			'pageName' => 'IPContributions',
+			'targetName' => '300.0.0.1',
+			'targetIsTemp' => false,
+			'targetIsNamed' => false,
+			'offset' => 0,
+			'direction' => 'prev'
+		];
+		yield 'IPContributions: Bad request targeting a temp user' => [
+			'isDisplayed' => false,
+			'pageName' => 'IPContributions',
+			'targetName' => '~2024-8',
+			'targetIsTemp' => true,
+			'targetIsNamed' => false,
+			'offset' => 0,
 			'direction' => 'prev'
 		];
 	}
