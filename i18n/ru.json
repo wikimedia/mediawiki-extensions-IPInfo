@@ -11,7 +11,8 @@
 			"Stjn",
 			"Tanzun",
 			"Vitalisman",
-			"WindEwriX"
+			"WindEwriX",
+			"Mitte27"
 		]
 	},
 	"ipinfo-extensionname": "Информация об IP",
@@ -25,6 +26,9 @@
 	"ipinfo-property-label-connectiontype": "Способ соединения",
 	"ipinfo-property-label-usertype": "Владелец соединения",
 	"ipinfo-property-label-proxytypes": "Настоящий IP или прокси",
+	"ipinfo-property-label-behaviors": "Поведение",
+	"ipinfo-property-label-proxies": "Прокси",
+	"ipinfo-property-label-usercount": "Пользователи на этом IP-адресе",
 	"ipinfo-property-value-usertype-business": "Бизнес",
 	"ipinfo-property-value-usertype-government": "Правительство",
 	"ipinfo-property-value-usertype-library": "Библиотека",
@@ -36,6 +40,8 @@
 	"ipinfo-property-value-proxytype-istorexitnode": "Выходной узел Tor",
 	"ipinfo-property-value-proxytype-ishostingprovider": "Хостинг-провайдер",
 	"ipinfo-property-value-risk-tunnel": "Тоннель",
+	"ipinfo-property-value-risk-unknown": "Неизвестно",
+	"ipinfo-property-value-connectiontype-unknown": "Неизвестно",
 	"ipinfo-property-label-source": "Источник",
 	"ipinfo-property-label-active-blocks": "Активные блокировки",
 	"ipinfo-property-tooltip-proxytypes": "Прокси скрывают IP-адреса. В некоторых случаях это происходит автоматически, например, для жилых или корпоративных прокси; в других случаях это делается намеренно, чтобы скрыть происхождение IP-адреса.",
