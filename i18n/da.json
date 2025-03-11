@@ -3,7 +3,8 @@
 		"authors": [
 			"Antonla",
 			"Dipsacus fullonum",
-			"Saederup92"
+			"Saederup92",
+			"Sarrus"
 		]
 	},
 	"ipinfo-infobox-title": "IP-information",
@@ -50,6 +51,7 @@
 	"action-ipinfo-view-full": "se fuld IP-information tilknyttet revisioner eller logposter",
 	"action-ipinfo-view-log": "se en log over hvem som har set IP-information",
 	"group-no-ipinfo": "Brugere blokeret fra IP-informationsværktøjet",
+	"group-no-ipinfo-member": "{{GENDER:$1|blokeret fra IP-informationsværktøjet}}",
 	"grouppage-no-ipinfo": "{{ns:project}}:Brugere blokeret fra IP-informationsværktøjet",
 	"ipinfo-log-header": "Dette er en log over:\n# Brugen af IP-informationsværktøjet til at vise information om IP'er, og\n# Ændringer af brugeradgangsnivauer for værktøjet.",
 	"logentry-ipinfo-view_infobox": "$1 {{GENDER:$2|så}} IP-informationsinfoboks for $3. $4.",
