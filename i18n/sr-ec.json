@@ -114,6 +114,7 @@
 	"ipinfo-blocklist-url-text": "Списак блокада",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 обрисана измене|$1 обрисане измене|0=Нема обрисаних измена}}",
 	"ipinfo-special-ipinfo": "IP информације",
+	"ipinfo-special-ipinfo-legend": "Увид у IP информације о свим IP адресама које је користио привремени налог. Највише $1 {{PLURAL:$1|резултата}} се приказује.",
 	"ipinfo-deleted-edits-url-text": "Избрисани доприноси",
 	"ipinfo-special-ipinfo-table-caption": "IP информације за $1",
 	"ipinfo-special-ipinfo-target": "Циљано корисничко име:",
