@@ -40,9 +40,9 @@ const log = function ( action, context, data = {} ) {
 		mw.user.getRights( ( rights ) => {
 			let highestAccessLevel;
 
-			if ( rights.indexOf( 'ipinfo-view-full' ) !== -1 ) {
+			if ( rights.includes( 'ipinfo-view-full' ) ) {
 				highestAccessLevel = 'full';
-			} else if ( rights.indexOf( 'ipinfo-view-basic' ) !== -1 ) {
+			} else if ( rights.includes( 'ipinfo-view-basic' ) ) {
 				highestAccessLevel = 'basic';
 			}
 
