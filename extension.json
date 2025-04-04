@@ -158,10 +158,7 @@
 	"HookHandlers": {
 		"popup": {
 			"class": "MediaWiki\\IPInfo\\HookHandler\\PopupHandler",
-			"services": [
-				"PermissionManager",
-				"UserOptionsLookup"
-			]
+			"factory": "MediaWiki\\IPInfo\\HookHandler\\PopupHandler::factory"
 		},
 		"infobox": {
 			"class": "MediaWiki\\IPInfo\\HookHandler\\InfoboxHandler",
