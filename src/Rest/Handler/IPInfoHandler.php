@@ -4,6 +4,7 @@ namespace MediaWiki\IPInfo\Rest\Handler;
 
 use JobQueueGroup;
 use MediaWiki\IPInfo\AccessLevelTrait;
+use MediaWiki\IPInfo\Hook\IPInfoHookRunner;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Jobs\LogIPInfoAccessJob;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
@@ -89,6 +90,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 
 	private ExtensionRegistry $extensionRegistry;
 	private ReadOnlyMode $readOnlyMode;
+	private IPInfoHookRunner $ipInfoHookRunner;
 
 	public function __construct(
 		InfoManager $infoManager,
@@ -101,7 +103,8 @@ abstract class IPInfoHandler extends SimpleHandler {
 		UserIdentityUtils $userIdentityUtils,
 		TempUserIPLookup $tempUserIPLookup,
 		ExtensionRegistry $extensionRegistry,
-		ReadOnlyMode $readOnlyMode
+		ReadOnlyMode $readOnlyMode,
+		IPInfoHookRunner $ipInfoHookRunner
 	) {
 		$this->infoManager = $infoManager;
 		$this->permissionManager = $permissionManager;
@@ -114,6 +117,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 		$this->tempUserIPLookup = $tempUserIPLookup;
 		$this->extensionRegistry = $extensionRegistry;
 		$this->readOnlyMode = $readOnlyMode;
+		$this->ipInfoHookRunner = $ipInfoHookRunner;
 	}
 
 	/**
@@ -206,6 +210,24 @@ abstract class IPInfoHandler extends SimpleHandler {
 					if ( !in_array( $datum, self::VIEWING_CONTEXTS[$dataContext] ?? [] ) ) {
 						unset( $info[$index]['data'][$provider][$datum] );
 					}
+				}
+			}
+
+			// Processing of dataset (context/permission unsets) for the subject is done by this point
+			// so allow other extensions to append to this dataset with their own data.
+			// IPInfo passes along the context via the hook and extensions are responsible
+			// for managing their own permissions/contextual view logic.
+			$otherData = [];
+			$this->ipInfoHookRunner->onIPInfoHandlerRun(
+				$set['subject'], $dataContext, $otherData
+			);
+
+			if ( count( $otherData ) ) {
+				foreach ( $otherData as $source => $itemInfo ) {
+					if ( !isset( $info[$index]['data'][$source] ) ) {
+						$info[$index]['data'][$source] = [];
+					}
+					$info[$index]['data'][$source] = array_merge( $info[$index]['data'][$source], $itemInfo );
 				}
 			}
 		}

@@ -183,7 +183,7 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 			)
 		);
 
-	mw.hook( 'ext.ipinfo.infobox.widget' ).fire( $info );
+	mw.hook( 'ext.ipinfo.infobox.widget' ).fire( $info, info, this.generatePropertyMarkup );
 
 	return $info;
 };

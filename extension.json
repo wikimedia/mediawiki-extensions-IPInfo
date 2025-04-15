@@ -85,7 +85,8 @@
 				"UserIdentityUtils",
 				"IPInfoTempUserIPLookup",
 				"ExtensionRegistry",
-				"ReadOnlyMode"
+				"ReadOnlyMode",
+				"IPInfoHookRunner"
 			],
 			"factory": "MediaWiki\\IPInfo\\Rest\\Handler\\RevisionHandler::factory"
 		},
@@ -103,7 +104,8 @@
 				"UserIdentityUtils",
 				"IPInfoTempUserIPLookup",
 				"ExtensionRegistry",
-				"ReadOnlyMode"
+				"ReadOnlyMode",
+				"IPInfoHookRunner"
 			],
 			"factory": "MediaWiki\\IPInfo\\Rest\\Handler\\ArchivedRevisionHandler::factory"
 		},
@@ -121,7 +123,8 @@
 				"IPInfoTempUserIPLookup",
 				"ExtensionRegistry",
 				"ReadOnlyMode",
-				"IPInfoAnonymousUserIPLookup"
+				"IPInfoAnonymousUserIPLookup",
+				"IPInfoHookRunner"
 			],
 			"factory": "MediaWiki\\IPInfo\\Rest\\Handler\\NoRevisionHandler::factory"
 		},
@@ -140,7 +143,8 @@
 				"UserIdentityLookup",
 				"IPInfoTempUserIPLookup",
 				"ExtensionRegistry",
-				"ReadOnlyMode"
+				"ReadOnlyMode",
+				"IPInfoHookRunner"
 			],
 			"factory": "MediaWiki\\IPInfo\\Rest\\Handler\\LogHandler::factory"
 		}

@@ -40,7 +40,8 @@ class NoRevisionHandlerTest extends HandlerTestCase {
 			$services->get( 'IPInfoTempUserIPLookup' ),
 			$services->getExtensionRegistry(),
 			$services->getReadOnlyMode(),
-			$services->get( 'IPInfoAnonymousUserIPLookup' )
+			$services->get( 'IPInfoAnonymousUserIPLookup' ),
+			$services->get( 'IPInfoHookRunner' )
 		);
 	}
 
@@ -264,5 +265,29 @@ class NoRevisionHandlerTest extends HandlerTestCase {
 		yield 'anonymous user with no known revisions or logs' => [
 			static fn () => '1.2.3.4',
 		];
+	}
+
+	public function testIPInfoHandlerRunHook() {
+		$this->setTemporaryHook( 'IPInfoHandlerRun', static function (
+			string $target,
+			string $dataContext,
+			array &$dataContainer
+		) {
+			$dataContainer['test'] = [
+				'foo' => 'bar'
+			];
+		} );
+
+		// User is assumed to have access to IPInfo. Access gated by these options are tested by IPInfoHandler
+		$authority = self::$sysopSuppress;
+		$this->setUserOptions( $authority, [ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ] );
+
+		$request = self::getRequestData( self::$tempUser->getName(), self::VALID_CSRF_TOKEN );
+		$response = $this->executeWithUser( $request, $authority );
+		$body = json_decode( $response->getBody()->getContents(), true );
+
+		$this->assertSame( 200, $response->getStatusCode() );
+		$this->assertArrayHasKey( 'test', $body['info'][0]['data'] );
+		$this->assertSame( [ 'foo' => 'bar' ], $body['info'][0]['data']['test'] );
 	}
 }

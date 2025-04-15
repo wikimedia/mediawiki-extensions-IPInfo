@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo\Rest\Handler;
 
 use JobQueueGroup;
+use MediaWiki\IPInfo\Hook\IPInfoHookRunner;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\IPInfo\TempUserIPLookup;
@@ -34,7 +35,8 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 		UserIdentityUtils $userIdentityUtils,
 		TempUserIPLookup $tempUserIPLookup,
 		ExtensionRegistry $extensionRegistry,
-		ReadOnlyMode $readOnlyMode
+		ReadOnlyMode $readOnlyMode,
+		IPInfoHookRunner $ipInfoHookRunner
 	) {
 		parent::__construct(
 			$infoManager,
@@ -47,7 +49,8 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 			$userIdentityUtils,
 			$tempUserIPLookup,
 			$extensionRegistry,
-			$readOnlyMode
+			$readOnlyMode,
+			$ipInfoHookRunner
 		);
 		$this->archivedRevisionLookup = $archivedRevisionLookup;
 	}
@@ -63,7 +66,8 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 		UserIdentityUtils $userIdentityUtils,
 		TempUserIPLookup $tempUserIPLookup,
 		ExtensionRegistry $extensionRegistry,
-		ReadOnlyMode $readOnlyMode
+		ReadOnlyMode $readOnlyMode,
+		IPInfoHookRunner $ipInfoHookRunner
 	): self {
 		return new self(
 			$infoManager,
@@ -77,7 +81,8 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 			$userIdentityUtils,
 			$tempUserIPLookup,
 			$extensionRegistry,
-			$readOnlyMode
+			$readOnlyMode,
+			$ipInfoHookRunner
 		);
 	}
 

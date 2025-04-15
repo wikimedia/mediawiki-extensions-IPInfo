@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo\Test\Unit\Rest\Handler;
 
 use JobQueueGroup;
+use MediaWiki\IPInfo\Hook\IPInfoHookRunner;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Handler\ArchivedRevisionHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
@@ -90,6 +91,7 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 				'tempUserIPLookup' => $this->createMock( TempUserIPLookup::class ),
 				'extensionRegistry' => $this->createMock( ExtensionRegistry::class ),
 				'readOnlyMode' => $this->createMock( ReadOnlyMode::class ),
+				'ipInfoHookRunner' => $this->createMock( IPInfoHookRunner::class ),
 			] )
 			->onlyMethods( [] )
 			->getMock();
@@ -170,6 +172,7 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 				'tempUserIPLookup' => $this->createMock( TempUserIPLookup::class ),
 				'extensionRegistry' => $this->createMock( ExtensionRegistry::class ),
 				'readOnlyMode' => $this->createMock( \Wikimedia\Rdbms\ReadOnlyMode::class ),
+				'ipInfoHookRunner' => $this->createMock( IPInfoHookRunner::class ),
 			] )
 			->onlyMethods( [ 'getAuthority' ] )
 			->getMock();
@@ -198,7 +201,8 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 				$this->createMock( UserIdentityUtils::class ),
 				$this->createMock( TempUserIPLookup::class ),
 				$this->createMock( ExtensionRegistry::class ),
-				$this->createMock( ReadOnlyMode::class )
+				$this->createMock( ReadOnlyMode::class ),
+				$this->createMock( IPInfoHookRunner::class )
 			)
 		);
 	}
