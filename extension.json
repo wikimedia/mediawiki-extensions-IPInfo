@@ -36,6 +36,8 @@
 			"tests/qunit/utils.js",
 			"tests/qunit/ext.ipInfo/infobox/widget.test.js",
 			"tests/qunit/ext.ipInfo/rest.test.js",
+			"modules/ext.ipInfo/popup/init.js",
+			"tests/qunit/ext.ipInfo/popup/init.test.js",
 			"modules/ext.ipInfo/infobox/widget.js",
 			"modules/ext.ipInfo/widget.js",
 			"modules/ext.ipInfo/rest.js",

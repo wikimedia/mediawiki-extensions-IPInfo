@@ -17,6 +17,15 @@ mw.hook( 'wikipage.content' ).add( ( $content ) => {
 			return '';
 		}
 
+		// wgCheckUserIsPerformedBlocked implies that CheckUser is available and the current user has IP reveal rights.
+		// CheckUser takes care of rendering an info widget with block details in this scenario. (T345639).
+		if (
+			mw.util.isTemporaryUser( targetUserName ) &&
+			mw.config.get( 'wgCheckUserIsPerformerBlocked' )
+		) {
+			return '';
+		}
+
 		const $revIdAncestor = $( this ).closest( '[data-mw-revid]' );
 		const $changedby = $( this ).closest( '.changedby' );
 		if ( $revIdAncestor.length > 0 ) {
