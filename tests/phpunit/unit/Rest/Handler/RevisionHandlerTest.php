@@ -4,6 +4,7 @@ namespace MediaWiki\IPInfo\Test\Unit\Rest\Handler;
 
 use JobQueueGroup;
 use MediaWiki\Block\AbstractBlock;
+use MediaWiki\IPInfo\Hook\IPInfoHookRunner;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Handler\RevisionHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
@@ -52,6 +53,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 				'tempUserIPLookup' => $this->createMock( TempUserIPLookup::class ),
 				'extensionRegistry' => $this->createMock( ExtensionRegistry::class ),
 				'readOnlyMode' => $this->createMock( ReadOnlyMode::class ),
+				'ipInfoHookRunner' => $this->createMock( IPInfoHookRunner::class ),
 			],
 			$options
 		) ) );
@@ -428,7 +430,8 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 				$this->createMock( UserIdentityUtils::class ),
 				$this->createMock( TempUserIPLookup::class ),
 				$this->createMock( ExtensionRegistry::class ),
-				$this->createMock( ReadOnlyMode::class )
+				$this->createMock( ReadOnlyMode::class ),
+				$this->createMock( IPInfoHookRunner::class )
 			)
 		);
 	}

@@ -4,6 +4,7 @@ namespace MediaWiki\IPInfo\Rest\Handler;
 
 use JobQueueGroup;
 use MediaWiki\IPInfo\AnonymousUserIPLookup;
+use MediaWiki\IPInfo\Hook\IPInfoHookRunner;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\IPInfo\TempUserIPLookup;
@@ -35,7 +36,8 @@ class NoRevisionHandler extends IPInfoHandler {
 		TempUserIPLookup $tempUserIPLookup,
 		ExtensionRegistry $extensionRegistry,
 		AnonymousUserIPLookup $anonymousUserIPLookup,
-		ReadOnlyMode $readOnlyMode
+		ReadOnlyMode $readOnlyMode,
+		IPInfoHookRunner $ipInfoHookRunner
 	) {
 		parent::__construct(
 			$infoManager,
@@ -48,7 +50,8 @@ class NoRevisionHandler extends IPInfoHandler {
 			$userIdentityUtils,
 			$tempUserIPLookup,
 			$extensionRegistry,
-			$readOnlyMode
+			$readOnlyMode,
+			$ipInfoHookRunner
 		);
 		$this->anonymousUserIPLookup = $anonymousUserIPLookup;
 	}
@@ -64,7 +67,8 @@ class NoRevisionHandler extends IPInfoHandler {
 		TempUserIPLookup $tempUserIPLookup,
 		ExtensionRegistry $extensionRegistry,
 		ReadOnlyMode $readOnlyMode,
-		AnonymousUserIPLookup $anonymousUserIPLookup
+		AnonymousUserIPLookup $anonymousUserIPLookup,
+		IPInfoHookRunner $ipInfoHookRunner
 	): self {
 		return new self(
 			$infoManager,
@@ -78,7 +82,8 @@ class NoRevisionHandler extends IPInfoHandler {
 			$tempUserIPLookup,
 			$extensionRegistry,
 			$anonymousUserIPLookup,
-			$readOnlyMode
+			$readOnlyMode,
+			$ipInfoHookRunner
 		);
 	}
 

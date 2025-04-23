@@ -26,6 +26,9 @@ abstract class HandlerTestCase extends MediaWikiIntegrationTestCase {
 
 	/** @before */
 	public function ipInfoSetUp(): void {
+		// Stop external extensions from affecting IPInfo by clearing the hook
+		$this->clearHook( 'IPInfoHandlerRun' );
+
 		$this->setGroupPermissions( [
 			'sysop' => [
 				'ipinfo' => true,

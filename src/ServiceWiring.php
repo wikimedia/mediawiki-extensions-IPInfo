@@ -2,6 +2,7 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\IPInfo\AnonymousUserIPLookup;
+use MediaWiki\IPInfo\Hook\IPInfoHookRunner;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\InfoRetriever\BlockInfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\ContributionInfoRetriever;
@@ -95,6 +96,11 @@ return [
 			$services->getUserIdentityUtils(),
 			ExtensionRegistry::getInstance(),
 			LoggerFactory::getInstance( 'IPInfo' )
+		);
+	},
+	'IPInfoHookRunner' => static function ( MediaWikiServices $services ): IPInfoHookRunner {
+		return new IPInfoHookRunner(
+			$services->getHookContainer()
 		);
 	},
 	'ReaderFactory' => static function (): ReaderFactory {

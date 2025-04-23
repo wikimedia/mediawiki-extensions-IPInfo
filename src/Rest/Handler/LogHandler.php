@@ -6,6 +6,7 @@ use DatabaseLogEntry;
 use JobQueueGroup;
 use LogEventsList;
 use LogPage;
+use MediaWiki\IPInfo\Hook\IPInfoHookRunner;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\IPInfo\TempUserIPLookup;
@@ -43,7 +44,8 @@ class LogHandler extends IPInfoHandler {
 		UserIdentityLookup $userIdentityLookup,
 		TempUserIPLookup $tempUserIPLookup,
 		ExtensionRegistry $extensionRegistry,
-		ReadOnlyMode $readOnlyMode
+		ReadOnlyMode $readOnlyMode,
+		IPInfoHookRunner $ipInfoHookRunner
 	) {
 		parent::__construct(
 			$infoManager,
@@ -56,7 +58,8 @@ class LogHandler extends IPInfoHandler {
 			$userIdentityUtils,
 			$tempUserIPLookup,
 			$extensionRegistry,
-			$readOnlyMode
+			$readOnlyMode,
+			$ipInfoHookRunner
 		);
 		$this->dbProvider = $dbProvider;
 		$this->userIdentityLookup = $userIdentityLookup;
@@ -74,7 +77,8 @@ class LogHandler extends IPInfoHandler {
 		UserIdentityLookup $userIdentityLookup,
 		TempUserIPLookup $tempUserIPLookup,
 		ExtensionRegistry $extensionRegistry,
-		ReadOnlyMode $readOnlyMode
+		ReadOnlyMode $readOnlyMode,
+		IPInfoHookRunner $ipInfoHookRunner
 	): self {
 		return new self(
 			$infoManager,
@@ -89,7 +93,8 @@ class LogHandler extends IPInfoHandler {
 			$userIdentityLookup,
 			$tempUserIPLookup,
 			$extensionRegistry,
-			$readOnlyMode
+			$readOnlyMode,
+			$ipInfoHookRunner
 		);
 	}
 
