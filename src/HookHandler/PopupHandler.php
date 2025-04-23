@@ -4,31 +4,45 @@ namespace MediaWiki\IPInfo\HookHandler;
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\Hook\BeforePageDisplayHook;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\User\Options\UserOptionsLookup;
+use MobileContext;
 
 class PopupHandler implements BeforePageDisplayHook {
-	private PermissionManager $permissionManager;
 	private UserOptionsLookup $userOptionsLookup;
+	private ExtensionRegistry $extensionRegistry;
+	private ?MobileContext $mobileContext;
 
 	public function __construct(
-		PermissionManager $permissionManager,
-		UserOptionsLookup $userOptionsLookup
+		UserOptionsLookup $userOptionsLookup,
+		ExtensionRegistry $extensionRegistry,
+		?MobileContext $mobileContext
 	) {
-		$this->permissionManager = $permissionManager;
 		$this->userOptionsLookup = $userOptionsLookup;
+		$this->extensionRegistry = $extensionRegistry;
+		$this->mobileContext = $mobileContext;
+	}
+
+	public static function factory(): self {
+		$services = MediaWikiServices::getInstance();
+
+		$mobileContext = null;
+
+		if ( $services->getExtensionRegistry()->isLoaded( 'MobileFrontend' ) ) {
+			$mobileContext = $services->getService( 'MobileFrontend.Context' );
+		}
+
+		return new self(
+			$services->getUserOptionsLookup(),
+			$services->getExtensionRegistry(),
+			$mobileContext
+		);
 	}
 
 	/** @inheritDoc */
 	public function onBeforePageDisplay( $out, $skin ): void {
 		// T339861: Don't load on mobile until T268177 is resolved
-		$services = MediaWikiServices::getInstance();
-		$extensionRegistry = ExtensionRegistry::getInstance();
-		if (
-			$extensionRegistry->isLoaded( 'MobileFrontend' ) &&
-			$services->getService( 'MobileFrontend.Context' )->shouldDisplayMobileView()
-		) {
+		if ( $this->mobileContext && $this->mobileContext->shouldDisplayMobileView() ) {
 			return;
 		}
 
@@ -44,11 +58,11 @@ class PopupHandler implements BeforePageDisplayHook {
 			return;
 		}
 
-		$user = $out->getUser();
-		$isBetaFeaturesLoaded = $extensionRegistry->isLoaded( 'BetaFeatures' );
+		$user = $out->getAuthority()->getUser();
+		$isBetaFeaturesLoaded = $this->extensionRegistry->isLoaded( 'BetaFeatures' );
 
 		if (
-			!$this->permissionManager->userHasRight( $user, 'ipinfo' ) ||
+			!$out->getAuthority()->isAllowed( 'ipinfo' ) ||
 			!$this->userOptionsLookup->getOption( $user, 'ipinfo-use-agreement' ) ||
 			( $isBetaFeaturesLoaded &&
 				!$this->userOptionsLookup->getOption( $user, 'ipinfo-beta-feature-enable' )
