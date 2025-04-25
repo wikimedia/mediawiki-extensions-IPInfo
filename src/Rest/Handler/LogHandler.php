@@ -2,15 +2,15 @@
 
 namespace MediaWiki\IPInfo\Rest\Handler;
 
-use DatabaseLogEntry;
-use JobQueueGroup;
-use LogEventsList;
-use LogPage;
 use MediaWiki\IPInfo\Hook\IPInfoHookRunner;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\IPInfo\TempUserIPLookup;
+use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\Languages\LanguageFallback;
+use MediaWiki\Logging\DatabaseLogEntry;
+use MediaWiki\Logging\LogEventsList;
+use MediaWiki\Logging\LogPage;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Rest\LocalizedHttpException;

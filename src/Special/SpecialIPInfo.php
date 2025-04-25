@@ -3,6 +3,7 @@ namespace MediaWiki\IPInfo\Special;
 
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Exception\UserBlockedError;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\TemplateParser;
 use MediaWiki\HTMLForm\HTMLForm;
@@ -21,7 +22,6 @@ use MediaWiki\User\Options\UserOptionsManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNameUtils;
-use UserBlockedError;
 use Wikimedia\IPUtils;
 use Wikimedia\ObjectCache\BagOStuff;
 

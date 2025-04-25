@@ -3,9 +3,9 @@
 namespace MediaWiki\IPInfo\Test\Unit\Logging;
 
 use Generator;
-use ManualLogEntry;
 use MediaWiki\IPInfo\Logging\Logger;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentityValue;

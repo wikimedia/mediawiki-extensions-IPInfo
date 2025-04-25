@@ -2,11 +2,11 @@
 
 namespace MediaWiki\IPInfo\Rest\Handler;
 
-use JobQueueGroup;
 use MediaWiki\IPInfo\Hook\IPInfoHookRunner;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\IPInfo\TempUserIPLookup;
+use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Registration\ExtensionRegistry;

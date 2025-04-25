@@ -6,13 +6,13 @@ use DOMDocument;
 use DOMNode;
 use HtmlFormatter\HtmlFormatter;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Exception\PermissionsError;
+use MediaWiki\Exception\UserBlockedError;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\IPInfo\Special\SpecialIPInfo;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;
-use PermissionsError;
 use SpecialPageTestBase;
-use UserBlockedError;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 
 /**

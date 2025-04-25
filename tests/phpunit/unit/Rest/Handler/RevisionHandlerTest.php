@@ -2,13 +2,13 @@
 
 namespace MediaWiki\IPInfo\Test\Unit\Rest\Handler;
 
-use JobQueueGroup;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\IPInfo\Hook\IPInfoHookRunner;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Rest\Handler\RevisionHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\IPInfo\TempUserIPLookup;
+use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;

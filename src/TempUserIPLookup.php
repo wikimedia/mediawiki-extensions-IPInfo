@@ -1,9 +1,9 @@
 <?php
 namespace MediaWiki\IPInfo;
 
-use DatabaseLogEntry;
 use MapCacheLRU;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Logging\DatabaseLogEntry;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;

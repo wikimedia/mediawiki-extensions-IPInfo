@@ -2,11 +2,11 @@
 
 namespace MediaWiki\IPInfo\Test\Integration;
 
-use DatabaseLogEntry;
-use ManualLogEntry;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\IPInfo\TempUserIPLookup;
 use MediaWiki\IPInfo\TempUserIPRecord;
+use MediaWiki\Logging\DatabaseLogEntry;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;

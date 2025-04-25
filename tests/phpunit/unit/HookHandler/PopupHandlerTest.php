@@ -9,7 +9,7 @@ use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;
-use MediaWiki\User\StaticUserOptionsLookup;
+use MediaWiki\User\Options\StaticUserOptionsLookup;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 

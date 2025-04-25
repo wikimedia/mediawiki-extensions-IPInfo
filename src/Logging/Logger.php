@@ -2,7 +2,7 @@
 
 namespace MediaWiki\IPInfo\Logging;
 
-use ManualLogEntry;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentity;

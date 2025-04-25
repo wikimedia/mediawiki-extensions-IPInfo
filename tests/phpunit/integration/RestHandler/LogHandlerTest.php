@@ -3,15 +3,15 @@
 namespace MediaWiki\IPInfo\Test\Integration\RestHandler;
 
 use ArrayUtils;
-use DatabaseLogEntry;
-use LogPage;
-use ManualLogEntry;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\IPInfo\Info\BlockInfo;
 use MediaWiki\IPInfo\Rest\Handler\LogHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Logging\DatabaseLogEntry;
+use MediaWiki\Logging\LogPage;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;

@@ -18,7 +18,7 @@ use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\User\StaticUserOptionsLookup;
+use MediaWiki\User\Options\StaticUserOptionsLookup;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Message\MessageValue;

@@ -1,9 +1,9 @@
 <?php
 namespace MediaWiki\IPInfo\Test\Unit;
 
-use DatabaseLogEntry;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\IPInfo\TempUserIPLookup;
+use MediaWiki\Logging\DatabaseLogEntry;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentityUtils;

@@ -2,8 +2,8 @@
 
 namespace MediaWiki\IPInfo\Test\Integration;
 
-use ManualLogEntry;
 use MediaWiki\IPInfo\AnonymousUserIPLookup;
+use MediaWiki\Logging\ManualLogEntry;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\TitleValue;

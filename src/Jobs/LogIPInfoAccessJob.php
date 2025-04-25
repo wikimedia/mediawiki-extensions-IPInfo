@@ -2,10 +2,10 @@
 
 namespace MediaWiki\IPInfo\Jobs;
 
-use IJobSpecification;
-use Job;
-use JobSpecification;
 use MediaWiki\IPInfo\Logging\LoggerFactory;
+use MediaWiki\JobQueue\IJobSpecification;
+use MediaWiki\JobQueue\Job;
+use MediaWiki\JobQueue\JobSpecification;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 
