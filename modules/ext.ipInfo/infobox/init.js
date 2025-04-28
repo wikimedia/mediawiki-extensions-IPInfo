@@ -149,6 +149,7 @@ function initInfoboxWidget() {
 				}
 
 				mw.track( 'timing.MediaWiki.ipinfo_infobox_delay', mw.now() - timerStart );
+				mw.track( 'stats.IPInfo_infobox_delay_seconds', mw.now() - timerStart );
 				return data;
 			} )
 		);
