@@ -74,7 +74,7 @@ mw.hook( 'wikipage.content' ).add( ( $content ) => {
 						}
 					}
 					mw.track( 'timing.MediaWiki.ipinfo_popup_delay', mw.now() - popupIpInfoDelayStart );
-					mw.track( 'stats.IPInfo_popup_delay_seconds', mw.now() - popupIpInfoDelayStart );
+					mw.track( 'stats.mediawiki_IPInfo_popup_delay_seconds', mw.now() - popupIpInfoDelayStart );
 					eventLogger.log( 'open_popup', 'page' );
 
 					return data;
