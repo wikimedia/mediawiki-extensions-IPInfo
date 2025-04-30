@@ -5,11 +5,22 @@ const postToRestApi = require( '../rest.js' );
 mw.hook( 'wikipage.content' ).add( ( $content ) => {
 	eventLogger.logIpCopy();
 
-	$content.find( '.mw-anonuserlink, .mw-tempuserlink' ).after( function () {
+	$content.find( 'a.mw-anonuserlink, a.mw-tempuserlink' ).after( function () {
 		let id, type;
 		$( this ).addClass( 'ext-ipinfo-anonuserlink-loaded' );
 
-		const targetUserName = $( this ).text();
+		/**
+		 * Extract the username from a user link.
+		 *
+		 * @param {jQuery} $link
+		 * @return {string}
+		 */
+		function getUserName( $link ) {
+			// eslint-disable-next-line no-jquery/no-class-state
+			return $link.hasClass( 'mw-tempuserlink' ) ? $link.attr( 'data-mw-target' ) : $link.text();
+		}
+
+		const targetUserName = getUserName( $( this ) );
 		if ( !(
 			mw.util.isIPAddress( targetUserName ) ||
 			mw.util.isTemporaryUser( targetUserName )
@@ -34,7 +45,7 @@ mw.hook( 'wikipage.content' ).add( ( $content ) => {
 		} else if ( $changedby.length > 0 ) {
 			const $revLines = $( this ).closest( 'table' ).find( '.mw-changeslist-line[data-mw-revid]' );
 			$revLines.each( function () {
-				const $innerTarget = $( this ).find( '.mw-anonuserlink, .mw-tempuserlink' ).text();
+				const $innerTarget = getUserName( $( this ).find( '.mw-anonuserlink, .mw-tempuserlink' ) );
 				if ( targetUserName === $innerTarget ) {
 					id = $( this ).closest( '.mw-changeslist-line [data-mw-revid]' ).attr( 'data-mw-revid' );
 					return false;
