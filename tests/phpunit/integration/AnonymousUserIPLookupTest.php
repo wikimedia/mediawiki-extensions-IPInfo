@@ -139,7 +139,7 @@ class AnonymousUserIPLookupTest extends MediaWikiIntegrationTestCase {
 			->row( [
 				'afl_global' => 0,
 				'afl_filter_id' => 1,
-				'afl_user' => 1,
+				'afl_user' => 0,
 				'afl_user_text' => '1.2.3.4',
 				'afl_ip' => '1.2.3.4',
 				'afl_action' => 'edit',
