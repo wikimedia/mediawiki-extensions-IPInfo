@@ -88,23 +88,46 @@ class AnonymousUserIPLookup {
 				return true;
 			}
 
-			$latestPrivateEvent = $dbr->newSelectQueryBuilder()
-				->select( '1' )
-				->from( 'cu_private_event' )
-				// T338276
-				->useIndex( 'cupe_actor_ip_time' )
-				// T359962
-				->leftJoin( 'actor', null, 'cupe_actor=actor_id' )
-				->where(
-					$dbr
-						->expr( 'actor_name', '=', $ip )
-						->orExpr( $dbr->expr( 'cupe_actor', '=', null )->and( 'cupe_ip', '=', $ip ) )
-				)
+			$actorId = $dbr->newSelectQueryBuilder()
+				->select( 'actor_id' )
+				->from( 'actor' )
+				->where( [
+					'actor_name' => $ip,
+				] )
 				->limit( 1 )
 				->caller( __METHOD__ )
-				->fetchRow();
-			if ( $latestPrivateEvent ) {
-				return true;
+				->fetchField();
+
+			if ( $actorId ) {
+				$latestPrivateEventWithActor = $dbr->newSelectQueryBuilder()
+					->select( '1' )
+					->from( 'cu_private_event' )
+					// T338276
+					->useIndex( 'cupe_actor_ip_time' )
+					->where(
+						$dbr->expr( 'cupe_actor', '=', $actorId )
+					)
+					->limit( 1 )
+					->caller( __METHOD__ )
+					->fetchRow();
+				if ( $latestPrivateEventWithActor ) {
+					return true;
+				}
+			} else {
+				$latestPrivateEvent = $dbr->newSelectQueryBuilder()
+					->select( '1' )
+					->from( 'cu_private_event' )
+					// T338276
+					->useIndex( 'cupe_actor_ip_time' )
+					->where(
+						$dbr->expr( 'cupe_actor', '=', null )->and( 'cupe_ip', '=', $ip )
+					)
+					->limit( 1 )
+					->caller( __METHOD__ )
+					->fetchRow();
+				if ( $latestPrivateEvent ) {
+					return true;
+				}
 			}
 		}
 
@@ -114,8 +137,9 @@ class AnonymousUserIPLookup {
 				->from( 'abuse_filter_log' )
 				->where( [
 					'afl_user_text' => $ip,
+					'afl_user' => 0,
 				] )
-				->useIndex( 'afl_ip_timestamp' )
+				->useIndex( 'afl_user_timestamp' )
 				->limit( 1 )
 				->caller( __METHOD__ )
 				->fetchRow();
