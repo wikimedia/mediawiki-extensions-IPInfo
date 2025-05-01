@@ -66,7 +66,7 @@ class SpecialIPInfoTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $doesWrites );
 	}
 
-	public function provideDoesWritesData(): iterable {
+	public static function provideDoesWritesData(): iterable {
 		yield 'agreement accepted' => [ true, false ];
 		yield 'agreement not accepted' => [ false, true ];
 	}
