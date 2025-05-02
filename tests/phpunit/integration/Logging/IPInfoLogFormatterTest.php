@@ -8,6 +8,7 @@ use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 
 /**
  * @covers \MediaWiki\IPInfo\Logging\IPInfoLogFormatter
+ * @group Database For checking if temp accounts are expired and style them as such
  */
 class IPInfoLogFormatterTest extends LogFormatterTestCase {
 	public static function provideIPInfoLogDatabaseRows(): array {
