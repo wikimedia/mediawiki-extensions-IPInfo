@@ -72,7 +72,7 @@
 	"ipinfo-infobox-disable-instructions": "Jos haluat poistaa tämän toiminnon käytöstä, voit tehdä sen [[Special:Preferences|asetuksissa]].",
 	"ipinfo-use-agreement-submit-error": "Jotain meni pieleen. Yritä uudelleen. Virheilmoitus oli: $1",
 	"ipinfo-rest-access-denied": "Sinulla ei ole oikeutta suorittaa toimintoa",
-	"ipinfo-rest-access-denied-blocked-user": "Sinulla ei ole lupaa suorittaa toimintoa, koska tunnuksesi on estetty",
+	"ipinfo-rest-access-denied-blocked-user": "Sinulla ei ole oikeutta suorittaa toimintoa, koska tunnuksesi on estetty",
 	"ipinfo-rest-revision-no-author": "Käyttäjätililläsi ei ole oikeutta tarkastella version kirjoittajaa",
 	"ipinfo-rest-revision-invalid-ip": "Ei-IP-käyttäjästä ei voi hakea IP-tietoja",
 	"ipinfo-rest-revision-registered": "Rekisteröityjen käyttäjien tekemistä versioista ei voida hakea IP-tietoja",
