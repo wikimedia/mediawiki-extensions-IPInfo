@@ -7,6 +7,7 @@
 	"ipinfo-extensionname": "IP лаьцна хаам",
 	"ipinfo-desc": "IP-адресех лаьцна информаци гойту.",
 	"ipinfo-infobox-title": "IP лаьцна хаам",
+	"ipinfo-infobox-temporary-account-help": "Масийтта IP-адресаш ду оцу ханна лелочу аккаунтаца доьзна. Хьо IP-информаци хьоьжу уггар тӀаьхьа лелийначу IP-адресан. [[Special:IPInfo/$1|Хьовса массо а IP адресашна IP информаци]].",
 	"ipinfo-property-label-location": "Лаьтта меттиг",
 	"ipinfo-property-label-ipversion": "Верси",
 	"ipinfo-property-label-organization": "Организаци",
@@ -57,6 +58,7 @@
 	"ipinfo-property-value-connectiontype-unknown": "Хууш дац",
 	"ipinfo-property-label-source": "Хьост",
 	"ipinfo-property-label-active-blocks": "Жигара блокаш",
+	"ipinfo-property-label-number-of-ips": "IP-адресийн дукхалла",
 	"ipinfo-property-tooltip-proxytypes": "Проксес IP-адресаш хьулдо. Цхьадолчу хьолашкахь и авто хуьлу, масала, Ӏер-дахаран йа корпорацин проксишна; кхечу хьолашкахь иза леррина ду IP-адресан схьадалар къайладаккхархьама.",
 	"ipinfo-property-tooltip-connectiontype": "IP-адрес интернетца зӀе латтош йолу технологи.",
 	"ipinfo-property-tooltip-usertype": "Интернет-зӀе долахь йолу организацин тайпа.",
@@ -103,6 +105,10 @@
 	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|цуьнан|хьан}} IP-информацин тӀе кхача йиш йу",
 	"ipinfo-blocklist-url-text": "Блоктохарийн могӀам",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 дӀадаьккхина нисдар|$1 дӀадаьхна нисдарш|0=дӀадаьхна нисдарш дац}}",
+	"ipinfo-special-ipinfo": "IP информаци",
 	"ipinfo-deleted-edits-url-text": "ДӀабаьккхина къинхьегам",
-	"ipinfo-special-ipinfo-column-ip": "IP-адрес"
+	"ipinfo-special-ipinfo-target": "Декъашхочун Ӏалашонан цӀе:",
+	"ipinfo-special-ipinfo-user-tool-links": "Цунна $1",
+	"ipinfo-special-ipinfo-column-ip": "IP-адрес",
+	"ipinfo-popup-link-text": "IP-н йерриге информаци хьажар"
 }
