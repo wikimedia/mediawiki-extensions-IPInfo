@@ -101,6 +101,11 @@
 	"ipinfo-change-access-level-enable": "{{GENDER:$1|латина}}",
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|дӀайайина}}",
 	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|цуьнан|хьан}} IP-информацин тӀе кхача йиш йу",
+	"log-action-filter-ipinfo": "IP-информацин операцин тайпа:",
+	"log-action-filter-ipinfo-change_access": "ГӀирс дӀахӀоттийна йа дӀабаьккхина",
+	"log-action-filter-ipinfo-view_infobox": "Информацин меттигехь хьаьжна хаамаш",
+	"log-action-filter-ipinfo-view_popup": "хаамаш хьаьжна хьаладолуш долчу корехь",
+	"ipinfo-property-tooltip-asn": "Регионна а, кхидӀа Ӏедалшна а, интернет-провайдершна а санна йолчу организацешна а тӀедиллина сетийн шатайпа идентификатор",
 	"ipinfo-blocklist-url-text": "Блоктохарийн могӀам",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 дӀадаьккхина нисдар|$1 дӀадаьхна нисдарш|0=дӀадаьхна нисдарш дац}}",
 	"ipinfo-deleted-edits-url-text": "ДӀабаьккхина къинхьегам"
