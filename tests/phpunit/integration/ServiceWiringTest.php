@@ -11,7 +11,6 @@ use MediaWikiIntegrationTestCase;
 
 /**
  * @coversNothing
- * @group Database
  */
 class ServiceWiringTest extends MediaWikiIntegrationTestCase {
 	/** @dataProvider provideService */
