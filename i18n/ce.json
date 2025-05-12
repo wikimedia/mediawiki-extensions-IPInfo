@@ -62,6 +62,7 @@
 	"ipinfo-property-tooltip-proxytypes": "Проксес IP-адресаш хьулдо. Цхьадолчу хьолашкахь и авто хуьлу, масала, Ӏер-дахаран йа корпорацин проксишна; кхечу хьолашкахь иза леррина ду IP-адресан схьадалар къайладаккхархьама.",
 	"ipinfo-property-tooltip-connectiontype": "IP-адрес интернетца зӀе латтош йолу технологи.",
 	"ipinfo-property-tooltip-usertype": "Интернет-зӀе долахь йолу организацин тайпа.",
+	"ipinfo-property-tooltip-tunneloperators": "VPN сервисан провайдер йа оператор.",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 жигара блоктохар|$1 жигара блоктохарш|0=Жигара блоктохар дац}}",
 	"ipinfo-active-blocks-url-text": "Журнал",
 	"ipinfo-property-label-edits": "Къинхьегам",
@@ -125,5 +126,6 @@
 	"ipinfo-special-ipinfo-user-tool-links": "Цунна $1",
 	"ipinfo-special-ipinfo-column-ip": "IP-адрес",
 	"ipinfo-special-ipinfo-no-results": "Цхьа а IP информаци йац $1 маьӀна долуш.",
-	"ipinfo-popup-link-text": "IP-н йерриге информаци хьажар"
+	"ipinfo-popup-link-text": "IP-н йерриге информаци хьажар",
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Мадарра хӀокху гӀирсах]"
 }
