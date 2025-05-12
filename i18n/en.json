@@ -99,6 +99,7 @@
 	"ipinfo-rest-revision-registered": "Cannot retrieve IP information for revisions of registered users",
 	"ipinfo-rest-log-nonexistent": "Log entry does not exist",
 	"ipinfo-rest-log-registered": "Cannot retrieve IP information for logs of registered users",
+	"ipinfo-rest-log-default": "The IP information could not be retrieved.",
 	"ipinfo-rest-log-denied": "Your account does not have access to view the performer of the log entry or the log entry itself",
 	"ipinfo-beta-feature-title": "IP Information",
 	"ipinfo-beta-feature-description": "IP Information tool aims to equip patrollers with vital information about IP addresses to assist them in their roles. This information will be accessible on the Special:Contributions page for the IP editor. An abridged version of this information will be available in a popup next to IP addresses on [[Special:Log|Log]], [[Special:Contributions|Contributions]], and [[Special:RecentChanges|Recent changes]] pages.",
