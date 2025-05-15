@@ -2,6 +2,8 @@
 
 namespace MediaWiki\IPInfo\Hook;
 
+use MediaWiki\Permissions\Authority;
+
 interface IPInfoIPInfoHandlerHook {
 	/**
 	 * Allows other extensions to add their data to the IPInfo data presenter.
@@ -12,12 +14,14 @@ interface IPInfoIPInfoHandlerHook {
 	 * [ source => [ key => value ] ]
 	 *
 	 * @param string $target user being looked up
+	 * @param Authority $performer user performing the action
 	 * @param string $dataContext either 'infobox' or 'popup'
 	 * @param array &$dataContainer array to add new data to
 	 * @return void
 	 */
 	public function onIPInfoHandlerRun(
 		string $target,
+		Authority $performer,
 		string $dataContext,
 		array &$dataContainer
 	);

@@ -219,7 +219,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 			// for managing their own permissions/contextual view logic.
 			$otherData = [];
 			$this->ipInfoHookRunner->onIPInfoHandlerRun(
-				$set['subject'], $dataContext, $otherData
+				$set['subject'], $this->getAuthority(), $dataContext, $otherData
 			);
 
 			if ( count( $otherData ) ) {

@@ -270,6 +270,7 @@ class NoRevisionHandlerTest extends HandlerTestCase {
 	public function testIPInfoHandlerRunHook() {
 		$this->setTemporaryHook( 'IPInfoHandlerRun', static function (
 			string $target,
+			Authority $performer,
 			string $dataContext,
 			array &$dataContainer
 		) {
