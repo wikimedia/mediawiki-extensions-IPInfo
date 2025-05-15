@@ -20,7 +20,6 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Tests\Rest\Handler\HandlerTestTrait;
 use MediaWiki\User\Options\UserOptionsLookup;
-use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
@@ -189,15 +188,13 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideExecuteErrors
 	 */
 	public function testExecuteErrors( array $options, array $expected ) {
-		$permissionManager = $this->createMock( PermissionManager::class );
-
 		$user = $this->createMock( UserIdentity::class );
 		$authority = $this->createMock( Authority::class );
 		$authority->method( 'getUser' )
 			->willReturn( $user );
 		$user->method( 'isRegistered' )
 			->willReturn( $options['userIsRegistered'] ?? false );
-		$permissionManager->method( 'userCan' )
+		$authority->method( 'definitelyCan' )
 			->willReturn( $options['userCan'] ?? false );
 
 		$ipInfoPermissionManager = $this->createMock( IPInfoPermissionManager::class );
@@ -235,8 +232,6 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 
 		$handler = $this->getRevisionHandler( [
 			'revisionLookup' => $revisionLookup,
-			'permissionManager' => $permissionManager,
-			'userIdentity' => $user,
 			'languageFallback' => $languageFallback,
 			'userIdentityUtils' => $userIdentityUtils,
 			'ipInfoPermissionManager' => $ipInfoPermissionManager,
@@ -363,12 +358,9 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 		$block->method( 'isSitewide' )
 			->willReturn( true );
 
-		$userFactory = $this->createMock( UserFactory::class );
-		$userFactoryUser = $this->createMock( User::class );
-		$userFactoryUser->method( 'getBlock' )
+		$authority->method( 'getBlock' )
 			->willReturn( $block );
-		$userFactory->method( 'newFromUserIdentity' )
-			->willReturn( $userFactoryUser );
+
 		$languageFallback = $this->createMock( LanguageFallback::class );
 		$languageFallback->method( 'getAll' )
 			->willReturn( [ 'en' ] );
@@ -376,7 +368,6 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 		$handler = $this->getRevisionHandler( [
 			'ipInfoPermissionManager' => $ipInfoPermissionManager,
 			'userOptionsLookup' => $userOptionsLookup,
-			'userFactory' => $userFactory,
 			'languageFallback' => $languageFallback,
 		] );
 

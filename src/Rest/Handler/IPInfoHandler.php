@@ -152,9 +152,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 			);
 		}
 
-		$user = $this->userFactory->newFromUserIdentity( $this->getAuthority()->getUser() );
-
-		$block = $user->getBlock();
+		$block = $this->getAuthority()->getBlock();
 
 		// Users with sitewide blocks on their accounts shouldn't be allowed to view ip info
 		if ( $block && $block->isSitewide() ) {

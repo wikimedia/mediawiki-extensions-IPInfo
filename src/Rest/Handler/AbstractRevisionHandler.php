@@ -21,8 +21,7 @@ abstract class AbstractRevisionHandler extends IPInfoHandler {
 			);
 		}
 
-		$user = $this->userFactory->newFromUserIdentity( $this->getAuthority()->getUser() );
-		if ( !$this->permissionManager->userCan( 'read', $user, $revision->getPageAsLinkTarget() ) ) {
+		if ( !$this->getAuthority()->definitelyCan( 'read', $revision->getPage() ) ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'rest-revision-permission-denied-revision', [ $id ] ),
 				403
