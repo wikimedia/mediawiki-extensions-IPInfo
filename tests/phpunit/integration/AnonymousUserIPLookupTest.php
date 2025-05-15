@@ -127,6 +127,40 @@ class AnonymousUserIPLookupTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	public function testPreTemporaryAccountsAnonymousUserIsKnownCUPrivateEventsLookup() {
+		// Create an anonymous user with an associated actor id
+		$this->disableAutoCreateTempUser();
+		$anonUser = $this->getServiceContainer()
+			->getUserFactory()
+			->newAnonymous( '1.2.3.5' );
+		$actorId = $this->getServiceContainer()
+			->getActorStore()
+			->acquireActorId( $anonUser, $this->getDb() );
+
+		// Stub out a private event associated with the anonymous user where the actor id is null
+		$this->getDb()->newInsertQueryBuilder()
+			->insertInto( 'cu_private_event' )
+			->row( [
+				'cupe_id' => 1,
+				'cupe_namespace' => 0,
+				'cupe_title' => 'Main_Page',
+				'cupe_actor' => null,
+				'cupe_log_type' => 'abusefilter',
+				'cupe_log_action' => 'hit',
+				'cupe_params' => '',
+				'cupe_comment_id' => 1,
+				'cupe_page' => 1,
+				'cupe_timestamp' => $this->getDb()->timestamp(),
+				'cupe_ip' => '1.2.3.5',
+			] )
+			->caller( __METHOD__ )
+			->execute();
+
+		$this->assertTrue(
+			$this->getAnonymousUserIPLookup()->checkIPIsKnown( '1.2.3.5' )
+		);
+	}
+
 	public function testCheckIPIsKnownAFLookup() {
 		$this->disableAutoCreateTempUser();
 		$anonUser = $this->getServiceContainer()
