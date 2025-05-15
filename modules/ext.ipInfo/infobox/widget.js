@@ -101,8 +101,8 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 	}
 
 	const ipversion = mw.util.isIPv4Address( info.subject, true ) ?
-		mw.msg( 'ipinfo-value-ipversion-ipv4' ) :
-		mw.msg( 'ipinfo-value-ipversion-ipv6' );
+		mw.message( 'ipinfo-value-ipversion-ipv4' ).escaped() :
+		mw.message( 'ipinfo-value-ipversion-ipv6' ).escaped();
 
 	let $numIPAddresses = $( '' );
 	if ( info.data[ 'ipinfo-source-ip-count' ].numIPAddresses ) {
