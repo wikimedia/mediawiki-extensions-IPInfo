@@ -113,21 +113,21 @@ class AnonymousUserIPLookup {
 				if ( $latestPrivateEventWithActor ) {
 					return true;
 				}
-			} else {
-				$latestPrivateEvent = $dbr->newSelectQueryBuilder()
-					->select( '1' )
-					->from( 'cu_private_event' )
-					// T338276
-					->useIndex( 'cupe_actor_ip_time' )
-					->where(
-						$dbr->expr( 'cupe_actor', '=', null )->and( 'cupe_ip', '=', $ip )
-					)
-					->limit( 1 )
-					->caller( __METHOD__ )
-					->fetchRow();
-				if ( $latestPrivateEvent ) {
-					return true;
-				}
+			}
+
+			$latestPrivateEvent = $dbr->newSelectQueryBuilder()
+				->select( '1' )
+				->from( 'cu_private_event' )
+				// T338276
+				->useIndex( 'cupe_actor_ip_time' )
+				->where(
+					$dbr->expr( 'cupe_actor', '=', null )->and( 'cupe_ip', '=', $ip )
+				)
+				->limit( 1 )
+				->caller( __METHOD__ )
+				->fetchRow();
+			if ( $latestPrivateEvent ) {
+				return true;
 			}
 		}
 
