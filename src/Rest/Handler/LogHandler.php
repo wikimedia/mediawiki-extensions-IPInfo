@@ -4,6 +4,7 @@ namespace MediaWiki\IPInfo\Rest\Handler;
 
 use MediaWiki\IPInfo\Hook\IPInfoHookRunner;
 use MediaWiki\IPInfo\InfoManager;
+use MediaWiki\IPInfo\IPInfoPermissionManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\IPInfo\TempUserIPLookup;
 use MediaWiki\JobQueue\JobQueueGroup;
@@ -12,9 +13,7 @@ use MediaWiki\Logging\DatabaseLogEntry;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\Logging\LogPage;
 use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Rest\LocalizedHttpException;
-use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
@@ -35,7 +34,6 @@ class LogHandler extends IPInfoHandler {
 		InfoManager $infoManager,
 		IConnectionProvider $dbProvider,
 		PermissionManager $permissionManager,
-		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
 		DefaultPresenter $presenter,
 		JobQueueGroup $jobQueueGroup,
@@ -43,21 +41,20 @@ class LogHandler extends IPInfoHandler {
 		UserIdentityUtils $userIdentityUtils,
 		UserIdentityLookup $userIdentityLookup,
 		TempUserIPLookup $tempUserIPLookup,
-		ExtensionRegistry $extensionRegistry,
+		IPInfoPermissionManager $ipInfoPermissionManager,
 		ReadOnlyMode $readOnlyMode,
 		IPInfoHookRunner $ipInfoHookRunner
 	) {
 		parent::__construct(
 			$infoManager,
 			$permissionManager,
-			$userOptionsLookup,
 			$userFactory,
 			$presenter,
 			$jobQueueGroup,
 			$languageFallback,
 			$userIdentityUtils,
 			$tempUserIPLookup,
-			$extensionRegistry,
+			$ipInfoPermissionManager,
 			$readOnlyMode,
 			$ipInfoHookRunner
 		);
@@ -69,14 +66,13 @@ class LogHandler extends IPInfoHandler {
 		InfoManager $infoManager,
 		IConnectionProvider $dbProvider,
 		PermissionManager $permissionManager,
-		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
 		JobQueueGroup $jobQueueGroup,
 		LanguageFallback $languageFallback,
 		UserIdentityUtils $userIdentityUtils,
 		UserIdentityLookup $userIdentityLookup,
 		TempUserIPLookup $tempUserIPLookup,
-		ExtensionRegistry $extensionRegistry,
+		IPInfoPermissionManager $ipInfoPermissionManager,
 		ReadOnlyMode $readOnlyMode,
 		IPInfoHookRunner $ipInfoHookRunner
 	): self {
@@ -84,7 +80,6 @@ class LogHandler extends IPInfoHandler {
 			$infoManager,
 			$dbProvider,
 			$permissionManager,
-			$userOptionsLookup,
 			$userFactory,
 			new DefaultPresenter( $permissionManager ),
 			$jobQueueGroup,
@@ -92,7 +87,7 @@ class LogHandler extends IPInfoHandler {
 			$userIdentityUtils,
 			$userIdentityLookup,
 			$tempUserIPLookup,
-			$extensionRegistry,
+			$ipInfoPermissionManager,
 			$readOnlyMode,
 			$ipInfoHookRunner
 		);

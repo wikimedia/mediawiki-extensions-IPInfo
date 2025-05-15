@@ -4,6 +4,7 @@ namespace MediaWiki\IPInfo\Test\Unit\Rest\Handler;
 
 use MediaWiki\IPInfo\Hook\IPInfoHookRunner;
 use MediaWiki\IPInfo\InfoManager;
+use MediaWiki\IPInfo\IPInfoPermissionManager;
 use MediaWiki\IPInfo\Rest\Handler\ArchivedRevisionHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\IPInfo\TempUserIPLookup;
@@ -11,13 +12,11 @@ use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Tests\Rest\Handler\HandlerTestTrait;
-use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
@@ -58,17 +57,16 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 		$permissionManager = $this->createMock( PermissionManager::class );
 		$permissionManager->method( 'userHasRight' )
 			->willReturnMap( [
-				[ $user, 'ipinfo', true ],
 				[ $user, 'deletedhistory', $options['deletedhistory'] ],
 			] );
 
 		// Ensure other permissions checks pass...
-
-		$permissionManager->method( 'userCan' )
+		$ipInfoPermissionManager = $this->createMock( IPInfoPermissionManager::class );
+		$ipInfoPermissionManager->method( 'canViewIPInfo' )
+			->with( $authority )
 			->willReturn( true );
 
-		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
-		$userOptionsLookup->method( 'getOption' )
+		$permissionManager->method( 'userCan' )
 			->willReturn( true );
 
 		// Revision is mocked to not exist by returning null.
@@ -82,14 +80,13 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 				'infoManager' => $this->createMock( InfoManager::class ),
 				'archivedRevisionLookup' => $archivedRevisionLookup,
 				'permissionManager' => $permissionManager,
-				'userOptionsLookup' => $userOptionsLookup,
 				'userFactory' => $this->createMock( UserFactory::class ),
 				'presenter' => $this->createMock( DefaultPresenter::class ),
 				'jobQueueGroup' => $this->createMock( JobQueueGroup::class ),
 				'languageFallback' => $this->createMock( LanguageFallback::class ),
 				'userIdentityUtils' => $this->createMock( UserIdentityUtils::class ),
 				'tempUserIPLookup' => $this->createMock( TempUserIPLookup::class ),
-				'extensionRegistry' => $this->createMock( ExtensionRegistry::class ),
+				'ipInfoPermissionManager' => $ipInfoPermissionManager,
 				'readOnlyMode' => $this->createMock( ReadOnlyMode::class ),
 				'ipInfoHookRunner' => $this->createMock( IPInfoHookRunner::class ),
 			] )
@@ -163,15 +160,14 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 				'infoManager' => $this->createMock( InfoManager::class ),
 				'archivedRevisionLookup' => $archivedRevisionLookup,
 				'permissionManager' => $permissionManager,
-				'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
 				'userFactory' => $this->createMock( UserFactory::class ),
 				'presenter' => $this->createMock( DefaultPresenter::class ),
 				'jobQueueGroup' => $this->createMock( JobQueueGroup::class ),
 				'languageFallback' => $this->createMock( LanguageFallback::class ),
 				'userIdentityUtils' => $this->createMock( UserIdentityUtils::class ),
 				'tempUserIPLookup' => $this->createMock( TempUserIPLookup::class ),
-				'extensionRegistry' => $this->createMock( ExtensionRegistry::class ),
-				'readOnlyMode' => $this->createMock( \Wikimedia\Rdbms\ReadOnlyMode::class ),
+				'ipInfoPermissionManager' => $this->createMock( IPInfoPermissionManager::class ),
+				'readOnlyMode' => $this->createMock( ReadOnlyMode::class ),
 				'ipInfoHookRunner' => $this->createMock( IPInfoHookRunner::class ),
 			] )
 			->onlyMethods( [ 'getAuthority' ] )
@@ -194,13 +190,12 @@ class ArchivedRevisionHandlerTest extends MediaWikiUnitTestCase {
 				$this->createMock( InfoManager::class ),
 				$this->createMock( ArchivedRevisionLookup::class ),
 				$this->createMock( PermissionManager::class ),
-				$this->createMock( UserOptionsLookup::class ),
 				$this->createMock( UserFactory::class ),
 				$this->createMock( JobQueueGroup::class ),
 				$this->createMock( LanguageFallback::class ),
 				$this->createMock( UserIdentityUtils::class ),
 				$this->createMock( TempUserIPLookup::class ),
-				$this->createMock( ExtensionRegistry::class ),
+				$this->createMock( IPInfoPermissionManager::class ),
 				$this->createMock( ReadOnlyMode::class ),
 				$this->createMock( IPInfoHookRunner::class )
 			)

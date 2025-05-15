@@ -76,14 +76,13 @@ class LogHandlerTest extends HandlerTestCase {
 			$services->getService( 'IPInfoInfoManager' ),
 			$services->getConnectionProvider(),
 			$services->getPermissionManager(),
-			$services->getUserOptionsLookup(),
 			$services->getUserFactory(),
 			$services->getJobQueueGroup(),
 			$services->getLanguageFallback(),
 			$services->getUserIdentityUtils(),
 			$services->getUserIdentityLookup(),
 			$services->get( 'IPInfoTempUserIPLookup' ),
-			$services->getExtensionRegistry(),
+			$services->get( 'IPInfoPermissionManager' ),
 			$services->getReadOnlyMode(),
 			$services->get( 'IPInfoHookRunner' )
 		);

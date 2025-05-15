@@ -5,6 +5,7 @@ namespace MediaWiki\IPInfo\Test\Unit\Rest\Handler;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\IPInfo\Hook\IPInfoHookRunner;
 use MediaWiki\IPInfo\InfoManager;
+use MediaWiki\IPInfo\IPInfoPermissionManager;
 use MediaWiki\IPInfo\Rest\Handler\RevisionHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\IPInfo\TempUserIPLookup;
@@ -13,7 +14,6 @@ use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Revision\RevisionLookup;
@@ -44,14 +44,13 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 				'infoManager' => $this->createMock( InfoManager::class ),
 				'revisionLookup' => $this->createMock( RevisionLookup::class ),
 				'permissionManager' => $this->createMock( PermissionManager::class ),
-				'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
 				'userFactory' => $this->createMock( UserFactory::class ),
 				'presenter' => $this->createMock( DefaultPresenter::class ),
 				'jobQueueGroup' => $this->createMock( JobQueueGroup::class ),
 				'languageFallback' => $this->createMock( LanguageFallback::class ),
 				'userIdentityUtils' => $this->createMock( UserIdentityUtils::class ),
 				'tempUserIPLookup' => $this->createMock( TempUserIPLookup::class ),
-				'extensionRegistry' => $this->createMock( ExtensionRegistry::class ),
+				'ipInfoPermissionManager' => $this->createMock( IPInfoPermissionManager::class ),
 				'readOnlyMode' => $this->createMock( ReadOnlyMode::class ),
 				'ipInfoHookRunner' => $this->createMock( IPInfoHookRunner::class ),
 			],
@@ -74,15 +73,13 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 	 */
 	public function testExecute( array $options, int $expectedCount ) {
 		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'userHasRight' )
-			->willReturn( true );
 		$permissionManager->method( 'userCan' )
 			->willReturn( true );
 		$permissionManager->method( 'getUserPermissions' )
 			->willReturn( [] );
 
-		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
-		$userOptionsLookup->method( 'getOption' )
+		$ipInfoPermissionManager = $this->createMock( IPInfoPermissionManager::class );
+		$ipInfoPermissionManager->method( 'canViewIPInfo' )
 			->willReturn( true );
 
 		$presenter = $this->createMock( DefaultPresenter::class );
@@ -131,11 +128,11 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 		$handler = $this->getRevisionHandler( [
 			'revisionLookup' => $revisionLookup,
 			'permissionManager' => $permissionManager,
-			'userOptionsLookup' => $userOptionsLookup,
 			'presenter' => $presenter,
 			'jobQueueGroup' => $jobQueueGroup,
 			'languageFallback' => $languageFallback,
-			'userIdentityUtils' => $userIdentityUtils
+			'userIdentityUtils' => $userIdentityUtils,
+			'ipInfoPermissionManager' => $ipInfoPermissionManager,
 		] );
 
 		$request = $this->getRequestData();
@@ -193,8 +190,6 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 	 */
 	public function testExecuteErrors( array $options, array $expected ) {
 		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'userHasRight' )
-			->willReturn( $options['userHasRight'] ?? false );
 
 		$user = $this->createMock( UserIdentity::class );
 		$authority = $this->createMock( Authority::class );
@@ -205,9 +200,10 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 		$permissionManager->method( 'userCan' )
 			->willReturn( $options['userCan'] ?? false );
 
-		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
-		$userOptionsLookup->method( 'getOption' )
-			->willReturn( $options['getOption'] ?? null );
+		$ipInfoPermissionManager = $this->createMock( IPInfoPermissionManager::class );
+		$ipInfoPermissionManager->method( 'canViewIPInfo' )
+			->with( $authority )
+			->willReturn( $options['canView'] ?? false );
 
 		$author = $this->createMock( UserIdentity::class );
 		$author->method( 'getName' )
@@ -240,10 +236,10 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 		$handler = $this->getRevisionHandler( [
 			'revisionLookup' => $revisionLookup,
 			'permissionManager' => $permissionManager,
-			'userOptionsLookup' => $userOptionsLookup,
 			'userIdentity' => $user,
 			'languageFallback' => $languageFallback,
-			'userIdentityUtils' => $userIdentityUtils
+			'userIdentityUtils' => $userIdentityUtils,
+			'ipInfoPermissionManager' => $ipInfoPermissionManager,
 		] );
 
 		$request = $this->getRequestData( $options['id'] ?? 123 );
@@ -286,24 +282,11 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 					'status' => 401,
 				],
 			],
-			'Access denied, preference not set' => [
-				[
-					'userHasRight' => true,
-					'userCan' => true,
-					'getOption' => false,
-					'userIsRegistered' => false,
-				],
-				[
-					'message' => 'ipinfo-rest-access-denied',
-					'status' => 401,
-				],
-			],
 			'No revision' => [
 				[
 					'id' => $id,
-					'userHasRight' => true,
+					'canView' => true,
 					'userCan' => true,
-					'getOption' => true,
 					'getRevisionById' => false,
 				],
 				[
@@ -314,9 +297,8 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 			],
 			'Access denied page' => [
 				[
-					'userHasRight' => true,
+					'canView' => true,
 					'userCan' => false,
-					'getOption' => true,
 				],
 				[
 					'id' => $id,
@@ -327,9 +309,8 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 			],
 			'No author' => [
 				[
-					'userHasRight' => true,
+					'canView' => true,
 					'userCan' => true,
-					'getOption' => true,
 				],
 				[
 					'message' => 'ipinfo-rest-revision-no-author',
@@ -338,9 +319,8 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 			],
 			'Unregistered author and not an ip' => [
 				[
-					'userHasRight' => true,
+					'canView' => true,
 					'userCan' => true,
-					'getOption' => true,
 					'authorIsRegistered' => false,
 					'author' => true,
 					'authorName' => 'foo'
@@ -352,9 +332,8 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 			],
 			'Registered author' => [
 				[
-					'userHasRight' => true,
+					'canView' => true,
 					'userCan' => true,
-					'getOption' => true,
 					'authorIsRegistered' => true,
 					'author' => true,
 				],
@@ -371,8 +350,9 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 		$authority = $this->createMock( Authority::class );
 		$authority->method( 'getUser' )
 			->willReturn( $user );
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'userHasRight' )
+		$ipInfoPermissionManager = $this->createMock( IPInfoPermissionManager::class );
+		$ipInfoPermissionManager->method( 'canViewIPInfo' )
+			->with( $authority )
 			->willReturn( true );
 
 		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
@@ -394,7 +374,7 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 			->willReturn( [ 'en' ] );
 
 		$handler = $this->getRevisionHandler( [
-			'permissionManager' => $permissionManager,
+			'ipInfoPermissionManager' => $ipInfoPermissionManager,
 			'userOptionsLookup' => $userOptionsLookup,
 			'userFactory' => $userFactory,
 			'languageFallback' => $languageFallback,
@@ -423,13 +403,12 @@ class RevisionHandlerTest extends MediaWikiUnitTestCase {
 				$this->createMock( InfoManager::class ),
 				$this->createMock( RevisionLookup::class ),
 				$this->createMock( PermissionManager::class ),
-				$this->createMock( UserOptionsLookup::class ),
 				$this->createMock( UserFactory::class ),
 				$this->createMock( JobQueueGroup::class ),
 				$this->createMock( LanguageFallback::class ),
 				$this->createMock( UserIdentityUtils::class ),
 				$this->createMock( TempUserIPLookup::class ),
-				$this->createMock( ExtensionRegistry::class ),
+				$this->createMock( IPInfoPermissionManager::class ),
 				$this->createMock( ReadOnlyMode::class ),
 				$this->createMock( IPInfoHookRunner::class )
 			)

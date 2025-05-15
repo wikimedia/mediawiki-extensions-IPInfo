@@ -3,10 +3,9 @@
 namespace MediaWiki\IPInfo\Test\Unit\HookHandler;
 
 use MediaWiki\IPInfo\HookHandler\PreferencesHandler;
+use MediaWiki\IPInfo\IPInfoPermissionManager;
 use MediaWiki\IPInfo\Logging\Logger;
 use MediaWiki\IPInfo\Logging\LoggerFactory;
-use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
@@ -21,8 +20,7 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 	private function getPreferencesHandler( array $options = [] ): PreferencesHandler {
 		return new PreferencesHandler( ...array_values( array_merge(
 			[
-				'permissionManager' => $this->createMock( PermissionManager::class ),
-				'userOptionsLookup' => $this->createMock( UserOptionsLookup::class ),
+				'ipInfoPermissionManager' => $this->createMock( IPInfoPermissionManager::class ),
 				'userGroupManager' => $this->createMock( UserGroupManager::class ),
 				'loggerFactory' => $this->createMock( LoggerFactory::class ),
 			],
@@ -139,7 +137,13 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public function testOnGetPreferences() {
+	/**
+	 * @dataProvider provideGetPreferences
+	 */
+	public function testOnGetPreferences(
+		bool $hasEnabledIPInfo,
+		array $expectedPreferenceNames
+	) {
 		$user = $this->createMock( User::class );
 
 		$logger = $this->createMock( Logger::class );
@@ -147,22 +151,23 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 		$loggerFactory->method( 'getLogger' )
 			->willReturn( $logger );
 
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'userHasRight' )
-			->willReturn( true );
-
-		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
-		$userOptionsLookup->method( 'getOption' )
-			->with( $user, 'ipinfo-beta-feature-enable' )->willReturn( true );
+		$ipInfoPermissionManager = $this->createMock( IPInfoPermissionManager::class );
+		$ipInfoPermissionManager->method( 'hasEnabledIPInfo' )
+			->with( $user )
+			->willReturn( $hasEnabledIPInfo );
 
 		$handler = $this->getPreferencesHandler( [
 			'loggerFactory' => $loggerFactory,
-			'permissionManager' => $permissionManager,
-			'userOptionsLookup' => $userOptionsLookup,
+			'ipInfoPermissionManager' => $ipInfoPermissionManager,
 		] );
 
 		$preferences = [];
 		$handler->onGetPreferences( $user, $preferences );
-		$this->assertArrayHasKey( 'ipinfo-use-agreement', $preferences );
+		$this->assertSame( $expectedPreferenceNames, array_keys( $preferences ) );
+	}
+
+	public function provideGetPreferences(): iterable {
+		yield 'user with IPInfo access enabled' => [ true, [ 'ipinfo-use-agreement' ] ];
+		yield 'user with IPInfo access disabled' => [ false, [] ];
 	}
 }

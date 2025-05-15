@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo\Test\Integration\HookHandler;
 
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 
@@ -11,23 +12,69 @@ use MediaWikiIntegrationTestCase;
  * @covers \MediaWiki\IPInfo\HookHandler\BetaFeaturePreferencesHandler
  */
 class BetaFeaturePreferencesHandlerTest extends MediaWikiIntegrationTestCase {
-	public function testOnGetBetaFeaturePreferences() {
+	use TempUserTestTrait;
+
+	/**
+	 * @dataProvider provideGetBetaFeaturePreferences
+	 */
+	public function testOnGetBetaFeaturePreferences(
+		bool $areTemporaryAccountsKnown,
+		bool $hasIPInfoPermission,
+		bool $shouldRegisterBetaFeature
+	) {
 		$this->markTestSkippedIfExtensionNotLoaded( 'BetaFeatures' );
-		$this->overrideMwServices(
-			null,
-			[
-				'PermissionManager' => function () {
-					$permissionManager = $this->createMock( PermissionManager::class );
-					$permissionManager->method( 'userHasRight' )
-						->willReturn( true );
-					return $permissionManager;
-				}
-			]
-		);
+
+		if ( $areTemporaryAccountsKnown ) {
+			$this->enableAutoCreateTempUser( [
+				'enabled' => false,
+				'known' => true,
+			] );
+		} else {
+			$this->disableAutoCreateTempUser();
+		}
 
 		$user = $this->createMock( User::class );
+
+		$permissionManager = $this->createMock( PermissionManager::class );
+		$permissionManager->method( 'userHasRight' )
+			->with( $user, 'ipinfo' )
+			->willReturn( $hasIPInfoPermission );
+
+		$this->setService( 'PermissionManager', $permissionManager );
+
 		$preferences = [];
 		$this->getServiceContainer()->getHookContainer()->run( 'GetBetaFeaturePreferences', [ $user, &$preferences ] );
-		$this->assertArrayHasKey( 'ipinfo-beta-feature-enable', $preferences );
+
+		if ( $shouldRegisterBetaFeature ) {
+			$this->assertArrayHasKey( 'ipinfo-beta-feature-enable', $preferences );
+		} else {
+			$this->assertArrayNotHasKey( 'ipinfo-beta-feature-enable', $preferences );
+		}
+	}
+
+	public static function provideGetBetaFeaturePreferences(): iterable {
+		yield 'user with "ipinfo" permission, temporary accounts known' => [
+			true,
+			true,
+			false,
+		];
+
+		yield 'user with "ipinfo" permission, temporary accounts not known' => [
+			false,
+			true,
+			true,
+		];
+
+		yield 'user without "ipinfo" permission, temporary accounts known' => [
+			true,
+			false,
+			false,
+		];
+
+		yield 'user without "ipinfo" permission, temporary accounts not known' => [
+			false,
+			false,
+			false,
+		];
 	}
 }

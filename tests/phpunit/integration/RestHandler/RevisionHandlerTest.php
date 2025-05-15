@@ -58,13 +58,12 @@ class RevisionHandlerTest extends HandlerTestCase {
 			$services->getService( 'IPInfoInfoManager' ),
 			$services->getRevisionLookup(),
 			$services->getPermissionManager(),
-			$services->getUserOptionsLookup(),
 			$services->getUserFactory(),
 			$services->getJobQueueGroup(),
 			$services->getLanguageFallback(),
 			$services->getUserIdentityUtils(),
 			$services->get( 'IPInfoTempUserIPLookup' ),
-			$services->getExtensionRegistry(),
+			$services->get( 'IPInfoPermissionManager' ),
 			$services->getReadOnlyMode(),
 			$services->get( 'IPInfoHookRunner' )
 		);
@@ -175,8 +174,9 @@ class RevisionHandlerTest extends HandlerTestCase {
 		$this->executeWithUser( $request, $user );
 	}
 
-	public function testShouldDenyAccessForAdminIfBetaFeatureDisabled(): void {
+	public function testShouldDenyAccessForAdminIfBetaFeatureDisabledWithoutTempAccounts(): void {
 		$this->markTestSkippedIfExtensionNotLoaded( 'BetaFeatures' );
+		$this->disableAutoCreateTempUser();
 		$this->expectExceptionObject(
 			new LocalizedHttpException(
 				new MessageValue( 'ipinfo-rest-access-denied' ),

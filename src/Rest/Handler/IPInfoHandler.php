@@ -5,13 +5,13 @@ namespace MediaWiki\IPInfo\Rest\Handler;
 use MediaWiki\IPInfo\AccessLevelTrait;
 use MediaWiki\IPInfo\Hook\IPInfoHookRunner;
 use MediaWiki\IPInfo\InfoManager;
+use MediaWiki\IPInfo\IPInfoPermissionManager;
 use MediaWiki\IPInfo\Jobs\LogIPInfoAccessJob;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\IPInfo\TempUserIPLookup;
 use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
@@ -88,34 +88,32 @@ abstract class IPInfoHandler extends SimpleHandler {
 
 	protected TempUserIPLookup $tempUserIPLookup;
 
-	private ExtensionRegistry $extensionRegistry;
+	private IPInfoPermissionManager $ipInfoPermissionManager;
 	private ReadOnlyMode $readOnlyMode;
 	private IPInfoHookRunner $ipInfoHookRunner;
 
 	public function __construct(
 		InfoManager $infoManager,
 		PermissionManager $permissionManager,
-		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
 		DefaultPresenter $presenter,
 		JobQueueGroup $jobQueueGroup,
 		LanguageFallback $languageFallback,
 		UserIdentityUtils $userIdentityUtils,
 		TempUserIPLookup $tempUserIPLookup,
-		ExtensionRegistry $extensionRegistry,
+		IPInfoPermissionManager $ipInfoPermissionManager,
 		ReadOnlyMode $readOnlyMode,
 		IPInfoHookRunner $ipInfoHookRunner
 	) {
 		$this->infoManager = $infoManager;
 		$this->permissionManager = $permissionManager;
-		$this->userOptionsLookup = $userOptionsLookup;
 		$this->userFactory = $userFactory;
 		$this->presenter = $presenter;
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->languageFallback = $languageFallback;
 		$this->userIdentityUtils = $userIdentityUtils;
 		$this->tempUserIPLookup = $tempUserIPLookup;
-		$this->extensionRegistry = $extensionRegistry;
+		$this->ipInfoPermissionManager = $ipInfoPermissionManager;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->ipInfoHookRunner = $ipInfoHookRunner;
 	}
@@ -147,25 +145,13 @@ abstract class IPInfoHandler extends SimpleHandler {
 	 * @return Response
 	 */
 	public function run( $id ): Response {
-		$isBetaFeaturesLoaded = $this->extensionRegistry->isLoaded( 'BetaFeatures' );
-		// Disallow access to API if BetaFeatures is enabled but the feature is not
-		if ( $isBetaFeaturesLoaded &&
-			!$this->userOptionsLookup->getOption( $this->getAuthority()->getUser(), 'ipinfo-beta-feature-enable' ) ) {
+		if ( !$this->ipInfoPermissionManager->canViewIPInfo( $this->getAuthority() ) ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'ipinfo-rest-access-denied' ),
 				$this->getAuthority()->getUser()->isRegistered() ? 403 : 401
 			);
 		}
 
-		if (
-			!$this->permissionManager->userHasRight( $this->getAuthority()->getUser(), 'ipinfo' ) ||
-			!$this->userOptionsLookup->getOption( $this->getAuthority()->getUser(), 'ipinfo-use-agreement' )
-		) {
-			throw new LocalizedHttpException(
-				new MessageValue( 'ipinfo-rest-access-denied' ),
-				$this->getAuthority()->getUser()->isRegistered() ? 403 : 401
-			);
-		}
 		$user = $this->userFactory->newFromUserIdentity( $this->getAuthority()->getUser() );
 
 		$block = $user->getBlock();

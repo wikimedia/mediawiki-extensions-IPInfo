@@ -4,16 +4,15 @@ namespace MediaWiki\IPInfo\Rest\Handler;
 
 use MediaWiki\IPInfo\Hook\IPInfoHookRunner;
 use MediaWiki\IPInfo\InfoManager;
+use MediaWiki\IPInfo\IPInfoPermissionManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\IPInfo\TempUserIPLookup;
 use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityUtils;
 use Wikimedia\Message\MessageValue;
@@ -27,28 +26,26 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 		InfoManager $infoManager,
 		ArchivedRevisionLookup $archivedRevisionLookup,
 		PermissionManager $permissionManager,
-		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
 		DefaultPresenter $presenter,
 		JobQueueGroup $jobQueueGroup,
 		LanguageFallback $languageFallback,
 		UserIdentityUtils $userIdentityUtils,
 		TempUserIPLookup $tempUserIPLookup,
-		ExtensionRegistry $extensionRegistry,
+		IPInfoPermissionManager $ipInfoPermissionManager,
 		ReadOnlyMode $readOnlyMode,
 		IPInfoHookRunner $ipInfoHookRunner
 	) {
 		parent::__construct(
 			$infoManager,
 			$permissionManager,
-			$userOptionsLookup,
 			$userFactory,
 			$presenter,
 			$jobQueueGroup,
 			$languageFallback,
 			$userIdentityUtils,
 			$tempUserIPLookup,
-			$extensionRegistry,
+			$ipInfoPermissionManager,
 			$readOnlyMode,
 			$ipInfoHookRunner
 		);
@@ -59,13 +56,12 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 		InfoManager $infoManager,
 		ArchivedRevisionLookup $archivedRevisionLookup,
 		PermissionManager $permissionManager,
-		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
 		JobQueueGroup $jobQueueGroup,
 		LanguageFallback $languageFallback,
 		UserIdentityUtils $userIdentityUtils,
 		TempUserIPLookup $tempUserIPLookup,
-		ExtensionRegistry $extensionRegistry,
+		IPInfoPermissionManager $ipInfoPermissionManager,
 		ReadOnlyMode $readOnlyMode,
 		IPInfoHookRunner $ipInfoHookRunner
 	): self {
@@ -73,14 +69,13 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 			$infoManager,
 			$archivedRevisionLookup,
 			$permissionManager,
-			$userOptionsLookup,
 			$userFactory,
 			new DefaultPresenter( $permissionManager ),
 			$jobQueueGroup,
 			$languageFallback,
 			$userIdentityUtils,
 			$tempUserIPLookup,
-			$extensionRegistry,
+			$ipInfoPermissionManager,
 			$readOnlyMode,
 			$ipInfoHookRunner
 		);

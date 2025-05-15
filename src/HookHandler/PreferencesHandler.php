@@ -4,46 +4,33 @@ namespace MediaWiki\IPInfo\HookHandler;
 
 use MediaWiki\Extension\EventLogging\EventLogging;
 use MediaWiki\Extension\EventLogging\Libs\UserBucketProvider\UserBucketProvider;
+use MediaWiki\IPInfo\IPInfoPermissionManager;
 use MediaWiki\IPInfo\Logging\LoggerFactory;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\Registration\ExtensionRegistry;
-use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 
 class PreferencesHandler implements GetPreferencesHook {
-	private PermissionManager $permissionManager;
-
-	private UserOptionsLookup $userOptionsLookup;
+	private IPInfoPermissionManager $ipInfoPermissionManager;
 
 	private UserGroupManager $userGroupManager;
 
 	private LoggerFactory $loggerFactory;
 
 	public function __construct(
-		PermissionManager $permissionManager,
-		UserOptionsLookup $userOptionsLookup,
+		IPInfoPermissionManager $ipInfoPermissionManager,
 		UserGroupManager $userGroupManager,
 		LoggerFactory $loggerFactory
 	) {
-		$this->permissionManager = $permissionManager;
-		$this->userOptionsLookup = $userOptionsLookup;
+		$this->ipInfoPermissionManager = $ipInfoPermissionManager;
 		$this->userGroupManager = $userGroupManager;
 		$this->loggerFactory = $loggerFactory;
 	}
 
 	/** @inheritDoc */
 	public function onGetPreferences( $user, &$preferences ): void {
-		if ( !$this->permissionManager->userHasRight( $user, 'ipinfo' ) ) {
-			return;
-		}
-
-		$isBetaFeaturesLoaded = ExtensionRegistry::getInstance()->isLoaded( 'BetaFeatures' );
-		// If the beta feature isn't enabled, do not show the preference checkbox
-		if ( $isBetaFeaturesLoaded &&
-			!$this->userOptionsLookup->getOption( $user, 'ipinfo-beta-feature-enable' )
-		) {
+		if ( !$this->ipInfoPermissionManager->hasEnabledIPInfo( $user ) ) {
 			return;
 		}
 

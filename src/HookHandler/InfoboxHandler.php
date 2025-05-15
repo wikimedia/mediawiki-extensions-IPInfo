@@ -4,12 +4,12 @@ namespace MediaWiki\IPInfo\HookHandler;
 
 use MediaWiki\Hook\SpecialContributionsBeforeMainOutputHook;
 use MediaWiki\HTMLForm\CollapsibleFieldsetLayout;
+use MediaWiki\IPInfo\IPInfoPermissionManager;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\SpecialPage\Hook\SpecialPageBeforeExecuteHook;
 use MediaWiki\SpecialPage\SpecialPage;
-use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
 use OOUI\PanelLayout;
 use Wikimedia\IPUtils;
@@ -18,17 +18,18 @@ class InfoboxHandler implements
 	SpecialContributionsBeforeMainOutputHook,
 	SpecialPageBeforeExecuteHook
 {
-
-	private UserOptionsLookup $userOptionsLookup;
-
 	private TempUserConfig $tempUserConfig;
+	private ExtensionRegistry $extensionRegistry;
+	private IPInfoPermissionManager $ipInfoPermissionManager;
 
 	public function __construct(
-		UserOptionsLookup $userOptionsLookup,
-		TempUserConfig $tempUserConfig
+		TempUserConfig $tempUserConfig,
+		ExtensionRegistry $extensionRegistry,
+		IPInfoPermissionManager $ipInfoPermissionManager
 	) {
-		$this->userOptionsLookup = $userOptionsLookup;
 		$this->tempUserConfig = $tempUserConfig;
+		$this->extensionRegistry = $extensionRegistry;
+		$this->ipInfoPermissionManager = $ipInfoPermissionManager;
 	}
 
 	/**
@@ -43,22 +44,15 @@ class InfoboxHandler implements
 	private function addInfoBox( $username, $sp ): void {
 		// T309363: hide the panel on mobile until T268177 is resolved
 		$services = MediaWikiServices::getInstance();
-		$extensionRegistry = ExtensionRegistry::getInstance();
 		if (
-			$extensionRegistry->isLoaded( 'MobileFrontend' ) &&
+			$this->extensionRegistry->isLoaded( 'MobileFrontend' ) &&
 			$services->getService( 'MobileFrontend.Context' )->shouldDisplayMobileView()
 		) {
 			return;
 		}
 
 		$accessingUser = $sp->getAuthority();
-		$isBetaFeaturesLoaded = $extensionRegistry->isLoaded( 'BetaFeatures' );
-		if (
-			!$accessingUser->isAllowed( 'ipinfo' ) ||
-			( $isBetaFeaturesLoaded &&
-				!$this->userOptionsLookup->getOption( $accessingUser->getUser(), 'ipinfo-beta-feature-enable' )
-			)
-		) {
+		if ( !$this->ipInfoPermissionManager->hasEnabledIPInfo( $accessingUser ) ) {
 			return;
 		}
 

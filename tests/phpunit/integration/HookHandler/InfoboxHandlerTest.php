@@ -4,12 +4,13 @@ namespace MediaWiki\IPInfo\Test\Integration\HookHandler;
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\IPInfo\HookHandler\InfoboxHandler;
+use MediaWiki\IPInfo\IPInfoPermissionManager;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\SimpleAuthority;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\SpecialPage\SpecialPage;
-use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
@@ -26,7 +27,7 @@ use MediaWikiIntegrationTestCase;
  */
 class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 
-	private UserOptionsLookup $userOptionsLookup;
+	private IPInfoPermissionManager $ipInfoPermissionManager;
 
 	private TempUserConfig $tempUserConfig;
 
@@ -39,7 +40,6 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->userOptionsLookup = $this->createMock( UserOptionsLookup::class );
 		$this->tempUserConfig = $this->createMock( TempUserConfig::class );
 		$this->request = RequestContext::getMain()->getRequest();
 		$this->specialPage = $this->createMock( SpecialPage::class );
@@ -47,9 +47,17 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 			->method( 'getRequest' )
 			->willReturn( $this->request );
 
+		$extensionRegistry = $this->createMock( ExtensionRegistry::class );
+		$extensionRegistry->method( 'isLoaded' )
+			->with( 'MobileFrontend' )
+			->willReturn( false );
+
+		$this->ipInfoPermissionManager = $this->createMock( IPInfoPermissionManager::class );
+
 		$this->handler = new InfoboxHandler(
-			$this->userOptionsLookup,
-			$this->tempUserConfig
+			$this->tempUserConfig,
+			$extensionRegistry,
+			$this->ipInfoPermissionManager
 		);
 	}
 
@@ -81,9 +89,9 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->specialPage->method( 'getOutput' )
 			->willReturn( $out );
 
-		$this->userOptionsLookup->method( 'getOption' )
-			->with( $accessingAuthority->getUser(), 'ipinfo-beta-feature-enable' )
-			->willReturn( '1' );
+		$this->ipInfoPermissionManager->method( 'hasEnabledIPInfo' )
+			->with( $accessingAuthority )
+			->willReturn( true );
 
 		$this->tempUserConfig->method( 'isTempName' )
 			->with( $targetName )
@@ -124,9 +132,9 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 		$specialPage->method( 'getOutput' )
 			->willReturn( $out );
 
-		$this->userOptionsLookup->method( 'getOption' )
-			->with( $accessingAuthority->getUser(), 'ipinfo-beta-feature-enable' )
-			->willReturn( '1' );
+		$this->ipInfoPermissionManager->method( 'hasEnabledIPInfo' )
+			->with( $accessingAuthority )
+			->willReturn( true );
 
 		$this->tempUserConfig->method( 'isTempName' )
 			->with( $targetName )
@@ -166,9 +174,9 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->specialPage->method( 'getOutput' )
 			->willReturn( $out );
 
-		$this->userOptionsLookup->method( 'getOption' )
-			->with( $accessingAuthority->getUser(), 'ipinfo-beta-feature-enable' )
-			->willReturn( '1' );
+		$this->ipInfoPermissionManager->method( 'hasEnabledIPInfo' )
+			->with( $accessingAuthority )
+			->willReturn( true );
 
 		$this->tempUserConfig->method( 'isTempName' )
 			->with( $targetName )
@@ -223,9 +231,9 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 		$targetUser->method( 'getName' )
 			->willReturn( $targetUserName );
 
-		$this->userOptionsLookup->method( 'getOption' )
-			->with( $accessingAuthority->getUser(), 'ipinfo-beta-feature-enable' )
-			->willReturn( '1' );
+		$this->ipInfoPermissionManager->method( 'hasEnabledIPInfo' )
+			->with( $accessingAuthority )
+			->willReturn( false );
 
 		$this->tempUserConfig->method( 'isTempName' )
 			->with( $targetUserName )
@@ -284,9 +292,9 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->specialPage->method( 'getOutput' )
 			->willReturn( $out );
 
-		$this->userOptionsLookup->method( 'getOption' )
-			->with( $accessingAuthority->getUser(), 'ipinfo-beta-feature-enable' )
-			->willReturn( '1' );
+		$this->ipInfoPermissionManager->method( 'hasEnabledIPInfo' )
+			->with( $accessingAuthority )
+			->willReturn( $accessingAuthority->isAllowed( 'ipinfo' ) );
 
 		$this->tempUserConfig
 			->method( 'isTempName' )
@@ -407,9 +415,9 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->specialPage->method( 'getOutput' )
 			->willReturn( $out );
 
-		$this->userOptionsLookup->method( 'getOption' )
-			->with( $accessingAuthority->getUser(), 'ipinfo-beta-feature-enable' )
-			->willReturn( '1' );
+		$this->ipInfoPermissionManager->method( 'hasEnabledIPInfo' )
+			->with( $accessingAuthority )
+			->willReturn( true );
 
 		$this->tempUserConfig->method( 'isTempName' )
 			->with( $targetName )

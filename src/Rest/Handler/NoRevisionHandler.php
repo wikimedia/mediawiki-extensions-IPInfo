@@ -5,14 +5,13 @@ namespace MediaWiki\IPInfo\Rest\Handler;
 use MediaWiki\IPInfo\AnonymousUserIPLookup;
 use MediaWiki\IPInfo\Hook\IPInfoHookRunner;
 use MediaWiki\IPInfo\InfoManager;
+use MediaWiki\IPInfo\IPInfoPermissionManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\IPInfo\TempUserIPLookup;
 use MediaWiki\JobQueue\JobQueueGroup;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Rest\LocalizedHttpException;
-use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityUtils;
 use Wikimedia\IPUtils;
@@ -27,14 +26,13 @@ class NoRevisionHandler extends IPInfoHandler {
 	public function __construct(
 		InfoManager $infoManager,
 		PermissionManager $permissionManager,
-		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
 		DefaultPresenter $presenter,
 		JobQueueGroup $jobQueueGroup,
 		LanguageFallback $languageFallback,
 		UserIdentityUtils $userIdentityUtils,
 		TempUserIPLookup $tempUserIPLookup,
-		ExtensionRegistry $extensionRegistry,
+		IPInfoPermissionManager $ipInfoPermissionManager,
 		AnonymousUserIPLookup $anonymousUserIPLookup,
 		ReadOnlyMode $readOnlyMode,
 		IPInfoHookRunner $ipInfoHookRunner
@@ -42,14 +40,13 @@ class NoRevisionHandler extends IPInfoHandler {
 		parent::__construct(
 			$infoManager,
 			$permissionManager,
-			$userOptionsLookup,
 			$userFactory,
 			$presenter,
 			$jobQueueGroup,
 			$languageFallback,
 			$userIdentityUtils,
 			$tempUserIPLookup,
-			$extensionRegistry,
+			$ipInfoPermissionManager,
 			$readOnlyMode,
 			$ipInfoHookRunner
 		);
@@ -59,13 +56,12 @@ class NoRevisionHandler extends IPInfoHandler {
 	public static function factory(
 		InfoManager $infoManager,
 		PermissionManager $permissionManager,
-		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
 		JobQueueGroup $jobQueueGroup,
 		LanguageFallback $languageFallback,
 		UserIdentityUtils $userIdentityUtils,
 		TempUserIPLookup $tempUserIPLookup,
-		ExtensionRegistry $extensionRegistry,
+		IPInfoPermissionManager $ipInfoPermissionManager,
 		ReadOnlyMode $readOnlyMode,
 		AnonymousUserIPLookup $anonymousUserIPLookup,
 		IPInfoHookRunner $ipInfoHookRunner
@@ -73,14 +69,13 @@ class NoRevisionHandler extends IPInfoHandler {
 		return new self(
 			$infoManager,
 			$permissionManager,
-			$userOptionsLookup,
 			$userFactory,
 			new DefaultPresenter( $permissionManager ),
 			$jobQueueGroup,
 			$languageFallback,
 			$userIdentityUtils,
 			$tempUserIPLookup,
-			$extensionRegistry,
+			$ipInfoPermissionManager,
 			$anonymousUserIPLookup,
 			$readOnlyMode,
 			$ipInfoHookRunner

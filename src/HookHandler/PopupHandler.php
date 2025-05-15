@@ -2,25 +2,21 @@
 
 namespace MediaWiki\IPInfo\HookHandler;
 
+use MediaWiki\IPInfo\IPInfoPermissionManager;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\Hook\BeforePageDisplayHook;
-use MediaWiki\Registration\ExtensionRegistry;
-use MediaWiki\User\Options\UserOptionsLookup;
 use MobileContext;
 
 class PopupHandler implements BeforePageDisplayHook {
-	private UserOptionsLookup $userOptionsLookup;
-	private ExtensionRegistry $extensionRegistry;
+	private IPInfoPermissionManager $ipInfoPermissionManager;
 	private ?MobileContext $mobileContext;
 
 	public function __construct(
-		UserOptionsLookup $userOptionsLookup,
-		ExtensionRegistry $extensionRegistry,
+		IPInfoPermissionManager $ipInfoPermissionManager,
 		?MobileContext $mobileContext
 	) {
-		$this->userOptionsLookup = $userOptionsLookup;
-		$this->extensionRegistry = $extensionRegistry;
 		$this->mobileContext = $mobileContext;
+		$this->ipInfoPermissionManager = $ipInfoPermissionManager;
 	}
 
 	public static function factory(): self {
@@ -33,8 +29,7 @@ class PopupHandler implements BeforePageDisplayHook {
 		}
 
 		return new self(
-			$services->getUserOptionsLookup(),
-			$services->getExtensionRegistry(),
+			$services->getService( 'IPInfoPermissionManager' ),
 			$mobileContext
 		);
 	}
@@ -58,16 +53,7 @@ class PopupHandler implements BeforePageDisplayHook {
 			return;
 		}
 
-		$user = $out->getAuthority()->getUser();
-		$isBetaFeaturesLoaded = $this->extensionRegistry->isLoaded( 'BetaFeatures' );
-
-		if (
-			!$out->getAuthority()->isAllowed( 'ipinfo' ) ||
-			!$this->userOptionsLookup->getOption( $user, 'ipinfo-use-agreement' ) ||
-			( $isBetaFeaturesLoaded &&
-				!$this->userOptionsLookup->getOption( $user, 'ipinfo-beta-feature-enable' )
-			)
-		) {
+		if ( !$this->ipInfoPermissionManager->canViewIPInfo( $out->getAuthority() ) ) {
 			return;
 		}
 

@@ -32,13 +32,12 @@ class NoRevisionHandlerTest extends HandlerTestCase {
 		return NoRevisionHandler::factory(
 			$services->getService( 'IPInfoInfoManager' ),
 			$services->getPermissionManager(),
-			$services->getUserOptionsLookup(),
 			$services->getUserFactory(),
 			$services->getJobQueueGroup(),
 			$services->getLanguageFallback(),
 			$services->getUserIdentityUtils(),
 			$services->get( 'IPInfoTempUserIPLookup' ),
-			$services->getExtensionRegistry(),
+			$services->get( 'IPInfoPermissionManager' ),
 			$services->getReadOnlyMode(),
 			$services->get( 'IPInfoAnonymousUserIPLookup' ),
 			$services->get( 'IPInfoHookRunner' )
