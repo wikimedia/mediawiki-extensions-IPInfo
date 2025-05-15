@@ -201,7 +201,7 @@ ipInfoWidget.prototype.getActiveBlocks = function ( numActiveBlocks ) {
 	if ( numActiveBlocks === undefined ) {
 		return undefined;
 	}
-	return mw.msg( 'ipinfo-value-active-blocks', numActiveBlocks );
+	return mw.message( 'ipinfo-value-active-blocks', numActiveBlocks ).escaped();
 };
 
 /**
@@ -216,9 +216,9 @@ ipInfoWidget.prototype.getEdits = function ( numLocalEdits, numRecentEdits, numD
 	if ( numLocalEdits === undefined && numRecentEdits === undefined ) {
 		return undefined;
 	}
-	const localEdits = mw.msg( 'ipinfo-value-local-edits', numLocalEdits );
+	const localEdits = mw.message( 'ipinfo-value-local-edits', numLocalEdits ).escaped();
 	const $recentEdits = $( '<span>' ).addClass( 'ext-ipinfo-widget-value-recent-edits' )
-		.append( mw.msg( 'ipinfo-value-recent-edits', numRecentEdits ) );
+		.append( mw.message( 'ipinfo-value-recent-edits', numRecentEdits ).escaped() );
 
 	const $edits = $( '<span>' ).append(
 		localEdits,
@@ -229,7 +229,7 @@ ipInfoWidget.prototype.getEdits = function ( numLocalEdits, numRecentEdits, numD
 
 	if ( numDeletedEdits !== undefined ) {
 		$edits.append(
-			mw.msg( 'ipinfo-value-deleted-edits', numDeletedEdits ),
+			mw.message( 'ipinfo-value-deleted-edits', numDeletedEdits ).escaped(),
 			$( '<br>' )
 		);
 	}
