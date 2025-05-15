@@ -183,7 +183,7 @@ ipInfoWidget.prototype.getActiveBlocks = function ( numActiveBlocks ) {
 	if ( numActiveBlocks === undefined ) {
 		return undefined;
 	}
-	return mw.msg( 'ipinfo-value-active-blocks', numActiveBlocks );
+	return mw.message( 'ipinfo-value-active-blocks', numActiveBlocks ).escaped();
 };
 
 /**
@@ -197,10 +197,9 @@ ipInfoWidget.prototype.getEdits = function ( numLocalEdits, numRecentEdits ) {
 	if ( numLocalEdits === undefined && numRecentEdits === undefined ) {
 		return undefined;
 	}
-	var localEdits = mw.msg( 'ipinfo-value-local-edits', numLocalEdits );
-
+	var localEdits = mw.message( 'ipinfo-value-local-edits', numLocalEdits ).escaped();
 	var $recentEdits = $( '<span>' ).addClass( 'ext-ipinfo-widget-value-recent-edits' )
-		.append( mw.msg( 'ipinfo-value-recent-edits', numRecentEdits ) );
+		.append( mw.message( 'ipinfo-value-recent-edits', numRecentEdits ).escaped() );
 
 	return $( '<span>' ).append(
 		localEdits,

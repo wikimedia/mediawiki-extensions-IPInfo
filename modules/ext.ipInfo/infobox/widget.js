@@ -58,8 +58,8 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 	var userType = this.getUserTypes( info.data[ 'ipinfo-source-geoip2' ].userType );
 
 	var ipversion = mw.util.isIPv4Address( info.subject, true ) ?
-		mw.msg( 'ipinfo-value-ipversion-ipv4' ) :
-		mw.msg( 'ipinfo-value-ipversion-ipv6' );
+		mw.message( 'ipinfo-value-ipversion-ipv4' ).escaped() :
+		mw.message( 'ipinfo-value-ipversion-ipv6' ).escaped();
 
 	var $info = $( '<dl>' ).addClass( 'ext-ipinfo-widget-properties' )
 		.append(
