@@ -345,7 +345,7 @@ class SpecialIPInfo extends FormSpecialPage {
 					// * ipinfo-property-value-connectiontype-iot
 					// * ipinfo-property-value-connectiontype-mobile
 					// * ipinfo-property-value-connectiontype-unknown
-					return $this->msg( "ipinfo-property-value-connectionType-$connectionType" )->text();
+					return $this->msg( "ipinfo-property-value-connectiontype-$connectionType" )->text();
 				},
 				$info['data']['ipinfo-source-ipoid']['connectionTypes'] ?? []
 			);
