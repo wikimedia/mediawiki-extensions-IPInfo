@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo\Hook;
 
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Permissions\Authority;
 
 class IPInfoHookRunner implements
 	IPInfoIPInfoHandlerHook
@@ -18,10 +19,15 @@ class IPInfoHookRunner implements
 	/**
 	 * @inheritDoc
 	 */
-	public function onIPInfoHandlerRun( string $target, string $dataContext, array &$dataContainer ) {
+	public function onIPInfoHandlerRun(
+		string $target,
+		Authority $performer,
+		string $dataContext,
+		array &$dataContainer
+	) {
 		$this->hookContainer->run(
 			'IPInfoHandlerRun',
-			[ $target, $dataContext, &$dataContainer ]
+			[ $target, $performer, $dataContext, &$dataContainer ]
 		);
 	}
 }
