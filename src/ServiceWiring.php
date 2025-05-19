@@ -13,6 +13,7 @@ use MediaWiki\IPInfo\InfoRetriever\IPCountInfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\IPoidInfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\IPVersionInfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\ReaderFactory;
+use MediaWiki\IPInfo\IPInfoPermissionManager;
 use MediaWiki\IPInfo\Logging\LoggerFactory as IPInfoLoggerFactory;
 use MediaWiki\IPInfo\TempUserIPLookup;
 use MediaWiki\Logger\LoggerFactory;
@@ -101,6 +102,13 @@ return [
 	'IPInfoHookRunner' => static function ( MediaWikiServices $services ): IPInfoHookRunner {
 		return new IPInfoHookRunner(
 			$services->getHookContainer()
+		);
+	},
+	'IPInfoPermissionManager' => static function ( MediaWikiServices $services ): IPInfoPermissionManager {
+		return new IPInfoPermissionManager(
+			$services->getExtensionRegistry(),
+			$services->getUserOptionsLookup(),
+			$services->getTempUserConfig()
 		);
 	},
 	'ReaderFactory' => static function (): ReaderFactory {
