@@ -83,6 +83,7 @@
 	"group-no-ipinfo-member": "IP хаам гӀирс тӀехь {{GENDER:$1|блоктоьхнарг}}",
 	"grouppage-no-ipinfo": "{{ns:project}}:IP-информацин гӀирс блоктоьхна болу декъашхой",
 	"ipinfo-log-name": "IPInfo журнал",
+	"ipinfo-log-header": "ХӀара журнал йу:\n# IP-х лаьцна хаамаш хьажа IP-информацин гӀирс лелор; а\n# ГӀирсана лелоран тӀегӀанашкахь хийцамаш бар.",
 	"ipinfo-log-access-level-ipinfo-view-basic": "Дихкина тӀекхачар",
 	"ipinfo-log-access-level-ipinfo-view-full": "Дуьззина тӀекхачар",
 	"logentry-ipinfo-view_infobox": "$1 {{GENDER:$2|хьаьжира}} IP информацин карточке $3. $4.",
