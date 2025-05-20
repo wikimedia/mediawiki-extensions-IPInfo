@@ -5,6 +5,7 @@ namespace MediaWiki\IPInfo\Test\Integration\Rest\Handler;
 use ArrayUtils;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\IPInfo\HookHandler\PreferencesHandler;
 use MediaWiki\IPInfo\Info\BlockInfo;
 use MediaWiki\IPInfo\Rest\Handler\RevisionHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
@@ -186,7 +187,7 @@ class RevisionHandlerTest extends HandlerTestCase {
 
 		$user = $this->getTestSysop()->getAuthority();
 		$this->setUserOptions( $user, [
-			'ipinfo-use-agreement' => 1
+			PreferencesHandler::IPINFO_USE_AGREEMENT => 1
 		] );
 
 		$request = self::getRequestData();
@@ -282,7 +283,7 @@ class RevisionHandlerTest extends HandlerTestCase {
 			static fn () => self::$blockedSysop,
 			static fn () => self::$revRecordByAnonUser,
 			self::VALID_CSRF_TOKEN,
-			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-beta-feature-enable' => 1, PreferencesHandler::IPINFO_USE_AGREEMENT => 1 ],
 			[ 'ipinfo-rest-access-denied', 403 ]
 		];
 
@@ -290,7 +291,7 @@ class RevisionHandlerTest extends HandlerTestCase {
 			static fn () => self::$testSysop,
 			static fn () => self::$revRecordByAnonUser,
 			null,
-			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-beta-feature-enable' => 1, PreferencesHandler::IPINFO_USE_AGREEMENT => 1 ],
 			[ 'rest-badtoken-missing', 403 ]
 		];
 
@@ -298,7 +299,7 @@ class RevisionHandlerTest extends HandlerTestCase {
 			static fn () => self::$testSysop,
 			static fn () => self::$revRecordByAnonUser,
 			'some-bad-token',
-			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-beta-feature-enable' => 1, PreferencesHandler::IPINFO_USE_AGREEMENT => 1 ],
 			[ 'rest-badtoken', 403 ]
 		];
 
@@ -306,7 +307,7 @@ class RevisionHandlerTest extends HandlerTestCase {
 			static fn () => self::$testSysop,
 			static fn () => null,
 			self::VALID_CSRF_TOKEN,
-			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-beta-feature-enable' => 1, PreferencesHandler::IPINFO_USE_AGREEMENT => 1 ],
 			[ 'rest-nonexistent-revision', 404 ]
 		];
 
@@ -314,7 +315,7 @@ class RevisionHandlerTest extends HandlerTestCase {
 			static fn () => self::$testSysop,
 			static fn () => self::$revRecordForRestrictedPage,
 			self::VALID_CSRF_TOKEN,
-			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-beta-feature-enable' => 1, PreferencesHandler::IPINFO_USE_AGREEMENT => 1 ],
 			[ 'rest-revision-permission-denied-revision', 403 ]
 		];
 
@@ -322,7 +323,7 @@ class RevisionHandlerTest extends HandlerTestCase {
 			static fn () => self::$testSysop,
 			static fn () => self::$deletedRevRecord,
 			self::VALID_CSRF_TOKEN,
-			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-beta-feature-enable' => 1, PreferencesHandler::IPINFO_USE_AGREEMENT => 1 ],
 			[ 'ipinfo-rest-revision-no-author', 403 ]
 		];
 
@@ -330,7 +331,7 @@ class RevisionHandlerTest extends HandlerTestCase {
 			static fn () => self::$testSysop,
 			static fn () => self::$revRecordByNamedUser,
 			self::VALID_CSRF_TOKEN,
-			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-beta-feature-enable' => 1, PreferencesHandler::IPINFO_USE_AGREEMENT => 1 ],
 			[ 'ipinfo-rest-revision-registered', 404 ]
 		];
 
@@ -338,7 +339,7 @@ class RevisionHandlerTest extends HandlerTestCase {
 			static fn () => self::$testSysop,
 			static fn () => self::$revRecordByImportedUser,
 			self::VALID_CSRF_TOKEN,
-			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-beta-feature-enable' => 1, PreferencesHandler::IPINFO_USE_AGREEMENT => 1 ],
 			[ 'ipinfo-rest-revision-invalid-ip', 404 ]
 		];
 	}
@@ -348,7 +349,7 @@ class RevisionHandlerTest extends HandlerTestCase {
 			[
 				self::$testSysop->getUser()->getName() => [
 					'ipinfo-beta-feature-enable' => 1,
-					'ipinfo-use-agreement' => 1
+					PreferencesHandler::IPINFO_USE_AGREEMENT => 1
 				]
 			]
 		) );
@@ -388,7 +389,7 @@ class RevisionHandlerTest extends HandlerTestCase {
 		$user = $this->getMutableTestUser( $groups )->getAuthority();
 		$this->setUserOptions( $user, [
 			'ipinfo-beta-feature-enable' => 1,
-			'ipinfo-use-agreement' => 1
+			PreferencesHandler::IPINFO_USE_AGREEMENT => 1
 		] );
 
 		$blockInfo = new BlockInfo();
@@ -460,7 +461,7 @@ class RevisionHandlerTest extends HandlerTestCase {
 		$performer = $this->getTestUser( [ 'sysop' ] )->getAuthority();
 		$this->setUserOptions( $performer, [
 			'ipinfo-beta-feature-enable' => 1,
-			'ipinfo-use-agreement' => 1
+			PreferencesHandler::IPINFO_USE_AGREEMENT => 1
 		] );
 
 		$blockStatus = $this->getServiceContainer()

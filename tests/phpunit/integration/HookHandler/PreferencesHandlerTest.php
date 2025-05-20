@@ -58,30 +58,30 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 		return [
 			'Enabled to begin with, then not set' => [
 				[
-					'ipinfo-use-agreement' => true,
+					PreferencesHandler::IPINFO_USE_AGREEMENT => true,
 				],
 				[],
 			],
 			'Enabled to begin with, then both option set to truthy' => [
 				[
-					'ipinfo-use-agreement' => true,
+					PreferencesHandler::IPINFO_USE_AGREEMENT => true,
 				],
 				[
-					'ipinfo-use-agreement' => '1',
+					PreferencesHandler::IPINFO_USE_AGREEMENT => '1',
 				],
 			],
 			'Disabled to begin with, then not set' => [
 				[
-					'ipinfo-use-agreement' => false,
+					PreferencesHandler::IPINFO_USE_AGREEMENT => false,
 				],
 				[],
 			],
 			'Disabled to begin with, then set to falsey' => [
 				[
-					'ipinfo-use-agreement' => 0,
+					PreferencesHandler::IPINFO_USE_AGREEMENT => 0,
 				],
 				[
-					'ipinfo-use-agreement' => false,
+					PreferencesHandler::IPINFO_USE_AGREEMENT => false,
 				],
 			],
 			'No options set to begin with, then no options set' => [
@@ -107,7 +107,7 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$handler->onSaveUserOptions( $user, $modifiedOptions, $originalOptions );
 
-		$this->assertFalse( $modifiedOptions[ 'ipinfo-use-agreement' ] );
+		$this->assertFalse( $modifiedOptions[ PreferencesHandler::IPINFO_USE_AGREEMENT ] );
 	}
 
 	public static function provideOnSaveUserOptionsRestoreDefaultPreferences() {
@@ -170,7 +170,7 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideGetPreferences(): iterable {
-		yield 'user with IPInfo access enabled' => [ true, [ 'ipinfo-use-agreement' ] ];
+		yield 'user with IPInfo access enabled' => [ true, [ PreferencesHandler::IPINFO_USE_AGREEMENT ] ];
 		yield 'user with IPInfo access disabled' => [ false, [] ];
 	}
 }

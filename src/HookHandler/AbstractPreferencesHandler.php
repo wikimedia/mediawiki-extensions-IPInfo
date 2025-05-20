@@ -14,6 +14,9 @@ use MediaWiki\User\UserIdentity;
  */
 abstract class AbstractPreferencesHandler {
 
+	/** @var string The preference used to store if the user has agreed to the use agreement. */
+	public const IPINFO_USE_AGREEMENT = 'ipinfo-use-agreement';
+
 	private UserGroupManager $userGroupManager;
 	private ExtensionRegistry $extensionRegistry;
 

@@ -1,6 +1,7 @@
 <?php
 namespace MediaWiki\IPInfo;
 
+use MediaWiki\IPInfo\HookHandler\PreferencesHandler;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\User\Options\UserOptionsLookup;
@@ -61,6 +62,8 @@ class IPInfoPermissionManager {
 	 */
 	public function canViewIPInfo( Authority $accessingUser ): bool {
 		return $this->hasEnabledIPInfo( $accessingUser ) &&
-			$this->userOptionsLookup->getBoolOption( $accessingUser->getUser(), 'ipinfo-use-agreement' );
+			$this->userOptionsLookup->getBoolOption(
+				$accessingUser->getUser(), PreferencesHandler::IPINFO_USE_AGREEMENT
+			);
 	}
 }

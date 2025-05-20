@@ -3,6 +3,7 @@ namespace MediaWiki\IPInfo\Test\Unit\Special;
 
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\IPInfo\HookHandler\PreferencesHandler;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\Special\SpecialIPInfo;
 use MediaWiki\IPInfo\TempUserIPLookup;
@@ -58,7 +59,7 @@ class SpecialIPInfoTest extends MediaWikiUnitTestCase {
 			->willReturn( $authority );
 
 		$this->userOptionsManager->method( 'getBoolOption' )
-			->with( $user, 'ipinfo-use-agreement' )
+			->with( $user, PreferencesHandler::IPINFO_USE_AGREEMENT )
 			->willReturn( $useAgreementPref );
 
 		$doesWrites = $this->page->doesWrites();

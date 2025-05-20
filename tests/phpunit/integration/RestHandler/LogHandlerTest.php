@@ -5,6 +5,7 @@ namespace MediaWiki\IPInfo\Test\Integration\RestHandler;
 use ArrayUtils;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\IPInfo\HookHandler\PreferencesHandler;
 use MediaWiki\IPInfo\Info\BlockInfo;
 use MediaWiki\IPInfo\Rest\Handler\LogHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
@@ -293,7 +294,7 @@ class LogHandlerTest extends HandlerTestCase {
 			static fn () => self::$blockedSysop,
 			static fn () => self::$logEntryByAnonId,
 			self::VALID_CSRF_TOKEN,
-			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-beta-feature-enable' => 1, PreferencesHandler::IPINFO_USE_AGREEMENT => 1 ],
 			[ 'ipinfo-rest-access-denied', 403 ]
 		];
 
@@ -301,7 +302,7 @@ class LogHandlerTest extends HandlerTestCase {
 			static fn () => self::$testSysop,
 			static fn () => self::$logEntryByAnonId,
 			null,
-			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-beta-feature-enable' => 1, PreferencesHandler::IPINFO_USE_AGREEMENT => 1 ],
 			[ 'rest-badtoken-missing', 403 ]
 		];
 
@@ -309,7 +310,7 @@ class LogHandlerTest extends HandlerTestCase {
 			static fn () => self::$testSysop,
 			static fn () => self::$logEntryByAnonId,
 			'some-bad-token',
-			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-beta-feature-enable' => 1, PreferencesHandler::IPINFO_USE_AGREEMENT => 1 ],
 			[ 'rest-badtoken', 403 ]
 		];
 
@@ -317,7 +318,7 @@ class LogHandlerTest extends HandlerTestCase {
 			static fn () => self::$testSysop,
 			fn () => self::TEST_MISSING_LOG_ID,
 			self::VALID_CSRF_TOKEN,
-			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-beta-feature-enable' => 1, PreferencesHandler::IPINFO_USE_AGREEMENT => 1 ],
 			[ 'ipinfo-rest-log-nonexistent', 404 ]
 		];
 
@@ -325,7 +326,7 @@ class LogHandlerTest extends HandlerTestCase {
 			static fn () => self::$testSysop,
 			static fn () => self::$restrictedLogEntryByAnonId,
 			self::VALID_CSRF_TOKEN,
-			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-beta-feature-enable' => 1, PreferencesHandler::IPINFO_USE_AGREEMENT => 1 ],
 			[ 'ipinfo-rest-log-denied', 403 ]
 		];
 
@@ -333,7 +334,7 @@ class LogHandlerTest extends HandlerTestCase {
 			static fn () => self::$ipInfoViewer,
 			static fn () => self::$fullyDeletedLogEntryByAnonId,
 			self::VALID_CSRF_TOKEN,
-			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-beta-feature-enable' => 1, PreferencesHandler::IPINFO_USE_AGREEMENT => 1 ],
 			[ 'ipinfo-rest-log-denied', 403 ]
 		];
 
@@ -341,7 +342,7 @@ class LogHandlerTest extends HandlerTestCase {
 			static fn () => self::$ipInfoViewer,
 			static fn () => self::$deletedLogEntryByAnonId,
 			self::VALID_CSRF_TOKEN,
-			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-beta-feature-enable' => 1, PreferencesHandler::IPINFO_USE_AGREEMENT => 1 ],
 			[ 'ipinfo-rest-log-registered', 404 ]
 		];
 
@@ -349,7 +350,7 @@ class LogHandlerTest extends HandlerTestCase {
 			static fn () => self::$ipInfoViewer,
 			static fn () => self::$suppressedLogEntryByAnonId,
 			self::VALID_CSRF_TOKEN,
-			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-beta-feature-enable' => 1, PreferencesHandler::IPINFO_USE_AGREEMENT => 1 ],
 			[ 'ipinfo-rest-log-registered', 404 ]
 		];
 
@@ -357,7 +358,7 @@ class LogHandlerTest extends HandlerTestCase {
 			static fn () => self::$testSysop,
 			static fn () => self::$logEntryByNamedUserId,
 			self::VALID_CSRF_TOKEN,
-			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ],
+			[ 'ipinfo-beta-feature-enable' => 1, PreferencesHandler::IPINFO_USE_AGREEMENT => 1 ],
 			[ 'ipinfo-rest-log-registered', 404 ]
 		];
 	}
@@ -389,7 +390,7 @@ class LogHandlerTest extends HandlerTestCase {
 		$user = $authorityProvider();
 		$this->setUserOptions( $user, [
 			'ipinfo-beta-feature-enable' => 1,
-			'ipinfo-use-agreement' => 1
+			PreferencesHandler::IPINFO_USE_AGREEMENT => 1
 		] );
 
 		$blockInfo = new BlockInfo();
@@ -517,7 +518,7 @@ class LogHandlerTest extends HandlerTestCase {
 		$performer = $this->getTestUser( [ 'sysop' ] )->getAuthority();
 		$this->setUserOptions( $performer, [
 			'ipinfo-beta-feature-enable' => 1,
-			'ipinfo-use-agreement' => 1
+			PreferencesHandler::IPINFO_USE_AGREEMENT => 1
 		] );
 
 		$blockStatus = $this->getServiceContainer()
