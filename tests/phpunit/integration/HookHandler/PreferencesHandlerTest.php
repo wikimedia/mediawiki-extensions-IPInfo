@@ -6,6 +6,7 @@ use MediaWiki\IPInfo\HookHandler\PreferencesHandler;
 use MediaWiki\IPInfo\IPInfoPermissionManager;
 use MediaWiki\IPInfo\Logging\Logger;
 use MediaWiki\IPInfo\Logging\LoggerFactory;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\User\User;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
@@ -14,6 +15,7 @@ use MediaWikiIntegrationTestCase;
 /**
  * @group IPInfo
  * @covers \MediaWiki\IPInfo\HookHandler\PreferencesHandler
+ * @covers \MediaWiki\IPInfo\HookHandler\AbstractPreferencesHandler
  */
 class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 
@@ -22,6 +24,7 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 			[
 				'ipInfoPermissionManager' => $this->createMock( IPInfoPermissionManager::class ),
 				'userGroupManager' => $this->createMock( UserGroupManager::class ),
+				'extensionRegistry' => $this->createMock( ExtensionRegistry::class ),
 				'loggerFactory' => $this->createMock( LoggerFactory::class ),
 			],
 			$options

@@ -175,6 +175,7 @@
 			"services": [
 				"IPInfoPermissionManager",
 				"UserGroupManager",
+				"ExtensionRegistry",
 				"IPInfoLoggerFactory"
 			]
 		},

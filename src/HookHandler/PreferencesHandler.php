@@ -2,8 +2,6 @@
 
 namespace MediaWiki\IPInfo\HookHandler;
 
-use MediaWiki\Extension\EventLogging\EventLogging;
-use MediaWiki\Extension\EventLogging\Libs\UserBucketProvider\UserBucketProvider;
 use MediaWiki\IPInfo\IPInfoPermissionManager;
 use MediaWiki\IPInfo\Logging\LoggerFactory;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
@@ -11,20 +9,18 @@ use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 
-class PreferencesHandler implements GetPreferencesHook {
+class PreferencesHandler extends AbstractPreferencesHandler implements GetPreferencesHook {
 	private IPInfoPermissionManager $ipInfoPermissionManager;
-
-	private UserGroupManager $userGroupManager;
-
 	private LoggerFactory $loggerFactory;
 
 	public function __construct(
 		IPInfoPermissionManager $ipInfoPermissionManager,
 		UserGroupManager $userGroupManager,
+		ExtensionRegistry $extensionRegistry,
 		LoggerFactory $loggerFactory
 	) {
+		parent::__construct( $extensionRegistry, $userGroupManager );
 		$this->ipInfoPermissionManager = $ipInfoPermissionManager;
-		$this->userGroupManager = $userGroupManager;
 		$this->loggerFactory = $loggerFactory;
 	}
 
@@ -40,51 +36,6 @@ class PreferencesHandler implements GetPreferencesHook {
 			'section' => 'personal/ipinfo',
 			'noglobal' => true,
 		];
-	}
-
-	/**
-	 * Utility function to make option checking less verbose.
-	 *
-	 * @param array $options
-	 * @param string $option
-	 * @return bool The option is set and truthy
-	 */
-	private function isTruthy( $options, $option ): bool {
-		return !empty( $options[$option] );
-	}
-
-	/**
-	 * Utility function to make option checking less verbose.
-	 * We avoid empty() here because we need the option to be set.
-	 *
-	 * @param array $options
-	 * @param string $option
-	 * @return bool The option is set and falsey
-	 */
-	private function isFalsey( $options, $option ): bool {
-		return isset( $options[$option] ) && !$options[$option];
-	}
-
-	/**
-	 * Send events to the external event server
-	 *
-	 * @param string $action
-	 * @param string $context
-	 * @param string $source
-	 * @param UserIdentity $user
-	 */
-	private function logEvent( $action, $context, $source, $user ): void {
-		if ( !ExtensionRegistry::getInstance()->isLoaded( 'EventLogging' ) ) {
-			return;
-		}
-		EventLogging::submit( 'mediawiki.ipinfo_interaction', [
-			'$schema' => '/analytics/mediawiki/ipinfo_interaction/1.1.0',
-			'event_action' => $action,
-			'event_context' => $context,
-			'event_source' => $source,
-			'user_edit_bucket' => UserBucketProvider::getUserEditCountBucket( $user ),
-			'user_groups' => implode( '|', $this->userGroupManager->getUserGroups( $user ) )
-		] );
 	}
 
 	/**
