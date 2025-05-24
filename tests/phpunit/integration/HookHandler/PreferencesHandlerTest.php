@@ -169,7 +169,7 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expectedPreferenceNames, array_keys( $preferences ) );
 	}
 
-	public function provideGetPreferences(): iterable {
+	public static function provideGetPreferences(): iterable {
 		yield 'user with IPInfo access enabled' => [ true, [ 'ipinfo-use-agreement' ] ];
 		yield 'user with IPInfo access disabled' => [ false, [] ];
 	}
