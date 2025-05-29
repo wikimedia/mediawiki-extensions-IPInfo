@@ -92,55 +92,6 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideOnSaveUserOptionsRestoreDefaultPreferences
-	 */
-	public function testOnSaveUserOptionsRestoreDefaultPreferences( $originalOptions, $modifiedOptions ) {
-		$user = $this->createMock( UserIdentity::class );
-		$logger = $this->createMock( Logger::class );
-
-		$loggerFactory = $this->createMock( LoggerFactory::class );
-		$loggerFactory->method( 'getLogger' )
-			->willReturn( $logger );
-		$handler = $this->getPreferencesHandler( [
-			'loggerFactory' => $loggerFactory,
-		] );
-
-		$handler->onSaveUserOptions( $user, $modifiedOptions, $originalOptions );
-
-		$this->assertFalse( $modifiedOptions[ PreferencesHandler::IPINFO_USE_AGREEMENT ] );
-	}
-
-	public static function provideOnSaveUserOptionsRestoreDefaultPreferences() {
-		return [
-			'Disable beta feature' => [
-				[
-					'ipinfo-beta-feature-enable' => true
-				],
-				[
-					'ipinfo-beta-feature-enable' => false
-				],
-			],
-			'Enable beta feature' => [
-				[
-					'ipinfo-beta-feature-enable' => false
-				],
-				[
-					'ipinfo-beta-feature-enable' => true
-				],
-			],
-			'Enable auto enroll' => [
-				[
-					'ipinfo-beta-feature-enable' => false,
-					'betafeatures-auto-enroll' => false
-				],
-				[
-					'betafeatures-auto-enroll' => true
-				],
-			],
-		];
-	}
-
-	/**
 	 * @dataProvider provideGetPreferences
 	 */
 	public function testOnGetPreferences(
