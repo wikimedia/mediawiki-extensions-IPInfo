@@ -24,6 +24,9 @@ use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
+/**
+ * @internal For use by IPInfo
+ */
 class LogHandler extends IPInfoHandler {
 
 	private IConnectionProvider $dbProvider;

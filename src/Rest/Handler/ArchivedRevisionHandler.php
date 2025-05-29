@@ -18,6 +18,9 @@ use MediaWiki\User\UserIdentityUtils;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
+/**
+ * @internal For use by IPInfo
+ */
 class ArchivedRevisionHandler extends AbstractRevisionHandler {
 
 	private ArchivedRevisionLookup $archivedRevisionLookup;

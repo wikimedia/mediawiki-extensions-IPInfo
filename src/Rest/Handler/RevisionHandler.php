@@ -16,6 +16,9 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityUtils;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
+/**
+ * @internal For use by IPInfo
+ */
 class RevisionHandler extends AbstractRevisionHandler {
 
 	private RevisionLookup $revisionLookup;

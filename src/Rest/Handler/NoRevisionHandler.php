@@ -19,6 +19,9 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
+/**
+ * @internal For use by IPInfo
+ */
 class NoRevisionHandler extends IPInfoHandler {
 
 	private AnonymousUserIPLookup $anonymousUserIPLookup;
