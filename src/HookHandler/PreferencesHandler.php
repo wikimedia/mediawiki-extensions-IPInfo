@@ -40,34 +40,12 @@ class PreferencesHandler extends AbstractPreferencesHandler implements GetPrefer
 
 	/**
 	 * @param UserIdentity $user
-	 * @param array &$modifiedOptions
+	 * @param array $modifiedOptions
 	 * @param array $originalOptions
 	 */
-	public function onSaveUserOptions( UserIdentity $user, array &$modifiedOptions, array $originalOptions ) {
+	public function onSaveUserOptions( UserIdentity $user, array $modifiedOptions, array $originalOptions ) {
 		$betaFeatureIsEnabled = $this->isTruthy( $originalOptions, 'ipinfo-beta-feature-enable' );
-		$betaFeatureIsDisabled = !$betaFeatureIsEnabled;
-
-		$betaFeatureWillEnable = $this->isTruthy( $modifiedOptions, 'ipinfo-beta-feature-enable' );
 		$betaFeatureWillDisable = $this->isFalsey( $modifiedOptions, 'ipinfo-beta-feature-enable' );
-
-		// If enabling auto-enroll, treat as enabling IPInfo because:
-		// * IPInfo will become enabled
-		// * 'ipinfo-beta-feature-enable' won't be updated before this hook runs
-		// When disabling auto-enroll, do not treat as disabling IPnfo because:
-		// * IPInfo will not necessarily become disabled
-		// * 'ipinfo-beta-feature-enable' will be updated if IPInfo becomes disabled
-		$autoEnrollIsEnabled = $this->isTruthy( $originalOptions, 'betafeatures-auto-enroll' );
-		$autoEnrollIsDisabled = !$autoEnrollIsEnabled;
-		$autoEnrollWillEnable = $this->isTruthy( $modifiedOptions, 'betafeatures-auto-enroll' );
-
-		if (
-			( $betaFeatureIsEnabled && $betaFeatureWillDisable ) ||
-			( $betaFeatureIsDisabled && $betaFeatureWillEnable ) ||
-			( $betaFeatureIsDisabled && $autoEnrollIsDisabled && $autoEnrollWillEnable )
-		) {
-			// Restore default IPInfo preferences
-			$modifiedOptions[self::IPINFO_USE_AGREEMENT] = false;
-		}
 
 		// Is IPInfo already enabled?
 		$ipInfoAgreementIsEnabled = $this->isTruthy( $originalOptions, self::IPINFO_USE_AGREEMENT );
