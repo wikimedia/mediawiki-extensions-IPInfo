@@ -8,6 +8,7 @@ use HtmlFormatter\HtmlFormatter;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Exception\UserBlockedError;
+use MediaWiki\IPInfo\HookHandler\PreferencesHandler;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\IPInfo\Special\SpecialIPInfo;
 use MediaWiki\Permissions\Authority;
@@ -118,7 +119,7 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 
 		$this->getServiceContainer()
 			->getUserOptionsManager()
-			->setOption( $performer->getUser(), 'ipinfo-use-agreement', '1' );
+			->setOption( $performer->getUser(), PreferencesHandler::IPINFO_USE_AGREEMENT, '1' );
 
 		[ $html ] = $this->executeSpecialPage(
 			$tempUser->getName(),
@@ -175,7 +176,7 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 
 		$postSubmitPref = $this->getServiceContainer()
 			->getUserOptionsLookup()
-			->getBoolOption( $performer->getUser(), 'ipinfo-use-agreement' );
+			->getBoolOption( $performer->getUser(), PreferencesHandler::IPINFO_USE_AGREEMENT );
 
 		$doc = self::parseHtml( $html );
 
@@ -192,7 +193,7 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 
 		$this->getServiceContainer()
 			->getUserOptionsManager()
-			->setOption( $performer->getUser(), 'ipinfo-use-agreement', '1' );
+			->setOption( $performer->getUser(), PreferencesHandler::IPINFO_USE_AGREEMENT, '1' );
 
 		[ $html ] = $this->executeSpecialPage(
 			self::$tempUserWithEdits->getUser()->getName(),
@@ -230,7 +231,7 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 
 		$this->getServiceContainer()
 			->getUserOptionsManager()
-			->setOption( $performer->getUser(), 'ipinfo-use-agreement', '1' );
+			->setOption( $performer->getUser(), PreferencesHandler::IPINFO_USE_AGREEMENT, '1' );
 
 		$req = new FauxRequest( $requestParams );
 
@@ -307,7 +308,7 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 
 		$this->getServiceContainer()
 			->getUserOptionsManager()
-			->setOption( $performer->getUser(), 'ipinfo-use-agreement', '1' );
+			->setOption( $performer->getUser(), PreferencesHandler::IPINFO_USE_AGREEMENT, '1' );
 
 		$targetNameProvider = $targetNameProvider->bindTo( $this );
 		$userName = $targetNameProvider();

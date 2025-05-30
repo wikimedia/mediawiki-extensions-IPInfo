@@ -2,6 +2,7 @@
 namespace MediaWiki\IPInfo\Test\Unit;
 
 use MediaWiki\Block\Block;
+use MediaWiki\IPInfo\HookHandler\PreferencesHandler;
 use MediaWiki\IPInfo\IPInfoPermissionManager;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\SimpleAuthority;
@@ -157,7 +158,10 @@ class IPInfoPermissionManagerTest extends MediaWikiUnitTestCase {
 		$this->userOptionsLookup->method( 'getBoolOption' )
 			->willReturnMap( [
 				[ $user, 'ipinfo-beta-feature-enable', IDBAccessObject::READ_NORMAL, $hasEnabledBetaFeature ],
-				[ $user, 'ipinfo-use-agreement', IDBAccessObject::READ_NORMAL, $hasAcceptedDataUseAgreement ],
+				[
+					$user, PreferencesHandler::IPINFO_USE_AGREEMENT, IDBAccessObject::READ_NORMAL,
+					$hasAcceptedDataUseAgreement,
+				],
 			] );
 
 		$canView = $this->ipInfoPermissionManager->canViewIPInfo( $authority );

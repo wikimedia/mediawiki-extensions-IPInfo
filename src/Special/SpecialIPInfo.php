@@ -7,6 +7,7 @@ use MediaWiki\Exception\UserBlockedError;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\TemplateParser;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\IPInfo\HookHandler\PreferencesHandler;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\InfoRetriever\GeoLite2InfoRetriever;
 use MediaWiki\IPInfo\InfoRetriever\IPoidInfoRetriever;
@@ -92,7 +93,9 @@ class SpecialIPInfo extends FormSpecialPage {
 	}
 
 	private function didNotAcceptIPInfoAgreement(): bool {
-		return !$this->userOptionsManager->getBoolOption( $this->getAuthority()->getUser(), 'ipinfo-use-agreement' );
+		return !$this->userOptionsManager->getBoolOption(
+			$this->getAuthority()->getUser(), PreferencesHandler::IPINFO_USE_AGREEMENT
+		);
 	}
 
 	/** @inheritDoc */
@@ -204,7 +207,7 @@ class SpecialIPInfo extends FormSpecialPage {
 			}
 
 			$user = $this->getUser()->getInstanceForUpdate();
-			$this->userOptionsManager->setOption( $user, 'ipinfo-use-agreement', '1' );
+			$this->userOptionsManager->setOption( $user, PreferencesHandler::IPINFO_USE_AGREEMENT, '1' );
 			$user->saveSettings();
 		}
 

@@ -30,7 +30,7 @@ class PreferencesHandler extends AbstractPreferencesHandler implements GetPrefer
 			return;
 		}
 
-		$preferences['ipinfo-use-agreement'] = [
+		$preferences[self::IPINFO_USE_AGREEMENT] = [
 			'type' => 'toggle',
 			'label-message' => 'ipinfo-preference-use-agreement',
 			'section' => 'personal/ipinfo',
@@ -66,23 +66,23 @@ class PreferencesHandler extends AbstractPreferencesHandler implements GetPrefer
 			( $betaFeatureIsDisabled && $autoEnrollIsDisabled && $autoEnrollWillEnable )
 		) {
 			// Restore default IPInfo preferences
-			$modifiedOptions[ 'ipinfo-use-agreement' ] = false;
+			$modifiedOptions[self::IPINFO_USE_AGREEMENT] = false;
 		}
 
 		// Is IPInfo already enabled?
-		$ipInfoAgreementIsEnabled = $this->isTruthy( $originalOptions, 'ipinfo-use-agreement' );
+		$ipInfoAgreementIsEnabled = $this->isTruthy( $originalOptions, self::IPINFO_USE_AGREEMENT );
 		$ipInfoIsEnabled = $betaFeatureIsEnabled && $ipInfoAgreementIsEnabled;
 		$ipInfoIsDisabled = !$ipInfoIsEnabled;
 
-		$ipInfoAgreementWillEnable = $this->isTruthy( $modifiedOptions, 'ipinfo-use-agreement' );
-		$ipInfoAgreementWillDisable = $this->isFalsey( $modifiedOptions, 'ipinfo-use-agreement' );
+		$ipInfoAgreementWillEnable = $this->isTruthy( $modifiedOptions, self::IPINFO_USE_AGREEMENT );
+		$ipInfoAgreementWillDisable = $this->isFalsey( $modifiedOptions, self::IPINFO_USE_AGREEMENT );
 		$ipInfoWillEnable = $betaFeatureIsEnabled && !$betaFeatureWillDisable && $ipInfoAgreementWillEnable;
 		$ipInfoWillDisable = $betaFeatureWillDisable || $ipInfoAgreementWillDisable;
 
 		if ( ( !$ipInfoAgreementIsEnabled && $ipInfoAgreementWillEnable ) ||
 			( $ipInfoAgreementIsEnabled && $ipInfoAgreementWillDisable ) ) {
 			$this->logEvent(
-				(bool)$modifiedOptions['ipinfo-use-agreement'] ? 'accept_disclaimer' : 'uncheck_iagree',
+				(bool)$modifiedOptions[self::IPINFO_USE_AGREEMENT] ? 'accept_disclaimer' : 'uncheck_iagree',
 				'page',
 				'special_preferences',
 				$user

@@ -3,6 +3,7 @@
 namespace MediaWiki\IPInfo\Test\Integration\Rest\Handler;
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\IPInfo\HookHandler\PreferencesHandler;
 use MediaWiki\IPInfo\Rest\Handler\NoRevisionHandler;
 use MediaWiki\IPInfo\Test\Integration\RestHandler\HandlerTestCase;
 use MediaWiki\Permissions\Authority;
@@ -171,7 +172,9 @@ class NoRevisionHandlerTest extends HandlerTestCase {
 		$username = $usernameProvider();
 
 		// User is assumed to have access to IPInfo. Access gated by these options are tested by IPInfoHandler
-		$this->setUserOptions( $authority, [ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ] );
+		$this->setUserOptions(
+			$authority, [ 'ipinfo-beta-feature-enable' => 1, PreferencesHandler::IPINFO_USE_AGREEMENT => 1 ]
+		);
 
 		$request = self::getRequestData( $username, $csrfToken );
 		$this->executeWithUser( $request, $authority );
@@ -211,7 +214,9 @@ class NoRevisionHandlerTest extends HandlerTestCase {
 		$target = $targetProvider();
 
 		// User is assumed to have access to IPInfo. Access gated by these options are tested by IPInfoHandler
-		$this->setUserOptions( $authority, [ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ] );
+		$this->setUserOptions(
+			$authority, [ 'ipinfo-beta-feature-enable' => 1, PreferencesHandler::IPINFO_USE_AGREEMENT => 1 ]
+		);
 
 		$request = self::getRequestData( $target, self::VALID_CSRF_TOKEN );
 		$response = $this->executeWithUser( $request, $authority );
@@ -246,7 +251,9 @@ class NoRevisionHandlerTest extends HandlerTestCase {
 	public function testExecuteUnnamedUserNoLogs( $targetProvider ) {
 		// User is assumed to have access to IPInfo. Access gated by these options are tested by IPInfoHandler
 		$authority = self::$sysopSuppress;
-		$this->setUserOptions( $authority, [ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ] );
+		$this->setUserOptions(
+			$authority, [ 'ipinfo-beta-feature-enable' => 1, PreferencesHandler::IPINFO_USE_AGREEMENT => 1 ]
+		);
 
 		$request = self::getRequestData( $targetProvider(), self::VALID_CSRF_TOKEN );
 		$response = $this->executeWithUser( $request, $authority );
@@ -280,7 +287,9 @@ class NoRevisionHandlerTest extends HandlerTestCase {
 
 		// User is assumed to have access to IPInfo. Access gated by these options are tested by IPInfoHandler
 		$authority = self::$sysopSuppress;
-		$this->setUserOptions( $authority, [ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ] );
+		$this->setUserOptions(
+			$authority, [ 'ipinfo-beta-feature-enable' => 1, PreferencesHandler::IPINFO_USE_AGREEMENT => 1 ]
+		);
 
 		$request = self::getRequestData( self::$tempUser->getName(), self::VALID_CSRF_TOKEN );
 		$response = $this->executeWithUser( $request, $authority );
