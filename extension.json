@@ -183,8 +183,7 @@
 			"class": "MediaWiki\\IPInfo\\HookHandler\\BetaFeaturePreferencesHandler",
 			"services": [
 				"MainConfig",
-				"PermissionManager",
-				"TempUserConfig"
+				"IPInfoPermissionManager"
 			]
 		},
 		"schema": {

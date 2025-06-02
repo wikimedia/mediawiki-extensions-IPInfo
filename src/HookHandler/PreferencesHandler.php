@@ -44,8 +44,16 @@ class PreferencesHandler extends AbstractPreferencesHandler implements GetPrefer
 	 * @param array $originalOptions
 	 */
 	public function onSaveUserOptions( UserIdentity $user, array $modifiedOptions, array $originalOptions ) {
-		$betaFeatureIsEnabled = $this->isTruthy( $originalOptions, 'ipinfo-beta-feature-enable' );
-		$betaFeatureWillDisable = $this->isFalsey( $modifiedOptions, 'ipinfo-beta-feature-enable' );
+		if ( $this->ipInfoPermissionManager->requiresBetaFeatureToggle() ) {
+			$betaFeatureIsEnabled = $this->isTruthy( $originalOptions, 'ipinfo-beta-feature-enable' );
+			$betaFeatureWillDisable = $this->isFalsey( $modifiedOptions, 'ipinfo-beta-feature-enable' );
+			$betaFeatureWillEnable = $this->isTruthy( $modifiedOptions, 'ipinfo-beta-feature-enable' );
+		} else {
+			// IPInfo is not a BetaFeature if temporary accounts are known on this wiki (T356660).
+			$betaFeatureIsEnabled = true;
+			$betaFeatureWillDisable = false;
+			$betaFeatureWillEnable = true;
+		}
 
 		// Is IPInfo already enabled?
 		$ipInfoAgreementIsEnabled = $this->isTruthy( $originalOptions, self::IPINFO_USE_AGREEMENT );
@@ -54,7 +62,7 @@ class PreferencesHandler extends AbstractPreferencesHandler implements GetPrefer
 
 		$ipInfoAgreementWillEnable = $this->isTruthy( $modifiedOptions, self::IPINFO_USE_AGREEMENT );
 		$ipInfoAgreementWillDisable = $this->isFalsey( $modifiedOptions, self::IPINFO_USE_AGREEMENT );
-		$ipInfoWillEnable = $betaFeatureIsEnabled && !$betaFeatureWillDisable && $ipInfoAgreementWillEnable;
+		$ipInfoWillEnable = $betaFeatureWillEnable && $ipInfoAgreementWillEnable;
 		$ipInfoWillDisable = $betaFeatureWillDisable || $ipInfoAgreementWillDisable;
 
 		if ( ( !$ipInfoAgreementIsEnabled && $ipInfoAgreementWillEnable ) ||

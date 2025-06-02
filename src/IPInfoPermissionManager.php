@@ -41,15 +41,21 @@ class IPInfoPermissionManager {
 			return false;
 		}
 
-		if ( !$this->extensionRegistry->isLoaded( 'BetaFeatures' ) ) {
-			return true;
+		if ( $this->requiresBetaFeatureToggle() ) {
+			return $this->userOptionsLookup->getBoolOption( $accessingUser->getUser(), 'ipinfo-beta-feature-enable' );
 		}
 
+		return true;
+	}
+
+	/**
+	 * Check whether IPInfo access requires opting into a BetaFeatures toggle.
+	 * @return bool `true` if BetaFeatures is loaded and temporary accounts are not known on this wiki,
+	 * `false` otherwise.
+	 */
+	public function requiresBetaFeatureToggle(): bool {
 		// Only gate IPInfo behind a BetaFeatures toggle on wikis without temporary accounts (T356660).
-		return (
-			$this->tempUserConfig->isKnown() ||
-			$this->userOptionsLookup->getBoolOption( $accessingUser->getUser(), 'ipinfo-beta-feature-enable' )
-		);
+		return $this->extensionRegistry->isLoaded( 'BetaFeatures' ) && !$this->tempUserConfig->isKnown();
 	}
 
 	/**

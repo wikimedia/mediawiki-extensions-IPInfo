@@ -2,7 +2,6 @@
 
 namespace MediaWiki\IPInfo\Test\Integration\HookHandler;
 
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
@@ -34,13 +33,9 @@ class BetaFeaturePreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$user = $this->createMock( User::class );
-
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->method( 'userHasRight' )
-			->with( $user, 'ipinfo' )
+		$user->method( 'isAllowed' )
+			->with( 'ipinfo' )
 			->willReturn( $hasIPInfoPermission );
-
-		$this->setService( 'PermissionManager', $permissionManager );
 
 		$preferences = [];
 		$this->getServiceContainer()->getHookContainer()->run( 'GetBetaFeaturePreferences', [ $user, &$preferences ] );

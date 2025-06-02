@@ -240,4 +240,50 @@ class IPInfoPermissionManagerTest extends MediaWikiUnitTestCase {
 			'expected' => true,
 		];
 	}
+
+	/**
+	 * @dataProvider provideRequiresBetaFeatureToggle
+	 */
+	public function testRequiresBetaFeatureToggle(
+		bool $areBetaFeaturesLoaded,
+		bool $areTemporaryAccountsKnown,
+		bool $expected
+	): void {
+		$this->extensionRegistry->method( 'isLoaded' )
+			->with( 'BetaFeatures' )
+			->willReturn( $areBetaFeaturesLoaded );
+
+		$this->tempUserConfig->method( 'isKnown' )
+			->willReturn( $areTemporaryAccountsKnown );
+
+		$requiresBetaFeatureToggle = $this->ipInfoPermissionManager->requiresBetaFeatureToggle();
+
+		$this->assertSame( $expected, $requiresBetaFeatureToggle );
+	}
+
+	public static function provideRequiresBetaFeatureToggle(): iterable {
+		yield 'BetaFeatures loaded, temporary accounts not known' => [
+			'areBetaFeaturesLoaded' => true,
+			'areTemporaryAccountsKnown' => false,
+			'expected' => true,
+		];
+
+		yield 'BetaFeatures loaded, temporary accounts known' => [
+			'areBetaFeaturesLoaded' => true,
+			'areTemporaryAccountsKnown' => true,
+			'expected' => false,
+		];
+
+		yield 'BetaFeatures not loaded, temporary accounts not known' => [
+			'areBetaFeaturesLoaded' => false,
+			'areTemporaryAccountsKnown' => false,
+			'expected' => false,
+		];
+
+		yield 'BetaFeatures not loaded, temporary accounts known' => [
+			'areBetaFeaturesLoaded' => false,
+			'areTemporaryAccountsKnown' => true,
+			'expected' => false,
+		];
+	}
 }

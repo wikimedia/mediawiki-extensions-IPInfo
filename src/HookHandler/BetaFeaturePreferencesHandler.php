@@ -2,26 +2,21 @@
 namespace MediaWiki\IPInfo\HookHandler;
 
 use MediaWiki\Config\Config;
-use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\User\TempUser\TempUserConfig;
+use MediaWiki\IPInfo\IPInfoPermissionManager;
 use MediaWiki\User\User;
 
 class BetaFeaturePreferencesHandler {
 
 	private Config $config;
 
-	private PermissionManager $permissionManager;
-
-	private TempUserConfig $tempUserConfig;
+	private IPInfoPermissionManager $ipInfoPermissionManager;
 
 	public function __construct(
 		Config $config,
-		PermissionManager $permissionManager,
-		TempUserConfig $tempUserConfig
+		IPInfoPermissionManager $ipInfoPermissionManager
 	) {
 		$this->config = $config;
-		$this->permissionManager = $permissionManager;
-		$this->tempUserConfig = $tempUserConfig;
+		$this->ipInfoPermissionManager = $ipInfoPermissionManager;
 	}
 
 	/**
@@ -32,8 +27,8 @@ class BetaFeaturePreferencesHandler {
 		$extensionAssetsPath = $this->config->get( 'ExtensionAssetsPath' );
 
 		if (
-			!$this->tempUserConfig->isKnown() &&
-			$this->permissionManager->userHasRight( $user, 'ipinfo' )
+			$this->ipInfoPermissionManager->requiresBetaFeatureToggle() &&
+			$user->isAllowed( 'ipinfo' )
 		) {
 			$url = "https://www.mediawiki.org/wiki/";
 			$infoLink = $url . "Trust_and_Safety_Product/IP_Info";
