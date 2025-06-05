@@ -83,6 +83,7 @@ class LogHandlerTest extends HandlerTestCase {
 			$services->getUserIdentityUtils(),
 			$services->getUserIdentityLookup(),
 			$services->get( 'IPInfoTempUserIPLookup' ),
+			$services->get( 'IPInfoAnonymousUserIPLookup' ),
 			$services->get( 'IPInfoPermissionManager' ),
 			$services->getReadOnlyMode(),
 			$services->get( 'IPInfoHookRunner' )
@@ -171,7 +172,7 @@ class LogHandlerTest extends HandlerTestCase {
 			->getUser();
 
 		$anonTarget = new TitleValue( NS_USER, self::$anonUser->getName() );
-		$otherTarget = new TitleValue( NS_MAIN, 'Test' );
+		$otherTarget = new TitleValue( NS_MAIN, $this->getTestUser()->getUser()->getName() );
 
 		self::$logEntryByTempUserId = $this->makeLogEntry(
 			self::TEST_LOG_TYPE,
@@ -541,5 +542,72 @@ class LogHandlerTest extends HandlerTestCase {
 		$this->assertSame( 200, $response->getStatusCode() );
 		$this->assertSame( 200, $response->getStatusCode() );
 		$this->assertCount( 1, $body['info'] );
+	}
+
+	public function testShouldHandleAnonymousUserIsKnownLogEntry() {
+		// Stub out an AbuseFilter hit for the IP being target. Only AF will know about this IP.
+		$this->getDb()->newInsertQueryBuilder()
+			->insertInto( 'abuse_filter_log' )
+			->row( [
+				'afl_global' => 0,
+				'afl_filter_id' => 1,
+				'afl_user' => 0,
+				'afl_user_text' => '1.2.3.5',
+				'afl_ip' => '1.2.3.5',
+				'afl_action' => 'edit',
+				'afl_actions' => 'disallow',
+				'afl_var_dump' => 'tt:1',
+				'afl_timestamp' => $this->getDB()->timestamp( '20240101000000' ),
+				'afl_namespace' => 0,
+				'afl_title' => 'Main Page'
+			] )
+			->caller( __METHOD__ )
+			->execute();
+
+		// Mock a log entry targeting the IP
+		$anonTarget = new TitleValue( NS_USER, '1.2.3.5' );
+		$performer = $this->getTestSysop();
+		$this->setUserOptions(
+			$performer->getAuthority(),
+			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ]
+		);
+		$logId = $this->makeLogEntry(
+			self::TEST_LOG_TYPE,
+			$performer->getUserIdentity(),
+			$anonTarget
+		);
+
+		// Assert that the user is still found, assuming the performer has all relevant access permissions,
+		$request = self::getRequestData( $logId, self::VALID_CSRF_TOKEN );
+		$response = $this->executeWithUser( $request, $performer->getAuthority() );
+		$body = json_decode( $response->getBody()->getContents(), true );
+		$this->assertCount( 1, $body['info'] );
+	}
+
+	public function testShouldHandleUnknownIPLogEntry() {
+		$this->expectExceptionObject(
+			new LocalizedHttpException(
+				new MessageValue( 'ipinfo-rest-log-default' ),
+				404
+			)
+		);
+
+		// Mock a log entry targeting the IP
+		$anonTarget = new TitleValue( NS_USER, '1.2.3.7' );
+		$performer = $this->getTestSysop();
+		$this->setUserOptions(
+			$performer->getAuthority(),
+			[ 'ipinfo-beta-feature-enable' => 1, 'ipinfo-use-agreement' => 1 ]
+		);
+		$logId = $this->makeLogEntry(
+			self::TEST_LOG_TYPE,
+			$performer->getUserIdentity(),
+			$anonTarget
+		);
+
+		// Assert that the user cannot be found, assuming the performer has all relevant access permissions,
+		// because the target is not known
+		$request = self::getRequestData( $logId, self::VALID_CSRF_TOKEN );
+		$response = $this->executeWithUser( $request, $performer->getAuthority() );
 	}
 }

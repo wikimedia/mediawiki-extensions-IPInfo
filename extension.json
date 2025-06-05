@@ -140,6 +140,7 @@
 				"UserIdentityUtils",
 				"UserIdentityLookup",
 				"IPInfoTempUserIPLookup",
+				"IPInfoAnonymousUserIPLookup",
 				"IPInfoPermissionManager",
 				"ReadOnlyMode",
 				"IPInfoHookRunner"

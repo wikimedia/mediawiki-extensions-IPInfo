@@ -107,6 +107,7 @@
 	"ipinfo-rest-revision-registered": "Error message for REST API debugging, shown when a revision belongs to a registered user.",
 	"ipinfo-rest-log-nonexistent": "Error message for REST API debugging, shown when a log entry does not exist.",
 	"ipinfo-rest-log-registered": "Error message for REST API debugging, shown when a log entry belongs to a registered user.",
+	"ipinfo-rest-log-default": "Error message for REST API debugging, shown when a log entry belongs to an IP that can't return data.",
 	"ipinfo-rest-log-denied": "Error message for REST API debugging, shown when a user does not have permission to read the performer of a log entry.",
 	"ipinfo-beta-feature-title": "Label for BetaFeatures listing",
 	"ipinfo-beta-feature-description": "Description for BetaFeatures listing. \"Log\" is {{msg-mw|all-logs-page}}; \"Contributions\" is {{msg-mw|contributions}}; \"Recent changes\" is {{msg-mw|recentchanges}}.",
