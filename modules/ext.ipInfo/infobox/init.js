@@ -166,8 +166,22 @@ function initInfoboxWidget() {
 		}
 	};
 
+	// Shows the form to agree to the terms of use instead of ip info
 	const loadUseAgreement = function () {
-		// Show the form to agree to the terms of use instead of ip info
+		let submitLayoutConfig = {};
+
+		// Only link to Beta Features Preferences if IPInfo is
+		// considered as such (T395784).
+		if ( mw.config.get( 'wgIPInfoIsABetaFeature' ) ) {
+			submitLayoutConfig = {
+				align: 'top',
+				help: new OO.ui.HtmlSnippet(
+					mw.message( 'ipinfo-infobox-disable-instructions' ).parse()
+				),
+				helpInline: true
+			};
+		}
+
 		const agreementFormWidget = new OO.ui.FormLayout( {
 			classes: [ 'ipinfo-use-agreement-form' ],
 			content: [
@@ -202,13 +216,7 @@ function initInfoboxWidget() {
 							'progressive'
 						]
 					} ),
-					{
-						align: 'top',
-						help: new OO.ui.HtmlSnippet(
-							mw.message( 'ipinfo-infobox-disable-instructions' ).parse()
-						),
-						helpInline: true
-					}
+					submitLayoutConfig
 				)
 			]
 		} );

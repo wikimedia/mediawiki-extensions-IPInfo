@@ -2,6 +2,7 @@
 
 namespace MediaWiki\IPInfo\Test\Integration\HookHandler;
 
+use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\IPInfo\HookHandler\InfoboxHandler;
 use MediaWiki\IPInfo\IPInfoPermissionManager;
@@ -15,6 +16,7 @@ use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
+use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * TODO: Make this into a unit test once T268177 is resolved.
@@ -35,6 +37,9 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private FauxRequest $request;
 
+	/** @var (ExtensionRegistry&MockObject) */
+	private ExtensionRegistry $extensionRegistry;
+
 	private InfoboxHandler $handler;
 
 	protected function setUp(): void {
@@ -47,16 +52,12 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 			->method( 'getRequest' )
 			->willReturn( $this->request );
 
-		$extensionRegistry = $this->createMock( ExtensionRegistry::class );
-		$extensionRegistry->method( 'isLoaded' )
-			->with( 'MobileFrontend' )
-			->willReturn( false );
-
+		$this->extensionRegistry = $this->createMock( ExtensionRegistry::class );
 		$this->ipInfoPermissionManager = $this->createMock( IPInfoPermissionManager::class );
 
 		$this->handler = new InfoboxHandler(
 			$this->tempUserConfig,
-			$extensionRegistry,
+			$this->extensionRegistry,
 			$this->ipInfoPermissionManager
 		);
 	}
@@ -101,6 +102,12 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 		$targetUser->method( 'getName' )
 			->willReturn( $targetName );
 
+		$this->extensionRegistry
+			->method( 'isLoaded' )
+			->willReturnCallback(
+				static fn ( $extensionName ) => $extensionName === 'BetaFeatures'
+			);
+
 		$this->handler->onSpecialContributionsBeforeMainOutput(
 			1,
 			$targetUser,
@@ -131,6 +138,12 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 			->willReturn( $accessingAuthority );
 		$specialPage->method( 'getOutput' )
 			->willReturn( $out );
+
+		$this->extensionRegistry
+			->method( 'isLoaded' )
+			->willReturnCallback(
+				static fn ( $extensionName ) => $extensionName === 'BetaFeatures'
+			);
 
 		$this->ipInfoPermissionManager->method( 'hasEnabledIPInfo' )
 			->with( $accessingAuthority )
@@ -173,6 +186,12 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 			->willReturn( $accessingAuthority );
 		$this->specialPage->method( 'getOutput' )
 			->willReturn( $out );
+
+		$this->extensionRegistry
+			->method( 'isLoaded' )
+			->willReturnCallback(
+				static fn ( $extensionName ) => $extensionName === 'BetaFeatures'
+			);
 
 		$this->ipInfoPermissionManager->method( 'hasEnabledIPInfo' )
 			->with( $accessingAuthority )
@@ -239,6 +258,12 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 			->with( $targetUserName )
 			->willReturn( false );
 
+		$this->extensionRegistry
+			->method( 'isLoaded' )
+			->willReturnCallback(
+				static fn ( $extensionName ) => $extensionName === 'BetaFeatures'
+			);
+
 		$this->handler->onSpecialContributionsBeforeMainOutput(
 			1,
 			$targetUser,
@@ -300,6 +325,12 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 			->method( 'isTempName' )
 			->with( $targetUserName )
 			->willReturn( $isTempName );
+
+		$this->extensionRegistry
+			->method( 'isLoaded' )
+			->willReturnCallback(
+				static fn ( $extensionName ) => $extensionName === 'BetaFeatures'
+			);
 
 		$this->request->setVal( 'offset', $offset );
 		$this->request->setVal( 'dir', $direction );
@@ -428,6 +459,12 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 			->willReturn( $targetName );
 		$targetUser->method( 'isAnon' )
 			->willReturn( $targetIsAnon );
+
+		$this->extensionRegistry
+			->method( 'isLoaded' )
+			->willReturnCallback(
+				static fn ( $extensionName ) => $extensionName === 'BetaFeatures'
+			);
 
 		$this->request->setVal( 'offset', $offset );
 		$this->request->setVal( 'dir', $direction );
@@ -578,6 +615,155 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 			'targetIsNamed' => false,
 			'offset' => 0,
 			'direction' => 'prev'
+		];
+	}
+
+	/**
+	 * @dataProvider provideSkipsLinkingToBetaFeaturesIfConditionsNotMet
+	 */
+	public function testSkipsLinkingToBetaFeaturesIfConditionsNotMet(
+		bool $expectsToAddInfoBox,
+		bool $expectsBeingBetaFeature,
+		string $target,
+		bool $tempUsersAreKnown,
+		bool $ipInfoEnabled,
+		array $extensionsLoaded
+	) {
+		$accessingAuthority = self::getValidAccessingAuthority();
+		$outputPage = new OutputPage(
+			new DerivativeContext( RequestContext::getMain() )
+		);
+
+		$this->specialPage
+			->method( 'getName' )
+			->willReturn( 'Contributions' );
+		$this->specialPage
+			->method( 'getAuthority' )
+			->willReturn( $accessingAuthority );
+		$this->specialPage
+			->method( 'getOutput' )
+			->willReturn( $outputPage );
+
+		$targetUser = $this->createMock( User::class );
+		$targetUser
+			->method( 'getName' )
+			->willReturn( $target );
+
+		$this->ipInfoPermissionManager
+			->method( 'hasEnabledIPInfo' )
+			->with( $accessingAuthority )
+			->willReturn( $ipInfoEnabled );
+
+		$this->tempUserConfig
+			->method( 'isTempName' )
+			->with( $target )
+			->willReturn( false );
+		$this->tempUserConfig
+			->method( 'isKnown' )
+			->willReturn( $tempUsersAreKnown );
+
+		$this->extensionRegistry
+			->method( 'isLoaded' )
+			->willReturnCallback(
+				static fn ( $extensionName ) => in_array(
+					$extensionName,
+					$extensionsLoaded
+				)
+			);
+
+		$this->handler->onSpecialContributionsBeforeMainOutput(
+			1,
+			$targetUser,
+			$this->specialPage
+		);
+
+		if ( $expectsToAddInfoBox ) {
+			$this->assertArrayContains(
+				[ 'ext.ipInfo' ],
+				$outputPage->getModules()
+			);
+			$this->assertArrayContains(
+				[ 'ext.ipInfo.styles' ],
+				$outputPage->getModuleStyles()
+			);
+			$this->assertArrayHasKey(
+				'wgIPInfoIsABetaFeature',
+				$outputPage->getJsConfigVars()
+			);
+			$this->assertEquals(
+				$expectsBeingBetaFeature,
+				$outputPage->getJsConfigVars()[ 'wgIPInfoIsABetaFeature' ]
+			);
+		} else {
+			$this->assertNotContains(
+				'ext.ipInfo',
+				$outputPage->getModules()
+			);
+			$this->assertNotContains(
+				'ext.ipInfo.styles',
+				$outputPage->getModuleStyles()
+			);
+			$this->assertArrayNotHasKey(
+				'wgIPInfoIsABetaFeature',
+				$outputPage->getJsConfigVars()
+			);
+		}
+	}
+
+	public static function provideSkipsLinkingToBetaFeaturesIfConditionsNotMet(): iterable {
+		// BetaFeatures not loaded: Skips adding the link as there's nothing to link to
+		yield 'Is not beta: BetaFeatures not loaded, temp users not known' => [
+			'expectsToAddInfoBox' => true,
+			'expectsBeingBetaFeature' => false,
+			'target' => '127.0.0.1',
+			'tempUsersAreKnown' => false,
+			'ipInfoEnabled' => true,
+			'extensionsLoaded' => [],
+		];
+		yield 'Is not beta: BetaFeatures not loaded, temp users known' => [
+			'expectsToAddInfoBox' => true,
+			'expectsBeingBetaFeature' => false,
+			'target' => '127.0.0.1',
+			'tempUsersAreKnown' => true,
+			'ipInfoEnabled' => true,
+			'extensionsLoaded' => [],
+		];
+
+		// BetaFeatures loaded: Link added only if Temp Users are known
+		yield 'Is beta: BetaFeatures loaded, temp users not known' => [
+			'expectsToAddInfoBox' => true,
+			'expectsBeingBetaFeature' => true,
+			'target' => '127.0.0.1',
+			'tempUsersAreKnown' => false,
+			'ipInfoEnabled' => true,
+			'extensionsLoaded' => [ 'BetaFeatures' ],
+		];
+		yield 'Is not beta: BetaFeatures loaded, temp users known' => [
+			'expectsToAddInfoBox' => true,
+			'expectsBeingBetaFeature' => false,
+			'target' => '127.0.0.1',
+			'tempUsersAreKnown' => true,
+			'ipInfoEnabled' => true,
+			'extensionsLoaded' => [ 'BetaFeatures' ],
+		];
+
+		// Conditions not leading to adding the infobox also make skipping
+		// the wgIPInfoIsABetaFeature Javascript variable.
+		yield 'Disabling IPInfo skips adding the js config for the link' => [
+			'expectsToAddInfoBox' => false,
+			'expectsBeingBetaFeature' => false,
+			'target' => '127.0.0.1',
+			'tempUsersAreKnown' => true,
+			'ipInfoEnabled' => false,
+			'extensionsLoaded' => [ 'BetaFeatures' ],
+		];
+		yield 'Neither the link nor the js config are added for non-temp accounts' => [
+			'expectsToAddInfoBox' => false,
+			'expectsBeingBetaFeature' => false,
+			'target' => 'Username',
+			'tempUsersAreKnown' => true,
+			'ipInfoEnabled' => true,
+			'extensionsLoaded' => [ 'BetaFeatures' ],
 		];
 	}
 }

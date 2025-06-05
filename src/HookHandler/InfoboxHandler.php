@@ -64,6 +64,20 @@ class InfoboxHandler implements
 		$out = $sp->getOutput();
 		$out->addModules( 'ext.ipInfo' );
 		$out->addModuleStyles( 'ext.ipInfo.styles' );
+
+		// Tell the frontend if IPInfo is considered a Beta Feature in order to
+		// skip linking to Beta Features preferences if it is not (T395784).
+		//
+		// The infobox shows the checkbox to accept the IPInfo agreement only if
+		// the user has not accepted it yet (and that is not controlled by the
+		// condition below). When that happens, IPInfo is considered a beta
+		// feature only if temp accounts are not known in the wiki.
+		$out->addJsConfigVars(
+			'wgIPInfoIsABetaFeature',
+			$this->extensionRegistry->isLoaded( 'BetaFeatures' ) &&
+			!$this->tempUserConfig->isKnown()
+		);
+
 		$panelLayout = new PanelLayout( [
 			'classes' => [ 'ext-ipinfo-panel-layout' ],
 			'framed' => true,
