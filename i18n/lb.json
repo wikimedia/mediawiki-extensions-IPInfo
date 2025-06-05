@@ -47,6 +47,8 @@
 	"logentry-ipinfo-view_popup": "$1 huet $4 IP-Informatioun's Pop-up fir $3 {{GENDER:$2|gekuckt}}.",
 	"ipinfo-change-access-level-enable": "{{GENDER:$1|aktivéiert}}",
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|desaktivéiert}}",
+	"ipinfo-change-access-level-enable-globally": "{{GENDER:$1|global aktivéiert}}",
+	"ipinfo-change-access-level-disable-globally": "{{GENDER:$1|global desaktivéiert}}",
 	"log-action-filter-ipinfo-change_access": "Geschier aktivéiert oder desaktivéiert",
 	"ipinfo-blocklist-url-text": "Lëscht vun de Spären",
 	"ipinfo-special-ipinfo": "IP-Informatiounen",

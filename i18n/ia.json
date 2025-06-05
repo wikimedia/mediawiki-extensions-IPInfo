@@ -118,6 +118,8 @@
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|ha consultate}} le fenestra emergente de information IP pro $3. $4.",
 	"ipinfo-change-access-level-enable": "{{GENDER:$1|activate}}",
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|disactivate}}",
+	"ipinfo-change-access-level-enable-globally": "{{GENDER:$1|activate globalmente}}",
+	"ipinfo-change-access-level-disable-globally": "{{GENDER:$1|disactivate globalmente}}",
 	"logentry-ipinfo-change_access": "$1 ha $4 {{GENDER:$2|su}} proprie accesso a IPInfo",
 	"log-action-filter-ipinfo": "Typo de operation de information IP:",
 	"log-action-filter-ipinfo-change_access": "Instrumento activate o disactivate",

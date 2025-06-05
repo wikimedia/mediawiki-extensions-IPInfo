@@ -26,6 +26,8 @@
 	"ipinfo-beta-feature-title": "Informazioni IP",
 	"ipinfo-beta-feature-description": "Lo strumento Informazioni IP ha l'obiettivo di fornire informazioni essenziali riguardo gli indirizzi IP per aiutarli nei loro compiti. Queste informazioni sono accessibili dalla pagina Speciale:Contributi dell'indirizzo IP. Una versione ridotta di queste informazioni è disponibile in un popup accanto agli indirizzi IP nelle pagine [[Special:Log|Registri]],  [[Special:Contributions|Contributi]] e [[Special:RecentChanges|Ultime modifiche]].",
 	"prefs-ipinfo": "Informazioni su IP",
+	"ipinfo-change-access-level-enable-globally": "{{GENDER:$1|attivato globalmente}}",
+	"ipinfo-change-access-level-disable-globally": "{{GENDER:$1|disattivato globalmente}}",
 	"log-action-filter-ipinfo-change_access": "Strumento abilitato o disabilitato",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 modifica cancellata|$1 modifiche cancellate|0=Nessuna modifica cancellata}}",
 	"ipinfo-special-ipinfo": "Informazioni IP",

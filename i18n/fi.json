@@ -125,6 +125,8 @@
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|katsoi}} IP-tietoponnahdusikkunan käyttäjästä $3. $4.",
 	"ipinfo-change-access-level-enable": "{{GENDER:$1|otti käyttöön}}",
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|poisti käytöstä}}",
+	"ipinfo-change-access-level-enable-globally": "{{GENDER:$1|otti käyttöön järjestelmänlaajuisesti}}",
+	"ipinfo-change-access-level-disable-globally": "{{GENDER:$1|poisti käytöstä järjestelmänlaajuisesti}}",
 	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|IP-tietoihin pääsyn}}",
 	"log-action-filter-ipinfo": "IP-tieto-operaation tyyppi:",
 	"log-action-filter-ipinfo-change_access": "Työkalu otettu käyttöön tai poistettu käytöstä",

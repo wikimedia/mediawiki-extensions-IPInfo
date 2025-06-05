@@ -123,6 +123,8 @@
 	"logentry-ipinfo-view_popup": "$1 $3 üçün IP Məlumatı məlumat qutucuğuna {{GENDER:$2|baxdı}}. $4",
 	"ipinfo-change-access-level-enable": "{{GENDER:$1|aktivləşdirdi}}",
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|deaktivləşdirdi}}",
+	"ipinfo-change-access-level-enable-globally": "{{GENDER:$1|qlobal olaraq aktivləşdirilib}}",
+	"ipinfo-change-access-level-disable-globally": "{{GENDER:$1|qlobal olaraq deaktivləşdirilib}}",
 	"logentry-ipinfo-change_access": "$1 {{GENDER:$2|özünün}} IP Məlumat alətinə girişini $4",
 	"log-action-filter-ipinfo": "IP Məlumat əməliyyatının növü:",
 	"log-action-filter-ipinfo-change_access": "Alət aktiv və ya deaktivləşdirildi",
