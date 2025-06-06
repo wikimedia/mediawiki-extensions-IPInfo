@@ -117,6 +117,8 @@
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|viu}} a xanela emerxente sobre o enderezo IP $3. $4.",
 	"ipinfo-change-access-level-enable": "{{GENDER:$1|activou}}",
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|desactivou}}",
+	"ipinfo-change-access-level-enable-globally": "{{GENDER:$1|activou globalmente}}",
+	"ipinfo-change-access-level-disable-globally": "{{GENDER:$1|desactivou globalmente}}",
 	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|o seu}} propio acceso á ferramenta de información sobre enderezos IP",
 	"log-action-filter-ipinfo": "Tipo de operación de información sobre o enderezo IP:",
 	"log-action-filter-ipinfo-change_access": "Activación ou desactivación da ferramenta",

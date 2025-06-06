@@ -113,6 +113,7 @@
 	"ipinfo-rest-revision-registered": "Impossible de récupérer les informations d’adresse IP pour les modifications des utilisateurs inscrits",
 	"ipinfo-rest-log-nonexistent": "L’entrée de journal n’existe pas",
 	"ipinfo-rest-log-registered": "Impossible de récupérer les informations sur une adresse IP pour les journaux des utilisateurs enregistrés",
+	"ipinfo-rest-log-default": "Les informations sur l’adresse IP n’ont pas pu être récupérées.",
 	"ipinfo-rest-log-denied": "Votre compte n’a pas accès à l’affichage de l’auteur de l’entrée de journal ou de l’entrée de journal elle-même",
 	"ipinfo-beta-feature-title": "Informations sur une adresse IP",
 	"ipinfo-beta-feature-description": "L’outil Infos sur une adresse IP vise à fournir aux patrouilleurs des informations vitales sur les adresses IP pour les aider dans leur tâche. Ces informations seront accessibles sur la page Spécial:Contributions pour un éditeur IP. Une version abrégée de ces informations sera disponible dans une fenêtre surgissante à côté des adresses IP sur les pages [[Special:Log|Journaux d’opérations]], [[Special:Contributions|Contributions]] et [[Special:RecentChanges|Modifications récentes]].",
