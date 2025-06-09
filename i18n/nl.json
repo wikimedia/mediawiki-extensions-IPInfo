@@ -6,9 +6,11 @@
 			"McDutchie",
 			"Mitsjol",
 			"Romaine",
-			"Sjoerddebruin"
+			"Sjoerddebruin",
+			"Sumurai8"
 		]
 	},
+	"ipinfo-extensionname": "IP-info",
 	"ipinfo-desc": "Geeft informatie over een IP-adres.",
 	"ipinfo-infobox-title": "IP-gegevens",
 	"ipinfo-infobox-temporary-account-help": "Er zijn meerdere IP-adressen aan dit tijdelijke account gekoppeld. U bekijkt de IP-gegevens voor het meest recent gebruikte IP-adres. [[Special:IPInfo/$1|IP-gegevens voor alle IP-adressen bekijken]].",
@@ -58,7 +60,7 @@
 	"ipinfo-property-value-risk-tunnel": "Tunnel",
 	"ipinfo-property-value-risk-webscraping": "Webscraping",
 	"ipinfo-property-value-risk-unknown": "Onbekend",
-	"ipinfo-property-value-connectiontype-desktop": "Bureaublad",
+	"ipinfo-property-value-connectiontype-desktop": "Desktop",
 	"ipinfo-property-value-connectiontype-headless": "Zonder beeldscherm",
 	"ipinfo-property-value-connectiontype-iot": "Internet der dingen",
 	"ipinfo-property-value-connectiontype-mobile": "Mobiel",
@@ -100,6 +102,7 @@
 	"ipinfo-rest-revision-registered": "Kan geen IP-informatie ophalen voor versies van geregistreerde gebruikers",
 	"ipinfo-rest-log-nonexistent": "Logboekregel bestaat niet",
 	"ipinfo-rest-log-registered": "Kan geen IP-informatie ophalen voor logboeken van geregistreerde gebruikers",
+	"ipinfo-rest-log-default": "De IP-informatie kon niet worden opgehaald.",
 	"ipinfo-rest-log-denied": "Uw account heeft geen toegang om de uitvoerder van de logvermelding of de logvermelding zelf te bekijken",
 	"ipinfo-beta-feature-title": "IP-gegevens",
 	"ipinfo-beta-feature-description": "De IP Info-tool is bedoeld om patrouilleurs uit te rusten met essentiële informatie over IP-adressen om hen te helpen bij hun taken. Deze informatie zal toegankelijk zijn op de Speciaal:Bijdragen-pagina van de IP-bewerker. Een verkorte versie van deze informatie zal beschikbaar zijn in een pop-up naast IP-adressen op [[Special:Log|Logboeken]]-, [[Special:Contributions|Bijdragen]]- en [[Special:RecentChanges|Recente wijzigingen]]-pagina's.",
@@ -123,6 +126,8 @@
 	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|heeft}} het infovak IP-informatie voor $3 bekeken. $4.",
 	"ipinfo-change-access-level-enable": "{{GENDER:$1|geactiveerd}}",
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|gedeactiveerd}}",
+	"ipinfo-change-access-level-enable-globally": "{{GENDER:$1|globaal geactiveerd}}",
+	"ipinfo-change-access-level-disable-globally": "{{GENDER:$1|globaal gedeactiveerd}}",
 	"logentry-ipinfo-change_access": "$1 heeft {{GENDER:$2|zijn|haar|de}} eigen toegang tot IP-informatie $4",
 	"log-action-filter-ipinfo": "Type IP-informatiebewerking:",
 	"log-action-filter-ipinfo-change_access": "Tool ingeschakeld of uitgeschakeld",

@@ -98,6 +98,7 @@
 	"ipinfo-rest-revision-registered": "Qeydiyyatdan keçmiş istifadəçilərin redaktələri üçün IP məlumatı əldə etmək mümkün deyil",
 	"ipinfo-rest-log-nonexistent": "Jurnal qeydi mövcud deyil",
 	"ipinfo-rest-log-registered": "Qeydiyyatdan keçmiş istifadəçilərin qeydləri üçün IP məlumatını əldə etmək mümkün deyil",
+	"ipinfo-rest-log-default": "IP məlumatını əldə etmək mümkün olmadı.",
 	"ipinfo-rest-log-denied": "Bu jurnal qeydinin icraçısını və ya qeydin özünü görmək icazəniz yoxdur",
 	"ipinfo-beta-feature-title": "IP-ünvanı məlumatı",
 	"ipinfo-beta-feature-description": "IP-ünvanı məlumatı aləti patrullara IP-ünvanları haqqında mühüm məlumatları əldə etməyə kömək edir. Bu məlumatlar IP redaktorunun Xüsusi:Töhfələr səhifəsindən əldə edilə bilər. Məlumatların qısa versiyası isə [[Special:Log|qeydlər]], [[Special:Contributions|töhfələr]] və [[Special:RecentChanges|son dəyişikliklər]] səhifələrində IP-ünvanlarının yanında açılan pəncərədə göstəriləcəkdir.",

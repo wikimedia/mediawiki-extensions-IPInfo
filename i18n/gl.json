@@ -94,6 +94,7 @@
 	"ipinfo-rest-revision-registered": "Non se pode recuperar a información sobre o enderezo IP das revisións dos usuarios rexistrados",
 	"ipinfo-rest-log-nonexistent": "A entrada do rexistro non existe",
 	"ipinfo-rest-log-registered": "Non se pode recuperar a información sobre o enderezo IP dos rexistros dos usuarios rexistrados",
+	"ipinfo-rest-log-default": "Non se puido recuperar a información sobre o enderezo IP.",
 	"ipinfo-rest-log-denied": "A túa conta non ten acceso para ver o autor da entrada do rexistro nin a propia entrada do rexistro.",
 	"ipinfo-beta-feature-title": "Información sobre o enderezo IP",
 	"ipinfo-beta-feature-description": "A ferramenta de información sobre enderezos IP ten como obxectivo proporcionar aos patrulleiros información vital sobre os enderezos IP como asistencia para as súas funcións. Esta información estará accesible na páxina Special:Contributions do enderezo IP. Unha versión resumida desta información estará dispoñible nunha xanela emerxente xunto aos enderezos IP nas páxinas [[Special:Log|Principais rexistros públicos]], [[Special:Contributions|Contribucións do/a usuario/a]] e [[Special:RecentChanges|Cambios recentes]].",

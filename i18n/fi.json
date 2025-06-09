@@ -102,6 +102,7 @@
 	"ipinfo-rest-revision-registered": "Rekisteröityjen käyttäjien tekemistä versioista ei voida hakea IP-tietoja",
 	"ipinfo-rest-log-nonexistent": "Lokimerkintää ei ole olemassa",
 	"ipinfo-rest-log-registered": "Rekisteröityjen käyttäjien logeista ei voida hakea IP-tietoja",
+	"ipinfo-rest-log-default": "IP-tietoja ei voitu hakea.",
 	"ipinfo-rest-log-denied": "Käyttäjälläsi ei ole oikeutta tarkastella lokimerkinnän suorittajaa tai itse lokimerkintää",
 	"ipinfo-beta-feature-title": "IP-tiedot",
 	"ipinfo-beta-feature-description": "IP-tietotyökalun tarkoituksena on tarjota muutosten tarkastajille tärkeää tietoa IP-osoitteista. Tiedot voi katsoa IP-muokkaajaan liittyvällä Toiminnot:Muokkaukset-sivulla. Tiivistetyt tiedot ovat saatavilla ponnahdusikkunassa IP-osoitteen vieressä sivuilla [[Special:Log|Loki]], [[Special:Contributions|Muokkaukset]] ja [[Special:RecentChanges|Tuoreet muutokset]].",
