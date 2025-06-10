@@ -57,8 +57,11 @@
 	"ipinfo-property-value-risk-geomismatch": "Discordancia geográfica",
 	"ipinfo-property-value-risk-loginbruteforce": "Inicio de sesión por fuerza bruta",
 	"ipinfo-property-value-risk-tunnel": "Túnel",
+	"ipinfo-property-value-risk-webscraping": "Extracción de datos web",
 	"ipinfo-property-value-risk-unknown": "Desconocido",
 	"ipinfo-property-value-connectiontype-desktop": "Escritorio",
+	"ipinfo-property-value-connectiontype-headless": "Sin pantalla",
+	"ipinfo-property-value-connectiontype-iot": "Internet de cosas",
 	"ipinfo-property-value-connectiontype-mobile": "Móvil",
 	"ipinfo-property-value-connectiontype-unknown": "Desconocido",
 	"ipinfo-property-label-source": "Fuente",
@@ -137,5 +140,6 @@
 	"ipinfo-special-ipinfo-target": "Nombre de usuario de destino:",
 	"ipinfo-special-ipinfo-user-tool-links": "Para $1",
 	"ipinfo-special-ipinfo-sort-explainer": "Se pueden usar los botones en los encabezados de la tabla para ordenar la tabla por los valores de esa columna.",
+	"ipinfo-special-ipinfo-column-ip": "IP",
 	"ipinfo-special-ipinfo-no-results": "No hay información de IP disponible para $1."
 }
