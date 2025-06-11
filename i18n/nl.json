@@ -6,9 +6,11 @@
 			"McDutchie",
 			"Mitsjol",
 			"Romaine",
-			"Sjoerddebruin"
+			"Sjoerddebruin",
+			"Sumurai8"
 		]
 	},
+	"ipinfo-extensionname": "IP-info",
 	"ipinfo-desc": "Geeft informatie over een IP-adres.",
 	"ipinfo-infobox-title": "IP-gegevens",
 	"ipinfo-infobox-temporary-account-help": "Er zijn meerdere IP-adressen aan dit tijdelijke account gekoppeld. U bekijkt de IP-gegevens voor het meest recent gebruikte IP-adres. [[Special:IPInfo/$1|IP-gegevens voor alle IP-adressen bekijken]].",
@@ -58,7 +60,7 @@
 	"ipinfo-property-value-risk-tunnel": "Tunnel",
 	"ipinfo-property-value-risk-webscraping": "Webscraping",
 	"ipinfo-property-value-risk-unknown": "Onbekend",
-	"ipinfo-property-value-connectiontype-desktop": "Bureaublad",
+	"ipinfo-property-value-connectiontype-desktop": "Desktop",
 	"ipinfo-property-value-connectiontype-headless": "Zonder beeldscherm",
 	"ipinfo-property-value-connectiontype-iot": "Internet der dingen",
 	"ipinfo-property-value-connectiontype-mobile": "Mobiel",

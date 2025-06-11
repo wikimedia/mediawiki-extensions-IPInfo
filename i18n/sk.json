@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Luky001"
+		]
+	},
+	"ipinfo-beta-feature-description": "Nástroj IP info má za cieľ poskytovať redaktorom sledujúcim Posledné úpravy dôležité informácie o IP adresách, aby im pomohol v ich činnosti. Tieto informácie budú dostupné na stránke Špeciálne:Príspevky. Skrátená verzia týchto informácií bude dostupná vo vyskakovacom okne pri IP adresách na stránkach [[Special:Log|verejných záznamov]], [[Special:Contributions|príspevkov redaktora]] a [[Special:RecentChanges|posledných úprav]]."
+}
