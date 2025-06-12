@@ -4,3 +4,4 @@ composer.lock
 vendor
 .eslintcache
 **/*.mmdb
+/.stylelintcache
