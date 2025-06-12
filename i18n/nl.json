@@ -6,9 +6,11 @@
 			"Mitsjol",
 			"Romaine",
 			"Sjoerddebruin",
-			"Jeroen N"
+			"Jeroen N",
+			"Sumurai8"
 		]
 	},
+	"ipinfo-extensionname": "IP-info",
 	"ipinfo-desc": "Geeft informatie over een IP-adres.",
 	"ipinfo-infobox-title": "IP-gegevens",
 	"ipinfo-property-label-location": "Locatie",
@@ -57,7 +59,7 @@
 	"ipinfo-property-value-risk-tunnel": "Tunnel",
 	"ipinfo-property-value-risk-webscraping": "Webscraping",
 	"ipinfo-property-value-risk-unknown": "Onbekend",
-	"ipinfo-property-value-connectiontype-desktop": "Bureaublad",
+	"ipinfo-property-value-connectiontype-desktop": "Desktop",
 	"ipinfo-property-value-connectiontype-headless": "Zonder beeldscherm",
 	"ipinfo-property-value-connectiontype-iot": "Internet der dingen",
 	"ipinfo-property-value-connectiontype-mobile": "Mobiel",
