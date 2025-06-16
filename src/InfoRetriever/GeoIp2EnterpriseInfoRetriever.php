@@ -106,7 +106,7 @@ class GeoIp2EnterpriseInfoRetriever extends BaseInfoRetriever {
 				$anonymousIpInfo = $anonymousIpReader->anonymousIp( $ip );
 				$isLegitimateProxy = null;
 				if ( isset( $enterpriseInfo ) ) {
-					$isLegitimateProxy = (bool)$enterpriseInfo->traits->isLegitimateProxy;
+					$isLegitimateProxy = $enterpriseInfo->traits->isLegitimateProxy;
 				}
 				$info['proxyType'] = $this->getProxyType( $anonymousIpInfo, $isLegitimateProxy );
 			} catch ( AddressNotFoundException ) {
@@ -214,12 +214,12 @@ class GeoIp2EnterpriseInfoRetriever extends BaseInfoRetriever {
 
 	private function getProxyType( AnonymousIp $anonymousIpinfo, ?bool $isLegitimateProxy ): ProxyType {
 		return new ProxyType(
-			(bool)$anonymousIpinfo->isAnonymousVpn || null,
-			(bool)$anonymousIpinfo->isPublicProxy || null,
-			(bool)$anonymousIpinfo->isResidentialProxy || null,
+			$anonymousIpinfo->isAnonymousVpn || null,
+			$anonymousIpinfo->isPublicProxy || null,
+			$anonymousIpinfo->isResidentialProxy || null,
 			$isLegitimateProxy,
-			(bool)$anonymousIpinfo->isTorExitNode || null,
-			(bool)$anonymousIpinfo->isHostingProvider || null
+			$anonymousIpinfo->isTorExitNode || null,
+			$anonymousIpinfo->isHostingProvider || null
 		);
 	}
 }

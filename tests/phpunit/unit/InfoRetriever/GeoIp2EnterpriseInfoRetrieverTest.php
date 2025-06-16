@@ -6,9 +6,6 @@ use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
 use GeoIp2\Model\AnonymousIp;
 use GeoIp2\Model\Enterprise;
-use GeoIp2\Record\Country;
-use GeoIp2\Record\Location as LocationRecord;
-use GeoIp2\Record\Traits;
 use LoggedServiceOptions;
 use MediaWiki\IPInfo\Info\Coordinates;
 use MediaWiki\IPInfo\Info\Info;
@@ -117,45 +114,49 @@ class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideUsers
 	 */
 	public function testRetrieveFor( UserIdentity $user, string $ip ) {
-		$location = $this->createMock( LocationRecord::class );
-		$country = $this->createMock( Country::class );
-		$country->method( '__get' )
-			->willReturnMap( [
-				[ 'geonameId', 1 ],
-				[ 'name', 'bar' ],
-				[ 'names', [ 'en' => 'bar' ] ]
-			] );
-		$location->method( '__get' )
-			->willReturnMap( [
-				[ 'latitude', 1 ],
-				[ 'longitude', 2 ]
-			] );
-		$traits = $this->createMock( Traits::class );
-		$traits->method( '__get' )
-			->willReturnMap( [
-				[ 'autonomousSystemNumber', 123 ],
-				[ 'autonomousSystemOrganization', 'foobar' ],
-				[ 'isLegitimateProxy', true ]
-			] );
+		$location = [
+			'latitude' => 1,
+			'longitude' => 2,
+		];
 
-		$enterprise = $this->createMock( Enterprise::class );
-		$enterprise->method( '__get' )
-			->willReturnMap( [
-				[ 'location', $location ],
-				[ 'country', $country ],
-				[ 'city', $country ],
-				[ 'subdivisions', [] ],
-				[ 'traits', $traits ]
-			] );
-		$anonymousIp = $this->createMock( AnonymousIp::class );
-		$anonymousIp->method( '__get' )
-			->willReturnMap( [
-				[ 'isAnonymousVpn', true ],
-				[ 'isPublicProxy', true ],
-				[ 'isResidentialProxy', true ],
-				[ 'isTorExitNode', true ],
-				[ 'isHostingProvider', true ]
-			] );
+		$country = [
+			'geoname_id' => 1,
+			'name' => 'bar',
+			'names' => [ 'en' => 'bar' ],
+		];
+
+		$traits = [
+			'autonomous_system_number' => 123,
+			'autonomous_system_organization' => 'foobar',
+			'is_legitimate_proxy' => true,
+		];
+
+		$enterprise = $this->getMockBuilder( Enterprise::class )
+			->setConstructorArgs( [ [
+				'location' => $location,
+				'country' => $country,
+				'city' => $country,
+				'traits' => $traits,
+			] ] )
+			->disableOriginalClone()
+			->disableArgumentCloning()
+			->disallowMockingUnknownTypes()
+			->getMock();
+
+		$anonymousIp = $this->getMockBuilder( AnonymousIp::class )
+			->setConstructorArgs( [ [
+				'is_anonymous_vpn' => true,
+				'is_public_proxy' => true,
+				'is_residential_proxy' => true,
+				'is_tor_exit_node' => true,
+				'is_hosting_provider' => true,
+				'ip_address' => '123.123.123.123',
+				'prefix_len' => 24,
+			] ] )
+			->disableOriginalClone()
+			->disableArgumentCloning()
+			->disallowMockingUnknownTypes()
+			->getMock();
 
 		$reader = $this->createMock( Reader::class );
 		$reader->method( 'enterprise' )

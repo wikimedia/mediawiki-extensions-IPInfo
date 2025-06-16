@@ -6,8 +6,6 @@ use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
 use GeoIp2\Model\Asn;
 use GeoIp2\Model\City;
-use GeoIp2\Record\Country;
-use GeoIp2\Record\Location as LocationRecord;
 use LoggedServiceOptions;
 use MediaWiki\IPInfo\Info\Coordinates;
 use MediaWiki\IPInfo\Info\Info;
@@ -107,34 +105,40 @@ class GeoLite2InfoRetrieverTest extends MediaWikiUnitTestCase {
 	public function testRetrieveFor( UserIdentity $user ) {
 		$ip = '127.0.0.1';
 
-		$location = $this->createMock( LocationRecord::class );
-		$country = $this->createMock( Country::class );
-		$country->method( '__get' )
-			->willReturnMap( [
-				[ 'geonameId', 1 ],
-				[ 'name', 'bar' ],
-				[ 'names', [ 'en' => 'bar' ] ]
-			] );
-		$location->method( '__get' )
-			->willReturnMap( [
-				[ 'latitude', 1 ],
-				[ 'longitude', 2 ]
-			] );
-		$city = $this->createMock( City::class );
-		$city->method( '__get' )
-			->willReturnMap( [
-				[ 'location', $location ],
-				[ 'country', $country ],
-				[ 'city', $country ],
-				[ 'subdivisions', [] ]
-			] );
+		$location = [
+			'latitude' => 1,
+			'longitude' => 2,
+		];
 
-		$asn = $this->createMock( ASN::class );
-		$asn->method( '__get' )
-			->willReturnMap( [
-				[ 'autonomousSystemNumber', 123 ],
-				[ 'autonomousSystemOrganization', 'foobar' ]
-			] );
+		$country = [
+			'geoname_id' => 1,
+			'name' => 'bar',
+			'names' => [ 'en' => 'bar' ],
+		];
+
+		$city = $this->getMockBuilder( City::class )
+			->setConstructorArgs( [ [
+				'location' => $location,
+				'country' => $country,
+				'city' => $country,
+			] ] )
+			->disableOriginalClone()
+			->disableArgumentCloning()
+			->disallowMockingUnknownTypes()
+			->getMock();
+
+		$asn = $this->getMockBuilder( ASN::class )
+			->setConstructorArgs( [ [
+				'autonomous_system_number' => 123,
+				'autonomous_system_organization' => 'foobar',
+				'ip_address' => '123.123.123.123',
+				'prefix_len' => 24,
+			] ] )
+			->disableOriginalClone()
+			->disableArgumentCloning()
+			->disallowMockingUnknownTypes()
+			->getMock();
+
 		$reader = $this->createMock( Reader::class );
 		$reader->method( 'asn' )
 			->with( $ip )
