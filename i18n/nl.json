@@ -6,9 +6,11 @@
 			"McDutchie",
 			"Sjoerddebruin",
 			"Jeroen N",
-			"Mitsjol"
+			"Mitsjol",
+			"Sumurai8"
 		]
 	},
+	"ipinfo-extensionname": "IP-info",
 	"ipinfo-desc": "Geeft informatie over een IP-adres.",
 	"ipinfo-infobox-title": "IP-gegevens",
 	"ipinfo-property-label-location": "Locatie",
