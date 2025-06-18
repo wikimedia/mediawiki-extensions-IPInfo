@@ -12,7 +12,7 @@
 	"ipinfo-extensionname": "IP 정보",
 	"ipinfo-desc": "IP 주소에 관한 정보를 제공합니다.",
 	"ipinfo-infobox-title": "IP 정보",
-	"ipinfo-infobox-temporary-account-help": "이 임시계정에 여러 IP주소가 연관된다. 마지막에 사용된 IP주소에 대한 IP정보를 보고있다. [[Special:IPInfo/$1|모든 IP주소에 대한 IP정보를 본다]].",
+	"ipinfo-infobox-temporary-account-help": "이 임시 계정에 여러 IP 주소가 연관됩니다. 마지막에 사용된 IP 주소에 대한 IP 주소의 정보를 보고 있습니다. [[Special:IPInfo/$1|모든 IP 주소에 대한 IP 정보를 볼 수 있습니다]].",
 	"ipinfo-property-label-location": "위치",
 	"ipinfo-property-label-ipversion": "버전",
 	"ipinfo-property-label-isp": "ISP",
