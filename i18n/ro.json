@@ -34,7 +34,7 @@
 	"ipinfo-widget-error-wrong-ip": "Adresa IP furnizată nu s-a potrivit cu jurnalul sau versiunea.",
 	"ipinfo-widget-error-ip-no-contributions": "Informațiile despre IP pentru această adresă nu pot fi redate din moment ce nu a efectuat nicio modificare pe acest wiki.",
 	"ipinfo-preference-enable": "Arată unealta de informații despre IP pe pagina Special:Contribuții pentru contribuitorii neînregistrați.",
-	"ipinfo-preference-use-agreement": "Sunt de acord să utilizezi aceste informații pentru activitatea mea de patrulare și anti-vandalism.",
+	"ipinfo-preference-use-agreement": "Sunt de acord să utilizez aceste informații pentru activitatea mea de patrulare și anti-vandalism.",
 	"ipinfo-preference-agreement-error": "Trebuie să activați unealta de informații despre IP înainte de a agrea să îi utilizați condițiile.",
 	"ipinfo-infobox-submit-agreement": "Activați unealta de informații despre IP",
 	"ipinfo-infobox-disable-instructions": "Dacă ați dori să dezactivați această funcție puteți să faceți asta la [[Special:Preferences|Special:Preferințe]].",
