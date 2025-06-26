@@ -10,7 +10,8 @@
 			"Winston Sung",
 			"Xiplus",
 			"捍粵者",
-			"沈澄心"
+			"沈澄心",
+			"Emojiwiki"
 		]
 	},
 	"ipinfo-extensionname": "IP資訊（IP Info）",
@@ -119,7 +120,7 @@
 	"group-no-ipinfo": "被禁止使用IP資訊工具的使用者",
 	"group-no-ipinfo-member": "{{GENDER:$1|禁止存取IP資訊工具}}",
 	"grouppage-no-ipinfo": "{{ns:project}}:禁止存取IP資訊工具的使用者",
-	"ipinfo-log-name": "IPInfo 日誌",
+	"ipinfo-log-name": "IP資訊日誌",
 	"ipinfo-log-header": "此日誌為：\n# 藉由 IP 資訊工具來檢視有關 IP 的使用情況，以及\n# 對於此工具的使用者存取級別更改。",
 	"ipinfo-log-access-level-ipinfo-view-basic": "受限存取",
 	"ipinfo-log-access-level-ipinfo-view-full": "完整存取",

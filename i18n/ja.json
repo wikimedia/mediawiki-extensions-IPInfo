@@ -93,7 +93,7 @@
 	"ipinfo-preference-agreement-error": "使用条件に同意する前に、IP情報ツールを有効にする必要があります。",
 	"ipinfo-infobox-use-terms": "IP情報ツールはMaxMindデータベースを利用して位置、プロキシ、このIPアドレスを共有しているデバイスの数などの情報を表示します。",
 	"ipinfo-infobox-submit-agreement": "IP情報ツールを有効にする",
-	"ipinfo-infobox-disable-instructions": "この機能を使用しない場合、[[Special:Preferences#mw-prefsection-betafeatures|個人設定]]から機能を無効にすることができます。",
+	"ipinfo-infobox-disable-instructions": "この機能を無効にしたい場合は、[[Special:Preferences#mw-prefsection-betafeatures|個人設定]]から無効にできます。",
 	"ipinfo-use-agreement-submit-error": "問題が発生しました。もう一度お試しください。エラーメッセージ: $1",
 	"ipinfo-rest-access-denied": "操作を実行する権限がありません",
 	"ipinfo-rest-access-denied-blocked-user": "アカウントがブロックされているため、操作を実行する権限がありません",
