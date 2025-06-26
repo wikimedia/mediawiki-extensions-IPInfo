@@ -101,6 +101,7 @@
 	"ipinfo-rest-revision-registered": "Nie można pobrać informacji o IP dla edycji zarejestrowanych użytkowników",
 	"ipinfo-rest-log-nonexistent": "Wpis w rejestrze nie istnieje",
 	"ipinfo-rest-log-registered": "Nie można pobrać informacji o IP dla czynności wykonanych przez użytkowników zarejestrowanych",
+	"ipinfo-rest-log-default": "Nie udało się pobrać informacji o tym IP.",
 	"ipinfo-rest-log-denied": "Twoje konto nie ma uprawnień do wyświetlenia wykonawcy czynności w rejestrze lub wpisu w rejestrze",
 	"ipinfo-beta-feature-title": "Informacje o IP",
 	"ipinfo-beta-feature-description": "Narzędzie Informacje o IP ma na celu wyposażenie użytkowników patrolujących zmiany w niezbędne informacje o adresach IP, aby wspierać ich w wypełnianiu swojej funkcji. Te informacje będą dostępne na stronie Specjalna:Wkład podczas przeglądania edycji IP. Skrócona wersja tych informacji będzie także widoczna w wyskakującym okienku obok adresów IP w [[Special:Log|rejestrze]], [[Special:Contributions|wkładzie]] i [[Special:RecentChanges|ostatnich zmianach]].",
