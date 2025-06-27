@@ -4,6 +4,7 @@
 			"شاه زمان پټان"
 		]
 	},
+	"ipinfo-extensionname": "وېبپتې مالومات",
 	"ipinfo-desc": "د وېبپتې په اړه مالومات چمتو کوي.",
 	"ipinfo-infobox-title": "وېب‌پتې مالومات",
 	"ipinfo-property-label-location": "ځای",
@@ -45,6 +46,14 @@
 	"ipinfo-property-value-proxytype-istorexitnode": "د تور وتلو غوټه",
 	"ipinfo-property-value-proxytype-ishostingprovider": "کوره‌بتوب چمتوکوونکی",
 	"ipinfo-property-value-risk-callbackproxy": "شاگرځي استازی",
+	"ipinfo-property-value-risk-geomismatch": "ځمکنی ناانډولتيا",
+	"ipinfo-property-value-risk-loginbruteforce": "بروتې‌فورس ته ننوتل",
+	"ipinfo-property-value-risk-tunnel": "تونل",
+	"ipinfo-property-value-risk-webscraping": "وېب توږنه",
+	"ipinfo-property-value-risk-unknown": "ناجوت",
+	"ipinfo-property-value-connectiontype-desktop": "ډېسکټاپ",
+	"ipinfo-property-value-connectiontype-headless": "بې‌سر",
+	"ipinfo-property-value-connectiontype-iot": "آی‌او‌ټي",
 	"ipinfo-property-value-connectiontype-mobile": "موبايل",
 	"ipinfo-property-value-connectiontype-unknown": "ناجوت",
 	"ipinfo-property-label-source": "سرچينه",
@@ -53,5 +62,12 @@
 	"ipinfo-property-tooltip-proxytypes": "استازي وېب‌پتې پټوي. په ځينو مواردو کې دا په خپلکاري ډول پېښږي، لکه د استوگنيز يا يو‌شوي استازولۍ کې، په نورو مواردو کې دا په لوی‌لاس د وېب‌‌پتې اصليت پټولو لپاره ترسره کېږي.",
 	"ipinfo-property-tooltip-connectiontype": "هغه تېکنالوژي چې له لارې يې دوی اېنټرنېټ سره نښلېږي.",
 	"ipinfo-property-tooltip-usertype": "هغه ډول شتونتيا چې خپل اېنټرنېټ لري.",
+	"ipinfo-active-blocks-url-text": "يادښتونه",
+	"ipinfo-property-label-edits": "ونډې",
+	"ipinfo-property-no-data": "د لاسرسي وړ نه دی",
+	"ipinfo-property-no-access": "لاسرسی نشته",
+	"ipinfo-beta-feature-title": "وېب‌پتې مالومات",
+	"ipinfo-log-access-level-ipinfo-view-basic": "ټاکلی لاسرسي",
+	"ipinfo-log-access-level-ipinfo-view-full": "بشپړ لاسرسی",
 	"ipinfo-change-access-level-disable-globally": "\n{{GENDER:$1|ټوليزه ناچارن‌شوي}}"
 }
