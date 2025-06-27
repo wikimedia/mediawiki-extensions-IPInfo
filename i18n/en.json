@@ -24,7 +24,7 @@
 	"ipinfo-property-label-connectiontypes": "Connection types",
 	"ipinfo-property-label-tunneloperators": "Tunnel operator",
 	"ipinfo-property-label-proxies": "Proxies",
-	"ipinfo-property-label-usercount": "Users on this IP",
+	"ipinfo-property-label-usercount": "Unique devices across the Internet",
 	"ipinfo-property-value-connectiontype-cableordsl": "Cable/DSL",
 	"ipinfo-property-value-connectiontype-cellular": "Cellular",
 	"ipinfo-property-value-connectiontype-corporate": "Corporate",
