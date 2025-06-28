@@ -25,8 +25,8 @@
 		"MediaWiki\\IPInfo\\Maintenance\\InfoManager": "maintenance/InfoManager.php"
 	},
 	"TestAutoloadNamespaces": {
-		"MediaWiki\\IPInfo\\Test\\Integration\\": "tests/phpunit/integration",
-		"MediaWiki\\IPInfo\\Test\\Unit\\": "tests/phpunit/unit"
+		"MediaWiki\\IPInfo\\Test\\Integration\\": "tests/phpunit/integration/",
+		"MediaWiki\\IPInfo\\Test\\Unit\\": "tests/phpunit/unit/"
 	},
 	"QUnitTestModule": {
 		"localBasePath": "",
