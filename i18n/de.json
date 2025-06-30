@@ -23,7 +23,7 @@
 	"ipinfo-property-label-connectiontypes": "Verbindungstypen",
 	"ipinfo-property-label-tunneloperators": "Tunnelbetreiber",
 	"ipinfo-property-label-proxies": "Proxys",
-	"ipinfo-property-label-usercount": "Benutzer auf dieser IP-Adresse",
+	"ipinfo-property-label-usercount": "Eindeutige Geräte im Internet",
 	"ipinfo-property-value-connectiontype-cableordsl": "Kabel/DSL",
 	"ipinfo-property-value-connectiontype-cellular": "Mobilfunk",
 	"ipinfo-property-value-connectiontype-corporate": "Unternehmen",

@@ -23,7 +23,7 @@
 	"ipinfo-property-label-connectiontypes": "Bağlantı növləri",
 	"ipinfo-property-label-tunneloperators": "Tunel operatoru",
 	"ipinfo-property-label-proxies": "Proksilər",
-	"ipinfo-property-label-usercount": "Bu IP-dəki istifadəçilər",
+	"ipinfo-property-label-usercount": "İnternetdəki unikal cihazlar",
 	"ipinfo-property-value-connectiontype-cableordsl": "Kabel/DSL",
 	"ipinfo-property-value-connectiontype-cellular": "Mobil",
 	"ipinfo-property-value-connectiontype-corporate": "Korporativ",

@@ -20,7 +20,7 @@
 	"ipinfo-property-label-connectiontypes": "Typos de connexion",
 	"ipinfo-property-label-tunneloperators": "Operator del tunnel",
 	"ipinfo-property-label-proxies": "Proxies",
-	"ipinfo-property-label-usercount": "Usatores sur iste adresse IP",
+	"ipinfo-property-label-usercount": "Dispositivos unic sur tote le Internet",
 	"ipinfo-property-value-connectiontype-cableordsl": "Cablo/DSL",
 	"ipinfo-property-value-connectiontype-cellular": "Cellular",
 	"ipinfo-property-value-connectiontype-corporate": "Interprisa",

@@ -25,7 +25,7 @@
 	"ipinfo-property-label-connectiontypes": "Типи з'єднання",
 	"ipinfo-property-label-tunneloperators": "Оператор тунелю",
 	"ipinfo-property-label-proxies": "Проксі",
-	"ipinfo-property-label-usercount": "Користувачі на цій IP",
+	"ipinfo-property-label-usercount": "Унікальні пристрої в інтернеті",
 	"ipinfo-property-value-connectiontype-cableordsl": "Кабель/DSL",
 	"ipinfo-property-value-connectiontype-cellular": "Мобільний",
 	"ipinfo-property-value-connectiontype-corporate": "Корпоративний",

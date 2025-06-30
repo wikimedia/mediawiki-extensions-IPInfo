@@ -28,7 +28,7 @@
 	"ipinfo-property-label-connectiontypes": "Liittymätyypit",
 	"ipinfo-property-label-tunneloperators": "VPN-tarjoaja",
 	"ipinfo-property-label-proxies": "Välityspalvelimet",
-	"ipinfo-property-label-usercount": "Käyttäjiä tällä IP:llä",
+	"ipinfo-property-label-usercount": "Uniikkeja laitteita koko internetissä",
 	"ipinfo-property-value-connectiontype-cableordsl": "Kaapeli / DSL",
 	"ipinfo-property-value-connectiontype-cellular": "Mobiiliverkko",
 	"ipinfo-property-value-connectiontype-corporate": "Yritys",
