@@ -17,7 +17,7 @@
 	"ipinfo-property-label-connectiontypes": "Ühenduste tüübid",
 	"ipinfo-property-label-tunneloperators": "Tunnelikäitaja",
 	"ipinfo-property-label-proxies": "Puhverserverid",
-	"ipinfo-property-label-usercount": "IP-aadressi kasutajaid",
+	"ipinfo-property-label-usercount": "Eri seadmeid üle kogu interneti",
 	"ipinfo-property-value-proxytype-isanonymousvpn": "Anonüümne VPN",
 	"ipinfo-property-value-proxytype-ispublicproxy": "Avalik puhverserver",
 	"ipinfo-property-value-proxytype-isresidentialproxy": "Kodu puhverserver",
