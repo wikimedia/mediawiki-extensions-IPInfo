@@ -24,7 +24,7 @@
 	"ipinfo-property-label-connectiontypes": "סוגי החיבור",
 	"ipinfo-property-label-tunneloperators": "מפעיל חיבור ממונהר",
 	"ipinfo-property-label-proxies": "שרתים מתווכים (פרוקסי)",
-	"ipinfo-property-label-usercount": "משתמשים בכתובת ה־IP הזאת",
+	"ipinfo-property-label-usercount": "מכשירים ייחודיים ברחבי האינטרנט",
 	"ipinfo-property-value-connectiontype-cableordsl": "כבלים/DSL",
 	"ipinfo-property-value-connectiontype-cellular": "סלולרי",
 	"ipinfo-property-value-connectiontype-corporate": "תאגידי",
