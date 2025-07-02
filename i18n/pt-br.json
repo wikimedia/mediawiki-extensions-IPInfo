@@ -6,7 +6,8 @@
 			"Eduardo Addad de Oliveira",
 			"Eduardoaddad",
 			"Stanglavine",
-			"TheEduGobi"
+			"TheEduGobi",
+			"BraunOBruno"
 		]
 	},
 	"ipinfo-extensionname": "Informações de IP",
@@ -94,7 +95,9 @@
 	"ipinfo-change-access-level-disable": "desabilitou",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 edição excluída|$1 edições excluídas|0=Nenhuma edição excluída}}",
 	"ipinfo-special-ipinfo": "Informação de IP",
+	"ipinfo-special-ipinfo-legend": "Pesquise informações de IP sobre todos os endereços IP usados por uma conta temporária. Um máximo de $1 {{PLURAL:$1|resultado será exibido|resultados serão exibidos}}.",
 	"ipinfo-deleted-edits-url-text": "Contribuições excluídas",
+	"ipinfo-special-ipinfo-target": "Nome de usuário alvo:",
 	"ipinfo-special-ipinfo-column-ip": "IP",
 	"ipinfo-popup-link-text": "Ver todas as informações de IP",
 	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Saiba mais sobre esse recurso]"

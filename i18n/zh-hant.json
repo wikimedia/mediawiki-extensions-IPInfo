@@ -10,7 +10,9 @@
 			"Winston Sung",
 			"Xiplus",
 			"捍粵者",
-			"沈澄心"
+			"沈澄心",
+			"1F616EMO",
+			"Emojiwiki"
 		]
 	},
 	"ipinfo-extensionname": "IP資訊（IP Info）",
@@ -70,7 +72,7 @@
 	"ipinfo-property-value-connectiontype-unknown": "不明",
 	"ipinfo-property-label-source": "來源",
 	"ipinfo-property-label-active-blocks": "現有封鎖",
-	"ipinfo-property-label-number-of-ips": "IP 號碼",
+	"ipinfo-property-label-number-of-ips": "IP數量",
 	"ipinfo-property-tooltip-proxytypes": "代理會隱藏IP位址。在某些情況下，網路代理是自動生效的，例如住宅或公司代理；在其他情況下，代理則被故意用來隱藏IP位址來源。",
 	"ipinfo-property-tooltip-connectiontype": "連接到互聯網所採用的技術。",
 	"ipinfo-property-tooltip-usertype": "擁有互聯網接入的實體。",
@@ -120,7 +122,7 @@
 	"group-no-ipinfo": "被禁止使用IP資訊工具的使用者",
 	"group-no-ipinfo-member": "{{GENDER:$1|禁止存取IP資訊工具}}",
 	"grouppage-no-ipinfo": "{{ns:project}}:禁止存取IP資訊工具的使用者",
-	"ipinfo-log-name": "IPInfo 日誌",
+	"ipinfo-log-name": "IP資訊日誌",
 	"ipinfo-log-header": "此日誌為：\n# 藉由 IP 資訊工具來檢視有關 IP 的使用情況，以及\n# 對於此工具的使用者存取級別更改。",
 	"ipinfo-log-access-level-ipinfo-view-basic": "受限存取",
 	"ipinfo-log-access-level-ipinfo-view-full": "完整存取",

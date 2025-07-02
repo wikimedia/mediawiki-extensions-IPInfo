@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hamilton Abreu"
+			"Hamilton Abreu",
+			"BraunOBruno"
 		]
 	},
 	"ipinfo-desc": "Fornece informações sobre um endereço IP.",
@@ -124,5 +125,7 @@
 	"ipinfo-property-tooltip-asn": "Um identificador único para redes atribuídas a uma região e ainda a organizações como governos e ISPs",
 	"ipinfo-blocklist-url-text": "Lista de bloqueios",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 edição eliminada|$1 edições eliminadas|0=Nenhuma edição eliminada}}",
-	"ipinfo-deleted-edits-url-text": "Contribuições eliminadas"
+	"ipinfo-special-ipinfo-legend": "Pesquise informações de IP sobre todos os endereços IP usados por uma conta temporária. Um máximo de $1 {{PLURAL:$1|resultado será exibido|resultados serão exibidos}}.",
+	"ipinfo-deleted-edits-url-text": "Contribuições eliminadas",
+	"ipinfo-special-ipinfo-target": "Nome de usuário alvo:"
 }
