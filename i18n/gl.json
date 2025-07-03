@@ -19,7 +19,7 @@
 	"ipinfo-property-label-connectiontypes": "Tipos de conexión",
 	"ipinfo-property-label-tunneloperators": "Operador do túnel",
 	"ipinfo-property-label-proxies": "Proxies",
-	"ipinfo-property-label-usercount": "Usuarios neste enderezo IP",
+	"ipinfo-property-label-usercount": "Dispositivos únicos en Internet",
 	"ipinfo-property-value-connectiontype-cableordsl": "Cable ou DSL",
 	"ipinfo-property-value-connectiontype-cellular": "Móbil",
 	"ipinfo-property-value-connectiontype-corporate": "Corporativo",
