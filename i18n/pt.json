@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hamilton Abreu"
+			"Hamilton Abreu",
+			"BraunOBruno"
 		]
 	},
 	"ipinfo-desc": "Fornece informações sobre um endereço IP.",

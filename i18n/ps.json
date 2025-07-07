@@ -9,6 +9,8 @@
 	"ipinfo-infobox-title": "وېب‌پتې مالومات",
 	"ipinfo-property-label-location": "ځای",
 	"ipinfo-property-label-ipversion": "بل‌بڼه",
+	"ipinfo-property-label-isp": "اينټرنېټ چوپړتياوو چمتوکوونکی",
+	"ipinfo-property-label-asn": "خپلواک غونډال شمېره",
 	"ipinfo-property-label-organization": "سازمان",
 	"ipinfo-property-label-connectiontype": "اړيکې چلندلار",
 	"ipinfo-property-label-usertype": "اړيکې څښتن",
@@ -49,6 +51,10 @@
 	"ipinfo-property-no-data": "د لاسرسي وړ نه دی",
 	"ipinfo-property-no-access": "لاسرسی نشته",
 	"ipinfo-beta-feature-title": "وېب‌پتې مالومات",
+	"ipinfo-log-name": "وېب‌پتې مالوماتو يادښت",
 	"ipinfo-log-access-level-ipinfo-view-basic": "ټاکلی لاسرسي",
-	"ipinfo-log-access-level-ipinfo-view-full": "بشپړ لاسرسی"
+	"ipinfo-log-access-level-ipinfo-view-full": "بشپړ لاسرسی",
+	"ipinfo-change-access-level-enable": "{{GENDER:$1|چارن‌شوی}}",
+	"ipinfo-change-access-level-disable": "{{GENDER:$1|ناچارن‌شوی}}",
+	"log-action-filter-ipinfo": "د وېبپتې مالوماتي چلند ډول:"
 }
