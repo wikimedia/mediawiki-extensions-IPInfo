@@ -2,12 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"Ainali",
+			"Jeeputer",
 			"Sabelöga",
 			"WikiPhoenix"
 		]
 	},
+	"ipinfo-extensionname": "IP Info",
 	"ipinfo-desc": "Ger information om en IP-adress.",
-	"ipinfo-infobox-title": "IP-information",
+	"ipinfo-infobox-title": "اطلاعات آی‌پی",
+	"ipinfo-infobox-temporary-account-help": "Multiple IP addresses are associated with this temporary account. You are viewing IP information for the most recently used IP address. [[Special:IPInfo/$1|View IP information for all IP addresses]].",
 	"ipinfo-property-label-location": "Plats",
 	"ipinfo-property-label-ipversion": "Version",
 	"ipinfo-property-label-isp": "ISP",
@@ -16,6 +19,9 @@
 	"ipinfo-property-label-connectiontype": "Uppkopplingsmetod",
 	"ipinfo-property-label-usertype": "Uppkopplingsägare",
 	"ipinfo-property-label-proxytypes": "Riktig IP/Proxy",
+	"ipinfo-property-label-behaviors": "Beteende",
+	"ipinfo-property-label-risks": "Risker",
+	"ipinfo-property-label-connectiontypes": "Connection types",
 	"ipinfo-property-value-proxytype-isanonymousvpn": "Anonym VPN",
 	"ipinfo-property-value-proxytype-ispublicproxy": "Öppen proxy",
 	"ipinfo-property-value-proxytype-isresidentialproxy": "Bostadsproxy",

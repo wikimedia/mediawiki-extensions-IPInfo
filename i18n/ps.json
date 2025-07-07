@@ -78,6 +78,7 @@
 	"ipinfo-change-access-level-enable-globally": "{{GENDER:$1|ټوليزه چارن‌شوی}}",
 	"ipinfo-change-access-level-disable-globally": "\n{{GENDER:$1|ټوليزه ناچارن‌شوي}}",
 	"log-action-filter-ipinfo": "د وېبپتې مالوماتي چلند ډول:",
+	"ipinfo-blocklist-url-text": "بنديزونو لړليک",
 	"ipinfo-special-ipinfo": "وېب‌پتې مالومات",
 	"ipinfo-deleted-edits-url-text": "ړنگې‌شوې ونډې",
 	"ipinfo-special-ipinfo-table-caption": "د $1 وېبپتې مالومات",
