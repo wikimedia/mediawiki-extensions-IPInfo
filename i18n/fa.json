@@ -133,5 +133,13 @@
 	"ipinfo-property-tooltip-asn": "شناسهٔ منحصر به فرد برای شبکه‌های اختصاص یافته به یک منطقه و سازمان‌هایی نظیر دولت‌ها و ارائه‌دهندگان خدمات اینترنت",
 	"ipinfo-blocklist-url-text": "فهرست قطع دسترسی",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 ویرایش حذف‌شده|0=فاقد ویرایش‌های حذف‌شده}}",
-	"ipinfo-deleted-edits-url-text": "مشارکت‌های حذف‌شده"
+	"ipinfo-special-ipinfo": "اطلاعات آی‌پی",
+	"ipinfo-special-ipinfo-legend": "برای اطلاعات تمامی نشنی‌های آی‌پی مورد استفادهٔ یک حساب کاربری موقت جستجو کنید. حداکثر $1 {{PLURAL:$1|نتیجه}} نمایش داده می‌شود.",
+	"ipinfo-deleted-edits-url-text": "مشارکت‌های حذف‌شده",
+	"ipinfo-special-ipinfo-table-caption": "اطلاعات آی‌پی برای $1",
+	"ipinfo-special-ipinfo-target": "نام کاربری هدف:",
+	"ipinfo-special-ipinfo-user-tool-links": "برای $1",
+	"ipinfo-special-ipinfo-sort-explainer": "برای مرتب‌سازی جدول بر پایهٔ مقدار هر ستون، می‌توانید از دکمه‌های موجود در سرآیندهای جدول استفاده کنید.",
+	"ipinfo-special-ipinfo-column-ip": "آی‌پی",
+	"ipinfo-special-ipinfo-no-results": "اطلاعات آی‌پی برای $1 در دسترس نیست."
 }
