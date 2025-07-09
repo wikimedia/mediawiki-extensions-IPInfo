@@ -33,7 +33,7 @@
 	"ipinfo-property-label-connectiontypes": "أنواع الاتصال",
 	"ipinfo-property-label-tunneloperators": "مشغل الاتصال النفقي",
 	"ipinfo-property-label-proxies": "الوكلاء",
-	"ipinfo-property-label-usercount": "المستخدمون على هذا العنوان IP",
+	"ipinfo-property-label-usercount": "الأجهزة الفريدة عبر الإنترنت",
 	"ipinfo-property-value-connectiontype-cableordsl": "إنترنت عبر الكبل أو عبر خط المشترك الرقمي",
 	"ipinfo-property-value-connectiontype-cellular": "عبر الشبكة الخليوية",
 	"ipinfo-property-value-connectiontype-corporate": "خط تشاركي",
