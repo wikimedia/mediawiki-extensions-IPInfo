@@ -149,7 +149,7 @@
 	"ipinfo-property-tooltip-asn": "Un identifiant unique pour les réseaux affectés à une région et de façon plus avancée aux organisations telles comme des gouvernements et des FAI.",
 	"ipinfo-blocklist-url-text": "Liste de blocage",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|Une|$1|0=Aucune}} modification{{PLURAL:$1||s}} supprimée{{PLURAL:$1||s}}",
-	"ipinfo-special-ipinfo": "Informations sur les IP",
+	"ipinfo-special-ipinfo": "Informations sur l’adresse IP",
 	"ipinfo-special-ipinfo-legend": "Rechercher des informations sur toutes les adresses IP utilisées par un utilisateur temporaire. Un maximum de $1 {{PLURAL:$1|résultat|résultats}} sont affichés.",
 	"ipinfo-deleted-edits-url-text": "Contributions supprimées",
 	"ipinfo-special-ipinfo-table-caption": "Informations sur les IP pour $1",
@@ -158,7 +158,7 @@
 	"ipinfo-special-ipinfo-sort-explainer": "Les boutons dans les en-têtes du tableau peuvent être utilisés pour trier le tableau en fonction de la valeur de cette colonne.",
 	"ipinfo-special-ipinfo-column-ip": "IP",
 	"ipinfo-special-ipinfo-no-results": "Aucune information IP n'est disponible pour $1 .",
-	"ipinfo-popup-link-text": "Afficher toutes les informations sur les IP",
+	"ipinfo-popup-link-text": "Afficher toutes les informations sur l’adresse IP",
 	"ipinfo-help-text": "Les informations affichées proviennent de MaxMind et [https://docs.spur.us/data-types Spur]. Elles peuvent ne pas être entièrement exactes.",
 	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info En savoir plus sur cette fonctionnalité]"
 }
