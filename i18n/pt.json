@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"BraunOBruno",
-			"Hamilton Abreu"
+			"Hamilton Abreu",
+			"Mansil alfalb"
 		]
 	},
 	"ipinfo-desc": "Fornece informações sobre um endereço IP.",
@@ -20,7 +21,7 @@
 	"ipinfo-property-label-connectiontypes": "Tipos de ligação",
 	"ipinfo-property-label-tunneloperators": "Operador do túnel",
 	"ipinfo-property-label-proxies": "Servidores mandatários (''proxies'')",
-	"ipinfo-property-label-usercount": "Utilizadores neste IP",
+	"ipinfo-property-label-usercount": "Dispositivos únicos na Internet",
 	"ipinfo-property-value-connectiontype-cableordsl": "Cabo/DSL",
 	"ipinfo-property-value-connectiontype-cellular": "Telemóvel",
 	"ipinfo-property-value-connectiontype-corporate": "Corporativo",
