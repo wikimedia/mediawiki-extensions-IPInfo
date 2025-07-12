@@ -94,7 +94,7 @@ class GeoIp2EnterpriseInfoRetriever extends BaseInfoRetriever {
 				$info['locations'] = $this->getLocations( $enterpriseInfo );
 				$info['connectionType'] = $this->getConnectionType( $enterpriseInfo );
 				$info['userType'] = $this->getUserType( $enterpriseInfo );
-			} catch ( AddressNotFoundException $e ) {
+			} catch ( AddressNotFoundException ) {
 				// No need to do anything if it fails
 				// $info defaults to null values
 			}
@@ -109,7 +109,7 @@ class GeoIp2EnterpriseInfoRetriever extends BaseInfoRetriever {
 					$isLegitimateProxy = (bool)$enterpriseInfo->traits->isLegitimateProxy;
 				}
 				$info['proxyType'] = $this->getProxyType( $anonymousIpInfo, $isLegitimateProxy );
-			} catch ( AddressNotFoundException $e ) {
+			} catch ( AddressNotFoundException ) {
 				// No need to do anything if it fails
 				// $info defaults to null values
 			}

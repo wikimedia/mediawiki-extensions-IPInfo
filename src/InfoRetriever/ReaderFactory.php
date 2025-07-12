@@ -21,7 +21,7 @@ class ReaderFactory {
 		}
 		try {
 			$reader = $this->getReader( $path . $filename );
-		} catch ( Exception $e ) {
+		} catch ( Exception ) {
 			return null;
 		}
 

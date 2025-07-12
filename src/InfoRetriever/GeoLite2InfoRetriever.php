@@ -12,6 +12,9 @@ use MediaWiki\User\UserIdentity;
 
 /**
  * Manager for getting information from the MaxMind GeoLite2 databases.
+ *
+ * NOTE: Connection type, User type, and Proxy type are not available with GeoLite2
+ * https://www.maxmind.com/en/solutions/geoip2-enterprise-product-suite/enterprise-database
  */
 class GeoLite2InfoRetriever extends BaseInfoRetriever {
 	/**
@@ -67,10 +70,7 @@ class GeoLite2InfoRetriever extends BaseInfoRetriever {
 			$this->getAsn( $ip ),
 			$this->getOrganization( $ip ),
 			$this->getCountryNames( $ip ),
-			$this->getLocations( $ip ),
-			$this->getConnectionType( $ip ),
-			$this->getUserType( $ip ),
-			$this->getProxyType( $ip )
+			$this->getLocations( $ip )
 		);
 	}
 
@@ -86,7 +86,7 @@ class GeoLite2InfoRetriever extends BaseInfoRetriever {
 
 		try {
 			$city = $reader->city( $ip );
-		} catch ( AddressNotFoundException $e ) {
+		} catch ( AddressNotFoundException ) {
 			return null;
 		}
 
@@ -113,7 +113,7 @@ class GeoLite2InfoRetriever extends BaseInfoRetriever {
 
 		try {
 			return $reader->asn( $ip )->autonomousSystemNumber;
-		} catch ( AddressNotFoundException $e ) {
+		} catch ( AddressNotFoundException ) {
 			return null;
 		}
 	}
@@ -130,7 +130,7 @@ class GeoLite2InfoRetriever extends BaseInfoRetriever {
 
 		try {
 			return $reader->asn( $ip )->autonomousSystemOrganization;
-		} catch ( AddressNotFoundException $e ) {
+		} catch ( AddressNotFoundException ) {
 			return null;
 		}
 	}
@@ -143,7 +143,7 @@ class GeoLite2InfoRetriever extends BaseInfoRetriever {
 
 		try {
 			$city = $reader->city( $ip );
-		} catch ( AddressNotFoundException $e ) {
+		} catch ( AddressNotFoundException ) {
 			return null;
 		}
 
@@ -162,7 +162,7 @@ class GeoLite2InfoRetriever extends BaseInfoRetriever {
 
 		try {
 			$city = $reader->city( $ip );
-		} catch ( AddressNotFoundException $e ) {
+		} catch ( AddressNotFoundException ) {
 			return null;
 		}
 
@@ -188,35 +188,5 @@ class GeoLite2InfoRetriever extends BaseInfoRetriever {
 			},
 			array_reverse( $city->subdivisions )
 		) );
-	}
-
-	/**
-	 * Connection type is not available with GeoLite2
-	 * See https://www.maxmind.com/en/solutions/geoip2-enterprise-product-suite/enterprise-database
-	 * @param string $ip
-	 * @return null
-	 */
-	private function getConnectionType( string $ip ) {
-		return null;
-	}
-
-	/**
-	 * User type not available with GeoLite2
-	 * See https://www.maxmind.com/en/solutions/geoip2-enterprise-product-suite/enterprise-database
-	 * @param string $ip
-	 * @return null
-	 */
-	private function getUserType( string $ip ) {
-		return null;
-	}
-
-	/**
-	 * Proxy type not available with GeoLite2
-	 * See https://www.maxmind.com/en/solutions/geoip2-enterprise-product-suite/enterprise-database
-	 * @param string $ip
-	 * @return null
-	 */
-	private function getProxyType( string $ip ) {
-		return null;
 	}
 }
