@@ -3,11 +3,13 @@
 		"authors": [
 			"Ainali",
 			"Sabelöga",
-			"WikiPhoenix"
+			"WikiPhoenix",
+			"Jeeputer"
 		]
 	},
+	"ipinfo-extensionname": "IP Info",
 	"ipinfo-desc": "Ger information om en IP-adress.",
-	"ipinfo-infobox-title": "IP-information",
+	"ipinfo-infobox-title": "اطلاعات آی‌پی",
 	"ipinfo-property-label-location": "Plats",
 	"ipinfo-property-label-ipversion": "Version",
 	"ipinfo-property-label-isp": "ISP",
