@@ -10,11 +10,13 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 
+// @codeCoverageIgnoreStart
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
 	$IP = __DIR__ . '/../../..';
 }
 require_once "$IP/maintenance/Maintenance.php";
+// @codeCoverageIgnoreEnd
 
 /**
  * Helper script to setup required test fixtures for WDIO browser tests.
@@ -83,5 +85,7 @@ class PopulateTestData extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = PopulateTestData::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd
