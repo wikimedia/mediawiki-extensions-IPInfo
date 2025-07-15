@@ -26,7 +26,7 @@
 	"ipinfo-property-label-connectiontypes": "연결 유형",
 	"ipinfo-property-label-tunneloperators": "터널 운영자",
 	"ipinfo-property-label-proxies": "프록시",
-	"ipinfo-property-label-usercount": "이 IP의 사용자",
+	"ipinfo-property-label-usercount": "인터넷을 경유한 고유 장치",
 	"ipinfo-property-value-connectiontype-cableordsl": "케이블/DSL",
 	"ipinfo-property-value-connectiontype-cellular": "휴대 전화",
 	"ipinfo-property-value-connectiontype-corporate": "회사",
