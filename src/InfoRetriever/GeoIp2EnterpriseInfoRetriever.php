@@ -75,7 +75,6 @@ class GeoIp2EnterpriseInfoRetriever extends BaseInfoRetriever {
 				'organization',
 				'countryNames',
 				'locations',
-				'isp',
 				'connectionType',
 				'userType',
 				'proxyType',
@@ -93,7 +92,6 @@ class GeoIp2EnterpriseInfoRetriever extends BaseInfoRetriever {
 				$info['organization'] = $this->getOrganization( $enterpriseInfo );
 				$info['countryNames'] = $this->getCountryNames( $enterpriseInfo );
 				$info['locations'] = $this->getLocations( $enterpriseInfo );
-				$info['isp'] = $this->getIsp( $enterpriseInfo );
 				$info['connectionType'] = $this->getConnectionType( $enterpriseInfo );
 				$info['userType'] = $this->getUserType( $enterpriseInfo );
 			} catch ( AddressNotFoundException $e ) {
@@ -123,7 +121,6 @@ class GeoIp2EnterpriseInfoRetriever extends BaseInfoRetriever {
 			$info['organization'],
 			$info['countryNames'],
 			$info['locations'],
-			$info['isp'],
 			$info['connectionType'],
 			$info['userType'],
 			$info['proxyType']
@@ -197,14 +194,6 @@ class GeoIp2EnterpriseInfoRetriever extends BaseInfoRetriever {
 			},
 			array_reverse( $info->subdivisions )
 		) );
-	}
-
-	/**
-	 * @param Enterprise $info
-	 * @return string|null null if GeoIP2 does not return an ISP
-	 */
-	private function getIsp( Enterprise $info ): ?string {
-		return $info->traits->isp;
 	}
 
 	/**

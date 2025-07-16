@@ -21,9 +21,6 @@ class Info implements JsonSerializable {
 	private $location;
 
 	/** @var string|null */
-	private $isp;
-
-	/** @var string|null */
 	private $connectionType;
 
 	/** @var string|null */
@@ -38,7 +35,6 @@ class Info implements JsonSerializable {
 	 * @param string|null $organization
 	 * @param array<string,string>|null $countryNames
 	 * @param Location[]|null $location
-	 * @param string|null $isp
 	 * @param string|null $connectionType
 	 * @param string|null $userType
 	 * @param ProxyType|null $proxyType
@@ -49,7 +45,6 @@ class Info implements JsonSerializable {
 		?string $organization = null,
 		?array $countryNames = null,
 		?array $location = null,
-		?string $isp = null,
 		?string $connectionType = null,
 		?string $userType = null,
 		?ProxyType $proxyType = null
@@ -59,7 +54,6 @@ class Info implements JsonSerializable {
 		$this->organization = $organization;
 		$this->countryNames = $countryNames;
 		$this->location = $location;
-		$this->isp = $isp;
 		$this->connectionType = $connectionType;
 		$this->userType = $userType;
 		$this->proxyType = $proxyType;
@@ -103,13 +97,6 @@ class Info implements JsonSerializable {
 	/**
 	 * @return string|null
 	 */
-	public function getIsp(): ?string {
-		return $this->isp;
-	}
-
-	/**
-	 * @return string|null
-	 */
 	public function getConnectionType(): ?string {
 		return $this->connectionType;
 	}
@@ -135,7 +122,6 @@ class Info implements JsonSerializable {
 			'organization' => $this->getOrganization(),
 			'countryNames' => $this->getCountryNames(),
 			'location' => $this->getLocation(),
-			'isp' => $this->getIsp(),
 			'connectionType' => $this->getConnectionType(),
 			'userType' => $this->getUserType(),
 			'proxyType' => $this->getProxyType(),

@@ -248,11 +248,6 @@ class SpecialIPInfo extends FormSpecialPage {
 				'sortable' => true
 			],
 			[
-				'name' => 'isp',
-				'title' => $this->msg( 'ipinfo-property-label-isp' )->text(),
-				'sortable' => true
-			],
-			[
 				'name' => 'asn',
 				'title' => $this->msg( 'ipinfo-property-label-asn' )->text(),
 				'sortable' => true
@@ -361,7 +356,6 @@ class SpecialIPInfo extends FormSpecialPage {
 				'revId' => $record->getRevisionId(),
 				'logId' => $record->getLogId(),
 				'location' => implode( $commaMsg, $locations ),
-				'isp' => $info['data']['ipinfo-source-geoip2']['isp'] ?? '',
 				'asn' => $info['data']['ipinfo-source-geoip2']['asn'] ?? '',
 				'organization' => $info['data']['ipinfo-source-geoip2']['organization'] ?? '',
 				'ipversion' => IPUtils::isIPv4( $record->getIp() ) ? $ipv4Msg : $ipv6Msg,

@@ -56,7 +56,6 @@ class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiUnitTestCase {
 		$this->assertNull( $info->getOrganization() );
 		$this->assertNull( $info->getCountryNames() );
 		$this->assertNull( $info->getLocation() );
-		$this->assertNull( $info->getIsp() );
 		$this->assertNull( $info->getConnectionType() );
 		$this->assertNull( $info->getUserType() );
 		$this->assertNull( $info->getProxyType() );
@@ -176,7 +175,6 @@ class GeoIp2EnterpriseInfoRetrieverTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( 'foobar', $info->getOrganization() );
 		$this->assertEquals( [ 'en' => 'bar' ], $info->getCountryNames() );
 		$this->assertEquals( [ new Location( 1, 'bar' ) ], $info->getLocation() );
-		$this->assertNull( $info->getIsp() );
 		$this->assertNull( $info->getConnectionType() );
 		$this->assertNull( $info->getUserType() );
 		$this->assertEquals( new ProxyType( true, true, true, true, true, true ), $info->getProxyType() );

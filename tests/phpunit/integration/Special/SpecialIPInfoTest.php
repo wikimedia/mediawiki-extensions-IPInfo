@@ -277,7 +277,7 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 	private static function getAsns( DOMDocument $doc ): array {
 		$nodes = (array)DOMCompat::querySelectorAll(
 			$doc,
-			".ext-ipinfo-special-ipinfo__table > tbody > tr > td:nth-of-type(4)"
+			".ext-ipinfo-special-ipinfo__table > tbody > tr > td:nth-of-type(3)"
 		);
 
 		return array_map( static fn ( DOMNode $node ) => $node->textContent, $nodes );
@@ -291,7 +291,7 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 	private static function getOrganizations( DOMDocument $doc ): array {
 		$nodes = (array)DOMCompat::querySelectorAll(
 			$doc,
-			".ext-ipinfo-special-ipinfo__table > tbody > tr > td:nth-of-type(5)"
+			".ext-ipinfo-special-ipinfo__table > tbody > tr > td:nth-of-type(4)"
 		);
 
 		return array_map( static fn ( DOMNode $node ) => $node->textContent, $nodes );

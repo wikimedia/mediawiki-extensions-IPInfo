@@ -19,7 +19,6 @@ class InfoTest extends MediaWikiUnitTestCase {
 		$this->assertNull( $info->getOrganization() );
 		$this->assertNull( $info->getCountryNames() );
 		$this->assertNull( $info->getLocation() );
-		$this->assertNull( $info->getIsp() );
 		$this->assertNull( $info->getConnectionType() );
 		$this->assertNull( $info->getProxyType() );
 	}
@@ -27,7 +26,7 @@ class InfoTest extends MediaWikiUnitTestCase {
 	public function testJsonSerialize() {
 		$this->assertJsonStringEqualsJsonString(
 			'{"coordinates":null,"asn":null,"organization":null,"countryNames":null,' .
-			'"location":null,"isp":null,"connectionType":null,"userType":null,"proxyType":null}',
+			'"location":null,"connectionType":null,"userType":null,"proxyType":null}',
 			FormatJson::encode( new Info() )
 		);
 	}

@@ -21,7 +21,6 @@
 	"ipinfo-infobox-temporary-account-help": "Notice displayed in the IP information infobox on the contributions pages of temporary accounts if they have more than one associated IP address.\n\nParameters:\n* $1 - Username of the temporary account the contributions page is associated with.",
 	"ipinfo-property-label-location": "Label for location data returned",
 	"ipinfo-property-label-ipversion": "Label for IP address version",
-	"ipinfo-property-label-isp": "{{optional}}\nLabel for Internet Service Provider (ISP) data returned",
 	"ipinfo-property-label-asn": "{{optional}}\nLabel for Autonomous System Number (ASN) data returned (an ASN refers to a block of IP addresses)",
 	"ipinfo-property-label-organization": "Label for Autonomous System Organization data returned",
 	"ipinfo-property-label-connectiontype": "Label for the connection method data returned",

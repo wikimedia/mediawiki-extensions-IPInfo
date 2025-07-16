@@ -119,7 +119,6 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 		.append(
 			$( '<div>' ).addClass( 'ext-ipinfo-widget-properties-col' ).append(
 				this.generatePropertyMarkup( 'location', location, mw.msg( 'ipinfo-property-label-location' ) ),
-				this.generatePropertyMarkup( 'isp', info.data[ 'ipinfo-source-geoip2' ].isp, mw.msg( 'ipinfo-property-label-isp' ) ),
 				this.generatePropertyMarkup( 'asn',
 					info.data[ 'ipinfo-source-geoip2' ].asn,
 					mw.msg( 'ipinfo-property-label-asn' ),

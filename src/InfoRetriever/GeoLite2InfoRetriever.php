@@ -68,7 +68,6 @@ class GeoLite2InfoRetriever extends BaseInfoRetriever {
 			$this->getOrganization( $ip ),
 			$this->getCountryNames( $ip ),
 			$this->getLocations( $ip ),
-			$this->getIsp( $ip ),
 			$this->getConnectionType( $ip ),
 			$this->getUserType( $ip ),
 			$this->getProxyType( $ip )
@@ -189,17 +188,6 @@ class GeoLite2InfoRetriever extends BaseInfoRetriever {
 			},
 			array_reverse( $city->subdivisions )
 		) );
-	}
-
-	/**
-	 * ISP not available with GeoLite2
-	 * See https://www.maxmind.com/en/solutions/geoip2-enterprise-product-suite/enterprise-database
-	 * @param string $ip
-	 * @return null
-	 * @codeCoverageIgnore tested when retrieveFromIP is run
-	 */
-	private function getIsp( string $ip ) {
-		return null;
 	}
 
 	/**

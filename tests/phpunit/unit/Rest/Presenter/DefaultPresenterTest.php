@@ -65,7 +65,6 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 					[
 						new Location( 123456789, 'London' )
 					],
-					'qux',
 					'quux',
 					'residential',
 					new ProxyType(
@@ -161,7 +160,6 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 					'countryNames' => null,
 					'location' => null,
 					'asn' => null,
-					'isp' => null,
 					'connectionType' => null,
 					'userType' => null,
 					'proxyType' => null,
@@ -183,7 +181,6 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 						],
 					],
 					'asn' => 0,
-					'isp' => 'qux',
 					'connectionType' => 'quux',
 					'userType' => 'residential',
 					'proxyType' => array_fill_keys( [
@@ -205,7 +202,6 @@ class DefaultPresenterTest extends MediaWikiUnitTestCase {
 					[
 						new Location( 123456789, 'London' )
 					],
-					'qux',
 					'quux',
 					'residential',
 					new ProxyType(

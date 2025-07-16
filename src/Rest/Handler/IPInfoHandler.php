@@ -52,7 +52,6 @@ abstract class IPInfoHandler extends SimpleHandler {
 			'connectionType',
 			'userType',
 			'asn',
-			'isp',
 			'organization',
 			'proxyType',
 			'behaviors',

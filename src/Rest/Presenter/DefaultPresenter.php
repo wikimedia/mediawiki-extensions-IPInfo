@@ -39,7 +39,6 @@ class DefaultPresenter {
 		'connectionType',
 		'connectionTypes',
 		'countryNames',
-		'isp',
 		'location',
 		'numActiveBlocks',
 		'numDeletedEdits',
@@ -155,7 +154,6 @@ class DefaultPresenter {
 					'label' => $location->getLabel(),
 				];
 			}, $location ) : null,
-			'isp' => $info->getIsp(),
 			'connectionType' => $info->getConnectionType(),
 			'userType' => $info->getUserType(),
 			'proxyType' => $proxyType ? [
