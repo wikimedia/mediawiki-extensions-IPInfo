@@ -22,7 +22,6 @@
 	"ipinfo-infobox-temporary-account-help": "С этой временной учётной записью связано несколько IP-адресов. Вы просматриваете информацию об IP-адресе, который использовался последним. [[Special:IPInfo/$1|Просмотр информации об IP-адресах для всех IP-адресов]].",
 	"ipinfo-property-label-location": "Местоположение",
 	"ipinfo-property-label-ipversion": "Версия",
-	"ipinfo-property-label-isp": "Интернет-провайдер",
 	"ipinfo-property-label-asn": "Номер AS (ASN)",
 	"ipinfo-property-label-organization": "Организация",
 	"ipinfo-property-label-connectiontype": "Способ соединения",

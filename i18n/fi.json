@@ -17,7 +17,6 @@
 	"ipinfo-infobox-temporary-account-help": "Tähän tilapäiseen tunnukseen liittyy useita IP-osoitteita. Näet tiedot viimeksi käytetystä IP-osoitteesta. [[Special:IPInfo/$1|Katso kaikkien IP-osoitteiden tiedot]].",
 	"ipinfo-property-label-location": "Sijainti",
 	"ipinfo-property-label-ipversion": "Versio",
-	"ipinfo-property-label-isp": "Internet-palveluntarjoaja (ISP)",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Organisaatio",
 	"ipinfo-property-label-connectiontype": "Liittymätyyppi",

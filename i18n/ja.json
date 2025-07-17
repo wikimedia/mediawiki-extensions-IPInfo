@@ -18,7 +18,6 @@
 	"ipinfo-infobox-temporary-account-help": "この臨時アカウントには複数のIPアドレスが関連づけられています。以下は直近で使用したIPアドレスの情報を表示しています。[[Special:IPInfo/$1|使用した全てのIPアドレスに関する情報の一覧はこちらからご覧ください]]。",
 	"ipinfo-property-label-location": "位置",
 	"ipinfo-property-label-ipversion": "バージョン",
-	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "組織",
 	"ipinfo-property-label-connectiontype": "接続方法",

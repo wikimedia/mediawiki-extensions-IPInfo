@@ -15,7 +15,6 @@
 	"ipinfo-infobox-temporary-account-help": "Z tym tymczasowym kontem skojarzonych jest wiele adresów IP. Wyświetlasz informacje o ostatnio używanym adresie IP. [[Special:IPInfo/$1|Wyświetl informacje wszystkich adresach IP]].",
 	"ipinfo-property-label-location": "Lokalizacja",
 	"ipinfo-property-label-ipversion": "Wersja",
-	"ipinfo-property-label-isp": "Dostawca internetu",
 	"ipinfo-property-label-asn": "Numer AS",
 	"ipinfo-property-label-organization": "Organizacja",
 	"ipinfo-property-label-connectiontype": "Metoda połączenia",

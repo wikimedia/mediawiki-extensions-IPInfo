@@ -30,7 +30,6 @@
 	"ipinfo-infobox-temporary-account-help": "此临时账号与多个IP地址关联。您正在查看其最新IP地址的信息。[[Special:IPInfo/$1|查看所有IP地址的信息]]。",
 	"ipinfo-property-label-location": "位置",
 	"ipinfo-property-label-ipversion": "版本",
-	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "机构",
 	"ipinfo-property-label-connectiontype": "接入方式",

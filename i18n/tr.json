@@ -15,7 +15,6 @@
 	"ipinfo-infobox-temporary-account-help": "Bu geçici hesap ile birden fazla IP adresi eşleştirilmiştir. Şu anda en son kullanılan IP adresini görüyorsunuz. [[Special:IPInfo/$1|Tüm IP adreslerin için IP bilgisini görüntüle]].",
 	"ipinfo-property-label-location": "Konum",
 	"ipinfo-property-label-ipversion": "Sürüm",
-	"ipinfo-property-label-isp": "İnternet servis sağlayıcısı",
 	"ipinfo-property-label-asn": "Özerk sistem numarası",
 	"ipinfo-property-label-organization": "Organizasyon",
 	"ipinfo-property-label-connectiontype": "Bağlantı yöntemi",

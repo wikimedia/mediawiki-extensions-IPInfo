@@ -12,7 +12,6 @@
 	"ipinfo-infobox-temporary-account-help": "Birdən çox IP ünvanı bu müvəqqəti hesabla əlaqələndirilir. Siz ən son istifadə olunan IP ünvanı üçün IP məlumatına baxırsınız. [[Special:IPInfo/$1|Bütün IP ünvanları üçün IP məlumatına bax]].",
 	"ipinfo-property-label-location": "Yer",
 	"ipinfo-property-label-ipversion": "Versiya",
-	"ipinfo-property-label-isp": "İSP",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Təşkilat",
 	"ipinfo-property-label-connectiontype": "Bağlantı metodu",

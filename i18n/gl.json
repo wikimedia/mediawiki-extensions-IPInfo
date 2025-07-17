@@ -9,7 +9,6 @@
 	"ipinfo-infobox-temporary-account-help": "Hai varios enderezos IP asociados a esta conta temporal. Estás a ver a información do enderezo IP usado máis recentemente. [[Special:IPInfo/$1|Ver a información para todos os enderezos IP]].",
 	"ipinfo-property-label-location": "Localización",
 	"ipinfo-property-label-ipversion": "Versión",
-	"ipinfo-property-label-isp": "Provedor de servizos de Internet",
 	"ipinfo-property-label-organization": "Organización",
 	"ipinfo-property-label-connectiontype": "Método de conexión",
 	"ipinfo-property-label-usertype": "Propietario da conexión",

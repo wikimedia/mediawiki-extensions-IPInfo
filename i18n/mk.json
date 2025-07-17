@@ -11,7 +11,6 @@
 	"ipinfo-infobox-temporary-account-help": "На оваа привремена сметка ѝ принадлежат повеќе IP-адреси. Гледате IP-информации за последно користената IP-адреса. [[Special:IPInfo/$1|Погледајте IP-информации за сите IP-адреси]].",
 	"ipinfo-property-label-location": "Местоположба",
 	"ipinfo-property-label-ipversion": "ВЕРЗИЈА",
-	"ipinfo-property-label-isp": "Услужник",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Организација",
 	"ipinfo-property-label-connectiontype": "Начин на поврзување",

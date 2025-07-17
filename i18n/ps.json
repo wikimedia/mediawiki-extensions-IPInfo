@@ -10,7 +10,6 @@
 	"ipinfo-infobox-temporary-account-help": "دې لنډمهاله گڼون سره گڼ شمېر وېبپتې تړلې دي. تاسې د وروستۍ کارول شوې وېبپتې مالومات گورئ. [[Special:IPInfo/$1|د ټولو وېبپتو مالومات وښاياست]].",
 	"ipinfo-property-label-location": "ځای",
 	"ipinfo-property-label-ipversion": "بل‌بڼه",
-	"ipinfo-property-label-isp": "اينټرنېټ چوپړتياوو چمتوکوونکی",
 	"ipinfo-property-label-asn": "خپلواک غونډال شمېره",
 	"ipinfo-property-label-organization": "سازمان",
 	"ipinfo-property-label-connectiontype": "اړيکې چلندلار",

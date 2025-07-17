@@ -27,7 +27,6 @@
 	"ipinfo-infobox-temporary-account-help": "Plusieurs adresses IP sont associées à ce compte temporaire. Vous consultez les informations IP de l'adresse IP la plus récemment utilisée. [[Special:IPInfo/$1|Afficher les informations IP pour toutes les adresses IP]].",
 	"ipinfo-property-label-location": "Lieu",
 	"ipinfo-property-label-ipversion": "Version",
-	"ipinfo-property-label-isp": "FAI",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Organisation",
 	"ipinfo-property-label-connectiontype": "Méthode de connexion",

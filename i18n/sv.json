@@ -13,7 +13,6 @@
 	"ipinfo-infobox-temporary-account-help": "Multiple IP addresses are associated with this temporary account. You are viewing IP information for the most recently used IP address. [[Special:IPInfo/$1|View IP information for all IP addresses]].",
 	"ipinfo-property-label-location": "Plats",
 	"ipinfo-property-label-ipversion": "Version",
-	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Organisation",
 	"ipinfo-property-label-connectiontype": "Uppkopplingsmetod",

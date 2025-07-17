@@ -22,7 +22,6 @@
 	"ipinfo-infobox-temporary-account-help": "ترتبط عناوين IP متعددة بهذا الحساب المؤقت. أنت تشاهد معلومات IP لعنوان IP المستخدم مؤخرًا. [[Special:IPInfo/$1|عرض معلومات IP لجميع عناوين IP]].",
 	"ipinfo-property-label-location": "الموقع",
 	"ipinfo-property-label-ipversion": "الإصدار",
-	"ipinfo-property-label-isp": "مُزوِّد خدمة الإنترنت",
 	"ipinfo-property-label-asn": "رقم النظام المُستقِل",
 	"ipinfo-property-label-organization": "المنظمة",
 	"ipinfo-property-label-connectiontype": "طريقة الاتصال",

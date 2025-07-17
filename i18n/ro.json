@@ -10,7 +10,6 @@
 	"ipinfo-desc": "Furnizează informații despre o adresă IP.",
 	"ipinfo-infobox-title": "Informații despre IP",
 	"ipinfo-property-label-location": "Locație",
-	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Organizație",
 	"ipinfo-property-label-connectiontype": "Metodă conexiunii",

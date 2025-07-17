@@ -14,7 +14,6 @@
 	"ipinfo-infobox-temporary-account-help": "З цим тимчасовим обліковим записом пов'язано декілька IP-адрес. Ви переглядаєте IP-інформацію для останньої використаної IP-адреси. [[Special:IPInfo/$1|Перегляд IP-інформації для всіх IP-адрес]].",
 	"ipinfo-property-label-location": "Розташування",
 	"ipinfo-property-label-ipversion": "Версія",
-	"ipinfo-property-label-isp": "Інтернет-провайдер",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Організація",
 	"ipinfo-property-label-connectiontype": "Метод з'єднання",

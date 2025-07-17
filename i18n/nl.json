@@ -16,7 +16,6 @@
 	"ipinfo-infobox-temporary-account-help": "Er zijn meerdere IP-adressen aan dit tijdelijke account gekoppeld. U bekijkt de IP-gegevens voor het meest recent gebruikte IP-adres. [[Special:IPInfo/$1|IP-gegevens voor alle IP-adressen bekijken]].",
 	"ipinfo-property-label-location": "Locatie",
 	"ipinfo-property-label-ipversion": "Versie",
-	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Organisatie",
 	"ipinfo-property-label-connectiontype": "Verbindingsmethode",

@@ -9,7 +9,6 @@
 	"ipinfo-infobox-temporary-account-help": "A iste conto temporari es associate plure adresses IP. Ora appare le information IP pro le adresse IP usate le plus recentemente. [[Special:IPInfo/$1|Vider le information IP pro tote le adresses IP]]",
 	"ipinfo-property-label-location": "Loco",
 	"ipinfo-property-label-ipversion": "VERSION",
-	"ipinfo-property-label-isp": "Fornitor Internet",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Organisation",
 	"ipinfo-property-label-connectiontype": "Methodo de connexion",

@@ -14,7 +14,6 @@
 	"ipinfo-infobox-temporary-account-help": "چندین نشانی آی‌پی با این حساب موقت مرتبط هستند. شما در حال مشاهدهٔ اطلاعات نشانی آی‌پی هستید که اخیراً استفاده شده است. [[Special:IPInfo/$1|مشاهدهٔ اطلاعات تمام نشانی‌های آی‌پی]].",
 	"ipinfo-property-label-location": "موقعیت",
 	"ipinfo-property-label-ipversion": "نسخه",
-	"ipinfo-property-label-isp": "سرویس‌دهنده",
 	"ipinfo-property-label-asn": "شماره سامانه خودگردان",
 	"ipinfo-property-label-organization": "سازمان",
 	"ipinfo-property-label-connectiontype": "روش اتصال",

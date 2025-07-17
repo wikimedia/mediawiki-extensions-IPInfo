@@ -9,7 +9,6 @@
 	"ipinfo-infobox-temporary-account-help": "Flere IP-adresser er tilknyttet denne midlertidige kontoen. Du ser IP-informasjon for den nyligst brukte IP-adressa. [[Special:IPInfo/$1|Vis IP-informasjon for alle IP-adressene]].",
 	"ipinfo-property-label-location": "Beliggenhet",
 	"ipinfo-property-label-ipversion": "Versjon",
-	"ipinfo-property-label-isp": "ISP",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Organisasjon",
 	"ipinfo-property-label-connectiontype": "Tilkoblingsmetode",

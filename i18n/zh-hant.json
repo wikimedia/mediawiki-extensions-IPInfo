@@ -21,7 +21,6 @@
 	"ipinfo-infobox-temporary-account-help": "該臨時帳號與多個IP位址相關聯。您正在檢視最近使用的IP位址的資訊。[[Special:IPInfo/$1|檢視所有IP位址的資訊]]。",
 	"ipinfo-property-label-location": "位置",
 	"ipinfo-property-label-ipversion": "版本",
-	"ipinfo-property-label-isp": "網際網路服務提供者（ISP）",
 	"ipinfo-property-label-asn": "自治系統號碼（ASN）",
 	"ipinfo-property-label-organization": "組織",
 	"ipinfo-property-label-connectiontype": "連線方式",

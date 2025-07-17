@@ -12,7 +12,6 @@
 	"ipinfo-infobox-temporary-account-help": "Mit diesem temporären Konto sind mehrere IP-Adressen verknüpft. Du siehst hier die IP-Informationen für die zuletzt verwendete IP-Adresse. [[Special:IPInfo/$1|IP-Informationen für alle IP-Adressen anzeigen]].",
 	"ipinfo-property-label-location": "Standort",
 	"ipinfo-property-label-ipversion": "Version",
-	"ipinfo-property-label-isp": "Provider",
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "Organisation",
 	"ipinfo-property-label-connectiontype": "Verbindungsmethode",
