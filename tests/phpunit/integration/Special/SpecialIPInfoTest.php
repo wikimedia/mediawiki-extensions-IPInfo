@@ -4,7 +4,6 @@ namespace MediaWiki\IPInfo\Tests\Integration\Special;
 use Closure;
 use DOMDocument;
 use DOMNode;
-use HtmlFormatter\HtmlFormatter;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Exception\UserBlockedError;
@@ -15,6 +14,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;
 use SpecialPageTestBase;
 use Wikimedia\Parsoid\Utils\DOMCompat;
+use Wikimedia\Parsoid\Utils\DOMUtils;
 
 /**
  * @covers \MediaWiki\IPInfo\Special\SpecialIPInfo
@@ -128,7 +128,7 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 			$performer
 		);
 
-		$doc = self::parseHtml( $html );
+		$doc = DOMUtils::parseHTML( $html );
 
 		$this->assertNull( DOMCompat::querySelector( $doc, '.ext-ipinfo-special-ipinfo__table' ) );
 		$this->assertCount(
@@ -151,7 +151,7 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 			$performer
 		);
 
-		$doc = self::parseHtml( $html );
+		$doc = DOMUtils::parseHTML( $html );
 
 		$this->assertNull( DOMCompat::querySelector( $doc, '.ext-ipinfo-special-ipinfo__table' ) );
 		$this->assertNotNull( DOMCompat::querySelector( $doc, 'input[name=wpAcceptAgreement]' ) );
@@ -178,7 +178,7 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 			->getUserOptionsLookup()
 			->getBoolOption( $performer->getUser(), PreferencesHandler::IPINFO_USE_AGREEMENT );
 
-		$doc = self::parseHtml( $html );
+		$doc = DOMUtils::parseHTML( $html );
 
 		$this->assertTrue( $postSubmitPref );
 		$this->assertNotNull( DOMCompat::querySelector( $doc, '.ext-ipinfo-special-ipinfo__table' ) );
@@ -202,7 +202,7 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 			$performer
 		);
 
-		$doc = self::parseHtml( $html );
+		$doc = DOMUtils::parseHTML( $html );
 
 		$this->assertNotNull( DOMCompat::querySelector( $doc, '.ext-ipinfo-special-ipinfo__table' ) );
 		$this->assertCount(
@@ -242,7 +242,7 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 			$performer
 		);
 
-		$doc = self::parseHtml( $html );
+		$doc = DOMUtils::parseHTML( $html );
 
 		$this->assertNotNull( DOMCompat::querySelector( $doc, '.ext-ipinfo-special-ipinfo__table' ) );
 		$this->assertCount(
@@ -319,7 +319,7 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 			$performer
 		);
 
-		$doc = self::parseHtml( $html );
+		$doc = DOMUtils::parseHTML( $html );
 		$errors = (array)DOMCompat::querySelectorAll( $doc, '[role=alert]' );
 
 		$this->assertNull( DOMCompat::querySelector( $doc, '.ext-ipinfo-special-ipinfo__table' ) );
@@ -348,15 +348,5 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 			'htmlform-user-not-exists'
 		];
 		// phpcs:enable
-	}
-
-	/**
-	 * Convenience function to parse an HTML fragment into a full PHP DOMDocument instance.
-	 * @param string $html
-	 * @return DOMDocument
-	 */
-	private static function parseHtml( string $html ): DOMDocument {
-		$html = HtmlFormatter::wrapHTML( $html );
-		return ( new HtmlFormatter( $html ) )->getDoc();
 	}
 }
