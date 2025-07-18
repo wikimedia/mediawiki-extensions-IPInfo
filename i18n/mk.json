@@ -21,7 +21,7 @@
 	"ipinfo-property-label-connectiontypes": "Видови врски",
 	"ipinfo-property-label-tunneloperators": "Тунелски оператор",
 	"ipinfo-property-label-proxies": "Застапници",
-	"ipinfo-property-label-usercount": "Корисници на оваа IP-адреса",
+	"ipinfo-property-label-usercount": "Единствени уреди низ семрежјето",
 	"ipinfo-property-value-connectiontype-cableordsl": "Кабелски/DSL",
 	"ipinfo-property-value-connectiontype-cellular": "Мобилен",
 	"ipinfo-property-value-connectiontype-corporate": "Претпријатиски",
