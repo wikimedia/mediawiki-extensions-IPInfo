@@ -26,7 +26,7 @@
 	"ipinfo-property-label-connectiontypes": "Verbindingstypen",
 	"ipinfo-property-label-tunneloperators": "Tunnelexploitant",
 	"ipinfo-property-label-proxies": "Proxy’s",
-	"ipinfo-property-label-usercount": "Gebruikers op dit IP-adres",
+	"ipinfo-property-label-usercount": "Apparaten die voor het hele internet uniek zijn",
 	"ipinfo-property-value-connectiontype-cableordsl": "Kabel/DSL",
 	"ipinfo-property-value-connectiontype-cellular": "Mobiel",
 	"ipinfo-property-value-connectiontype-corporate": "Zakelijk",
