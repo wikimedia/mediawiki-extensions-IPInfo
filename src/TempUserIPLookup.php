@@ -159,11 +159,11 @@ class TempUserIPLookup {
 
 		if ( $this->extensionRegistry->isLoaded( 'Abuse Filter' ) ) {
 			$latestAbuseFilterHit = $dbr->newSelectQueryBuilder()
-				->select( [ 'afl_ip', 'afl_timestamp' ] )
+				->select( [ 'afl_ip_hex', 'afl_timestamp' ] )
 				->from( 'abuse_filter_log' )
 				->where( [
 					'afl_user_text' => $user->getName(),
-					$dbr->expr( 'afl_ip', '!=', '\'\'' ),
+					$dbr->expr( 'afl_ip_hex', '!=', '\'\'' ),
 					$dbr->expr( 'afl_timestamp', '>', $latestHit['timestamp'] ),
 				] )
 				->useIndex( 'afl_ip_timestamp' )
@@ -172,7 +172,7 @@ class TempUserIPLookup {
 				->caller( __METHOD__ )
 				->fetchRow();
 			if ( $latestAbuseFilterHit ) {
-				$latestHit['ip'] = $latestAbuseFilterHit->afl_ip;
+				$latestHit['ip'] = IPUtils::formatHex( $latestAbuseFilterHit->afl_ip_hex );
 				$latestHit['timestamp'] = $latestAbuseFilterHit->afl_timestamp;
 			}
 		}
