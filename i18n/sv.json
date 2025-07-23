@@ -9,7 +9,7 @@
 	},
 	"ipinfo-extensionname": "IP Info",
 	"ipinfo-desc": "Ger information om en IP-adress.",
-	"ipinfo-infobox-title": "اطلاعات آی‌پی",
+	"ipinfo-infobox-title": "IP-information",
 	"ipinfo-infobox-temporary-account-help": "Multiple IP addresses are associated with this temporary account. You are viewing IP information for the most recently used IP address. [[Special:IPInfo/$1|View IP information for all IP addresses]].",
 	"ipinfo-property-label-location": "Plats",
 	"ipinfo-property-label-ipversion": "Version",
