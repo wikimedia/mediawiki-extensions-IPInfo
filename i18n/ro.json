@@ -48,7 +48,7 @@
 	"action-ipinfo-view-log": "vizualizează un jurnal cu cine a accesat informații despre IP",
 	"right-ipinfo-view-log": "Vizualizează un jurnal cu cine a accesat informații despre IP",
 	"group-no-ipinfo": "Utilizatori blocați din a accesa unealta Informații despre IP",
-	"group-no-ipinfo-member": "{{GENDER:$1| blocat din instrumentul de informare IP}}",
+	"group-no-ipinfo-member": "{{GENDER:$1|blocat din a accesa unealta Informații despre IP|blocată din a accesa unealta Informații despre IP}}",
 	"grouppage-no-ipinfo": "{{ns:project}}:Utilizatori blocați din a accesa IPInfo",
 	"ipinfo-log-name": "Jurnal IPInfo",
 	"ipinfo-log-header": "Acesta este un jurnal al:\n# Utilizărilor uneltei IPInfo pentru a vizualiza informații despre IP-uri; și\n# Schimbări asupra nivelurilor de acces ale utilizatorilor la unealtă.",
