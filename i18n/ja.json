@@ -9,7 +9,8 @@
 			"Shirayuki",
 			"Sou0012",
 			"Waki285",
-			"Whym"
+			"Whym",
+			"Dragoniez"
 		]
 	},
 	"ipinfo-extensionname": "IP情報",
@@ -138,7 +139,7 @@
 	"ipinfo-blocklist-url-text": "ブロックリスト",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1件の削除された編集|0=削除された編集なし}}",
 	"ipinfo-special-ipinfo": "IP情報",
-	"ipinfo-special-ipinfo-legend": "臨時利用者が使用するすべてのIPアドレスに関するIP情報を検索します。最大$1件の{{PLURAL:$1|結果}}が表示されます。",
+	"ipinfo-special-ipinfo-legend": "仮利用者が使用するすべてのIPアドレスに関するIP情報を検索します。最大$1件の{{PLURAL:$1|結果}}が表示されます。",
 	"ipinfo-deleted-edits-url-text": "削除された投稿",
 	"ipinfo-special-ipinfo-table-caption": "$1のIP情報",
 	"ipinfo-special-ipinfo-target": "対象利用者名:",
