@@ -5,7 +5,8 @@
 			"NguoiDungKhongDinhDanh",
 			"Thingofme",
 			"Minh Nguyen",
-			"Phungminh141"
+			"Phungminh141",
+			"Chaiwan2009"
 		]
 	},
 	"ipinfo-extensionname": "Thông tin IP",
@@ -50,7 +51,7 @@
 	"ipinfo-infobox-use-terms": "Công cụ Thông tin IP sử dụng cơ sở dữ liệu MaxMind để hiển thị các thông tin như địa điểm, proxy hay số thiết bị dùng chung địa chỉ IP này.",
 	"ipinfo-infobox-submit-agreement": "Kích hoạt công cụ Thông tin IP",
 	"ipinfo-infobox-disable-instructions": "Để huỷ kích hoạt tính năng này, xem [[Special:Preferences|Tùy chọn]].",
-	"ipinfo-use-agreement-submit-error": "Có lỗi xảy ra; vui lòng thử lại. Thông báo lỗi nhận được: $1",
+	"ipinfo-use-agreement-submit-error": "Đã xảy ra sự cố; vui lòng thử lại. Thông báo lỗi nhận được: $1",
 	"ipinfo-rest-access-denied": "Bạn không có quyền thực hiện tác vụ này",
 	"ipinfo-rest-access-denied-blocked-user": "Bạn không có quyền thực hiện tác vụ này vì tài khoản của bạn đã bị cấm",
 	"ipinfo-rest-revision-no-author": "Tài khoản của bạn không có quyền xem thông tin tác giả phiên bản",
