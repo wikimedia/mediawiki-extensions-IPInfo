@@ -122,7 +122,7 @@
 	"group-no-ipinfo": "IP情報ツールからブロックされた利用者",
 	"group-no-ipinfo-member": "{{GENDER:$1|IP情報ツールからブロックされた利用者}}",
 	"grouppage-no-ipinfo": "{{ns:project}}:IP情報ツールからブロックされた利用者",
-	"ipinfo-log-name": "IP情報ログ",
+	"ipinfo-log-name": "IP情報記録",
 	"ipinfo-log-header": "ここには\n# IPの情報を閲覧するためにIP情報ツールを使用した記録\n# IP情報ツール用の利用者アクセスレベルの変更の記録\nがあります。",
 	"ipinfo-log-access-level-ipinfo-view-basic": "アクセスが制限されています",
 	"ipinfo-log-access-level-ipinfo-view-full": "完全なアクセス",
