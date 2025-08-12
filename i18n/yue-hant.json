@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"H78c67c",
-			"Winston Sung"
+			"Winston Sung",
+			"Yueman"
 		]
 	},
 	"ipinfo-desc": "提供關於IP地址嘅資訊。",
@@ -19,6 +20,7 @@
 	"ipinfo-property-label-usercount": "呢個IP嘅用戶數",
 	"ipinfo-property-label-source": "來源",
 	"ipinfo-property-tooltip-tunneloperators": "VPN服務嘅提供者或營運商。",
+	"ipinfo-property-label-edits": "貢獻",
 	"ipinfo-property-no-data": "唔適用",
 	"ipinfo-widget-error-default": "攞唔到IP資訊。",
 	"ipinfo-widget-error-no-data": "$1冇呢個IP地址嘅數據。",
