@@ -18,6 +18,7 @@
 	"ipinfo-property-label-connectiontypes": "連線類型",
 	"ipinfo-property-label-tunneloperators": "隧道營運商",
 	"ipinfo-property-label-usercount": "呢個IP嘅用戶數",
+	"ipinfo-property-value-risk-loginbruteforce": "暴力破解簽到",
 	"ipinfo-property-label-source": "來源",
 	"ipinfo-property-tooltip-tunneloperators": "VPN服務嘅供應商或者營運商。",
 	"ipinfo-property-label-edits": "貢獻",
