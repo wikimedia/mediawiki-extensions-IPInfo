@@ -2,7 +2,9 @@
 	"@metadata": {
 		"authors": [
 			"Winston Sung",
-			"H78c67c"
+			"H78c67c",
+			"Ktchankt",
+			"Yueman"
 		]
 	},
 	"ipinfo-desc": "提供關於IP地址嘅資訊。",
@@ -13,6 +15,7 @@
 	"ipinfo-property-label-asn": "ASN",
 	"ipinfo-property-label-organization": "組織",
 	"ipinfo-property-label-source": "來源",
+	"ipinfo-property-label-edits": "貢獻",
 	"ipinfo-property-no-data": "唔適用",
 	"ipinfo-widget-error-default": "攞唔到IP資訊。",
 	"ipinfo-widget-error-no-data": "$1冇呢個IP地址嘅數據。",
