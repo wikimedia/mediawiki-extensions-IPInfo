@@ -37,7 +37,7 @@
 	"ipinfo-property-label-connectiontypes": "Types de connexion",
 	"ipinfo-property-label-tunneloperators": "Opérateur du tunnel",
 	"ipinfo-property-label-proxies": "Serveurs mandataires",
-	"ipinfo-property-label-usercount": "Des appareils uniques sur Internet",
+	"ipinfo-property-label-usercount": "Nombre d’appareils uniques sur Internet",
 	"ipinfo-property-value-connectiontype-cableordsl": "Câble/DSL",
 	"ipinfo-property-value-connectiontype-cellular": "Cellulaire",
 	"ipinfo-property-value-connectiontype-corporate": "Entreprise",
