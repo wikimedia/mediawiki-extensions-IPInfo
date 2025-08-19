@@ -3,7 +3,8 @@
 		"authors": [
 			"H78c67c",
 			"Winston Sung",
-			"Yueman"
+			"Yueman",
+			"Ktchankt"
 		]
 	},
 	"ipinfo-desc": "提供關於IP地址嘅資訊。",
@@ -18,8 +19,9 @@
 	"ipinfo-property-label-connectiontypes": "連線類型",
 	"ipinfo-property-label-tunneloperators": "隧道營運商",
 	"ipinfo-property-label-usercount": "呢個IP嘅用戶數",
+	"ipinfo-property-value-risk-loginbruteforce": "暴力破解簽到",
 	"ipinfo-property-label-source": "來源",
-	"ipinfo-property-tooltip-tunneloperators": "VPN服務嘅提供者或營運商。",
+	"ipinfo-property-tooltip-tunneloperators": "VPN服務嘅供應商或者營運商。",
 	"ipinfo-property-label-edits": "貢獻",
 	"ipinfo-property-no-data": "唔適用",
 	"ipinfo-widget-error-default": "攞唔到IP資訊。",
