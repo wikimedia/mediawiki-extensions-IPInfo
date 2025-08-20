@@ -7,7 +7,8 @@
 			"Mitsjol",
 			"Romaine",
 			"Sjoerddebruin",
-			"Sumurai8"
+			"Sumurai8",
+			"Mbch331"
 		]
 	},
 	"ipinfo-extensionname": "IP-info",
@@ -77,7 +78,7 @@
 	"ipinfo-property-tooltip-tunneloperators": "De aanbieder of exploitant van de VPN-dienst.",
 	"ipinfo-property-tooltip-proxies": "Proxy’s die zijn waargenomen op cliënten die dit IP-adres gebruiken. Dit betekent niet dat al het verkeer vanaf dit IP-adres tot dit proxynetwerk behoort, maar alleen dat er een proxy op dit IP-adres staat.",
 	"ipinfo-property-tooltip-usercount": "Het gemiddelde aantal cliënten dat door Spur op dit IP-adres is geobserveerd. Alle activiteiten vanaf dit IP-adres worden in de telling meegenomen. Dit wordt berekend over een periode van 24 uur.",
-	"ipinfo-value-active-blocks": "{{PLURAL:$1| $1 actief blokkade| $1 actieve blokkades|0=Geen actieve blokkades}}",
+	"ipinfo-value-active-blocks": "{{PLURAL:$1| $1 actieve blokkade| $1 actieve blokkades|0=Geen actieve blokkades}}",
 	"ipinfo-active-blocks-url-text": "Logboeken",
 	"ipinfo-property-label-edits": "Bijdragen",
 	"ipinfo-value-local-edits": "{{PLURAL:$1| $1 lokale bewerking| $1 lokale bewerkingen|0=Geen lokale bewerkingen}}",
