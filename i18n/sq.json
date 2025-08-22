@@ -2,13 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Eraldkerciku",
-			"INNERLMNT"
+			"INNERLMNT",
+			"Xhulianoo"
 		]
 	},
 	"ipinfo-extensionname": "Informata të IP-së",
 	"ipinfo-desc": "Jep informata rreth një adrese IP.",
 	"ipinfo-infobox-title": "Informata të IP-së",
-	"ipinfo-infobox-temporary-account-help": "Me këtë llogari të përkohshme janë të lidhura disa adresa IP. Ju po shihni informata të IP-së për adresën IP të përdorur më së fundmi. [[Special:IPInfo/$1|Shini informatat e IP-së për të gjitha adresat e IP-së]]",
+	"ipinfo-infobox-temporary-account-help": "Me këtë llogari të përkohshme janë të lidhura disa adresa IP. Ju po shihni informata të IP-së për adresën IP të përdorur më së fundmi. [[Special:IPInfo/$1|Shini informatat e IP-së për të gjitha adresat IP]]",
 	"ipinfo-property-label-location": "Vendndodhja",
 	"ipinfo-property-label-ipversion": "Versioni",
 	"ipinfo-property-label-asn": "ASN",
