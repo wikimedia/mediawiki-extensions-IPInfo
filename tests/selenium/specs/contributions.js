@@ -5,7 +5,8 @@ const utils = require( '../utils' ),
 	LoginPage = require( 'wdio-mediawiki/LoginPage' ),
 	ContributionsWithIPInfoPage = require( '../pageobjects/ContributionsWithIPInfoPage' );
 
-describe( 'IPInfo on Special:Contributions', () => {
+// Skipped on 2025-08-29 because of T395962
+describe.skip( 'IPInfo on Special:Contributions', () => {
 	async function optOutOfAgreement() {
 		const bot = await Api.bot();
 

@@ -7,7 +7,8 @@ const utils = require( '../utils' ),
 
 const ipContributionsWithIPInfoPage = new IPContributionsWithIPInfoPage();
 
-describe( 'IPInfo on Special:IPContributions', () => {
+// Skipped on 2025-08-29 because of T395962
+describe.skip( 'IPInfo on Special:IPContributions', () => {
 	let bot;
 
 	before( async () => {
