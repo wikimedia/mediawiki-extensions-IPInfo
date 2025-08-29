@@ -33,11 +33,6 @@ describe.skip( 'IPInfo on Special:Contributions', () => {
 		} );
 	}
 
-	it( 'should not be shown to users without necessary permissions', async () => {
-		await ContributionsWithIPInfoPage.open( utils.IP_WITHOUT_EDITS );
-		await expect( ContributionsWithIPInfoPage.ipInfoPanel ).not.toExist();
-	} );
-
 	it( 'should display error message for IPs without edits after accepting agreement', async () => {
 		await optOutOfAgreement();
 

@@ -63,11 +63,6 @@ describe.skip( 'IPInfo on Special:IPContributions', () => {
 		} );
 	}
 
-	it( 'should not be shown to users without necessary permissions', async () => {
-		await ipContributionsWithIPInfoPage.open( utils.IP_WITHOUT_EDITS );
-		await expect( ipContributionsWithIPInfoPage.ipInfoPanel ).not.toExist();
-	} );
-
 	it( 'should show an error for IPs without edits after accepting agreement', async () => {
 		await LoginPage.loginAdmin();
 		await optOutOfAgreement();

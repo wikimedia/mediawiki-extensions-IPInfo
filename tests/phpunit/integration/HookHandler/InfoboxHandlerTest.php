@@ -82,6 +82,11 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 		$out->expects( $this->once() )
 			->method( 'addModules' )
 			->with( 'ext.ipInfo' );
+		$out->expects( $this->once() )
+			->method( 'addHTML' )
+			->willReturnCallback( function ( $html ) {
+				$this->assertStringContainsString( 'ext-ipinfo-panel-layout', $html );
+			} );
 
 		$this->specialPage->method( 'getName' )
 			->willReturn( 'Contributions' );
@@ -130,6 +135,11 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 		$out->expects( $shouldDisplayInfobox ? $this->once() : $this->never() )
 			->method( 'addModules' )
 			->with( 'ext.ipInfo' );
+		$out->expects( $shouldDisplayInfobox ? $this->once() : $this->never() )
+			->method( 'addHTML' )
+			->willReturnCallback( function ( $html ) {
+				$this->assertStringContainsString( 'ext-ipinfo-panel-layout', $html );
+			} );
 
 		$specialPage = $this->createMock( SpecialPage::class );
 		$specialPage->method( 'getName' )
@@ -179,6 +189,11 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 		$out->expects( $this->once() )
 			->method( 'addModules' )
 			->with( 'ext.ipInfo' );
+		$out->expects( $this->once() )
+			->method( 'addHTML' )
+			->willReturnCallback( function ( $html ) {
+				$this->assertStringContainsString( 'ext-ipinfo-panel-layout', $html );
+			} );
 
 		$this->specialPage->method( 'getName' )
 			->willReturn( 'DeletedContributions' );
@@ -238,6 +253,8 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 		$out = $this->createMock( OutputPage::class );
 		$out->expects( $this->never() )
 			->method( 'addModules' );
+		$out->expects( $this->never() )
+			->method( 'addHTML' );
 
 		$this->specialPage->method( 'getName' )
 			->willReturn( $specialPageName );
