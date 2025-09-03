@@ -16,8 +16,7 @@ use MediaWikiIntegrationTestCase;
 class PreferencesHandlerDatabaseTest extends MediaWikiIntegrationTestCase {
 
 	public function testUsingRealPreferencesDatabase() {
-		// Allows us to test that the saving of the local preference e2e works as intended, as now the preference
-		// is set globally in selenium tests
+		// Allows us to test that the saving of the local preference e2e works as intended
 		$user = $this->getTestUser()->getUserIdentity();
 
 		// First set the BetaFeature to be enabled, as the use agreement preference
