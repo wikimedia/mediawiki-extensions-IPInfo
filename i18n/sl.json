@@ -61,6 +61,7 @@
 	"ipinfo-property-value-connectiontype-unknown": "Neznano",
 	"ipinfo-property-label-source": "Vir",
 	"ipinfo-property-label-active-blocks": "Aktivna blokiranja",
+	"ipinfo-property-label-number-of-ips": "Število IP-jev",
 	"ipinfo-property-tooltip-proxytypes": "Posredniški strežniki (proxyji) skrijejo IP-naslove. Včasih se to zgodi samodejno, na primer pri stanovanjskih ali korporativnih strežnikih, v drugih primerih pa je to namerno dejanje za prikritje IP-naslova.",
 	"ipinfo-property-tooltip-connectiontype": "Tehnologija, s katero se povezuje v internet.",
 	"ipinfo-property-tooltip-usertype": "Vrsta subjekta, ki ima v lasti internetno povezavo.",

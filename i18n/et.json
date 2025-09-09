@@ -25,6 +25,7 @@
 	"ipinfo-property-value-proxytype-istorexitnode": "Tor-võrgu lõppsõlm",
 	"ipinfo-property-value-proxytype-ishostingprovider": "Hostiteenuse pakkuja",
 	"ipinfo-property-value-risk-callbackproxy": "Tagasihelistamisproksi",
+	"ipinfo-property-value-risk-geomismatch": "Asukoha mittevastavus",
 	"ipinfo-property-value-risk-unknown": "Teadmata",
 	"ipinfo-property-value-connectiontype-desktop": "Lauaarvuti",
 	"ipinfo-property-value-connectiontype-mobile": "Mobiil",
@@ -74,6 +75,10 @@
 	"ipinfo-change-access-level-enable": "{{GENDER:$1|lubas}}",
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|keelas}}",
 	"logentry-ipinfo-change_access": "$1 {{GENDER:$2|$4}} enda juurdepääsu vahendile IPInfo",
+	"log-action-filter-ipinfo": "IP-aadressi teabetoimingu tüüp:",
+	"log-action-filter-ipinfo-change_access": "Vahend lubatud või keelatud",
+	"log-action-filter-ipinfo-view_infobox": "Andmeid vaadatud teabekastis",
+	"log-action-filter-ipinfo-view_popup": "Andmeid vaadatud hüpikkaardil",
 	"ipinfo-property-tooltip-asn": "Piirkonnale ning edasi organisatsioonile nagu valitsus või interneti teenusepakkuja määratud võrgu ainuline identifikaator.",
 	"ipinfo-blocklist-url-text": "Blokeerimisloend",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 kustutatud muudatus|$1 kustutatud muudatust|0=Kustutatud muudatused puuduvad}}",
@@ -83,5 +88,6 @@
 	"ipinfo-special-ipinfo-table-caption": "Kasutaja $1 IP-aadresside teave",
 	"ipinfo-special-ipinfo-target": "Päritav kasutajanimi:",
 	"ipinfo-special-ipinfo-user-tool-links": "$1",
+	"ipinfo-special-ipinfo-column-ip": "IP-aadress",
 	"ipinfo-special-ipinfo-no-results": "Kasutaja $1 kohta ei ole IP-aadresside teavet saadaval."
 }
