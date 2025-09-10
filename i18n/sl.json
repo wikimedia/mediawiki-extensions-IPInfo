@@ -61,6 +61,7 @@
 	"ipinfo-property-value-connectiontype-unknown": "Neznano",
 	"ipinfo-property-label-source": "Vir",
 	"ipinfo-property-label-active-blocks": "Aktivna blokiranja",
+	"ipinfo-property-label-number-of-ips": "Število IP-jev",
 	"ipinfo-property-tooltip-proxytypes": "Posredniški strežniki (proxyji) skrijejo IP-naslove. Včasih se to zgodi samodejno, na primer pri stanovanjskih ali korporativnih strežnikih, v drugih primerih pa je to namerno dejanje za prikritje IP-naslova.",
 	"ipinfo-property-tooltip-connectiontype": "Tehnologija, s katero se povezuje v internet.",
 	"ipinfo-property-tooltip-usertype": "Vrsta subjekta, ki ima v lasti internetno povezavo.",
@@ -82,7 +83,7 @@
 	"ipinfo-widget-error-wrong-ip": "Navedeni IP-naslov se ne ujema z dnevnikom ali revizijo.",
 	"ipinfo-widget-error-ip-no-contributions": "Podatkov o IP-ju za ta naslov ni bilo mogoče pridobiti, ker na njem ni bilo nobenih sprememb.",
 	"ipinfo-preference-enable": "Prikaži orodje Podatki o IP-ju na strani Posebno:Prispevki za neregistrirane sodelavce.",
-	"ipinfo-preference-use-agreement": "Strinjam se z uporabo teh informacij za pregledovanje strani in boj proti vandalizmu.",
+	"ipinfo-preference-use-agreement": "Strinjam se z uporabo teh podatkov za pregledovanje strani in boj proti vandalizmu",
 	"ipinfo-preference-agreement-error": "Preden se strinjate s pogoji uporabe, morate orodje Podatki o IP-ju omogočiti.",
 	"ipinfo-infobox-use-terms": "Orodje Podatki o IP-ju uporablja za prikaz podrobnosti, kot so kraj, posredniški strežnik in število naprav, ki si delijo ta IP-naslov, podatkovno zbirko MaxMind.",
 	"ipinfo-infobox-submit-agreement": "Omogoči orodje Podatki o IP-ju",
@@ -136,5 +137,8 @@
 	"ipinfo-special-ipinfo-user-tool-links": "Za $1",
 	"ipinfo-special-ipinfo-sort-explainer": "Gumbe v glavah tabel lahko uporabite za razvrščanje tabel po vrednosti tega stolpca.",
 	"ipinfo-special-ipinfo-column-ip": "IP",
-	"ipinfo-special-ipinfo-no-results": "Za $1 ni na voljo nobena informacija o IP-ju."
+	"ipinfo-special-ipinfo-no-results": "Za $1 ni na voljo nobena informacija o IP-ju.",
+	"ipinfo-popup-link-text": "Prikaži vse podatke o IP-ju",
+	"ipinfo-help-text": "Prikazani podatki so pridobljeni iz storitev MaxMind in [https://docs.spur.us/data-types Spur]. Morda niso popolnoma natančni.",
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Več o tej možnosti]"
 }
