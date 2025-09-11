@@ -133,7 +133,7 @@
 	"log-action-filter-ipinfo-view_infobox": "Tietoja katsottu tietolaatikossa",
 	"log-action-filter-ipinfo-view_popup": "Tietoja katsottu ponnahdusikkunassa",
 	"ipinfo-property-tooltip-asn": "Yksilöllinen tunniste, joita osoitetaan alueille ja edelleen organisaatioille, kuten hallituksille ja internet-palveluntarjoajille.",
-	"ipinfo-blocklist-url-text": "Lista estoista",
+	"ipinfo-blocklist-url-text": "Estoluettelo",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 poistettu muokkaus|$1 poistettua muokkausta|0=Ei poistettuja muokkauksia}}",
 	"ipinfo-special-ipinfo": "IP-tiedot",
 	"ipinfo-special-ipinfo-legend": "Hae IP-tiedot kaikista tilapäisen käyttäjän käyttämistä IP-osoitteista. Enintään $1 {{PLURAL:$1| tulos|tulosta}} näytetään.",
