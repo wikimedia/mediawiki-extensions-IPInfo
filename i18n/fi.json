@@ -108,5 +108,5 @@
 	"log-action-filter-ipinfo-view_infobox": "Tietoja katsottu tietolaatikossa",
 	"log-action-filter-ipinfo-view_popup": "Tietoja katsottu ponnahdusikkunassa",
 	"ipinfo-property-tooltip-asn": "Yksilöllinen tunniste, joita osoitetaan alueille ja edelleen organisaatioille, kuten hallituksille ja internet-palveluntarjoajille.",
-	"ipinfo-blocklist-url-text": "Lista estoista"
+	"ipinfo-blocklist-url-text": "Estoluettelo"
 }
