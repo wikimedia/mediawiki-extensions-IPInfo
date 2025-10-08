@@ -176,8 +176,6 @@ class AnonymousUserIPLookupTest extends MediaWikiIntegrationTestCase {
 				'afl_filter_id' => 1,
 				'afl_user' => 0,
 				'afl_user_text' => '1.2.3.4',
-				// afl_ip still needs to be written; don't use 1.2.3.4 to verify it's not read from
-				'afl_ip' => '',
 				'afl_ip_hex' => IPUtils::toHex( '1.2.3.4' ),
 				'afl_action' => 'edit',
 				'afl_actions' => 'disallow',
