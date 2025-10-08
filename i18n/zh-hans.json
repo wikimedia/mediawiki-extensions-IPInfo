@@ -42,7 +42,7 @@
 	"ipinfo-property-label-connectiontypes": "接入类型",
 	"ipinfo-property-label-tunneloperators": "隧道运营商",
 	"ipinfo-property-label-proxies": "代理",
-	"ipinfo-property-label-usercount": "该IP上的用户数",
+	"ipinfo-property-label-usercount": "互联网上的唯一设备",
 	"ipinfo-property-value-connectiontype-cableordsl": "电缆/DSL",
 	"ipinfo-property-value-connectiontype-cellular": "移动网络",
 	"ipinfo-property-value-connectiontype-corporate": "企业网络",
