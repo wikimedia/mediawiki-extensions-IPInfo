@@ -83,12 +83,14 @@
 	"ipinfo-log-access-level-ipinfo-view-basic": "Aksed bevennet",
 	"ipinfo-log-access-level-ipinfo-view-full": "Aksed leun",
 	"logentry-ipinfo-view_infobox": "$1 {{GENDER:$2|en|he}} deus gwelet boest titouroù IP evit $3. $4.",
+	"logentry-ipinfo-view_popup": "$1 {{GENDER:$2|en|he}} deus gwelet prenestr difoupañ Titouroù IPevit $3 $4 .",
 	"ipinfo-change-access-level-enable": "{{GENDER:$1|en|he}} deus gweredekaet",
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|en|he}} deus diweredekaet",
 	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|e|he}} aotre da ober gant Titouroù IP",
 	"log-action-filter-ipinfo": "Seurt ober Titouroù IPː",
 	"log-action-filter-ipinfo-change_access": "Benveg gweredekaet pe diweredekaet",
 	"log-action-filter-ipinfo-view_infobox": "Roadennoù gwelet e-barzh ar voest titouroù",
+	"log-action-filter-ipinfo-view_popup": "Roadennoù gwelet en ur prenestr difoupañ",
 	"ipinfo-property-tooltip-asn": "Un anaouder unel evit ar rouedadoù roet d'un takad ha pelloc'h d'an aozadurioù evel ar gouarnamantoù hag an IAPoù",
 	"ipinfo-blocklist-url-text": "Roll stankañ"
 }

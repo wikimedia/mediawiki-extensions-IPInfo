@@ -93,6 +93,6 @@
 	"log-action-filter-ipinfo-change_access": "Алатка омогућена или онемогућена",
 	"log-action-filter-ipinfo-view_infobox": "Подаци виђени у инфокутији",
 	"log-action-filter-ipinfo-view_popup": "Подаци виђени у прегледу",
-	"ipinfo-property-tooltip-asn": "Јединствени идентификатор за мреже додељене региону и даље организацијама као што су владе и провајдери",
+	"ipinfo-property-tooltip-asn": "Јединствени идентификатор за мреже делегиран по регионима па даље владама и провајдерима (држави)",
 	"ipinfo-blocklist-url-text": "Списак блокада"
 }
