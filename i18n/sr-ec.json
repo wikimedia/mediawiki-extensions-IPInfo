@@ -22,7 +22,7 @@
 	"ipinfo-property-label-risks": "Ризици:",
 	"ipinfo-property-label-connectiontypes": "Тип везе:",
 	"ipinfo-property-label-proxies": "Прокси:",
-	"ipinfo-property-label-usercount": "Корисници на овој IP адреси:",
+	"ipinfo-property-label-usercount": "Корисника на овој IP адреси:",
 	"ipinfo-property-value-connectiontype-cableordsl": "Кабл/DSL",
 	"ipinfo-property-value-connectiontype-cellular": "Мобилна мрежа",
 	"ipinfo-property-value-connectiontype-corporate": "Пословна мрежа",

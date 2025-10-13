@@ -5,8 +5,10 @@
 		]
 	},
 	"ipinfo-infobox-title": "informo pri IP",
+	"ipinfo-property-label-active-blocks": "Aktiva blokusi",
 	"ipinfo-property-label-edits": "Kontributadi",
 	"ipinfo-preference-use-agreement": "Me aceptas uzar ca informo por patrolio-laboro e kombato a vandalismi.",
+	"ipinfo-infobox-submit-agreement": "Kapabligar utensilo ''IP Information''",
 	"group-no-ipinfo": "Uzeri blokusita del utensilo \"IP-Information\"",
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|deskapabligita}}"
 }
