@@ -8,6 +8,7 @@
 	"ipinfo-extensionname": "Informacije o IP-ju",
 	"ipinfo-desc": "Zagotavlja podatke o IP-naslovih",
 	"ipinfo-infobox-title": "Podatki o IP-ju",
+	"ipinfo-infobox-temporary-account-help": "S tem začasnim računom je povezanih več IP-naslovov. Pregledujete IP-informacije za IP-naslov, ki je bil uporabljen zadnji. [[Special:IPInfo/$1|Ogled IP-informacij za vse IP-naslove]].",
 	"ipinfo-property-label-location": "Kraj",
 	"ipinfo-property-label-ipversion": "Različica",
 	"ipinfo-property-label-asn": "ASN",
