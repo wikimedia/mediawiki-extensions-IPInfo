@@ -546,6 +546,8 @@ class LogHandlerTest extends HandlerTestCase {
 	}
 
 	public function testShouldHandleAnonymousUserIsKnownLogEntry() {
+		$this->markTestSkippedIfExtensionNotLoaded( 'Abuse Filter' );
+
 		// Stub out an AbuseFilter hit for the IP being target. Only AF will know about this IP.
 		$this->getDb()->newInsertQueryBuilder()
 			->insertInto( 'abuse_filter_log' )

@@ -163,6 +163,8 @@ class AnonymousUserIPLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testCheckIPIsKnownAFLookup() {
+		$this->markTestSkippedIfExtensionNotLoaded( 'Abuse Filter' );
+
 		$this->disableAutoCreateTempUser();
 		$anonUser = $this->getServiceContainer()
 			->getUserFactory()
