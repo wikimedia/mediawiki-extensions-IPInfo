@@ -166,7 +166,7 @@ class TempUserIPLookup {
 					$dbr->expr( 'afl_ip_hex', '!=', '\'\'' ),
 					$dbr->expr( 'afl_timestamp', '>', $latestHit['timestamp'] ),
 				] )
-				->useIndex( 'afl_ip_timestamp' )
+				->useIndex( 'afl_ip_hex_timestamp' )
 				->orderBy( 'afl_timestamp', SelectQueryBuilder::SORT_DESC )
 				->limit( 1 )
 				->caller( __METHOD__ )
