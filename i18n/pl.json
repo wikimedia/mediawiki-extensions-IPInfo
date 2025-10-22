@@ -6,13 +6,14 @@
 			"Nux",
 			"Rail",
 			"WTM",
-			"Woytecr"
+			"Woytecr",
+			"Peter Bowman"
 		]
 	},
 	"ipinfo-extensionname": "Informacje o IP",
 	"ipinfo-desc": "Dostarcza informacje na temat adresów IP.",
 	"ipinfo-infobox-title": "Informacje o IP",
-	"ipinfo-infobox-temporary-account-help": "Z tym tymczasowym kontem skojarzonych jest wiele adresów IP. Wyświetlasz informacje o ostatnio używanym adresie IP. [[Special:IPInfo/$1|Wyświetl informacje wszystkich adresach IP]].",
+	"ipinfo-infobox-temporary-account-help": "Z tym tymczasowym kontem skojarzonych jest wiele adresów IP. Wyświetlasz informacje o ostatnio używanym adresie IP. [[Special:IPInfo/$1|Wyświetl informacje o wszystkich adresach IP]].",
 	"ipinfo-property-label-location": "Lokalizacja",
 	"ipinfo-property-label-ipversion": "Wersja",
 	"ipinfo-property-label-isp": "Dostawca internetu",
