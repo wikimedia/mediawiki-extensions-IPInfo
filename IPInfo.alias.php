@@ -12,3 +12,8 @@ $specialPageAliases = [];
 $specialPageAliases['en'] = [
 	'IPInfo' => [ 'IPInfo' ],
 ];
+
+/** Bengali (বাংলা) */
+$specialPageAliases['bn'] = [
+	'IPInfo' => [ 'আইপি_তথ্য', 'আইপির_তথ্য' ],
+];
