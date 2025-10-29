@@ -112,7 +112,7 @@
 	"log-action-filter-ipinfo-change_access": "Алатка омогућена или онемогућена",
 	"log-action-filter-ipinfo-view_infobox": "Подаци виђени у инфокутији",
 	"log-action-filter-ipinfo-view_popup": "Подаци виђени у прегледу",
-	"ipinfo-property-tooltip-asn": "Јединствени идентификатор за мреже делегиран по регионима па даље владама и провајдерима (држави)",
+	"ipinfo-property-tooltip-asn": "Јединствени идентификатор за мреже делегиран по регионима па даље државама односно владама и провајдерима",
 	"ipinfo-blocklist-url-text": "Списак блокада",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 обрисана измене|$1 обрисане измене|0=Нема обрисаних измена}}",
 	"ipinfo-special-ipinfo": "IP информације",
