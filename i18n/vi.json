@@ -43,7 +43,7 @@
 	"ipinfo-property-value-proxytype-isresidentialproxy": "Proxy dân cư",
 	"ipinfo-property-value-proxytype-islegitimateproxy": "Proxy hợp lệ",
 	"ipinfo-property-value-proxytype-istorexitnode": "Máy chủ thoát Tor",
-	"ipinfo-property-value-proxytype-ishostingprovider": "Nhà cung cấp dịch vụ",
+	"ipinfo-property-value-proxytype-ishostingprovider": "Nhà cung cấp dịch vụ lưu trữ",
 	"ipinfo-property-label-source": "Nguồn",
 	"ipinfo-property-label-active-blocks": "Tác vụ cấm hiện tại",
 	"ipinfo-property-tooltip-proxytypes": "Proxy ẩn địa chỉ IP. Trong một số trường hợp, việc này diễn ra tự động, như với proxy công ty hoặc proxy dân cư, nhưng cũng có lúc người ta cố ý thực hiện tác vụ này nhằm che giấu nguồn gốc của địa chỉ IP.",
