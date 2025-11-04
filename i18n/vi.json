@@ -48,7 +48,7 @@
 	"ipinfo-property-value-proxytype-isresidentialproxy": "Proxy dân cư",
 	"ipinfo-property-value-proxytype-islegitimateproxy": "Proxy hợp lệ",
 	"ipinfo-property-value-proxytype-istorexitnode": "Máy chủ thoát Tor",
-	"ipinfo-property-value-proxytype-ishostingprovider": "Nhà cung cấp dịch vụ",
+	"ipinfo-property-value-proxytype-ishostingprovider": "Nhà cung cấp dịch vụ lưu trữ",
 	"ipinfo-property-value-risk-geomismatch": "Không khớp địa lý",
 	"ipinfo-property-value-risk-tunnel": "Đường hầm (Tunnel)",
 	"ipinfo-property-value-risk-unknown": "Không rõ",
