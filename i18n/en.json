@@ -68,7 +68,7 @@
 	"ipinfo-property-tooltip-connectiontype": "The technology through which they’re connecting to the internet.",
 	"ipinfo-property-tooltip-usertype": "The kind of entity that owns the internet connection.",
 	"ipinfo-property-tooltip-behaviors": "Specific types of activity devices on this IP address have engaged in or have been previously affiliated with.",
-	"ipinfo-property-tooltip-risks": "Risks that Spur has determined based on their collection of data. These risks vary and will matter differently based on specific use-cases of Spur Context data.",
+	"ipinfo-property-tooltip-risks": "Risks that Spur has determined based on their collection of data. These risks vary and will matter differently based on specific use cases of Spur Context data.",
 	"ipinfo-property-tooltip-connectiontypes": "The different types of client devices that have been observed on this IP address.",
 	"ipinfo-property-tooltip-tunneloperators": "The provider or operator of the VPN service.",
 	"ipinfo-property-tooltip-proxies": "Proxies that have been observed on clients using this IP address. This does not mean that all traffic from this IP address belongs to this proxy network, but rather that there is a proxy on this IP address.",
