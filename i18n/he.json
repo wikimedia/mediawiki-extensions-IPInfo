@@ -68,7 +68,7 @@
 	"ipinfo-property-tooltip-connectiontype": "הטכנולוגיה שהם מתחברים לאינטרנט באמצעותה.",
 	"ipinfo-property-tooltip-usertype": "סוג הישות שמחזיקה בבעלות על חיבור האינטרנט.",
 	"ipinfo-property-tooltip-behaviors": "סוגים מסוימים של פעילויות שמכשירים בכתובת ה־IP הזאת עסקו בהן או היו קשורים אליהן בעבר.",
-	"ipinfo-property-tooltip-risks": "סיכונים שחברת Spur זיהתה על סמך איסוף הנתונים שלה. הסיכונים האלה מגוונים ותהיה להם חשיבות שונה בהתבסס על סוגי שימוש מסוימים בנתוני Spur Context.",
+	"ipinfo-property-tooltip-risks": "סיכונים שחברת Spur זיהתה על סמך איסוף הנתונים שלה. הסיכונים האלה מגוונים ותהיה להם חשיבות שונה בהתאם לסוגי שימוש מסוימים בנתוני Spur Context.",
 	"ipinfo-property-tooltip-connectiontypes": "הסוגים השונים של מכשירי לקוח שנצפו בכתובת ה־IP הזאת.",
 	"ipinfo-property-tooltip-tunneloperators": "הספק או המפעיל של שירות ה־VPN.",
 	"ipinfo-property-tooltip-proxies": "שרתים מתווכים שנצפו בלקוחות שמשתמשים בכתובת ה־IP הזאת. זה לא אומר שכל התעבורה מכתובת ה־IP הזאת שייכת לרשת השרתים המתווכים הזאת, אלא שקיים שרת מתווך בכתובת ה־IP הזאת.",
