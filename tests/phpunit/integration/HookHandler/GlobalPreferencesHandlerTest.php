@@ -54,6 +54,10 @@ class GlobalPreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideOnGlobalPreferencesSetGlobalPreferences() {
+		if ( !ExtensionRegistry::getInstance()->isLoaded( 'GlobalPreferences' ) ) {
+			return;
+		}
+
 		return [
 			'Enabled to begin with, then option set to truthy' => [
 				[
