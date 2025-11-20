@@ -59,6 +59,7 @@
 	"ipinfo-property-value-connectiontype-unknown": "Nepoznato",
 	"ipinfo-property-label-source": "Izvor",
 	"ipinfo-property-label-active-blocks": "Aktivne blokade",
+	"ipinfo-property-label-number-of-ips": "Broj IP-ova",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 aktivna blokada|$1 aktivne blokade|$1 aktivnih blokada|0=Nema aktivnih blokada}}",
 	"ipinfo-active-blocks-url-text": "Zapisnici",
 	"ipinfo-property-label-edits": "Doprinosi",
@@ -70,5 +71,8 @@
 	"ipinfo-widget-error-ip-no-contributions": "Ne mogu dobiti informacije o IP-adresi jer nema izmjena.",
 	"prefs-ipinfo": "Informacije o IP-adresi",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 izbrisana izmjena|$1 izbrisane izmjene|$1 izbrisanih izmjena|0=Nema izbrisanih izmjena}}",
-	"ipinfo-deleted-edits-url-text": "Izbrisani doprinosi"
+	"ipinfo-deleted-edits-url-text": "Izbrisani doprinosi",
+	"ipinfo-popup-link-text": "Prikaži sve informacije o IP-u",
+	"ipinfo-help-text": "Prikazane informacije pružaju MaxMind i [https://docs.spur.us/data-types Spur]. Moguće je da nisu u potpunosti tačne.",
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Detaljnije o ovoj mogućnosti]"
 }

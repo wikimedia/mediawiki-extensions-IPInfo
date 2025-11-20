@@ -25,7 +25,7 @@
 	"ipinfo-property-label-connectiontypes": "Bağlantı türleri",
 	"ipinfo-property-label-tunneloperators": "Tünel hizmeti sağlayıcısı",
 	"ipinfo-property-label-proxies": "Proxy'ler",
-	"ipinfo-property-label-usercount": "Bu IP adresindeki kullanıcılar",
+	"ipinfo-property-label-usercount": "İnternet genelinde benzersiz cihazlar",
 	"ipinfo-property-value-connectiontype-cableordsl": "Kablo/DSL",
 	"ipinfo-property-value-connectiontype-cellular": "Hücresel",
 	"ipinfo-property-value-connectiontype-corporate": "Kurumsal",
