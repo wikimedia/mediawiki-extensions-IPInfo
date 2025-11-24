@@ -6,7 +6,7 @@
 		]
 	},
 	"ipinfo-extensionname": "IP Info",
-	"ipinfo-infobox-title": "IP-Informatioun",
+	"ipinfo-infobox-title": "IP-Informatiounen",
 	"ipinfo-property-label-location": "Plaz",
 	"ipinfo-property-label-ipversion": "VERSIOUN",
 	"ipinfo-property-label-organization": "Organisatioun",
@@ -38,13 +38,13 @@
 	"ipinfo-use-agreement-submit-error": "Et ass eppes schief gaangen. Probéiert wgl. nach eng Kéier. De Feelermessage war: $1",
 	"ipinfo-rest-access-denied": "Dir hutt net d'Recht fir dës Aktioun ze maachen.",
 	"ipinfo-rest-access-denied-blocked-user": "Dir hutt net d'Recht fir dës Aktioun ze maachen well Äre Benotzerkont gespaart ass",
-	"ipinfo-beta-feature-title": "IP-Informatioun",
-	"prefs-ipinfo": "IP-Informatioun",
+	"ipinfo-beta-feature-title": "IP-Informatiounen",
+	"prefs-ipinfo": "IP-Informatiounen",
 	"right-ipinfo-view-log": "E Log weisen wien op d'IP-Informatioun zougegraff huet",
 	"ipinfo-log-name": "IPInfo-Logbuch",
 	"ipinfo-log-access-level-ipinfo-view-basic": "Limitéierten Zougang",
 	"ipinfo-log-access-level-ipinfo-view-full": "Kompletten Zougang",
-	"logentry-ipinfo-view_popup": "$1 huet $4 IP-Informatioun's Pop-up fir $3 {{GENDER:$2|gekuckt}}.",
+	"logentry-ipinfo-view_popup": "{{GENDER:$2|De(n) $1|D'$1}} huet den IP-Informatiouns-Popup fir $3 gekuckt. $4.",
 	"ipinfo-change-access-level-enable": "{{GENDER:$1|aktivéiert}}",
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|desaktivéiert}}",
 	"ipinfo-change-access-level-enable-globally": "{{GENDER:$1|global aktivéiert}}",
@@ -54,7 +54,10 @@
 	"ipinfo-special-ipinfo": "IP-Informatiounen",
 	"ipinfo-deleted-edits-url-text": "Geläscht Kontributiounen",
 	"ipinfo-special-ipinfo-table-caption": "IP-Informatioune fir $1",
+	"ipinfo-special-ipinfo-target": "Zilbenotzernumm:",
 	"ipinfo-special-ipinfo-user-tool-links": "Fir $1",
 	"ipinfo-special-ipinfo-column-ip": "IP",
-	"ipinfo-popup-link-text": "All IP-Informatioune weisen"
+	"ipinfo-special-ipinfo-no-results": "Et si keng IP-Informatioune fir de Benotzer $1 disponibel.",
+	"ipinfo-popup-link-text": "All IP-Informatioune weisen",
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Méi iwwer dës Funktioun gewuer ginn]"
 }
