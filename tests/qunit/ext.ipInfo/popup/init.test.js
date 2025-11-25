@@ -17,9 +17,10 @@ QUnit.module( 'ext.ipInfo.popup.index', QUnit.newMwEnvironment( {
  * from a username.
  *
  * @param {string} userName
+ * @param {boolean} hasDataTarget
  * @return {jQuery[]}
  */
-const createUserLink = ( userName ) => {
+const createUserLink = ( userName, hasDataTarget ) => {
 	if ( userName.startsWith( '>' ) ) {
 		return $( '<span>' )
 			.addClass( 'mw-userlink mw-anonuserlink' )
@@ -31,10 +32,13 @@ const createUserLink = ( userName ) => {
 		.text( userName );
 
 	if ( mw.util.isTemporaryUser( userName ) ) {
-		$userLink.addClass( 'mw-tempuserlink' )
-			.attr( 'data-mw-target', userName );
+		$userLink.addClass( 'mw-tempuserlink' );
 	} else if ( mw.util.isIPAddress( userName ) ) {
 		$userLink.addClass( 'mw-anonuserlink' );
+	}
+
+	if ( hasDataTarget ) {
+		$userLink.attr( 'data-mw-target', userName );
 	}
 
 	return $userLink;
@@ -47,16 +51,23 @@ const pagerTypeTestCases = {
 
 for ( const [ pagerType, [ dataAttr ] ] of Object.entries( pagerTypeTestCases ) ) {
 	const testCases = {
-		'registered user link': [ 'TestUser', false, false, false ],
-		'temporary user link': [ '~1', false, true, true ],
-		'temporary user link with blocked performer': [ '~1', true, true, false ],
-		'IP user link': [ '127.0.0.1', false, true, true ],
-		'IP user link with blocked performer': [ '127.0.0.1', false, true, true ],
-		'external user link': [ '>ExternalUser', false, false, false ]
+		'registered user link': [ 'TestUser', false, false, false, false ],
+		'temporary user link': [ '~1', true, false, true, true ],
+		'temporary user link without data target': [ '~1', false, false, false, false ],
+		'temporary user link with blocked performer': [ '~1', true, true, true, false ],
+		'IP user link': [ '127.0.0.1', false, false, true, true ],
+		'IP user link with blocked performer': [ '127.0.0.1', false, false, true, true ],
+		'external user link': [ '>ExternalUser', false, false, false, false ]
 	};
 
 	for ( const [
-		testName, [ userName, isPerformedBlocked, shouldMarkProcessed, shouldAddButton ]
+		testName, [
+			userName,
+			hasDataTarget,
+			isPerformedBlocked,
+			shouldMarkProcessed,
+			shouldAddButton
+		]
 	] of Object.entries( testCases ) ) {
 		QUnit.test( `${ testName } in ${ pagerType }`, function ( assert ) {
 			// eslint-disable-next-line no-jquery/no-global-selector
@@ -69,7 +80,7 @@ for ( const [ pagerType, [ dataAttr ] ] of Object.entries( pagerTypeTestCases ) 
 			this.mwConfigGet.withArgs( 'wgCheckUserIsPerformerBlocked' )
 				.returns( isPerformedBlocked );
 
-			const $userLink = createUserLink( userName );
+			const $userLink = createUserLink( userName, hasDataTarget );
 			const $row = $( '<span>' )
 				.attr( dataAttr, '1' )
 				.append( $userLink )

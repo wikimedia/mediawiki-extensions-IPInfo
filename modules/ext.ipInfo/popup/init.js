@@ -5,7 +5,7 @@ const postToRestApi = require( '../rest.js' );
 mw.hook( 'wikipage.content' ).add( ( $content ) => {
 	eventLogger.logIpCopy();
 
-	$content.find( 'a.mw-anonuserlink, a.mw-tempuserlink' ).after( function () {
+	$content.find( 'a.mw-anonuserlink, a.mw-tempuserlink[data-mw-target]' ).after( function () {
 		let id, type;
 		$( this ).addClass( 'ext-ipinfo-anonuserlink-loaded' );
 
@@ -45,7 +45,7 @@ mw.hook( 'wikipage.content' ).add( ( $content ) => {
 		} else if ( $changedby.length > 0 ) {
 			const $revLines = $( this ).closest( 'table' ).find( '.mw-changeslist-line[data-mw-revid]' );
 			$revLines.each( function () {
-				const $innerTarget = getUserName( $( this ).find( '.mw-anonuserlink, .mw-tempuserlink' ) );
+				const $innerTarget = getUserName( $( this ).find( '.mw-anonuserlink, .mw-tempuserlink[data-mw-target]' ) );
 				if ( targetUserName === $innerTarget ) {
 					id = $( this ).closest( '.mw-changeslist-line [data-mw-revid]' ).attr( 'data-mw-revid' );
 					return false;
