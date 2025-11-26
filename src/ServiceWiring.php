@@ -40,16 +40,6 @@ return [
 			$services->get( 'ReaderFactory' )
 		);
 	},
-	'IPInfoIPoidInfoRetriever' => static function ( MediaWikiServices $services ): IPoidInfoRetriever {
-		$config = $services->getMainConfig();
-		return new IPoidInfoRetriever(
-			new ServiceOptions(
-				IPoidInfoRetriever::CONSTRUCTOR_OPTIONS, $config
-			),
-			$services->get( 'HttpRequestFactory' ),
-			LoggerFactory::getInstance( 'IPInfo' )
-		);
-	},
 	'IPInfoBlockInfoRetriever' => static function ( MediaWikiServices $services ): BlockInfoRetriever {
 		return new BlockInfoRetriever(
 			$services->getBlockManager(),
@@ -66,14 +56,17 @@ return [
 		return new IPCountInfoRetriever( $services->get( 'IPInfoTempUserIPLookup' ) );
 	},
 	'IPInfoInfoManager' => static function ( MediaWikiServices $services ): InfoManager {
-		return new InfoManager( [
+		$retrievers = [
 			$services->get( 'IPInfoGeoLite2InfoRetriever' ),
-			$services->get( 'IPInfoIPoidInfoRetriever' ),
 			$services->get( 'IPInfoBlockInfoRetriever' ),
 			$services->get( 'IPInfoContributionInfoRetriever' ),
 			$services->get( 'IPInfoIPCountRetriever' ),
 			new IPVersionInfoRetriever()
-		] );
+		];
+		if ( $services->getExtensionRegistry()->isLoaded( 'IPReputation' ) ) {
+			$retrievers[] = new IPoidInfoRetriever( $services->get( 'IPReputationIPoidDataLookup' ) );
+		}
+		return new InfoManager( $retrievers );
 	},
 	'IPInfoLoggerFactory' => static function ( MediaWikiServices $services ): IPInfoLoggerFactory {
 		return new IPInfoLoggerFactory(

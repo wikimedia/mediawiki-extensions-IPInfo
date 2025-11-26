@@ -28,7 +28,6 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 		$this->markTestSkippedIfExtensionNotLoaded( 'CheckUser' );
 		$this->overrideConfigValues( [
 			'IPInfoEnableSpecialIPInfo' => true,
-			'IPInfoIpoidUrl' => false,
 			'IPInfoGeoLite2Prefix' => realpath( __DIR__ . '/../../../fixtures' ) . '/maxmind/GeoLite2-',
 		] );
 		$this->setGroupPermissions( [

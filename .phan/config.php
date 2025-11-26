@@ -7,6 +7,7 @@ $cfg['directory_list'] = array_merge(
 	[
 		'../EventLogging',
 		'../GlobalPreferences',
+		'../IPReputation',
 		'../MobileFrontend',
 	]
 );
@@ -16,6 +17,7 @@ $cfg['exclude_analysis_directory_list'] = array_merge(
 	[
 		'../EventLogging',
 		'../GlobalPreferences',
+		'../IPReputation',
 		'../MobileFrontend',
 	]
 );

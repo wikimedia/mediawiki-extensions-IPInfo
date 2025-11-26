@@ -2,12 +2,12 @@
 
 namespace MediaWiki\IPInfo\Rest\Presenter;
 
+use MediaWiki\Extension\IPReputation\IPoid\IPoidResponse;
 use MediaWiki\IPInfo\AccessLevelTrait;
 use MediaWiki\IPInfo\Info\BlockInfo;
 use MediaWiki\IPInfo\Info\ContributionInfo;
 use MediaWiki\IPInfo\Info\Info;
 use MediaWiki\IPInfo\Info\IPCountInfo;
-use MediaWiki\IPInfo\Info\IPoidInfo;
 use MediaWiki\IPInfo\Info\IPVersionInfo;
 use MediaWiki\IPInfo\Info\Location;
 use MediaWiki\Permissions\PermissionManager;
@@ -74,15 +74,18 @@ class DefaultPresenter {
 	 * @return array
 	 */
 	public function present( array $info, UserIdentity $user ): array {
+		$expectedElementTypes = [
+			Info::class,
+			IPCountInfo::class,
+			BlockInfo::class,
+			ContributionInfo::class,
+			IPVersionInfo::class,
+		];
+		if ( class_exists( IPoidResponse::class ) ) {
+			$expectedElementTypes[] = IPoidResponse::class;
+		}
 		Assert::parameterElementType(
-			[
-				Info::class,
-				IPCountInfo::class,
-				IPoidInfo::class,
-				BlockInfo::class,
-				ContributionInfo::class,
-				IPVersionInfo::class,
-			],
+			$expectedElementTypes,
 			$info['data'],
 			"info['data']"
 		);
@@ -103,7 +106,7 @@ class DefaultPresenter {
 				$data += $this->presentInfo( $itemInfo );
 			} elseif ( $itemInfo instanceof IPCountInfo ) {
 				$data += [ 'numIPAddresses' => $itemInfo->getCount() ];
-			} elseif ( $itemInfo instanceof IPoidInfo ) {
+			} elseif ( $itemInfo instanceof IPoidResponse ) {
 				$data += $this->presentIPoidInfo( $itemInfo );
 			} elseif ( $itemInfo instanceof BlockInfo ) {
 				$data += $this->presentBlockInfo( $itemInfo );
@@ -166,10 +169,10 @@ class DefaultPresenter {
 	}
 
 	/**
-	 * @param IPoidInfo $info
+	 * @param IPoidResponse $info
 	 * @return array<string,mixed>
 	 */
-	private function presentIPoidInfo( IPoidInfo $info ): array {
+	private function presentIPoidInfo( IPoidResponse $info ): array {
 		return [
 			'behaviors' => $info->getBehaviors(),
 			'risks' => $info->getRisks(),

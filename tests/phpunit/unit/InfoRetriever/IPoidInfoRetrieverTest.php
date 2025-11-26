@@ -2,185 +2,93 @@
 
 namespace MediaWiki\IPInfo\Test\Unit\InfoRetriever;
 
-use LoggedServiceOptions;
-use MediaWiki\Http\HttpRequestFactory;
-use MediaWiki\IPInfo\Info\IPoidInfo;
+use MediaWiki\Extension\IPReputation\IPoid\IPoidResponse;
+use MediaWiki\Extension\IPReputation\Services\IPReputationIPoidDataLookup;
 use MediaWiki\IPInfo\InfoRetriever\IPoidInfoRetriever;
-use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
-use MockHttpTrait;
-use Psr\Log\NullLogger;
-use TestAllServiceOptionsUsed;
 
 /**
  * @group IPInfo
  * @covers \MediaWiki\IPInfo\InfoRetriever\IPoidInfoRetriever
  */
 class IPoidInfoRetrieverTest extends MediaWikiUnitTestCase {
-	use TestAllServiceOptionsUsed;
-	use MockHttpTrait;
+
+	public function setUp(): void {
+		if ( !class_exists( IPoidResponse::class ) ) {
+			$this->markTestSkipped( "Extension 'IPReputation' is not installed" );
+		}
+	}
 
 	private function createIPoidInfoRetriever(
-		HttpRequestFactory $httpRequestFactory,
-		array $configOverrides = []
+		IPReputationIPoidDataLookup $lookup
 	): IPoidInfoRetriever {
-		return new IPoidInfoRetriever(
-			new LoggedServiceOptions(
-				self::$serviceOptionsAccessLog,
-				IPoidInfoRetriever::CONSTRUCTOR_OPTIONS,
-				$configOverrides + [ 'IPInfoIpoidUrl' => 'test' ]
-			),
-			$httpRequestFactory,
-			new NullLogger()
-		);
+		return new IPoidInfoRetriever( $lookup );
 	}
 
-	public function testRetrieveForNoIpoidUrl() {
-		$httpRequestFactory = $this->createMock( HttpRequestFactory::class );
-		$httpRequestFactory->expects( $this->never() )
-			->method( 'create' );
-		$infoRetriever = $this->createIPoidInfoRetriever(
-			$httpRequestFactory,
-			[ 'IPInfoIpoidUrl' => false ]
-		);
-		$infoRetriever->retrieveFor( new UserIdentityValue( 0, '127.0.0.1' ), '127.0.0.1' );
+	public function testGetName(): void {
+		$lookup = $this->createMock( IPReputationIPoidDataLookup::class );
+		$retriever = $this->createIPoidInfoRetriever( $lookup );
+		$this->assertSame( IPoidInfoRetriever::NAME, $retriever->getName() );
 	}
 
-	public function testRetrieveForBadRequest() {
-		$infoRetriever = $this->createIPoidInfoRetriever(
-			$this->makeMockHttpRequestFactory(
-				$this->makeFakeHttpRequest(
-					'',
-					500
-				)
+	public function testRetrieveForReturnsEmptyResponseWhenIpNull(): void {
+		$lookup = $this->createMock( IPReputationIPoidDataLookup::class );
+		$retriever = $this->createIPoidInfoRetriever( $lookup );
+		$user = new UserIdentityValue( 1, 'TestUser' );
+		$result = $retriever->retrieveFor( $user, null );
+		$this->assertEquals( IPoidResponse::newFromArray( [] ), $result );
+	}
+
+	public function testRetrieveForDelegatesToLookup(): void {
+		$ip = '1.2.3.4';
+		$user = new UserIdentityValue( 1, 'TestUser' );
+		$mockResponse = $this->createMock( IPoidResponse::class );
+
+		$lookup = $this->createMock( IPReputationIPoidDataLookup::class );
+		$lookup->expects( $this->once() )
+			->method( 'getIPoidDataForIp' )
+			->with(
+				$ip,
+				IPoidInfoRetriever::class . '::retrieveFor'
 			)
-		);
-		$info = $infoRetriever->retrieveFor( new UserIdentityValue( 0, '127.0.0.1' ), '127.0.0.1' );
-		$this->assertNull( $info->getBehaviors() );
-		$this->assertNull( $info->getRisks() );
-		$this->assertNull( $info->getConnectionTypes() );
-		$this->assertNull( $info->getTunnelOperators() );
-		$this->assertNull( $info->getProxies() );
-		$this->assertNull( $info->getNumUsersOnThisIP() );
-	}
+			->willReturn( $mockResponse );
 
-	public function testRetrieveForMissingTemporaryUserIPData() {
-		$httpRequestFactory = $this->createMock( HttpRequestFactory::class );
-		$httpRequestFactory->expects( $this->never() )
-			->method( $this->anything() );
+		$retriever = $this->createIPoidInfoRetriever( $lookup );
+		$result = $retriever->retrieveFor( $user, $ip );
 
-		$infoRetriever = $this->createIPoidInfoRetriever( $httpRequestFactory );
-		$user = new UserIdentityValue( 4, '~2024-8' );
-
-		$info = $infoRetriever->retrieveFor( $user, null );
-
-		$this->assertNull( $info->getBehaviors() );
-		$this->assertNull( $info->getRisks() );
-		$this->assertNull( $info->getConnectionTypes() );
-		$this->assertNull( $info->getTunnelOperators() );
-		$this->assertNull( $info->getProxies() );
-		$this->assertNull( $info->getNumUsersOnThisIP() );
-	}
-
-	/**
-	 * @dataProvider provideUsers
-	 */
-	public function testRetrieveFor( UserIdentity $user, string $ip ) {
-		$infoRetriever = $this->createIPoidInfoRetriever(
-			$this->makeMockHttpRequestFactory(
-				$this->makeFakeHttpRequest(
-					"{\"2001:db8::8a2e:370:7334\":{\"ip\":\"2001:db8::8a2e:370:7334\"," .
-						"\"org\":\"Organization 1\"," .
-						"\"client_count\":10,\"types\":[\"UNKNOWN\"],\"conc_city\":\"\"," .
-						"\"conc_state\":\"\",\"conc_country\":\"\",\"countries\":0," .
-						"\"location_country\":\"VN\",\"risks\":[]," .
-						"\"last_updated\":1704295688,\"proxies\":[\"3_PROXY\",\"1_PROXY\"]," .
-						"\"behaviors\":[],\"tunnels\":[]}}",
-					200
-				)
-			)
-		);
-
-		$info = $infoRetriever->retrieveFor( $user, $ip );
-		$this->assertArrayEquals( [], $info->getBehaviors() );
-		$this->assertArrayEquals( [], $info->getRisks() );
-		$this->assertSame( [ "UNKNOWN" ], $info->getConnectionTypes() );
-		$this->assertArrayEquals( [], $info->getTunnelOperators() );
-		$this->assertArrayEquals( [ "3_PROXY", "1_PROXY" ], $info->getProxies() );
-		$this->assertSame( 10, $info->getNumUsersOnThisIP() );
-	}
-
-	public static function provideUsers(): iterable {
-		yield 'anonymous user' => [
-			new UserIdentityValue( 0, '2001:0db8:0000:0000:0000:8a2e:0370:7334' ),
-			'2001:0db8:0000:0000:0000:8a2e:0370:7334'
-		];
-
-		yield 'temporary user' => [
-			new UserIdentityValue( 4, '~2024-8' ),
-			'2001:0db8:0000:0000:0000:8a2e:0370:7334'
-		];
+		$this->assertSame( $mockResponse, $result );
 	}
 
 	public function testRetrieveBatch(): void {
-		$user = new UserIdentityValue( 4, '~2024-8' );
-		$ips = [ '1.1.1.1', '2.2.2.2', '3.3.3.3', '4.4.4.4' ];
+		$ips = [ '1.1.1.1', '2.2.2.2' ];
+		$user = new UserIdentityValue( 1, 'TestUser' );
 
-		$infoRetriever = $this->createIPoidInfoRetriever(
-			$this->makeMockHttpRequestFactory(
-				$this->makeFakeHttpMultiClient( [
-					"{\"1.1.1.1\":{\"ip\":\"1.1.1.1\"," .
-					"\"org\":\"Organization 1\"," .
-					"\"client_count\":10,\"types\":[\"UNKNOWN\"],\"conc_city\":\"\"," .
-					"\"conc_state\":\"\",\"conc_country\":\"\",\"countries\":0," .
-					"\"location_country\":\"VN\",\"risks\":[]," .
-					"\"last_updated\":1704295688,\"proxies\":[\"3_PROXY\",\"1_PROXY\"]," .
-					"\"behaviors\":[],\"tunnels\":[]}}",
-					// no data
-					[ 'code' => 404 ],
-					// mismatched data
-					"{\"5.5.5.5\":{\"ip\":\"5.5.5.5\"," .
-					"\"org\":\"Organization 1\"," .
-					"\"client_count\":10,\"types\":[\"UNKNOWN\"],\"conc_city\":\"\"," .
-					"\"conc_state\":\"\",\"conc_country\":\"\",\"countries\":0," .
-					"\"location_country\":\"VN\",\"risks\":[]," .
-					"\"last_updated\":1704295688,\"proxies\":[\"2_PROXY\",\"5_PROXY\"]," .
-					"\"behaviors\":[],\"tunnels\":[]}}",
-					"{\"4.4.4.4\":{\"ip\":\"4.4.4.4\"," .
-					"\"org\":\"Organization 2\"," .
-					"\"client_count\":10,\"types\":[\"UNKNOWN\"],\"conc_city\":\"\"," .
-					"\"conc_state\":\"\",\"conc_country\":\"\",\"countries\":0," .
-					"\"location_country\":\"US\",\"risks\":[]," .
-					"\"last_updated\":1704295688,\"proxies\":[\"4_PROXY\",\"3_PROXY\"]," .
-					"\"behaviors\":[],\"tunnels\":[]}}",
-				] )
-			)
-		);
+		$response1 = $this->createMock( IPoidResponse::class );
+		$response2 = $this->createMock( IPoidResponse::class );
 
-		$infosByIp = $infoRetriever->retrieveBatch( $user, $ips );
+		$lookup = $this->createMock( IPReputationIPoidDataLookup::class );
 
-		$this->assertSame( $ips, array_keys( $infosByIp ) );
-		$this->assertContainsOnlyInstancesOf( IPoidInfo::class, $infosByIp );
+		$lookup->expects( $this->exactly( 2 ) )
+			->method( 'getIPoidDataForIp' )
+			->willReturnCallback( static function ( $ip, $method ) use ( $response1, $response2 ) {
+				if ( $method !== IPoidInfoRetriever::class . '::retrieveBatch' ) {
+					return null;
+				}
+				if ( $ip === '1.1.1.1' ) {
+					return $response1;
+				}
+				if ( $ip === '2.2.2.2' ) {
+					return $response2;
+				}
+				return null;
+			} );
 
-		$this->assertSame( [ '3_PROXY', '1_PROXY' ], $infosByIp['1.1.1.1']->getProxies() );
-		$this->assertNull( $infosByIp['2.2.2.2']->getProxies() );
-		$this->assertNull( $infosByIp['3.3.3.3']->getProxies() );
-		$this->assertSame( [ '4_PROXY', '3_PROXY' ], $infosByIp['4.4.4.4']->getProxies() );
-	}
+		$retriever = $this->createIPoidInfoRetriever( $lookup );
+		$results = $retriever->retrieveBatch( $user, $ips );
 
-	public function testRetrieveBatchWhenServiceDisabled(): void {
-		$user = new UserIdentityValue( 4, '~2024-8' );
-		$ips = [ '1.1.1.1', '2.2.2.2', '3.3.3.3', '4.4.4.4' ];
-
-		$infoRetriever = $this->createIPoidInfoRetriever(
-			$this->makeMockHttpRequestFactory(),
-			[ 'IPInfoIpoidUrl' => false ]
-		);
-
-		$infosByIp = $infoRetriever->retrieveBatch( $user, $ips );
-
-		$this->assertSame( $ips, array_keys( $infosByIp ) );
-		$this->assertContainsOnlyInstancesOf( IPoidInfo::class, $infosByIp );
+		$this->assertCount( 2, $results );
+		$this->assertSame( $response1, $results['1.1.1.1'] );
+		$this->assertSame( $response2, $results['2.2.2.2'] );
 	}
 }

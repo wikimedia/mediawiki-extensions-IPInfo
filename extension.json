@@ -9,6 +9,11 @@
 	"requires": {
 		"MediaWiki": ">= 1.46"
 	},
+	"suggests": {
+		"extensions": {
+			"IPReputation": "*"
+		}
+	},
 	"MessagesDirs": {
 		"IPInfo": [
 			"i18n"
@@ -353,10 +358,6 @@
 		"IPInfoGeoIP2EnterprisePath": {
 			"value": false,
 			"description": "Path to the directory containing the GeoIP2 Enterprise and Anonymous IP database file; should contain the trailing slash"
-		},
-		"IPInfoIpoidUrl": {
-			"description": "Base URL for calling the ipoid API to retrieve data about an IP address",
-			"value": false
 		},
 		"IPInfoMaxDistinctIPResults": {
 			"description": "The maximum number of distinct IP addresses to show on Special:IPInfo",
