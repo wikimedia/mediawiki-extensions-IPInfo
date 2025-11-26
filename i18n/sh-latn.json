@@ -5,6 +5,7 @@
 			"Aca"
 		]
 	},
+	"ipinfo-extensionname": "Podaci o IP adresi",
 	"ipinfo-desc": "Pruža informacije o IP adresi",
 	"ipinfo-infobox-title": "Informacije o IP adresi",
 	"ipinfo-property-label-location": "Lokacija",
