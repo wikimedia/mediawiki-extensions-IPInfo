@@ -63,7 +63,7 @@
 	"ipinfo-property-label-source": "Quelle",
 	"ipinfo-property-label-active-blocks": "Aktive Sperren",
 	"ipinfo-property-label-number-of-ips": "Anzahl IP-Adressen",
-	"ipinfo-property-tooltip-proxytypes": "Proxys verbergen IP-Adressen. In einigen Fällen geschieht dies automatisch, wie bei Proxys für Privatpersonen oder Unternehmen, in anderen Fällen geschieht dies absichtlich, um den Ursprung der IP-Adresse zu verschleiern.",
+	"ipinfo-property-tooltip-proxytypes": "Proxys verbergen IP-Adressen. In einigen Fällen geschieht dies automatisch, beispielsweise bei privaten oder Unternehmens-Proxys. In anderen Fällen verwenden Nutzer Proxys bewusst, um die Herkunft der IP-Adresse zu verschleiern.",
 	"ipinfo-property-tooltip-connectiontype": "Die Technologie, über die die Verbindung mit dem Internet hergestellt wird.",
 	"ipinfo-property-tooltip-usertype": "Die Art des Unternehmens, dem die Internetverbindung gehört.",
 	"ipinfo-property-tooltip-behaviors": "Bestimmte Arten von Aktivitäten, an denen Geräte unter dieser IP-Adresse teilgenommen haben oder mit denen sie zuvor in Verbindung standen.",
