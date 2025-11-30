@@ -206,11 +206,11 @@ class SpecialIPInfo extends FormSpecialPage {
 				return Status::newFatal( 'ipinfo-preference-agreement-error' );
 			}
 
-			$user = $this->getUser()->getInstanceForUpdate();
+			$user = $this->getUser();
 			$this->userOptionsManager->setOption(
 				$user, PreferencesHandler::IPINFO_USE_AGREEMENT, '1', UserOptionsManager::GLOBAL_CREATE
 			);
-			$user->saveSettings();
+			$this->userOptionsManager->saveOptions( $user );
 		}
 
 		$this->targetUser = $targetUser;
