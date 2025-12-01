@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Mehman97",
 			"Გიო ოქრო"
 		]
 	},
@@ -101,5 +102,6 @@
 	"log-action-filter-ipinfo-view_infobox": "მონაცემები ნანახია ინფორმაციის დაფაზე",
 	"log-action-filter-ipinfo-view_popup": "მონაცემები ნანახია კონტექსტურ სარკმელში",
 	"ipinfo-property-tooltip-asn": "რეგიონისა და შემდგომ ორგანიზაციებისთვის (როგორიცაა მთავრობები და ინტერნეტპროვაიდერები) მიკუთვნებული ქსელების უნიკალური იდენტიფიკატორი",
-	"ipinfo-blocklist-url-text": "ბლოკების სია"
+	"ipinfo-blocklist-url-text": "ბლოკების სია",
+	"ipinfo-special-ipinfo": "IP-ის ინფორმაცია"
 }

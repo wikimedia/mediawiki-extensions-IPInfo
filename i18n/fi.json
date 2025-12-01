@@ -67,7 +67,7 @@
 	"ipinfo-property-label-source": "Lähde",
 	"ipinfo-property-label-active-blocks": "Voimassa olevat estot",
 	"ipinfo-property-label-number-of-ips": "IP-osoitteiden määrä",
-	"ipinfo-property-tooltip-proxytypes": "Välityspalvelimet piilottavat IP-osoitteet. Välityspalvelimen käyttö voi tapahtua automaattisesti esimerkiksi asuinkohteen tai yrityksen välityspalvelimen takia tai tarkoituksella oman IP-osoitteen piilottamiseksi.",
+	"ipinfo-property-tooltip-proxytypes": "Välityspalvelimet piilottavat IP-osoitteita. Välityspalvelimen käyttö voi tapahtua automaattisesti esimerkiksi asuinkohteen tai yrityksen välityspalvelimen takia. Joissain tapauksissa välityspalvelemia käytetään tarkoituksella omien IP-osoitteiden alkuperän piilottamiseksi.",
 	"ipinfo-property-tooltip-connectiontype": "Tekniikka, jonka kautta he liittyvät internettiin",
 	"ipinfo-property-tooltip-usertype": "Internet-liittymän omistavan tahon tyyppi.",
 	"ipinfo-property-tooltip-behaviors": "Käyttäytymiset, joihin laitteet tästä IP-osoitteessa ovat osallistuneet tai joihin ne ovat aiemmin liittyneet.",

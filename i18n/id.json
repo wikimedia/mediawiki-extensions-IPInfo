@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Andikbuyung",
+			"Penyuwangi",
 			"Veracious"
 		]
 	},
@@ -11,6 +12,7 @@
 	"ipinfo-property-value-connectiontype-corporate": "Perusahaan",
 	"ipinfo-property-value-connectiontype-dialup": "Putar-nomor",
 	"ipinfo-property-value-proxytype-ispublicproxy": "Proksi publik",
+	"ipinfo-property-tooltip-proxytypes": "Proksi menyembunyikan alamat IP. Ini terjadi secara otomatis dalam beberapa kasus, misal, dengan proksi rumah atau perusahaan. Dalam kasus lain, pengguna sengaja menggunakan proksi untuk menutupi asal alamat IP.",
 	"ipinfo-beta-feature-title": "Informasi IP",
 	"prefs-ipinfo": "Informasi IP",
 	"ipinfo-blocklist-url-text": "Daftar blokir"

@@ -63,7 +63,7 @@
 	"ipinfo-property-label-source": "Mənbə",
 	"ipinfo-property-label-active-blocks": "Aktiv bloklar",
 	"ipinfo-property-label-number-of-ips": "IP-lərin sayı",
-	"ipinfo-property-tooltip-proxytypes": "Proksilər IP ünvanlarını gizlədir. Bəzi hallarda bu, yaşayış və ya korporativ proksilər kimi avtomatik olaraq baş verir, digər hallarda isə IP ünvanının mənşəyini maskalamaq üçün qəsdən edilir.",
+	"ipinfo-property-tooltip-proxytypes": "Proksilər IP ünvanlarını gizlədir. Bu, bəzi hallarda, məsələn, yaşayış və ya korporativ proksilərlə avtomatik olaraq baş verir. Digər hallarda, istifadəçilər IP ünvanının mənşəyini maskalamaq üçün bilərək proksilərdən istifadə edirlər.",
 	"ipinfo-property-tooltip-connectiontype": "Onların internetə qoşulduğu texnologiya.",
 	"ipinfo-property-tooltip-usertype": "İnternet bağlantısına sahib olan qurum növü.",
 	"ipinfo-property-tooltip-behaviors": "Bu IP ünvanda fəaliyyət göstərən xüsusi cihaz növləri aşkar olunmuş və ya əvvəllər əlaqəli olmuşdur.",

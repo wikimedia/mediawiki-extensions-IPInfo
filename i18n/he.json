@@ -64,7 +64,7 @@
 	"ipinfo-property-label-source": "מקור",
 	"ipinfo-property-label-active-blocks": "חסימות פעילות",
 	"ipinfo-property-label-number-of-ips": "מספר כתובות ה־IP",
-	"ipinfo-property-tooltip-proxytypes": "שרתים מתווכים (פרוקסי) מסתירים כתובות IP. במקרים מסוימים זה קורה אוטומטית, למשל בשביל שרתים מתווכים ביתיים (Residential proxy) או תאגידיים (Corporate proxy), במקרים אחרים זה נעשה כדי להסתיר בכוונה את המקור של כתובת ה־IP",
+	"ipinfo-property-tooltip-proxytypes": "שרתים מתווכים (פרוקסי) מסתירים כתובות IP. זה קורה אוטומטית במקרים מסוימים, למשל, עם שרתים מתווכים ביתיים (residential proxies) או בחברות (corporate proxies). במקרים אחרים, אנשים משתמשים בשרת מתווכים בכוונה כדי להסוות את מקור כתובת ה־IP.",
 	"ipinfo-property-tooltip-connectiontype": "הטכנולוגיה שהם מתחברים לאינטרנט באמצעותה.",
 	"ipinfo-property-tooltip-usertype": "סוג הישות שמחזיקה בבעלות על חיבור האינטרנט.",
 	"ipinfo-property-tooltip-behaviors": "סוגים מסוימים של פעילויות שמכשירים בכתובת ה־IP הזאת עסקו בהן או היו קשורים אליהן בעבר.",

@@ -59,7 +59,7 @@
 	"ipinfo-property-label-source": "Fonte",
 	"ipinfo-property-label-active-blocks": "Bloqueos activos",
 	"ipinfo-property-label-number-of-ips": "Número de enderezos IP",
-	"ipinfo-property-tooltip-proxytypes": "Os proxies agochan os enderezos IP. Nalgúns casos isto ocorre automaticamente, como no caso dos proxies residenciais ou corporativos, noutros casos faise intencionadamente para agochar a orixe do enderezo IP.",
+	"ipinfo-property-tooltip-proxytypes": "Os proxies agochan os enderezos IP. Nalgúns casos isto ocorre automaticamente, como no caso dos proxies residenciais ou corporativos. Noutros casos os usuarios utilizan os proxies intencionadamente para agocharen a orixe do seu enderezo IP.",
 	"ipinfo-property-tooltip-connectiontype": "A tecnoloxía a través da cal se conectan a Internet.",
 	"ipinfo-property-tooltip-usertype": "O tipo de entidade propietaria da conexión a Internet.",
 	"ipinfo-property-tooltip-behaviors": "Tipos específicos de actividades nas que participaron ou coas que estiveron asociados previamente os dispositivos neste enderezo IP.",

@@ -3,7 +3,8 @@
 		"authors": [
 			"BraunOBruno",
 			"Hamilton Abreu",
-			"Mansil alfalb"
+			"Mansil alfalb",
+			"Maria Manuela Silva"
 		]
 	},
 	"ipinfo-desc": "Fornece informações sobre um endereço IP.",
@@ -60,7 +61,7 @@
 	"ipinfo-property-value-connectiontype-unknown": "Desconhecido",
 	"ipinfo-property-label-source": "Fonte",
 	"ipinfo-property-label-active-blocks": "Bloqueios ativos",
-	"ipinfo-property-tooltip-proxytypes": "Os ''proxies'' ocultam endereços IP. Em alguns casos isto acontece automaticamente, como para ''proxies'' residenciais ou corporativos, noutros casos é feito intencionalmente para mascarar a origem do endereço IP.",
+	"ipinfo-property-tooltip-proxytypes": "Os ''proxies'' ocultam os endereços de IP. Em alguns casos, isto acontece automaticamente, por exemplo, com os ''proxies'' residenciais ou corporativos. Em outros casos, os utilizadores utilizam intencionalmente os ''proxies'' para mascarar a origem do endereço de IP.",
 	"ipinfo-property-tooltip-connectiontype": "A tecnologia através da qual eles se estão a ligar à internet.",
 	"ipinfo-property-tooltip-usertype": "O tipo de entidade que detém a ligação à internet.",
 	"ipinfo-property-tooltip-behaviors": "Tipos específicos de atividade em que os dispositivos neste endereço IP se envolveram ou aos quais estiveram anteriormente associados.",
