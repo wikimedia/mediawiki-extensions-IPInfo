@@ -60,6 +60,7 @@
 	"ipinfo-property-value-connectiontype-unknown": "Nepoznato",
 	"ipinfo-property-label-source": "Izvor",
 	"ipinfo-property-label-active-blocks": "Aktivne blokade",
+	"ipinfo-property-label-number-of-ips": "Broj IP-ova",
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 aktivna blokada|$1 aktivne blokade|$1 aktivnih blokada|0=Nema aktivnih blokada}}",
 	"ipinfo-active-blocks-url-text": "Zapisnici",
 	"ipinfo-property-label-edits": "Doprinosi",
