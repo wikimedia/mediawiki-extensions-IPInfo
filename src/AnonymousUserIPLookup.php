@@ -16,23 +16,15 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * act but whose actions were either reverted or blocked.
  */
 class AnonymousUserIPLookup {
-	private IConnectionProvider $connectionProvider;
-	private ExtensionRegistry $extensionRegistry;
-	private MapCacheLRU $recentAddressCache;
-	private UserIdentityUtils $userIdentityUtils;
-	private LoggerInterface $logger;
+	private readonly MapCacheLRU $recentAddressCache;
 
 	public function __construct(
-		IConnectionProvider $connectionProvider,
-		UserIdentityUtils $userIdentityUtils,
-		ExtensionRegistry $extensionRegistry,
-		LoggerInterface $logger
+		private readonly IConnectionProvider $connectionProvider,
+		private readonly UserIdentityUtils $userIdentityUtils,
+		private readonly ExtensionRegistry $extensionRegistry,
+		private readonly LoggerInterface $logger,
 	) {
-		$this->connectionProvider = $connectionProvider;
-		$this->userIdentityUtils = $userIdentityUtils;
-		$this->extensionRegistry = $extensionRegistry;
 		$this->recentAddressCache = new MapCacheLRU( 8 );
-		$this->logger = $logger;
 	}
 
 	public function checkIPIsKnown( string $ip ): bool {

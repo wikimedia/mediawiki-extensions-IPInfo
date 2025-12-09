@@ -10,10 +10,9 @@ use MediaWiki\User\TempUser\TempUserConfig;
  */
 class SpecialPageInitListHandler implements SpecialPage_initListHook {
 
-	private TempUserConfig $tempUserConfig;
-
-	public function __construct( TempUserConfig $tempUserConfig ) {
-		$this->tempUserConfig = $tempUserConfig;
+	public function __construct(
+		private readonly TempUserConfig $tempUserConfig,
+	) {
 	}
 
 	/**

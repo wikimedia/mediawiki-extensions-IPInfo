@@ -8,15 +8,10 @@ use MediaWiki\Output\Hook\BeforePageDisplayHook;
 use MobileContext;
 
 class PopupHandler implements BeforePageDisplayHook {
-	private IPInfoPermissionManager $ipInfoPermissionManager;
-	private ?MobileContext $mobileContext;
-
 	public function __construct(
-		IPInfoPermissionManager $ipInfoPermissionManager,
-		?MobileContext $mobileContext
+		private readonly IPInfoPermissionManager $ipInfoPermissionManager,
+		private readonly ?MobileContext $mobileContext,
 	) {
-		$this->mobileContext = $mobileContext;
-		$this->ipInfoPermissionManager = $ipInfoPermissionManager;
 	}
 
 	public static function factory(): self {

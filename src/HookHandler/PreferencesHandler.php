@@ -15,19 +15,14 @@ class PreferencesHandler extends AbstractPreferencesHandler implements
 	GetPreferencesHook,
 	LocalUserOptionsStoreSaveHook
 {
-	private IPInfoPermissionManager $ipInfoPermissionManager;
-	private LoggerFactory $loggerFactory;
-
 	public function __construct(
-		IPInfoPermissionManager $ipInfoPermissionManager,
+		private readonly IPInfoPermissionManager $ipInfoPermissionManager,
 		UserGroupManager $userGroupManager,
 		UserOptionsManager $userOptionsManager,
 		ExtensionRegistry $extensionRegistry,
-		LoggerFactory $loggerFactory
+		private readonly LoggerFactory $loggerFactory,
 	) {
 		parent::__construct( $extensionRegistry, $userGroupManager, $userOptionsManager );
-		$this->ipInfoPermissionManager = $ipInfoPermissionManager;
-		$this->loggerFactory = $loggerFactory;
 	}
 
 	/** @inheritDoc */

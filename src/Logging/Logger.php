@@ -73,12 +73,6 @@ class Logger {
 	 */
 	public const LOG_TYPE = 'ipinfo';
 
-	private ActorStore $actorStore;
-
-	private IDatabase $dbw;
-
-	private int $delay;
-
 	/**
 	 * @param ActorStore $actorStore
 	 * @param IDatabase $dbw
@@ -87,15 +81,11 @@ class Logger {
 	 * @throws ParameterAssertionException if `$delay` is less than 1
 	 */
 	public function __construct(
-		ActorStore $actorStore,
-		IDatabase $dbw,
-		int $delay
+		private readonly ActorStore $actorStore,
+		private readonly IDatabase $dbw,
+		private readonly int $delay,
 	) {
 		Assert::parameter( $delay > 0, 'delay', 'delay must be positive' );
-
-		$this->actorStore = $actorStore;
-		$this->dbw = $dbw;
-		$this->delay = $delay;
 	}
 
 	/**

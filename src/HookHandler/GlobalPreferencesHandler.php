@@ -13,16 +13,13 @@ class GlobalPreferencesHandler extends AbstractPreferencesHandler implements
 	GlobalPreferencesSetGlobalPreferencesHook
 {
 
-	private LoggerFactory $loggerFactory;
-
 	public function __construct(
 		ExtensionRegistry $extensionRegistry,
 		UserGroupManager $userGroupManager,
 		UserOptionsManager $userOptionsManager,
-		LoggerFactory $loggerFactory
+		private readonly LoggerFactory $loggerFactory,
 	) {
 		parent::__construct( $extensionRegistry, $userGroupManager, $userOptionsManager );
-		$this->loggerFactory = $loggerFactory;
 	}
 
 	/** @inheritDoc */

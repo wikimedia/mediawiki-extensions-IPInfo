@@ -25,17 +25,11 @@ class GeoLite2InfoRetriever extends BaseInfoRetriever {
 	];
 	public const NAME = 'ipinfo-source-geoip2';
 
-	private ServiceOptions $options;
-
-	private ReaderFactory $readerFactory;
-
 	public function __construct(
-		ServiceOptions $options,
-		ReaderFactory $readerFactory
+		private readonly ServiceOptions $options,
+		private readonly ReaderFactory $readerFactory,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->options = $options;
-		$this->readerFactory = $readerFactory;
 	}
 
 	/** @inheritDoc */

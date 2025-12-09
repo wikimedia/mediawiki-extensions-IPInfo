@@ -10,15 +10,10 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class ContributionInfoRetriever extends BaseInfoRetriever {
 	public const NAME = 'ipinfo-source-contributions';
 
-	private IConnectionProvider $dbProvider;
-	private ActorNormalization $actorNormalization;
-
 	public function __construct(
-		IConnectionProvider $dbProvider,
-		ActorNormalization $actorNormalization
+		private readonly IConnectionProvider $dbProvider,
+		private readonly ActorNormalization $actorNormalization,
 	) {
-		$this->dbProvider = $dbProvider;
-		$this->actorNormalization = $actorNormalization;
 	}
 
 	/** @inheritDoc */

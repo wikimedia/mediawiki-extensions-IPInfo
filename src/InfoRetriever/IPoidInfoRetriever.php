@@ -22,21 +22,12 @@ class IPoidInfoRetriever extends BaseInfoRetriever {
 
 	public const NAME = 'ipinfo-source-ipoid';
 
-	private ServiceOptions $options;
-
-	private HttpRequestFactory $httpRequestFactory;
-
-	private LoggerInterface $logger;
-
 	public function __construct(
-		ServiceOptions $options,
-		HttpRequestFactory $httpRequestFactory,
-		LoggerInterface $logger
+		private readonly ServiceOptions $options,
+		private readonly HttpRequestFactory $httpRequestFactory,
+		private readonly LoggerInterface $logger,
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->options = $options;
-		$this->httpRequestFactory = $httpRequestFactory;
-		$this->logger = $logger;
 	}
 
 	/** @inheritDoc */

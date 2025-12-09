@@ -27,19 +27,14 @@ class TempUserIPLookup {
 		'IPInfoMaxDistinctIPResults'
 	];
 
-	private IConnectionProvider $connectionProvider;
-	private ExtensionRegistry $extensionRegistry;
-	private MapCacheLRU $recentAddressCache;
-	private UserIdentityUtils $userIdentityUtils;
-	private LoggerInterface $logger;
-	private ServiceOptions $serviceOptions;
+	private readonly MapCacheLRU $recentAddressCache;
 
 	public function __construct(
-		IConnectionProvider $connectionProvider,
-		UserIdentityUtils $userIdentityUtils,
-		ExtensionRegistry $extensionRegistry,
-		LoggerInterface $logger,
-		ServiceOptions $serviceOptions
+		private readonly IConnectionProvider $connectionProvider,
+		private readonly UserIdentityUtils $userIdentityUtils,
+		private readonly ExtensionRegistry $extensionRegistry,
+		private readonly LoggerInterface $logger,
+		private readonly ServiceOptions $serviceOptions,
 	) {
 		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		Assert::parameter(
@@ -49,12 +44,7 @@ class TempUserIPLookup {
 			'IPInfoMaxDistinctIPResults must be a positive integer'
 		);
 
-		$this->connectionProvider = $connectionProvider;
-		$this->userIdentityUtils = $userIdentityUtils;
-		$this->extensionRegistry = $extensionRegistry;
 		$this->recentAddressCache = new MapCacheLRU( 8 );
-		$this->logger = $logger;
-		$this->serviceOptions = $serviceOptions;
 	}
 
 	/**

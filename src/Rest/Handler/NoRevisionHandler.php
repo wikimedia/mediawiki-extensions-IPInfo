@@ -24,8 +24,6 @@ use Wikimedia\Rdbms\ReadOnlyMode;
  */
 class NoRevisionHandler extends IPInfoHandler {
 
-	private AnonymousUserIPLookup $anonymousUserIPLookup;
-
 	public function __construct(
 		InfoManager $infoManager,
 		PermissionManager $permissionManager,
@@ -36,7 +34,7 @@ class NoRevisionHandler extends IPInfoHandler {
 		UserIdentityUtils $userIdentityUtils,
 		TempUserIPLookup $tempUserIPLookup,
 		IPInfoPermissionManager $ipInfoPermissionManager,
-		AnonymousUserIPLookup $anonymousUserIPLookup,
+		private readonly AnonymousUserIPLookup $anonymousUserIPLookup,
 		ReadOnlyMode $readOnlyMode,
 		HookContainer $hookContainer
 	) {
@@ -53,7 +51,6 @@ class NoRevisionHandler extends IPInfoHandler {
 			$readOnlyMode,
 			$hookContainer
 		);
-		$this->anonymousUserIPLookup = $anonymousUserIPLookup;
 	}
 
 	public static function factory(

@@ -30,22 +30,18 @@ use Wikimedia\Rdbms\ReadOnlyMode;
  */
 class LogHandler extends IPInfoHandler {
 
-	private IConnectionProvider $dbProvider;
-	private UserIdentityLookup $userIdentityLookup;
-	private AnonymousUserIPLookup $anonymousUserIPLookup;
-
 	public function __construct(
 		InfoManager $infoManager,
-		IConnectionProvider $dbProvider,
+		private readonly IConnectionProvider $dbProvider,
 		PermissionManager $permissionManager,
 		UserFactory $userFactory,
 		DefaultPresenter $presenter,
 		JobQueueGroup $jobQueueGroup,
 		LanguageFallback $languageFallback,
 		UserIdentityUtils $userIdentityUtils,
-		UserIdentityLookup $userIdentityLookup,
+		private readonly UserIdentityLookup $userIdentityLookup,
 		TempUserIPLookup $tempUserIPLookup,
-		AnonymousUserIPLookup $anonymousUserIPLookup,
+		private readonly AnonymousUserIPLookup $anonymousUserIPLookup,
 		IPInfoPermissionManager $ipInfoPermissionManager,
 		ReadOnlyMode $readOnlyMode,
 		HookContainer $hookContainer
@@ -63,9 +59,6 @@ class LogHandler extends IPInfoHandler {
 			$readOnlyMode,
 			$hookContainer
 		);
-		$this->dbProvider = $dbProvider;
-		$this->userIdentityLookup = $userIdentityLookup;
-		$this->anonymousUserIPLookup = $anonymousUserIPLookup;
 	}
 
 	public static function factory(

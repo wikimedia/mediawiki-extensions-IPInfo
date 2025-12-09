@@ -11,15 +11,10 @@ use MediaWiki\User\UserIdentityUtils;
 class BlockInfoRetriever extends BaseInfoRetriever {
 	public const NAME = 'ipinfo-source-block';
 
-	private BlockManager $blockManager;
-	private UserIdentityUtils $userIdentityUtils;
-
 	public function __construct(
-		BlockManager $blockManager,
-		UserIdentityUtils $userIdentityUtils
+		private readonly BlockManager $blockManager,
+		private readonly UserIdentityUtils $userIdentityUtils,
 	) {
-		$this->blockManager = $blockManager;
-		$this->userIdentityUtils = $userIdentityUtils;
 	}
 
 	/** @inheritDoc */

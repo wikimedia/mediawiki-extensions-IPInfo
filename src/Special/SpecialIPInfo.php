@@ -18,7 +18,6 @@ use MediaWiki\Message\Message;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
-use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\Options\UserOptionsManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
@@ -40,24 +39,19 @@ class SpecialIPInfo extends FormSpecialPage {
 	private const SORT_ASC = 'asc';
 	private const SORT_DESC = 'desc';
 
-	private UserOptionsLookup $userOptionsManager;
-	private UserNameUtils $userNameUtils;
-	private TemplateParser $templateParser;
-	private TempUserIPLookup $tempUserIPLookup;
-	private UserIdentityLookup $userIdentityLookup;
-	private InfoManager $infoManager;
-	private DefaultPresenter $defaultPresenter;
-	private ServiceOptions $serviceOptions;
+	private readonly TemplateParser $templateParser;
+	private readonly DefaultPresenter $defaultPresenter;
+	private readonly ServiceOptions $serviceOptions;
 
 	private UserIdentity $targetUser;
 
 	public function __construct(
-		UserOptionsManager $userOptionsManager,
-		UserNameUtils $userNameUtils,
+		private readonly UserOptionsManager $userOptionsManager,
+		private readonly UserNameUtils $userNameUtils,
 		BagOStuff $srvCache,
-		TempUserIPLookup $tempUserIPLookup,
-		UserIdentityLookup $userIdentityLookup,
-		InfoManager $infoManager,
+		private readonly TempUserIPLookup $tempUserIPLookup,
+		private readonly UserIdentityLookup $userIdentityLookup,
+		private readonly InfoManager $infoManager,
 		PermissionManager $permissionManager,
 		Config $config
 	) {
@@ -65,12 +59,7 @@ class SpecialIPInfo extends FormSpecialPage {
 		$serviceOptions = new ServiceOptions( self::CONSTRUCTOR_OPTIONS, $config );
 		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
-		$this->userOptionsManager = $userOptionsManager;
-		$this->userNameUtils = $userNameUtils;
 		$this->templateParser = new TemplateParser( __DIR__ . '/templates', $srvCache );
-		$this->tempUserIPLookup = $tempUserIPLookup;
-		$this->userIdentityLookup = $userIdentityLookup;
-		$this->infoManager = $infoManager;
 		$this->defaultPresenter = new DefaultPresenter( $permissionManager );
 		$this->serviceOptions = $serviceOptions;
 	}

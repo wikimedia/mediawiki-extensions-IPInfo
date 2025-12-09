@@ -17,7 +17,6 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Rest\TokenAwareHandlerTrait;
-use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
@@ -70,51 +69,21 @@ abstract class IPInfoHandler extends SimpleHandler {
 		]
 	];
 
-	protected InfoManager $infoManager;
-
-	protected PermissionManager $permissionManager;
-
-	protected UserOptionsLookup $userOptionsLookup;
-
-	protected UserFactory $userFactory;
-
-	protected DefaultPresenter $presenter;
-
-	protected JobQueueGroup $jobQueueGroup;
-
-	protected LanguageFallback $languageFallback;
-
-	protected UserIdentityUtils $userIdentityUtils;
-
-	protected TempUserIPLookup $tempUserIPLookup;
-
-	private IPInfoPermissionManager $ipInfoPermissionManager;
-	private ReadOnlyMode $readOnlyMode;
-	private IPInfoHookRunner $ipInfoHookRunner;
+	private readonly IPInfoHookRunner $ipInfoHookRunner;
 
 	public function __construct(
-		InfoManager $infoManager,
-		PermissionManager $permissionManager,
-		UserFactory $userFactory,
-		DefaultPresenter $presenter,
-		JobQueueGroup $jobQueueGroup,
-		LanguageFallback $languageFallback,
-		UserIdentityUtils $userIdentityUtils,
-		TempUserIPLookup $tempUserIPLookup,
-		IPInfoPermissionManager $ipInfoPermissionManager,
-		ReadOnlyMode $readOnlyMode,
+		protected readonly InfoManager $infoManager,
+		protected readonly PermissionManager $permissionManager,
+		protected readonly UserFactory $userFactory,
+		protected readonly DefaultPresenter $presenter,
+		protected readonly JobQueueGroup $jobQueueGroup,
+		protected readonly LanguageFallback $languageFallback,
+		protected readonly UserIdentityUtils $userIdentityUtils,
+		protected readonly TempUserIPLookup $tempUserIPLookup,
+		private readonly IPInfoPermissionManager $ipInfoPermissionManager,
+		private readonly ReadOnlyMode $readOnlyMode,
 		HookContainer $hookContainer
 	) {
-		$this->infoManager = $infoManager;
-		$this->permissionManager = $permissionManager;
-		$this->userFactory = $userFactory;
-		$this->presenter = $presenter;
-		$this->jobQueueGroup = $jobQueueGroup;
-		$this->languageFallback = $languageFallback;
-		$this->userIdentityUtils = $userIdentityUtils;
-		$this->tempUserIPLookup = $tempUserIPLookup;
-		$this->ipInfoPermissionManager = $ipInfoPermissionManager;
-		$this->readOnlyMode = $readOnlyMode;
 		$this->ipInfoHookRunner = new IPInfoHookRunner( $hookContainer );
 	}
 

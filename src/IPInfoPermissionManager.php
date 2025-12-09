@@ -11,20 +11,11 @@ use MediaWiki\User\TempUser\TempUserConfig;
  * Service for managing IPInfo-related access checks.
  */
 class IPInfoPermissionManager {
-	private ExtensionRegistry $extensionRegistry;
-
-	private UserOptionsLookup $userOptionsLookup;
-
-	private TempUserConfig $tempUserConfig;
-
 	public function __construct(
-		ExtensionRegistry $extensionRegistry,
-		UserOptionsLookup $userOptionsLookup,
-		TempUserConfig $tempUserConfig
+		private readonly ExtensionRegistry $extensionRegistry,
+		private readonly UserOptionsLookup $userOptionsLookup,
+		private readonly TempUserConfig $tempUserConfig,
 	) {
-		$this->extensionRegistry = $extensionRegistry;
-		$this->userOptionsLookup = $userOptionsLookup;
-		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	/**

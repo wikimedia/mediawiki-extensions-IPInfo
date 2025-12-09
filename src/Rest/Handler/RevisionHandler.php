@@ -21,11 +21,9 @@ use Wikimedia\Rdbms\ReadOnlyMode;
  */
 class RevisionHandler extends AbstractRevisionHandler {
 
-	private RevisionLookup $revisionLookup;
-
 	public function __construct(
 		InfoManager $infoManager,
-		RevisionLookup $revisionLookup,
+		private readonly RevisionLookup $revisionLookup,
 		PermissionManager $permissionManager,
 		UserFactory $userFactory,
 		DefaultPresenter $presenter,
@@ -50,7 +48,6 @@ class RevisionHandler extends AbstractRevisionHandler {
 			$readOnlyMode,
 			$hookContainer
 		);
-		$this->revisionLookup = $revisionLookup;
 	}
 
 	public static function factory(

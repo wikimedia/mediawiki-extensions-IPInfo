@@ -18,18 +18,11 @@ class InfoboxHandler implements
 	SpecialContributionsBeforeMainOutputHook,
 	SpecialPageBeforeExecuteHook
 {
-	private TempUserConfig $tempUserConfig;
-	private ExtensionRegistry $extensionRegistry;
-	private IPInfoPermissionManager $ipInfoPermissionManager;
-
 	public function __construct(
-		TempUserConfig $tempUserConfig,
-		ExtensionRegistry $extensionRegistry,
-		IPInfoPermissionManager $ipInfoPermissionManager
+		private readonly TempUserConfig $tempUserConfig,
+		private readonly ExtensionRegistry $extensionRegistry,
+		private readonly IPInfoPermissionManager $ipInfoPermissionManager,
 	) {
-		$this->tempUserConfig = $tempUserConfig;
-		$this->extensionRegistry = $extensionRegistry;
-		$this->ipInfoPermissionManager = $ipInfoPermissionManager;
 	}
 
 	/**

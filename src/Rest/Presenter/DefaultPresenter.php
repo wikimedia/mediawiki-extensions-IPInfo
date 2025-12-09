@@ -17,8 +17,6 @@ use Wikimedia\Assert\Assert;
 class DefaultPresenter {
 	use AccessLevelTrait;
 
-	private PermissionManager $permissionManager;
-
 	public const IPINFO_VIEW_BASIC_RIGHT = 'ipinfo-view-basic';
 	public const IPINFO_VIEW_FULL_RIGHT = 'ipinfo-view-full';
 
@@ -66,9 +64,8 @@ class DefaultPresenter {
 	];
 
 	public function __construct(
-		PermissionManager $permissionManager
+		private readonly PermissionManager $permissionManager,
 	) {
-		$this->permissionManager = $permissionManager;
 	}
 
 	/**

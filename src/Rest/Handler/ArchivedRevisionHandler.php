@@ -23,11 +23,9 @@ use Wikimedia\Rdbms\ReadOnlyMode;
  */
 class ArchivedRevisionHandler extends AbstractRevisionHandler {
 
-	private ArchivedRevisionLookup $archivedRevisionLookup;
-
 	public function __construct(
 		InfoManager $infoManager,
-		ArchivedRevisionLookup $archivedRevisionLookup,
+		private readonly ArchivedRevisionLookup $archivedRevisionLookup,
 		PermissionManager $permissionManager,
 		UserFactory $userFactory,
 		DefaultPresenter $presenter,
@@ -52,7 +50,6 @@ class ArchivedRevisionHandler extends AbstractRevisionHandler {
 			$readOnlyMode,
 			$hookContainer
 		);
-		$this->archivedRevisionLookup = $archivedRevisionLookup;
 	}
 
 	public static function factory(

@@ -18,18 +18,11 @@ abstract class AbstractPreferencesHandler {
 	/** @var string The preference used to store if the user has agreed to the use agreement. */
 	public const IPINFO_USE_AGREEMENT = 'ipinfo-use-agreement';
 
-	private UserGroupManager $userGroupManager;
-	private ExtensionRegistry $extensionRegistry;
-	private UserOptionsManager $userOptionsManager;
-
 	public function __construct(
-		ExtensionRegistry $extensionRegistry,
-		UserGroupManager $userGroupManager,
-		UserOptionsManager $userOptionsManager
+		private readonly ExtensionRegistry $extensionRegistry,
+		private readonly UserGroupManager $userGroupManager,
+		private readonly UserOptionsManager $userOptionsManager,
 	) {
-		$this->extensionRegistry = $extensionRegistry;
-		$this->userGroupManager = $userGroupManager;
-		$this->userOptionsManager = $userOptionsManager;
 	}
 
 	/**

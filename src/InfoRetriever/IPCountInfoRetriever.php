@@ -12,10 +12,9 @@ class IPCountInfoRetriever extends BaseInfoRetriever {
 
 	public const NAME = 'ipinfo-source-ip-count';
 
-	private TempUserIPLookup $tempUserIPLookup;
-
-	public function __construct( TempUserIPLookup $tempUserIPLookup ) {
-		$this->tempUserIPLookup = $tempUserIPLookup;
+	public function __construct(
+		private readonly TempUserIPLookup $tempUserIPLookup,
+	) {
 	}
 
 	public function getName(): string {

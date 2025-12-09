@@ -7,16 +7,10 @@ use MediaWiki\User\User;
 
 class BetaFeaturePreferencesHandler {
 
-	private Config $config;
-
-	private IPInfoPermissionManager $ipInfoPermissionManager;
-
 	public function __construct(
-		Config $config,
-		IPInfoPermissionManager $ipInfoPermissionManager
+		private readonly Config $config,
+		private readonly IPInfoPermissionManager $ipInfoPermissionManager,
 	) {
-		$this->config = $config;
-		$this->ipInfoPermissionManager = $ipInfoPermissionManager;
 	}
 
 	/**
