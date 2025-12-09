@@ -41,7 +41,7 @@ class NoRevisionHandlerTest extends HandlerTestCase {
 			$services->get( 'IPInfoPermissionManager' ),
 			$services->getReadOnlyMode(),
 			$services->get( 'IPInfoAnonymousUserIPLookup' ),
-			$services->get( 'IPInfoHookRunner' )
+			$services->getHookContainer()
 		);
 	}
 

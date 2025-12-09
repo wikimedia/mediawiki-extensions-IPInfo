@@ -2,8 +2,8 @@
 
 namespace MediaWiki\IPInfo\Rest\Handler;
 
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\IPInfo\AnonymousUserIPLookup;
-use MediaWiki\IPInfo\Hook\IPInfoHookRunner;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\IPInfoPermissionManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
@@ -48,7 +48,7 @@ class LogHandler extends IPInfoHandler {
 		AnonymousUserIPLookup $anonymousUserIPLookup,
 		IPInfoPermissionManager $ipInfoPermissionManager,
 		ReadOnlyMode $readOnlyMode,
-		IPInfoHookRunner $ipInfoHookRunner
+		HookContainer $hookContainer
 	) {
 		parent::__construct(
 			$infoManager,
@@ -61,7 +61,7 @@ class LogHandler extends IPInfoHandler {
 			$tempUserIPLookup,
 			$ipInfoPermissionManager,
 			$readOnlyMode,
-			$ipInfoHookRunner
+			$hookContainer
 		);
 		$this->dbProvider = $dbProvider;
 		$this->userIdentityLookup = $userIdentityLookup;
@@ -81,7 +81,7 @@ class LogHandler extends IPInfoHandler {
 		AnonymousUserIPLookup $anonymousUserIPLookup,
 		IPInfoPermissionManager $ipInfoPermissionManager,
 		ReadOnlyMode $readOnlyMode,
-		IPInfoHookRunner $ipInfoHookRunner
+		HookContainer $hookContainer
 	): self {
 		return new self(
 			$infoManager,
@@ -97,7 +97,7 @@ class LogHandler extends IPInfoHandler {
 			$anonymousUserIPLookup,
 			$ipInfoPermissionManager,
 			$readOnlyMode,
-			$ipInfoHookRunner
+			$hookContainer
 		);
 	}
 

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\IPInfo\Rest\Handler;
 
-use MediaWiki\IPInfo\Hook\IPInfoHookRunner;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\IPInfo\InfoManager;
 use MediaWiki\IPInfo\IPInfoPermissionManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
@@ -35,7 +35,7 @@ class RevisionHandler extends AbstractRevisionHandler {
 		TempUserIPLookup $tempUserIPLookup,
 		IPInfoPermissionManager $ipInfoPermissionManager,
 		ReadOnlyMode $readOnlyMode,
-		IPInfoHookRunner $ipInfoHookRunner
+		HookContainer $hookContainer
 	) {
 		parent::__construct(
 			$infoManager,
@@ -48,7 +48,7 @@ class RevisionHandler extends AbstractRevisionHandler {
 			$tempUserIPLookup,
 			$ipInfoPermissionManager,
 			$readOnlyMode,
-			$ipInfoHookRunner
+			$hookContainer
 		);
 		$this->revisionLookup = $revisionLookup;
 	}
@@ -64,7 +64,7 @@ class RevisionHandler extends AbstractRevisionHandler {
 		TempUserIPLookup $tempUserIPLookup,
 		IPInfoPermissionManager $ipInfoPermissionManager,
 		ReadOnlyMode $readOnlyMode,
-		IPInfoHookRunner $ipInfoHookRunner
+		HookContainer $hookContainer
 	): self {
 		return new self(
 			$infoManager,
@@ -78,7 +78,7 @@ class RevisionHandler extends AbstractRevisionHandler {
 			$tempUserIPLookup,
 			$ipInfoPermissionManager,
 			$readOnlyMode,
-			$ipInfoHookRunner
+			$hookContainer
 		);
 	}
 

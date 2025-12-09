@@ -2,6 +2,7 @@
 
 namespace MediaWiki\IPInfo\Rest\Handler;
 
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\IPInfo\AccessLevelTrait;
 use MediaWiki\IPInfo\Hook\IPInfoHookRunner;
 use MediaWiki\IPInfo\InfoManager;
@@ -102,7 +103,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 		TempUserIPLookup $tempUserIPLookup,
 		IPInfoPermissionManager $ipInfoPermissionManager,
 		ReadOnlyMode $readOnlyMode,
-		IPInfoHookRunner $ipInfoHookRunner
+		HookContainer $hookContainer
 	) {
 		$this->infoManager = $infoManager;
 		$this->permissionManager = $permissionManager;
@@ -114,7 +115,7 @@ abstract class IPInfoHandler extends SimpleHandler {
 		$this->tempUserIPLookup = $tempUserIPLookup;
 		$this->ipInfoPermissionManager = $ipInfoPermissionManager;
 		$this->readOnlyMode = $readOnlyMode;
-		$this->ipInfoHookRunner = $ipInfoHookRunner;
+		$this->ipInfoHookRunner = new IPInfoHookRunner( $hookContainer );
 	}
 
 	/**

@@ -66,7 +66,7 @@ class RevisionHandlerTest extends HandlerTestCase {
 			$services->get( 'IPInfoTempUserIPLookup' ),
 			$services->get( 'IPInfoPermissionManager' ),
 			$services->getReadOnlyMode(),
-			$services->get( 'IPInfoHookRunner' )
+			$services->getHookContainer()
 		);
 	}
 

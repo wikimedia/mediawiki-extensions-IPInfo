@@ -87,7 +87,7 @@ class LogHandlerTest extends HandlerTestCase {
 			$services->get( 'IPInfoAnonymousUserIPLookup' ),
 			$services->get( 'IPInfoPermissionManager' ),
 			$services->getReadOnlyMode(),
-			$services->get( 'IPInfoHookRunner' )
+			$services->getHookContainer()
 		);
 	}
 

@@ -8,8 +8,6 @@ use MediaWiki\Permissions\Authority;
 class IPInfoHookRunner implements
 	IPInfoIPInfoHandlerHook
 {
-	public const SERVICE_NAME = 'IPInfoHookRunner';
-
 	private HookContainer $hookContainer;
 
 	public function __construct( HookContainer $hookContainer ) {
