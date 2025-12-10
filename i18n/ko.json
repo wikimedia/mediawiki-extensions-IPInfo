@@ -7,7 +7,8 @@
 			"SeoJeongHo",
 			"Suleiman the Magnificent Television",
 			"Ykhwong",
-			"YeBoy371"
+			"YeBoy371",
+			"Revi"
 		]
 	},
 	"ipinfo-extensionname": "IP 정보",
@@ -112,8 +113,8 @@
 	"right-ipinfo": "판 또는 기록 항목에 연결된 IP 주소에 관한 정보 검색",
 	"action-ipinfo-view-basic": "판 또는 기록 항목에 연결된 IP 정보의 기본 뷰에 접근할",
 	"right-ipinfo-view-basic": "판 또는 기록 항목에 연결된 IP 정보의 기본 뷰 접근",
-	"action-ipinfo-view-full": "판 또는 기록 항목에 연결된 IP 정보의 완전한 뷰에 접근할",
-	"right-ipinfo-view-full": "판 또는 기록 항목에 연결된 IP 정보의 완전한 뷰 접근",
+	"action-ipinfo-view-full": "판 또는 기록 항목에 연결된 IP 정보를 모두 볼",
+	"right-ipinfo-view-full": "판 또는 기록 항목에 연결된 IP 정보를 모두 보기",
 	"action-ipinfo-view-log": "누가 IP 정보에 접근했는지에 대한 기록 보기",
 	"right-ipinfo-view-log": "누가 IP 정보에 접근했는지에 대한 기록 보기",
 	"group-no-ipinfo": "IP 정보 도구에서 차단된 사용자",
