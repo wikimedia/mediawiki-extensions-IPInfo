@@ -7,6 +7,7 @@
 			"McDutchie",
 			"Mitsjol",
 			"Romaine",
+			"Siebrand",
 			"Sjoerddebruin",
 			"Sumurai8"
 		]
@@ -68,7 +69,7 @@
 	"ipinfo-property-label-source": "Bron",
 	"ipinfo-property-label-active-blocks": "Actieve blokkades",
 	"ipinfo-property-label-number-of-ips": "Aantal IP-adressen",
-	"ipinfo-property-tooltip-proxytypes": "Proxy’s verbergen IP-adressen. In sommige gevallen gebeurt dit automatisch, zoals bij particuliere of zakelijke proxy’s. In andere gevallen wordt het opzettelijk gedaan om de oorsprong van het IP-adres te maskeren.",
+	"ipinfo-property-tooltip-proxytypes": "Proxy's verbergen IP-adressen. Dit gebeurt in sommige gevallen automatisch, bijvoorbeeld bij residentiële of zakelijke proxy's. In andere gevallen gebruiken gebruikers proxy's bewust om de herkomst van het IP-adres te maskeren.",
 	"ipinfo-property-tooltip-connectiontype": "De techniek waarmee met het internet wordt verbonden.",
 	"ipinfo-property-tooltip-usertype": "Het soort entiteit dat eigenaar is van de internetverbinding.",
 	"ipinfo-property-tooltip-behaviors": "De specifieke soorten handeling die de apparaten op dit IP-adres hebben verricht of waarbij ze eerder betrokken zijn geweest.",
