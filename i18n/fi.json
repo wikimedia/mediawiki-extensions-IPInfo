@@ -12,7 +12,7 @@
 		]
 	},
 	"ipinfo-extensionname": "IP-tieto",
-	"ipinfo-desc": "Tarjoaa tietoja IP-osoitteesta.",
+	"ipinfo-desc": "Tarjoaa tietoja IP-osoitteista.",
 	"ipinfo-infobox-title": "IP-tiedot",
 	"ipinfo-property-label-location": "Sijainti",
 	"ipinfo-property-label-ipversion": "Versio",
