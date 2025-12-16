@@ -119,7 +119,7 @@ class AnonymousUserIPLookupTest extends MediaWikiIntegrationTestCase {
 				'cupe_comment_id' => 1,
 				'cupe_page' => 1,
 				'cupe_timestamp' => $this->getDb()->timestamp(),
-				'cupe_ip' => '1.2.3.4',
+				'cupe_ip_hex' => IPUtils::toHex( '1.2.3.4' ),
 			] )
 			->caller( __METHOD__ )
 			->execute();
@@ -153,7 +153,7 @@ class AnonymousUserIPLookupTest extends MediaWikiIntegrationTestCase {
 				'cupe_comment_id' => 1,
 				'cupe_page' => 1,
 				'cupe_timestamp' => $this->getDb()->timestamp(),
-				'cupe_ip' => '1.2.3.5',
+				'cupe_ip_hex' => IPUtils::toHex( '1.2.3.5' ),
 			] )
 			->caller( __METHOD__ )
 			->execute();

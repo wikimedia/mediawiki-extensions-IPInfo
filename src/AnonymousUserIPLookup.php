@@ -60,7 +60,7 @@ class AnonymousUserIPLookup {
 				->select( '1' )
 				->from( 'cu_changes' )
 				// T338276
-				->useIndex( 'cuc_actor_ip_time' )
+				->useIndex( 'cuc_actor_ip_hex_time' )
 				->join( 'actor', null, 'cuc_actor=actor_id' )
 				->where( [
 					'actor_name' => $ip,
@@ -76,7 +76,7 @@ class AnonymousUserIPLookup {
 				->select( '1' )
 				->from( 'cu_log_event' )
 				// T338276
-				->useIndex( 'cule_actor_ip_time' )
+				->useIndex( 'cule_actor_ip_hex_time' )
 				->join( 'actor', null, 'cule_actor=actor_id' )
 				->where( [
 					'actor_name' => $ip,
@@ -103,7 +103,7 @@ class AnonymousUserIPLookup {
 					->select( '1' )
 					->from( 'cu_private_event' )
 					// T338276
-					->useIndex( 'cupe_actor_ip_time' )
+					->useIndex( 'cupe_actor_ip_hex_time' )
 					->where(
 						$dbr->expr( 'cupe_actor', '=', $actorId )
 					)
@@ -119,9 +119,10 @@ class AnonymousUserIPLookup {
 				->select( '1' )
 				->from( 'cu_private_event' )
 				// T338276
-				->useIndex( 'cupe_actor_ip_time' )
+				->useIndex( 'cupe_actor_ip_hex_time' )
 				->where(
-					$dbr->expr( 'cupe_actor', '=', null )->and( 'cupe_ip', '=', $ip )
+					$dbr->expr( 'cupe_actor', '=', null )
+						->and( 'cupe_ip_hex', '=', IPUtils::toHex( $ip ) )
 				)
 				->limit( 1 )
 				->caller( __METHOD__ )

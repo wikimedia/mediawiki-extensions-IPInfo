@@ -254,10 +254,10 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 	}
 
 	public static function provideResults(): iterable {
-		yield 'no sorting' => [
+		yield 'no sorting (so default of IP descending)' => [
 			[],
-			[ '721', '174' ],
-			[ 'DoD Network Information Center', 'Cogent Communications' ]
+			[ '174', '721' ],
+			[ 'Cogent Communications', 'DoD Network Information Center' ]
 		];
 		yield 'sorted by organization, ascending' => [
 			[
@@ -266,6 +266,14 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 			],
 			[ '174', '721' ],
 			[ 'Cogent Communications', 'DoD Network Information Center' ]
+		];
+		yield 'sorted by organization, descending' => [
+			[
+				'wpSortDirection' => 'desc',
+				'wpSortField' => 'organization'
+			],
+			[ '721', '174' ],
+			[ 'DoD Network Information Center', 'Cogent Communications' ]
 		];
 	}
 
