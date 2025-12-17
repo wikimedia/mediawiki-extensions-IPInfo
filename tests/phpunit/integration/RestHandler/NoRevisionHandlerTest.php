@@ -210,6 +210,7 @@ class NoRevisionHandlerTest extends HandlerTestCase {
 	 * @param callable $targetProvider Callback to obtain the username to target in the request
 	 */
 	public function testExecute( $authorityProvider, $targetProvider ) {
+		$this->markTestSkippedIfExtensionNotLoaded( 'CheckUser' );
 		$authority = $authorityProvider();
 		$target = $targetProvider();
 
@@ -274,6 +275,7 @@ class NoRevisionHandlerTest extends HandlerTestCase {
 	}
 
 	public function testIPInfoHandlerRunHook() {
+		$this->markTestSkippedIfExtensionNotLoaded( 'CheckUser' );
 		$this->setTemporaryHook( 'IPInfoHandlerRun', static function (
 			string $target,
 			Authority $performer,

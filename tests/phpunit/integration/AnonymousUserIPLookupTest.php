@@ -21,6 +21,7 @@ class AnonymousUserIPLookupTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
+		$this->markTestSkippedIfExtensionNotLoaded( 'CheckUser' );
 		$this->overrideConfigValue( MainConfigNames::LogTypes, [ 'test' ] );
 	}
 
