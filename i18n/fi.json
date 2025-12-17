@@ -12,7 +12,7 @@
 		]
 	},
 	"ipinfo-extensionname": "IP-tieto",
-	"ipinfo-desc": "Tarjoaa tietoja IP-osoitteesta.",
+	"ipinfo-desc": "Tarjoaa tietoja IP-osoitteista.",
 	"ipinfo-infobox-title": "IP-tiedot",
 	"ipinfo-infobox-temporary-account-help": "Tähän tilapäiseen tunnukseen liittyy useita IP-osoitteita. Näet tiedot viimeksi käytetystä IP-osoitteesta. [[Special:IPInfo/$1|Katso kaikkien IP-osoitteiden tiedot]].",
 	"ipinfo-property-label-location": "Sijainti",
