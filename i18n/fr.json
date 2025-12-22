@@ -78,7 +78,7 @@
 	"ipinfo-property-label-source": "Source",
 	"ipinfo-property-label-active-blocks": "Blocages actifs",
 	"ipinfo-property-label-number-of-ips": "Nombre d'adresses IP",
-	"ipinfo-property-tooltip-proxytypes": "Les serveurs mandataires cachent les adresses IP. Dans certains cas cela se produit automatiquement, comme pour les serveurs mandataires résidentiels ou d’entreprises, dans d’autres cas, c’est fait intentionnellement afin de masquer l’origine de l’adresse IP.",
+	"ipinfo-property-tooltip-proxytypes": "Les serveurs mandataires cachent les adresses IP. Ce masquage est automatique dans certains cas, par exemple avec les serveurs mandataires résidentiels ou d’entreprises. Dans d’autres cas, c les utilisateurs ont recours intentionnellement aux serveurs proxy pour dissimuler l'origine de leur adresse IP.",
 	"ipinfo-property-tooltip-connectiontype": "La technologie via laquelle cette personne se connecte à l’internet.",
 	"ipinfo-property-tooltip-usertype": "Le type d’entité qui détient cette connexion internet.",
 	"ipinfo-property-tooltip-behaviors": "Cette adresse IP a été impliquée ou précédemment associée à ces types spécifiques d'activités.",

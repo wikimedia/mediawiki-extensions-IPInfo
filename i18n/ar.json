@@ -74,7 +74,7 @@
 	"ipinfo-property-label-source": "المصدر",
 	"ipinfo-property-label-active-blocks": "عمليات المنع المفعلة",
 	"ipinfo-property-label-number-of-ips": "عدد عناوين IP",
-	"ipinfo-property-tooltip-proxytypes": "يخفي الوكلاء عناوين بروتوكول الإنترنت. يحصل هذا آلياً في بعض الحالات مثل حالة الوكلاء المقيمين أو المتعاونين، وفي حالات أخرى تكون عملية إحفاء العنوان الأصيل غير مقصودة.",
+	"ipinfo-property-tooltip-proxytypes": "تُخفي الخوادم الوكيلة عناوين IP. يحدث هذا تلقائيًا في بعض الحالات، كما هو الحال مع الخوادم الوكيلة المنزلية أو الخاصة بالشركات. وفي حالات أخرى، يستخدم المستخدمون الخوادم الوكيلة عمدًا لإخفاء مصدر عنوان IP.",
 	"ipinfo-property-tooltip-connectiontype": "التقانة التي يستعملونها للوصول إلى الإنترنت.",
 	"ipinfo-property-tooltip-usertype": "نوع الكيان الذي يملك الاتصال مع الإنترنت.",
 	"ipinfo-property-tooltip-behaviors": "أنواع محددة من الأنشطة التي شاركت فيها الأجهزة على عنوان IP هذا أو كانت مرتبطة بها سابقًا.",
