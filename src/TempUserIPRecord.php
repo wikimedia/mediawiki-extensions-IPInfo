@@ -8,12 +8,6 @@ use Wikimedia\Assert\PreconditionException;
  * Holds information about an IP address used by a temporary account.
  */
 class TempUserIPRecord {
-	private string $ip;
-
-	private ?int $revisionId;
-
-	private ?int $logId;
-
 	/**
 	 * Initialize a new TempUserIPRecord instance with the given parameters.
 	 *
@@ -25,14 +19,15 @@ class TempUserIPRecord {
 	 *
 	 * @throws PreconditionException If both $revisionId and $logId are `null`.
 	 */
-	public function __construct( string $ip, ?int $revisionId, ?int $logId ) {
+	public function __construct(
+		private readonly string $ip,
+		private readonly ?int $revisionId,
+		private readonly ?int $logId,
+	) {
 		Assert::precondition(
 			$revisionId !== null || $logId !== null,
 			'Either the $revisionId or the $logId parameter must be non-null'
 		);
-		$this->ip = $ip;
-		$this->revisionId = $revisionId;
-		$this->logId = $logId;
 	}
 
 	/**

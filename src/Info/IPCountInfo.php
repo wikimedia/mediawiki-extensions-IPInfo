@@ -6,10 +6,9 @@ namespace MediaWiki\IPInfo\Info;
  */
 class IPCountInfo {
 
-	private ?int $count;
-
-	public function __construct( ?int $count ) {
-		$this->count = $count;
+	public function __construct(
+		private readonly ?int $count,
+	) {
 	}
 
 	/**

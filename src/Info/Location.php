@@ -5,16 +5,10 @@ namespace MediaWiki\IPInfo\Info;
 use JsonSerializable;
 
 class Location implements JsonSerializable {
-	private int $id;
-
-	private string $label;
-
 	public function __construct(
-		int $id,
-		string $label
+		private readonly int $id,
+		private readonly string $label,
 	) {
-		$this->id = $id;
-		$this->label = $label;
 	}
 
 	public function getId(): int {

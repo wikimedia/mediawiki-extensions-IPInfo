@@ -8,7 +8,9 @@ use MediaWiki\Permissions\Authority;
 class IPInfoHookRunner implements
 	IPInfoIPInfoHandlerHook
 {
-	public function __construct( private readonly HookContainer $hookContainer ) {
+	public function __construct(
+		private readonly HookContainer $hookContainer,
+	) {
 	}
 
 	/**

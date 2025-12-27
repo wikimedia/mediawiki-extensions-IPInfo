@@ -5,19 +5,11 @@ namespace MediaWiki\IPInfo\Info;
 use JsonSerializable;
 
 class ContributionInfo implements JsonSerializable {
-	private int $numLocalEdits;
-
-	private int $numRecentEdits;
-	private int $numDeletedEdits;
-
 	public function __construct(
-		int $numLocalEdits = 0,
-		int $numRecentEdits = 0,
-		int $numDeletedEdits = 0
+		private readonly int $numLocalEdits = 0,
+		private readonly int $numRecentEdits = 0,
+		private readonly int $numDeletedEdits = 0,
 	) {
-		$this->numLocalEdits = $numLocalEdits;
-		$this->numRecentEdits = $numRecentEdits;
-		$this->numDeletedEdits = $numDeletedEdits;
 	}
 
 	public function getNumLocalEdits(): int {

@@ -8,16 +8,12 @@ use MediaWiki\User\UserIdentityValue;
 use Wikimedia\IPUtils;
 
 class InfoManager {
-	/** @var InfoRetriever[] */
-	private $retrievers;
-
 	/**
 	 * @param InfoRetriever[] $retrievers
 	 */
 	public function __construct(
-		array $retrievers
+		private readonly array $retrievers,
 	) {
-		$this->retrievers = $retrievers;
 	}
 
 	/**

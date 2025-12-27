@@ -5,38 +5,14 @@ namespace MediaWiki\IPInfo\Info;
 use JsonSerializable;
 
 class ProxyType implements JsonSerializable {
-	/** @var bool|null */
-	private $isAnonymousVpn;
-
-	/** @var bool|null */
-	private $isPublicProxy;
-
-	/** @var bool|null */
-	private $isResidentialProxy;
-
-	/** @var bool|null */
-	private $isLegitimateProxy;
-
-	/** @var bool|null */
-	private $isTorExitNode;
-
-	/** @var bool|null */
-	private $isHostingProvider;
-
 	public function __construct(
-		?bool $isAnonymousVpn,
-		?bool $isPublicProxy,
-		?bool $isResidentialProxy,
-		?bool $isLegitimateProxy,
-		?bool $isTorExitNode,
-		?bool $isHostingProvider
+		private readonly ?bool $isAnonymousVpn,
+		private readonly ?bool $isPublicProxy,
+		private readonly ?bool $isResidentialProxy,
+		private readonly ?bool $isLegitimateProxy,
+		private readonly ?bool $isTorExitNode,
+		private readonly ?bool $isHostingProvider,
 	) {
-		$this->isAnonymousVpn = $isAnonymousVpn;
-		$this->isPublicProxy = $isPublicProxy;
-		$this->isResidentialProxy = $isResidentialProxy;
-		$this->isLegitimateProxy = $isLegitimateProxy;
-		$this->isTorExitNode = $isTorExitNode;
-		$this->isHostingProvider = $isHostingProvider;
 	}
 
 	public function isAnonymousVpn(): ?bool {

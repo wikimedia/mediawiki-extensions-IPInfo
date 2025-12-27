@@ -6,10 +6,9 @@ use JsonSerializable;
 
 class BlockInfo implements JsonSerializable {
 
-	private int $numActiveBlocks;
-
-	public function __construct( int $numActiveBlocks = 0 ) {
-		$this->numActiveBlocks = $numActiveBlocks;
+	public function __construct(
+		private readonly int $numActiveBlocks = 0,
+	) {
 	}
 
 	public function getNumActiveBlocks(): int {

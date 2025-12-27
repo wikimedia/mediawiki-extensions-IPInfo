@@ -6,24 +6,6 @@ use JsonSerializable;
 
 class IPoidInfo implements JsonSerializable {
 
-	/** @var string[]|null */
-	private $behaviors;
-
-	/** @var string[]|null */
-	private $risks;
-
-	/** @var string[]|null */
-	private $connectionTypes;
-
-	/** @var string[]|null */
-	private $tunnelOperators;
-
-	/** @var string[]|null */
-	private $proxies;
-
-	/** @var int|null */
-	private $numUsersOnThisIP;
-
 	/**
 	 * @param string[]|null $behaviors
 	 * @param string[]|null $risks
@@ -33,19 +15,13 @@ class IPoidInfo implements JsonSerializable {
 	 * @param int|null $numUsersOnThisIP
 	 */
 	public function __construct(
-		?array $behaviors = null,
-		?array $risks = null,
-		?array $connectionTypes = null,
-		?array $tunnelOperators = null,
-		?array $proxies = null,
-		?int $numUsersOnThisIP = null
+		private readonly ?array $behaviors = null,
+		private readonly ?array $risks = null,
+		private readonly ?array $connectionTypes = null,
+		private readonly ?array $tunnelOperators = null,
+		private readonly ?array $proxies = null,
+		private readonly ?int $numUsersOnThisIP = null,
 	) {
-		$this->behaviors = $behaviors;
-		$this->risks = $risks;
-		$this->connectionTypes = $connectionTypes;
-		$this->tunnelOperators = $tunnelOperators;
-		$this->proxies = $proxies;
-		$this->numUsersOnThisIP = $numUsersOnThisIP;
 	}
 
 	/**
