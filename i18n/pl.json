@@ -67,7 +67,7 @@
 	"ipinfo-property-label-source": "Źródło",
 	"ipinfo-property-label-active-blocks": "Aktywne blokady",
 	"ipinfo-property-label-number-of-ips": "Liczba adresów",
-	"ipinfo-property-tooltip-proxytypes": "Serwery proxy ukrywają właściwe adresy IP. W niektórych przypadkach dzieje się to automatycznie, jak w przypadku niektórych osiedlowych czy firmowych serwerów proxy, w innych przypadkach może to być celowe maskowanie pochodzenia adresu IP.",
+	"ipinfo-property-tooltip-proxytypes": "Serwery proxy ukrywają właściwe adresy IP. W niektórych przypadkach dzieje się to automatycznie, na przykład w przypadku niektórych osiedlowych czy firmowych serwerów proxy. W innych przypadkach użytkownicy korzystają z proxy celem maskowania źródłowego adresu IP.",
 	"ipinfo-property-tooltip-connectiontype": "Technologia, za pomocą której łączą się z Internetem.",
 	"ipinfo-property-tooltip-usertype": "Rodzaj podmiotu będącego właścicielem połączenia internetowego.",
 	"ipinfo-property-tooltip-behaviors": "Rodzaje działań, jakie urządzenia korzystające z tego adresu IP wykonywały, bądź z którymi były wcześniej powiązane.",
