@@ -29,6 +29,21 @@ function setUpDocumentForTest( ipPanelWidget ) {
 	$qunitFixture.html( node );
 }
 
+function getMockData( ipoidData ) {
+	return {
+		subject: '1.2.3.4',
+		'language-fallback': 'en',
+		data: {
+			'ipinfo-source-geoip2': { countryNames: {}, location: {}, asn: '12345', organization: 'Test Org' },
+			'ipinfo-source-block': { numActiveBlocks: 0 },
+			'ipinfo-source-contributions': { numLocalEdits: 0, numRecentEdits: 0, numDeletedEdits: 0 },
+			'ipinfo-source-ipversion': { version: 'ipv4' },
+			'ipinfo-source-ip-count': { numIPAddresses: 1 },
+			'ipinfo-source-ipoid': ipoidData
+		}
+	};
+}
+
 QUnit.test( 'Displays error correctly when request fails with translated message', ( assert ) => {
 	mw.config.set( 'wgContentLanguage', 'en' );
 
@@ -83,6 +98,61 @@ QUnit.test( 'Displays error correctly when request fails without translated mess
 			'IPInfo error widget contains correct text'
 		);
 
+		done();
+	} );
+} );
+
+QUnit.test( 'Displays IPoid data when populated', ( assert ) => {
+	mw.config.set( 'wgContentLanguage', 'en' );
+
+	const deferred = $.Deferred();
+	const ipPanelWidget = new IpInfoInfoboxWidget( deferred.promise() );
+
+	ipPanelWidget.getLocation = () => 'Test Location';
+	ipPanelWidget.getRisks = ( risks ) => risks;
+
+	setUpDocumentForTest( ipPanelWidget );
+
+	deferred.resolve( getMockData( {
+		behaviors: [ 'TestBehavior' ],
+		risks: [ 'TestRisk' ],
+		connectionTypes: [],
+		tunnelOperators: [],
+		proxies: [],
+		numUsersOnThisIP: 5
+	} ) );
+
+	const done = assert.async();
+	waitUntilElementAppears( '.ext-ipinfo-widget-properties' ).then( () => {
+		const fullText = ipPanelWidget.$element.text();
+		assert.true( fullText.includes( 'TestBehavior' ), 'Behaviors data is rendered' );
+		assert.true( fullText.includes( 'TestRisk' ), 'Risks data is rendered' );
+		done();
+	} );
+} );
+
+QUnit.test( 'Does not fail when IPoid data is missing/empty', ( assert ) => {
+	mw.config.set( 'wgContentLanguage', 'en' );
+
+	const deferred = $.Deferred();
+	const ipPanelWidget = new IpInfoInfoboxWidget( deferred.promise() );
+
+	ipPanelWidget.getLocation = () => 'Test Location';
+
+	setUpDocumentForTest( ipPanelWidget );
+
+	deferred.resolve( getMockData( {
+		behaviors: null,
+		risks: null,
+		connectionTypes: null,
+		tunnelOperators: null,
+		proxies: null,
+		numUsersOnThisIP: null
+	} ) );
+
+	const done = assert.async();
+	waitUntilElementAppears( '.ext-ipinfo-widget-properties' ).then( () => {
+		assert.true( ipPanelWidget.$element.text().includes( '12345' ), 'Widget rendered standard data successfully' );
 		done();
 	} );
 } );

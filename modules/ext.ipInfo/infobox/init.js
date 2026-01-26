@@ -115,10 +115,14 @@ function initInfoboxWidget() {
 				if ( data ) {
 					const context = hasOpenInfoboxQueryParam ? 'popup' : 'infobox';
 
-					const hasGeoData = Object.keys( data.data[ 'ipinfo-source-geoip2' ] )
-						.some( ( k ) => data.data[ 'ipinfo-source-geoip2' ][ k ] !== null );
-					const hasIpoidData = Object.keys( data.data[ 'ipinfo-source-ipoid' ] )
-						.some( ( k ) => data.data[ 'ipinfo-source-ipoid' ][ k ] !== null );
+					const hasData = !!data.data;
+					const hasGeoData = hasData &&
+						Object.keys( data.data[ 'ipinfo-source-geoip2' ] )
+							.some( ( k ) => data.data[ 'ipinfo-source-geoip2' ][ k ] !== null );
+					const ipoidData = hasData && data.data[ 'ipinfo-source-ipoid' ];
+					const hasIpoidData = ipoidData ?
+						Object.keys( ipoidData ).some( ( k ) => ipoidData[ k ] !== null ) :
+						false;
 
 					const dataSources = [];
 					if ( hasGeoData ) {

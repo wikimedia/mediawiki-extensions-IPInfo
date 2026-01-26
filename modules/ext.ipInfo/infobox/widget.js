@@ -69,35 +69,35 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 	}
 
 	// IPoid-provided data
-	let behaviors = info.data[ 'ipinfo-source-ipoid' ].behaviors;
-	if ( behaviors ) {
-		if ( behaviors.length ) {
-			behaviors = behaviors.join( '</br>' );
-		} else {
-			behaviors = null;
-		}
-	}
-	let risks = info.data[ 'ipinfo-source-ipoid' ].risks;
-	risks = risks ? this.getRisks( info.data[ 'ipinfo-source-ipoid' ].risks ) : risks;
-	risks = risks ? risks.join( '<br />' ) : risks;
-	let connectionTypes = info.data[ 'ipinfo-source-ipoid' ].connectionTypes;
-	connectionTypes = connectionTypes ? this.getConnectionTypes( info.data[ 'ipinfo-source-ipoid' ].connectionTypes ) : connectionTypes;
-	connectionTypes = connectionTypes ? connectionTypes.join( '<br />' ) : connectionTypes;
-	let tunnelOperators = info.data[ 'ipinfo-source-ipoid' ].tunnelOperators;
-	if ( tunnelOperators ) {
-		if ( tunnelOperators.length ) {
-			tunnelOperators = tunnelOperators.join( '</br>' );
-		} else {
-			tunnelOperators = null;
-		}
-	}
-	let proxies = info.data[ 'ipinfo-source-ipoid' ].proxies;
-	if ( proxies ) {
-		if ( proxies.length ) {
-			proxies = proxies.join( '</br>' );
-		} else {
-			proxies = null;
-		}
+	let behaviors, risks, connectionTypes, tunnelOperators, proxies, numUsersOnThisIP;
+
+	const ipoidData = info.data && info.data[ 'ipinfo-source-ipoid' ];
+	const hasIpoidData = ipoidData ?
+		Object.keys( ipoidData ).some( ( k ) => ipoidData[ k ] !== null ) :
+		false;
+
+	if ( hasIpoidData ) {
+		behaviors = ipoidData.behaviors && ipoidData.behaviors.length ?
+			ipoidData.behaviors.join( '</br>' ) :
+			null;
+
+		risks = ipoidData.risks ? this.getRisks( ipoidData.risks ) : null;
+		risks = risks ? risks.join( '<br />' ) : risks;
+
+		connectionTypes = ipoidData.connectionTypes ?
+			this.getConnectionTypes( ipoidData.connectionTypes ) :
+			null;
+		connectionTypes = connectionTypes ? connectionTypes.join( '<br />' ) : connectionTypes;
+
+		tunnelOperators = ipoidData.tunnelOperators && ipoidData.tunnelOperators.length ?
+			ipoidData.tunnelOperators.join( '</br>' ) :
+			null;
+
+		proxies = ipoidData.proxies && ipoidData.proxies.length ?
+			ipoidData.proxies.join( '</br>' ) :
+			null;
+
+		numUsersOnThisIP = ipoidData.numUsersOnThisIP;
 	}
 
 	const ipversion = info.data[ 'ipinfo-source-ipversion' ].version;
@@ -155,7 +155,7 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 					mw.msg( 'ipinfo-property-tooltip-proxies' ) ),
 				this.generatePropertyMarkup(
 					'userCount',
-					info.data[ 'ipinfo-source-ipoid' ].numUsersOnThisIP,
+					numUsersOnThisIP,
 					mw.msg( 'ipinfo-property-label-usercount' ),
 					mw.msg( 'ipinfo-property-tooltip-usercount' )
 				)
