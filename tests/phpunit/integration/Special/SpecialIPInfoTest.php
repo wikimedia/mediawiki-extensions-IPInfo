@@ -2,8 +2,6 @@
 namespace MediaWiki\IPInfo\Tests\Integration\Special;
 
 use Closure;
-use DOMDocument;
-use DOMNode;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Exception\PermissionsError;
 use MediaWiki\Exception\UserBlockedError;
@@ -13,8 +11,10 @@ use MediaWiki\IPInfo\Special\SpecialIPInfo;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;
 use SpecialPageTestBase;
-use Wikimedia\Parsoid\Utils\DOMCompat;
-use Wikimedia\Parsoid\Utils\DOMUtils;
+use Wikimedia\Parsoid\Core\DOMCompat;
+use Wikimedia\Parsoid\DOM\Document;
+use Wikimedia\Parsoid\DOM\Node;
+use Wikimedia\Parsoid\Ext\DOMUtils;
 
 /**
  * @covers \MediaWiki\IPInfo\Special\SpecialIPInfo
@@ -278,30 +278,30 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 
 	/**
 	 * Convenience function to retrieve the ASN stored in the table.
-	 * @param DOMDocument $doc The DOM document to retrieve data from.
+	 * @param Document $doc The DOM document to retrieve data from.
 	 * @return string[] Contents of the table cells holding the ASN.
 	 */
-	private static function getAsns( DOMDocument $doc ): array {
+	private static function getAsns( Document $doc ): array {
 		$nodes = (array)DOMCompat::querySelectorAll(
 			$doc,
 			".ext-ipinfo-special-ipinfo__table > tbody > tr > td:nth-of-type(3)"
 		);
 
-		return array_map( static fn ( DOMNode $node ) => $node->textContent, $nodes );
+		return array_map( static fn ( Node $node ) => $node->textContent, $nodes );
 	}
 
 	/**
 	 * Convenience function to retrieve the organization names stored in the table.
-	 * @param DOMDocument $doc The DOM document to retrieve data from.
+	 * @param Document $doc The DOM document to retrieve data from.
 	 * @return string[] Contents of the table cells holding the organization name.
 	 */
-	private static function getOrganizations( DOMDocument $doc ): array {
+	private static function getOrganizations( Document $doc ): array {
 		$nodes = (array)DOMCompat::querySelectorAll(
 			$doc,
 			".ext-ipinfo-special-ipinfo__table > tbody > tr > td:nth-of-type(4)"
 		);
 
-		return array_map( static fn ( DOMNode $node ) => $node->textContent, $nodes );
+		return array_map( static fn ( Node $node ) => $node->textContent, $nodes );
 	}
 
 	/**
