@@ -59,13 +59,18 @@ class SpecialIPInfo extends FormSpecialPage {
 		private readonly PermissionManager $permissionManager,
 		Config $config
 	) {
-		parent::__construct( 'IPInfo', 'ipinfo' );
+		parent::__construct( 'IPInfo' );
 		$serviceOptions = new ServiceOptions( self::CONSTRUCTOR_OPTIONS, $config );
 		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
 		$this->templateParser = new TemplateParser( __DIR__ . '/templates', $srvCache );
 		$this->defaultPresenter = new DefaultPresenter( $this->permissionManager );
 		$this->serviceOptions = $serviceOptions;
+	}
+
+	/** @inheritDoc */
+	public function getRestriction(): string {
+		return 'ipinfo';
 	}
 
 	/** @inheritDoc */
