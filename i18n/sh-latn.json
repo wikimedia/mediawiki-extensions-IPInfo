@@ -42,6 +42,7 @@
 	"ipinfo-preference-enable": "Prikaži alat za informacije o IP adresi za neregistrovane suradnike na stranici Posebno:Doprinosi.",
 	"ipinfo-preference-use-agreement": "Slažem se s uporabom ovih informacija za ophođenje i antivandalizam.",
 	"prefs-ipinfo": "Podaci o IP adresi",
+	"group-no-ipinfo-member": "{{GENDER:$1|bez pristupa alatu za IP podatke}}",
 	"ipinfo-deleted-edits-url-text": "Izbrisani doprinosi",
 	"ipinfo-popup-link-text": "Sve informacije o IP adresi"
 }
