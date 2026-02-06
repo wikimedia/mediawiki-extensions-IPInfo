@@ -73,7 +73,10 @@ function initInfoboxWidget() {
 	$( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).on( 'click keypress', saveCollapsibleUserOption );
 
 	const loadIpInfo = function ( targetName ) {
-		let id = $( '.mw-contributions-list [data-mw-revid]' ).first().attr( 'data-mw-revid' );
+		// Get the ID from the first revision line belonging to the target user
+		let id = $( '.mw-contributions-list [data-mw-revid]' ).filter( function () {
+			return $( this ).find( '.mw-tempuserlink' ).text().trim() === targetName;
+		} ).first().attr( 'data-mw-revid' );
 		let endpoint = mw.config.get( 'wgCanonicalSpecialPageName' ) === 'DeletedContributions' ?
 			'archivedrevision' : 'revision';
 
