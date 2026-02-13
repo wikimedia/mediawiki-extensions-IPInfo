@@ -73,11 +73,21 @@ function initInfoboxWidget() {
 	$( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).on( 'click keypress', saveCollapsibleUserOption );
 
 	const loadIpInfo = function ( targetName ) {
-		// Get the ID from the first revision line belonging to the target user
-		let id = $( '.mw-contributions-list [data-mw-revid]' ).filter( function () {
-			return $( this ).find( '.mw-tempuserlink' ).text().trim() === targetName;
-		} ).first().attr( 'data-mw-revid' );
-		let endpoint = mw.config.get( 'wgCanonicalSpecialPageName' ) === 'DeletedContributions' ?
+		let id;
+		const page = mw.config.get( 'wgCanonicalSpecialPageName' );
+		if ( page === 'IPContributions' ) {
+			// Special:IPContributions will never match the target user with the revisions,
+			// as it shows edits made from those accounts from temporary accounts. Pick the
+			// first one arbitrarily; widget instantiation makes a similar accomodation and
+			// also ignores the page target/revision owner match.
+			id = $( '.mw-contributions-list [data-mw-revid]' ).first().attr( 'data-mw-revid' );
+		} else {
+			// Get the ID from the first revision line belonging to the target user
+			id = $( '.mw-contributions-list [data-mw-revid]' ).filter( function () {
+				return $( this ).find( '.mw-tempuserlink' ).text().trim() === targetName;
+			} ).first().attr( 'data-mw-revid' );
+		}
+		let endpoint = page === 'DeletedContributions' ?
 			'archivedrevision' : 'revision';
 
 		if ( !id ) {
