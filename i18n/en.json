@@ -50,6 +50,7 @@
 	"ipinfo-property-value-proxytype-islegitimateproxy": "Legitimate proxy",
 	"ipinfo-property-value-proxytype-istorexitnode": "Tor exit node",
 	"ipinfo-property-value-proxytype-ishostingprovider": "Hosting provider",
+	"ipinfo-property-value-risk-adfraud": "Ad fraud",
 	"ipinfo-property-value-risk-callbackproxy": "Callback proxy",
 	"ipinfo-property-value-risk-geomismatch": "Geo mismatch",
 	"ipinfo-property-value-risk-loginbruteforce": "Login bruteforce",

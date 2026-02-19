@@ -58,6 +58,7 @@
 	"ipinfo-property-value-proxytype-islegitimateproxy": "Possible type of proxy returned. Legitimate, as in conforming to known principles, or established or accepted rules or standards; valid. For more see https://maxmind.github.io/GeoIP2-java/doc/v2.9.0/com/maxmind/geoip2/record/Traits.html#isLegitimateProxy",
 	"ipinfo-property-value-proxytype-istorexitnode": "Possible type of proxy returned",
 	"ipinfo-property-value-proxytype-ishostingprovider": "Possible type of proxy returned",
+	"ipinfo-property-value-risk-adfraud": "Possible risk type returned. For more see https://docs.spur.us/data-types?id=risk-enums",
 	"ipinfo-property-value-risk-callbackproxy": "Possible risk type returned. For more see https://docs.spur.us/data-types?id=risk-enums",
 	"ipinfo-property-value-risk-geomismatch": "Possible risk type returned. For more see https://docs.spur.us/data-types?id=risk-enums",
 	"ipinfo-property-value-risk-loginbruteforce": "Possible risk type returned. For more see https://docs.spur.us/data-types?id=risk-enums",

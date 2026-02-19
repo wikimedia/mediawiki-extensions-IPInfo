@@ -313,6 +313,7 @@ class SpecialIPInfo extends FormSpecialPage {
 					$riskType = mb_strtolower( $riskType );
 
 					// See https://docs.spur.us/data-types?id=risk-enums
+					// * ipinfo-property-value-risk-adfraud
 					// * ipinfo-property-value-risk-callbackproxy
 					// * ipinfo-property-value-risk-geomismatch
 					// * ipinfo-property-value-risk-loginbruteforce

@@ -295,6 +295,7 @@
 				"ipinfo-property-value-proxytype-islegitimateproxy",
 				"ipinfo-property-value-proxytype-istorexitnode",
 				"ipinfo-property-value-proxytype-ishostingprovider",
+				"ipinfo-property-value-risk-adfraud",
 				"ipinfo-property-value-risk-callbackproxy",
 				"ipinfo-property-value-risk-geomismatch",
 				"ipinfo-property-value-risk-loginbruteforce",
