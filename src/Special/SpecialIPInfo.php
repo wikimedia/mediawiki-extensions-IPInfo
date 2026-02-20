@@ -352,7 +352,7 @@ class SpecialIPInfo extends FormSpecialPage {
 				'behaviors' => $info['data']['ipinfo-source-ipoid']['behaviors'] ?? '',
 				'risks' => $risks,
 				'connectiontypes' => $connectionTypes,
-				'tunneloperators' => $info['data']['ipinfo-source-ipoid']['tunneloperators'] ?? [],
+				'tunneloperators' => $info['data']['ipinfo-source-ipoid']['tunnelOperators'] ?? [],
 				'proxies' => $info['data']['ipinfo-source-ipoid']['proxies'] ?? [],
 				'usercount' => $userCount !== null ? $this->getLanguage()->formatNum( $userCount ) : ''
 			];
