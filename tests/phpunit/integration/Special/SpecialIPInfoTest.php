@@ -304,6 +304,65 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 		return array_map( static fn ( Node $node ) => $node->textContent, $nodes );
 	}
 
+	public function testShouldRejectIPLookupWithoutRight(): void {
+		$performer = $this->getMutableTestUser()->getAuthority();
+
+		$this->setGroupPermissions( [
+			'user' => [
+				'ipinfo' => true,
+				DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT => true,
+			],
+		] );
+
+		$this->getServiceContainer()
+			->getUserOptionsManager()
+			->setOption( $performer->getUser(), PreferencesHandler::IPINFO_USE_AGREEMENT, '1' );
+
+		[ $html ] = $this->executeSpecialPage(
+			'127.0.0.1',
+			new FauxRequest(),
+			'qqx',
+			$performer
+		);
+
+		$doc = DOMUtils::parseHTML( $html );
+
+		$this->assertNull( DOMCompat::querySelector( $doc, '.ext-ipinfo-special-ipinfo__table' ) );
+		$this->assertStringContainsString( '(ipinfo-special-ipinfo-no-right-ip)', $html );
+	}
+
+	public function testShouldShowResultsForIPLookupWithRight(): void {
+		$performer = $this->getMutableTestUser( [ 'ipinfo-viewer' ] )->getAuthority();
+
+		$this->setGroupPermissions( [
+			'ipinfo-viewer' => [
+				'ipinfo' => true,
+				DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT => true,
+				DefaultPresenter::IPINFO_VIEW_FULL_RIGHT => true,
+				'ipinfo-view-arbitrary-ip' => true,
+			],
+		] );
+
+		$this->getServiceContainer()
+			->getUserOptionsManager()
+			->setOption( $performer->getUser(), PreferencesHandler::IPINFO_USE_AGREEMENT, '1' );
+
+		[ $html ] = $this->executeSpecialPage(
+			'214.78.120.5',
+			new FauxRequest(),
+			'qqx',
+			$performer
+		);
+
+		$doc = DOMUtils::parseHTML( $html );
+
+		$this->assertNotNull( DOMCompat::querySelector( $doc, '.ext-ipinfo-special-ipinfo__table' ) );
+		$this->assertCount(
+			1,
+			DOMCompat::querySelectorAll( $doc, '.ext-ipinfo-special-ipinfo__table > tbody > tr' )
+		);
+	}
+
 	/**
 	 * @dataProvider provideInvalidUsers
 	 */
@@ -327,21 +386,18 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 		);
 
 		$doc = DOMUtils::parseHTML( $html );
-		$errors = (array)DOMCompat::querySelectorAll( $doc, '[role=alert]' );
 
 		$this->assertNull( DOMCompat::querySelector( $doc, '.ext-ipinfo-special-ipinfo__table' ) );
-		$this->assertSame( "($errorMessageKey: $userName)", $errors[1]->textContent );
+		$this->assertStringContainsString(
+			"($errorMessageKey: $userName)",
+			$html
+		);
 	}
 
 	public static function provideInvalidUsers(): iterable {
 		// phpcs:disable Squiz.Scope.StaticThisUsage.Found,MediaWiki.Usage.StaticClosure.StaticClosure
 		yield 'named user' => [
 			fn (): string => $this->getTestUser()->getUserIdentity()->getName(),
-			'htmlform-user-not-valid'
-		];
-
-		yield 'anonymous user' => [
-			fn (): string => '127.0.0.1',
 			'htmlform-user-not-valid'
 		];
 
@@ -352,7 +408,7 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 					->getTempUserCreator()
 					->acquireAndStashName( $req->getSession() );
 			},
-			'htmlform-user-not-exists'
+			'htmlform-user-not-valid'
 		];
 		// phpcs:enable
 	}

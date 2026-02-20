@@ -64,14 +64,30 @@
 		"ipinfo",
 		"ipinfo-view-basic",
 		"ipinfo-view-full",
-		"ipinfo-view-log"
+		"ipinfo-view-log",
+		"ipinfo-view-arbitrary-ip"
 	],
+	"GroupPermissions": {
+		"sysop": {
+			"ipinfo-view-arbitrary-ip": true
+		},
+		"steward": {
+			"ipinfo-view-arbitrary-ip": true
+		}
+	},
 	"RevokePermissions": {
 		"no-ipinfo": {
 			"ipinfo": true,
 			"ipinfo-view-basic": true,
 			"ipinfo-view-full": true,
-			"ipinfo-view-log": true
+			"ipinfo-view-log": true,
+			"ipinfo-view-arbitrary-ip": true
+		}
+	},
+	"RateLimits": {
+		"ipinfo-ip-lookup": {
+			"&can-bypass": true,
+			"user": [ 100, 86400 ]
 		}
 	},
 	"DefaultUserOptions": {

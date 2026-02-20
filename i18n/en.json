@@ -136,15 +136,20 @@
 	"ipinfo-blocklist-url-text": "Block list",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 deleted edit|$1 deleted edits|0=No deleted edits}}",
 	"ipinfo-special-ipinfo": "IP information",
-	"ipinfo-special-ipinfo-legend": "Look up IP information about all IP addresses used by a temporary user. A maximum of $1 {{PLURAL:$1|result|results}} are displayed.",
+	"ipinfo-special-ipinfo-legend": "Look up IP information about all IP addresses used by a temporary user, or an arbitrary IP address. A maximum of $1 {{PLURAL:$1|result|results}} are displayed.",
 	"ipinfo-deleted-edits-url-text": "Deleted contributions",
 	"ipinfo-special-ipinfo-table-caption": "IP information for $1",
-	"ipinfo-special-ipinfo-target": "Target username:",
+	"ipinfo-special-ipinfo-target": "Target username or IP address:",
 	"ipinfo-special-ipinfo-user-tool-links": "For $1",
 	"ipinfo-special-ipinfo-sort-explainer": "The buttons in the table headers can be used to sort the table by that column's value.",
 	"ipinfo-special-ipinfo-column-ip": "IP",
 	"ipinfo-special-ipinfo-no-results": "No IP information is available for $1.",
 	"ipinfo-popup-link-text": "View all IP information",
 	"ipinfo-help-text": "The information displayed comes from MaxMind and [https://docs.spur.us/data-types Spur]. It might not be fully accurate.",
-	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Learn more about this feature]"
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Learn more about this feature]",
+	"ipinfo-special-ipinfo-ip-legend": "Look up IP information for an IP address.",
+	"ipinfo-special-ipinfo-no-right-ip": "You do not have permission to look up IP information for arbitrary IP addresses.",
+	"ipinfo-special-ipinfo-table-caption-ip": "IP information for $1",
+	"right-ipinfo-view-arbitrary-ip": "Look up IP information for arbitrary IP addresses on Special:IPInfo",
+	"action-ipinfo-view-arbitrary-ip": "look up IP information for arbitrary IP addresses"
 }

@@ -37,10 +37,12 @@
 			<tbody>
 			{{#rows}}
 				<tr>
+					{{#showAddress}}
 					<td {{#revId}} data-mw-revid="{{.}}"{{/revId}}{{#logId}} data-mw-logid="{{.}}"{{/logId}}>
 						{{! Use an invisible user link to trigger CheckUser's IP reveal functionality. }}
 						<a class="mw-tempuserlink" aria-hidden="true" data-mw-target="{{target}}">{{target}}</a>
 					</td>
+					{{/showAddress}}
 					<td>{{location}}</td>
 					<td>{{asn}}</td>
 					<td>{{organization}}</td>

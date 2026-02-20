@@ -147,12 +147,17 @@
 	"ipinfo-special-ipinfo-legend": "Special page description shown on Special:IPInfo.\n\nParameters:\n* $1 - the maximum number of results that will be shown.",
 	"ipinfo-deleted-edits-url-text": "Link text to a relevant deleted edits list",
 	"ipinfo-special-ipinfo-table-caption": "Caption for the results table with IP information shown on Special:IPInfo",
-	"ipinfo-special-ipinfo-target": "Label for the username input on Special:IPInfo",
+	"ipinfo-special-ipinfo-target": "Label for the username or IP address input on Special:IPInfo",
 	"ipinfo-special-ipinfo-user-tool-links": "Special page subtitle shown on Special:IPInfo.\n\nParameters:\n* $1 - user name of the temporary user whose information is shown.",
 	"ipinfo-special-ipinfo-sort-explainer": "Hidden message displayed to assistive tools such as screen readers",
 	"ipinfo-special-ipinfo-column-ip": "Column header on Special:IPInfo for the column holding IP addresses",
 	"ipinfo-special-ipinfo-no-results": "Message shown on Special:IPInfo when no IP information is available for the temporary user being looked up.\n\nParameters:\n* $1 - user name of the temporary user whose information is shown.",
 	"ipinfo-popup-link-text": "Link text used for the Special:IPInfo link in the IPInfo popup",
 	"ipinfo-help-text": "Disclaimer about the accuracy of the data, shown in the IP information table on Special:Contributions. MaxMind and Spur are the names of the vendors that provide the data.",
-	"ipinfo-learn-more-link": "Help link shown in the IP information table on Special:Contributions"
+	"ipinfo-learn-more-link": "Help link shown in the IP information table on Special:Contributions",
+	"ipinfo-special-ipinfo-ip-legend": "Legend text shown on Special:IPInfo when looking up an IP address directly",
+	"ipinfo-special-ipinfo-no-right-ip": "Error message shown when a user lacks the ipinfo-view-arbitrary-ip right",
+	"ipinfo-special-ipinfo-table-caption-ip": "Caption for the results table with IP information shown on Special:IPInfo when looking up a single IP address.\n\nParameters:\n* $1 - the IP address whose information is shown.",
+	"right-ipinfo-view-arbitrary-ip": "{{doc-right|ipinfo-view-arbitrary-ip}}",
+	"action-ipinfo-view-arbitrary-ip": "{{doc-action|ipinfo-view-arbitrary-ip}}"
 }

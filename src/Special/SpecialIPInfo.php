@@ -3,6 +3,7 @@ namespace MediaWiki\IPInfo\Special;
 
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Exception\ThrottledError;
 use MediaWiki\Exception\UserBlockedError;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\TemplateParser;
@@ -14,6 +15,7 @@ use MediaWiki\IPInfo\InfoRetriever\IPoidInfoRetriever;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\IPInfo\TempUserIPLookup;
 use MediaWiki\Linker\Linker;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\SpecialPage\FormSpecialPage;
@@ -26,7 +28,8 @@ use Wikimedia\IPUtils;
 use Wikimedia\ObjectCache\BagOStuff;
 
 /**
- * A special page that displays IP information for all IP addresses used by a temporary user.
+ * A special page that displays IP information for all IP addresses used by a temporary user,
+ * or for a single arbitrary IP address.
  */
 class SpecialIPInfo extends FormSpecialPage {
 	private const CONSTRUCTOR_OPTIONS = [
@@ -44,6 +47,7 @@ class SpecialIPInfo extends FormSpecialPage {
 	private readonly ServiceOptions $serviceOptions;
 
 	private UserIdentity $targetUser;
+	private ?string $targetIp = null;
 
 	public function __construct(
 		private readonly UserOptionsManager $userOptionsManager,
@@ -52,7 +56,7 @@ class SpecialIPInfo extends FormSpecialPage {
 		private readonly TempUserIPLookup $tempUserIPLookup,
 		private readonly UserIdentityLookup $userIdentityLookup,
 		private readonly InfoManager $infoManager,
-		PermissionManager $permissionManager,
+		private readonly PermissionManager $permissionManager,
 		Config $config
 	) {
 		parent::__construct( 'IPInfo', 'ipinfo' );
@@ -60,7 +64,7 @@ class SpecialIPInfo extends FormSpecialPage {
 		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
 		$this->templateParser = new TemplateParser( __DIR__ . '/templates', $srvCache );
-		$this->defaultPresenter = new DefaultPresenter( $permissionManager );
+		$this->defaultPresenter = new DefaultPresenter( $this->permissionManager );
 		$this->serviceOptions = $serviceOptions;
 	}
 
@@ -131,8 +135,8 @@ class SpecialIPInfo extends FormSpecialPage {
 				'type' => 'user',
 				'label-message' => 'ipinfo-special-ipinfo-target',
 				'excludenamed' => true,
+				'ipallowed' => true,
 				'autocomplete' => 'on',
-				'exists' => true,
 				'required' => true
 			]
 		];
@@ -159,9 +163,14 @@ class SpecialIPInfo extends FormSpecialPage {
 	}
 
 	protected function alterForm( HTMLForm $form ): void {
-		$legend = $this->msg( 'ipinfo-special-ipinfo-legend' )
-			->numParams( $this->serviceOptions->get( 'IPInfoMaxDistinctIPResults' ) )
-			->parseAsBlock();
+		$target = $this->getRequest()->getVal( 'wpTarget', $this->par ?? '' );
+		if ( IPUtils::isValid( $target ) ) {
+			$legend = $this->msg( 'ipinfo-special-ipinfo-ip-legend' )->parseAsBlock();
+		} else {
+			$legend = $this->msg( 'ipinfo-special-ipinfo-legend' )
+				->numParams( $this->serviceOptions->get( 'IPInfoMaxDistinctIPResults' ) )
+				->parseAsBlock();
+		}
 
 		$form->addHeaderHtml( $legend );
 	}
@@ -201,7 +210,29 @@ class SpecialIPInfo extends FormSpecialPage {
 	 * @return Status
 	 */
 	public function onSubmit( array $data ): Status {
-		$targetName = $data[self::TARGET_FIELD];
+		$targetName = trim( $data[self::TARGET_FIELD] );
+
+		// Arbitrary IP address lookup
+		if ( IPUtils::isValid( $targetName ) ) {
+			if ( !$this->permissionManager->userHasRight(
+				$this->getUser(), 'ipinfo-view-arbitrary-ip'
+			) ) {
+				return Status::newFatal( 'ipinfo-special-ipinfo-no-right-ip' );
+			}
+
+			if ( $this->getUser()->pingLimiter( 'ipinfo-ip-lookup' ) ) {
+				throw new ThrottledError();
+			}
+
+			$this->targetIp = IPUtils::sanitizeIP( $targetName );
+
+			$agreementStatus = $this->maybeAcceptAgreement( $data );
+			if ( $agreementStatus !== null ) {
+				return $agreementStatus;
+			}
+
+			return Status::newGood();
+		}
 
 		if ( !$this->userNameUtils->isTemp( $targetName ) ) {
 			return Status::newFatal( 'htmlform-user-not-valid', $targetName );
@@ -224,7 +255,11 @@ class SpecialIPInfo extends FormSpecialPage {
 
 	/** @inheritDoc */
 	public function onSuccess(): void {
-		$this->onSuccessForTempUser();
+		if ( $this->targetIp !== null ) {
+			$this->onSuccessForIp();
+		} else {
+			$this->onSuccessForTempUser();
+		}
 	}
 
 	/**
@@ -360,6 +395,42 @@ class SpecialIPInfo extends FormSpecialPage {
 	}
 
 	/**
+	 * Display IP information for a single arbitrary IP address.
+	 */
+	private function onSuccessForIp(): void {
+		LoggerFactory::getInstance( 'IPInfo' )->info(
+			'Special:IPInfo arbitrary IP lookup by {user}',
+			[ 'user' => $this->getUser()->getName() ]
+		);
+
+		$out = $this->getOutput();
+		$out->addModuleStyles( [ 'codex-styles', 'ext.ipInfo.specialIpInfo' ] );
+
+		$ip = $this->targetIp;
+		$info = $this->infoManager->retrieveFor( $ip, $ip );
+		$presented = $this->defaultPresenter->present( $info, $this->getContext()->getUser() );
+
+		$prettyIp = IPUtils::prettifyIP( $ip );
+
+		// Exclude the address column header since the IP is already shown in the caption
+		$headers = array_values( array_filter(
+			$this->getTableHeaders( false ),
+			static fn ( array $header ) => $header['name'] !== 'address'
+		) );
+
+		$out->addHTML(
+			$this->templateParser->processTemplate( 'IPInfo', [
+				'caption' => $this->msg( 'ipinfo-special-ipinfo-table-caption-ip', $prettyIp )->text(),
+				'sortExplainerCaption' => '',
+				'showAddress' => false,
+				'target' => $prettyIp,
+				'headers' => $headers,
+				'rows' => [ $this->buildTableRow( $presented, $ip ) ],
+			] )
+		);
+	}
+
+	/**
 	 * Display IP information for all IP addresses used by a temporary user.
 	 */
 	private function onSuccessForTempUser(): void {
@@ -439,6 +510,7 @@ class SpecialIPInfo extends FormSpecialPage {
 				// Describe the functionality of sorting buttons to assistive technologies
 				// such as screen readers.
 				'sortExplainerCaption' => $this->msg( 'ipinfo-special-ipinfo-sort-explainer' )->text(),
+				'showAddress' => true,
 				'target' => $this->targetUser->getName(),
 				'headers' => $tableHeaders,
 				'rows' => $tableRows,
