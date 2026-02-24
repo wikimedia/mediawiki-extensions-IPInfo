@@ -54,6 +54,7 @@
 	"ipinfo-property-value-proxytype-islegitimateproxy": "Legitiimi välityspalvelin",
 	"ipinfo-property-value-proxytype-istorexitnode": "Tor-verkon viimeinen solmu",
 	"ipinfo-property-value-proxytype-ishostingprovider": "Verkkoisännöintipalvelu",
+	"ipinfo-property-value-risk-adfraud": "Mainospetos",
 	"ipinfo-property-value-risk-geomismatch": "Sijaintiristiriita",
 	"ipinfo-property-value-risk-loginbruteforce": "Bruteforce-kirjautuminen",
 	"ipinfo-property-value-risk-tunnel": "Tunneli",
