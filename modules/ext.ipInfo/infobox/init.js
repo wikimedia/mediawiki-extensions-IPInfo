@@ -95,8 +95,18 @@ function initInfoboxWidget() {
 				return $( this ).find( '.mw-tempuserlink' ).text().trim() === targetName;
 			} ).first().attr( 'data-mw-revid' );
 		}
-		let endpoint = page === 'DeletedContributions' ?
-			'archivedrevision' : 'revision';
+
+		let endpoint = 'revision';
+		if (
+			page === 'DeletedContributions' ||
+			// Special:IPContributions uses the isArchive parameter for deleted contributions
+			(
+				page === 'IPContributions' &&
+				Number( new URLSearchParams( window.location.search ).get( 'isArchive' ) )
+			)
+		) {
+			endpoint = 'archivedrevision';
+		}
 
 		if ( !id ) {
 			// If no revision was found and the target is a temp account or IP address,
