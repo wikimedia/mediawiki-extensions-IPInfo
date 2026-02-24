@@ -8,8 +8,10 @@ use MediaWikiIntegrationTestCase;
  * @covers \MediaWiki\IPInfo\HookHandler\PopupHandler
  */
 class PopupHandlerTest extends MediaWikiIntegrationTestCase {
-	public function testFactory(): void {
-		$handler = PopupHandler::factory();
+	public function testSuccessfullyConstructs(): void {
+		$handler = new PopupHandler(
+			$this->getServiceContainer()->getService( 'IPInfoPermissionManager' ),
+		);
 
 		$this->assertInstanceOf( PopupHandler::class, $handler );
 	}

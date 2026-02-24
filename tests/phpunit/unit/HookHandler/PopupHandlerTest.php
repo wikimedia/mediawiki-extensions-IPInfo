@@ -70,7 +70,7 @@ class PopupHandlerTest extends MediaWikiUnitTestCase {
 			->with( $performer )
 			->willReturn( $canViewIPInfo );
 
-		$popupHandler = new PopupHandler( $ipInfoPermissionManager, null );
+		$popupHandler = new PopupHandler( $ipInfoPermissionManager );
 
 		$popupHandler->onBeforePageDisplay( $outputPage, $this->createMock( Skin::class ) );
 	}

@@ -5,7 +5,6 @@ namespace MediaWiki\IPInfo\HookHandler;
 use MediaWiki\Hook\SpecialContributionsBeforeMainOutputHook;
 use MediaWiki\HTMLForm\CollapsibleFieldsetLayout;
 use MediaWiki\IPInfo\IPInfoPermissionManager;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\SpecialPage\Hook\SpecialPageBeforeExecuteHook;
@@ -35,15 +34,6 @@ class InfoboxHandler implements
 	 * @param SpecialPage $sp
 	 */
 	private function addInfoBox( $username, $sp ): void {
-		// T309363: hide the panel on mobile until T268177 is resolved
-		$services = MediaWikiServices::getInstance();
-		if (
-			$this->extensionRegistry->isLoaded( 'MobileFrontend' ) &&
-			$services->getService( 'MobileFrontend.Context' )->shouldDisplayMobileView()
-		) {
-			return;
-		}
-
 		$accessingUser = $sp->getAuthority();
 		if ( !$this->ipInfoPermissionManager->hasEnabledIPInfo( $accessingUser ) ) {
 			return;

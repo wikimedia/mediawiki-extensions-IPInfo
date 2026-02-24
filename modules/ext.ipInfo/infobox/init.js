@@ -35,20 +35,27 @@ function initInfoboxWidget() {
 
 	eventLogger.logIpCopy();
 
+	// T268177: On mobile, don't persist infobox expanded state to conserve screen space.
+	const isMobile = !!mw.config.get( 'wgMFMode' );
+
 	const saveCollapsibleUserOption = function ( e ) {
 		// Only trigger on enter and space keypresses
 		if ( e.type === 'keypress' && e.which !== 13 && e.which !== 32 ) {
 			return;
 		}
 
-		// Store user preference in mw.storage; if it's removed from the codebase,
-		// it'll need to be cleaned up via mw.storage.remove
 		if ( !$( this ).closest( '.mw-collapsible' ).hasClass( 'mw-collapsed' ) ) {
-			mw.storage.set( 'mw-ipinfo-infobox-expanded', 1 );
+			if ( !isMobile ) {
+				// Store user preference in mw.storage; if it's removed from the codebase,
+				// it'll need to be cleaned up via mw.storage.remove
+				mw.storage.set( 'mw-ipinfo-infobox-expanded', 1 );
+			}
 			// Log when the infobox is manually expanded
 			eventLogger.log( 'expand', 'infobox' );
 		} else {
-			mw.storage.set( 'mw-ipinfo-infobox-expanded', 0 );
+			if ( !isMobile ) {
+				mw.storage.set( 'mw-ipinfo-infobox-expanded', 0 );
+			}
 			// Log when the infobox is manually collasped
 			eventLogger.log( 'collapse', 'infobox' );
 		}
@@ -63,9 +70,10 @@ function initInfoboxWidget() {
 	// Do this before we attach the click handler so we can use click() to expand
 	// the infobox without setting the user preference
 	const hasOpenInfoboxQueryParam = new URLSearchParams( window.location.search ).get( 'openInfobox' ) === 'true';
+	// T268177: On mobile, always start collapsed — don't restore expanded state from storage.
 	if ( $( '.ext-ipinfo-collapsible-layout' ).hasClass( 'mw-collapsed' ) &&
 		( hasOpenInfoboxQueryParam ||
-		!!Number( mw.storage.get( 'mw-ipinfo-infobox-expanded' ) ) ) ) {
+		( !isMobile && !!Number( mw.storage.get( 'mw-ipinfo-infobox-expanded' ) ) ) ) ) {
 		$( '.ext-ipinfo-panel-layout .mw-collapsible-toggle' ).trigger( 'click' );
 	}
 
