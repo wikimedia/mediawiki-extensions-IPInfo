@@ -33,8 +33,9 @@
 	"ipinfo-special-ipinfo": "Informazioni IP",
 	"ipinfo-deleted-edits-url-text": "Contributi cancellati",
 	"ipinfo-special-ipinfo-table-caption": "Informazioni IP per $1",
-	"ipinfo-special-ipinfo-target": "Nome utente di destinazione:",
+	"ipinfo-special-ipinfo-target": "Nome utente o indirizzo IP di destinazione:",
 	"ipinfo-special-ipinfo-user-tool-links": "Per $1",
 	"ipinfo-special-ipinfo-column-ip": "IP",
-	"ipinfo-special-ipinfo-no-results": "Non sono disponibili informazioni IP per $1."
+	"ipinfo-special-ipinfo-no-results": "Non sono disponibili informazioni IP per $1.",
+	"ipinfo-special-ipinfo-table-caption-ip": "Informazioni IP per $1"
 }

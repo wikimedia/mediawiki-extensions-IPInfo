@@ -140,7 +140,7 @@
 	"ipinfo-special-ipinfo-legend": "Hae IP-tiedot kaikista tilapäisen käyttäjän käyttämistä IP-osoitteista. Enintään $1 {{PLURAL:$1| tulos|tulosta}} näytetään.",
 	"ipinfo-deleted-edits-url-text": "Poistetut muokkaukset",
 	"ipinfo-special-ipinfo-table-caption": "IP-tiedot käyttäjästä $1",
-	"ipinfo-special-ipinfo-target": "Käyttäjänimi:",
+	"ipinfo-special-ipinfo-target": "Käyttäjänimi tai IP-osoite:",
 	"ipinfo-special-ipinfo-user-tool-links": "Käyttäjästä $1",
 	"ipinfo-special-ipinfo-sort-explainer": "Sarakeotsikoiden painikkeilla voidaan lajitella taulukko kyseisen sarakkeen arvon mukaan.",
 	"ipinfo-special-ipinfo-column-ip": "IP",

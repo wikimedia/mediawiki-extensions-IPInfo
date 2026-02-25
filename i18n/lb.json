@@ -54,10 +54,11 @@
 	"ipinfo-special-ipinfo": "IP-Informatiounen",
 	"ipinfo-deleted-edits-url-text": "Geläscht Kontributiounen",
 	"ipinfo-special-ipinfo-table-caption": "IP-Informatioune fir $1",
-	"ipinfo-special-ipinfo-target": "Zilbenotzernumm:",
+	"ipinfo-special-ipinfo-target": "Zilbenotzernumm oder -IP-Adress:",
 	"ipinfo-special-ipinfo-user-tool-links": "Fir $1",
 	"ipinfo-special-ipinfo-column-ip": "IP",
 	"ipinfo-special-ipinfo-no-results": "Et si keng IP-Informatioune fir de Benotzer $1 disponibel.",
 	"ipinfo-popup-link-text": "All IP-Informatioune weisen",
-	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Méi iwwer dës Funktioun gewuer ginn]"
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Méi iwwer dës Funktioun gewuer ginn]",
+	"ipinfo-special-ipinfo-table-caption-ip": "IP-Informatioune fir $1"
 }

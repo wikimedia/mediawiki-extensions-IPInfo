@@ -92,5 +92,8 @@
 	"log-action-filter-ipinfo-view_infobox": "Δεδομένα που προβάλλονται στο πλαίσιο πληροφοριών",
 	"log-action-filter-ipinfo-view_popup": "Τα δεδομένα προβάλλονται σε αναδυόμενο παράθυρο",
 	"ipinfo-property-tooltip-asn": "Ένα μοναδικό αναγνωριστικό για δίκτυα που έχουν εκχωρηθεί σε μια περιοχή και περαιτέρω σε οργανισμούς όπως κυβερνήσεις και ISP",
-	"ipinfo-blocklist-url-text": "Κατάλογος φραγών"
+	"ipinfo-blocklist-url-text": "Κατάλογος φραγών",
+	"ipinfo-special-ipinfo-target": "Όνομα χρήστη ή διεύθυνση IP-στόχου:",
+	"ipinfo-special-ipinfo-ip-legend": "Αναζητήστε πληροφορίες IP για μια διεύθυνση IP.",
+	"ipinfo-special-ipinfo-no-right-ip": "Δεν έχετε άδεια να αναζητήσετε πληροφορίες IP για αυθαίρετες διευθύνσεις IP."
 }
