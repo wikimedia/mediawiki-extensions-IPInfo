@@ -46,6 +46,7 @@
 	"ipinfo-property-value-proxytype-islegitimateproxy": "Proxy legitime",
 	"ipinfo-property-value-proxytype-istorexitnode": "Nodo de exito de Tor",
 	"ipinfo-property-value-proxytype-ishostingprovider": "Fornitor de albergamento",
+	"ipinfo-property-value-risk-adfraud": "Fraude publicitari",
 	"ipinfo-property-value-risk-callbackproxy": "Servitor proxy de retorno",
 	"ipinfo-property-value-risk-geomismatch": "Discordantia geographic",
 	"ipinfo-property-value-risk-loginbruteforce": "Apertura de session per fortia brute",
@@ -139,5 +140,10 @@
 	"ipinfo-special-ipinfo-no-results": "Nulle information IP es disponibile pro $1.",
 	"ipinfo-popup-link-text": "Vider tote le information IP",
 	"ipinfo-help-text": "Le information monstrate proveni de MaxMind e de [https://docs.spur.us/data-types Spur]. Illo pote non esser totalmente precise.",
-	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Leger plus sur iste function]"
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Leger plus sur iste function]",
+	"ipinfo-special-ipinfo-ip-legend": "Consultar information IP pro un adresse IP.",
+	"ipinfo-special-ipinfo-no-right-ip": "Tu non ha le permission de consultar information IP pro adresses IP arbitari.",
+	"ipinfo-special-ipinfo-table-caption-ip": "Information IP pro $1",
+	"right-ipinfo-view-arbitrary-ip": "Consultar information IP pro adresses IP arbitrari sur Special:IPInfo",
+	"action-ipinfo-view-arbitrary-ip": "consultar information IP pro adresses IP arbitrari sur Special:IPInfo"
 }

@@ -1,11 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"Palinasin",
 			"Tamzin"
 		]
 	},
 	"right-ipinfo": "pali pi nimi ala la ona li ken sona lon nanpa IP",
 	"right-ipinfo-view-basic": "pali pi nimi ala la ona li ken sona lili lon nanpa IP",
 	"right-ipinfo-view-full": "pali pi nimi ala la ona li ken sona mute lon nanpa IP",
-	"right-ipinfo-view-log": "sona pi nanpa IP la ona li ken lukin e pini lukin"
+	"right-ipinfo-view-log": "sona pi nanpa IP la ona li ken lukin e pini lukin",
+	"ipinfo-special-ipinfo-table-caption-ip": "jan $1 la ni li sona pi nanpa IP"
 }
