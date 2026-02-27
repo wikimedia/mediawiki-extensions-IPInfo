@@ -50,6 +50,7 @@
 	"ipinfo-property-value-proxytype-islegitimateproxy": "שרת מתווך (פרוקסי) לגיטימי",
 	"ipinfo-property-value-proxytype-istorexitnode": "צומת יציאה של Tor",
 	"ipinfo-property-value-proxytype-ishostingprovider": "ספק אירוח",
+	"ipinfo-property-value-risk-adfraud": "הונאת פרסומות",
 	"ipinfo-property-value-risk-callbackproxy": "שרת מתווך למענה",
 	"ipinfo-property-value-risk-geomismatch": "אי־התאמה גאוגרפית",
 	"ipinfo-property-value-risk-loginbruteforce": "כניסה כוחנית (bruteforce)",
@@ -143,5 +144,10 @@
 	"ipinfo-special-ipinfo-no-results": "אין מידע IP זמין עבור $1.",
 	"ipinfo-popup-link-text": "הצגת כל מידע ה־IP",
 	"ipinfo-help-text": "המידע המוצג מגיע מ־MaxMind ומ־[https://docs.spur.us/data-types Spur]. יכול להיות שהוא לא לגמרי מדויק.",
-	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info מידע נוסף על האפשרות הזאת]"
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info מידע נוסף על האפשרות הזאת]",
+	"ipinfo-special-ipinfo-ip-legend": "חיפוש מידע על IP עבור כתובת IP.",
+	"ipinfo-special-ipinfo-no-right-ip": "אין לך הרשאה לחפש מידע IP עבור כתובות IP שרירותיות.",
+	"ipinfo-special-ipinfo-table-caption-ip": "מידע IP על $1",
+	"right-ipinfo-view-arbitrary-ip": "חפש מידע IP עבור כתובות IP שרירותיות ב־Special:IPInfo",
+	"action-ipinfo-view-arbitrary-ip": "לחפש מידע IP עבור כתובות IP שרירותיות"
 }

@@ -119,8 +119,9 @@
 	"ipinfo-special-ipinfo-legend": "Увид у IP информације о свим IP адресама које је користио привремени налог. Највише $1 {{PLURAL:$1|резултата}} се приказује.",
 	"ipinfo-deleted-edits-url-text": "Избрисани доприноси",
 	"ipinfo-special-ipinfo-table-caption": "IP информације за $1",
-	"ipinfo-special-ipinfo-target": "Циљано корисничко име:",
+	"ipinfo-special-ipinfo-target": "Циљано корисничко име/IP адреса:",
 	"ipinfo-special-ipinfo-user-tool-links": "За $1",
 	"ipinfo-special-ipinfo-no-results": "Нема IP информација за $1.",
-	"ipinfo-popup-link-text": "Види све IP информације"
+	"ipinfo-popup-link-text": "Види све IP информације",
+	"ipinfo-special-ipinfo-table-caption-ip": "IP информације за $1"
 }
