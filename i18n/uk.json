@@ -52,6 +52,7 @@
 	"ipinfo-property-value-proxytype-islegitimateproxy": "Легітимний проксі",
 	"ipinfo-property-value-proxytype-istorexitnode": "Вихідний вузол Tor",
 	"ipinfo-property-value-proxytype-ishostingprovider": "Хостинг-провайдер",
+	"ipinfo-property-value-risk-adfraud": "Рекламне шахрайство",
 	"ipinfo-property-value-risk-callbackproxy": "Проксі-сервер зворотного виклику",
 	"ipinfo-property-value-risk-geomismatch": "Географічна невідповідність",
 	"ipinfo-property-value-risk-loginbruteforce": "Брутфорс входу",
@@ -59,6 +60,7 @@
 	"ipinfo-property-value-risk-webscraping": "Вебскрейпінг",
 	"ipinfo-property-value-risk-unknown": "Невідомо",
 	"ipinfo-property-value-connectiontype-desktop": "Стаціонарний",
+	"ipinfo-property-value-connectiontype-iot": "Інтернет речей",
 	"ipinfo-property-value-connectiontype-mobile": "Мобільний",
 	"ipinfo-property-value-connectiontype-unknown": "Невідомо",
 	"ipinfo-property-label-source": "Джерело",
@@ -145,5 +147,10 @@
 	"ipinfo-special-ipinfo-no-results": "Немає інформації про IP для $1.",
 	"ipinfo-popup-link-text": "Переглянути всю інформацію про IP",
 	"ipinfo-help-text": "Наведена інформація походить з MaxMind і [https://docs.spur.us/data-types Spur]. Вона може бути не зовсім точною.",
-	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Докладніше про цю функцію]"
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Докладніше про цю функцію]",
+	"ipinfo-special-ipinfo-ip-legend": "Пошук інформації про IP-адресу.",
+	"ipinfo-special-ipinfo-no-right-ip": "У вас немає дозволу на пошук IP-інформації для довільних IP-адрес.",
+	"ipinfo-special-ipinfo-table-caption-ip": "IP-інформація про $1",
+	"right-ipinfo-view-arbitrary-ip": "Пошук інформації про IP-адреси для довільних IP-адрес на Special:IPInfo",
+	"action-ipinfo-view-arbitrary-ip": "пошук інформації про IP для довільних IP-адрес"
 }

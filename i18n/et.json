@@ -86,14 +86,19 @@
 	"ipinfo-blocklist-url-text": "Blokeerimisloend",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 kustutatud muudatus|$1 kustutatud muudatust|0=Kustutatud muudatused puuduvad}}",
 	"ipinfo-special-ipinfo": "IP-aadresside teave",
-	"ipinfo-special-ipinfo-legend": "Leia kõik IP-aadressid, mida ajutine konto on kasutanud, ja teave nende IP-aadresside kohta. Kuvatakse kõige rohkem $1 {{PLURAL:$1|tulemus|tulemust}}.",
+	"ipinfo-special-ipinfo-legend": "Päri teavet IP-aadresside kohta. Pärida saab ajutise konto kasutatud kõiki IP-aadresse või suvalist IP-aadressi. Kuvatakse kõige rohkem $1 {{PLURAL:$1|tulemus|tulemust}}.",
 	"ipinfo-deleted-edits-url-text": "Kustutatud kaastöö",
 	"ipinfo-special-ipinfo-table-caption": "Kasutaja $1 IP-aadresside teave",
-	"ipinfo-special-ipinfo-target": "Päritav kasutajanimi:",
+	"ipinfo-special-ipinfo-target": "Päritav kasutajanimi või IP-aadress:",
 	"ipinfo-special-ipinfo-user-tool-links": "$1",
 	"ipinfo-special-ipinfo-column-ip": "IP-aadress",
 	"ipinfo-special-ipinfo-no-results": "Kasutaja $1 kohta ei ole IP-aadresside teavet saadaval.",
 	"ipinfo-popup-link-text": "Vaata IP-aadressi kogu teavet",
 	"ipinfo-help-text": "Kuvatakse andmeid, mis on pärit MaxMindist ja [https://docs.spur.us/data-types Spurist]. Need ei pruugi olla täiesti täpsed.",
-	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Loe veel selle funktsiooni kohta]"
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Loe veel selle funktsiooni kohta]",
+	"ipinfo-special-ipinfo-ip-legend": "Leia teave IP-aadressi kohta.",
+	"ipinfo-special-ipinfo-no-right-ip": "Sul pole õigust pärida suvalise IP-aadressi teavet.",
+	"ipinfo-special-ipinfo-table-caption-ip": "IP-aadressi $1 teave",
+	"right-ipinfo-view-arbitrary-ip": "Pärida leheküljel Special:IPInfo suvalise IP-aadressi teavet",
+	"action-ipinfo-view-arbitrary-ip": "leheküljel Special:IPInfo suvalise IP-aadressi teavet pärida"
 }

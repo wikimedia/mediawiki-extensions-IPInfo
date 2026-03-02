@@ -136,15 +136,20 @@
 	"ipinfo-blocklist-url-text": "Lista zablokowanych",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 usunięta edycja|$1 usunięte edycje|$1 usuniętych edycji|0=Brak usuniętych edycji}}",
 	"ipinfo-special-ipinfo": "Informacje o IP",
-	"ipinfo-special-ipinfo-legend": "Wyszukaj informacje o wszystkich adresach IP wykorzystywanych przez konto tymczasowe. Wyświetlono maksymalnie $1 {{PLURAL:$1|wynik|wyniki|wyników}}.",
+	"ipinfo-special-ipinfo-legend": "Wyszukaj informacje o wszystkich adresach IP wykorzystywanych przez konto tymczasowe albo o podanych adresach IP. Wyświetlono maksymalnie $1 {{PLURAL:$1|wynik|wyniki|wyników}}.",
 	"ipinfo-deleted-edits-url-text": "Usunięty wkład",
 	"ipinfo-special-ipinfo-table-caption": "Informacje o IP $1",
-	"ipinfo-special-ipinfo-target": "Nazwa użytkownika:",
+	"ipinfo-special-ipinfo-target": "Nazwa użytkownika lub adres IP:",
 	"ipinfo-special-ipinfo-user-tool-links": "Dla $1",
 	"ipinfo-special-ipinfo-sort-explainer": "Przyciski w nagłówkach tabeli mogą zostać wykorzystanie to sortowania danych według wartości w kolumnie.",
 	"ipinfo-special-ipinfo-column-ip": "IP",
 	"ipinfo-special-ipinfo-no-results": "Brak informacji o adresie IP $1.",
 	"ipinfo-popup-link-text": "Wyświetl wszystkie informacje o IP",
 	"ipinfo-help-text": "Wyświetlane informacje pochodzą z MaxMind i [https://docs.spur.us/data-types Spur]. Mogą nie być w pełni dokładne.",
-	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Dowiedz się więcej o tej funkcji]"
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Dowiedz się więcej o tej funkcji]",
+	"ipinfo-special-ipinfo-ip-legend": "Wyszukaj informacje dotyczące adresu IP.",
+	"ipinfo-special-ipinfo-no-right-ip": "Nie masz uprawnień do wyszukiwania informacji o adresach IP dla dowolnie podawanych adresów IP.",
+	"ipinfo-special-ipinfo-table-caption-ip": "Informacje o IP $1",
+	"right-ipinfo-view-arbitrary-ip": "Wyszukiwanie informacji o podanych dowolnych adresach IP poprzez Specjalna:IPInfo",
+	"action-ipinfo-view-arbitrary-ip": "wyszukiwania informacji o podanych dowolnych adresach IP"
 }
