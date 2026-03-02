@@ -78,23 +78,23 @@ ipInfoInfoboxWidget.prototype.buildMarkup = function ( info ) {
 
 	if ( hasIpoidData ) {
 		behaviors = ipoidData.behaviors && ipoidData.behaviors.length ?
-			ipoidData.behaviors.join( '</br>' ) :
+			ipoidData.behaviors.join( '<br>' ) :
 			null;
 
 		risks = ipoidData.risks ? this.getRisks( ipoidData.risks ) : null;
-		risks = risks ? risks.join( '<br />' ) : risks;
+		risks = risks ? risks.join( '<br>' ) : risks;
 
 		connectionTypes = ipoidData.connectionTypes ?
 			this.getConnectionTypes( ipoidData.connectionTypes ) :
 			null;
-		connectionTypes = connectionTypes ? connectionTypes.join( '<br />' ) : connectionTypes;
+		connectionTypes = connectionTypes ? connectionTypes.join( '<br>' ) : connectionTypes;
 
 		tunnelOperators = ipoidData.tunnelOperators && ipoidData.tunnelOperators.length ?
-			ipoidData.tunnelOperators.join( '</br>' ) :
+			ipoidData.tunnelOperators.join( '<br>' ) :
 			null;
 
 		proxies = ipoidData.proxies && ipoidData.proxies.length ?
-			ipoidData.proxies.join( '</br>' ) :
+			ipoidData.proxies.join( '<br>' ) :
 			null;
 
 		numUsersOnThisIP = ipoidData.numUsersOnThisIP;
