@@ -17,7 +17,7 @@
 	},
 	"ipinfo-extensionname": "{{name}}\nThe name of the extension",
 	"ipinfo-desc": "{{desc|name=IPInfo|url=https://www.mediawiki.org/wiki/Extension:IPInfo}}",
-	"ipinfo-infobox-title": "Text of the header for a box that shows information from the widget",
+	"ipinfo-infobox-title": "Text of the header for a box that shows information from the widget\n\nParameters:\n* $1 - Username of the temporary account or IP address whose information is being shown.",
 	"ipinfo-infobox-temporary-account-help": "Notice displayed in the IP information infobox on the contributions pages of temporary accounts if they have more than one associated IP address.\n\nParameters:\n* $1 - Username of the temporary account the contributions page is associated with.",
 	"ipinfo-property-label-location": "Label for location data returned",
 	"ipinfo-property-label-ipversion": "Label for IP address version",

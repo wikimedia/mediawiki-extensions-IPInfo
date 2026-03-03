@@ -78,7 +78,7 @@ class InfoboxHandler implements
 			'padded' => true,
 			'content' => ( new CollapsibleFieldsetLayout(
 				[
-					'label' => $sp->msg( 'ipinfo-infobox-title' ),
+					'label' => $sp->msg( 'ipinfo-infobox-title', $username ),
 					'collapsed' => true,
 					'classes' => [ 'ext-ipinfo-collapsible-layout' ],
 					'infusable' => true,
