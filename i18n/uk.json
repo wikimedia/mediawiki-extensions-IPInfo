@@ -5,7 +5,8 @@
 			"DDPAT",
 			"Ice bulldog",
 			"Ата",
-			"Пан Хаунд"
+			"Пан Хаунд",
+			"Movses"
 		]
 	},
 	"ipinfo-extensionname": "IP-інфо",
@@ -58,6 +59,7 @@
 	"ipinfo-property-value-risk-webscraping": "Вебскрейпінг",
 	"ipinfo-property-value-risk-unknown": "Невідомо",
 	"ipinfo-property-value-connectiontype-desktop": "Стаціонарний",
+	"ipinfo-property-value-connectiontype-iot": "Інтернет речей",
 	"ipinfo-property-value-connectiontype-mobile": "Мобільний",
 	"ipinfo-property-value-connectiontype-unknown": "Невідомо",
 	"ipinfo-property-label-source": "Джерело",
