@@ -8,7 +8,7 @@
 		]
 	},
 	"ipinfo-desc": "Stellt Informationen über eine IP-Adresse zur Verfügung",
-	"ipinfo-infobox-title": "IP-Informationen",
+	"ipinfo-infobox-title": "IP-Informationen für $1",
 	"ipinfo-infobox-temporary-account-help": "Mit diesem temporären Konto sind mehrere IP-Adressen verknüpft. Du siehst hier die IP-Informationen für die zuletzt verwendete IP-Adresse. [[Special:IPInfo/$1|IP-Informationen für alle IP-Adressen anzeigen]].",
 	"ipinfo-property-label-location": "Standort",
 	"ipinfo-property-label-ipversion": "Version",
