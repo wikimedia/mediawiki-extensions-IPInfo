@@ -9,7 +9,7 @@
 	},
 	"ipinfo-extensionname": "IP जानकारी",
 	"ipinfo-desc": "IP पते के बारे में जानकारी प्रदान करता है।",
-	"ipinfo-infobox-title": "IP जानकारी",
+	"ipinfo-infobox-title": "$1 के लिए IP जानकारी",
 	"ipinfo-infobox-temporary-account-help": "इस अस्थायी खाते से संबद्ध कई IP पते हैं। आप सबसे हाल में प्रयुक्त IP पते के लिए IP की जानकारी देख रहे हैं। [[Special:IPInfo/$1|सभी IP पतों के लिए IP जानकारी देखें]]।",
 	"ipinfo-property-label-location": "स्थान",
 	"ipinfo-property-label-ipversion": "संस्करण",

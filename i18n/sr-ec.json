@@ -9,7 +9,7 @@
 	},
 	"ipinfo-extensionname": "IP инфо",
 	"ipinfo-desc": "Приказује податке о одређеној IP адреси.",
-	"ipinfo-infobox-title": "Подаци о IP адреси",
+	"ipinfo-infobox-title": "Подаци о IP адреси за $1",
 	"ipinfo-infobox-temporary-account-help": "Више IP адреса је повезано са овим привременим налогом. Приказане су IP информације за последње коришћену IP адресу. [[Special:IPInfo/$1|Види информације за све IP адресе]].",
 	"ipinfo-property-label-location": "Локација:",
 	"ipinfo-property-label-ipversion": "Верзија:",

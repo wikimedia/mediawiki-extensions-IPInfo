@@ -8,7 +8,7 @@
 	},
 	"ipinfo-extensionname": "IP məlumatı",
 	"ipinfo-desc": "IP ünvan haqqında məlumat verir",
-	"ipinfo-infobox-title": "IP ünvan haqqında məlumat",
+	"ipinfo-infobox-title": "$1 IP ünvanı haqqında məlumat",
 	"ipinfo-infobox-temporary-account-help": "Birdən çox IP ünvanı bu müvəqqəti hesabla əlaqələndirilir. Siz ən son istifadə olunan IP ünvanı üçün IP məlumatına baxırsınız. [[Special:IPInfo/$1|Bütün IP ünvanları üçün IP məlumatına bax]].",
 	"ipinfo-property-label-location": "Yer",
 	"ipinfo-property-label-ipversion": "Versiya",

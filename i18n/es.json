@@ -8,13 +8,14 @@
 			"Fitoschido",
 			"La Mantis",
 			"MarcoAurelio",
+			"Monicapozo03",
 			"Rodney Araujo",
 			"ZebaX2010"
 		]
 	},
 	"ipinfo-extensionname": "Información de la IP",
 	"ipinfo-desc": "Proporciona información sobre una dirección IP.",
-	"ipinfo-infobox-title": "Información de la IP",
+	"ipinfo-infobox-title": "Información de la IP por $1",
 	"ipinfo-infobox-temporary-account-help": "Hay varias direcciones IP asociadas a esta cuenta temporal. Estás viendo información de IP para la dirección IP utilizada más recientemente. [[Special:IPInfo/$1|Ver información de todas las direcciones IP]].",
 	"ipinfo-property-label-location": "Ubicación",
 	"ipinfo-property-label-ipversion": "Versión",

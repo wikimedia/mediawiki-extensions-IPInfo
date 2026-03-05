@@ -6,7 +6,7 @@
 			"Valepert"
 		]
 	},
-	"ipinfo-infobox-title": "Informazioni IP",
+	"ipinfo-infobox-title": "Informazioni IP per $1",
 	"ipinfo-property-label-location": "Località",
 	"ipinfo-property-label-ipversion": "Versione",
 	"ipinfo-property-label-connectiontype": "Metodo di connessione",

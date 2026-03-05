@@ -13,7 +13,7 @@
 	},
 	"ipinfo-extensionname": "IP-tieto",
 	"ipinfo-desc": "Tarjoaa tietoja IP-osoitteista.",
-	"ipinfo-infobox-title": "IP-tiedot",
+	"ipinfo-infobox-title": "IP-tiedot käyttäjästä $1",
 	"ipinfo-infobox-temporary-account-help": "Tähän tilapäiseen tunnukseen liittyy useita IP-osoitteita. Näet tiedot viimeksi käytetystä IP-osoitteesta. [[Special:IPInfo/$1|Katso kaikkien IP-osoitteiden tiedot]].",
 	"ipinfo-property-label-location": "Sijainti",
 	"ipinfo-property-label-ipversion": "Versio",
@@ -147,5 +147,6 @@
 	"ipinfo-special-ipinfo-no-results": "Ei IP-tietoja saatavilla käyttäjästä $1.",
 	"ipinfo-popup-link-text": "Näytä kaikki IP-tiedot",
 	"ipinfo-help-text": "Näytettävät tiedot ovat peräisin MaxMind- ja [https://docs.spur.us/data-types Spur]-tietokannoista. Ne eivät välttämättä ole täysin tarkkoja.",
-	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Lisätietoja tästä ominaisuudesta]"
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Lisätietoja tästä ominaisuudesta]",
+	"ipinfo-special-ipinfo-table-caption-ip": "IP-tiedot osoitteelle $1"
 }

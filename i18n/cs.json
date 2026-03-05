@@ -74,6 +74,8 @@
 	"prefs-ipinfo": "Informace o IP",
 	"action-ipinfo": "získávat informace o IP adresách připojených k revizím nebo protokolovacím záznamům",
 	"right-ipinfo": "Získávání informací o IP adresách připojených k revizím nebo protokolovacím záznamům",
+	"action-ipinfo-view-full": "přistupovat k plnému zobrazení IP informací uložených u revizí nebo protokolovacích záznamů",
+	"right-ipinfo-view-full": "Přístup k plnému zobrazení IP informací uložených u revizí a protokolovacích záznamů",
 	"action-ipinfo-view-log": "prohlížet si protokolovací záznam osob, které přistupovaly k informacím o IP adresách",
 	"right-ipinfo-view-log": "Prohlížení protokolovacích záznamů osob, které přistupovaly k informacím o IP adresách",
 	"group-no-ipinfo": "Uživatelé se zablokovaným IPInfo",
@@ -87,5 +89,7 @@
 	"ipinfo-change-access-level-enable": "{{GENDER:$1|povolil|povolila}}",
 	"ipinfo-change-access-level-disable": "{{GENDER:$1|zakázal|zakázala}}",
 	"logentry-ipinfo-change_access": "$1 $4 {{GENDER:$2|svůj}} vlastní přístup k IPInfo",
-	"ipinfo-deleted-edits-url-text": "Smazané příspěvky"
+	"ipinfo-deleted-edits-url-text": "Smazané příspěvky",
+	"right-ipinfo-view-arbitrary-ip": "Dohledávání IP informací pro libovolné IP adresy na Speciální:IPInfo",
+	"action-ipinfo-view-arbitrary-ip": "dohledávat IP informace pro libovolné IP adresy"
 }
