@@ -153,5 +153,6 @@
 	"ipinfo-popup-link-text": "檢視所有IP資訊",
 	"ipinfo-help-text": "顯示的資訊來自MaxMind和[https://docs.spur.us/data-types Spur]，可能不完全準確。",
 	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info 進一步了解此功能]",
+	"ipinfo-special-ipinfo-ip-legend": "查閱 IP 位址的 IP 資訊。",
 	"ipinfo-special-ipinfo-no-right-ip": "您沒有權限查詢任意 IP 位址的 IP 資訊。"
 }

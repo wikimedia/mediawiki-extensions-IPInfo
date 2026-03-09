@@ -29,7 +29,7 @@
 	},
 	"ipinfo-extensionname": "IP信息",
 	"ipinfo-desc": "提供IP地址的相关信息。",
-	"ipinfo-infobox-title": "IP信息",
+	"ipinfo-infobox-title": "$1的IP信息",
 	"ipinfo-infobox-temporary-account-help": "此临时账号与多个IP地址关联。您正在查看其最新IP地址的信息。[[Special:IPInfo/$1|查看所有IP地址的信息]]。",
 	"ipinfo-property-label-location": "位置",
 	"ipinfo-property-label-ipversion": "版本",
@@ -70,6 +70,7 @@
 	"ipinfo-property-value-proxytype-islegitimateproxy": "合法代理",
 	"ipinfo-property-value-proxytype-istorexitnode": "Tor出口节点",
 	"ipinfo-property-value-proxytype-ishostingprovider": "托管服务提供商",
+	"ipinfo-property-value-risk-adfraud": "广告欺诈",
 	"ipinfo-property-value-risk-callbackproxy": "可进行代理的网络",
 	"ipinfo-property-value-risk-geomismatch": "地理信息不匹配",
 	"ipinfo-property-value-risk-loginbruteforce": "登录暴力破解",
@@ -164,5 +165,9 @@
 	"ipinfo-popup-link-text": "查看所有IP信息",
 	"ipinfo-help-text": "显示的信息来自MaxMind和[https://docs.spur.us/data-types Spur]，可能不完全准确。",
 	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info 了解有关此功能的更多信息]",
-	"ipinfo-special-ipinfo-no-right-ip": "您没有权限查询任意IP地址的IP信息。"
+	"ipinfo-special-ipinfo-ip-legend": "查阅IP地址的IP信息。",
+	"ipinfo-special-ipinfo-no-right-ip": "您没有权限查询任意IP地址的IP信息。",
+	"ipinfo-special-ipinfo-table-caption-ip": "$1的IP信息",
+	"right-ipinfo-view-arbitrary-ip": "在Special:IPInfo查阅任意IP地址的IP信息",
+	"action-ipinfo-view-arbitrary-ip": "查阅任意IP地址的IP信息"
 }
