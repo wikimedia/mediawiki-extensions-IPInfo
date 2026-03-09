@@ -70,9 +70,6 @@
 	"GroupPermissions": {
 		"sysop": {
 			"ipinfo-view-arbitrary-ip": true
-		},
-		"steward": {
-			"ipinfo-view-arbitrary-ip": true
 		}
 	},
 	"RevokePermissions": {
