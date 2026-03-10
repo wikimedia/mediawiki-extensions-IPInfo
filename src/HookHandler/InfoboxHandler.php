@@ -76,7 +76,7 @@ class InfoboxHandler implements
 			) ),
 		] );
 		OutputPage::setupOOUI();
-		$out->addHTML( $panelLayout );
+		$out->addHTML( (string)$panelLayout );
 	}
 
 	/** @inheritDoc */
