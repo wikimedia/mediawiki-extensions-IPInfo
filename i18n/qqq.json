@@ -12,7 +12,8 @@
 			"Umherirrender",
 			"Verdy p",
 			"Wnme",
-			"Matma Rex"
+			"Matma Rex",
+			"Mormegil"
 		]
 	},
 	"ipinfo-extensionname": "{{name}}\nThe name of the extension",
@@ -116,7 +117,7 @@
 	"action-ipinfo": "{{doc-action|ipinfo}}",
 	"right-ipinfo": "{{doc-right|ipinfo}}",
 	"action-ipinfo-view-basic": "{{doc-action|ipinfo-view-basic}}",
-	"right-ipinfo-view-basic": "{{doc-right|ipinfo-view-basic}}",
+	"right-ipinfo-view-basic": "Cf. {{msg-mw|right-ipinfo-view-full}}\n\n{{doc-right|ipinfo-view-basic}}",
 	"action-ipinfo-view-full": "{{doc-action|ipinfo-view-full}}",
 	"right-ipinfo-view-full": "{{doc-right|ipinfo-view-full}}",
 	"action-ipinfo-view-log": "{{doc-action|ipinfo-view-log}}",
