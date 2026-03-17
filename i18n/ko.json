@@ -150,5 +150,8 @@
 	"ipinfo-popup-link-text": "모든 IP 정보 표시",
 	"ipinfo-help-text": "표시된 정보는 맥스마인드와 [https://docs.spur.us/data-types 스퍼]에서 제공됩니다. 완전히 정확하지는 않을 수도 있습니다.",
 	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info 이 기능에 관해 더 알아보기]",
-	"ipinfo-special-ipinfo-table-caption-ip": "$1의 IP 정보"
+	"ipinfo-special-ipinfo-no-right-ip": "임의의 IP 주소의 IP 정보를 확인할 권한이 없습니다.",
+	"ipinfo-special-ipinfo-table-caption-ip": "$1의 IP 정보",
+	"right-ipinfo-view-arbitrary-ip": "특수:IPInfo에서 임의의 IP 주소의 IP 정보를 확인",
+	"action-ipinfo-view-arbitrary-ip": "임의의 IP 주소의 IP 정보를 확인할"
 }
