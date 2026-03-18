@@ -7,7 +7,7 @@
 		]
 	},
 	"ipinfo-desc": "Pateikia informaciją apie IP adresus.",
-	"ipinfo-infobox-title": "IP informacija",
+	"ipinfo-infobox-title": "IP informacija apie $1",
 	"ipinfo-property-label-location": "Vietovė",
 	"ipinfo-property-label-ipversion": "Versija",
 	"ipinfo-property-label-organization": "Organizacija",
