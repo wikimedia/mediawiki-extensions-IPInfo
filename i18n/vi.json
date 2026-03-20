@@ -12,7 +12,7 @@
 	},
 	"ipinfo-extensionname": "Thông tin IP",
 	"ipinfo-desc": "Cung cấp thông tin về địa chỉ IP.",
-	"ipinfo-infobox-title": "Thông tin IP",
+	"ipinfo-infobox-title": "Thông tin về IP của $1",
 	"ipinfo-infobox-temporary-account-help": "Nhiều địa chỉ IP được sử dụng bởi tài khoản tạm thời này. Bạn đang xem thông tin IP cho địa chỉ IP được sử dụng gần đây nhất. [[Special:IPInfo/$1|Xem thông tin IP cho tất cả các địa chỉ IP]].",
 	"ipinfo-property-label-location": "Địa điểm",
 	"ipinfo-property-label-ipversion": "Phiên bản",
