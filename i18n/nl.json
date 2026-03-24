@@ -56,6 +56,7 @@
 	"ipinfo-property-value-proxytype-islegitimateproxy": "Legitieme proxy",
 	"ipinfo-property-value-proxytype-istorexitnode": "Tor-exitnode",
 	"ipinfo-property-value-proxytype-ishostingprovider": "Hostingprovider",
+	"ipinfo-property-value-risk-adfraud": "Advertentiefraude",
 	"ipinfo-property-value-risk-callbackproxy": "Terugbelproxy",
 	"ipinfo-property-value-risk-geomismatch": "Onsamenhangende plaatsbepaling",
 	"ipinfo-property-value-risk-loginbruteforce": "Brute-krachtaanval bij aanmelden",
@@ -149,5 +150,10 @@
 	"ipinfo-special-ipinfo-no-results": "Voor $1 is geen IP-informatie beschikbaar.",
 	"ipinfo-popup-link-text": "Alle IP-informatie bekijken",
 	"ipinfo-help-text": "De weergegeven informatie komt van MaxMind en [https://docs.spur.us/data-types Spur]. Het is mogelijk dat de informatie niet helemaal nauwkeurig is.",
-	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Meer informatie over deze functie]"
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Meer informatie over deze functie]",
+	"ipinfo-special-ipinfo-ip-legend": "IP-gegevens opzoeken voor een IP-adres.",
+	"ipinfo-special-ipinfo-no-right-ip": "U hebt geen toestemming om IP-gegevens op te zoeken voor willekeurige IP-adressen.",
+	"ipinfo-special-ipinfo-table-caption-ip": "IP-gegevens voor $1",
+	"right-ipinfo-view-arbitrary-ip": "IP-gegevens opzoeken voor willekeurige IP-adressen op Special:IPInfo",
+	"action-ipinfo-view-arbitrary-ip": "IP-gegevens op te zoeken voor een willekeurig IP-adres"
 }
