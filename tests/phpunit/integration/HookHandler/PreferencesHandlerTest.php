@@ -136,8 +136,8 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideOnLocalUserOptionsStoreSaveAccessChange
 	 */
 	public function testOnLocalUserOptionsStoreSaveAccessChange(
-		array $oldOptions,
-		array $newOptions,
+		array $originalOptions,
+		array $modifiedOptions,
 		bool $isBetaFeatureOptInRequired,
 		bool $willBeEnabled
 	) {
@@ -150,7 +150,7 @@ class PreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->logger->expects( $this->once() )
 			->method( $willBeEnabled ? 'logAccessEnabled' : 'logAccessDisabled' );
 
-		$this->handler->onLocalUserOptionsStoreSave( $user, $oldOptions, $newOptions );
+		$this->handler->onLocalUserOptionsStoreSave( $user, $originalOptions, $modifiedOptions );
 	}
 
 	public static function provideOnLocalUserOptionsStoreSaveAccessChange(): iterable {

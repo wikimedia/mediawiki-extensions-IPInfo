@@ -36,7 +36,7 @@ class LoggerTest extends MediaWikiUnitTestCase {
 	 */
 	public function testLogViewDebounced(
 		string $logMethod,
-		string $action,
+		string $logAction,
 		bool $isDebounced
 	): void {
 		$performer = new UserIdentityValue( 1, 'Foo' );
@@ -139,7 +139,7 @@ class LoggerTest extends MediaWikiUnitTestCase {
 
 			$logger->expects( $this->once() )
 				->method( 'createManualLogEntry' )
-				->with( $action )
+				->with( $logAction )
 				->willReturn( $logEntry );
 		}
 

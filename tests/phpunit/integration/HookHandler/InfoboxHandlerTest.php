@@ -620,7 +620,7 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 			'pageName' => 'IPContributions',
 			'targetName' => '300.0.0.1',
 			'targetIsTemp' => false,
-			'targetIsNamed' => false,
+			'targetIsAnon' => false,
 			'offset' => 0,
 			'direction' => 'prev'
 		];
@@ -629,7 +629,7 @@ class InfoboxHandlerTest extends MediaWikiIntegrationTestCase {
 			'pageName' => 'IPContributions',
 			'targetName' => '~2024-8',
 			'targetIsTemp' => true,
-			'targetIsNamed' => false,
+			'targetIsAnon' => false,
 			'offset' => 0,
 			'direction' => 'prev'
 		];
