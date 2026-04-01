@@ -5,7 +5,7 @@
 		]
 	},
 	"ipinfo-desc": "Näitab teavet IP-aadressi kohta.",
-	"ipinfo-infobox-title": "IP-aadressi teave",
+	"ipinfo-infobox-title": "$1: IP-aadressi teave",
 	"ipinfo-infobox-temporary-account-help": "Selle ajutise kontoga on seotud mitu IP-aadressi. Vaatad teavet viimati kasutatud IP-aadressi kohta. [[Special:IPInfo/$1|Vaata kõigi IP-aadresside teavet]].",
 	"ipinfo-property-label-location": "Asukoht",
 	"ipinfo-property-label-ipversion": "Versioon",
