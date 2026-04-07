@@ -64,7 +64,7 @@
 	"ipinfo-value-active-blocks": "{{PLURAL:$1|$1 सक्रिय अवरोध|0=कोई सक्रिय अवरोध नहीं}}",
 	"ipinfo-active-blocks-url-text": "लॉग्स",
 	"ipinfo-property-label-edits": "योगदान",
-	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 लोकल सम्पादन|0=कोई लोकल सम्पादन नहीं}}",
+	"ipinfo-value-local-edits": "{{PLURAL:$1|$1 स्थानीय सम्पादन|0=कोई स्थानीय सम्पादन नहीं}}",
 	"ipinfo-value-recent-edits": "({{PLURAL:$1|पिछले 24 घंटों में $1}})",
 	"ipinfo-property-no-data": "उपलब्ध नहीं",
 	"ipinfo-property-no-access": "प्रवेश निषेध",
