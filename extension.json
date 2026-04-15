@@ -1,11 +1,13 @@
 {
 	"name": "IPInfo",
+	"author": [
+		"..."
+	],
 	"url": "https://www.mediawiki.org/wiki/Extension:IPInfo",
-	"license-name": "MIT",
-	"version": "0.0.0",
 	"namemsg": "ipinfo-extensionname",
 	"descriptionmsg": "ipinfo-desc",
-	"manifest_version": 2,
+	"license-name": "MIT",
+	"type": "other",
 	"requires": {
 		"MediaWiki": ">= 1.46"
 	},
@@ -22,7 +24,7 @@
 	"ExtensionMessagesFiles": {
 		"IPInfoAliases": "IPInfo.alias.php"
 	},
-	"type": "other",
+	"load_composer_autoloader": true,
 	"AutoloadNamespaces": {
 		"MediaWiki\\IPInfo\\": "src/"
 	},
@@ -380,7 +382,6 @@
 			"value": 1000
 		}
 	},
-	"load_composer_autoloader": true,
 	"LogTypes": [
 		"ipinfo"
 	],
@@ -410,5 +411,6 @@
 				"view_popup"
 			]
 		}
-	}
+	},
+	"manifest_version": 2
 }
