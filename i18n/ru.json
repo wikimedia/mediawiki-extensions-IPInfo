@@ -13,12 +13,13 @@
 			"Stjn",
 			"Tanzun",
 			"Vitalisman",
+			"Vlad5250",
 			"WindEwriX"
 		]
 	},
 	"ipinfo-extensionname": "Информация об IP",
 	"ipinfo-desc": "Показывает информацию об IP-адресах.",
-	"ipinfo-infobox-title": "Информация об IP",
+	"ipinfo-infobox-title": "Информация об IP для $1",
 	"ipinfo-infobox-temporary-account-help": "С этой временной учётной записью связано несколько IP-адресов. Вы просматриваете информацию об IP-адресе, который использовался последним. [[Special:IPInfo/$1|Просмотр информации об IP-адресах для всех IP-адресов]].",
 	"ipinfo-property-label-location": "Местоположение",
 	"ipinfo-property-label-ipversion": "Версия",
@@ -72,7 +73,7 @@
 	"ipinfo-property-label-source": "Источник",
 	"ipinfo-property-label-active-blocks": "Активные блокировки",
 	"ipinfo-property-label-number-of-ips": "Количество IP-адресов",
-	"ipinfo-property-tooltip-proxytypes": "Прокси скрывают IP-адреса. В некоторых случаях это происходит автоматически, например, для жилых или корпоративных прокси; в других случаях это делается намеренно, чтобы скрыть происхождение IP-адреса.",
+	"ipinfo-property-tooltip-proxytypes": "Прокси скрывают IP-адреса. В некоторых случаях это происходит автоматически, например, для жилых или корпоративных прокси. В других случаях участники намеренно используют прокси, чтобы скрыть происхождение IP-адреса.",
 	"ipinfo-property-tooltip-connectiontype": "Технология, через которую IP-адрес подключается к Интернету.",
 	"ipinfo-property-tooltip-usertype": "Тип организации, владеющей интернет-соединением.",
 	"ipinfo-property-tooltip-behaviors": "Определённые виды активности, в которых устройства на этом IP-адресе участвовали или с которыми были ранее связаны.",
@@ -144,12 +145,15 @@
 	"ipinfo-special-ipinfo-legend": "Получите информацию обо всех IP-адресах, использованных временной учётной записью. Отображается не более $1 {{PLURAL:$1|результата|результатов}}.",
 	"ipinfo-deleted-edits-url-text": "Удалённый вклад",
 	"ipinfo-special-ipinfo-table-caption": "Информация об IP для $1",
-	"ipinfo-special-ipinfo-target": "Целевое имя учётной записи:",
+	"ipinfo-special-ipinfo-target": "Целевое имя учётной записи или IP-адрес:",
 	"ipinfo-special-ipinfo-user-tool-links": "Для $1",
 	"ipinfo-special-ipinfo-sort-explainer": "Кнопки в заголовках таблиц можно использовать для сортировки таблицы по значению в этом столбце.",
 	"ipinfo-special-ipinfo-column-ip": "IP-адрес",
 	"ipinfo-special-ipinfo-no-results": "Информация об IP для $1 недоступна.",
 	"ipinfo-popup-link-text": "Показать всю информацию об IP",
 	"ipinfo-help-text": "Отображаемая информация получена от MaxMind и [https://docs.spur.us/data-types Spur]. Она может быть не совсем точной.",
-	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Подробнее об этом инструменте]"
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Подробнее об этом инструменте]",
+	"ipinfo-special-ipinfo-table-caption-ip": "Информация об IP для $1",
+	"right-ipinfo-view-arbitrary-ip": "Получение информации об IP для произвольных IP-адресов на Special:IPInfo",
+	"action-ipinfo-view-arbitrary-ip": "получение информации об IP для произвольных IP-адресов"
 }

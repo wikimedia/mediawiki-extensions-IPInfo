@@ -7,6 +7,7 @@
 			"DiegoAmbrocio",
 			"Fitoschido",
 			"La Mantis",
+			"Luigi Nakano",
 			"MarcoAurelio",
 			"Monicapozo03",
 			"Rodney Araujo",
@@ -147,5 +148,6 @@
 	"ipinfo-special-ipinfo-no-results": "No hay información de IP disponible para $1.",
 	"ipinfo-popup-link-text": "Ver toda la información de IP",
 	"ipinfo-help-text": "La información mostrada proviene de MaxMind y [https://docs.spur.us/data-types Spur]. Es posible que no sea completamente precisa.",
-	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Aprende más sobre esta funcionalidad]"
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Aprende más sobre esta funcionalidad]",
+	"right-ipinfo-view-arbitrary-ip": "Consultar información de IP para direcciones IP arbitrarias en Especial:IPInfo"
 }
