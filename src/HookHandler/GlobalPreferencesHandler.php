@@ -5,9 +5,9 @@ namespace MediaWiki\IPInfo\HookHandler;
 use GlobalPreferences\Hook\GlobalPreferencesSetGlobalPreferencesHook;
 use MediaWiki\IPInfo\Logging\LoggerFactory;
 use MediaWiki\Registration\ExtensionRegistry;
+use MediaWiki\User\Options\UserOptionsManager;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserOptionsManager;
 
 class GlobalPreferencesHandler extends AbstractPreferencesHandler implements
 	GlobalPreferencesSetGlobalPreferencesHook

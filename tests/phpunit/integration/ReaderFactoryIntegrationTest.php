@@ -4,7 +4,7 @@ namespace MediaWiki\IPInfo\Test\Integration;
 
 use InvalidArgumentException;
 use MediaWiki\IPInfo\InfoRetriever\ReaderFactory;
-use MediaWiki\Languages\LanguageFallback;
+use MediaWiki\Language\LanguageFallback;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
 

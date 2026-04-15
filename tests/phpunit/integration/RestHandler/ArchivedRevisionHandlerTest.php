@@ -2,7 +2,6 @@
 
 namespace MediaWiki\IPInfo\Test\Integration\Rest\Handler;
 
-use ArrayUtils;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\IPInfo\HookHandler\PreferencesHandler;
@@ -20,6 +19,7 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
+use Wikimedia\ArrayUtils\ArrayUtils;
 use Wikimedia\Message\MessageValue;
 
 /**

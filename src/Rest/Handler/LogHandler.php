@@ -9,7 +9,7 @@ use MediaWiki\IPInfo\IPInfoPermissionManager;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
 use MediaWiki\IPInfo\TempUserIPLookup;
 use MediaWiki\JobQueue\JobQueueGroup;
-use MediaWiki\Languages\LanguageFallback;
+use MediaWiki\Language\LanguageFallback;
 use MediaWiki\Logging\DatabaseLogEntry;
 use MediaWiki\Logging\LogEventsList;
 use MediaWiki\Logging\LogPage;

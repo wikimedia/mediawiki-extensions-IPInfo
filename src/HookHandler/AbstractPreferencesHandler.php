@@ -5,9 +5,9 @@ namespace MediaWiki\IPInfo\HookHandler;
 use MediaWiki\Extension\EventLogging\EventLogging;
 use MediaWiki\Extension\EventLogging\Libs\UserBucketProvider\UserBucketProvider;
 use MediaWiki\Registration\ExtensionRegistry;
+use MediaWiki\User\Options\UserOptionsManager;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserOptionsManager;
 
 /**
  * Class that {@link PreferencesHandler} is based on to support de-duplicating common code

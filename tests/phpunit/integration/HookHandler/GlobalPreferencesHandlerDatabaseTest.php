@@ -7,7 +7,7 @@ use MediaWiki\IPInfo\Logging\Logger;
 use MediaWiki\Logging\LogEntryBase;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
-use MediaWiki\User\UserOptionsManager;
+use MediaWiki\User\Options\UserOptionsManager;
 use MediaWikiIntegrationTestCase;
 
 /**

@@ -7,9 +7,9 @@ use MediaWiki\IPInfo\Logging\LoggerFactory;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\User\Options\Hook\LocalUserOptionsStoreSaveHook;
+use MediaWiki\User\Options\UserOptionsManager;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserOptionsManager;
 
 class PreferencesHandler extends AbstractPreferencesHandler implements
 	GetPreferencesHook,

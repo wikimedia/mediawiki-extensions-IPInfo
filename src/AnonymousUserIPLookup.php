@@ -1,12 +1,12 @@
 <?php
 namespace MediaWiki\IPInfo;
 
-use MapCacheLRU;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\User\UserIdentityUtils;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
+use Wikimedia\ObjectCache\MapCacheLRU;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

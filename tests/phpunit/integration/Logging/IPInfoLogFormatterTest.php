@@ -2,9 +2,9 @@
 
 namespace MediaWiki\IPInfo\Test\Unit\Logging;
 
-use LogFormatterTestCase;
 use MediaWiki\IPInfo\Logging\Logger;
 use MediaWiki\IPInfo\Rest\Presenter\DefaultPresenter;
+use MediaWiki\Tests\Logging\LogFormatterTestCase;
 
 /**
  * @covers \MediaWiki\IPInfo\Logging\IPInfoLogFormatter

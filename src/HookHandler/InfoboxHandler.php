@@ -2,13 +2,13 @@
 
 namespace MediaWiki\IPInfo\HookHandler;
 
-use MediaWiki\Hook\SpecialContributionsBeforeMainOutputHook;
 use MediaWiki\HTMLForm\CollapsibleFieldsetLayout;
 use MediaWiki\IPInfo\IPInfoPermissionManager;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\SpecialPage\Hook\SpecialPageBeforeExecuteHook;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Specials\Hook\SpecialContributionsBeforeMainOutputHook;
 use MediaWiki\User\TempUser\TempUserConfig;
 use OOUI\PanelLayout;
 use Wikimedia\IPUtils;

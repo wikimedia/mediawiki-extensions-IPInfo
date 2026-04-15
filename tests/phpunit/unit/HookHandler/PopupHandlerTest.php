@@ -1,7 +1,6 @@
 <?php
 namespace MediaWiki\IPInfo\Test\Unit\HookHandler;
 
-use ArrayUtils;
 use MediaWiki\IPInfo\HookHandler\PopupHandler;
 use MediaWiki\IPInfo\IPInfoPermissionManager;
 use MediaWiki\Output\OutputPage;
@@ -11,6 +10,7 @@ use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
+use Wikimedia\ArrayUtils\ArrayUtils;
 
 /**
  * @covers \MediaWiki\IPInfo\HookHandler\PopupHandler

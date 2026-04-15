@@ -1,7 +1,6 @@
 <?php
 namespace MediaWiki\IPInfo;
 
-use MapCacheLRU;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logging\DatabaseLogEntry;
 use MediaWiki\Registration\ExtensionRegistry;
@@ -11,6 +10,7 @@ use MediaWiki\User\UserIdentityUtils;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
+use Wikimedia\ObjectCache\MapCacheLRU;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Rdbms\Subquery;
