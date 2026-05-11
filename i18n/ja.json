@@ -148,5 +148,6 @@
 	"ipinfo-special-ipinfo-no-results": "$1のIP情報は利用できません。",
 	"ipinfo-popup-link-text": "すべてのIP情報を表示",
 	"ipinfo-help-text": "表示される情報は、MaxMind および [https://docs.spur.us/data-types Spur] から取得されます。完全に正確ではない可能性があります。",
-	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info この機能の詳細についてはこちらをご覧ください]"
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info この機能の詳細についてはこちらをご覧ください]",
+	"right-ipinfo-view-arbitrary-ip": "Special:IPInfo から任意の IP アドレス情報を検索する"
 }
