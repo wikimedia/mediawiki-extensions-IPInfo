@@ -137,7 +137,7 @@
 	"log-action-filter-ipinfo-view_popup": "ポップアップのデータの閲覧",
 	"ipinfo-property-tooltip-asn": "地域、さらには政府やISPなどの組織に割り当てられたネットワークの一意の識別子",
 	"ipinfo-blocklist-url-text": "ブロックリスト",
-	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1件の削除された編集|0=削除された編集なし}}",
+	"ipinfo-value-deleted-edits": "{{PLURAL:$1|削除された編集 $1 件|0=削除された編集なし}}",
 	"ipinfo-special-ipinfo": "IP情報",
 	"ipinfo-special-ipinfo-legend": "仮利用者が使用するすべてのIPアドレスに関するIP情報を検索します。最大$1件の{{PLURAL:$1|結果}}が表示されます。",
 	"ipinfo-deleted-edits-url-text": "削除された投稿",
