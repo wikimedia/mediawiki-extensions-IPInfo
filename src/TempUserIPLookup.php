@@ -1,4 +1,7 @@
 <?php
+
+declare( strict_types=1 );
+
 namespace MediaWiki\IPInfo;
 
 use MediaWiki\Config\ServiceOptions;
@@ -409,8 +412,8 @@ class TempUserIPLookup {
 			$ip = IPUtils::formatHex( $row->ip_hex );
 			$recordsByIp[$ip] = new TempUserIPRecord(
 				$ip,
-				$row->rev_id ?? null,
-				$row->log_id ?? null
+				isset( $row->rev_id ) ? (int)$row->rev_id : null,
+				isset( $row->log_id ) ? (int)$row->log_id : null
 			);
 		}
 

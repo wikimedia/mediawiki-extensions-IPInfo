@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types=1 );
+
 namespace MediaWiki\IPInfo\Test\Unit\InfoRetriever;
 
 use MediaWiki\Extension\IPReputation\IPoid\IPoidResponse;

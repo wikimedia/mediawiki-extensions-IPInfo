@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types=1 );
+
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\IPInfo\AnonymousUserIPLookup;
 use MediaWiki\IPInfo\InfoManager;

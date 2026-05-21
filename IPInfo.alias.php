@@ -1,10 +1,13 @@
 <?php
+
 /**
- * Aliases for Special:CheckUser
+ * Aliases for Special:IPInfo
  *
  * @file
  * @ingroup Extensions
  */
+
+declare( strict_types=1 );
 
 $specialPageAliases = [];
 

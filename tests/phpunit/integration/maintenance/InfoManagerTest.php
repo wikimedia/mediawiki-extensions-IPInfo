@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types=1 );
+
 namespace MediaWiki\IPInfo\Test\Integration\Maintenance;
 
 use MediaWiki\IPInfo\Maintenance\InfoManager;

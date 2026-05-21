@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types=1 );
+
 namespace MediaWiki\IPInfo\Jobs;
 
 use MediaWiki\IPInfo\Logging\LoggerFactory;

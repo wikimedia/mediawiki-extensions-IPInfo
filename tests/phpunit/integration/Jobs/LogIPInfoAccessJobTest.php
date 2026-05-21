@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types=1 );
+
 namespace MediaWiki\IPInfo\Test\Integration\Jobs;
 
 use MediaWiki\IPInfo\Jobs\LogIPInfoAccessJob;

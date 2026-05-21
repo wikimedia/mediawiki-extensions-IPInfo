@@ -5,6 +5,8 @@
  * the ServiceWiring.php file for the IPInfo extension.
  */
 
+declare( strict_types=1 );
+
 namespace MediaWiki\IPInfo\Test\Integration;
 
 use MediaWikiIntegrationTestCase;
