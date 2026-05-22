@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"AhmedG612"
+		]
+	},
+	"ipinfo-infobox-temporary-account-help": "Cinwaanno IP badan ayaa la xiriira akoonkan ku-meelgaarka ah. Waxaad hadda arkaysaa macluumaadka IP-ga ee cinwaanka IP-ga ugu dambeeyay ee la isticmaalay. [[Special:IPInfo/$1|Eeg macluumaadka IP-ga dhammaan cinwaannada IP-ga]].",
+	"ipinfo-property-value-risk-adfraud": "Khiyaanada xayeysiiska",
+	"ipinfo-special-ipinfo-legend": "Ka raadi macluumaadka IP ee dhammaan cinwaanada IP ee uu isticmaalay isticmaale ku-meelgaar ah, ama cinwaan IP oo aan la xadidin. Ugu badnaan $1 {{PLURAL:$1|natiijo|natiijooyin}} ayaa la soo bandhigayaa.",
+	"ipinfo-special-ipinfo-target": "Magaca isticmaalaha ama cinwaanka IP-ga ee la beegsanayo:",
+	"ipinfo-special-ipinfo-column-ip": "IP",
+	"ipinfo-special-ipinfo-no-results": "Wax macluumaad IP ah looma heli karo $1.",
+	"ipinfo-special-ipinfo-ip-legend": "Ka raadi macluumaadka IP ee cinwaan IP ah.",
+	"ipinfo-special-ipinfo-no-right-ip": "Ma haysatid oggolaansho aad ku eegto macluumaadka IP ee cinwaanada IP ee kala duwan.",
+	"ipinfo-special-ipinfo-table-caption-ip": "Macluumaadka IP ee $1",
+	"right-ipinfo-view-arbitrary-ip": "Ka raadi macluumaadka IP ee cinwaanada IP ee kala duwan bogga Special:IPInfo",
+	"action-ipinfo-view-arbitrary-ip": "Raadi macluumaadka IP ee cinwaanada IP ee kala duwan"
+}
