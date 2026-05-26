@@ -71,6 +71,9 @@
 	"ipinfo-widget-error-default": "Ne mogu dobiti informacije o IP-adresi.",
 	"ipinfo-widget-error-ip-no-edits": "Ne mogu dobiti informacije o IP-adresi jer nema izmjena.",
 	"prefs-ipinfo": "Informacije o IP-adresi",
+	"group-no-ipinfo": "Korisnicima kojima je blokirana upotreba alata informacija o IP-adresi",
+	"group-no-ipinfo-member": "{{GENDER:$1|blokirana upotreba alata informacija o IP-adresi}}",
+	"grouppage-no-ipinfo": "{{ns:project}}:Korisnicima kojima je blokirana upotreba alata informacija o IP-adresi",
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 izbrisana izmjena|$1 izbrisane izmjene|$1 izbrisanih izmjena|0=Nema izbrisanih izmjena}}",
 	"ipinfo-deleted-edits-url-text": "Izbrisani doprinosi"
 }
