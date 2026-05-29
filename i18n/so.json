@@ -4,6 +4,7 @@
 			"AhmedG612"
 		]
 	},
+	"ipinfo-infobox-title": "Macluumaadka IP ee $1",
 	"ipinfo-infobox-temporary-account-help": "Cinwaanno IP badan ayaa la xiriira akoonkan ku-meelgaarka ah. Waxaad hadda arkaysaa macluumaadka IP-ga ee cinwaanka IP-ga ugu dambeeyay ee la isticmaalay. [[Special:IPInfo/$1|Eeg macluumaadka IP-ga dhammaan cinwaannada IP-ga]].",
 	"ipinfo-property-value-risk-adfraud": "Khiyaanada xayeysiiska",
 	"ipinfo-special-ipinfo-legend": "Ka raadi macluumaadka IP ee dhammaan cinwaanada IP ee uu isticmaalay isticmaale ku-meelgaar ah, ama cinwaan IP oo aan la xadidin. Ugu badnaan $1 {{PLURAL:$1|natiijo|natiijooyin}} ayaa la soo bandhigayaa.",
