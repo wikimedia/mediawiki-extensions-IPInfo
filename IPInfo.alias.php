@@ -20,3 +20,8 @@ $specialPageAliases['en'] = [
 $specialPageAliases['bn'] = [
 	'IPInfo' => [ 'আইপি_তথ্য', 'আইপির_তথ্য' ],
 ];
+
+/** Ukrainian (Українська) */
+$specialPageAliases['uk'] = [
+	'IPInfo' => [ 'Інформація_про_IP' ],
+];
