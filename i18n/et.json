@@ -27,6 +27,8 @@
 	"ipinfo-property-value-proxytype-ishostingprovider": "Hostiteenuse pakkuja",
 	"ipinfo-property-value-risk-callbackproxy": "Tagasihelistamisproksi",
 	"ipinfo-property-value-risk-geomismatch": "Asukoha mittevastavus",
+	"ipinfo-property-value-risk-loginbruteforce": "Jõuga sisselogimine",
+	"ipinfo-property-value-risk-webscraping": "Veebikoorimine",
 	"ipinfo-property-value-risk-unknown": "Teadmata",
 	"ipinfo-property-value-connectiontype-desktop": "Lauaarvuti",
 	"ipinfo-property-value-connectiontype-mobile": "Mobiil",
