@@ -8,7 +8,7 @@
 		]
 	},
 	"ipinfo-extensionname": "IP инфо",
-	"ipinfo-desc": "Приказује податке о одређеној IP адреси.",
+	"ipinfo-desc": "Приказ података о одређеној IP адреси.",
 	"ipinfo-infobox-title": "IP информације за $1",
 	"ipinfo-infobox-temporary-account-help": "Више IP адреса је повезано са овим привременим налогом. Приказане су IP информације за последње коришћену IP адресу. [[Special:IPInfo/$1|Види информације за све IP адресе]].",
 	"ipinfo-property-label-location": "Локација:",
@@ -123,5 +123,6 @@
 	"ipinfo-special-ipinfo-user-tool-links": "За $1",
 	"ipinfo-special-ipinfo-no-results": "Нема IP информација за $1.",
 	"ipinfo-popup-link-text": "Види све IP информације",
-	"ipinfo-special-ipinfo-table-caption-ip": "IP информације за $1"
+	"ipinfo-special-ipinfo-table-caption-ip": "IP информације за $1",
+	"right-ipinfo-view-arbitrary-ip": "приступ IP информацијама за произвољне IP адресе на Special:IPInfo"
 }
