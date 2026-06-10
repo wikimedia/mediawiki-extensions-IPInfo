@@ -3,13 +3,14 @@
 		"authors": [
 			"Andikbuyung",
 			"Veracious",
-			"Penyuwangi"
+			"Penyuwangi",
+			"Bayahiu"
 		]
 	},
 	"ipinfo-property-label-organization": "Organisasi",
 	"ipinfo-property-value-connectiontype-cableordsl": "Kabel/DSL",
 	"ipinfo-property-value-connectiontype-cellular": "Seluler",
-	"ipinfo-property-value-connectiontype-corporate": "Perusahaan",
+	"ipinfo-property-value-connectiontype-corporate": "Badan usaha",
 	"ipinfo-property-value-connectiontype-dialup": "Putar-nomor",
 	"ipinfo-property-value-proxytype-ispublicproxy": "Proksi publik",
 	"ipinfo-beta-feature-title": "Informasi IP",
