@@ -55,12 +55,17 @@ class GlobalPreferencesHandlerTest extends MediaWikiIntegrationTestCase {
 		$handler->onGlobalPreferencesSetGlobalPreferences( $user, $oldOptions, $newOptions );
 	}
 
-	public static function provideOnGlobalPreferencesSetGlobalPreferences() {
+	public static function provideOnGlobalPreferencesSetGlobalPreferences(): iterable {
+		yield 'Not set to begin with, not set afterwards' => [
+			[],
+			[],
+		];
+
 		if ( !ExtensionRegistry::getInstance()->isLoaded( 'GlobalPreferences' ) ) {
 			return;
 		}
 
-		return [
+		yield from [
 			'Enabled to begin with, then option set to truthy' => [
 				[
 					GlobalPreferencesHandler::IPINFO_USE_AGREEMENT => true
