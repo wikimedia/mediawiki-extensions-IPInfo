@@ -80,5 +80,6 @@
 	"logentry-ipinfo-change_access": "$1 sebi $4 pristup informacijama o IP-adresama",
 	"ipinfo-property-tooltip-asn": "Jedinstveni mrežni identifikator dodijeljen regiji te organizacijama kao što su vlade i davatelji internetskih usluga",
 	"ipinfo-blocklist-url-text": "Popis blokiranja",
+	"ipinfo-special-ipinfo": "Podaci o IP adresi",
 	"ipinfo-popup-link-text": "Potpuni zapis o IP adresi"
 }

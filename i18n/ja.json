@@ -10,7 +10,8 @@
 			"Sou0012",
 			"Waki285",
 			"Whym",
-			"Dragoniez"
+			"Dragoniez",
+			"Tensama0415"
 		]
 	},
 	"ipinfo-extensionname": "IP情報",
@@ -92,7 +93,7 @@
 	"ipinfo-widget-error-wrong-ip": "指定されたIPアドレスに一致する記録や版は見つかりませんでした。",
 	"ipinfo-widget-error-ip-no-contributions": "このIPアドレスでは編集を行っていないため、そのIP情報を取得できません。",
 	"ipinfo-preference-enable": "未登録の利用者の投稿記録ページにIP情報ツールを表示する。",
-	"ipinfo-preference-use-agreement": "私はこの情報を巡回と荒らし対策作業のために使うことに同意します。",
+	"ipinfo-preference-use-agreement": "私はこの情報を巡回と荒らし対策作業のために使うことに同意します",
 	"ipinfo-preference-agreement-error": "使用条件に同意する前に、IP情報ツールを有効にする必要があります。",
 	"ipinfo-infobox-use-terms": "IP情報ツールはMaxMindデータベースを利用して位置、プロキシ、このIPアドレスを共有しているデバイスの数などの情報を表示します。",
 	"ipinfo-infobox-submit-agreement": "IP情報ツールを有効にする",
