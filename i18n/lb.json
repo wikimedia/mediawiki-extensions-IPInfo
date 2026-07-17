@@ -38,6 +38,7 @@
 	"ipinfo-use-agreement-submit-error": "Et ass eppes schief gaangen. Probéiert wgl. nach eng Kéier. De Feelermessage war: $1",
 	"ipinfo-rest-access-denied": "Dir hutt net d'Recht fir dës Aktioun ze maachen.",
 	"ipinfo-rest-access-denied-blocked-user": "Dir hutt net d'Recht fir dës Aktioun ze maachen well Äre Benotzerkont gespaart ass",
+	"ipinfo-rest-log-nonexistent": "Logbuchantrag existéiert net",
 	"ipinfo-beta-feature-title": "IP-Informatiounen",
 	"prefs-ipinfo": "IP-Informatiounen",
 	"right-ipinfo-view-log": "E Log weisen wien op d'IP-Informatioun zougegraff huet",
