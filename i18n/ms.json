@@ -130,7 +130,7 @@
 	"ipinfo-value-deleted-edits": "{{PLURAL:$1|$1 suntingan dipadamkan|0=Tiada suntingan dipadamkan}}",
 	"ipinfo-special-ipinfo": "Maklumat IP",
 	"ipinfo-special-ipinfo-legend": "Cari maklumat IP tentang semua alamat IP yang digunakan oleh pengguna sementara. Maksimum $1 {{PLURAL:$1|hasil}} dipaparkan.",
-	"ipinfo-deleted-edits-url-text": "Sumbangan yang dihapuskan",
+	"ipinfo-deleted-edits-url-text": "Sumbangan terhapus",
 	"ipinfo-special-ipinfo-table-caption": "Maklumat IP bagi $1",
 	"ipinfo-special-ipinfo-target": "Nama pengguna sasaran:",
 	"ipinfo-special-ipinfo-user-tool-links": "Untuk $1",
