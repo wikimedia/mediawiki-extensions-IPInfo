@@ -39,7 +39,7 @@ class PreferencesHandlerDatabaseTest extends MediaWikiIntegrationTestCase {
 			->join( 'actor', null, [ 'actor_id=log_actor' ] )
 			->where( [
 				'actor_name' => $user->getName(),
-				'log_title' => Title::newFromText( $user->getName(), NS_USER )->getDbKey(),
+				'log_title' => Title::newFromText( $user->getName(), NS_USER )->getDBkey(),
 				'log_action' => Logger::ACTION_CHANGE_ACCESS,
 				'log_type' => Logger::LOG_TYPE,
 			] )
