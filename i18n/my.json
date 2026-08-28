@@ -43,6 +43,7 @@
 	"ipinfo-value-active-blocks": "{{PLURAL:$1| $1 သက်ဝင်နေဆဲပိတ်ပင်မှု| $1 သက်ဝင်နေဆဲပိတ်ပင်မှုများ|0=သက်ဝင်နေဆဲ ပိတ်ပင်မှုများ မရှိပါ}}",
 	"ipinfo-active-blocks-url-text": "မှတ်​တမ်း​များ​",
 	"ipinfo-property-label-edits": "ဆောင်ရွက်ချက်များ",
+	"ipinfo-value-local-edits": "{{PLURAL:$1| $1 ဒေသတွင်း တည်းဖြတ်မှု| $1 ဒေသတွင်း တည်းဖြတ်မှုများ|0=ဒေသတွင်း တည်းဖြတ်မှုများ မရှိပါ}}",
 	"ipinfo-value-recent-edits": "( {{PLURAL:$1| ပြီးခဲ့သည့် ၂၄ နာရီအတွင်း $1 }})",
 	"ipinfo-property-no-data": "မရရှိနိုင်ပါ",
 	"ipinfo-property-no-access": "ဝင်ရောက်ခွင့်မရှိပါ",
@@ -60,6 +61,7 @@
 	"ipinfo-log-access-level-ipinfo-view-basic": "အကန့်အသတ်ဖြင့် ဝင်ရောက်ခွင့်",
 	"ipinfo-log-access-level-ipinfo-view-full": "အပြည့်အဝ အသုံးပြုခွင့်",
 	"ipinfo-blocklist-url-text": "ပိတ်ဆို့စာရင်း",
+	"ipinfo-value-deleted-edits": "{{PLURAL:$1| $1 ဖျက်လိုက်သော တည်းဖြတ်မှု| $1 ဖျက်လိုက်သော တည်းဖြတ်မှုများ|0=ဖျက်လိုက်သော တည်းဖြတ်မှုများ မရှိပါ}}",
 	"ipinfo-special-ipinfo": "အိုင်ပီ သတင်းအချက်အလက်",
 	"ipinfo-deleted-edits-url-text": "ဖျက်လိုက်သော ပံ့ပိုးမှုများ",
 	"ipinfo-special-ipinfo-table-caption": "$1 အတွက် အိုင်ပီအချက်အလက်များ",
@@ -67,5 +69,6 @@
 	"ipinfo-special-ipinfo-column-ip": "အိုင်ပီ",
 	"ipinfo-special-ipinfo-no-results": "$1 အတွက် အိုင်ပီအချက်အလက်များ မရရှိနိုင်ပါ။",
 	"ipinfo-popup-link-text": "အိုင်ပီချက်အလက်အားလုံးကို ကြည့်ရှုပါ",
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info ဤအင်္ဂါရပ်အကြောင်း ပိုမိုလေ့လာရန်]",
 	"ipinfo-special-ipinfo-table-caption-ip": "$1 အတွက် အိုင်ပီအချက်အလက်များ"
 }
