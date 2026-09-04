@@ -4,8 +4,13 @@
 			"Yupik"
 		]
 	},
+	"ipinfo-property-label-location": "Sâjjõs",
 	"ipinfo-property-label-ipversion": "Versio",
 	"ipinfo-property-value-usertype-library": "Ǩeʹrjjpõrtt",
+	"ipinfo-property-value-usertype-school": "Škooul",
+	"ipinfo-property-label-source": "Käivv",
 	"ipinfo-property-label-edits": "Muttâz",
-	"ipinfo-deleted-edits-url-text": "Jaukkuum muttâz"
+	"ipinfo-blocklist-url-text": "Cõggâmlistt",
+	"ipinfo-deleted-edits-url-text": "Jaukkuum muttâz",
+	"ipinfo-special-ipinfo-column-ip": "IP-addrõs"
 }
