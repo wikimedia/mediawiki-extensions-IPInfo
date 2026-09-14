@@ -340,8 +340,8 @@ class TempUserIPLookup {
 			->select( 'cuc_this_oldid' )
 			->from( 'cu_changes', 'cuc' )
 			->where( [
-				'cuc.cuc_actor=actor',
-				'cuc.cuc_ip_hex=ip_hex'
+				'cuc.cuc_actor=cu_changes.cuc_actor',
+				'cuc.cuc_ip_hex=cu_changes.cuc_ip_hex'
 			] )
 			->limit( 1 );
 
@@ -349,8 +349,8 @@ class TempUserIPLookup {
 			->select( 'cule_log_id' )
 			->from( 'cu_log_event', 'cule' )
 			->where( [
-				'cule.cule_actor=actor',
-				'cule.cule_ip_hex=ip_hex'
+				'cule.cule_actor=cu_log_event.cule_actor',
+				'cule.cule_ip_hex=cu_log_event.cule_ip_hex'
 			] )
 			->limit( 1 );
 
