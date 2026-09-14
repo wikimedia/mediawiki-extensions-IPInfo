@@ -361,41 +361,46 @@ class TempUserIPLookup {
 		$queryLimit = $this->serviceOptions->get( 'IPInfoMaxDistinctIPResults' );
 		$warnThreshold = (int)( $queryLimit / 2 );
 
+		$cuChangesQuery = $dbr->newSelectQueryBuilder()
+			->select( [
+				'ip_hex' => 'cuc_ip_hex',
+				'actor' => 'cuc_actor',
+				'rev_id' => new Subquery( $oldIdQuery->getSQL() ),
+				'NULL as log_id',
+			] )
+			->from( 'cu_changes' )
+			->join( 'actor', null, 'cuc_actor = actor_id' )
+			->where( [
+				'actor_name' => $user->getName(),
+				$dbr->expr( 'cuc_ip_hex', '!=', null ),
+			] )
+			->groupBy( [ 'cuc_actor', 'cuc_ip_hex' ] );
+
+		$cuLogEventQuery = $dbr->newSelectQueryBuilder()
+			->select( [
+				'ip_hex' => 'cule_ip_hex',
+				'actor' => 'cule_actor',
+				'NULL as rev_id',
+				'log_id' => new Subquery( $logIdQuery->getSQL() )
+			] )
+			->from( 'cu_log_event' )
+			->join( 'actor', null, 'cule_actor = actor_id' )
+			->where( [
+				'actor_name' => $user->getName(),
+				$dbr->expr( 'cule_ip_hex', '!=', null ),
+			] )
+			->groupBy( [ 'cule_actor', 'cule_ip_hex' ] );
+
+		// LIMIT on individual UNION branches is not supported by all DB backends (T397314).
+		// getDistinctIPInfo will be pretty inefficient on SQLite because of this
+		if ( $dbr->unionSupportsOrderAndLimit() ) {
+			$cuChangesQuery->limit( $queryLimit );
+			$cuLogEventQuery->limit( $queryLimit );
+		}
+
 		$res = $dbr->newUnionQueryBuilder()
-			->add(
-				$dbr->newSelectQueryBuilder()
-					->select( [
-						'ip_hex' => 'cuc_ip_hex',
-						'actor' => 'cuc_actor',
-						'rev_id' => new Subquery( $oldIdQuery->getSQL() ),
-						'NULL as log_id',
-					] )
-					->from( 'cu_changes' )
-					->join( 'actor', null, 'cuc_actor = actor_id' )
-					->where( [
-						'actor_name' => $user->getName(),
-						$dbr->expr( 'cuc_ip_hex', '!=', null ),
-					] )
-					->groupBy( [ 'cuc_actor', 'cuc_ip_hex' ] )
-					->limit( $queryLimit )
-			)
-			->add(
-				$dbr->newSelectQueryBuilder()
-					->select( [
-						'ip_hex' => 'cule_ip_hex',
-						'actor' => 'cule_actor',
-						'NULL as rev_id',
-						'log_id' => new Subquery( $logIdQuery->getSQL() )
-					] )
-					->from( 'cu_log_event' )
-					->join( 'actor', null, 'cule_actor = actor_id' )
-					->where( [
-						'actor_name' => $user->getName(),
-						$dbr->expr( 'cule_ip_hex', '!=', null ),
-					] )
-					->groupBy( [ 'cule_actor', 'cule_ip_hex' ] )
-					->limit( $queryLimit )
-			)
+			->add( $cuChangesQuery )
+			->add( $cuLogEventQuery )
 			->caller( __METHOD__ )
 			->fetchResultSet();
 
