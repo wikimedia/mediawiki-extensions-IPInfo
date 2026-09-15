@@ -36,6 +36,7 @@
 	"ipinfo-property-value-usertype-school": "Škola",
 	"ipinfo-property-value-usertype-traveler": "Cestovné",
 	"ipinfo-property-value-usertype-residential": "Domáce",
+	"ipinfo-property-value-connectiontype-mobile": "Mobilné",
 	"ipinfo-property-value-connectiontype-unknown": "Neznáme",
 	"ipinfo-property-label-source": "Zdroj",
 	"ipinfo-property-label-active-blocks": "Aktívne blokovania",
@@ -47,7 +48,16 @@
 	"ipinfo-widget-error-default": "Informácie o IP adrese sa nepodarilo načítať.",
 	"ipinfo-widget-error-no-data": "Pre túto IP adresu nie sú k dispozícii žiadne údaje z $1 .",
 	"ipinfo-beta-feature-description": "Nástroj IP info má za cieľ poskytovať redaktorom sledujúcim Posledné úpravy dôležité informácie o IP adresách, aby im pomohol v ich činnosti. Tieto informácie budú dostupné na stránke Špeciálne:Príspevky. Skrátená verzia týchto informácií bude dostupná vo vyskakovacom okne pri IP adresách na stránkach [[Special:Log|verejných záznamov]], [[Special:Contributions|príspevkov redaktora]] a [[Special:RecentChanges|posledných úprav]].",
+	"ipinfo-log-access-level-ipinfo-view-basic": "Obmedzený prístup",
+	"ipinfo-log-access-level-ipinfo-view-full": "Úplný prístup",
+	"ipinfo-change-access-level-enable": "{{GENDER:$1|povolil|povolila}}",
+	"ipinfo-change-access-level-disable": "{{GENDER:$1|zakázal|zakázala}}",
+	"ipinfo-change-access-level-enable-globally": "globálne {{GENDER:$1|povolil|povolila}}",
+	"ipinfo-change-access-level-disable-globally": "globálne {{GENDER:$1|zakázal|zakázala}}",
 	"ipinfo-deleted-edits-url-text": "Zmazané príspevky",
 	"ipinfo-special-ipinfo-target": "Cieľové používateľské meno alebo IP adresa:",
-	"ipinfo-special-ipinfo-column-ip": "IP"
+	"ipinfo-special-ipinfo-column-ip": "IP",
+	"ipinfo-popup-link-text": "Zobraziť všetky informácie o IP adrese",
+	"ipinfo-help-text": "Zobrazené informácie pochádzajú zo služieb MaxMind a [https://docs.spur.us/data-types Spur]. Nemusia byť úplne presné.",
+	"ipinfo-learn-more-link": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Trust_and_Safety_Product/IP_Info Zistiť viac o tejto funkcii]"
 }
