@@ -50,13 +50,18 @@ class LogIPInfoAccessJobTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideDataContext
 	 */
 	public function testValid( $dataContext ) {
-		$job = new LogIPInfoAccessJob( null, [
-			'performer' => $this->getTestUser()->getUser()->getName(),
-			'ip' => '127.0.0.1',
-			'dataContext' => $dataContext,
-			'timestamp' => (int)wfTimestamp(),
-			'access_level' => DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT,
-		] );
+		$services = $this->getServiceContainer();
+		$job = new LogIPInfoAccessJob(
+			[
+				'performer' => $this->getTestUser()->getUser()->getName(),
+				'ip' => '127.0.0.1',
+				'dataContext' => $dataContext,
+				'timestamp' => (int)wfTimestamp(),
+				'access_level' => DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT,
+			],
+			$services->getUserIdentityLookup(),
+			$services->get( 'IPInfoLoggerFactory' ),
+		);
 
 		$result = $job->run();
 		$this->assertTrue( $result );
@@ -66,13 +71,18 @@ class LogIPInfoAccessJobTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideDataContext
 	 */
 	public function testInvalidPerformer( $dataContext ) {
-		$job = new LogIPInfoAccessJob( null, [
-			'performer' => 'Fake User',
-			'ip' => '127.0.0.1',
-			'dataContext' => $dataContext,
-			'timestamp' => (int)wfTimestamp(),
-			'access_level' => DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT,
-		] );
+		$services = $this->getServiceContainer();
+		$job = new LogIPInfoAccessJob(
+			[
+				'performer' => 'Fake User',
+				'ip' => '127.0.0.1',
+				'dataContext' => $dataContext,
+				'timestamp' => (int)wfTimestamp(),
+				'access_level' => DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT,
+			],
+			$services->getUserIdentityLookup(),
+			$services->get( 'IPInfoLoggerFactory' ),
+		);
 
 		$result = $job->run();
 		$this->assertFalse( $result );
@@ -81,13 +91,18 @@ class LogIPInfoAccessJobTest extends MediaWikiIntegrationTestCase {
 
 	public function testInvalidDataContext() {
 		$dataContext = 'foo';
-		$job = new LogIPInfoAccessJob( null, [
-			'performer' => $this->getTestUser()->getUser()->getName(),
-			'ip' => '127.0.0.1',
-			'dataContext' => $dataContext,
-			'timestamp' => (int)wfTimestamp(),
-			'access_level' => DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT,
-		] );
+		$services = $this->getServiceContainer();
+		$job = new LogIPInfoAccessJob(
+			[
+				'performer' => $this->getTestUser()->getUser()->getName(),
+				'ip' => '127.0.0.1',
+				'dataContext' => $dataContext,
+				'timestamp' => (int)wfTimestamp(),
+				'access_level' => DefaultPresenter::IPINFO_VIEW_BASIC_RIGHT,
+			],
+			$services->getUserIdentityLookup(),
+			$services->get( 'IPInfoLoggerFactory' ),
+		);
 
 		$result = $job->run();
 		$this->assertFalse( $result );

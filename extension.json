@@ -232,7 +232,14 @@
 		}
 	},
 	"JobClasses": {
-		"ipinfoLogIPInfoAccess": "\\MediaWiki\\IPInfo\\Jobs\\LogIPInfoAccessJob"
+		"ipinfoLogIPInfoAccess": {
+			"class": "\\MediaWiki\\IPInfo\\Jobs\\LogIPInfoAccessJob",
+			"needsPage": false,
+			"services": [
+				"UserIdentityLookup",
+				"IPInfoLoggerFactory"
+			]
+		}
 	},
 	"ResourceModules": {
 		"ext.ipInfo": {

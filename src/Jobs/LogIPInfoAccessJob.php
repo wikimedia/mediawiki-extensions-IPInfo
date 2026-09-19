@@ -8,8 +8,8 @@ use MediaWiki\IPInfo\Logging\LoggerFactory;
 use MediaWiki\JobQueue\IJobSpecification;
 use MediaWiki\JobQueue\Job;
 use MediaWiki\JobQueue\JobSpecification;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityLookup;
 
 /**
  * Log when a user accesses information about an ip
@@ -17,8 +17,11 @@ use MediaWiki\User\UserIdentity;
 class LogIPInfoAccessJob extends Job {
 	public const JOB_TYPE = 'ipinfoLogIPInfoAccess';
 
-	/** @inheritDoc */
-	public function __construct( $title, $params ) {
+	public function __construct(
+		array $params,
+		private readonly UserIdentityLookup $userIdentityLookup,
+		private readonly LoggerFactory $ipInfoLoggerFactory,
+	) {
 		parent::__construct( self::JOB_TYPE, $params );
 	}
 
@@ -55,8 +58,7 @@ class LogIPInfoAccessJob extends Job {
 	 * @return bool
 	 */
 	public function run() {
-		$performer = MediaWikiServices::getInstance()->getUserIdentityLookup()
-			->getUserIdentityByName( $this->params['performer'] );
+		$performer = $this->userIdentityLookup->getUserIdentityByName( $this->params['performer'] );
 		// Accept 'ip' param as B/C for inflight jobs
 		$targetName = $this->params['targetName'] ?? $this->params['ip'];
 		$timestamp = $this->params['timestamp'];
@@ -67,9 +69,7 @@ class LogIPInfoAccessJob extends Job {
 			return false;
 		}
 
-		/** @var LoggerFactory $factory */
-		$factory = MediaWikiServices::getInstance()->get( 'IPInfoLoggerFactory' );
-		$logger = $factory->getLogger();
+		$logger = $this->ipInfoLoggerFactory->getLogger();
 
 		switch ( $this->params['dataContext'] ) {
 			case 'infobox':
