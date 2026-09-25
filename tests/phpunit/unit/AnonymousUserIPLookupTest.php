@@ -8,7 +8,6 @@ use MediaWiki\IPInfo\AnonymousUserIPLookup;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\User\UserIdentityUtils;
 use MediaWikiUnitTestCase;
-use Psr\Log\NullLogger;
 use Wikimedia\Assert\ParameterAssertionException;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -30,9 +29,7 @@ class AnonymousUserIPLookupTest extends MediaWikiUnitTestCase {
 
 		$this->anonymousUserIPLookup = new AnonymousUserIPLookup(
 			$this->connectionProvider,
-			$this->userIdentityUtils,
 			$this->extensionRegistry,
-			new NullLogger()
 		);
 	}
 

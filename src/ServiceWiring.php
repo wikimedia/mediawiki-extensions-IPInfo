@@ -88,9 +88,7 @@ return [
 	'IPInfoAnonymousUserIPLookup' => static function ( MediaWikiServices $services ): AnonymousUserIPLookup {
 		return new AnonymousUserIPLookup(
 			$services->getConnectionProvider(),
-			$services->getUserIdentityUtils(),
 			ExtensionRegistry::getInstance(),
-			LoggerFactory::getInstance( 'IPInfo' )
 		);
 	},
 	'IPInfoPermissionManager' => static function ( MediaWikiServices $services ): IPInfoPermissionManager {

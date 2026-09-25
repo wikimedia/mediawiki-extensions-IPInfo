@@ -5,11 +5,8 @@ declare( strict_types=1 );
 namespace MediaWiki\IPInfo;
 
 use MediaWiki\Registration\ExtensionRegistry;
-use MediaWiki\User\UserIdentityUtils;
-use Psr\Log\LoggerInterface;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
-use Wikimedia\ObjectCache\MapCacheLRU;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -19,15 +16,10 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * act but whose actions were either reverted or blocked.
  */
 class AnonymousUserIPLookup {
-	private readonly MapCacheLRU $recentAddressCache;
-
 	public function __construct(
 		private readonly IConnectionProvider $connectionProvider,
-		private readonly UserIdentityUtils $userIdentityUtils,
 		private readonly ExtensionRegistry $extensionRegistry,
-		private readonly LoggerInterface $logger,
 	) {
-		$this->recentAddressCache = new MapCacheLRU( 8 );
 	}
 
 	public function checkIPIsKnown( string $ip ): bool {
