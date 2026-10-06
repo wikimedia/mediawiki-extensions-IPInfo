@@ -14,7 +14,8 @@
 			"1F616EMO",
 			"Emojiwiki",
 			"ShuQizhe",
-			"LowensteinYang"
+			"LowensteinYang",
+			"Above mountain"
 		]
 	},
 	"ipinfo-extensionname": "IP資訊（IP Info）",
@@ -125,7 +126,7 @@
 	"group-no-ipinfo-member": "{{GENDER:$1|禁止存取IP資訊工具}}",
 	"grouppage-no-ipinfo": "{{ns:project}}:禁止存取IP資訊工具的使用者",
 	"ipinfo-log-name": "IP資訊日誌",
-	"ipinfo-log-header": "此日誌為：\n# 藉由 IP 資訊工具來檢視有關 IP 的使用情況，以及\n# 對於此工具的使用者存取級別更改。",
+	"ipinfo-log-header": "此日誌為：\n# 藉由 IP 資訊工具來檢視有關 IP 的使用情況，以及\n# 對於此工具的使用者存取級別的變更。",
 	"ipinfo-log-access-level-ipinfo-view-basic": "受限存取",
 	"ipinfo-log-access-level-ipinfo-view-full": "完整存取",
 	"logentry-ipinfo-view_infobox": "$1{{GENDER:$2|檢視了}}$3的IP資訊框。$4。",
