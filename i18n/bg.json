@@ -9,7 +9,7 @@
 	"ipinfo-extensionname": "Информация за IP",
 	"ipinfo-desc": "Предоставя информация за IP адрес.",
 	"ipinfo-infobox-title": "Информация за IP адреса на $1",
-	"ipinfo-infobox-temporary-account-help": "С този временен акаунт са свързани множество IP адреси. Преглеждате IP информация за последно използвания IP адрес. [[Special:IPInfo/$1|Преглед на IP информация за всички IP адреси]].",
+	"ipinfo-infobox-temporary-account-help": "С този временна сметка са свързани множество IP адреси. Преглеждате IP информация за последно използвания IP адрес. [[Special:IPInfo/$1|Преглед на IP информация за всички IP адреси]].",
 	"ipinfo-property-label-location": "Местоположение",
 	"ipinfo-property-label-ipversion": "Версия",
 	"ipinfo-property-label-asn": "ASN",
