@@ -25,7 +25,8 @@
 			"沈澄心",
 			"范",
 			"ShuQizhe",
-			"Peterxy"
+			"Peterxy",
+			"Above mountain"
 		]
 	},
 	"ipinfo-extensionname": "IP信息",
@@ -136,7 +137,7 @@
 	"group-no-ipinfo-member": "{{GENDER:$1|禁止查看IP信息}}",
 	"grouppage-no-ipinfo": "{{ns:project}}:禁止查看IP信息的用户",
 	"ipinfo-log-name": "IP信息日志",
-	"ipinfo-log-header": "该日志可以：\n# 使用IP信息工具查看IP信息；以及\n# 更改该工具的用户访问级别。",
+	"ipinfo-log-header": "该日志记录：\n# 对IP信息工具查看IP信息的使用；以及\n# 对该工具的用户访问级别的更改。",
 	"ipinfo-log-access-level-ipinfo-view-basic": "受限访问",
 	"ipinfo-log-access-level-ipinfo-view-full": "完整访问",
 	"logentry-ipinfo-view_infobox": "$1{{GENDER:$2|查看了}}$3的IP信息框。$4。",
