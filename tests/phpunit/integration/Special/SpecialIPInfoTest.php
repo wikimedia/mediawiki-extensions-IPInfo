@@ -351,9 +351,9 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 			->setOption( $performer->getUser(), PreferencesHandler::IPINFO_USE_AGREEMENT, '1' );
 
 		[ $html ] = $this->executeSpecialPage(
-			'214.78.120.5',
+			'214.78.0.5',
 			new FauxRequest(),
-			'qqx',
+			'en',
 			$performer
 		);
 
@@ -363,6 +363,13 @@ class SpecialIPInfoTest extends SpecialPageTestBase {
 		$this->assertCount(
 			1,
 			DOMCompat::querySelectorAll( $doc, '.ext-ipinfo-special-ipinfo__table > tbody > tr' )
+		);
+		$this->assertSame(
+			'San Diego, California, United States',
+			DOMCompat::querySelector(
+				$doc,
+				'.ext-ipinfo-special-ipinfo__table > tbody > tr > td:nth-of-type(1)'
+			)->textContent
 		);
 	}
 

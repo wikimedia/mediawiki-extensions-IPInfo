@@ -351,11 +351,16 @@ class SpecialIPInfo extends FormSpecialPage {
 	 */
 	private function buildTableRow( array $presented, string $ip ): array {
 		$commaMsg = $this->msg( 'comma-separator' )->text();
+		$geoIp2Data = $presented['data']['ipinfo-source-geoip2'] ?? [];
 
 		$locations = array_map(
 			static fn ( array $loc ): string => $loc['label'],
-			$presented['data']['ipinfo-source-geoip2']['location'] ?? []
+			$geoIp2Data['location'] ?? []
 		);
+		$countryName = $this->getLocalizedCountryName( $geoIp2Data['countryNames'] ?? null );
+		if ( $countryName !== null ) {
+			$locations[] = $countryName;
+		}
 
 		$risks = array_map(
 			function ( string $riskType ): string {
@@ -394,8 +399,8 @@ class SpecialIPInfo extends FormSpecialPage {
 
 		return [
 			'location' => implode( $commaMsg, $locations ),
-			'asn' => $presented['data']['ipinfo-source-geoip2']['asn'] ?? '',
-			'organization' => $presented['data']['ipinfo-source-geoip2']['organization'] ?? '',
+			'asn' => $geoIp2Data['asn'] ?? '',
+			'organization' => $geoIp2Data['organization'] ?? '',
 			'ipversion' => IPUtils::isIPv4( $ip )
 				? $this->msg( 'ipinfo-value-ipversion-ipv4' )->text()
 				: $this->msg( 'ipinfo-value-ipversion-ipv6' )->text(),
@@ -406,6 +411,32 @@ class SpecialIPInfo extends FormSpecialPage {
 			'proxies' => $presented['data']['ipinfo-source-ipoid']['proxies'] ?? [],
 			'usercount' => $userCount !== null ? $this->getLanguage()->formatNum( $userCount ) : ''
 		];
+	}
+
+	/**
+	 * The best country label for the page language
+	 *
+	 * @param array<string,string>|null $countryNames Country from MaxMind, keyed by language
+	 */
+	private function getLocalizedCountryName( ?array $countryNames ): ?string {
+		if ( !$countryNames ) {
+			return null;
+		}
+
+		$userLang = strtolower( $this->getLanguage()->getCode() );
+		$langCodes = array_unique( array_merge(
+			[ $userLang ],
+			$this->getLanguage()->getFallbackLanguages()
+		) );
+		foreach ( $langCodes as $languageCode ) {
+			foreach ( $countryNames as $langCode => $countryName ) {
+				if ( strtolower( $langCode ) === $languageCode ) {
+					return $countryName;
+				}
+			}
+		}
+
+		return null;
 	}
 
 	/**
