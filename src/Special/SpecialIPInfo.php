@@ -90,7 +90,12 @@ class SpecialIPInfo extends FormSpecialPage {
 			);
 		}
 
-		parent::execute( $par );
+		parent::execute( is_string( $par ) ? trim( $par ) : $par );
+	}
+
+	/** @inheritDoc */
+	protected function setParameter( $par ) {
+		parent::setParameter( is_string( $par ) ? trim( $par ) : $par );
 	}
 
 	private function didNotAcceptIPInfoAgreement(): bool {
@@ -145,7 +150,8 @@ class SpecialIPInfo extends FormSpecialPage {
 				'excludenamed' => true,
 				'ipallowed' => true,
 				'autocomplete' => 'on',
-				'required' => true
+				'required' => true,
+				'filter-callback' => static fn ( $target ) => is_string( $target ) ? trim( $target ) : $target,
 			]
 		];
 
@@ -171,7 +177,7 @@ class SpecialIPInfo extends FormSpecialPage {
 	}
 
 	protected function alterForm( HTMLForm $form ): void {
-		$target = $this->getRequest()->getVal( 'wpTarget', $this->par ?? '' );
+		$target = trim( (string)$this->getRequest()->getVal( 'wpTarget', $this->par ?? '' ) );
 		if ( IPUtils::isValid( $target ) ) {
 			$legend = $this->msg( 'ipinfo-special-ipinfo-ip-legend' )->parseAsBlock();
 		} else {
