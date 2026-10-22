@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Brettchenweber",
+			"IWL04",
 			"Schniggendiller",
 			"Umherirrender",
 			"Wnme"
@@ -147,6 +148,6 @@
 	"ipinfo-special-ipinfo-ip-legend": "IP-Informationen zu einer IP-Adresse nachschlagen.",
 	"ipinfo-special-ipinfo-no-right-ip": "Du hast keine Berechtigung, IP-Informationen für beliebige IP-Adressen abzurufen.",
 	"ipinfo-special-ipinfo-table-caption-ip": "IP-Informationen für $1",
-	"right-ipinfo-view-arbitrary-ip": "IP-Informationen für beliebige IP-Adressen kannst du auf Special:IPInfo nachschlagen.",
+	"right-ipinfo-view-arbitrary-ip": "IP-Informationen für beliebige IP-Adressen auf Spezial:IPInfo nachschlagen",
 	"action-ipinfo-view-arbitrary-ip": "IP-Informationen für beliebige IP-Adressen nachschlagen"
 }
