@@ -172,7 +172,8 @@ class LogHandler extends IPInfoHandler {
 		// The target may be an IP with a blocked action and only be known to CheckUser or AbuseFilter.
 		// In those cases, it won't return a UserIdentity and will fail the $showTarget check although it
 		// is still eligible to be looked up. Check for those cases here.
-		// There is no need to do a similar check for the performer as that is guaranteed to have returned a UserIdentity.
+		// There is no need to do a similar check for the performer
+		// as that is guaranteed to have returned a UserIdentity.
 		$targetName = IPUtils::sanitizeIP( $targetName );
 		if (
 			$canAccessTarget &&

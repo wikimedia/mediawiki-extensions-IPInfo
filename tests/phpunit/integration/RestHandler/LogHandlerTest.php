@@ -472,7 +472,8 @@ class LogHandlerTest extends HandlerTestCase {
 		];
 
 		$logEntriesWithTwoResults = [
-			'log entry by anonymous user with anonymous target' => static fn () => self::$logEntryByAnonWithAnonTargetId,
+			'log entry by anonymous user with anonymous target' =>
+				static fn () => self::$logEntryByAnonWithAnonTargetId,
 		];
 
 		$tempUserConfig = [
