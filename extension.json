@@ -267,7 +267,6 @@
 				"oojs-ui-core",
 				"oojs-ui-widgets",
 				"oojs-ui.styles.icons-content",
-				"web2017-polyfills",
 				"mediawiki.storage",
 				"mediawiki.user"
 			],
